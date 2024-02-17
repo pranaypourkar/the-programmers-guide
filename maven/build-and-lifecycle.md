@@ -154,6 +154,63 @@ We can customize the default phases and their associated behavior using Maven's 
 
 
 
+**Default Plugins**
+
+Maven plugins consist of one or more goals, which represent specific tasks or actions. Maven comes bundled with several default plugins that provide essential functionality for managing and building projects. No need to import default plugin specifically in pom.xml, if default configuration is needed for the project.
+
+<figure><img src="../.gitbook/assets/image (2).png" alt="" width="518"><figcaption></figcaption></figure>
+
+**maven-clean-plugin**: Provides functionality for cleaning the project by deleting generated files and directories. It is typically bound to the clean phase of the build lifecycle.
+
+**maven-compiler-plugin**: This plugin is responsible for compiling the project's source code. It supports different versions of Java and allows configuration of compiler options.
+
+**maven-deploy-plugin:** Deploys project artifacts to a remote repository or server. It is typically bound to the deploy phase of the build lifecycle.
+
+**maven-install-plugin:** Installs the project artifacts (e.g., JAR, WAR) into the local Maven repository. It is typically bound to the install phase of the build lifecycle.
+
+**maven-jar-plugin**: Facilitates the creation of JAR (Java Archive) files for packaging Java projects. It allows customization of the JAR's manifest and inclusion of additional resources.
+
+**maven-resources-plugin**: Handles the copying of project resources to the output directory during the resource phase of the build lifecycle. It supports filtering and processing of resources.
+
+**maven-site-plugin**: It is a crucial plugin in Maven for generating project documentation in HTML format. It's commonly used to create a project's website, including various reports, documentation, and other information helpful for developers and users.
+
+**maven-surefire-plugin**: Used for executing unit tests during the test phase of the build lifecycle. It supports various test frameworks like JUnit and TestNG.
+
+
+
+{% hint style="info" %}
+Each of the default plugins in Maven can be customized extensively to fit the specific requirements of the project. For example
+
+```
+// Configure maven-surefire-plugin
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.0.0-M5</version>
+    <configuration>
+        <includes>
+            <include>**/*Test.java</include>
+        </includes>
+        <!-- Other configuration options -->
+    </configuration>
+</plugin>
+
+// Configure maven-compiler-plugin
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.8.1</version>
+    <configuration>
+        <source>1.8</source>
+        <target>1.8</target>
+        <!-- Other configuration options -->
+    </configuration>
+</plugin>
+```
+{% endhint %}
+
+
+
 
 
 
