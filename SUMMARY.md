@@ -9,6 +9,6 @@
 * [Maven](maven/README.md)
   * [Build & Lifecycle](maven/build-and-lifecycle.md)
   * [Command-line Options](maven/command-line-options.md)
-  * [Dependency](maven/dependency.md)
+  * [Dependencies](maven/dependencies.md)
   * [Plugins](maven/plugins.md)
 * [Tests](tests.md)
