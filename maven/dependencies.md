@@ -16,6 +16,41 @@ description: >-
 
 
 
+#### H2
+
+* H2 Database offers both in-memory and file-based database options. Integrating H2 database into Maven project involves two main scenarios i.e. using it for persistence in application or for integration testing**.** Dependency scope as test ensures the dependency is only available during tests and not included in the final packaged application.&#x20;
+
+<details>
+
+<summary>H2 Database Dependency </summary>
+
+```
+<dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <version>1.4.199</version>
+    <scope>test</scope>
+</dependency>
+```
+
+</details>
+
+H2 database specific properties can be defined in application.yaml file like below.
+
+```
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+```
+
+{% hint style="info" %}
+* **In-memory:** Use `jdbc:h2:mem:your_database_name` for a private in-memory database
+* **File-based:** Use `jdbc:h2:~/your_database_name` or `jdbc:h2:file:your_database_name` to store data in a file on your local system.
+{% endhint %}
+
 #### Oracle
 
 * Oracle Driver
@@ -27,8 +62,6 @@ Oracle JDBC driver for Java allows Java applications to connect to Oracle databa
 <summary>Oracle Database Driver Dependency </summary>
 
 ```
-
-
 <dependency>
     <groupId>com.oracle.database.jdbc</groupId>
     <artifactId>ojdbc8</artifactId>
