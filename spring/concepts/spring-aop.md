@@ -47,7 +47,7 @@ There are 4 method names that starts from `test` and 4 methods that starts from 
 
 
 
-**AOP Terminologies:**
+**AOP Terminologies**
 
 * **Join point**&#x20;
 
@@ -109,7 +109,19 @@ Let's see the advantages and disadvantages of AOP
 
 
 
+**AOP Implementations**
+
+1. **AspectJ**: AspectJ is a powerful and widely-used AOP framework for Java. It provides a rich set of features for aspect-oriented programming, including support for both compile-time and runtime weaving. AspectJ offers a comprehensive set of pointcut expressions and advice types, making it suitable for complex AOP scenarios.
+2. **Spring AOP**: Spring AOP is a lightweight AOP framework provided by the Spring Framework. It integrates seamlessly with Spring IoC container and other Spring features. Spring AOP uses dynamic proxies to apply aspects at runtime, primarily focusing on method interception. While it may not be as feature-rich as AspectJ, it provides a more lightweight and easy-to-use AOP solution for common use cases.
+3. **JBoss AOP**: JBoss AOP is an AOP framework provided by JBoss, now part of the larger Red Hat ecosystem. It was developed specifically for the JBoss application server but can be used in standalone Java applications as well. JBoss AOP offers features similar to AspectJ and Spring AOP but is tailored for use within the JBoss environment.
 
 
 
+**Ways to Use Spring AOP**
+
+1. **Spring 1.2 Old Style (DTD Based)**: In older versions of Spring (prior to version 2.5), AOP configuration was typically done using XML-based configuration with DTD-based syntax. This approach involved defining aspects, pointcuts, and advice in XML files.
+2. **AspectJ Annotation-Style**: This is the preferred and widely-used approach for using Spring AOP. With this approach, you can use AspectJ annotations (`@Aspect`, `@Pointcut`, `@Before`, `@After`, etc.) to define aspects and advice directly in your Java classes. This style offers a more concise and readable way to configure AOP.
+3. **Spring XML Configuration-Style (Schema Based)**: Spring AOP can also be configured using XML-based configuration with schema-based syntax. This approach is similar to the old style but uses XML schemas (`<aop:config>`, `<aop:aspect>`, `<aop:before>`, `<aop:after>`, etc.) for defining aspects and advice.
+
+While all three approaches are supported by Spring AOP, the AspectJ annotation-style approach is the most commonly used and recommended due to its simplicity, expressiveness, and alignment with modern Java development practices.
 
