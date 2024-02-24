@@ -1,0 +1,115 @@
+---
+description: >-
+  Overview of Aspect Oriented Programming (AOP) framework along with practical
+  example.
+---
+
+# Spring AOP
+
+One of the core components of Spring Framework is the Aspect Oriented Programming (AOP) framework.
+
+Many enterprise level applications have some common cross-cutting concerns that are applicable to different types of objects and modules. Some of the most common cross-cutting concerns are logging, transaction management, data validation, security, authentication etc. In _**Object Oriented Programming (OOP), modularity of application is achieved by Classes**_ whereas in _**Aspect Oriented Programming application modularity is achieved by Aspects**_ and they are configured to cut across different classes. Spring AOP takes out the direct dependency of crosscutting tasks from classes that we can’t achieve through normal object oriented programming model. For example, we can have a separate class for logging but again the functional classes will have to call these methods to achieve logging across the application.
+
+{% hint style="info" %}
+A cross-cutting concern is a concern that can affect the whole application and should be centralized in one location in code as possible. It is conceptually separate from the main application business logic.
+{% endhint %}
+
+Spring AOP provides a way to modularize cross-cutting concerns in application by defining aspects. Aspects are like classes, but they define cross-cutting behavior. Spring AOP can intercept method calls, perform actions before or after the method invocation, or even replace the method invocation with different behavior.
+
+{% hint style="info" %}
+Dependency Injection helps in decoupling application objects from each other, while AOP helps in decoupling cross-cutting concerns from the objects that they affect.
+{% endhint %}
+
+
+
+Let's understand why AOP will be needed in the application by considering below example.
+
+Suppose there are 5+ methods in a class as given below:
+
+```
+class Sample {  
+    public void test1() {...}  
+    public void test2() {...}  
+    public void test3() {...}  
+    public void test4() {...}  
+    public void method1() {...}  
+    public void method2() {...}  
+    public void method3() {...}  
+    public void method4() {...}  
+} 
+```
+
+There are 4 method names that starts from `test` and 4 methods that starts from `method.` Suppose there is a need to maintain log and send notification after calling methods that starts from `test`.
+
+**Solution without AOP** includes calling methods (that maintains log and sends notification) from the methods starting with `test`. In such case, code needs to written in all methods with `test`. But, if there is a requirement in future to remove send notification logic, change to all the methods will be needed. It leads to the maintenance problem.
+
+**Solution with AOP** does not include calling methods from the method. Additional concerns can be defined like maintaining log, sending notification etc. in the form of custom annotation on the method of a class. In future, if there is a need to remove the notifier functionality, only change in the annotation will be needed. So, maintenance is easy in AOP. AOP provides a pluggable way to dynamically add the additional concern before, after or around the actual logic.
+
+
+
+**AOP Terminologies:**
+
+* **Join point**&#x20;
+
+Join point is any point during the execution of a program such as method execution, exception handling, field access etc. _**Spring AOP supports only method execution join point**_.
+
+* **Advice**&#x20;
+
+Advice represents an action taken by an aspect at a particular join point. In Spring, an Advice is modelled as an interceptor, maintaining a chain of interceptors around the Joinpoint. Different types of advices include:
+
+> * Before Advice: It executes before a join point. Use **@Before** annotation to mark an advice type as Before advice.&#x20;
+> * After Returning Advice: It executes after a joint point completes normally. use **@AfterReturning** annotation to mark a method as after returning advice.&#x20;
+> * After Throwing Advice: It executes if method exits by throwing an exception. use **@AfterThrowing** annotation for this type of advice.&#x20;
+> * After (finally) Advice: It executes after a join point regardless of join point exit whether normally or exceptional return. Use **@After** annotation to mark an advice type as After advice.&#x20;
+> * Around Advice: It executes before and after a join point. Use **@Around** annotation to create around advice methods.
+
+* **Pointcut**&#x20;
+
+It is an expression language of AOP that matches join points to determine whether advice needs to be executed or not. It is a predicate that helps match an Advice to be applied by an Aspect at a particular JoinPoint.
+
+* **Target Object**&#x20;
+
+It is the object which is being advised by one or more aspects. It is also known as proxied object in spring because Spring AOP is implemented using runtime proxies.
+
+* **Aspect**&#x20;
+
+An aspect is a class that implements enterprise application concerns that cut across multiple classes, such as transaction management, logging and contains advices, joinpoints etc.
+
+* **Interceptor**&#x20;
+
+It is an aspect that contains only one advice.
+
+* **AOP Proxy**&#x20;
+
+It is used to implement aspect contracts, created by AOP framework. It will be a JDK dynamic proxy or CGLIB proxy in spring framework.
+
+* **Weaving**
+
+It is the process of linking aspect with other application types or objects to create an advised object. Weaving can be done at compile time, load time or runtime. Spring AOP performs weaving at runtime.
+
+
+
+**Sample Diagram of AOP process**
+
+<figure><img src="../../.gitbook/assets/image (6).png" alt="" width="422"><figcaption></figcaption></figure>
+
+> * **Application**: Application containing the business logic.
+> * **Target Object**: Object containing the business logic methods.
+> * **Aspect Object**: Object containing the cross-cutting concerns (e.g., logging, security).
+> * **Proxy Object**: Spring AOP dynamically generates proxy objects around the target objects. The proxy intercepts method invocations.
+> * **Advice**: Action taken by an aspect at a particular join point. It represents the cross-cutting behavior.
+> * **Join Point**: A point during the execution of a program, such as method execution, exception handling, etc.
+> * **Aspect Weaving**: The process of applying aspects to the target object to create the advised object. This happens dynamically at runtime.
+
+
+
+Let's see the advantages and disadvantages of AOP
+
+<table><thead><tr><th>Advantage</th><th>Disadvantage</th><th data-hidden></th></tr></thead><tbody><tr><td><strong>Modularity</strong>: AOP allows you to modularize cross-cutting concerns, such as logging, security, and transaction management, improving code organization and maintainability.</td><td><strong>Performance Overhead</strong>: Dynamic proxy-based AOP can introduce performance overhead, especially for heavily-intercepted methods, due to the extra method invocations and object creations involved.</td><td></td></tr><tr><td><strong>Reusability</strong>: Aspects can be reused across multiple components, reducing code duplication and promoting a more DRY (Don't Repeat Yourself) approach.</td><td><strong>Limited to Method Interception</strong>: Spring AOP primarily focuses on method interception, which may not cover all cross-cutting concerns, such as field access or object creation.</td><td></td></tr><tr><td><strong>Separation of Concerns</strong>: AOP separates core business logic from cross-cutting concerns, making it easier to understand and maintain the codebase.</td><td><strong>Complexity</strong>: AOP introduces additional complexity to the codebase, especially for developers unfamiliar with the concept, which may lead to difficulties in debugging and troubleshooting.</td><td></td></tr><tr><td><strong>Dynamic Proxy</strong>: Spring AOP uses dynamic proxies, which means that aspects can be applied at runtime without modifying the original code, providing flexibility and reducing coupling.</td><td><strong>Potential Abuse</strong>: AOP can be misused, leading to overly complex and hard-to-maintain code if cross-cutting concerns are scattered across the application without proper organization.</td><td></td></tr><tr><td><strong>Declarative Programmin</strong>g: AOP allows you to declare aspects using annotations or XML configuration, promoting a declarative programming style that is often easier to understand and maintain.</td><td><strong>Aspect Dependencies</strong>: Aspects may introduce dependencies between modules or layers of an application, making it harder to reason about the flow of control and increasing coupling if not managed carefully.</td><td></td></tr></tbody></table>
+
+
+
+
+
+
+

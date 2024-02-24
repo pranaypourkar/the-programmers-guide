@@ -16,6 +16,7 @@
   * [Concepts](spring/concepts/README.md)
     * [Spring Caching](spring/concepts/spring-caching/README.md)
       * [In-Memory Caching](spring/concepts/spring-caching/in-memory-caching.md)
+    * [Spring AOP](spring/concepts/spring-aop.md)
 * [Maven](maven/README.md)
   * [Build & Lifecycle](maven/build-and-lifecycle.md)
   * [Command-line Options](maven/command-line-options.md)
