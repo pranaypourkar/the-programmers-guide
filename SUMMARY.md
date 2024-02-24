@@ -9,6 +9,7 @@
   * [Design Pattern](system-design/design-pattern/README.md)
     * [Examples](system-design/design-pattern/examples/README.md)
       * [Data Collector](system-design/design-pattern/examples/data-collector.md)
+      * [Payment Processor](system-design/design-pattern/examples/payment-processor.md)
 * [Spring](spring/README.md)
   * [Profiles](spring/profiles.md)
   * [Annotations](spring/annotations.md)

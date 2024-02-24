@@ -16,9 +16,9 @@ Let's design a flexible and extensible solution to extract various data points f
 
 Create DataCollector interface along with a method collect which takes input as well as output object, which is to be updated.
 
-_**DataCollector.class**_
+_**DataCollector.java**_
 
-```
+```java
 public interface DataCollector {
     void collect(InputData inputData, OutputData outputData);
 }
@@ -28,7 +28,7 @@ public interface DataCollector {
 
 Create several implementation (for eg. header collector, token collector, request collector etc) of the interface.
 
-_**HeaderDataCollector.class**_ - Collects headers and set in the output
+_**HeaderDataCollector.java**_- Collects headers and set in the output
 
 ```java
 @Component
@@ -43,7 +43,7 @@ public class HeaderDataCollector implements DataCollector {
 }
 ```
 
-_**TokenDataCollector.class**_ - Collects token metadata and set in the output
+_**TokenDataCollector.java**_- Collects token metadata and set in the output
 
 ```java
 @Component
@@ -62,7 +62,7 @@ public class TokenDataCollector implements DataCollector {
 }
 ```
 
-**HttpRequestDataCollector.class** - Collects http request related parameters
+**HttpRequestDataCollector.java**- Collects http request related parameters
 
 ```java
 @Component
@@ -82,7 +82,7 @@ public class HttpRequestDataCollector implements DataCollector {
 
 Now, we will create a pipeline class which goes through all the above implementation to extract and set data in the output.
 
-_**DataCollectorPipeline.class**_
+_**DataCollectorPipeline.java**_
 
 ```java
 @RequiredArgsConstructor
@@ -105,7 +105,7 @@ public class DataCollectorPipeline {
 
 Pipeline can be called in the service class like below.
 
-_**DataService.class**_
+_**DataService.java**_
 
 ```java
 @RequiredArgsConstructor
