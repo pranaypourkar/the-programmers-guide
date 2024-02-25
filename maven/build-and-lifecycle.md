@@ -101,7 +101,7 @@ Below are typically associated with <mark style="color:green;">maven-failsafe-pl
 * **post-site:** Executes tasks after the site is generated.&#x20;
 * **site-deploy:** Deploys the generated site documentation to the specified server.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt="" width="317"><figcaption><p>Generated Site Reports</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt="" width="317"><figcaption><p>Generated Site Reports</p></figcaption></figure>
 
 {% file src="../.gitbook/assets/bookstore-reference – Project Information.pdf" %}
 Sample Site Document

@@ -8,6 +8,10 @@ description: >-
 
 One of the core components of Spring Framework is the Aspect Oriented Programming (AOP) framework.
 
+{% hint style="info" %}
+AOP is a way for adding behavior to existing code without modifying that code.
+{% endhint %}
+
 Many enterprise level applications have some common cross-cutting concerns that are applicable to different types of objects and modules. Some of the most common cross-cutting concerns are logging, transaction management, data validation, security, authentication etc. In _**Object Oriented Programming (OOP), modularity of application is achieved by Classes**_ whereas in _**Aspect Oriented Programming application modularity is achieved by Aspects**_ and they are configured to cut across different classes. Spring AOP takes out the direct dependency of crosscutting tasks from classes that we can’t achieve through normal object oriented programming model. For example, we can have a separate class for logging but again the functional classes will have to call these methods to achieve logging across the application.
 
 {% hint style="info" %}
@@ -91,7 +95,15 @@ It is the process of linking aspect with other application types or objects to c
 
 **Sample Diagram of AOP process**
 
+<div>
+
 <figure><img src="../../.gitbook/assets/image (6).png" alt="" width="422"><figcaption></figcaption></figure>
+
+ 
+
+<figure><img src="../../.gitbook/assets/image.png" alt="" width="445"><figcaption></figcaption></figure>
+
+</div>
 
 > * **Application**: Application containing the business logic.
 > * **Target Object**: Object containing the business logic methods.
@@ -105,7 +117,7 @@ It is the process of linking aspect with other application types or objects to c
 
 Let's see the advantages and disadvantages of AOP
 
-<table><thead><tr><th>Advantage</th><th>Disadvantage</th><th data-hidden></th></tr></thead><tbody><tr><td><strong>Modularity</strong>: AOP allows you to modularize cross-cutting concerns, such as logging, security, and transaction management, improving code organization and maintainability.</td><td><strong>Performance Overhead</strong>: Dynamic proxy-based AOP can introduce performance overhead, especially for heavily-intercepted methods, due to the extra method invocations and object creations involved.</td><td></td></tr><tr><td><strong>Reusability</strong>: Aspects can be reused across multiple components, reducing code duplication and promoting a more DRY (Don't Repeat Yourself) approach.</td><td><strong>Limited to Method Interception</strong>: Spring AOP primarily focuses on method interception, which may not cover all cross-cutting concerns, such as field access or object creation.</td><td></td></tr><tr><td><strong>Separation of Concerns</strong>: AOP separates core business logic from cross-cutting concerns, making it easier to understand and maintain the codebase.</td><td><strong>Complexity</strong>: AOP introduces additional complexity to the codebase, especially for developers unfamiliar with the concept, which may lead to difficulties in debugging and troubleshooting.</td><td></td></tr><tr><td><strong>Dynamic Proxy</strong>: Spring AOP uses dynamic proxies, which means that aspects can be applied at runtime without modifying the original code, providing flexibility and reducing coupling.</td><td><strong>Potential Abuse</strong>: AOP can be misused, leading to overly complex and hard-to-maintain code if cross-cutting concerns are scattered across the application without proper organization.</td><td></td></tr><tr><td><strong>Declarative Programmin</strong>g: AOP allows you to declare aspects using annotations or XML configuration, promoting a declarative programming style that is often easier to understand and maintain.</td><td><strong>Aspect Dependencies</strong>: Aspects may introduce dependencies between modules or layers of an application, making it harder to reason about the flow of control and increasing coupling if not managed carefully.</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Advantage</th><th>Disadvantage</th><th data-hidden></th></tr></thead><tbody><tr><td><strong>Modularity</strong>: AOP allows you to modularize cross-cutting concerns, such as logging, security, and transaction management, improving code organization and maintainability.</td><td><strong>Performance Overhead</strong>: Dynamic proxy-based AOP can introduce performance overhead, especially for heavily-intercepted methods, due to the extra method invocations and object creations involved.</td><td></td></tr><tr><td><strong>Reusability</strong>: Aspects can be reused across multiple components, reducing code duplication and promoting a more DRY (Don't Repeat Yourself) approach.</td><td><strong>Limited to Method Interception</strong>: Spring AOP primarily focuses on method interception, which may not cover all cross-cutting concerns, such as field access or object creation.</td><td></td></tr><tr><td><strong>Separation of Concerns</strong>: AOP separates core business logic from cross-cutting concerns, making it easier to understand and maintain the codebase.</td><td><strong>Complexity</strong>: AOP introduces additional complexity to the codebase, especially for developers unfamiliar with the concept, which may lead to difficulties in debugging and troubleshooting.</td><td></td></tr><tr><td><strong>Dynamic Proxy</strong>: Spring AOP uses dynamic proxies, which means that aspects can be applied at runtime without modifying the original code, providing flexibility and reducing coupling.</td><td><strong>Potential Abuse</strong>: AOP can be misused, leading to overly complex and hard-to-maintain code if cross-cutting concerns are scattered across the application without proper organization.</td><td></td></tr><tr><td><strong>Declarative Programmin</strong>g: AOP allows you to declare aspects using annotations or XML configuration, promoting a declarative programming style that is often easier to understand and maintain.</td><td><strong>Aspect Dependencies</strong>: Aspects may introduce dependencies between modules or layers of an application, making it harder to reason about the flow of control and increasing coupling if not managed carefully.</td><td></td></tr><tr><td></td><td>Since final classes or methods cannot be extended, they cannot be proxied. Because of the proxy implementation, Spring AOP only applies to <strong>public, non-static methods on Spring Beans</strong>. If there is an internal method call from one method to another within the same class, the advice will never be executed for the internal method call.</td><td></td></tr></tbody></table>
 
 
 
@@ -123,5 +135,15 @@ Let's see the advantages and disadvantages of AOP
 2. **AspectJ Annotation-Style**: This is the preferred and widely-used approach for using Spring AOP. With this approach, you can use AspectJ annotations (`@Aspect`, `@Pointcut`, `@Before`, `@After`, etc.) to define aspects and advice directly in your Java classes. This style offers a more concise and readable way to configure AOP.
 3. **Spring XML Configuration-Style (Schema Based)**: Spring AOP can also be configured using XML-based configuration with schema-based syntax. This approach is similar to the old style but uses XML schemas (`<aop:config>`, `<aop:aspect>`, `<aop:before>`, `<aop:after>`, etc.) for defining aspects and advice.
 
-While all three approaches are supported by Spring AOP, the AspectJ annotation-style approach is the most commonly used and recommended due to its simplicity, expressiveness, and alignment with modern Java development practices.
+While all three approaches are supported by Spring AOP, the AspectJ annotation-style approach is the most commonly used and recommended due to its simplicity, more control, and alignment with modern Java development practices.
 
+
+
+**Spring Maven Dependency**
+
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-aop</artifactId>
+</dependency>
+```
