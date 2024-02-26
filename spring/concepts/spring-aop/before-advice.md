@@ -86,23 +86,20 @@ Run and execute the API and verify the log response.
 
 <figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
+> Passing argNames in the Before Advice annotation.
+>
+> ```java
+> @SneakyThrows
+> @Before(value = "@annotation(LogRequest) && args(transaction)", argNames = "transaction")
+> public void logRequest(JoinPoint joinPoint, Transaction transaction) {
+>
+>     log.info("Start: LogRequest");
+>     log.info("Transaction: {}", transaction);
+>     log.info("JoinPoint: signature - {}", joinPoint.getSignature());
+>     log.info("JoinPoint: arguments - {}", joinPoint.getArgs());
+>     log.info("JoinPoint: kind - {}", joinPoint.getKind());
+>     log.info("JoinPoint: class - {}", joinPoint.getClass());
+>     log.info("Finish: LogRequest");
+> }
+> ```
 
-
-Passing argNames in the Before Advice annotation.
-
-```java
-@SneakyThrows
-@Before(value = "@annotation(LogRequest) && args(transaction)", argNames = "transaction")
-public void logRequest(JoinPoint joinPoint, Transaction transaction) {
-
-    log.info("Start: LogRequest");
-    log.info("Transaction: {}", transaction);
-    log.info("JoinPoint: signature - {}", joinPoint.getSignature());
-    log.info("JoinPoint: arguments - {}", joinPoint.getArgs());
-    log.info("JoinPoint: kind - {}", joinPoint.getKind());
-    log.info("JoinPoint: class - {}", joinPoint.getClass());
-    log.info("Finish: LogRequest");
-}
-```
-
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption><p>Output</p></figcaption></figure>
