@@ -27,6 +27,13 @@ Create custom annotation `LogRequest`
 _**LogRequest.java**_
 
 ```java
+package org.example.logging;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 @Target(ElementType.METHOD)           // Annotation will be applicable on methods only
 @Retention(RetentionPolicy.RUNTIME)   // Annotation will be available to the JVM at runtime
 public @interface LogRequest {
@@ -38,6 +45,14 @@ Create Aspect class
 _**LoggingAspect.java**_
 
 ```java
+package org.example.logging;
+
+import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.springframework.stereotype.Component;
+
 @Slf4j
 @Aspect
 @Component
@@ -59,6 +74,19 @@ public class LoggingAspect {
 Add the annotation on the Controller method.
 
 ```java
+package org.example.controller;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.example.Model.Transaction;
+import org.example.logging.LogRequest;
+import org.example.service.PaymentService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor

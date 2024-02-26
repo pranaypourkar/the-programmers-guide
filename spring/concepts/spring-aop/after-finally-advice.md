@@ -48,7 +48,7 @@ public class LoggingAspect {
 
 Create controller class
 
-```
+```java
 package org.example.controller;
 
 import lombok.RequiredArgsConstructor;
