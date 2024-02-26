@@ -62,14 +62,108 @@ Join point is any point during the execution of a program such as method executi
 Advice represents an action taken by an aspect at a particular join point. In Spring, an Advice is modelled as an interceptor, maintaining a chain of interceptors around the Joinpoint. Different types of advices include:
 
 > * Before Advice: It executes before a join point. Use **@Before** annotation to mark an advice type as Before advice.&#x20;
-> * After Returning Advice: It executes after a joint point completes normally. use **@AfterReturning** annotation to mark a method as after returning advice.&#x20;
-> * After Throwing Advice: It executes if method exits by throwing an exception. use **@AfterThrowing** annotation for this type of advice.&#x20;
+> * After Returning Advice: It executes after a joint point completes normally. Use **@AfterReturning** annotation to mark a method as after returning advice.&#x20;
+> * After Throwing Advice: It executes if method exits by throwing an exception. Use **@AfterThrowing** annotation for this type of advice.&#x20;
 > * After (finally) Advice: It executes after a join point regardless of join point exit whether normally or exceptional return. Use **@After** annotation to mark an advice type as After advice.&#x20;
 > * Around Advice: It executes before and after a join point. Use **@Around** annotation to create around advice methods.
 
 * **Pointcut**&#x20;
 
 It is an expression language of AOP that matches join points to determine whether advice needs to be executed or not. It is a predicate that helps match an Advice to be applied by an Aspect at a particular JoinPoint.
+
+Some of the supported pointcut designators are given below.
+
+
+
+> **execution**: Matches method execution join points.
+>
+> ```java
+> @Before("execution(* com.example.service.*.*(..))")
+> ```
+>
+> **within**: Matches join points within certain types (classes or interfaces).
+>
+> ```java
+> @Before("within(com.example.service.*)")
+> ```
+>
+> **this**: Matches join points where the target object is an instance of a certain type.
+>
+> ```java
+> @Before("this(com.example.service.MyService)")
+> ```
+>
+> **target**: Matches join points where the target object being advised is an instance of a certain type.
+>
+> ```java
+> @Before("target(com.example.service.MyService)")
+> ```
+>
+> **args**: Matches join points where the arguments passed to the method match the specified types.
+>
+> ```java
+> @Before("args(String, int)")
+> ```
+>
+> **@annotation**: Matches join points where the subject has the specified annotation.
+>
+> ```java
+> @Before("@annotation(org.springframework.transaction.annotation.Transactional)")
+> @Before("@annotation(LogRequest)")
+> ```
+
+{% hint style="info" %}
+Wildcard
+
+**`.*`**: This wildcard matches any sequence of characters in a package name or class name. It's often used to specify a package or class name with a specific prefix followed by any number of characters.&#x20;
+
+Example:
+
+`com.example.service.*` matches all classes in the `com.example.service` package.
+
+`com.example.*.*Service` matches all classes in packages like `com.example.service` and `com.example.util` whose names end with "Service".
+
+
+
+**`..`**: This wildcard matches any number of subpackages or classes. It's often used to specify a package or class name along with all of its subpackages or subclasses. (..) matches any number of parameters (zero or more)
+
+Example:
+
+`com.example..*` matches all classes in the `com.example` package and all of its subpackages.
+
+`com.example.service..*` matches all classes in the `com.example.service` package and all of its subpackages.
+
+
+
+**`*`**: This wildcard matches any single item in a package name, class name, or method signature. It's often used to specify a single package, class, or method name.
+
+Example:
+
+`com.example.service.*Service` matches classes whose names end with "Service" in the `com.example.service` package.
+
+`*Controller` matches classes whose names end with "Controller" in any package.
+
+
+
+Combining these wildcards allows to create flexible pointcut expressions that match specific parts of method signatures or package/class names. For example,&#x20;
+
+`execution(* com.example.service.*.*(..))` matches all method executions in classes in the `com.example.service` package, regardless of the method name or parameters.&#x20;
+
+`execution(* com.example..*.*(..))` matches all method executions in the `com.example` package and all of its sub-packages.
+
+
+{% endhint %}
+
+{% hint style="info" %}
+Pointcut expressions can be combined using '&&', '||' and '!'. It is also possible to refer to pointcut expressions by name.
+
+```java
+@Pointcut("execution(public * *(..))")
+private void anyPublicOperation() {}
+
+@AfterThrowing(value = anyPublicOperation, throwing = "exception")
+```
+{% endhint %}
 
 * **Target Object**&#x20;
 
@@ -97,11 +191,11 @@ It is the process of linking aspect with other application types or objects to c
 
 <div>
 
-<figure><img src="../../.gitbook/assets/image (6).png" alt="" width="422"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6).png" alt="" width="422"><figcaption></figcaption></figure>
 
  
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="445"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3).png" alt="" width="445"><figcaption></figcaption></figure>
 
 </div>
 
