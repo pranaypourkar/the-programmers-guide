@@ -43,7 +43,6 @@ _**LoggingAspect.java**_
 @Component
 public class LoggingAspect {
 
-    @SneakyThrows
     @Before("@annotation(LogRequest)")
     public void logRequest(JoinPoint joinPoint) {
 
@@ -82,14 +81,13 @@ public class PaymentApi {
 
 Run and execute the API and verify the log response.
 
-<figure><img src="../../../.gitbook/assets/image (2).png" alt="" width="563"><figcaption><p>Postman</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt="" width="563"><figcaption><p>Postman</p></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 > Passing argNames in the Before Advice annotation.
 >
 > ```java
-> @SneakyThrows
 > @Before(value = "@annotation(LogRequest) && args(transaction)", argNames = "transaction")
 > public void logRequest(JoinPoint joinPoint, Transaction transaction) {
 >
