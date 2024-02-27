@@ -6,16 +6,34 @@ description: Overview on the Exception Handling and best practices.
 
 An exception is an event that disrupts the normal flow of a program's instructions during execution. When an exceptional scenario occurs within a method, the method creates an exception object and hands it off to the runtime system. The runtime system then searches for an exception handler i.e., a block of code that can handle that particular type of exception.
 
-There are two main types of exceptions in Java:
+**There are two main types of exceptions in Java:**
 
-1. **Checked Exceptions**: These are exceptions that are checked at compile time. This means that the compiler ensures that your code handles these exceptions either by catching them with a try-catch block or by declaring that the method throws the exception using the `throws` keyword. Examples of checked exceptions include `IOException`, `SQLException`, etc.
-2. **Unchecked Exceptions**: Also known as runtime exceptions, these exceptions are not checked at compile time. They occur during the execution of the program and typically indicate programming errors or exceptional conditions that a coder can reasonably expect might occur. Examples of unchecked exceptions include `NullPointerException`, `ArrayIndexOutOfBoundsException`, etc.
+1. **Checked Exceptions (Recoverable)**: These are exceptions that are checked at compile time. This means that the compiler ensures that your code handles these exceptions either by catching them with a try-catch block or by declaring that the method throws the exception using the `throws` keyword. Examples of checked exceptions include `IOException`, `SQLException`, etc.
+2. **Unchecked Exceptions (Potentially Unrecoverable)**: Also known as runtime exceptions, these exceptions are not checked at compile time. They occur during the execution of the program and typically indicate programming errors or exceptional conditions that a coder can reasonably expect might occur. Examples of unchecked exceptions include `NullPointerException`, `ArrayIndexOutOfBoundsException`, etc.
 
 {% hint style="info" %}
 Every exception in Java is a subclass of the `Throwable` class. The two main subclasses of `Throwable` are `Exception` and `Error`. Checked exceptions are subclasses of `Exception`, while unchecked exceptions are subclasses of `RuntimeException`, which itself is a subclass of `Exception`.
 {% endhint %}
 
-There are different ways to handle exceptions, depending on the requirements of the program and the nature of the exceptions being thrown. Here are some of the ways to handle.
+{% hint style="info" %}
+**Recoverable Exception:**
+
+* An exception that might be possible to handle and continue program execution in some way.
+* This doesn't necessarily mean the program can fully recover from the issue that caused the exception, but it might be able to work around it or take alternative actions.
+* Examples:
+  * **Network timeouts:** The program might retry the operation after a delay.
+  * **Temporary resource unavailability:** The program might wait for the resource to become available or use an alternative resource.
+
+**Non-recoverable Exception:**
+
+* An exception that usually indicates a more severe issue from which it's difficult or impossible to fully recover, often requiring the program to terminate abnormally**.**
+* These exceptions often point to critical errors or unexpected conditions that fundamentally prevent the program from continuing its intended operation.
+* Examples:
+  * **Out of memory errors:** The program might not have enough memory to continue execution.
+  * **Corrupted data:** The program might be unable to process data that is in an invalid or inconsistent state.
+{% endhint %}
+
+There are **different ways to handle exceptions**, depending on the requirements of the program and the nature of the exceptions being thrown. Here are some of the ways to handle.
 
 **Using try-catch Block**: try-catch block can be used to catch exceptions and handle them gracefully. Inside the try block, place the code that might throw an exception, and inside the catch block, specify the type of exception that needs to be handled and provide the code to handle it.
 
@@ -80,8 +98,6 @@ try (ResourceType resource = new ResourceType()) {
     // Code to handle the exception
 }
 ```
-
-
 
 **Best Practices in Exception Handling**
 
