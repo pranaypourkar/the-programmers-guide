@@ -13,3 +13,9 @@ Best Practices:
 * **Provide a constructor that sets the cause**: With this the original cause or important information is not lost.
 
 To create a custom exception, define a new class that extends either `Exception` (for checked exceptions) or `RuntimeException` (for unchecked exceptions).
+
+
+
+**Checked Custom Exception:** Let's say you're building an inventory management system, and you have a custom exception `ProductNotFoundException` that extends `Exception`. This exception could be thrown when a requested product is not found in the inventory. Since the calling code might reasonably handle this situation (for example, by informing the user or logging the error), it's a checked exception.
+
+**Unchecked Custom Exception:** On the other hand, suppose you have a custom exception `InvalidInputException` that extends `RuntimeException`. This exception might be thrown when the user provides invalid input to a method. Since it's likely a programming error and the calling code might not be able to handle it gracefully, it's an unchecked exception.
