@@ -25,6 +25,8 @@
       * [After Throwing Advice](spring/concepts/spring-aop/after-throwing-advice.md)
       * [After (finally) Advice](spring/concepts/spring-aop/after-finally-advice.md)
       * [Around Advice](spring/concepts/spring-aop/around-advice.md)
+  * [Others](spring/others/README.md)
+    * [Custom Annotation](spring/others/custom-annotation.md)
 * [Maven](maven/README.md)
   * [Build & Lifecycle](maven/build-and-lifecycle.md)
   * [Command-line Options](maven/command-line-options.md)
