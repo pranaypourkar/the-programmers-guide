@@ -13,24 +13,35 @@ Custom annotations allows us to add metadata to the code. This metadata can then
 * **Declaration**: Custom annotations are defined like any other Java interface, with the `@interface` keyword. Annotations can include elements that act as parameters.
 * **Annotation Methods**: Custom annotation methods, which is optional, cannot have parameters and cannot throw exceptions. They can only have return types like primitives, String, Class, enums, annotations, or arrays of these types.
 
-> ```java
-> @Target(ElementType.METHOD)
-> @Retention(RetentionPolicy.RUNTIME)
-> public @interface MyCustomAnnotation {
->     String value() default ""; // A method with a String return type
->     int number() default 0;    // A method with an int return type
->     boolean enabled() default true; // A method with a boolean return type
->     Class<?> type() default Void.class; // A method with a Class return type
->     MyEnum enumValue() default MyEnum.DEFAULT; // A method with an enum return type
->     String[] arrayValue() default {}; // A method with an array return type
-> }
->
-> enum MyEnum {
->     DEFAULT,
->     OPTION1,
->     OPTION2
-> }
-> ```
+```java
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyCustomAnnotation {
+    String value() default ""; // A method with a String return type
+    int number() default 0;    // A method with an int return type
+    boolean enabled() default true; // A method with a boolean return type
+    Class<?> type() default Void.class; // A method with a Class return type
+    Class<? extends SomeFactory> someFactory(); // A method with a Class return type
+    MyEnum enumValue() default MyEnum.DEFAULT; // A method with an enum return type
+    String[] arrayValue() default {}; // A method with an array return type
+}
+
+enum MyEnum {
+    DEFAULT,
+    OPTION1,
+    OPTION2
+}
+```
+
+{% hint style="info" %}
+```java
+// SomeFactory class use above can contain several implementation classes used in AOP.
+// For eg. we can have custom @Notification annotation which takes the implementation class such as SMSNotification, MailNotification etc.
+public abstract class SomeFactory {
+    public abstract Event triggerEvent(JoinPoint joinPoint, Object result);
+}
+```
+{% endhint %}
 
 * **Target Elements**: Specify where the annotation will be used by annotating the annotation declaration with `@Target`. For example, `ElementType.METHOD` specifies that the annotation can be applied to methods.
 
