@@ -33,7 +33,35 @@ Custom annotations allows us to add metadata to the code. This metadata can then
 > ```
 
 * **Target Elements**: Specify where the annotation will be used by annotating the annotation declaration with `@Target`. For example, `ElementType.METHOD` specifies that the annotation can be applied to methods.
+
+{% hint style="info" %}
+Element Types - Applicable Type&#x20;
+
+TYPE -  class, interface or enumeration&#x20;
+
+FIELD -  fields&#x20;
+
+METHOD - methods&#x20;
+
+CONSTRUCTOR - constructors&#x20;
+
+LOCAL\_VARIABLE - local variables&#x20;
+
+ANNOTATION\_TYPE - annotation type&#x20;
+
+PARAMETER - parameter
+{% endhint %}
+
 * **Retention Policy**: Specify the retention policy for the annotation using `@Retention`. This determines how long the annotation's metadata is kept. `RetentionPolicy.RUNTIME` means the annotation will be available at runtime via reflection.
+
+{% hint style="info" %}
+RetentionPolicy.SOURCE - Refers to the source code, discarded during compilation. It will not be available in the compiled class.
+
+RetentionPolicy.CLASS - Refers to the .class file, available to java compiler but not to JVM. It is included in the class file.&#x20;
+
+RetentionPolicy.RUNTIME - Refers to the runtime, available to java compiler and JVM.
+{% endhint %}
+
 * **Use the Annotation**: Once defined, custom annotation can be used throughout the Spring Boot application.
 * **Processing Custom Annotations:** Reflection or Spring AOP (Aspect-Oriented Programming) can be used to process custom annotations at runtime. Reflection allows to access the annotation information using libraries like `java.lang.reflect`. Spring AOP enables to create aspects that intercept method calls based on the presence of annotations like `@LogExecutionTime`, `@SMSNotification`.
 
