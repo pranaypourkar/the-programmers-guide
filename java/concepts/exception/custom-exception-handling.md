@@ -42,10 +42,11 @@ Extending `RuntimeException`**:**
   * Null pointer exceptions (`NullPointerException`)
   * Array index out of bounds (`IndexOutOfBoundsException`)
   * Class cast exceptions (`ClassCastException`)
-  * InvalidTransactionDetails**:** This exception likely points to a programming error or unexpected condition where the transaction details are invalid or inconsistent. It's generally recommended to fix the code that led to this issue rather than relying on catching this exception.
-  * MissingDetailsException**:** Similar to `InvalidTransactionDetails`, this exception suggests missing or incomplete information, indicating a potential issue in the code or data. It's preferable to address the root cause of missing details through proper validation or handling.
-  * CardDetailsNotFoundException**:** This exception might indicate a situation where card details are missing or invalid. If it's essential to process card details and their absence halts normal program flow, consider extending `Exception`. However, if it's an optional field and its absence doesn't cause major issues, extending `RuntimeException` might be suitable.
+  * InvalidTransactionDetails: This exception likely points to a programming error or unexpected condition where the transaction details are invalid or inconsistent. It's generally recommended to fix the code that led to this issue rather than relying on catching this exception.
+  * MissingDetailsException: Similar to `InvalidTransactionDetails`, this exception suggests missing or incomplete information, indicating a potential issue in the code or data. It's preferable to address the root cause of missing details through proper validation or handling.
+  * CardDetailsNotFoundException: This exception might indicate a situation where card details are missing or invalid. If it's essential to process card details and their absence halts normal program flow, consider extending `Exception`. However, if it's an optional field and its absence doesn't cause major issues, extending `RuntimeException` might be suitable.
   * IncorrectFileExtensionException: Exception, if the file name doesn’t contain any extension.
+  * JsonSerializationException: Exception raised during serialization.
 
 
 
@@ -74,6 +75,19 @@ public class TransactionException extends Exception {
 
     public TransactionException(String msg, Object...args) {
         super(msg.formatted(args));
+    }
+}
+```
+
+```java
+package org.example.exception;
+
+public class JsonSerializationException extends RuntimeException {
+
+    private static final long serialVersionUID = 1L;
+
+    public JsonSerializationException(String message) {
+        super(message);
     }
 }
 ```
