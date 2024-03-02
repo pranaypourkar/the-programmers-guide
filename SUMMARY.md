@@ -14,6 +14,7 @@
     * [Annotation](java/concepts/annotation/README.md)
       * [Custom Annotation](java/concepts/annotation/custom-annotation.md)
       * [Meta Annotation](java/concepts/annotation/meta-annotation.md)
+    * [Generics](java/concepts/generics.md)
 * [System Design](system-design/README.md)
   * [Design Pattern](system-design/design-pattern/README.md)
     * [Examples](system-design/design-pattern/examples/README.md)
