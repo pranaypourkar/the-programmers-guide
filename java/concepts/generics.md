@@ -15,6 +15,59 @@ Java generics allows to write code that can work with different data types (Stri
 * When using a generic class or method, provide the actual data type (e.g., Integer, String) to be used, which replaces the type parameter throughout the code.&#x20;
 * The Object is the super-class of all other classes, and Object reference can refer to any object. These features lack type safety but Generics add that type of safety feature.
 
+{% hint style="info" %}
+When we declare an instance of a generic type, the type argument passed to the type parameter must be a reference type and cannot be primitive data types like int, char.
+{% endhint %}
+
+{% hint style="info" %}
+**Type Parameters naming convention**
+
+Type parameter names are single, uppercase letters. The common type parameters are as follows:
+
+* T – Type
+* E – Element (used extensively by the Java Collections Framework)
+* K – Key
+* N – Number
+* V – Value
+{% endhint %}
+
+{% hint style="info" %}
+**Wildcard in Java Generics**\
+The ? (question mark) symbol represents the wildcard element. It means any type. If we write `<? extends Integer>`, it means any child class of String, e.g., Integer, Float, and double. Now we can call the method of Integer class through any child class object.
+
+Wildcard can be used as a type of a parameter, field, return type, or local variable. However, it is not allowed to use a wildcard as a type argument for a generic method invocation, a generic class instance creation, or a super-type.
+
+
+
+**Upper Bounded Wildcards**
+
+It is used by declaring wildcard character ("?") followed by the extends keyword, followed by its upper bound
+
+Example - `ArrayList<? extends Number> num`
+
+`public static <T extends Comparable> T maximum(T x, T y) {...}`
+
+Multiple Bounds - `<T extends Number & Comparable>`
+
+
+
+#### Unbounded Wildcards
+
+The unbounded wildcard type represents the list of an unknown type such as `List<?>`
+
+Example - `List<?> list`
+
+
+
+**Lower Bounded Wildcards**
+
+It is used by declaring wildcard character ("?") followed by the super keyword, followed by its lower bound
+
+Example - `List<? super Integer> list`  &#x20;
+{% endhint %}
+
+
+
 ## **Benefits of using generics**
 
 * **Increased code re-usability**: Single generic class/method can be written that can be used with different data types, reducing code duplication.&#x20;
@@ -56,6 +109,18 @@ public class Box<T> {
 Box<Integer> integerBox = new Box<>();
 Box<String> stringBox = new Box<>();
 ```
+
+{% hint style="info" %}
+If the actual type argument is omitted, then the created object is a raw type of Box\<T>:
+
+```java
+Box rawBox = new Box();
+```
+
+Box is the raw type of the generic type Box\<T>. However, a non-generic class or interface type is _not_ a raw type. The warning shows that raw types bypass generic type checks, deferring the catch of unsafe code to runtime. Therefore, raw types should be avoided.
+
+To completely disable unchecked warnings, use the -Xlint:-unchecked flag. The @SuppressWarnings("unchecked") annotation suppresses unchecked warnings.&#x20;
+{% endhint %}
 
 * **Practical Use Case:** A generic `Stack` class can work with different types of elements (e.g., `IntegerStack`, `StringStack`).
 
@@ -104,6 +169,14 @@ public class NameValuePair implements Pair<String, String> {
 ```
 
 * **Practical Use Case:** A generic `Map` interface can be used to create different types of maps (e.g., `HashMap<String, Integer>`, `TreeMap<Integer, String>`).
+
+
+
+## **Type Erasure** <a href="#bd-type-erasure" id="bd-type-erasure"></a>
+
+In Java, generics were added to ensure type safety and to ensure that generics won’t cause overhead at runtime, the compiler employs a process known as type erasure on generics at compile time.
+
+Type erasure removes all type parameters and replaces them with their bounds or with _Object_ if the type parameter is unbounded. With this, the bytecode after compilation contains only normal classes, interfaces and methods, ensuring that no new types are produced. Proper casting is applied as well to the _Object_ type at compile time.
 
 
 
