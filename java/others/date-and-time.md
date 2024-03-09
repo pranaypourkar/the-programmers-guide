@@ -58,7 +58,7 @@ public class Application {
 }
 ```
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 
 
@@ -120,7 +120,7 @@ public class Application {
 }
 ```
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 
 
@@ -366,8 +366,6 @@ public class Application {
 
 <figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
-
-
 {% hint style="info" %}
 **Supported patterns in `DateTimeFormatter.ofPattern(...)`:**
 
@@ -383,7 +381,7 @@ public class Application {
 * **MM:** Represents the month as a number with two digits (01-12)
 * **mm:** Represents the minutes with two digits (00-59)
 * **ss:** Represents the seconds with two digits (00-59)
-* **SSS:** Represents the nanoseconds of the second i.e it can includes up to nine digits of fractional seconds. Here SSS will have three digits (000-999)
+* **S:** Represent fractional seconds of a time value
 
 
 
@@ -391,6 +389,27 @@ public class Application {
 {% endhint %}
 
 
+
+```java
+String[] patterns = {
+        "yyyy-MM-dd HH:mm:ss",
+        "yyyy-MM-dd HH:mm:ss.S",
+        "yyyy-MM-dd HH:mm:ss.SS",
+        "yyyy-MM-dd HH:mm:ss.SSS",
+        "yyyy-MM-dd HH:mm:ss.SSSS",
+        "yyyy-MM-dd HH:mm:ss.SSSSSSSSS"
+};
+
+// Get the current date and time
+LocalDateTime now = LocalDateTime.now();
+
+for (String pattern : patterns) {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+    log.info("Current date and time: {}", now.format(formatter));
+}
+```
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 
 
