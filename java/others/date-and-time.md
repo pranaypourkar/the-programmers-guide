@@ -413,3 +413,52 @@ for (String pattern : patterns) {
 
 
 
+* **java.time.ZonedDateTime**
+
+`ZonedDateTime` is a class introduced in Java 8 that represents a date and time with a time zone offset. It combines the functionalities of `LocalDateTime` (date and time without zone) and `ZoneId` (identifier for a time zone). Unlike `LocalDateTime`, `ZonedDateTime` is aware of the time zone context, making it useful for scenarios where time zone information is crucial. It stores date, time, and time zone information in a single object.
+
+**Example:**
+
+```java
+package org.example;
+
+import lombok.extern.slf4j.Slf4j;
+
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+
+@Slf4j
+public class Application {
+    public static void main(String[] args) {
+        // Creating ZonedDateTime from current system time (India)
+        ZonedDateTime currentDateTime = ZonedDateTime.now();
+        log.info("Current Date and Time in India: {}", currentDateTime);
+
+        // Creating ZonedDateTime with a specific time zone
+        ZonedDateTime dateTimeInNewYork = ZonedDateTime.now(ZoneId.of("America/New_York"));
+        log.info("Date and Time in New York: {}", dateTimeInNewYork);
+
+        // Creating ZonedDateTime with a UTC time zone
+        ZonedDateTime dateTimeInUTC = ZonedDateTime.now(ZoneOffset.UTC);
+        log.info("Date and Time in UTC: {}", dateTimeInUTC);
+    }
+}
+```
+
+<figure><img src="../../.gitbook/assets/image (15).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+
+{% hint style="info" %}
+"T" serves as a separator between the date and time components according to the ISO 8601 standard format for representing date and time.
+{% endhint %}
+
+{% hint style="info" %}
+**`ChronoUnit`**`:`&#x20;
+{% endhint %}
+
+
+
+
+
+
+
