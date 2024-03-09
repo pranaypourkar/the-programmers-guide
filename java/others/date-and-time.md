@@ -388,8 +388,6 @@ public class Application {
 &#x20;Refer to the Java documentation for more details - [https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html)
 {% endhint %}
 
-
-
 ```java
 String[] patterns = {
         "yyyy-MM-dd HH:mm:ss",
@@ -413,7 +411,7 @@ for (String pattern : patterns) {
 
 
 
-* **java.time.ZonedDateTime**
+* **java.time.**<mark style="background-color:yellow;">**ZonedDateTime**</mark>
 
 `ZonedDateTime` is a class introduced in Java 8 that represents a date and time with a time zone offset. It combines the functionalities of `LocalDateTime` (date and time without zone) and `ZoneId` (identifier for a time zone). Unlike `LocalDateTime`, `ZonedDateTime` is aware of the time zone context, making it useful for scenarios where time zone information is crucial. It stores date, time, and time zone information in a single object.
 
@@ -452,9 +450,112 @@ public class Application {
 "T" serves as a separator between the date and time components according to the ISO 8601 standard format for representing date and time.
 {% endhint %}
 
-{% hint style="info" %}
-**`ChronoUnit`**`:`&#x20;
-{% endhint %}
+```java
+// Creating ZonedDateTime from current system time (India)
+ZonedDateTime currentDateTime = ZonedDateTime.now();
+log.info("Current Date and Time in India: {}", currentDateTime);
+// Output - Current Date and Time in India: 2024-03-09T16:24:33.547711600+05:30[Asia/Calcutta]
+
+// Converting ZonedDateTime object to a different time zone "Europe/Paris"
+ZonedDateTime dateTimeInParis = currentDateTime.withZoneSameInstant(ZoneId.of("Europe/Paris"));
+log.info("Current Date and Time in Paris: {}", dateTimeInParis);
+// Output - Current Date and Time in Paris: 2024-03-09T11:54:33.547711600+01:00[Europe/Paris]
+
+// Parsing a string to a ZonedDateTime
+String dateTimeString1 = "2024-03-07T12:30:00+05:30";
+ZonedDateTime parsedDateTime1 = ZonedDateTime.parse(dateTimeString1, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+log.info("Parsing given string {} to ZoneDateTime {}",dateTimeString1, parsedDateTime1);
+// Output - Parsing given string 2024-03-07T12:30:00+05:30 to ZoneDateTime 2024-03-07T12:30+05:30
+
+String dateTimeString2 = "2024-03-07T12:30:00.123+02:30";
+ZonedDateTime parsedDateTime2 = ZonedDateTime.parse(dateTimeString2);
+log.info("Parsing given string {} to ZoneDateTime {}",dateTimeString2, parsedDateTime2);
+// Output - Parsing given string 2024-03-07T12:30:00.123+02:30 to ZoneDateTime 2024-03-07T12:30:00.123+02:30
+
+// Adding or subtracting time from a ZonedDateTime object
+ZonedDateTime futureDateTime = currentDateTime.plusHours(3).plusMinutes(30);
+log.info("Future Date and Time: {}", futureDateTime);
+// Output - Future Date and Time: 2024-03-09T19:54:33.547711600+05:30[Asia/Calcutta]
+
+ZonedDateTime pastDateTime = currentDateTime.minusDays(1);
+log.info("Past Date and Time: {}", pastDateTime);
+// Output - Past Date and Time: 2024-03-08T16:24:33.547711600+05:30[Asia/Calcutta]
+
+ZonedDateTime pastCenturyDateTime = currentDateTime.minus(1, ChronoUnit.CENTURIES);
+log.info("Past Century Date and Time: {}", pastCenturyDateTime);
+// Output - Past Century Date and Time: 1924-03-09T16:24:33.547711600+05:30[Asia/Calcutta]
+
+// Comparing two ZonedDateTime objects
+if (futureDateTime.isBefore(currentDateTime)) {
+    log.info("{} is before {}", futureDateTime, currentDateTime);
+} else if (futureDateTime.isAfter(currentDateTime)) {
+    log.info("{} is after {}", futureDateTime, currentDateTime);
+} else {
+    log.info("{} is equal to {}", futureDateTime, currentDateTime);
+}
+// Output - 2024-03-09T19:54:33.547711600+05:30[Asia/Calcutta] is after 2024-03-09T16:24:33.547711600+05:30[Asia/Calcutta]
+
+log.info("Year: {}", currentDateTime.getYear());   // Year: 2024
+log.info("Month: {}", currentDateTime.getMonth()); // Month: MARCH
+log.info("Zone: {}", currentDateTime.getZone());   // Zone: Asia/Calcutta
+
+// Convert ZonedDateTime to other representations
+// Convert to Instant (represents a specific moment in time)
+Instant instant = currentDateTime.toInstant();
+// Convert to LocalDateTime (date and time without zone)
+LocalDateTime localDateTime = currentDateTime.toLocalDateTime();
+
+log.info("Instant: {}", instant); // Instant: 2024-03-09T11:06:11.239444500Z
+log.info("LocalDateTime: {}", localDateTime); // LocalDateTime: 2024-03-09T16:36:11.239444500
+
+// Format ZonedDateTime object to desired pattern
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss");
+String formattedDateTime = currentDateTime.format(formatter);
+log.info("Current datetime is {}, Formatted datetime is {}", currentDateTime, formattedDateTime);
+// Current datetime is 2024-03-09T16:41:52.947410700+05:30[Asia/Calcutta], Formatted datetime is 03/09/2024 04:41:52                
+```
+
+
+
+* **java.time.**<mark style="background-color:yellow;">**OffsetDateTime**</mark>
+
+`OffsetDateTime` is a class introduced in Java 8 that represents a date and time with an offset from UTC (Coordinated Universal Time). It stores all date and time fields, including the offset from UTC, with a precision of nanoseconds. It stores date, time, and offset from UTC in a single object.
+
+**OffsetDateTime vs ZonedDateTime**
+
+| Feature          | OffsetDateTime                                                                                                                                                                                                                                                                                                                                                                                                              | ZonedDateTime                                                                                                                                                                                                                                                                               |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Time Zone        | Represents an offset from UTC (GMT)                                                                                                                                                                                                                                                                                                                                                                                         | Stores offset from UTC (GMT) and specific zone ID                                                                                                                                                                                                                                           |
+| Example          | 2024-03-09T12:30:00+03:00 (Offset of +03:00)                                                                                                                                                                                                                                                                                                                                                                                | 2024-03-09T12:30:00+03:00\[Europe/Istanbul]                                                                                                                                                                                                                                                 |
+| Information Loss | Does not include historical time zone data                                                                                                                                                                                                                                                                                                                                                                                  | Includes historical time zone data                                                                                                                                                                                                                                                          |
+| Usage            | Useful for representing fixed time differences                                                                                                                                                                                                                                                                                                                                                                              | Useful for applications requiring historical data                                                                                                                                                                                                                                           |
+| DST Handling     | Does not handle Daylight Saving Time transitions                                                                                                                                                                                                                                                                                                                                                                            | Handles Daylight Saving Time transitions                                                                                                                                                                                                                                                    |
+| Comparison       | Can be freely compared                                                                                                                                                                                                                                                                                                                                                                                                      | Direct comparison can be ambiguous due to DST                                                                                                                                                                                                                                               |
+| Database Storage | Preferred for storing timestamps because it explicitly includes the offset from UTC. This means that if you have a timestamp stored as an `OffsetDateTime`, you know exactly what time it represents relative to UTC. This is particularly useful in scenarios where you need to maintain consistency and avoid ambiguity in time representations, especially when dealing with distributed systems or different time zones | Not recommended for storing timestamps because it might include historical data about time zone changes and daylight saving time transitions, which could complicate timestamp comparisons or calculations, especially if the historical changes are relevant to the application's context. |
+
+> Comparison Example:&#x20;
+>
+> ```java
+> // Creating an OffsetDateTime with a fixed offset from UTC
+> OffsetDateTime offsetDateTime = OffsetDateTime.of(2024, 3, 9, 12, 30, 0, 0, ZoneOffset.ofHours(3));
+> log.info("OffsetDateTime: {}", offsetDateTime);
+> // Output - OffsetDateTime: 2024-03-09T12:30+03:00
+>
+> // Creating a ZonedDateTime with a specific time zone
+> ZonedDateTime zonedDateTime = ZonedDateTime.of(2024, 3, 9, 12, 30, 0, 0, ZoneId.of("Europe/Istanbul"));
+> log.info("ZonedDateTime: {}", zonedDateTime);
+> // Output - ZonedDateTime: 2024-03-09T12:30+03:00[Europe/Istanbul]
+>
+> // Accessing offset information
+> ZoneOffset offset1 = offsetDateTime.getOffset();
+> ZoneOffset offset2 = zonedDateTime.getOffset();
+> log.info("OffsetDateTime offset: {}", offset1); // Output - OffsetDateTime offset: +03:00
+> log.info("ZonedDateTime offset: {}", offset2);  // Output - ZonedDateTime offset: +03:00
+>
+> // Accessing time zone information
+> ZoneId zoneId = zonedDateTime.getZone();
+> log.info("ZonedDateTime time zone: {}", zoneId); // Output - ZonedDateTime time zone: Europe/Istanbul
+> ```
 
 
 
