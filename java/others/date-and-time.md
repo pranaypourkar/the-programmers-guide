@@ -559,6 +559,221 @@ log.info("Current datetime is {}, Formatted datetime is {}", currentDateTime, fo
 
 
 
+**Example:**
+
+```java
+// Creating an OffsetDateTime object representing the current date and time with a specific offset
+OffsetDateTime currentDateTime = OffsetDateTime.now();
+log.info("Current DateTime: {}", currentDateTime);
+// Output - Current DateTime: 2024-03-09T18:15:10.569131700+05:30
+
+OffsetDateTime currentDateTimeUTC = OffsetDateTime.now(ZoneOffset.UTC);
+log.info("Current DateTime in UTC: {}", currentDateTimeUTC);
+// Output - Current DateTime in UTC: 2024-03-09T12:45:10.579128800Z
+
+OffsetDateTime currentDateTimeParis = OffsetDateTime.now(ZoneId.of("Europe/Paris"));
+log.info("Current DateTime in Paris: {}", currentDateTimeParis);
+// Output - Current DateTime in Paris: 2024-03-09T13:45:10.581178400+01:00
+
+// Parsing a string to create an OffsetDateTime object
+String dateTimeString = "2024-03-07T12:30:00+05:30";
+OffsetDateTime parsedDateTime = OffsetDateTime.parse(dateTimeString, DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+log.info("Parsed Date and Time: {}", parsedDateTime);
+// Output - Parsed Date and Time: 2024-03-07T12:30+05:30
+
+// Adding or subtracting time from an OffsetDateTime object
+OffsetDateTime futureDateTime = currentDateTime.plusHours(3).plusMinutes(30);
+log.info("Future Date and Time: {}", futureDateTime);
+// Output - Future Date and Time: 2024-03-09T21:45:10.569131700+05:30
+
+OffsetDateTime pastDateTime = currentDateTime.minusDays(1);
+log.info("Past Date and Time: {}", pastDateTime);
+// Output - Past Date and Time: 2024-03-08T18:15:10.569131700+05:30
+
+// Comparing two OffsetDateTime objects
+if (currentDateTime.isBefore(futureDateTime)) {
+    log.info("{} is before {}", currentDateTime, futureDateTime);
+} else if (currentDateTime.isAfter(futureDateTime)) {
+    log.info("{} is after {}", currentDateTime, futureDateTime);
+} else {
+    log.info("{} is equal to {}", currentDateTime, futureDateTime);
+}
+// Output - 2024-03-09T18:15:10.569131700+05:30 is before 2024-03-09T21:45:10.569131700+05:30
+
+// Get components of OffsetDateTime
+log.info("Year: {}", currentDateTime.getYear()); // Output - Year: 2024
+log.info("Month: {}", currentDateTime.getMonth()); // Output - Month: MARCH
+log.info("Offset: {}", currentDateTime.getOffset()); // Output - Offset: +05:30
+
+// Convert OffsetDateTime to other representations
+// Convert to Instant (represents a specific moment in time)
+Instant instant = currentDateTime.toInstant();
+log.info("Instant: {}", instant);
+// Output - Instant: 2024-03-09T12:45:10.569131700Z
+
+// Convert to LocalDateTime (date and time without zone)
+LocalDateTime localDateTime = currentDateTime.toLocalDateTime();
+log.info("LocalDateTime: {}", localDateTime);
+// Output - LocalDateTime: 2024-03-09T18:15:10.569131700
+
+// Format OffsetDateTime object
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss Z");
+String formattedDateTime = currentDateTime.format(formatter);
+log.info("Formatted DateTime (with offset): {}", formattedDateTime);
+// Output - Formatted DateTime (with offset): 2024-03-09 18:15:10 +0530
+```
+
+
+
+
+
+* **java.time.**<mark style="background-color:yellow;">**instant**</mark>
+
+It is a class introduced in Java 8 that represents a specific point in time on the timeline. Unlike `LocalDateTime` or `ZonedDateTime`, it doesn't carry any information about the time zone or date. Instead, it represents an instant in terms of the number of milliseconds that have elapsed since a specific reference point, known as the epoch (January 1, 1970, 00:00:00 UTC)
+
+{% hint style="info" %}
+Since `Instant` itself doesn't hold date or time information, it cannot directly format it. However, it can be converted into other representations like `LocalDateTime` or `ZonedDateTime` and then format those using `DateTimeFormatter` depending on needs.
+{% endhint %}
+
+```java
+// Get the current instant
+Instant currentInstant = Instant.now();
+log.info("Current instant: {}", currentInstant);
+// Output - Current instant: 2024-03-09T13:05:53.661203500Z
+
+// Get the epoch millisecond value
+long epochMillis = currentInstant.toEpochMilli();
+log.info("Epoch milliseconds: {}", epochMillis);
+// Output - Epoch milliseconds: 1709989553661
+
+// Convert Instant to other representations
+// Convert to LocalDateTime (assuming a specific zone)
+ZoneId zoneId = ZoneId.of("America/Los_Angeles");
+LocalDateTime localDateTime = LocalDateTime.ofInstant(currentInstant, zoneId);
+log.info("LocalDateTime (Los Angeles): {}", localDateTime);
+// Output - LocalDateTime (Los Angeles): 2024-03-09T05:05:53.661203500
+
+// Convert to ZonedDateTime (assuming a specific zone)
+ZonedDateTime zonedDateTime = currentInstant.atZone(zoneId);
+log.info("ZonedDateTime (Los Angeles): {}", zonedDateTime);
+// Output - ZonedDateTime (Los Angeles): 2024-03-09T05:05:53.661203500-08:00[America/Los_Angeles]
+```
+
+
+
+* **java.time.**<mark style="background-color:yellow;">**duration**</mark>
+
+In Java's `java.time` API, the `Duration` class represents a duration of time. It focuses on measuring time intervals without referencing a specific point in time or time zone. It stores a duration as a combination of seconds and nanoseconds.
+
+{% hint style="info" %}
+In the context of a duration, "PT" stands for "Period of Time." In the ISO 8601 standard, which is commonly used for representing durations, intervals, and timestamps, durations are specified using the format "PnYnMnDTnHnMnS", where:
+
+* "P" stands for period.
+* "T" separates the date portion (if present) from the time portion.
+* "nY" represents the number of years.
+* "nM" represents the number of months.
+* "nD" represents the number of days.
+* "nH" represents the number of hours.
+* "nM" represents the number of minutes.
+* "nS" represents the number of seconds.
+
+So, in the duration "PT1H5M":
+
+* "PT" indicates a period of time.
+* "1H" indicates 1 hour.
+* "5M" indicates 5 minutes.
+{% endhint %}
+
+Example:
+
+```java
+// Specifying seconds and nanoseconds
+Duration duration1 = Duration.ofSeconds(60, 123456789);
+log.info("Duration1: {}", duration1);
+// Output - Duration1: PT1M0.123456789S
+
+// Using pre-defined constants
+Duration duration2 = Duration.ZERO; // Represents zero duration
+log.info("Duration2: {}", duration2);
+// Output - Duration2: PT0S
+
+// Get components of a Duration
+log.info("Seconds: {}", duration1.getSeconds()); // Output - Seconds: 60
+log.info("Nanoseconds: {}", duration1.getNano()); // Output - Nanoseconds: 123456789
+
+// Perform calculations with Duration
+Duration duration3 = Duration.ofMinutes(5);
+Duration duration4 = Duration.ofHours(1);
+
+// Add durations
+Duration totalDuration = duration3.plus(duration4);
+log.info("Total duration: {}", totalDuration);
+// Output - Total duration: PT1H5M
+
+// Subtract durations (ensure duration2 is longer)
+Duration remaining = duration4.minus(duration3);
+log.info("Remaining duration: {}", remaining);
+// Output - Remaining duration: PT55M
+```
+
+
+
+* **java.time.**<mark style="background-color:yellow;">**period**</mark>
+
+In the `java.time` library, `java.time.Period` represents a quantity or amount of time expressed in terms of years, months, and days. Unlike `Duration` which focuses on seconds and nanoseconds, `Period` deals with date-based durations. It stores a period as a combination of years, months, and days.
+
+{% hint style="info" %}
+In the ISO 8601 standard, the Period format is represented as "PnYnMnD" where:
+
+* "P" stands for period.
+* "nY" represents the number of years.
+* "nM" represents the number of months.
+* "nD" represents the number of days.
+
+So, in the Period format "P-3Y-5M-10D":
+
+* "P" indicates a period.
+* "-3Y" indicates a duration of negative 3 years.
+* "-5M" indicates a duration of negative 5 months.
+* "-10D" indicates a duration of negative 10 days.
+{% endhint %}
+
+```java
+// Specifying years, months, and days
+Period period1 = Period.of(3, 5, 10);
+log.info("Period1: {}", period1);
+// Output - Period1: P3Y5M10D
+
+// Using pre-defined constants
+Period period2 = Period.ZERO; // Represents zero period
+log.info("Period2: {}", period2);
+// Output - Period2: P0D
+
+// Get components of a Period
+log.info("Years: {}", period1.getYears()); // Output - Years: 3
+log.info("Months: {}", period1.getMonths()); // Output - Months: 5
+log.info("Days: {}", period1.getDays()); // Output - Days: 10
+log.info("Chronology: {}", period1.getChronology()); // Output - Chronology: ISO
+
+// Perform calculations with Period
+// Add periods
+Period totalPeriod = period1.plus(period2);
+log.info("Total period: {}", totalPeriod);
+// Output - Total period: P3Y5M10D
+
+// Subtract periods (ensure period2 is longer)
+Period remaining = period2.minus(period1);
+log.info("Remaining period: {}", remaining);
+// Output - Remaining period: P-3Y-5M-10D
+
+// Calculate the difference between two LocalDate objects
+LocalDate startDate = LocalDate.of(2020, 1, 1);
+LocalDate endDate = LocalDate.now();
+Period period = Period.between(startDate, endDate);
+log.info("Period between dates: {}", period);
+// Output - Period between dates: P4Y2M8D
+```
+
 
 
 
