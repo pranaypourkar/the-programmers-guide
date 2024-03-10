@@ -124,6 +124,54 @@ public class Application {
 
 
 
+### java.sql.Timestamp
+
+In Java, `java.sql.Timestamp` is a class that represents a timestamp with nanosecond precision, specifically designed for use with JDBC (Java Database Connectivity). It essentially acts as a wrapper around the `java.util.Date` class, providing additional functionality for handling timestamps in a database context. It stores a timestamp value as milliseconds since the epoch (January 1, 1970, 00:00:00 UTC) with nanosecond precision.
+
+**Benefits:**
+
+* Enables storing timestamps with high precision in JDBC applications.
+* Ensures consistent handling of timestamps across different databases.
+* Provides convenience methods for working with timestamp data.
+
+> **Comparison with `java.time.LocalDateTime`:**
+>
+> * Both represent date and time information.
+> * `java.time.LocalDateTime` is part of the newer `java.time` API and doesn't have direct JDBC integration.
+> * `java.sql.Timestamp` is specifically designed for JDBC interaction, but its precision is limited to nanoseconds (unlike `java.time.LocalDateTime` which doesn't have inherent limitations).
+>
+> While `java.sql.Timestamp` is convenient for JDBC interactions, consider using the `java.time` API classes like `LocalDateTime` for in-memory date and time manipulations within your application for potentially better flexibility and features. We can convert these objects to `Timestamp` when necessary for database interactions.
+
+**Example:**
+
+```java
+// Using current time in milliseconds
+long currentTimeMillis = System.currentTimeMillis();
+Timestamp timestamp1 = new Timestamp(currentTimeMillis);
+log.info("Timestamp1: {}", timestamp1);
+// Output - Timestamp1: 2024-03-10 07:18:29.97
+
+// Using Instant object (requires conversion)
+Instant instant = Instant.now();
+Timestamp timestamp2 = Timestamp.from(instant);
+log.info("Timestamp2: {}", timestamp2);
+// Output - Timestamp2: 2024-03-10 07:18:29.9801169
+
+// Extract components from a Timestamp
+log.info("Get Nano: {}", timestamp2.getNanos()); // Get Nano: 980116900
+log.info("Get Time: {}", timestamp2.getTime()); // Get Time: 1710035309980
+
+// Convert Timestamp to other representations
+Timestamp timestamp = new Timestamp(1678333200000L);
+// Convert to String with a specific format
+SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+String formattedString = formatter.format(timestamp);
+log.info("Formatted string: {}", formattedString);
+// Output - Formatted string: 2023-03-09 09:10:00.000
+```
+
+
+
 ### `java.time` (Java 8 and later)
 
 **Description:** The `java.time` API, introduced in Java 8, provides a modern and improved set of classes for working with dates, times, and timezones. It addresses the limitations and complexities of the older `java.util.Date` and `java.util.Calendar` classes, offering improved design, thread-safety, and timezone handling.
