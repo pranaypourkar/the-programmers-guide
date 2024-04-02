@@ -109,4 +109,6 @@ Visit the official documentation for more details - [https://www.mojohaus.org/bu
 ```
 
 > Run `mvn clean compile`  or click on load maven changes button in Intellij in pom.xml file to reflect the changes.&#x20;
+>
+> ![](<../../../.gitbook/assets/image (25).png>)
 
