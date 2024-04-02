@@ -1,4 +1,4 @@
-# Dynamic Properties Registration
+# Dynamic Property Registration
 
 Spring Boot provides ways to register properties dynamically within the application context. This helps to:
 

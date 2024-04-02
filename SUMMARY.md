@@ -61,6 +61,6 @@
     * [Reporting](maven/plugins/reporting.md)
     * [Integration and Testing](maven/plugins/integration-and-testing.md)
     * [Performance Optimization](maven/plugins/performance-optimization.md)
-* [Tests](tests/README.md)
+* [Tests](tests.md)
   * [Integration Test](tests/integration-test/README.md)
-    * [Dynamic Properties Registration](tests/integration-test/dynamic-properties-registration.md)
+    * [Dynamic Property Registration](tests/integration-test/dynamic-property-registration.md)
