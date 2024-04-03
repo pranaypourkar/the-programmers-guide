@@ -42,6 +42,7 @@
       * [Around Advice](spring/concepts/spring-aop/around-advice.md)
   * [Others](spring/others/README.md)
     * [Utilities](spring/others/utilities/README.md)
+      * [Mapping Properties to Java Class](spring/others/utilities/mapping-properties-to-java-class.md)
       * [Provide by Spring framework](spring/others/utilities/provide-by-spring-framework/README.md)
         * [FileCopyUtils](spring/others/utilities/provide-by-spring-framework/filecopyutils.md)
 * [Maven](maven/README.md)
