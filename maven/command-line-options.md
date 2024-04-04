@@ -44,6 +44,16 @@ Multiple phases can be chained using spaces in a single command. This executes e
 
 
 
+{% hint style="info" %}
+In Maven, when resolving dependencies, the order in which repositories are checked depends on the order they are defined in the `pom.xml` file. By default the sequence is:
+
+1. **Local Repository**: Maven first looks into the local repository, which is usually located in your home directory (`~/.m2/repository` on Unix-like systems, or `%USERPROFILE%\.m2\repository` on Windows). If the required dependencies are found there, Maven uses them directly without further processing.
+2. **Remote Repositories**: If the dependencies are not found in the local repository, Maven checks any remote repositories configured in the `pom.xml` file. These remote repositories could be your organization's internal repositories or other external repositories besides Maven Central. Maven checks them in the order they are defined in the `pom.xml`.
+3. **Maven Central**: If the dependencies are not found in any of the configured repositories, Maven then checks Maven Central, which is the default central repository for open-source Java libraries.
+{% endhint %}
+
+
+
 **Skipping phases:**
 
 * To skip a specific phase (-Dmaven.\<phase>.skip=true).&#x20;
