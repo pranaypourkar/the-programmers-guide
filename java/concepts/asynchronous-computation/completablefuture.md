@@ -34,7 +34,14 @@ Java **CompletableFuture** is a class introduced in Java 8 as part of the _**jav
 
 * `thenCompose`
 
-`thenCompose(Function<? super T,? extends CompletionStage<U>> fn)`: This method applies a function to the result of the current `CompletableFuture` and returns a new `CompletionStage`. It's useful for chaining dependent asynchronous tasks where the result of one task determines the execution of another
+`thenCompose(Function<? super T,? extends CompletionStage<U>> fn)`: This method applies a function to the result of the current `CompletableFuture` and returns a new `CompletionStage`. It's useful for chaining dependent asynchronous tasks where the result of one task determines the execution of another.
+
+{% hint style="info" %}
+* `thenCompose` waits for the current `CompletableFuture` to complete.
+* **Applies Function:** Once the current `CompletableFuture` finishes, `thenCompose` applies the provided function (`fn`) to its result (of type `T`).
+* **Chains Another Operation:** The function (`fn`) is expected to return a new `CompletionStage<U>`. This creates a new asynchronous operation that will be executed after the current one finishes.
+* **Returns New CompletableFuture:** `thenCompose` returns a new `CompletableFuture<U>` that represents the result of the chained operation.
+{% endhint %}
 
 * `exceptionally`
 
@@ -164,6 +171,86 @@ public class MainApplication {
 <figure><img src="../../../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
 
 3. Creating a single CompletableFuture using `runAsync`**.**
+
+```java
+// runAsync method takes a Runnable function
+CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(() -> {
+    // Perform some async computation
+    log.info("Performing some async computation");
+});
+
+// Main process continues
+log.info("Continuing with main process");
+
+// get method waits if necessary for the future to complete
+// Since the computation doesn't return a value, we just wait for it to complete
+completableFuture.get();
+```
+
+<figure><img src="../../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
+
+4. Example using `thenApply`**.**
+
+```java
+CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> {
+    // Perform some async computation
+    return "Hello";
+});
+
+// thenApply method applies a function to the result of the CompletableFuture
+CompletableFuture<String> futureResult = completableFuture.thenApply(result -> result + " World");
+
+log.info("Continuing with main process");
+log.info(futureResult.get());
+```
+
+<figure><img src="../../../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
+
+5. Example using `thenAccept`.
+
+```java
+CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> {
+    // Perform some async computation
+    return "Hello";
+});
+
+// thenAccept method performs an action on the result without returning a value
+CompletableFuture<Void> futureResult = completableFuture.thenAccept(result -> log.info(result + " World"));
+
+// Waits for the action to complete
+futureResult.get();
+```
+
+<figure><img src="../../../.gitbook/assets/image (40).png" alt=""><figcaption></figcaption></figure>
+
+6. Example using `thenCombine`.
+
+```java
+CompletableFuture<String> completableFuture1 = CompletableFuture.supplyAsync(() -> "Hello");
+CompletableFuture<String> completableFuture2 = CompletableFuture.supplyAsync(() -> "World");
+
+// thenCombine method combines the results of two CompletableFutures
+CompletableFuture<String> futureResult = completableFuture1
+        .thenCombine(completableFuture2, (result1, result2) -> result1 + " " + result2);
+
+log.info(futureResult.get()); // Prints "Hello World"
+```
+
+<figure><img src="../../../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
+
+7. Example using `thenCompose` .
+
+```
+CompletableFuture<String> completableFuture1 = CompletableFuture.supplyAsync(() -> "Hello");
+
+// thenCompose method applies a function that returns a new CompletionStage
+CompletableFuture<String> futureResult = completableFuture1
+        .thenCompose(result -> CompletableFuture.supplyAsync(() -> result + " World"));
+
+log.info(futureResult.get()); // Prints "Hello World"
+```
+
+<figure><img src="../../../.gitbook/assets/image (42).png" alt=""><figcaption></figcaption></figure>
 
 
 
