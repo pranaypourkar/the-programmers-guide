@@ -22,6 +22,22 @@ For more details, visit the site - https://github.com/lukas-krecan/ShedLock
 
 
 
+#### Use cases
+
+1. Handling Recurring Jobs with External Dependencies:
+
+**Generating and Sending Reports**: If there is a task that involves fetching data from external APIs, generating reports, and sending them via email, scheduler locks ensure only one instance sends those emails, preventing duplicates and potential overload.&#x20;
+
+**External Data Updates**: Tasks that pull data from external sources and update your database can benefit from scheduler locks to avoid conflicting updates and ensure consistency.
+
+2. Long-Running Tasks with Progress Updates:
+
+**Data Processing and Transformation**: For tasks that involve processing large datasets or lengthy file operations, scheduler locks prevent multiple instances from starting the same work, saving resources and ensuring correct completion.&#x20;
+
+**Batch Updates**: Tasks that perform batch updates or data migrations can leverage scheduler locks to prevent conflicts and ensure data integrity.
+
+
+
 #### Example: Using JDBC (mysql) as a lock provider.&#x20;
 
 Add the required dependency in pom.xml file.
