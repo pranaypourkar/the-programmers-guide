@@ -98,9 +98,9 @@ public class DataApi {
 
 Run the application, trigger the API and observe the logs
 
-<figure><img src="../../../.gitbook/assets/image (8) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (9) (1).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 
 

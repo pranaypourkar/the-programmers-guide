@@ -37,7 +37,9 @@ Java **CompletableFuture** is a class introduced in Java 8 as part of the _**jav
 `thenCompose(Function<? super T,? extends CompletionStage<U>> fn)`: This method applies a function to the result of the current `CompletableFuture` and returns a new `CompletionStage`. It's useful for chaining dependent asynchronous tasks where the result of one task determines the execution of another.
 
 {% hint style="info" %}
-* `thenCompose` waits for the current `CompletableFuture` to complete.
+**What it Does is it -**&#x20;
+
+* **Waits for Completion:**`thenCompose` waits for the current `CompletableFuture` to complete.
 * **Applies Function:** Once the current `CompletableFuture` finishes, `thenCompose` applies the provided function (`fn`) to its result (of type `T`).
 * **Chains Another Operation:** The function (`fn`) is expected to return a new `CompletionStage<U>`. This creates a new asynchronous operation that will be executed after the current one finishes.
 * **Returns New CompletableFuture:** `thenCompose` returns a new `CompletableFuture<U>` that represents the result of the chained operation.
@@ -47,9 +49,27 @@ Java **CompletableFuture** is a class introduced in Java 8 as part of the _**jav
 
 `exceptionally(Function<Throwable,? extends T> fn)`: This method handles exceptions that occur during the execution of the current `CompletableFuture`. It applies the specified function to the exception and returns a new `CompletableFuture` with the result of the function, effectively recovering from the exception.
 
+* `exceptionallyAsync`
+
+`exceptionallyAsync(Function<Throwable, ? extends T> fn)`: This method is also used for handling exceptions that may occur during the execution of the asynchronous computation. However, it differs from `exceptionally`  in how it handle the execution context (thread) in which the exception handling function is invoked.
+
+{% hint style="info" %}
+`exceptionally(Function<Throwable, ? extends T> fn)`:
+
+* This method is synchronous, meaning the provided exception handling function (`Function`) is executed in the same thread where the exception occurred.
+* It's suitable for simple exception handling scenarios where the recovery logic is not computationally intensive and does not involve blocking operations.
+* The computation of the fallback value happens synchronously, potentially blocking the thread until the recovery logic completes.
+
+`exceptionallyAsync(Function<Throwable, ? extends T> fn)`:
+
+* This method is asynchronous, meaning the provided exception handling function (`Function`) is executed in a separate thread from the one where the exception occurred.
+* It's suitable for complex exception handling scenarios where the recovery logic might involve heavy computation or blocking operations.
+* The computation of the fallback value happens asynchronously, allowing the main program to continue executing other tasks while the recovery logic runs concurrently.
+{% endhint %}
+
 * `handle`
 
-`handle(BiFunction<? super T,Throwable,? extends U> fn)`: Similar to `exceptionally()`, but the function provided can handle both the result and any exception that occurs during the execution of the current `CompletableFuture`
+`handle(BiFunction<? super T,Throwable,? extends U> fn)`: Similar to `exceptionally()`, but the function provided can handle both the result and any exception that occurs during the execution of the current `CompletableFuture.` If an exception occurs during the execution, the `handle()` function receives the exception object and if no exception occurs, the `handle()` function receives the result, and we modify it.
 
 * `allOf`
 
@@ -59,9 +79,13 @@ Java **CompletableFuture** is a class introduced in Java 8 as part of the _**jav
 
 `anyOf(CompletableFuture<?>... cfs)`: This method waits for any of the provided `CompletableFutures` to complete. It returns a new `CompletableFuture` that completes when any of the provided `CompletableFutures` completes, with the result of the first completed `CompletableFuture`.
 
+* `orTimeout`
+
+`orTimeout(long timeout, TimeUnit unit):`This method sets a timeout for the completion of the future. If the future does not complete within the specified timeout duration, it completes exceptionally with a `TimeoutException`. It's useful when you want to handle the timeout by throwing an exception. The timeout is set on the original CompletableFuture, and if the timeout occurs, the CompletableFuture itself is completed exceptionally.
+
 * `completeOnTimeout`
 
-`completeOnTimeout(T value, long timeout, TimeUnit unit)`: This method completes the current `CompletableFuture` with the specified value if it does not complete within the specified timeout period.
+`completeOnTimeout(T value, long timeout, TimeUnit unit)`: This method sets a timeout for the completion of the future. If the future does not complete within the specified timeout duration, it completes with the provided value. It's useful when you want to **handle the timeout by providing a fallback value instead of throwing an exception**. The timeout is set on a new CompletableFuture derived from the original CompletableFuture, and if the timeout occurs, the new CompletableFuture is completed with the specified value, while the original CompletableFuture remains incomplete.
 
 * `cancel`
 
@@ -170,7 +194,7 @@ public class MainApplication {
 
 <figure><img src="../../../.gitbook/assets/image (35).png" alt=""><figcaption></figcaption></figure>
 
-3. Creating a single CompletableFuture using `runAsync`**.**
+3. Creating a single CompletableFuture using **`runAsync`.**
 
 ```java
 // runAsync method takes a Runnable function
@@ -189,7 +213,7 @@ completableFuture.get();
 
 <figure><img src="../../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
 
-4. Example using `thenApply`**.**
+4. Example using **`thenApply`.**
 
 ```java
 CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> {
@@ -206,7 +230,7 @@ log.info(futureResult.get());
 
 <figure><img src="../../../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>
 
-5. Example using `thenAccept`.
+5. Example using **`thenAccept`**.
 
 ```java
 CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> {
@@ -223,7 +247,7 @@ futureResult.get();
 
 <figure><img src="../../../.gitbook/assets/image (40).png" alt=""><figcaption></figcaption></figure>
 
-6. Example using `thenCombine`.
+6. Example using **`thenCombine`**.
 
 ```java
 CompletableFuture<String> completableFuture1 = CompletableFuture.supplyAsync(() -> "Hello");
@@ -238,9 +262,9 @@ log.info(futureResult.get()); // Prints "Hello World"
 
 <figure><img src="../../../.gitbook/assets/image (41).png" alt=""><figcaption></figcaption></figure>
 
-7. Example using `thenCompose` .
+7. Example using **`thenCompose`** .
 
-```
+```java
 CompletableFuture<String> completableFuture1 = CompletableFuture.supplyAsync(() -> "Hello");
 
 // thenCompose method applies a function that returns a new CompletionStage
@@ -251,6 +275,200 @@ log.info(futureResult.get()); // Prints "Hello World"
 ```
 
 <figure><img src="../../../.gitbook/assets/image (42).png" alt=""><figcaption></figcaption></figure>
+
+8. Example using **`orTimeout`** and **`exceptionallyAsync`**
+
+```java
+package org.example;
+
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+
+@Slf4j
+public class MainApplication {
+
+    @SneakyThrows
+    public static void main(String[] args)  {
+        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> getSomeDataFromExternalService())
+                .orTimeout(7, TimeUnit.SECONDS)
+                .exceptionallyAsync(ex -> {
+                    log.error("Some error occurred");
+                    return "Some fallback value";
+                });
+        // exceptionallyAsync method handles the exception and provides a fallback value
+        log.info("Response: {}", completableFuture.get());
+    }
+
+    static String getSomeDataFromExternalService() {
+        log.info("Fetching data from external service");
+
+        throw new RuntimeException("Got some exception");
+    }
+}
+```
+
+<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+9. Example using **`exceptionally`**.
+
+```java
+@SneakyThrows
+public static void main(String[] args)  {
+    CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(MainApplication::getSomeDataFromExternalService)
+            .exceptionally(ex -> {
+                log.error("Some error occurred");
+                return "Some fallback value";
+            });
+    // exceptionally method handles the exception and provides a fallback value
+    log.info("Response: {}", completableFuture.get());
+}
+
+static String getSomeDataFromExternalService() {
+    log.info("Fetching data from external service");
+    throw new RuntimeException("Got some exception");
+}
+```
+
+<figure><img src="../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+10. Example using **`orTimeout`**.
+
+```java
+CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> {
+    try {
+        Thread.sleep(5000); // Simulate a long-running computation
+        return "Result";
+    } catch (InterruptedException e) {
+        return "Interrupted";
+    }
+}).orTimeout(2000, TimeUnit.MILLISECONDS);
+
+try {
+    log.info("orTimeout result: {}", completableFuture.get());
+} catch (Exception e) {
+    log.info("orTimeout exception: {}", e.getMessage()); // Will throw a TimeoutException
+}
+```
+
+<figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+11. Example using **`completeOnTimeout`**.
+
+```java
+CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> {
+    try {
+        Thread.sleep(5000); // Simulate a long-running computation
+        return "Result";
+    } catch (InterruptedException e) {
+        return "Interrupted";
+    }
+}).completeOnTimeout("Fallback Value", 2000, TimeUnit.MILLISECONDS);
+
+try {
+    log.info("completeOnTimeout result: {}", completableFuture.get());
+} catch (Exception e) {
+    log.info("completeOnTimeout exception: {}", e.getMessage()); // Will print "Fallback Value"
+}
+```
+
+<figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+12. Example using **`handle`**.
+
+```java
+// Example CompletableFuture that can throw an exception
+CompletableFuture<Integer> completableFuture = CompletableFuture.supplyAsync(() -> {
+    // Simulate an exception
+    throw new RuntimeException("Exception occurred");
+}).handle((result, exception) -> {
+    if (exception != null) {
+        log.info("Exception occurred: {}", exception.getMessage());
+        return 0; // Fallback value in case of exception
+    } else {
+        return (Integer) result * 2; // Modify the result
+    }
+});
+
+log.info("Result: {}", completableFuture.get()); // Prints "Result: 0" because of the exception
+```
+
+<figure><img src="../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+13. Example using **`allOf`**`.`
+
+```java
+CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> "Result 1");
+CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> "Result 2");
+CompletableFuture<String> future3 = CompletableFuture.supplyAsync(() -> "Result 3");
+
+CompletableFuture<Void> allFutures = CompletableFuture.allOf(future1, future2, future3);
+
+allFutures.get(); // Waits for all futures to complete
+
+log.info("All futures completed successfully");
+```
+
+<figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+14. Example using **`anyOf`**`.`
+
+```java
+CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> {
+    try {
+        Thread.sleep(2000);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+    return "Result 1";
+});
+
+CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> {
+    try {
+        Thread.sleep(1000);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+    return "Result 2";
+});
+
+CompletableFuture<Object> anyFuture = CompletableFuture.anyOf(future1, future2);
+
+log.info("First future completed: {}", anyFuture.get()); // Waits for any future to complete
+```
+
+<figure><img src="../../../.gitbook/assets/image (7).png" alt=""><figcaption></figcaption></figure>
+
+15. Example using **`cancel`**.
+
+```java
+CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> {
+    try {
+        log.info("Started Processing something");
+        Thread.sleep(3000);
+        log.info("Processing completed");
+        return "Result";
+    } catch (InterruptedException e) {
+        return "Exception occurred";
+    }
+});
+
+// Attempt to cancel the computation
+// true indicates that interrupt should be sent to the thread if it's running
+boolean cancelled = completableFuture.cancel(true);
+
+log.info("Computation cancelled: {}", cancelled);
+// Check if the computation was successfully cancelled before retrieving the result
+if (!cancelled) {
+    log.info("Result: {}", completableFuture.get()); // Prints "Result" if not cancelled
+} else {
+    log.info("Computation was cancelled, no result available");
+}
+```
+
+<figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
 
 
