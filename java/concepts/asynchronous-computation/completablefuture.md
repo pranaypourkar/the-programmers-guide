@@ -97,7 +97,7 @@ Java **CompletableFuture** is a class introduced in Java 8 as part of the _**jav
 
 * `get`
 
-`get()`: This method is similar to `join()`, but it can throw checked exceptions. It waits for the completion of the current `CompletableFuture` and returns its result, but it also throws any exception that occurred during the computation, wrapped in a `ExecutionException`.
+`get()`: This method is similar to `join()` i.e. wait (block) the current thread until the `CompletableFuture` finishes its execution, but it can throw checked exceptions. It waits for the completion of the current `CompletableFuture` and returns its result, but it also throws any exception that occurred during the computation, wrapped in a `ExecutionException`.
 
 {% hint style="info" %}
 &#x20;_**get vs join ?**_
@@ -470,13 +470,37 @@ if (!cancelled) {
 
 <figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
+16. Example using **`get`** and **`join`**.
 
+```java
+CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> {
+    throw new ArithmeticException();
+});
+
+// Using get()
+try {
+    String result = completableFuture.get(); // Throws checked exceptions (InterruptedException, ExecutionException)
+    log.info("Result using get(): {}", result); // Will not be printed
+} catch (ExecutionException e) {
+    log.info("Exception occurred: {}", e.getMessage());
+}
+
+// Using join()
+try {
+    String result = completableFuture.join(); // Throws unchecked exceptions (CompletionException)
+    log.info("Result using get(): {}", result); // Will not be printed
+} catch (CompletionException e) {
+    log.info("Exception occurred: {}", e.getMessage());
+}
+```
+
+<figure><img src="../../../.gitbook/assets/image (43).png" alt=""><figcaption></figcaption></figure>
 
 
 
 ### Use Cases:
 
-#### When we have a list of account IDs and want to fetch the balance with the help of those IDs by calling external API parallely.
+#### When we have a list of account IDs and want to fetch the balance with the help of those IDs by calling external API parallelly.
 
 ```java
 package org.example;
