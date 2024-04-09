@@ -20,6 +20,29 @@ Java **CompletableFuture** is a class introduced in Java 8 as part of the _**jav
 
 `runAsync(Runnable runnable, Executor executor)`: Similar to `supplyAsync()`, but for tasks that do not return a value. The provided `Runnable` is executed asynchronously, and the resulting `CompletableFuture` completes when the task finishes.
 
+
+
+{% hint style="info" %}
+The `executor` parameter is an optional `Executor` that specifies where the async computation will be executed. If provided, the async computation will be executed on the specified `Executor`. If not provided, the async computation will be executed on the default `ForkJoinPool.commonPool()`
+
+Specifying an `Executor` allows to control the execution context of the async computation. We can use a custom `Executor` to control factors such as the number of threads, thread priority, or even to execute tasks on a specific thread, providing more control over concurrency and resource utilization in the application.
+
+**Example**:
+
+```java
+// Create a fixed-size thread pool with 5 threads
+Executor executor = Executors.newFixedThreadPool(5);
+
+CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> {
+   // Perform async computation
+   return "Result";
+}, executor); // Execute the async computation on the custom Executor
+// Continue with other tasks...
+```
+{% endhint %}
+
+
+
 * `thenApply`
 
 `thenApply(Function<? super T,? extends U> fn)`: This method specifies a function to be applied to the result of the current `CompletableFuture` when it completes. It returns a new `CompletableFuture` that holds the result of the function.
