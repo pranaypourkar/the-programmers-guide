@@ -58,7 +58,45 @@ future.join();
 
 Some of the RestTemplate methods are given below. For more details visit [https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html)
 
+* `restTemplate.getForEntity(...)`:
 
+Sends an HTTP GET request to the specified URL. Retrieves the entire HTTP response, including headers and body, and returns it encapsulated in a `ResponseEntity` object. It allows to access response headers, status code, and body separately.
+
+* `restTemplate.exchange(...)`:
+
+Provides more flexibility than `getForEntity()` by allowing to specify the HTTP method (GET, POST, PUT, DELETE, etc.), headers, request entity, and response type. Returns a `ResponseEntity` like `getForEntity()`, but with the ability to specify additional request parameters.
+
+* `restTemplate.delete(...)`:
+
+Sends an HTTP DELETE request to the specified URL. It's a convenience method specifically for DELETE requests, equivalent to `exchange(url, HttpMethod.DELETE, ...)`. Does not expect a response body.
+
+* `restTemplate.execute(...)`:
+
+This method provides the lowest-level access to HTTP requests.  It takes an instance of `RequestCallback` and `ResponseExtractor` as parameters . This allows for full control over the request and response handling.
+
+* `restTemplate.getForObject(...)`:
+
+Similar to `getForEntity()`, but it directly returns the response body instead of encapsulating the entire response in a `ResponseEntity` object.  Useful when you're only interested in the response body and don't need access to headers or status code separately.
+
+* `postForObject(...)`:
+
+Sends an HTTP POST request to the specified URL. Accepts a URL, request entity (typically an object representing the request body), and a response type. Returns the response body as an object of the specified type. Convenient when you expect a response body and want it directly mapped to a Java object.
+
+* `postForEntity(...)`:
+
+Similar to `postForObject()` but returns the entire HTTP response encapsulated in a `ResponseEntity` object. This allows you to access the response headers, status code, and body separately.
+
+* `postForLocation(...)`:
+
+Used when we expect the server to respond with a '201 Created' status and a 'Location' header indicating the URL of the newly created resource. Sends an HTTP POST request and returns the URL of the newly created resource.
+
+* `patchForObject(...)`:
+
+Sends an HTTP PATCH request to the specified URL. Similar to `postForObject()` but specifically designed for HTTP PATCH requests. Accepts a URL, request entity (typically an object representing the request body), and a response type.
+
+* `put(...)`:
+
+Sends an HTTP PUT request to the specified URL. Typically used to update an existing resource with the provided request entity. Unlike `postForObject()` and `postForEntity()`, there isn't a `putForObject()` or `putForEntity()` method because `RestTemplate`'s `exchange()` method can be used for PUT requests, providing more flexibility.
 
 
 
