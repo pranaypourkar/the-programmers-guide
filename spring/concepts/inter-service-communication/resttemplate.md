@@ -54,6 +54,56 @@ future.join();
 
 
 
+### Commonly used RestTemplate configuration
+
+1. **Setting Timeout**: We can configure connection and read timeouts to prevent application from hanging indefinitely if a remote server is slow to respond.
+
+```java
+RestTemplate restTemplate = new RestTemplateBuilder()
+    .setConnectTimeout(Duration.ofSeconds(10))
+    .setReadTimeout(Duration.ofSeconds(10))
+    .build();
+```
+
+2. **Customizing Message Converters**: We might need to customize the message converters used by `RestTemplate` to handle specific data formats or serialization/deserialization requirements.
+
+```java
+RestTemplate restTemplate = new RestTemplate();
+restTemplate.setMessageConverters(Arrays.asList(new MappingJackson2HttpMessageConverter()));
+```
+
+3. **Error Handling**: We can configure error handling to handle different types of errors gracefully, such as by defining custom error handlers.
+
+```java
+RestTemplate restTemplate = new RestTemplate();
+restTemplate.setErrorHandler(new MyResponseErrorHandler());
+```
+
+4. **Interceptors**: Interceptors allows to intercept and modify outgoing requests or incoming responses. They can be used for logging, adding headers, or other pre/post-processing tasks.
+
+```java
+RestTemplate restTemplate = new RestTemplate();
+restTemplate.setInterceptors(Collections.singletonList(new MyClientHttpRequestInterceptor()));
+```
+
+5. **HTTP Basic Authentication**: If we need to authenticate with a server using HTTP Basic authentication, we can configure it with `RestTemplate`.
+
+```java
+RestTemplate restTemplate = new RestTemplate();
+restTemplate.getInterceptors().add(new BasicAuthenticationInterceptor("username", "password"));
+```
+
+6. **Connection Pooling**: To improve performance and efficiency, we can configure connection pooling.
+
+```java
+RestTemplate restTemplate = new RestTemplate();
+HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
+requestFactory.setHttpClient(HttpClients.createDefault());
+restTemplate.setRequestFactory(requestFactory);
+```
+
+
+
 ### **RestTemplate methods**
 
 Some of the RestTemplate methods are given below. For more details visit [https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html)
@@ -279,8 +329,8 @@ Run the service 1 API from Postman and monitor the logs
 
 <figure><img src="../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
 
-```
-// Some code2024-04-19 15:55:22.074  INFO 21200 --- [nio-8081-exec-5] org.example.api.SampleController         : Calling service 2 API
+```atom
+2024-04-19 15:55:22.074  INFO 21200 --- [nio-8081-exec-5] org.example.api.SampleController         : Calling service 2 API
 2024-04-19 15:55:22.076 DEBUG 21200 --- [nio-8081-exec-5] o.a.h.client.protocol.RequestAddCookies  : CookieSpec selected: default
 2024-04-19 15:55:22.076 DEBUG 21200 --- [nio-8081-exec-5] o.a.h.client.protocol.RequestAuthCache   : Auth cache not set in the context
 2024-04-19 15:55:22.076 DEBUG 21200 --- [nio-8081-exec-5] h.i.c.PoolingHttpClientConnectionManager : Connection request: [route: {}->http://localhost:8082][total available: 1; route allocated: 1 of 5; total allocated: 1 of 10]
