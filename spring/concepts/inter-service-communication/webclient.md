@@ -1,6 +1,6 @@
 # WebClient
 
-`WebClient` is a non-blocking, reactive HTTP client introduced in Spring 5 and is part of the Spring WebFlux module. It provides a functional and fluent API for making HTTP requests in Spring applications, especially in reactive, non-blocking scenarios. It's designed for modern, scalable applications that can handle high volumes of concurrent requests efficiently.
+`WebClient` is a non-blocking, reactive HTTP client introduced in Spring 5 and is part of the Spring WebFlux module. Reactor is the foundation of WebClient’s functional and fluent API for making HTTP requests in Spring applications, especially in reactive, non-blocking scenarios. It's designed for modern, scalable applications that can handle high volumes of concurrent requests efficiently.
 
 
 
@@ -102,6 +102,15 @@ WebClient offers a fluent API for building different types of HTTP requests:
 * `.put()`: Use this for PUT requests.
 * `.patch()`: Use this for PATCH requests.
 * `.delete()`: Use this for DELETE requests
+* `exchange()` : This method allows explicit handling of the request and response. It returns a ClientResponse object, which contains details such as status, headers, and the response body. With exchange(), we need to explicitly subscribe to the response using methods like subscribe(), block(), or similar ones. This gives more control over the execution of the request and when we want to consume the response. **exchange() is deprecated in the latest versions**.
+
+
+
+### Additional Notes
+
+* When using `WebClient` in Spring WebFlux, the `bodyToMono()` and `bodyToFlux()` methods expect to deserialize the response body into a specified class type. If the response status code indicates a client error (4xx) or a server error (5xx), and there's no response body, these methods will throw a `WebClientException`
+* Under the hood, `WebClient` operates using an `ExchangeFunction`, which is responsible for executing requests and handling responses. We can customize this behavior by providing our own `ExchangeFunction` implementation.
+* We can use `bodyToMono(Void.class)` if no response body is expected. This is helpful in _DELETE_ operations.
 
 
 
@@ -280,7 +289,61 @@ Monitor the logs (have a look at the threads executing the code)
 
 
 
+#### Create an employee, Fetching all employees and handling error based on Http status.
 
+```java
+package org.example.service;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+@RequiredArgsConstructor
+@Service
+public class EmployeeService {
+
+    private final WebClient webClient;
+
+    public Flux<Employee> getAllEmployees() {
+
+        return webClient.get()
+                .uri("/employees")
+                .retrieve()
+                .onStatus(httpStatus -> !httpStatus.is2xxSuccessful(),
+                        clientResponse -> handleErrorResponse(clientResponse.statusCode()))
+                .bodyToFlux(Employee.class)
+                .onErrorResume(Exception.class, e -> Flux.empty()); // Return an empty collection on error
+    }
+
+    public Mono<ResponseEntity<Employee>> createEmployee(Employee newEmployee) {
+
+        return webClient.post()
+                .uri("/employees")
+                .body(Mono.just(newEmployee), Employee.class)
+                .retrieve()
+                .onStatus(HttpStatus::is4xxClientError, response -> {
+                    //logError("Client error occurred");
+                    return Mono.error(new WebClientResponseException
+                            (response.statusCode().value(), "Bad Request", null, null, null));
+                })
+                .onStatus(HttpStatus::is5xxServerError, response -> {
+                    //logError("Server error occurred");
+                    return Mono.error(new WebClientResponseException
+                            (response.statusCode().value(), "Server Error", null, null, null));
+                })
+                .toEntity(Employee.class);
+    }
+
+    private Mono<? extends Throwable> handleErrorResponse(HttpStatus statusCode) {
+        // Handle non-success status codes
+        return Mono.error(new EmployeeServiceException("Failed to fetch employee. Status code: " + statusCode));
+    }
+}
+```
 
 
 
