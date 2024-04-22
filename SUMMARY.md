@@ -26,6 +26,7 @@
       * [Custom Enum](java/others/enum/custom-enum.md)
     * [Localization](java/others/localization.md)
 * [System Design](system-design/README.md)
+  * [Programming Paradigms](system-design/programming-paradigms.md)
   * [Design Pattern](system-design/design-pattern/README.md)
     * [Examples](system-design/design-pattern/examples/README.md)
       * [Data Collector](system-design/design-pattern/examples/data-collector.md)
