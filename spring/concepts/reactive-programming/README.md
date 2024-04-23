@@ -2,12 +2,6 @@
 
 Reactive programming simplifies handling asynchronous data streams, commonly I/O-bound tasks like network calls, by allowing the program to react to changes in these streams as they happen. However, it's not limited to just I/O operations; it can be applied to various scenarios where data is emitted over time, such as user input or system events. By designing code to respond to data changes asynchronously, rather than blocking and waiting for each step to complete sequentially, reactive programming enables more efficient and responsive applications, particularly in situations with high concurrency or unpredictable data flows.
 
-{% hint style="info" %}
-Reactive Systems are software systems designed to be responsive, resilient, elastic, and message-driven. These systems are built to handle the challenges posed by modern, distributed, and event-driven architectures. Reactive Systems often involve the use of reactive programming principles and techniques.
-
-The [Reactive Manifesto](https://www.reactivemanifesto.org/) is a declaration of the principles and characteristics that define Reactive Systems. It was created by a group of software architects and engineers to promote a common understanding of reactive programming and design principles.
-{% endhint %}
-
 
 
 ### Key characteristics
@@ -52,14 +46,6 @@ The [Reactive Manifesto](https://www.reactivemanifesto.org/) is a declaration of
     &#x20; **-> Reactive MongoDB and Redis:** Spring Data offers reactive drivers for these NoSQL databases.
 * **RxJava / Reactive Extensions**: RxJava is a another reactive programming library for Java, inspired by the ReactiveX project. It provides a rich set of APIs for working with asynchronous data streams and implementing reactive programming patterns. At its core, RxJava introduces two main types: _Observable_ and _Observer_. An Observable represents a stream of data that can emit zero or more items over time, while an Observer subscribes to an Observable to receive and react to emitted items. RxJava offers a wide range of operators for transforming, filtering, combining, and manipulating data streams in a declarative and composable manner. It also provides support for concurrency, error handling, and backpressure handling, making it suitable for building responsive, scalable, and resilient applications.
 * **Java 9+ Flow API**: The Flow API was introduced in Java 9 as part of the `java.util.concurrent` package to provide native support for reactive programming concepts. It defines a set of interfaces and classes for representing asynchronous data streams and implementing reactive streams patterns. The core interfaces in the Flow API include Publisher, Subscriber, Subscription, and Processor. A Publisher emits items of data to one or more Subscribers, which consume and process these items asynchronously. The Subscription interface allows Subscribers to request and manage the flow of data from Publishers, providing a mechanism for backpressure handling. Additionally, the Processor interface extends both Publisher and Subscriber, allowing components to act as both producers and consumers of data streams. The Java 9+ Flow API provides a standard way of working with reactive streams in Java, enabling interoperability between different reactive programming libraries and frameworks while promoting a more consistent and portable approach to reactive programming.
-
-
-
-### Difference between Reactive System and Reactive Programming
-
-<table data-full-width="true"><thead><tr><th width="170.33333333333331"></th><th></th><th></th></tr></thead><tbody><tr><td><strong>Aspect</strong></td><td><strong>Reactive System</strong></td><td><strong>Reactive Programming</strong></td></tr><tr><td><strong>Scope</strong></td><td>Encompasses the entire architecture and design of a system.</td><td>Focuses on the programming paradigm and implementation within a system.</td></tr><tr><td><strong>Definition</strong></td><td>Systems designed to be responsive, resilient, elastic, and message-driven, capable of handling modern, distributed, and event-driven architectures.</td><td>A programming paradigm focused on handling asynchronous data streams and reacting to changes in those streams.</td></tr><tr><td><strong>Characteristics</strong></td><td>Responsive, resilient, elastic, and message-driven.</td><td>Asynchronous, non-blocking, declarative, and compositional.</td></tr><tr><td><strong>Goals</strong></td><td>Ensure responsiveness, resilience, scalability, and adaptability in software systems.</td><td>Enable more efficient handling of asynchronous operations, better utilization of resources, and improved responsiveness.</td></tr><tr><td><strong>Focus</strong></td><td>Concerned with system architecture, design principles, and overall system behavior.</td><td>Concerned with programming techniques, patterns, and libraries for handling asynchronous data streams.</td></tr><tr><td><strong>Components</strong></td><td>Encompasses the entire system, including components, interactions, and communication patterns.</td><td>Focuses on individual components, methods, and data streams within the system.</td></tr><tr><td><strong>Examples</strong></td><td>Distributed microservices, IoT platforms, real-time analytics systems.</td><td>Event-driven applications, reactive UI frameworks, asynchronous web services.</td></tr></tbody></table>
-
-
 
 
 
