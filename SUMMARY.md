@@ -25,6 +25,8 @@
       * [Pre-Defined Enum](java/others/enum/pre-defined-enum.md)
       * [Custom Enum](java/others/enum/custom-enum.md)
     * [Localization](java/others/localization.md)
+  * [Best Practices](java/best-practices/README.md)
+    * [Artifact and BOM Versioning](java/best-practices/artifact-and-bom-versioning.md)
 * [System Design](system-design/README.md)
   * [Programming Paradigms](system-design/programming-paradigms.md)
   * [Design Pattern](system-design/design-pattern/README.md)
