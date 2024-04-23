@@ -53,3 +53,28 @@ Reactive programming, particularly when combined with non-blocking I/O, can help
 
 
 
+### Components of Reactive Programming
+
+Some of the main components are -
+
+**Observable (Publisher)**: An Observable represents a source of data that emits items over time. It can emit zero or more items, optionally followed by an error or completion signal. Observables are the core building blocks of reactive programming and represent asynchronous data streams.
+
+**Observer (Subscriber)**: An Observer subscribes to an Observable in order to receive and react to the items emitted by the Observable. It defines callback methods to handle emitted items, errors, and completion signals. Observers consume data asynchronously and react to changes in the data stream.
+
+**Operators**: Operators are functions or methods that allows to transform, filter, combine, and manipulate data streams. Operators enables to perform operations such as mapping, filtering, reducing, and merging on Observables, allowing for complex data processing and manipulation.&#x20;
+
+Common operators include:
+
+* `filter`: Selects elements based on a predicate.
+* `map`: Transforms each element in the stream.
+* `reduce`: Combines all elements in the stream into a single value.
+* `merge`: Combines multiple streams into a single stream.
+* `buffer`: Groups elements into fixed-size or time-based chunks.
+* Many more operators exist for various use cases.
+
+**Schedulers**: Schedulers are used to control the execution context of Observables and define where and how Observable emissions and operations should be executed. Schedulers allows to specify on which threads or thread pools Observables should emit items, handle backpressure, and perform computation or I/O-bound tasks.
+
+**Backpressure Handling**: Backpressure occurs when the rate at which data is produced exceeds the rate at which it can be consumed, leading to potential resource exhaustion or system instability. Reactive programming frameworks provide mechanisms for handling backpressure, allowing downstream components to signal to upstream producers when they are overwhelmed and need to slow down the rate of data emission.
+
+**Subjects**: Subjects are a type of Observable that can both emit items and act as an Observer by subscribing to other Observables. Subjects are often used as intermediate points for multicasting data streams, allowing multiple Observers to receive the same stream of data
+
