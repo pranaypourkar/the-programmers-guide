@@ -2,7 +2,11 @@
 
 Reactive programming simplifies handling asynchronous data streams, commonly I/O-bound tasks like network calls, by allowing the program to react to changes in these streams as they happen. However, it's not limited to just I/O operations; it can be applied to various scenarios where data is emitted over time, such as user input or system events. By designing code to respond to data changes asynchronously, rather than blocking and waiting for each step to complete sequentially, reactive programming enables more efficient and responsive applications, particularly in situations with high concurrency or unpredictable data flows.
 
+{% hint style="info" %}
+The "thread per request" issue in REST APIs refers to the traditional approach where a new thread is allocated from a thread pool to handle each incoming HTTP request. While this approach works well for handling small numbers of concurrent requests, it can lead to scalability issues in scenarios with high concurrency or long-lived connections. Each thread consumes memory, and allocating too many threads can exhaust system resources and degrade performance.
 
+Reactive programming, particularly when combined with non-blocking I/O, can help address the thread per request issue in REST APIs.
+{% endhint %}
 
 ### Key characteristics
 
