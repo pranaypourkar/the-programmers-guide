@@ -30,18 +30,39 @@ Below are some of the common HTTP status codes and their typical uses in REST AP
    * **205 Reset Content**: This status code instructs the client to reset the document from which the original request was sent. It is primarily used in scenarios where the client-side form data should be cleared after a successful submission. **Example:** After submitting a form to update some data, the server might respond with a 205 status code, prompting the client to clear the form fields to prevent accidental resubmission.
    * **206 Partial Content**: This status code is used when the server is delivering only a partial response to the client, typically in response to a request with a Range header. **Example**: When a client requests a large file and specifies a range of bytes it needs (e.g., for resuming a paused download), the server may respond with a 206 status code and send only the requested range of bytes.
 3. **3xx Redirection**: These codes indicate the client needs to take further action to complete the request, typically involving redirection to a different URL.
-   * **301 Moved Permanently**: The resource requested has been permanently moved to a new URL.
-   * **304 Not Modified**: Used for caching purposes, indicating the requested resource hasn't changed since the client last accessed it.
+   * **300 Multiple Choices**: This status code indicates that the requested resource has multiple representations available, each with its own specific location, and the user or user agent can select from among them. **Example**: A client requests a document that exists in multiple formats (e.g., HTML, PDF, TXT), and the server responds with a 300 status code along with a list of available representations.
+   * **301 Moved Permanently**: The resource requested has been permanently moved to a new URL. This status code indicates that the resource requested has been permanently moved to a new URL. The new URL should be provided in the response. **Example**: When a client requests a webpage that has been moved to a new domain or location, the server responds with a 301 status code and provides the new URL for the client to access.
+   * **302 Found**: When a resource temporarily resides at a different URL, the server might respond with a 302 status code and provide the temporary URL. **Example**: When a resource temporarily resides at a different URL, the server might respond with a 302 status code and provide the temporary URL.
+   * **303 See Other**: This status code indicates that the response to the request can be found at a different URI and should be retrieved using a GET method on that resource. **Example**: After processing a POST request (e.g., form submission), the server may respond with a 303 status code along with the URI of a resource that the client should retrieve using a GET request.
+   * **304 Not Modified**: This status code is used for caching purposes. It indicates that the requested resource hasn't changed since the client last accessed it, and the client can use its cached copy. Example: When a client sends a conditional GET request for a resource, and the server determines that the resource hasn't been modified since the last request, it responds with a 304 status code, instructing the client to use its cached copy.
+   * **305 Use Proxy**: This status code is rarely used and is defined in the HTTP/1.1 specification. It indicates that the requested resource must be accessed through the proxy specified in the Location header. **Example**: If a client's request can only be fulfilled by using a proxy, the server may respond with a 305 status code, instructing the client to access the resource via the specified proxy.
+   * **307 Temporary Redirect**: This status code indicates that the requested resource has been temporarily moved to a different URL. The client should issue the same request to the new URL. **Example**: Similar to 301, but indicating a temporary move rather than a permanent one. It's particularly useful for preserving the original request method and body during redirection.
 4. **4xx Client Error**: These codes indicate an issue with the request itself, typically due to a mistake on the client-side (e.g., browser, your application).
    * **400 Bad Request**: The request cannot be fulfilled due to bad syntax or other client-side errors.
    * **401 Unauthorized**: The request requires authentication.
+   * **402 Payment Required**
    * **403 Forbidden**: The server understood the request, but refuses to authorize it.
    * **404 Not Found**: The requested resource could not be found.
+   * **405 Method Not Allowed:**
+   * **406 Not Acceptable:**
+   * **407 Proxy Authentication Required:**
+   * **408 Request Time-out:**
+   * **409 Conflict:**
+   * **410 Gone:**
+   * **411 Length Required:**
+   * **412 Precondition Failed:**
+   * **413 Request Entity Too Large:**
+   * **414 Request-URI Too Large:**
+   * **415 Unsupported Media Type:**
+   * **416 Requested range not satisfiable:**
+   * **417 Expectation Failed:**
 5. **5xx Server Error**: These codes indicate an issue on the server-side preventing it from fulfilling the request.
    * **500 Internal Server Error**: A generic error message indicating a problem with the server.
+   * **501 Not Implemented:**
    * **502 Bad Gateway**: The server, while acting as a gateway or proxy, received an invalid response from an inbound server.
    * **503 Service Unavailable**: The server is currently unavailable (often due to maintenance or overloading).
    * **504 Gateway Timeout**: The server, while acting as a gateway or proxy, did not receive a timely response from an upstream server it needed to access.
+   * **505 HTTP Version not supported**:&#x20;
 
 
 
