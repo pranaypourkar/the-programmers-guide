@@ -238,3 +238,12 @@ public class Application {
 
 
 
+
+
+## Flux
+
+### What is Flux?
+
+Flux is also a type in the Reactor library. It represents a stream that can emit zero to many items, potentially an unbounded number of items, over time. Similar to Mono, Flux can emit items, errors, or a completion signal. It's designed for handling asynchronous data streams in reactive programming, enabling developers to process sequences of data asynchronously.
+
+Flux is essential for handling asynchronous data streams in a non-blocking and efficient manner, just like Mono. It allows developers to work with sequences of data emitted over time, making it suitable for scenarios where multiple items need to be processed asynchronously. Flux enables better scalability and responsiveness in applications by providing operators for transforming, filtering, and combining data streams, similar to Mono. Flux is particularly useful when dealing with scenarios such as real-time data processing, event-driven architectures, or reactive systems where events or data arrive asynchronously. Its support for backpressure ensures that the downstream consumers can control the rate of data emission, preventing overload and resource exhaustion.
