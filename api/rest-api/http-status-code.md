@@ -38,10 +38,10 @@ Below are some of the common HTTP status codes and their typical uses in REST AP
    * **305 Use Proxy**: This status code is rarely used and is defined in the HTTP/1.1 specification. It indicates that the requested resource must be accessed through the proxy specified in the Location header. **Example**: If a client's request can only be fulfilled by using a proxy, the server may respond with a 305 status code, instructing the client to access the resource via the specified proxy.
    * **307 Temporary Redirect**: This status code indicates that the requested resource has been temporarily moved to a different URL. The client should issue the same request to the new URL. **Example**: Similar to 301, but indicating a temporary move rather than a permanent one. It's particularly useful for preserving the original request method and body during redirection.
 4. **4xx Client Error**: These codes indicate an issue with the request itself, typically due to a mistake on the client-side (e.g., browser, your application).
-   * **400 Bad Request**: The request cannot be fulfilled due to bad syntax or other client-side errors.
-   * **401 Unauthorized**: The request requires authentication.
-   * **402 Payment Required**
-   * **403 Forbidden**: The server understood the request, but refuses to authorize it.
+   * **400 Bad Request**: This status code indicates that the server cannot process the request due to invalid syntax or other client-side errors. **Example:** When a client sends a request with missing parameters or malformed data, the server responds with a 400 status code to indicate the bad request.
+   * **401 Unauthorized**: This status code indicates that the request requires authentication. The client must provide valid credentials to access the resource. **Example**: When a client attempts to access a protected resource without providing authentication credentials, the server responds with a 401 status code, prompting the client to authenticate.
+   * **402 Payment Required:** This status code is reserved for future use and is not currently implemented in most servers. It was originally intended to be used for online payment processing.
+   * **403 Forbidden**: This status code indicates that the server understood the request but refuses to authorize it. The client does not have permission to access the requested resource. **Example**: When a client attempts to access a resource for which they do not have the necessary permissions, the server responds with a 403 status code, denying access.
    * **404 Not Found**: The requested resource could not be found.
    * **405 Method Not Allowed:**
    * **406 Not Acceptable:**
