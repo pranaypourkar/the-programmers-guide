@@ -50,7 +50,7 @@ Mono<String> monoName = Mono.just(name);
 
 monoName.subscribe(
         data -> log.info("Emitted Name: {}", data),
-        error -> log.info("Error: ", error),
+        error -> log.error("Error: ", error),
         () -> log.info("Mono Completed")
 );
 ```
@@ -66,7 +66,7 @@ Mono<Void> emptyMono = Mono.empty();
 
 emptyMono.subscribe(
         data -> log.info("This won't be called (no value)"),
-        error -> log.info("Error: ", error),
+        error -> log.error("Error: ", error),
         () -> log.info("Empty Mono Completed")
 );
 ```
@@ -83,10 +83,158 @@ Mono<String> errorMono = Mono.error(someException);
 
 errorMono.subscribe(
         data -> log.info("This won't be called (error emitted)"),
-        error -> log.info("Error: {}", error.getMessage()),
+        error -> log.error("Error: {}", error.getMessage()),
         () -> log.info("Mono Won't Complete (due to error)")
 );
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (49).png" alt=""><figcaption></figcaption></figure>
+
+#### **Transforming Other Data Sources**
+
+**Mono.fromCallable()**
+
+```java
+Callable<String> getNameCallable = () -> "Bob";
+Mono<String> monoName = Mono.fromCallable(getNameCallable);
+
+monoName.subscribe(
+        data -> log.info("Emitted Name: {}", data),
+        error -> log.error("Error: ", error),
+        () -> log.info("Mono Completed")
+);
+```
+
+<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+
+
+**Mono.fromSupplier()**
+
+```java
+Supplier<String> getNameSupplier = () -> "Charlie";
+Mono<String> monoName2 = Mono.fromSupplier(getNameSupplier);
+
+monoName2.subscribe(
+        data -> log.info("Emitted Name: {}", data),
+        error -> log.error("Error: ", error),
+        () -> log.info("Mono Completed")
+);
+```
+
+<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+
+
+**Mono.create()**
+
+It allows to create a Mono by providing a consumer function that defines the asynchronous behavior of the Mono. The consumer function receives a `MonoSink` parameter, which is used to emit items, errors, and completion signals.
+
+```java
+Mono<String> asyncMono = Mono.create(sink -> {
+    // Simulate an asynchronous operation, such as fetching data from a database or making a network call
+    // This operation might take some time to complete
+    // Use different thread instead of main thread
+    new Thread(() -> {
+        try {
+            Thread.sleep(2000); // Simulate delay
+            String result = "Async result";
+            sink.success(result); // Emit the result
+        } catch (InterruptedException e) {
+            sink.error(e); // Emit an error if interrupted
+        }
+    }).start();
+});
+
+// Subscribe to the Mono to receive the result
+asyncMono.subscribe(
+        result -> log.info("Received result: {}", result),
+        error -> log.error("Error occurred: {}", error.getMessage()),
+        () -> log.info("Mono completed")
+);
+
+// Main thread continues execution while waiting for the asynchronous operation to complete
+log.info("Waiting for async operation to complete...");
+```
+
+<figure><img src="../../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+#### **Operators for Data Manipulation**
+
+**map() - Transforming Data**
+
+```java
+Mono<String> monoName = Mono.just("David");
+Mono<Integer> monoNameLength = monoName.map(String::length);
+
+monoNameLength.subscribe(
+        length -> log.info("Name Length: {}", length),
+        error -> log.info("Error: ", error),
+        () -> log.info("Mono Completed")
+);
+```
+
+<figure><img src="../../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+
+
+**filter() - Filtering Data**
+
+```java
+Mono<Integer> numberMono = Mono.just(42);
+Mono<Integer> evenNumberMono = numberMono.filter(number -> number % 2 == 0);
+
+evenNumberMono.subscribe(
+        data -> log.info("Emitted Even Number: {}", data),
+        error -> log.info("Error: ", error),
+        () -> log.info("Mono Completed")
+);
+```
+
+<figure><img src="../../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+
+#### **Backpressure Handling**
+
+In general, `Mono` instances in Reactor represent streams that emit at most one item, an error, or nothing (completion). Due to this characteristic, backpressure handling with `Mono` is less common compared to other reactive types like `Flux`, which can emit multiple items. Flux deals with potentially large streams of data where the producer might emit data faster than the consumer can process it. Backpressure becomes essential to prevent overwhelming the subscriber and potential system instability.
+
+However, there are still scenarios where backpressure handling may be relevant with `Mono`, especially when `Mono` is used in combination with other reactive types or in situations where asynchronous operations may produce data at a rate that exceeds the capacity of downstream processing.
+
+
+
+#### Schedulers
+
+Mono, like other reactive types, allows you to specify the execution context (thread pool or scheduler) for asynchronous operations using Schedulers. This provides control over concurrency and parallelism in your reactive code.
+
+```java
+package org.example;
+
+import lombok.extern.slf4j.Slf4j;
+import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
+
+@Slf4j
+public class Application {
+    public static void main(String[] args) {
+        Mono<String> asyncMono = Mono.fromCallable(() -> {
+            // Simulate some expensive computation
+            Thread.sleep(1000);
+            return "Async result";
+        }).subscribeOn(Schedulers.parallel()); // Execute the computation on a parallel scheduler
+
+        asyncMono.subscribe(log::info); // Subscribe to the Mono
+
+        log.info("Continuing the main program");
+        // Sleep to ensure the program doesn't terminate before the asynchronous operation completes
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+<figure><img src="../../../../.gitbook/assets/image (5).png" alt=""><figcaption></figcaption></figure>
+
+
 

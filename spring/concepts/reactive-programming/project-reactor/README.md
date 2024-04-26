@@ -20,6 +20,52 @@ Project Reactor is the foundation for reactive programming within the Spring fra
 * **Integration with Spring MVC and WebFlux:** Project Reactor integrates seamlessly with both Spring MVC (traditional synchronous approach) and Spring WebFlux (reactive web framework). This allows to choose the approach that best suits their needs within the same Spring ecosystem.
 * **Testing Support:** Project Reactor offers tools for testing reactive applications to ensure the correct behavior of reactive code.
 
+
+
+{% hint style="info" %}
+Backpressure handling strategies are techniques used to manage situations where a data producer (publisher) generates data faster than a data consumer (subscriber) can process it. Unhandled backpressure can lead to overwhelmed subscribers, dropped data, and system instability.
+
+**Buffering:**
+
+* This strategy involves creating a temporary buffer to store incoming data from the producer. The buffer acts as a holding area until the subscriber can process the data. This allows the producer to continue emitting data even if the subscriber is temporarily overloaded.
+* **Advantage:** Absorbs temporary spikes in data flow and prevents data loss.
+* **Disadvantage:** Requires managing buffer size to avoid memory exhaustion. Large buffers can also introduce latency.
+
+
+
+**Dropping Data:**
+
+* This strategy involves discarding data that the subscriber cannot keep up with. This is a last resort approach when other strategies are not feasible. Dropped data might lead to incomplete information, so it's crucial to understand the impact on your application.
+* **Advantage:** Simplest approach, but be aware of potential data loss.
+* **Disadvantage:** Can lead to inaccurate results or missed information.
+
+
+
+**Latest Item:**
+
+* **Description:** Ensures the subscriber only receives the **latest** emitted item, discarding older ones.
+* **Advantage:** Useful when only the most recent data is relevant.
+* **Disadvantage:** Older data might be lost
+
+
+
+**Error**:&#x20;
+
+* Sometimes, it may be appropriate to signal an error to the publisher if the downstream subscriber cannot keep up with the emission rate. This can indicate a problem with resource management or system performance. Reactor provides operators like `onBackpressureError` for signaling an error in case of backpressure.
+
+
+
+**Drop Oldest (Buffer with Overflow Strategy):**
+
+* **Description:** Maintains a buffer to hold incoming data but drops the **oldest items** when the buffer overflows.
+* **Advantage:** Absorbs temporary spikes in data flow and avoids data loss for newer items.
+* **Disadvantage:** Older data might be dropped, potentially leading to missed information.
+{% endhint %}
+
+
+
+
+
 {% hint style="info" %}
 Difference between ProjectReactor.io vs Spring WebFlux?
 
