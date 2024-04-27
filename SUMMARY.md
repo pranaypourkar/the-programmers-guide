@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Java](README.md)
+  * [Java Overview](java/java-overview.md)
   * [Code Style](java/code-style.md)
   * [Tools](java/tools.md)
   * [Concepts](java/concepts/README.md)
@@ -30,7 +31,8 @@
   * [Interview Companion](java/interview-companion/README.md)
     * [Java Key Concepts](java/interview-companion/java-key-concepts.md)
     * [Java Code Snippets](java/interview-companion/java-code-snippets.md)
-  * [Java Overview](java/java-overview.md)
+  * [Java Programming](java/java-programming/README.md)
+    * [Input from User](java/java-programming/input-from-user.md)
 * [System Design](system-design/README.md)
   * [Programming Paradigms](system-design/programming-paradigms.md)
   * [Design Pattern](system-design/design-pattern/README.md)
