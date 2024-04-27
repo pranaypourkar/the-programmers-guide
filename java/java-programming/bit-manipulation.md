@@ -39,13 +39,27 @@ In Java, integers are signed by default. This means the leftmost bit (most signi
 
 Java also has shift operators that move the bits of an integer left or right.
 
-* **Left Shift ( << )**: Shifts the bits of the operand to the **left** by the specified number of positions. Zeros are filled in on the **right** side of the operand to occupy the vacated positions. Effectively, it multiplies the number by 2 raised to the power of the shift amount (but performs a bitwise shift instead of a multiplication).
+*   **Left Shift ( << )**: Left shift operator (`<<`) moves all the bits of the operand to the **left** by a specified number of positions. Zeros are filled in on the **right** side of the operand to occupy the vacated positions. This operation effectively multiplies the number by 2 raised to the power of the shift amount (but performs a bitwise shift instead of a multiplication).
+
+    **Sign Doesn't Matter:** Left shift treats the operand as an unsigned value, regardless of whether it's originally positive, negative, or zero. Since there's no sign bit to consider, there's no concept of replication/copying during the shift. The operation simply moves all the bits left and fills the right side with zeros.
 
 `int result = 5 << 2; // result = 20 (binary: 101 << 2 = 10100)`
 
-* **Right Shift ( >> )**: Shifts the bits of an integer to the right by a specified number of positions. With a signed left shift, the sign bit is shifted in from the left, preserving the sign of the original number. With an unsigned right shift, zeros are shifted in from the left.
+* **Right Shift ( >> )**: The right shift operator (`>>`) performs a **signed right shift**. This means it shifts the bits of the operand to the **right** by the specified number of positions, but the behavior for filling the vacated bits on the left side depends on the sign of the original number:
+  * **Positive Numbers:** Similar to the unsigned right shift, zeros are filled in on the left side. This effectively divides the positive number by 2 raised to the power of the shift amount.
+  * **Negative Numbers:** The sign bit (leftmost bit) is replicated to fill the vacated positions. This keeps the result negative.
 
-`int result = 20 >> 2; // result = 5 (binary: 10100 >> 2 = 101)`
+```java
+// Positive number
+int positiveNum = 20; // Binary representation: 00000000 00010100
+int positiveShiftedRight = positiveNum >> 2; // Shift right by 2 positions
+System.out.println(positiveShiftedRight); // Output: 5 (Binary: 00000000 00000101) - Effectively divided by 4
+
+// Negative number
+int negativeNum = -20; // Binary representation (two's complement): 11111111 11111100
+int negativeShiftedRight = negativeNum >> 2; // Shift right by 2 positions
+System.out.println(negativeShiftedRight); // Output: -5 (Binary: 11111111 11111011) - Sign bit replicated
+```
 
 * **Unsigned Right Shift (`>>>`):** Shifts the bits of the operand to the **right** by the specified number of positions. Zeros are filled in on the **left** side of the operand (unlike signed right shift which uses the sign bit). This operation treats the operand as an unsigned integer, so the sign bit is ignored. Effectively, it divides the number by 2 raised to the power of the shift amount (but performs a bitwise shift instead of a division).
 
@@ -55,3 +69,4 @@ Java also has shift operators that move the bits of an integer left or right.
 
 ## Applications
 
+### Using Bit Manipulation for Addition of Two Numbers in Java
