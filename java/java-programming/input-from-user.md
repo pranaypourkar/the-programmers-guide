@@ -72,7 +72,7 @@ public class Application {
 
 
 
-4. **Using `Console` Class (Java 6 and later):** The `Console` class provides methods for reading input and writing output to the console. It's useful for simple console-based applications. It is a `java.io` package. Note that we need to execute the code via console.
+4. **Using `Console` Class (Java 6 and later):** The `Console` class provides methods for reading input and writing output to the console. It is useful for simple console-based applications. It is a `java.io` package. Note that we need to execute the code via console.
 
 ```java
 package src.main.java;
