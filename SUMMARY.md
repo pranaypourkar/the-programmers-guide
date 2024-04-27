@@ -33,6 +33,7 @@
     * [Java Code Snippets](java/interview-companion/java-code-snippets.md)
   * [Java Programming](java/java-programming/README.md)
     * [Input from User](java/java-programming/input-from-user.md)
+    * [Bit Manipulation](java/java-programming/bit-manipulation.md)
 * [System Design](system-design/README.md)
   * [Programming Paradigms](system-design/programming-paradigms.md)
   * [Design Pattern](system-design/design-pattern/README.md)
