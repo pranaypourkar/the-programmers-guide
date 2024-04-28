@@ -1,8 +1,6 @@
 # Bit Manipulation
 
-## Example
-
-### Using Bit Manipulation for Addition of Two Numbers in Java
+### Addition of Two Numbers
 
 ```java
 public static int add(int a, int b) {
@@ -48,6 +46,46 @@ Let's consider `a = 5 (binary: 101)` and `b = 3 (binary: 011)`.
 4. **Carry bit is shifted left**
 
 These carry bits are then shifted left in the next line (`b = carry << 1;`) to be added in the subsequent bit positions (next bit position) of `a` and `b`.
+
+
+
+### Swapping the 2 numbers
+
+```java
+public static void main(String[] args) {
+    int a = 2;
+    int b = 3;
+    System.out.println("Number before swap: a = " + a + " b = " + b);
+    // Logic of XOR operator
+    a = a ^ b;
+    b = a ^ b;
+    a = a ^ b;
+    System.out.println("Number after swap: a = " + a + " b = " + b);
+}
+```
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+
+
+### Convert Decimal to Binary Conversion
+
+```java
+    // Function that convert Decimal to binary 
+    public void decToBinary(int n) 
+    { 
+        // Size of an integer is assumed to be 32 bits 
+        for (int i = 31; i >= 0; i--) { 
+            int k = n >> i; 
+            if ((k & 1) > 0) 
+                System.out.print("1"); 
+            else
+                System.out.print("0"); 
+        } 
+    } 
+```
+
+By iterating through each bit position and checking its value using the right shift and bitwise AND operations, the code determines whether each bit in the binary representation of `n` is 0 or 1.
 
 
 

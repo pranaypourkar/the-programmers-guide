@@ -32,6 +32,8 @@
   * [Interview Companion](java/interview-companion/README.md)
     * [Java Key Concepts](java/interview-companion/java-key-concepts.md)
     * [Java Code Snippets](java/interview-companion/java-code-snippets.md)
+    * [Java Practice Programs](java/interview-companion/java-practice-programs/README.md)
+      * [Set 1](java/interview-companion/java-practice-programs/set-1.md)
   * [Java Programming](java/java-programming/README.md)
     * [Input from User](java/java-programming/input-from-user.md)
     * [Bit Manipulation](java/java-programming/bit-manipulation.md)
