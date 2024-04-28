@@ -43,6 +43,7 @@
     * [Examples](system-design/design-pattern/examples/README.md)
       * [Data Collector](system-design/design-pattern/examples/data-collector.md)
       * [Payment Processor](system-design/design-pattern/examples/payment-processor.md)
+  * [Deployment Patterns](system-design/deployment-patterns.md)
 * [API](api/README.md)
   * [REST API](api/rest-api/README.md)
     * [HTTP Status Code](api/rest-api/http-status-code.md)
