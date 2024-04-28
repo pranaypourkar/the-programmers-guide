@@ -60,7 +60,7 @@ There are many approaches.
 
 1. **Using Arrays**
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt="" width="188"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt="" width="188"><figcaption></figcaption></figure>
 
 ```java
 public static void decimalToBinary(int n) 
@@ -135,6 +135,62 @@ public static int binaryToDecimal(int binaryNumber) {
     return decimalNumber;
 }
 ```
+
+
+
+
+
+## Factorial of a number
+
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+### Small number
+
+* #### **Iterative Solution**
+
+```java
+static int findFactorial(int n) {
+    int factorial = 1;
+    while (n > 0) {
+        factorial = factorial * n;
+        n--;
+    }
+    return factorial;
+}
+```
+
+**Time Complexity**: O(n)\
+**Auxiliary Space**: O(1)
+
+
+
+#### **Using Recursive Method**
+
+```java
+static int findFactorialUsingRecursiveMethod(int n) {
+        if (n == 0) {
+            return 1;
+        }
+        return findFactorialUsingRecursiveMethod(n-1)*n;
+    }
+```
+
+**Time Complexity**: O(n)\
+**Auxiliary Space**: O(n)
+
+
+
+{% hint style="info" %}
+The above solutions cause overflow for large numbers.
+
+A factorial of 100 has 158 digits and it is not possible to store these many digits even if we use **long int.**&#x20;
+{% endhint %}
+
+
+
+### Large number
+
+
 
 
 
