@@ -20,7 +20,7 @@ In a rolling deployment, updates are gradually applied across different parts of
 
 ### **Feature Toggle (Feature Flags)**&#x20;
 
-Feature toggles allow developers to enable or disable certain features of the software at runtime. This pattern enables gradual rollout of new features to users and provides the ability to turn off features quickly in case of issues. For example, Mobile App using Remote Config BE API to enable or disable certain features. This Remote Config changes can be done via UI console as well without BE deployment.
+Feature toggles allow developers to enable or disable certain features of the software at runtime. This pattern enables gradual rollout of new features to users and provides the ability to turn off features quickly in case of issues. For example, Mobile App using Remote Config BE API to enable or disable certain features. This Remote Config changes can be done via UI console as well without BE deployment. Or by creating feature flag API which allows certain features based on time based restriction (like payments can only be done after a day when user registered)
 
 ### **A/B Testing**&#x20;
 
