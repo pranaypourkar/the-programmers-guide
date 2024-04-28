@@ -47,6 +47,7 @@
 * [API](api/README.md)
   * [REST API](api/rest-api/README.md)
     * [HTTP Status Code](api/rest-api/http-status-code.md)
+    * [HTTP Verbs or Methods](api/rest-api/http-verbs-or-methods.md)
 * [Spring](spring/README.md)
   * [Profiles](spring/profiles.md)
   * [Annotations](spring/annotations.md)
