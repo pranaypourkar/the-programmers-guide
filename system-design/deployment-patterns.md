@@ -10,6 +10,8 @@ Some common deployment patterns include:
 
 In this pattern, a new version of the software is gradually rolled out to a small subset of users or servers before being deployed to the entire infrastructure. This allows for early detection of issues and reduces the impact of bugs or performance problems.
 
+<figure><img src="../.gitbook/assets/image (60).png" alt="" width="296"><figcaption></figcaption></figure>
+
 ### **Blue-Green Deployment**&#x20;
 
 This involves maintaining two identical production environments, one active (blue) and the other inactive (green). The new version of the software is deployed to the inactive environment, and once the deployment is successful and verified, traffic is switched from the active environment to the updated one. This pattern minimizes downtime and allows for easy rollback if issues arise.
