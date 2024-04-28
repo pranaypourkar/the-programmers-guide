@@ -99,19 +99,43 @@ Bit manipulation in Java refers to the process of working with individual bits w
 
 Java provides several bitwise operators that perform operations on corresponding bits of two integers. These operators include:
 
-* **Bitwise AND ( & )**: Performs a bit-by-bit AND operation. The resulting bit is 1 only if the corresponding bits in both operands are 1.
+1. **Bitwise AND ( & )**: Performs a bit-by-bit AND operation. The resulting bit is 1 only if the corresponding bits in both operands are 1.
 
 `int result = 5 & 3; // result = 1 (binary: 101 & 011 = 001)`
 
-* **Bitwise OR ( | )**: Performs a bit-by-bit OR operation. The resulting bit is 1 if at least one of the corresponding bits in the operands is 1.
+**Significance:**
+
+* **Filtering:** AND operation acts as a filter to identify bits that are set to 1 in both operands. It allows you to select specific bits based on a pattern.
+* **Checking Conditions:** You can use AND to check if certain conditions are met by examining specific bit positions.
+* **Data Masking:** By using AND with a specific mask (a binary number with specific bits set to 0 or 1), you can isolate or clear certain bits in a data value.
+
+**Applications:**
+
+Here are some common uses of Bitwise AND in programming:
+
+* **Extracting bits:** We can extract specific bits from a data value by performing AND with a mask that has 1s in the desired bit positions and 0s elsewhere.
+  * Example: Extracting the lower 4 bits of a byte value (`byte data = 25; byte lowerNibble = data & 0b1111; // 0b1111 is a mask with only the lower 4 bits set to 1`)
+* **Checking Flag Bits:** In some data structures or status registers, specific bits represent flags (on/off indicators). AND can be used to check if a particular flag is set by comparing it with a mask that has 1 only in the corresponding bit position.
+  * Example: Checking if a file is marked as read-only (`int fileStatus = 16; // Assuming read-only flag is at bit position 4 boolean isReadOnly = (fileStatus & 0b00010000) != 0; // Check if bit 4 is set`)
+* **Clearing Bits:** By performing AND with a mask that has 0s in the positions you want to clear, we can effectively set those bits to 0 in the resulting value.
+  * Example: Clearing the lower 2 bits of a byte (`byte data = 25; data &= 0b11111100; // Clears the lower 2 bits`)
+* **Combining Bit Patterns:** We can combine specific bit patterns from two operands by performing AND with appropriate masks to isolate the desired bits and then OR them together.
+
+
+
+2. **Bitwise OR ( | )**: Performs a bit-by-bit OR operation. The resulting bit is 1 if at least one of the corresponding bits in the operands is 1.
 
 `int result = 5 | 3; // result = 7 (binary: 101 | 011 = 111)`
 
-* **Bitwise XOR ( ^ )**: Performs a bit-by-bit XOR operation. The resulting bit is 1 if the corresponding bits in the operands are different.
+
+
+3. **Bitwise XOR ( ^ )**: Performs a bit-by-bit XOR operation. The resulting bit is 1 if the corresponding bits in the operands are different.
 
 `int result = 5 ^ 3; // result = 6 (binary: 101 ^ 011 = 110)`
 
-* **Bitwise NOT or COMPLEMENT  ( \~ )**: Performs a one's complement operation on a single operand. Inverts all the bits (0 becomes 1 and vice versa).
+
+
+4. **Bitwise NOT or COMPLEMENT  ( \~ )**: Performs a one's complement operation on a single operand. Inverts all the bits (0 becomes 1 and vice versa).
 
 `int result = ~6; // result = -7`&#x20;
 
@@ -137,9 +161,9 @@ Since the numbers are stored as 2’s complement, first we need to find its 2’
 
 Java also has shift operators that move the bits of an integer left or right.
 
-*   **Left Shift ( << )**: Left shift operator (`<<`) moves all the bits of the operand to the **left** by a specified number of positions. Zeros are filled in on the **right** side of the operand to occupy the vacated positions. This operation effectively multiplies the number by 2 raised to the power of the shift amount (but performs a bitwise shift instead of a multiplication).
+1. **Left Shift ( << )**: Left shift operator (`<<`) moves all the bits of the operand to the **left** by a specified number of positions. Zeros are filled in on the **right** side of the operand to occupy the vacated positions. This operation effectively multiplies the number by 2 raised to the power of the shift amount (but performs a bitwise shift instead of a multiplication).
 
-    **Sign Doesn't Matter:** Left shift treats the operand as an unsigned value, regardless of whether it's originally positive, negative, or zero. Since there's no sign bit to consider, there's no concept of replication/copying during the shift. The operation simply moves all the bits left and fills the right side with zeros.
+**Sign Doesn't Matter:** Left shift treats the operand as an unsigned value, regardless of whether it's originally positive, negative, or zero. Since there's no sign bit to consider, there's no concept of replication/copying during the shift. The operation simply moves all the bits left and fills the right side with zeros.
 
 Let's perform a left shift by 2 positions (<< 2) on two different numbers:
 
@@ -165,7 +189,7 @@ All the bits in the original binary representation (11111111 11111100) are shift
 
 Even though the original numbers had different signs (positive and negative), the left shift operation treats them the same way.
 
-* **Right Shift ( >> )**: The right shift operator (`>>`) performs a **signed right shift**. This means it shifts the bits of the operand to the **right** by the specified number of positions, but the behavior for filling the vacated bits on the left side depends on the sign of the original number:
+2. **Right Shift ( >> )**: The right shift operator (`>>`) performs a **signed right shift**. This means it shifts the bits of the operand to the **right** by the specified number of positions, but the behavior for filling the vacated bits on the left side depends on the sign of the original number:
 
 **-> Positive Numbers:** Similar to the unsigned right shift, zeros are filled in on the left side. This effectively divides the positive number by 2 raised to the power of the shift amount.
 
@@ -195,7 +219,7 @@ All the bits in the original binary representation (00000000 00010100) are shift
 
 
 
-* **Unsigned Right Shift (`>>>`):** Shifts the bits of the operand to the **right** by the specified number of positions. Zeros are filled in on the **left** side of the operand (unlike signed right shift which uses the sign bit). This operation treats the operand as an unsigned integer, so the sign bit is ignored. Effectively, it divides the number by 2 raised to the power of the shift amount (but performs a bitwise shift instead of a division).
+3. **Unsigned Right Shift (`>>>`):** Shifts the bits of the operand to the **right** by the specified number of positions. Zeros are filled in on the **left** side of the operand (unlike signed right shift which uses the sign bit). This operation treats the operand as an unsigned integer, so the sign bit is ignored. Effectively, it divides the number by 2 raised to the power of the shift amount (but performs a bitwise shift instead of a division).
 
 `int shiftedRight = 20 >>> 2; // 10100 >>> 2 Output: 5 (Binary: 0101)`
 
