@@ -26,6 +26,7 @@
       * [Pre-Defined Enum](java/others/enum/pre-defined-enum.md)
       * [Custom Enum](java/others/enum/custom-enum.md)
     * [Localization](java/others/localization.md)
+    * [Bit Manipulation](java/others/bit-manipulation.md)
   * [Best Practices](java/best-practices/README.md)
     * [Artifact and BOM Versioning](java/best-practices/artifact-and-bom-versioning.md)
   * [Interview Companion](java/interview-companion/README.md)
