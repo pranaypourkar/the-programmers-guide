@@ -44,6 +44,7 @@
       * [Data Collector](system-design/design-pattern/examples/data-collector.md)
       * [Payment Processor](system-design/design-pattern/examples/payment-processor.md)
   * [Deployment Patterns](system-design/deployment-patterns.md)
+  * [SOLID Principles](system-design/solid-principles.md)
 * [API](api/README.md)
   * [API Design](api/api-design/README.md)
     * [REST API](api/api-design/rest-api/README.md)
