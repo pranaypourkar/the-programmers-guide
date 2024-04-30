@@ -146,7 +146,7 @@ public static int binaryToDecimal(int binaryNumber) {
 
 ### Small number
 
-* #### **Iterative Solution**
+#### **Iterative Solution**
 
 ```java
 static int findFactorial(int n) {
@@ -190,9 +190,56 @@ A factorial of 100 has 158 digits and it is not possible to store these many dig
 
 ### Large number
 
+#### Using BigIntegers
+
+```java
+static BigInteger findFactorialOfLargeNumber(int a) {
+    BigInteger bigInteger = BigInteger.ONE;
+    for(int i=2; i<=a; i++){
+        bigInteger = bigInteger.multiply(BigInteger.valueOf(i));
+    }
+    return bigInteger;
+}
+```
+
+**Time Complexity:** O(N)\
+**Auxiliary Space:** O(1)&#x20;
 
 
 
+#### Using Basic Maths Operation with the help of array i.e. storing digits in array and considering carry which helps in increasing size of array.
+
+```java
+static String findFactorialOfLargeNumber(int a) {
+    int[] result = new int[400];
+    result[0] = 1;
+    int result_size = 1;
+
+    for(int i=2; i<=a; i++) {
+        int carry = 0;
+        for(int j=0; j<result_size; j++) {
+            int product = result[j]*i + carry;
+            result[j] = product%10;
+            carry = product/10;
+        }
+
+        while(carry != 0) {
+            result[result_size] = carry%10;
+            carry = carry/10;
+            result_size++;
+        }
+    }
+
+    String reverseFactorial = Arrays.stream(result)
+            .mapToObj(String::valueOf)
+            .limit(result_size)
+            .collect(Collectors.joining());
+    return new StringBuilder(reverseFactorial).reverse().toString();
+}
+```
+
+**Time Complexity**: O(N log (N!)), where O(N) is for loop and O(log N!) is for nested while loop\
+**Auxiliary Space:** O(max(digits in factorial))
 
 
 
