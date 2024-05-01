@@ -411,7 +411,35 @@ public static void printFibonacci(int n) {
 
 
 
+## Print number triangle
 
+<figure><img src="../../../.gitbook/assets/image (72).png" alt=""><figcaption></figcaption></figure>
 
+<pre class="language-java"><code class="lang-java"><strong>        int n = 4;
+</strong>
+        for(int line=1;line&#x3C;=n;line++){
 
+            // Print spaces
+            for (int k=1; k&#x3C;=n-line; k++) {
+                // First number space
+                System.out.print(" ");
+                // 2 Spaces between number
+                System.out.print("  ");
+            }
 
+            int columns = 2*line-1;
+            int value = line;
+            for(int i=1; i&#x3C;=columns; i++){
+                System.out.print("  " + value);
+                if(i &#x3C;= columns/2) {
+                    value++;
+                } else {
+                    value--;
+                }
+            }
+            // Go to new line
+            System.out.println();
+        }
+</code></pre>
+
+<figure><img src="../../../.gitbook/assets/image (73).png" alt=""><figcaption></figcaption></figure>
