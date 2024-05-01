@@ -60,7 +60,7 @@ There are many approaches.
 
 1. **Using Arrays**
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt="" width="188"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1).png" alt="" width="188"><figcaption></figcaption></figure>
 
 ```java
 public static void decimalToBinary(int n) 
@@ -370,3 +370,48 @@ public static void printPascal(int k)
 **Time complexity**: O(n^2) where n is given input for no of rows of pascal triangle
 
 **Auxiliary Space:** O(1)
+
+
+
+
+
+## Print fibonacci series
+
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+### Using Iterative Method
+
+```java
+public static void printFibonacci(int n) {
+        int a = 0, b = 1;
+        for (int i = 0; i < n; i++) {
+            System.out.print(a + " ");
+            int sum = a + b;
+            a = b;
+            b = sum;
+        }
+    }
+```
+
+### Using Recursive Method
+
+```java
+ public static int fibonacci(int n) {
+        if (n <= 1)
+            return n;
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+
+public static void printFibonacci(int n) {
+        for (int i = 0; i < n; i++) {
+            System.out.print(fibonacci(i) + " ");
+        }
+    }
+```
+
+
+
+
+
+
+

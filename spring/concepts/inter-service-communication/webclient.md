@@ -281,7 +281,7 @@ Build and run the application
 
 **Execute the service 1 API via Postman**
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Monitor the logs (have a look at the threads executing the code)
 
