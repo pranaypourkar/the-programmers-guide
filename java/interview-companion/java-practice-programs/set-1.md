@@ -243,3 +243,130 @@ static String findFactorialOfLargeNumber(int a) {
 
 
 
+
+
+## Print Pascal Triangle
+
+<figure><img src="../../../.gitbook/assets/image (66).png" alt="" width="231"><figcaption></figcaption></figure>
+
+### Using nCr formula
+
+* In this approach, we directly calculate the combinations using the formula $$𝑛!/(𝑟!*(𝑛−𝑟))$$.
+* Each entry in Pascal's Triangle corresponds to a specific combination $$𝑛𝐶𝑟nCr$$, where $$𝑛n$$ is the row number and $$𝑟r$$ is the position within the row.
+
+<figure><img src="../../../.gitbook/assets/image (67).png" alt=""><figcaption><p>Theory</p></figcaption></figure>
+
+```java
+package src.main.java;
+
+public class Application {
+    public static void main(String[] args) {
+        int n = 5;
+        printPascalTriangle(n);
+    }
+
+    static void printPascalTriangle(int n) {
+        for (int i=0; i<=n; i++) {
+            // Print initial whitespace
+            for (int j=i; j<n; j++) {
+                System.out.print(" ");
+            }
+
+            for (int k=0; k<=i; k++) {
+                int value = factorial(i)/(factorial(k)*factorial(i-k));
+                System.out.print(" " + value);
+            }
+            System.out.println();
+        }
+    }
+
+    static int factorial(int a) {
+        if (a <= 1) {
+            return 1;
+        }
+        return a*factorial(a-1);
+    }
+}
+```
+
+<figure><img src="../../../.gitbook/assets/image (68).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+
+**Time complexity**: O(2n) due to recursive method
+
+**Auxiliary Space**: O(n) due to recursive stack space
+
+
+
+### Using Binomial Coefficient
+
+<figure><img src="../../../.gitbook/assets/image (70).png" alt=""><figcaption></figcaption></figure>
+
+
+
+#### Method 1:
+
+<figure><img src="../../../.gitbook/assets/image (71).png" alt=""><figcaption></figcaption></figure>
+
+<pre class="language-java"><code class="lang-java"><strong>    // Function to calculate binomial coefficient C(n, k)
+</strong>    public static int binomialCoefficient(int n, int k) {
+        if (k == 0 || k == n) {
+            return 1;
+        }
+        return binomialCoefficient(n - 1, k - 1) + binomialCoefficient(n - 1, k);
+    }
+
+    // Function to generate Pascal's Triangle
+    public static void generatePascalsTriangle(int numRows) {
+        for (int i = 0; i &#x3C; numRows; i++) {
+            for (int j = 0; j &#x3C;= i; j++) {
+                System.out.print(binomialCoefficient(i, j) + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        int numRows = 5; // Number of rows to generate
+        generatePascalsTriangle(numRows);
+    }
+</code></pre>
+
+
+
+#### Method 2:
+
+Using C = C \* (line - a) / a
+
+The ‘A’th entry in a line number _line_ is Binomial Coefficient _C(line, a)_ and all lines start with value 1. The idea is to calculate C(line, a) using C(line, a-1). &#x20;
+
+```java
+public static void printPascal(int k)
+    {
+        for (int line = 1; line <= k; line++) {
+            for (int b = 0; b <= k - line; b++) {
+ 
+                // Print whitespace for left spacing
+                System.out.print(" ");
+            }
+ 
+            // Variable used to represent C(line, i)
+            int C = 1;
+ 
+            for (int a = 1; a <= line; a++) {
+ 
+                // The first value in a line is always 1
+                System.out.print(C + " ");
+               
+                C = C * (line - a) / a;
+            }
+ 
+            // By now, we are done with one row so
+            // a new line is required
+            System.out.println();
+        }
+    }
+```
+
+**Time complexity**: O(n^2) where n is given input for no of rows of pascal triangle
+
+**Auxiliary Space:** O(1)
