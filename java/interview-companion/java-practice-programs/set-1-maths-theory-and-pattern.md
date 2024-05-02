@@ -443,3 +443,81 @@ public static void printFibonacci(int n) {
 </code></pre>
 
 <figure><img src="../../../.gitbook/assets/image (73).png" alt=""><figcaption></figcaption></figure>
+
+
+
+## Find Transpose of Matrix
+
+<figure><img src="../../../.gitbook/assets/image (77).png" alt="" width="563"><figcaption></figcaption></figure>
+
+### Square Matrix
+
+#### Method 1: Using additional array
+
+```java
+static void transpose(int A[][], int B[][]) 
+    { 
+        int i, j; 
+        for (i = 0; i < N; i++) 
+            for (j = 0; j < N; j++) 
+                B[i][j] = A[j][i]; 
+    } 
+```
+
+
+
+#### Method 2: WIthout using additional array
+
+```java
+for (int row=0;row<arr.length;row++){
+    for (int column=row;column<arr.length;column++){
+        int tmp = arr[row][column];
+        arr[row][column] = arr[column][row];
+        arr[column][row] = tmp;
+    }
+}
+```
+
+### Rectangular Matrix
+
+```java
+        int[][] arr = {{1,2,3},{4,5,6}};
+        int rows = 2;
+        int columns = 3;
+        int[][] transpose = new int[columns][rows];
+
+        // Print
+        for (int[] i : arr) {
+            for (int j : i) {
+                System.out.print(j + " ");
+            }
+            System.out.println();
+        }
+
+        for (int row=0;row<rows;row++){
+            for (int column=0;column<columns;column++){
+                transpose[column][row] = arr[row][column];
+            }
+        }
+
+        // Print
+        for (int[] i : transpose) {
+            for (int j : i) {
+                System.out.print(j + " ");
+            }
+            System.out.println();
+        }
+```
+
+<figure><img src="../../../.gitbook/assets/image (78).png" alt=""><figcaption></figcaption></figure>
+
+
+
+
+
+
+
+
+
+
+
