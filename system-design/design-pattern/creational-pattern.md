@@ -462,7 +462,129 @@ public class Application {
 
 
 
+#### Difference between Factory Method Pattern and Abstract Factory Pattern
+
+| Feature             | Factory Method Pattern                                                           | Abstract Factory Pattern                                                                     |
+| ------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Focus               | Single type or related types                                                     | Families of related objects                                                                  |
+| Structure           | Factory interface + Concrete Factories                                           | Abstract Factory + Concrete Factories                                                        |
+| Client Interaction  | Calls factory to get a product                                                   | Calls factory to get products from a family                                                  |
+| Benefits            | Decoupling, Flexibility                                                          | Consistency, Flexibility, Multiple Families                                                  |
+| Number of Methods   | Typically includes a single factory method for creating a single type of object. | Typically includes multiple factory methods for creating different types of related objects. |
+| Drawbacks           | Extra abstraction, Simple cases                                                  | More complex, Overkill for simple cases                                                      |
+
+
+
 ### **Builder Pattern**
+
+#### **Description**
+
+The Builder Pattern is a creational design pattern that separates the construction of a complex object from its representation, allowing the same construction process to create different representations. It is useful when you need to create an object with many optional parameters or a complex construction process, and you want to keep the construction logic separate from the actual object construction. The Builder Pattern promotes fluent and readable object creation code by providing a step-by-step approach to constructing objects.
+
+Imagine if we have a complex object with many optional parameters. Creating such objects directly with a large constructor can be cumbersome and error-prone. The Builder Pattern provides a solution by:
+
+1. **Defining a Builder Class:** This class has methods for setting optional and mandatory properties of the object being constructed. Each method typically returns the builder object itself, allowing for method chaining (calling multiple builder methods consecutively).
+2. **Building the Object:** The builder class also provides a `build()` method that takes the partially constructed object and returns the final, immutable object.
+
+#### Example
+
+A computer can have various optional components, such as a CPU, RAM, storage, graphics card, etc. We can use the Builder Pattern to create a ComputerBuilder class with methods for configuring each component, and a Computer class to represent the final constructed computer. The `build()` method constructs and returns the final `Computer` object using the specified components.
+
+```java
+class Computer {
+    private String cpu;
+    private String ram;
+    private String storage;
+    private String graphicsCard;
+
+    public Computer(String cpu, String ram, String storage, String graphicsCard) {
+        this.cpu = cpu;
+        this.ram = ram;
+        this.storage = storage;
+        this.graphicsCard = graphicsCard;
+    }
+
+    // Getters for computer components
+    // ...
+}
+
+// Builder: ComputerBuilder
+class ComputerBuilder {
+    private String cpu;
+    private String ram;
+    private String storage;
+    private String graphicsCard;
+
+    public ComputerBuilder withCPU(String cpu) {
+        this.cpu = cpu;
+        return this;
+    }
+
+    public ComputerBuilder withRAM(String ram) {
+        this.ram = ram;
+        return this;
+    }
+
+    public ComputerBuilder withStorage(String storage) {
+        this.storage = storage;
+        return this;
+    }
+
+    public ComputerBuilder withGraphicsCard(String graphicsCard) {
+        this.graphicsCard = graphicsCard;
+        return this;
+    }
+
+    public Computer build() {
+        return new Computer(cpu, ram, storage, graphicsCard);
+    }
+}
+
+// Main Application class
+public class Application {
+    public static void main(String[] args) {
+        Computer computer = new ComputerBuilder()
+                .withCPU("Intel Core i7")
+                .withRAM("16GB DDR4")
+                .withStorage("512GB SSD")
+                .withGraphicsCard("NVIDIA GeForce RTX 3080")
+                .build();
+    }
+}
+```
+
+{% hint style="info" %}
+Lombok provides an `@Builder` annotation that can be used to generate a builder class for a given class, eliminating the need to manually write the builder class.
+
+```java
+// Computer class
+import lombok.Builder;
+import lombok.Getter;
+
+@Getter
+@Builder
+class Computer {
+    private String cpu;
+    private String ram;
+    private String storage;
+    private String graphicsCard;
+}
+
+// Main Application class
+public class Application {
+    public static void main(String[] args) {
+        Computer computer = Computer.builder()
+                .cpu("Intel Core i7")
+                .ram("16GB DDR4")
+                .storage("512GB SSD")
+                .graphicsCard("NVIDIA GeForce RTX 3080")
+                .build();
+    }
+}
+```
+{% endhint %}
+
+By using Lombok's `@Builder` annotation, we can achieve the same functionality as the manually written builder class with less code. Lombok takes care of generating the builder class and its methods, reducing the need for boilerplate code. This makes the code cleaner, more concise, and easier to maintain.
 
 
 
