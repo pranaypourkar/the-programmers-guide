@@ -599,26 +599,114 @@ Imagine if we have an object with a lot of internal data or complex initializati
 1. **Defining an Interface (Optional):** An interface (often named `Cloneable`) can be used to mark classes that support cloning. However, Java doesn't enforce interfaces for implementing the pattern.
 2. **Implementing the `clone()` Method:** The class representing the prototype object implements the `clone()` method. This method typically performs a shallow copy of the object's state, creating a new object with the same values but independent references to mutable member variables.
 
-#### **Benefits of Prototype Pattern:**
+#### **Benefits of Prototype Pattern**
 
 * **Improved performance:** Reduces the cost of creating new objects, especially for complex objects.
 * **Reduces memory usage:** By reusing existing objects, the prototype pattern can help optimize memory usage.
 * **Customization:** You can modify the cloned object after creation to achieve variations.
 
-#### **Drawbacks of Prototype Pattern:**
+#### **Drawbacks of Prototype Pattern**
 
 * **Shallow copy issues:** Be mindful of shallow copying and handle references to mutable objects within the prototype appropriately (e.g., by deep copying them).
 * **Complexity for mutable objects:** Managing the state of mutable objects within the prototype requires careful consideration.
 * **Limited use cases:** Not all objects are suitable for cloning. The pattern might be unnecessary for simple objects.
 
-#### **When to Use Prototype Pattern:**
+#### **When to Use Prototype Pattern**
 
 The Prototype Pattern is suitable when:
 
 * We need to create multiple copies of an object that is expensive or complex to create.
 * We want to customize newly created objects based on an existing one.
 
+#### Example 1
+
+Let's consider a example of a document editor application. Users can create documents with various formatting styles, such as font size, font style, and alignment. We can use the Prototype Pattern to create a prototype document object and then clone it to create new documents with similar properties.
+
+We have a prototype class `Document` representing a document with content and formatting styles. The `Document` class implements the `Cloneable` interface to indicate that it supports cloning. We override the `clone()` method to create a **deep copy** of the `Document` object, including its content and styles. We then modify the content and styles of the new documents independently without affecting the prototype or other clones.
+
+```java
+// Document class
+import java.util.ArrayList;
+import java.util.List;
+
+class Document implements Cloneable {
+    private String content;
+    private List<String> styles;
+
+    public Document(String content, List<String> styles) {
+        this.content = content;
+        this.styles = styles;
+    }
+
+    // Getter methods for content and styles
+
+    @Override
+    public Document clone() throws CloneNotSupportedException {
+        List<String> clonedStyles = new ArrayList<>(this.styles);
+        return new Document(this.content, clonedStyles);
+    }
+}
+
+// Main Application class
+public class Application {
+    public static void main(String[] args) throws CloneNotSupportedException {
+        // Create a prototype document
+        Document prototypeDocument = new Document("Prototype Document", List.of("Bold", "Italic"));
+
+        // Clone the prototype to create new documents
+        Document document1 = prototypeDocument.clone();
+        Document document2 = prototypeDocument.clone();
+
+        // Modify the content and styles of new documents if needed
+        document1.setContent("Document 1 Content");
+        document1.getStyles().add("Underline");
+
+        document2.setContent("Document 2 Content");
+        document2.getStyles().remove("Bold");
+
+        // Print the details of new documents
+        System.out.println("Document 1: " + document1.getContent() + ", Styles: " + document1.getStyles());
+        System.out.println("Document 2: " + document2.getContent() + ", Styles: " + document2.getStyles());
+    }
+}
+```
 
 
 
+#### Example 2
+
+Consider a game where we need to create multiple enemies of the same type (e.g., Orcs). Instead of creating each Orc from scratch, you can use a prototype.
+
+The `Orc` class implements `Cloneable` (optional). The `clone()` method creates a new `Orc` object with the same values as the prototype. The `clone()` method typically performs a **shallow copy**, meaning references to objects within the prototype (like the `Weapon` here) are also copied by reference, not by value.
+
+```javascript
+// Orc class
+public class Orc implements Cloneable { // Implements Cloneable (optional)
+  private String name;
+  private int health;
+  private Weapon weapon; // Reference to a Weapon object
+
+  public Orc(String name, int health, Weapon weapon) {
+    this.name = name;
+    this.health = health;
+    this.weapon = weapon;
+  }
+
+  @Override
+  public Object clone() throws CloneNotSupportedException {
+    Orc clone = new Orc(name, health, weapon); // Shallow copy
+    return clone;
+  }
+}
+
+// Game class which create multiple cloned objects
+public class Game {
+  public void spawnEnemies() throws CloneNotSupportedException {
+    Orc prototype = new Orc("Default Orc", 100, new Weapon("Axe"));
+    Orc enemy1 = (Orc) prototype.clone();
+    Orc enemy2 = (Orc) prototype.clone();
+    // ... (use enemy1 and enemy2 in the game)
+  }
+}
+```
 
