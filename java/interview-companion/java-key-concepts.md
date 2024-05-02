@@ -21,8 +21,52 @@ java SomeClassName arg1 arg2 arg3
    * First character of a variable name cannot be a digit. It can start with currency or underscore also.
    * Variable names are case-sensitive, meaning `myVariable` and `MyVariable` are considered different variables.
    * Variable names cannot be a Java keyword or reserved word, such as `int`, `class`, `public`, etc
+3. Shallow Copy vs Deep Copy
 
+**Shallow Copy**
 
+* Shallow copy creates a new object and then copies the reference of the original object into it. In other words, it duplicates the reference, not the underlying data.
+* So, any changes made to the copied object will reflect in the original object and vice versa because they both refer to the same underlying data.
+* Shallow copy is relatively simple and fast, but it can lead to unexpected behavior if you're not careful about how changes propagate across objects.
+
+**Deep Copy**
+
+* Deep copy, on the other hand, creates a new object and then, recursively, copies each field of the original object into the new object.
+* This means that changes made to the copied object won't affect the original object, and vice versa, because they refer to different sets of data.
+* Deep copying can be more complex and computationally expensive, especially for complex objects with nested structures or references to other objects.
+
+**Example**
+
+```java
+class Person {
+    String name;
+    int age;
+    
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person original = new Person("Alice", 30);
+
+        // Shallow copy
+        Person shallowCopy = original;
+        shallowCopy.age = 25; // Changes reflected in both objects
+        System.out.println(original.age); // Output: 25
+
+        // Deep copy
+        Person deepCopy = new Person(original.name, original.age);
+        deepCopy.age = 35; // Changes not reflected in original
+        System.out.println(original.age); // Output: 25
+        System.out.println(deepCopy.age); // Output: 35
+    }
+}
+```
+
+Changes made to the shallow copy (`shallowCopy`) affect the original object (`original`) because they both refer to the same object in memory. However, changes made to the deep copy (`deepCopy`) do not affect the original object because they are separate instances with their own memory space.
 
 
 
