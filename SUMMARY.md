@@ -31,7 +31,7 @@
     * [Artifact and BOM Versioning](java/best-practices/artifact-and-bom-versioning.md)
   * [Interview Companion](java/interview-companion/README.md)
     * [Java Key Concepts](java/interview-companion/java-key-concepts/README.md)
-      * [Set 1](java/interview-companion/java-key-concepts/set-1.md)
+      * [Set 1](java/interview-companion/java-key-concepts.md)
     * [Java Code Snippets](java/interview-companion/java-code-snippets.md)
     * [Java Practice Programs](java/interview-companion/java-practice-programs/README.md)
       * [Set 1 - Maths theory & Pattern](java/interview-companion/java-practice-programs/set-1-maths-theory-and-pattern.md)
