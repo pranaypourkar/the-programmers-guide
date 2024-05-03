@@ -60,7 +60,7 @@ There are many approaches.
 
 1. **Using Arrays**
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt="" width="188"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt="" width="188"><figcaption></figcaption></figure>
 
 ```java
 public static void decimalToBinary(int n) 
@@ -142,7 +142,7 @@ public static int binaryToDecimal(int binaryNumber) {
 
 ## Factorial of a number
 
-<figure><img src="../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Small number
 
@@ -377,7 +377,7 @@ public static void printPascal(int k)
 
 ## Print fibonacci series
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Using Iterative Method
 

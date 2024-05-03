@@ -71,7 +71,7 @@ static int arraySum(int[] arr, int index){
 
 ### &#x20;Largest element in an array
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
 
 #### Method 1: Using iteration
 
@@ -158,6 +158,43 @@ max = Collections.max(list);
 ```
 
 
+
+### &#x20;Array Rotation
+
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+#### Method 1: Using additional array
+
+```java
+for (int a=0; a<arr.length; a++) {
+    if (a-d < 0) {
+        result[a-d+arr.length] = arr[a];
+    } else {
+        result[a-d] = arr[a];
+    }
+}
+```
+
+**Time complexity:** O(N) \
+**Auxiliary Space:** O(N)
+
+#### Method 2: Using rotation one by one
+
+```java
+int[] arr = {1,2,3,4,5,6,7};
+int d = 2;
+
+for (int i=1;i<=d;i++) {
+    int tmp = arr[0];
+    for (int j=1;j<arr.length;j++) {
+        arr[j-1] = arr[j];
+    }
+    arr[arr.length-1] = tmp;
+}
+```
+
+**Time Complexity:** O(N \* d)\
+**Auxiliary Space:** O(1)
 
 
 
