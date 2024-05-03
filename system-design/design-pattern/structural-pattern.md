@@ -166,6 +166,142 @@ public class Application {
 
 #### Description
 
+The Bridge Pattern is a structural design pattern that separates the abstraction from its implementation so that they can vary independently. It allows to create two separate hierarchies **one** for abstraction (interface or abstract class) and **one** for implementation (concrete class) and then **connect them together using composition**. This pattern promotes loose coupling between abstraction and implementation, enabling changes in one part of the system without affecting the other.
+
+Imagine if we have a system with a complex hierarchy of classes representing different functionalities (e.g., shapes with different colors). The Bridge Pattern promotes flexibility and maintainability by separating these concerns:
+
+1. **Defining an Abstraction Interface:** This interface defines the operations that can be performed on the object (e.g., draw a shape).
+2. **Creating Concrete Implementations (Implementors):** These classes implement the functionalities behind the abstraction (e.g., specific shapes like circle, square).
+3. **Creating a Bridge Class:** This class holds a reference to an implementor object and implements the abstraction interface. It delegates the actual work to the implementor object based on the chosen functionality.
+
+#### **Benefits of Bridge Pattern**
+
+* **Decoupling abstraction and implementation:** Allows independent changes to both aspects without affecting the other.
+* **Improved maintainability:** Easier to modify or extend shapes and colors independently.
+* **Increased flexibility:** Enables creating new combinations of shapes and colors easily.
+
+#### **Drawbacks of Bridge Pattern**
+
+* **Increased complexity:** Introduces additional classes (interfaces and bridge class) which can add complexity.
+* **Potential performance overhead:** Delegation through the bridge class might introduce some overhead compared to direct calls.
+* **Overkill for simple scenarios:** If the relationship between abstraction and implementation is straightforward, the pattern might be unnecessary.
+
+[stackoverflow.com/questions/33840290/trouble-with-jcolorchooser-colors-when-drawing-different-shapes-java](https://stackoverflow.com/questions/33840290/trouble-with-jcolorchooser-colors-when-drawing-different-shapes-java)
+
+The Bridge Pattern, another member of the Structural design pattern category, focuses on decoupling an abstraction from its implementation. This allows for independent variation of both aspects without affecting the other. Here's a breakdown similar to the previous ones:
+
+**Concept:**
+
+Imagine you have a system with a complex hierarchy of classes representing different functionalities (e.g., shapes with different colors). The Bridge Pattern promotes flexibility and maintainability by separating these concerns:
+
+1. **Defining an Abstraction Interface:** This interface defines the operations that can be performed on the object (e.g., draw a shape).
+2. **Creating Concrete Implementations (Implementors):** These classes implement the functionalities behind the abstraction (e.g., specific shapes like circle, square).
+3. **Creating a Bridge Class:** This class holds a reference to an implementor object and implements the abstraction interface. It delegates the actual work to the implementor object based on the chosen functionality.
+
+**Real-World Example:**
+
+Consider a drawing application where you can have different shapes (circle, square) with different colors (red, green). The Bridge Pattern allows you to separate the concept of a shape from its color:
+
+Java
+
+```
+// Abstraction Interface (what can be done with a shape)
+public interface Shape {
+  void draw();
+}
+
+// Concrete Implementations (specific shapes)
+public class Circle implements Shape {
+  @Override
+  public void draw() {
+    System.out.println("Drawing a circle");
+  }
+}
+
+public class Square implements Shape {
+  @Override
+  public void draw() {
+    System.out.println("Drawing a square");
+  }
+}
+
+// Implementor Interface (what colors can provide)
+public interface Color {
+  void applyColor();
+}
+
+// Concrete Implementations (specific colors)
+public class Red implements Color {
+  @Override
+  public void applyColor() {
+    System.out.println("Applying red color");
+  }
+}
+
+public class Green implements Color {
+  @Override
+  public void applyColor() {
+    System.out.println("Applying green color");
+  }
+}
+
+// Bridge Class (holds the implementor and delegates drawing)
+public class ColoredShape {
+
+  private Shape shape;
+  private Color color;
+
+  public ColoredShape(Shape shape, Color color) {
+    this.shape = shape;
+    this.color = color;
+  }
+
+  public void drawShape() {
+    color.applyColor();
+    shape.draw();
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    Shape circle = new Circle();
+    Color red = new Red();
+    ColoredShape redCircle = new ColoredShape(circle, red);
+    redCircle.drawShape(); // Output: Applying red color; Drawing a circle
+  }
+}
+```
+
+Use code with caution.content\_copy
+
+In this example:
+
+* The `Shape` interface defines the `draw()` method for all shapes.
+* Concrete shapes (`Circle`, `Square`) implement the `Shape` interface.
+* The `Color` interface defines the `applyColor()` method.
+* Concrete colors (`Red`, `Green`) implement the `Color` interface.
+* The `ColoredShape` class holds a `Shape` and a `Color` object and delegates the `drawShape()` method to them.
+
+**Benefits of Bridge Pattern:**
+
+* **Decoupling abstraction and implementation:** Allows independent changes to both aspects without affecting the other.
+* **Improved maintainability:** Easier to modify or extend shapes and colors independently.
+* **Increased flexibility:** Enables creating new combinations of shapes and colors easily.
+
+**Drawbacks of Bridge Pattern:**
+
+* **Increased complexity:** Introduces additional classes (interfaces and bridge class) which can add complexity.
+* **Potential performance overhead:** Delegation through the bridge class might introduce some overhead compared to direct calls.
+* **Overkill for simple scenarios:** If the relationship between abstraction and implementation is straightforward, the pattern might be unnecessary.
+
+#### **When to Use Bridge Pattern:**
+
+The Bridge Pattern is suitable when:
+
+* You need to decouple an abstraction from its implementation for independent variation.
+* You have a large hierarchy of classes with multiple variations (e.g., shapes with different behaviors and appearances).
+* You anticipate the need to extend the system with new functionalities (shapes, colors) in the future.
+
 
 
 ### **Composite Pattern**
