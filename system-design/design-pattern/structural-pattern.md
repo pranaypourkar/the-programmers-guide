@@ -848,6 +848,106 @@ public class Application {
 
 The Flyweight Pattern is a structural design pattern that aims to minimize memory usage and improve performance by sharing as much data as possible with similar objects. It is particularly useful when dealing with a large number of objects that have similar or identical intrinsic state, and when the extrinsic state can be managed externally.
 
+Imagine we have an application that deals with a large number of similar objects. Each object might have some unique state, but also share a lot of common data or functionality. The Flyweight Pattern promotes memory efficiency by:
+
+1. **Defining a Flyweight Interface:** This interface declares the methods that all flyweight objects can perform.
+2. **Creating Concrete Flyweight Classes:** These classes implement the `Flyweight` interface and represent the intrinsic state (unchanging data) of the objects. They typically avoid storing any extrinsic state (data specific to each instance) within themselves.
+3. **Creating a Flyweight Factory:** This class (optional) is responsible for managing the pool of flyweight objects and ensuring efficient reuse. It might return existing flyweight objects with the appropriate intrinsic state or create new ones if necessary.
+
+#### **Benefits of Flyweight Pattern**
+
+* **Reduced memory usage:** By sharing common data among objects, the Flyweight Pattern can significantly reduce memory consumption, especially for large numbers of similar objects.
+* **Improved performance:** Object creation can become faster as flyweight objects are reused instead of being created every time.
+
+#### **Drawbacks of Flyweight Pattern**
+
+* **Increased complexity:** Introduces additional classes (flyweight factory) which can add complexity.
+* **Limited applicability:** Not suitable for objects with a lot of unique data or complex state management.
+
+#### Example
+
+Consider a game with many forest trees. Each tree might have a unique location (extrinsic state) but share the same image data (intrinsic state). The Flyweight Pattern can optimize memory usage.
+
+In this example, the `Tree` interface defines a method to draw the tree. Concrete flyweight classes like `OakTree` and `PineTree` hold the image data (intrinsic state) and implement the `draw` method. The `TreeFactory` (optional) manages a pool of flyweight objects and provides a way to retrieve them based on the type. The `Forest` class uses the `TreeFactory` to plant trees, potentially reusing existing flyweight objects for the same tree type.
+
+```java
+// Flyweight Interface (common operations)
+public interface Tree {
+  void draw(int x, int y); // Draw the tree at a specific location (extrinsic state)
+}
+
+// Concrete Flyweight Class (stores intrinsic state - image data)
+public class OakTree implements Tree {
+
+  private static final String imageData = "..."; // Load image data once
+
+  @Override
+  public void draw(int x, int y) {
+    System.out.println("Drawing Oak Tree at (" + x + ", " + y + ")");
+    // Use the pre-loaded image data to draw the tree
+  }
+}
+
+// Concrete Flyweight Class (another example with different intrinsic state)
+public class PineTree implements Tree {
+
+  private static final String imageData = "..."; // Load image data once
+
+  @Override
+  public void draw(int x, int y) {
+    System.out.println("Drawing Pine Tree at (" + x + ", " + y + ")");
+    // Use the pre-loaded image data to draw the tree
+  }
+}
+
+// Flyweight Factory (optional - manages object pool)
+public class TreeFactory {
+
+  private static Map<String, Tree> treePool = new HashMap<>();
+
+  public static Tree getTree(String treeType) {
+    Tree tree = treePool.get(treeType);
+    if (tree == null) {
+      switch (treeType) {
+        case "oak":
+          tree = new OakTree();
+          break;
+        case "pine":
+          tree = new PineTree();
+          break;
+        // ... add other tree types
+      }
+      treePool.put(treeType, tree);
+    }
+    return tree;
+  }
+}
+
+public class Forest {
+
+  private List<Tree> trees;
+
+  public Forest() {
+    trees = new ArrayList<>();
+  }
+
+  public void plantTree(int x, int y, String treeType) {
+    Tree tree = TreeFactory.getTree(treeType);
+    tree.draw(x, y);
+    trees.add(tree);
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    Forest forest = new Forest();
+    forest.plantTree(100, 50, "oak");
+    forest.plantTree(200, 100, "pine");
+    forest.plantTree(50, 150, "oak"); // Reuses existing OakTree object
+  }
+}
+```
+
 
 
 ### **Proxy Pattern**
