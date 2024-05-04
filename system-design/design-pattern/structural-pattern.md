@@ -956,5 +956,68 @@ public class Main {
 
 The Proxy Pattern is a structural design pattern that provides a surrogate or placeholder for another object to control access to it. It allows you to create a representative object (proxy) that controls the access to the original object (subject). The proxy object acts as an intermediary between the client and the real object, providing additional functionality such as lazy initialization, access control, logging, or caching.
 
+#### **Benefits of Proxy Pattern**
 
+* **Improved control:** Provides an extra layer of control over access to the real subject.
+* **Increased flexibility:** Enables adding functionalities like caching, security checks, or lazy loading.
+* **Decoupling client code:** Client code only interacts with the proxy, hiding the details of the real subject.
+
+#### **Drawbacks of Proxy Pattern**
+
+* **Increased complexity:** Introduces an extra layer of abstraction (the proxy class) which can add complexity.
+* **Potential performance overhead:** Method calls might have some overhead due to the extra layer of indirection through the proxy.
+
+#### Example
+
+Let's consider a example of internet access control in an organization, where employees need to access certain websites through a proxy server. The proxy server acts as an intermediary between the employees' computers and the external websites, controlling and monitoring the internet access.
+
+In this example, we have a `Internet` interface that defines the common method `connectTo()` for connecting to websites. We have a real subject class `RealInternet` that implements the `Internet` interface and represents the real internet connection. We have a proxy class `InternetProxy` that implements the `Internet` interface and acts as a proxy for controlling access to the real internet connection. The `InternetProxy` class intercepts the requests to connect to websites and checks if the requested website is in the list of blocked websites.
+
+```java
+// Subject: Internet
+interface Internet {
+    void connectTo(String website);
+}
+
+// Real Subject: RealInternet
+class RealInternet implements Internet {
+    @Override
+    public void connectTo(String website) {
+        System.out.println("Connecting to " + website);
+    }
+}
+
+// Proxy: InternetProxy
+class InternetProxy implements Internet {
+    private Internet realInternet;
+    private static final List<String> BLOCKED_WEBSITES = Arrays.asList("facebook.com", "twitter.com");
+
+    public InternetProxy() {
+        this.realInternet = new RealInternet();
+    }
+
+    @Override
+    public void connectTo(String website) {
+        if (BLOCKED_WEBSITES.contains(website.toLowerCase())) {
+            System.out.println("Access to " + website + " is blocked");
+        } else {
+            realInternet.connectTo(website);
+        }
+    }
+}
+
+// Main Application class
+public class Application {
+    public static void main(String[] args) {
+        Internet internet = new InternetProxy();
+
+        // Allowed access
+        internet.connectTo("google.com");
+
+        // Blocked access
+        internet.connectTo("facebook.com");
+        internet.connectTo("twitter.com");
+    }
+}
+```
 
