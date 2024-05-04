@@ -525,13 +525,320 @@ The Decorator Pattern is suitable when:
 * We want to support multiple layers of optional functionality.
 * We anticipate the need to extend functionality in the future without modifying existing objects.
 
+#### Example 1
+
+Consider a example of a coffee ordering system, where customers can order various types of coffee with optional toppings such as milk, sugar, and whipped cream. We can use the Decorator Pattern to create decorators for each optional topping and then dynamically add them to the base coffee order.
+
+In this example, we have an interface `Coffee` representing the base component for coffee orders, with methods to get the description and cost of the coffee. We have a concrete component `BasicCoffee` representing the basic coffee order without any toppings. We have an abstract decorator class `CoffeeDecorator` that implements the `Coffee` interface and wraps concrete components. We have concrete decorator classes `Milk` and `Sugar` that add milk and sugar toppings to the coffee order. We create a basic coffee order and then dynamically add milk and sugar toppings to it using decorators.
+
+```java
+// Component: Coffee
+interface Coffee {
+    String getDescription();
+    double cost();
+}
+
+// Concrete Component: BasicCoffee
+class BasicCoffee implements Coffee {
+    @Override
+    public String getDescription() {
+        return "Basic Coffee";
+    }
+
+    @Override
+    public double cost() {
+        return 2.0;
+    }
+}
+
+// Decorator: CoffeeDecorator
+abstract class CoffeeDecorator implements Coffee {
+    protected Coffee coffee;
+
+    public CoffeeDecorator(Coffee coffee) {
+        this.coffee = coffee;
+    }
+
+    @Override
+    public String getDescription() {
+        return coffee.getDescription();
+    }
+
+    @Override
+    public double cost() {
+        return coffee.cost();
+    }
+}
+
+// Concrete Decorator: Milk
+class Milk extends CoffeeDecorator {
+    public Milk(Coffee coffee) {
+        super(coffee);
+    }
+
+    @Override
+    public String getDescription() {
+        return coffee.getDescription() + ", Milk";
+    }
+
+    @Override
+    public double cost() {
+        return coffee.cost() + 0.5;
+    }
+}
+
+// Concrete Decorator: Sugar
+class Sugar extends CoffeeDecorator {
+    public Sugar(Coffee coffee) {
+        super(coffee);
+    }
+
+    @Override
+    public String getDescription() {
+        return coffee.getDescription() + ", Sugar";
+    }
+
+    @Override
+    public double cost() {
+        return coffee.cost() + 0.3;
+    }
+}
+
+// Main Application class
+public class Application {
+    public static void main(String[] args) {
+        // Create a basic coffee order
+        Coffee basicCoffee = new BasicCoffee();
+
+        // Add milk and sugar toppings to the basic coffee order
+        Coffee milkCoffee = new Milk(basicCoffee);
+        Coffee milkSugarCoffee = new Sugar(milkCoffee);
+
+        // Display description and cost of the decorated coffee order
+        System.out.println("Description: " + milkSugarCoffee.getDescription());
+        System.out.println("Cost: $" + milkSugarCoffee.cost());
+    }
+}
+```
+
+#### Example 2
+
+Consider another example of a text editor where we can format text with functionalities like bold, italic, and underline. The Decorator Pattern allows to add these features dynamically:
+
+In this example, the `Text` interface defines a method to get the text content. The `PlainText` class implements the interface for plain text. The `TextDecorator` is an abstract class that wraps a `Text` object and provides a base for concrete decorators. Concrete decorators like `BoldDecorator` and `ItalicDecorator` modify the text by adding HTML formatting tags
+
+```java
+// Component Interface (what can be done with text)
+public interface Text {
+  String getText();
+}
+
+// Concrete Component Class (Plain Text)
+public class PlainText implements Text {
+
+  private String text;
+
+  public PlainText(String text) {
+    this.text = text;
+  }
+
+  @Override
+  public String getText() {
+    return text;
+  }
+}
+
+// Decorator Class (adds functionality)
+public abstract class TextDecorator implements Text {
+
+  private Text text;
+
+  public TextDecorator(Text text) {
+    this.text = text;
+  }
+
+  @Override
+  public abstract String getText();
+
+  // Delegate to the wrapped text and potentially add decoration logic
+  protected String decorate(String text) {
+    return text;
+  }
+}
+
+// Concrete Decorators (specific formatting)
+public class BoldDecorator extends TextDecorator {
+
+  public BoldDecorator(Text text) {
+    super(text);
+  }
+
+  @Override
+  public String getText() {
+    return "<b>" + decorate(super.getText()) + "</b>";
+  }
+}
+
+public class ItalicDecorator extends TextDecorator {
+
+  public ItalicDecorator(Text text) {
+    super(text);
+  }
+
+  @Override
+  public String getText() {
+    return "<i>" + decorate(super.getText()) + "</i>";
+  }
+}
+
+// Main Application class
+public class Main {
+  public static void main(String[] args) {
+    Text text = new PlainText("Hello World");
+    Text boldText = new BoldDecorator(text);
+    Text italicBoldText = new ItalicDecorator(boldText);
+    System.out.println(italicBoldText.getText()); // Output: <i><b>Hello World</b></i>
+  }
+}
+```
+
 
 
 ### **Facade Pattern**
 
 #### Description
 
+The Facade Pattern is a structural design pattern that provides a simplified interface to a set of interfaces in a subsystem. It hides the complexities of the subsystem and provides a single interface that the client can use to interact with the subsystem. The Facade Pattern promotes loose coupling between the client and the subsystem by providing a high-level interface that shields the client from the details of the subsystem's implementation.
 
+Imagine we have a complex system with many interacting objects and functionalities. The Facade Pattern provides a simplified interface (facade) to this complexity, hiding the underlying implementation details. Here's the approach:
+
+1. **Defining a Facade Class:** This class acts as a single point of entry for interacting with the subsystem. It provides a simplified set of methods that expose essential functionalities of the complex system.
+2. **Facade Implementation:** The facade class encapsulates the logic for interacting with the various objects within the subsystem. It might delegate calls to specific objects or orchestrate a sequence of operations to fulfill the requested functionality.
+
+#### **Benefits of Facade Pattern**
+
+* **Simplified interface:** Provides a simpler and more user-friendly way to interact with a complex system.
+* **Decoupling client code:** Client code only interacts with the facade, hiding the internal implementation details.
+* **Improved maintainability:** Changes within the subsystem can be contained within the facade without affecting client code.
+
+#### **Drawbacks of Facade Pattern**
+
+* **Reduced flexibility:** The facade might limit access to certain functionalities of the underlying objects.
+* **Tight coupling between facade and subsystem:** Changes in the subsystem might require modifications to the facade.
+* **Potential complexity for large systems:** For very large systems, managing a single facade class might become complex.
+
+#### **When to Use Facade Pattern**
+
+The Facade Pattern is suitable when:
+
+* We have a complex system with many interacting objects.
+* We want to provide a simplified interface for client code to interact with the system.
+* We need to decouple client code from the implementation details of the subsystem.
+
+#### Example
+
+Consider a example of a home theater system, which consists of various subsystems such as the DVD player, amplifier, speakers, and screen. Each subsystem may have its own complex interface. We can use the Facade Pattern to create a home theater facade that provides a simple interface for common operations such as watching a movie.
+
+In this example, we have a facade class `HomeTheaterFacade` that provides a simple interface for common operations such as watching a movie and ending the movie. We have subsystem classes `DVDPlayer`, `Amplifier`, `Speakers`, and `Screen` that represent the individual components of the home theater system. The `HomeTheaterFacade` class encapsulates the interactions with the subsystems and hides the complexities of the subsystems' interfaces.
+
+```java
+// Facade: HomeTheaterFacade
+class HomeTheaterFacade {
+    private DVDPlayer dvdPlayer;
+    private Amplifier amplifier;
+    private Speakers speakers;
+    private Screen screen;
+
+    public HomeTheaterFacade() {
+        this.dvdPlayer = new DVDPlayer();
+        this.amplifier = new Amplifier();
+        this.speakers = new Speakers();
+        this.screen = new Screen();
+    }
+
+    public void watchMovie(String movie) {
+        System.out.println("Get ready to watch a movie...");
+        dvdPlayer.turnOn();
+        amplifier.turnOn();
+        speakers.turnOn();
+        screen.unroll();
+        dvdPlayer.play(movie);
+    }
+
+    public void endMovie() {
+        System.out.println("Shutting down the home theater system...");
+        dvdPlayer.turnOff();
+        amplifier.turnOff();
+        speakers.turnOff();
+        screen.rollUp();
+    }
+}
+
+// Subsystem: DVDPlayer
+class DVDPlayer {
+    public void turnOn() {
+        System.out.println("DVD player is powered on");
+    }
+
+    public void turnOff() {
+        System.out.println("DVD player is powered off");
+    }
+
+    public void play(String movie) {
+        System.out.println("Playing movie: " + movie);
+    }
+}
+
+// Subsystem: Amplifier
+class Amplifier {
+    public void turnOn() {
+        System.out.println("Amplifier is powered on");
+    }
+
+    public void turnOff() {
+        System.out.println("Amplifier is powered off");
+    }
+    // Other amplifier methods
+}
+
+// Subsystem: Speakers
+class Speakers {
+    public void turnOn() {
+        System.out.println("Speakers are powered on");
+    }
+
+    public void turnOff() {
+        System.out.println("Speakers are powered off");
+    }
+    // Other speakers methods
+}
+
+// Subsystem: Screen
+class Screen {
+    public void unroll() {
+        System.out.println("Screen is unrolled");
+    }
+
+    public void rollUp() {
+        System.out.println("Screen is rolled up");
+    }
+    // Other screen methods
+}
+
+// Main Application class
+public class Application {
+    public static void main(String[] args) {
+        // Create a home theater facade
+        HomeTheaterFacade homeTheater = new HomeTheaterFacade();
+
+        // Watch a movie using the home theater facade
+        homeTheater.watchMovie("The Matrix");
+
+        // End the movie using the home theater facade
+        homeTheater.endMovie();
+    }
+}
+```
 
 
 
