@@ -186,121 +186,125 @@ Imagine if we have a system with a complex hierarchy of classes representing dif
 * **Potential performance overhead:** Delegation through the bridge class might introduce some overhead compared to direct calls.
 * **Overkill for simple scenarios:** If the relationship between abstraction and implementation is straightforward, the pattern might be unnecessary.
 
-[stackoverflow.com/questions/33840290/trouble-with-jcolorchooser-colors-when-drawing-different-shapes-java](https://stackoverflow.com/questions/33840290/trouble-with-jcolorchooser-colors-when-drawing-different-shapes-java)
-
-The Bridge Pattern, another member of the Structural design pattern category, focuses on decoupling an abstraction from its implementation. This allows for independent variation of both aspects without affecting the other. Here's a breakdown similar to the previous ones:
-
-**Concept:**
-
-Imagine you have a system with a complex hierarchy of classes representing different functionalities (e.g., shapes with different colors). The Bridge Pattern promotes flexibility and maintainability by separating these concerns:
-
-1. **Defining an Abstraction Interface:** This interface defines the operations that can be performed on the object (e.g., draw a shape).
-2. **Creating Concrete Implementations (Implementors):** These classes implement the functionalities behind the abstraction (e.g., specific shapes like circle, square).
-3. **Creating a Bridge Class:** This class holds a reference to an implementor object and implements the abstraction interface. It delegates the actual work to the implementor object based on the chosen functionality.
-
-**Real-World Example:**
-
-Consider a drawing application where you can have different shapes (circle, square) with different colors (red, green). The Bridge Pattern allows you to separate the concept of a shape from its color:
-
-Java
-
-```
-// Abstraction Interface (what can be done with a shape)
-public interface Shape {
-  void draw();
-}
-
-// Concrete Implementations (specific shapes)
-public class Circle implements Shape {
-  @Override
-  public void draw() {
-    System.out.println("Drawing a circle");
-  }
-}
-
-public class Square implements Shape {
-  @Override
-  public void draw() {
-    System.out.println("Drawing a square");
-  }
-}
-
-// Implementor Interface (what colors can provide)
-public interface Color {
-  void applyColor();
-}
-
-// Concrete Implementations (specific colors)
-public class Red implements Color {
-  @Override
-  public void applyColor() {
-    System.out.println("Applying red color");
-  }
-}
-
-public class Green implements Color {
-  @Override
-  public void applyColor() {
-    System.out.println("Applying green color");
-  }
-}
-
-// Bridge Class (holds the implementor and delegates drawing)
-public class ColoredShape {
-
-  private Shape shape;
-  private Color color;
-
-  public ColoredShape(Shape shape, Color color) {
-    this.shape = shape;
-    this.color = color;
-  }
-
-  public void drawShape() {
-    color.applyColor();
-    shape.draw();
-  }
-}
-
-public class Main {
-  public static void main(String[] args) {
-    Shape circle = new Circle();
-    Color red = new Red();
-    ColoredShape redCircle = new ColoredShape(circle, red);
-    redCircle.drawShape(); // Output: Applying red color; Drawing a circle
-  }
-}
-```
-
-Use code with caution.content\_copy
-
-In this example:
-
-* The `Shape` interface defines the `draw()` method for all shapes.
-* Concrete shapes (`Circle`, `Square`) implement the `Shape` interface.
-* The `Color` interface defines the `applyColor()` method.
-* Concrete colors (`Red`, `Green`) implement the `Color` interface.
-* The `ColoredShape` class holds a `Shape` and a `Color` object and delegates the `drawShape()` method to them.
-
-**Benefits of Bridge Pattern:**
-
-* **Decoupling abstraction and implementation:** Allows independent changes to both aspects without affecting the other.
-* **Improved maintainability:** Easier to modify or extend shapes and colors independently.
-* **Increased flexibility:** Enables creating new combinations of shapes and colors easily.
-
-**Drawbacks of Bridge Pattern:**
-
-* **Increased complexity:** Introduces additional classes (interfaces and bridge class) which can add complexity.
-* **Potential performance overhead:** Delegation through the bridge class might introduce some overhead compared to direct calls.
-* **Overkill for simple scenarios:** If the relationship between abstraction and implementation is straightforward, the pattern might be unnecessary.
-
-#### **When to Use Bridge Pattern:**
+#### **When to Use Bridge Pattern**
 
 The Bridge Pattern is suitable when:
 
-* You need to decouple an abstraction from its implementation for independent variation.
-* You have a large hierarchy of classes with multiple variations (e.g., shapes with different behaviors and appearances).
-* You anticipate the need to extend the system with new functionalities (shapes, colors) in the future.
+* We need to decouple an abstraction from its implementation for independent variation.
+* We have a large hierarchy of classes with multiple variations (e.g., shapes with different behaviors and appearances).
+* We anticipate the need to extend the system with new functionalities (shapes, colors) in the future.
+
+#### Example
+
+Let's consider example of a remote control for electronic devices, such as TVs and DVD players. Each device (TV or DVD player) can have different functionalities (turn on/off, adjust volume, change channels, etc.). We can use the Bridge Pattern to separate the abstraction (remote control) from its implementation (devices) and allow them to vary independently.
+
+```java
+// Abstraction: RemoteControl
+abstract class RemoteControl {
+    protected Device device;
+
+    public RemoteControl(Device device) {
+        this.device = device;
+    }
+
+    abstract void powerOn();
+    abstract void powerOff();
+    abstract void volumeUp();
+    abstract void volumeDown();
+    // Other abstract methods for controlling the device
+}
+
+// Implementor: Device
+interface Device {
+    void powerOn();
+    void powerOff();
+    void adjustVolume(int delta);
+    // Other methods for device functionality
+}
+
+/ Concrete Implementor A: TV
+class TV implements Device {
+    @Override
+    public void powerOn() {
+        System.out.println("TV is powered on");
+    }
+
+    @Override
+    public void powerOff() {
+        System.out.println("TV is powered off");
+    }
+
+    @Override
+    public void adjustVolume(int delta) {
+        System.out.println("Adjusting TV volume by " + delta);
+    }
+    // Other methods specific to TV functionality
+}
+
+// Concrete Implementor B: DVDPlayer
+class DVDPlayer implements Device {
+    @Override
+    public void powerOn() {
+        System.out.println("DVD player is powered on");
+    }
+
+    @Override
+    public void powerOff() {
+        System.out.println("DVD player is powered off");
+    }
+
+    @Override
+    public void adjustVolume(int delta) {
+        // DVD player does not have volume control
+    }
+    // Other methods specific to DVD player functionality
+}
+
+// Refined Abstraction: BasicRemoteControl
+class BasicRemoteControl extends RemoteControl {
+    public BasicRemoteControl(Device device) {
+        super(device);
+    }
+
+    @Override
+    void powerOn() {
+        device.powerOn();
+    }
+
+    @Override
+    void powerOff() {
+        device.powerOff();
+    }
+
+    @Override
+    void volumeUp() {
+        device.adjustVolume(1);
+    }
+
+    @Override
+    void volumeDown() {
+        device.adjustVolume(-1);
+    }
+    // Other methods for basic remote control functionality
+}
+
+// Using the bridge pattern in Main Application class
+public class Application {
+    public static void main(String[] args) {
+        // Create a TV
+        TV tv = new TV();
+
+        // Create a basic remote control for the TV
+        RemoteControl basicRemote = new BasicRemoteControl(tv);
+
+        // Use the basic remote control to power on the TV and adjust its volume
+        basicRemote.powerOn();
+        basicRemote.volumeUp();
+        basicRemote.volumeDown();
+        basicRemote.powerOff();
+    }
+}
+```
 
 
 
@@ -308,7 +312,184 @@ The Bridge Pattern is suitable when:
 
 #### Description
 
+The Composite Pattern is a structural design pattern that allows to compose objects into tree-like structures to represent part-whole hierarchies. It enables clients to treat individual objects and compositions of objects uniformly. In other words, clients can treat a single object and a group of objects in a uniform manner without distinguishing between them. This pattern is useful when you want to represent hierarchical structures of objects and apply operations uniformly across the entire hierarchy.
 
+Imagine we have a complex system with objects that can be treated individually or as part of a larger group. The Composite Pattern allows you to handle them uniformly by:
+
+1. **Defining a Component Interface:** This interface declares the operations (methods) that both individual objects (leaves) and composite objects (containers) can perform. These operations might include adding or removing child components and performing actions on the component itself.
+2. **Creating Concrete Classes:** These classes implement the `Component` interface and represent individual objects (leaves) or composite objects (containers). Leaves typically implement the operations directly, while containers can delegate them to their child components.
+
+#### **Benefits of Composite Pattern**
+
+* **Uniform treatment of objects:** Allows treating individual objects and composite objects in the same way.
+* **Hierarchical representation:** Models part-whole hierarchies effectively.
+* **Flexible structure:** Enables building complex structures by composing objects.
+
+#### **Drawbacks of Composite Pattern**
+
+* **Increased complexity:** Introduces an extra layer of abstraction (the interface) which can add complexity.
+* **Overkill for flat structures:** If you only have flat collections of objects, the pattern might be unnecessary.
+
+#### **When to Use Composite Pattern**
+
+The Composite Pattern is suitable when:
+
+* We need to represent hierarchical structures where objects can be treated individually or as a whole.
+* We want to perform operations on entire branches of the hierarchy.
+* We anticipate needing to extend the structure with new types of objects
+
+#### Example 1
+
+Consider a file system where we have files and folders. Both files and folders can be treated as components in the hierarchy. The Composite Pattern allows to manage them uniformly.
+
+The `FileSystemComponent` interface defines methods for managing and displaying files and folders. The `File` class implements the interface for individual files. The `Folder` class implements the interface for folders and can contain other components. Both files and folders can be treated uniformly using the `displayInfo()` method, which recursively traverses the tree structure for folders.
+
+```java
+// Component Interface (what can be done with a file or folder)
+public interface FileSystemComponent {
+  void displayInfo(); // Display name/size for files, structure for folders
+  void addComponent(FileSystemComponent component); // Applicable to folders
+  void removeComponent(FileSystemComponent component); // Applicable to folders
+}
+
+// Concrete Class (Leaf - File)
+public class File implements FileSystemComponent {
+
+  private String name;
+  private int size;
+
+  public File(String name, int size) {
+    this.name = name;
+    this.size = size;
+  }
+
+  @Override
+  public void displayInfo() {
+    System.out.println("File: " + name + " (" + size + " bytes)");
+  }
+
+  // Not applicable for files (empty implementations)
+  @Override
+  public void addComponent(FileSystemComponent component) {}
+  @Override
+  public void removeComponent(FileSystemComponent component) {}
+}
+
+// Concrete Class (Container - Folder)
+public class Folder implements FileSystemComponent {
+
+  private String name;
+  private List<FileSystemComponent> components;
+
+  public Folder(String name) {
+    this.name = name;
+    this.components = new ArrayList<>();
+  }
+
+  @Override
+  public void displayInfo() {
+    System.out.println("Folder: " + name);
+    for (FileSystemComponent component : components) {
+      component.displayInfo(); // Delegate to child components
+    }
+  }
+
+  @Override
+  public void addComponent(FileSystemComponent component) {
+    components.add(component);
+  }
+
+  @Override
+  public void removeComponent(FileSystemComponent component) {
+    components.remove(component);
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    Folder documents = new Folder("Documents");
+    documents.addComponent(new File("report.txt", 1024));
+    Folder work = new Folder("Work");
+    work.addComponent(new File("presentation.pdf", 5120));
+    documents.addComponent(work);
+    documents.displayInfo(); // Output shows structure and file details
+  }
+}
+```
+
+#### Example 2
+
+Let's consider another example of an organization structure, where employees are organized into departments, and departments can contain both individual employees and sub-departments. We can use the Composite Pattern to represent the organization structure as a tree-like hierarchy, with departments and individual employees as nodes.
+
+In this example, we have an interface `Employee` representing individual employees and departments in the organization structure, a leaf class `IndividualEmployee` representing individual employees,  a composite class `Department` representing departments which can contain both individual employees and sub-departments and the `Department` class contains a list of employees (individual employees and sub-departments) and implements the `displayDetails()` method to display details of the department and its employees.
+
+```java
+// Component: Employee
+interface Employee {
+    void displayDetails();
+}
+
+// Leaf: IndividualEmployee
+class IndividualEmployee implements Employee {
+    private String name;
+
+    public IndividualEmployee(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void displayDetails() {
+        System.out.println("Employee: " + name);
+    }
+}
+
+// Composite: Department
+class Department implements Employee {
+    private String name;
+    private List<Employee> employees = new ArrayList<>();
+
+    public Department(String name) {
+        this.name = name;
+    }
+
+    public void addEmployee(Employee employee) {
+        employees.add(employee);
+    }
+
+    @Override
+    public void displayDetails() {
+        System.out.println("Department: " + name);
+        for (Employee employee : employees) {
+            employee.displayDetails();
+        }
+    }
+}
+
+// Use the composite in the Main Application class
+public class Application {
+    public static void main(String[] args) {
+        // Create individual employees
+        Employee employee1 = new IndividualEmployee("John");
+        Employee employee2 = new IndividualEmployee("Alice");
+
+        // Create sub-departments
+        Department marketingDepartment = new Department("Marketing");
+        Department salesDepartment = new Department("Sales");
+
+        // Add employees to departments
+        marketingDepartment.addEmployee(employee1);
+        salesDepartment.addEmployee(employee2);
+
+        // Create the organization structure
+        Department headOffice = new Department("Head Office");
+        headOffice.addEmployee(marketingDepartment);
+        headOffice.addEmployee(salesDepartment);
+
+        // Display details of the organization structure
+        headOffice.displayDetails();
+    }
+}
+```
 
 
 
