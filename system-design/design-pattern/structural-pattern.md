@@ -497,7 +497,33 @@ public class Application {
 
 #### Description
 
+The Decorator Pattern is a structural design pattern that allows behavior to be added to individual objects dynamically without affecting the behavior of other objects from the same class. It is useful when you want to add new functionalities to objects without altering their structure. The Decorator Pattern involves creating a set of decorator classes that are used to wrap concrete components. Each decorator class adds its own functionality to the component, which can be stacked on top of each other to create a combination of behaviors.
 
+Imagine we have objects with functionalities that we want to modify or extend at runtime without changing their core implementation. The Decorator Pattern achieves this by:
+
+1. **Defining a Component Interface:** This interface declares the core functionality of the objects you want to decorate.
+2. **Creating Concrete Component Classes:** These classes implement the `Component` interface and represent the base objects with their core functionalities.
+3. **Creating Decorator Classes:** These classes implement the `Component` interface and "wrap" a concrete component object. They add new functionalities or modify the behavior of the wrapped object dynamically. Decorators typically hold a reference to the wrapped component and delegate calls to it while potentially adding their own behavior before or after.
+
+#### **Benefits of Decorator Pattern**
+
+* **Dynamic extension of functionality:** Allows adding new functionalities to objects at runtime without modifying their original code.
+* **Flexible composition:** You can combine different decorators to achieve complex behavior.
+* **Loose coupling:** Decorators and components are loosely coupled, promoting maintainability.
+
+#### **Drawbacks of Decorator Pattern**
+
+* **Increased complexity:** Introduces additional classes (decorators) which can add complexity.
+* **Potential performance overhead:** Decorator method calls can add some overhead compared to direct calls.
+* **Can lead to long chains of decorators:** Managing a large number of decorators might become cumbersome.
+
+#### **When to Use Decorator Pattern**
+
+The Decorator Pattern is suitable when:
+
+* We need to add functionalities to objects dynamically without subclassing.
+* We want to support multiple layers of optional functionality.
+* We anticipate the need to extend functionality in the future without modifying existing objects.
 
 
 
