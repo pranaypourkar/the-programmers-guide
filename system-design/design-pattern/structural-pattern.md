@@ -954,7 +954,7 @@ public class Main {
 
 #### Description
 
-
+The Proxy Pattern is a structural design pattern that provides a surrogate or placeholder for another object to control access to it. It allows you to create a representative object (proxy) that controls the access to the original object (subject). The proxy object acts as an intermediary between the client and the real object, providing additional functionality such as lazy initialization, access control, logging, or caching.
 
 
 
