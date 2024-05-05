@@ -4,7 +4,7 @@
   * [Java Overview](java/java-overview.md)
   * [Code Style](java/code-style.md)
   * [Tools](java/tools.md)
-  * [Algorithm](java/algorithm/README.md)
+  * [Algorithm](system-design/algorithm.md)
     * [Set 1](java/algorithm/set-1.md)
   * [Concepts](java/concepts/README.md)
     * [Streams](java/concepts/streams/README.md)
