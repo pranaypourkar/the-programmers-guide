@@ -224,8 +224,7 @@ Refer to this page -> [https://pranaypourkar.gitbook.io/java-knowledge-base/java
         System.out.println(Arrays.toString(result));
 ```
 
-**Time Complexity:** O(n) (iterating through the array once)
-
+**Time Complexity:** O(n) (iterating through the array once)\
 **Auxiliary Space:** O(n) (to store unique elements in the Set)
 
 #### Method 2: Using ArrayList
@@ -245,9 +244,12 @@ Refer to this page -> [https://pranaypourkar.gitbook.io/java-knowledge-base/java
         System.out.println(Arrays.toString(result2));
 ```
 
-**Time Complexity**: O(n^2) in the worst case (nested loop with contains() method)
-
+**Time Complexity**: O(n^2) in the worst case (nested loop with contains() method)\
 **Auxiliary Space**: O(n) (to store unique elements in the ArrayList)
+
+#### Method 3: Using Sorting
+
+Sort the array and use the approaches given below.
 
 
 
