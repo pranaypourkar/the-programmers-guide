@@ -60,7 +60,7 @@ There are many approaches.
 
 1. **Using Arrays**
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt="" width="188"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt="" width="188"><figcaption></figcaption></figure>
 
 ```java
 public static void decimalToBinary(int n) 
@@ -142,7 +142,7 @@ public static int binaryToDecimal(int binaryNumber) {
 
 ## Factorial of a number
 
-<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Small number
 
@@ -377,7 +377,7 @@ public static void printPascal(int k)
 
 ## Print fibonacci series
 
-<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Using Iterative Method
 
@@ -511,13 +511,198 @@ for (int row=0;row<arr.length;row++){
 
 <figure><img src="../../../.gitbook/assets/image (78).png" alt=""><figcaption></figcaption></figure>
 
+## GCD or HCF of two numbers
+
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+### Using Iteration
+
+```java
+int gcd(int a, int b) {
+    int result = Math.min(a,b);
+    while(result>0){
+        if (a%result==0 && b%result==0) {
+            return result;
+        }
+        result--;
+    }
+    return 1;
+}
+```
+
+**Time Complexity:** O(min(a,b)) \
+**Auxiliary Space:** O(1)
+
+### Using Euclidean algorithm for GCD of two numbers (Involves Recursion)
+
+<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+```java
+    // Recursive function to return gcd of a and b
+    int gcd(int a, int b)
+    {
+        // All divides 0
+        if (a == 0)
+            return b;
+        if (b == 0)
+            return a;
+ 
+        // Base case
+        if (a == b)
+            return a;
+ 
+        // a is greater
+        if (a > b)
+            return gcd(a - b, b);
+        return gcd(a, b - a);
+    }
+```
+
+**Time Complexity:** O(min(a,b))\
+**Auxiliary Space:** O(1) No space is used as it is a tail recursion i.e. no extra space is used apart from the space needed for the function call stack.
 
 
 
+### **Optimization** Euclidean algorithm **by checking divisibility**
+
+<figure><img src="../../../.gitbook/assets/image (2).png" alt="" width="563"><figcaption></figcaption></figure>
+
+```java
+int gcd(int a, int b)
+{
+    // Everything divides 0
+    if (a == 0)
+        return b;
+    if (b == 0)
+        return a;
+ 
+    // Base case
+    if (a == b)
+        return a;
+ 
+    // a is greater
+    if (a > b) {
+        if (a % b == 0)
+            return b;
+        return gcd(a - b, b);
+    }
+    if (b % a == 0)
+        return a;
+    return gcd(a, b - a);
+}
+```
+
+**Time Complexity:** O(min(a, b))\
+**Auxiliary Space:** O(1)
 
 
 
+### **Optimization using division**
+
+Instead of the Euclidean algorithm by subtraction, a better approach is that we don’t perform subtraction but continuously divide the bigger number by the smaller number.
+
+```java
+// Recursive function to return gcd of a and b
+    int gcd(int a, int b)
+    {
+      if (b == 0)
+        return a;
+      return gcd(b, a % b); 
+    }
+```
+
+**Time Complexity:** O(log(min(a,b)))
+
+**Auxiliary Space:** O(log(min(a,b))
 
 
 
+### **Iterative implementation using Euclidean Algorithm**
+
+```java
+int gcd(int a, int b)
+    {
+        while (a > 0 && b > 0) {
+            if (a > b) {
+                a = a % b;
+            }
+            else {
+                b = b % a;
+            }
+        }
+        if (a == 0) {
+            return b;
+        }
+        return a;
+    }
+```
+
+**Time Complexity:** O(log(min(a,b)))\
+**Auxiliary Space:** O(1)
+
+
+
+### **Using in-built function in Java for BigIntegers**
+
+```java
+public static int gcd(int a, int b)
+    {
+        BigInteger bigA = BigInteger.valueOf(Math.abs(a));
+        BigInteger bigB = BigInteger.valueOf(Math.abs(b));
+        BigInteger gcd = bigA.gcd(bigB);
+        return gcd.intValue();
+    }
+```
+
+**Time Complexity:** O(log(min(a, b)))\
+**Auxiliary Space:** O(1)
+
+
+
+## LCM of two numbers
+
+LCM (Least Common Multiple) of two numbers is the smallest number which can be divided by both numbers.&#x20;
+
+For example, LCM of 15 and 20 is 60, and LCM of 5 and 7 is 35.
+
+
+
+### Using GCD of 2 numbers and Formula
+
+<figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+
+```java
+int gcd(int a, int b) 
+    { 
+        if (a == 0) 
+            return b;  
+        return gcd(b % a, a);  
+    } 
+      
+// Return LCM of two numbers 
+int lcm(int a, int b) 
+    { 
+        return (a / gcd(a, b)) * b; 
+    } 
+```
+
+**Time Complexity:** O(log(min(a,b))\
+**Auxiliary Space:** O(log(min(a,b))
+
+### Using Iterative method
+
+```java
+int findLCM(int a, int b) 
+    { 
+        int greater = Math.max(a, b); 
+        int smallest = Math.min(a, b); 
+        for (int i = greater;; i += greater) { 
+            if (i % smallest == 0) 
+                return i; 
+        } 
+    }
+```
+
+**Time Complexity:** O(min(a,b))\
+**Auxiliary Space:** O(1)
 
