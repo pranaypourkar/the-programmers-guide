@@ -1151,3 +1151,106 @@ public class Main {
 
 #### Description
 
+The Visitor Pattern is a behavioral design pattern that allows to add new operations to a set of classes without modifying those classes. It achieves this by separating the algorithm from the object structure it operates on. The pattern defines a visitor interface with a visit method for each class in the object structure. Concrete visitors implement these methods to perform specific operations on each element of the object structure.
+
+**Key Elements**
+
+1. **Visitor Interface:** Defines methods that represent operations to be performed on elements. These methods typically take an element as an argument.
+2. **Concrete Visitor Classes:** Implement the methods defined in the visitor interface, providing specific logic for each operation on different element types.
+3. **Element Interface (Optional):** An optional interface that elements can implement to declare the `accept` method. This method allows an element to accept a visitor and call the appropriate visitor method.
+4. **Concrete Element Classes:** Represent the objects in the structure that can be visited. They implement the `accept` method, which takes a visitor object and invokes the appropriate visitor method based on the element's type (using polymorphism).
+
+#### **Benefits of Visitor Pattern**
+
+* **Decoupling algorithms from objects:** Separates the operational logic (visitor) from the data structure (elements), promoting loose coupling.
+* **Adding new operations:** New operations can be added by creating new visitor classes without modifying existing element classes (Open/Closed Principle).
+* **Double dispatch simulation:** Achieves a form of double dispatch (dispatching based on both visitor and element type) using polymorphism.
+
+#### **Drawbacks of Visitor Pattern**
+
+* **Increased complexity:** Introduces additional classes (visitor, potentially element interface) which can add complexity for simple operations.
+* **Performance overhead:** Method calls and object creation for visitors might introduce slight overhead compared to directly implementing the logic in element classes.
+
+#### Example
+
+Consider a shape hierarchy (circle, square) with an operation to calculate the area for each shape type. The Visitor Pattern allows separating the area calculation logic from the shape classes.
+
+In this example, the `ShapeVisitor` interface defines methods for visiting `Circle` and `Square` elements. The `AreaVisitor` class implements the visitor, providing area calculation logic for each shape. The `Shape` interface (optional) declares the `accept` method. `Circle` and `Square` classes (concrete elements) implement `accept` and call the appropriate visitor method based on their type.
+
+```java
+// Visitor Interface (defines operations on elements)
+public interface ShapeVisitor {
+  void visitCircle(Circle circle);
+  void visitSquare(Square square);
+}
+
+// Concrete Visitor Class (implements area calculation)
+public class AreaVisitor implements ShapeVisitor {
+
+  @Override
+  public void visitCircle(Circle circle) {
+    double area = Math.PI * Math.pow(circle.getRadius(), 2);
+    System.out.println("Circle area: " + area);
+  }
+
+  @Override
+  public void visitSquare(Square square) {
+    double area = square.getSide() * square.getSide();
+    System.out.println("Square area: " + area);
+  }
+}
+
+// Element Interface (Optional - declares accept method)
+public interface Shape {
+  void accept(ShapeVisitor visitor);
+}
+
+// Concrete Element Class (Circle)
+public class Circle implements Shape {
+
+  private double radius;
+
+  public Circle(double radius) {
+    this.radius = radius;
+  }
+
+  public double getRadius() {
+    return radius;
+  }
+
+  @Override
+  public void accept(ShapeVisitor visitor) {
+    visitor.visitCircle(this);
+  }
+}
+
+// Concrete Element Class (Square)
+public class Square implements Shape {
+
+  private double side;
+
+  public Square(double side) {
+    this.side = side;
+  }
+
+  public double getSide() {
+    return side;
+  }
+
+  @Override
+  public void accept(ShapeVisitor visitor) {
+    visitor.visitSquare(this);
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    Shape circle = new Circle(5);
+    Shape square = new Square(4);
+
+    ShapeVisitor visitor = new AreaVisitor();
+    circle.accept(visitor); // Output: Circle area: 78.53981633974483
+    square.accept(visitor); // Output: Square area: 16.0
+  }
+}
+```
