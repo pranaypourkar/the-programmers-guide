@@ -207,7 +207,7 @@ Refer to this page -> [https://pranaypourkar.gitbook.io/java-knowledge-base/java
 **Input:** arr\[] = {2, 1, 2, 2, 3, 4, 4, 4, 5, 5}\
 **Output:** arr\[] = {1, 2, 3, 4, 5}
 
-#### Method 2: Using Set
+#### Method 1: Using Set
 
 ```java
         int[] arr = { 1, 2, 2, 3, 3, 3, 4, 5 };
@@ -228,7 +228,7 @@ Refer to this page -> [https://pranaypourkar.gitbook.io/java-knowledge-base/java
 
 **Auxiliary Space:** O(n) (to store unique elements in the Set)
 
-#### Method 3: Using ArrayList
+#### Method 2: Using ArrayList
 
 ```java
         int[] arr = { 1, 2, 2, 3, 3, 3, 4, 5 };
