@@ -206,7 +206,7 @@ Build and run the service 2 application.
 
 Sample Service 1
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="313"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="313"><figcaption></figcaption></figure>
 
 _<mark style="background-color:yellow;">**ResttemplateConfig.java**</mark>_
 

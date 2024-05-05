@@ -302,8 +302,7 @@ public class Application {
 }
 ```
 
-**Time Complexity:** O(N)&#x20;
-
+**Time Complexity:** O(N) \
 **Auxiliary Space:** O(N)
 
 #### Method 2: Maintaining a separate index for unique elements
@@ -351,6 +350,52 @@ public class Application {
 
 **Time Complexity:** O(N) \
 **Auxiliary Space:** O(1)
+
+
+
+### Remove all occurrences of an element from Array
+
+<figure><img src="../../../.gitbook/assets/image.png" alt="" width="530"><figcaption></figcaption></figure>
+
+#### Method 1: Using iteration
+
+```java
+static int[] removeOccurrencesOfAnElement(int[] arr, int key) {
+    int i = 0;
+    for (int a : arr) {
+        if (a != key) {
+            arr[i++] = a;
+        }
+    }
+    return Arrays.copyOfRange(arr, 0, i);
+}
+```
+
+**Time Complexity:** O(n)\
+**Space Complexity:** O(n)
+
+#### Method 2: Using Streams
+
+```java
+int[] result = Arrays.stream(arr)
+                .filter(num -> num != key)
+                .toArray();
+```
+
+#### Method 3: Using List
+
+```java
+List<Integer> arrList = IntStream.of(arr)
+        .boxed()
+        .collect(Collectors.toList());
+
+int[] result = arrList.stream()
+        .mapToInt(Integer::intValue)
+        .filter(element -> element != key)
+        .toArray();
+```
+
+
 
 
 
