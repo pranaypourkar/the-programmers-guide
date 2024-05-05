@@ -4,7 +4,7 @@
 
 The Juggling Algorithm is an efficient method for rotating an array of elements to the left or right by a given number of positions. It is particularly useful when you need to rotate an array in-place without using extra space. The algorithm achieves this by moving elements of the array in cycles, where each cycle involves moving one set of elements to their correct positions.
 
-### Steps of the Juggling Algorithm with Explanation:
+### Steps of the Juggling Algorithm with Explanation
 
 1. **Calculate GCD**:
    * Calculate the Greatest Common Divisor (GCD) of the array length `n` and the number of positions `d`. This step determines the number of cycles needed to rotate all elements.

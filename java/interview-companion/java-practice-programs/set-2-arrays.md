@@ -198,7 +198,157 @@ for (int i=1;i<=d;i++) {
 
 #### Method 3:  Using Juggling algorithm for array rotation
 
-Refer to this page ->&#x20;
+Refer to this page -> [https://pranaypourkar.gitbook.io/java-knowledge-base/java/algorithm/set-1#juggling-algorithm-for-array-rotation](https://pranaypourkar.gitbook.io/java-knowledge-base/java/algorithm/set-1#juggling-algorithm-for-array-rotation)
+
+
+
+### Remove duplicate elements from an Array
+
+**Input:** arr\[] = {2, 1, 2, 2, 3, 4, 4, 4, 5, 5}\
+**Output:** arr\[] = {1, 2, 3, 4, 5}
+
+#### Method 2: Using Set
+
+```java
+        int[] arr = { 1, 2, 2, 3, 3, 3, 4, 5 };
+        System.out.println(Arrays.toString(arr));
+
+        // Using Set
+        Set<Integer> set = new HashSet<>();
+        for (int element : arr) {
+            set.add(element);
+        }
+
+        // Convert set to array
+        int[] result = set.stream().mapToInt(Integer::intValue).toArray();
+        System.out.println(Arrays.toString(result));
+```
+
+**Time Complexity:** O(n) (iterating through the array once)
+
+**Auxiliary Space:** O(n) (to store unique elements in the Set)
+
+#### Method 3: Using ArrayList
+
+```java
+        int[] arr = { 1, 2, 2, 3, 3, 3, 4, 5 };
+        System.out.println(Arrays.toString(arr));
+
+        // Using ArrayList
+        List<Integer> arrList = new ArrayList<>();
+        for (int element : arr) {
+            if (!arrList.contains(element)) {
+                arrList.add(element);
+            }
+        }
+        int[] result2 = arrList.stream().mapToInt(Integer::intValue).toArray();
+        System.out.println(Arrays.toString(result2));
+```
+
+**Time Complexity**: O(n^2) in the worst case (nested loop with contains() method)
+
+**Auxiliary Space**: O(n) (to store unique elements in the ArrayList)
+
+
+
+### Remove duplicate elements from a SortedArray
+
+#### Method 1: Using Iteration and Sorting
+
+```java
+public class Application {
+    public static void main(String[] args) {
+        int[] arr = { 1, 2, 2, 3, 3, 3, 4, 5 };
+        System.out.println(Arrays.toString(arr));
+
+        int uniqueArraySize = removeDuplicates(arr);
+        for (int i=0; i<uniqueArraySize; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+
+    static int removeDuplicates(int arr[])
+    {
+        int n = arr.length;
+
+        // Return, if array is empty or
+        // contains a single element
+        if (n == 0 || n == 1)
+            return n;
+
+        int[] temp = new int[n];
+
+        // Start traversing elements
+        int j = 0;
+        for (int i = 0; i < n - 1; i++)
+
+            // If current element is not equal to next
+            // element then store that current element
+            if (arr[i] != arr[i + 1])
+                temp[j++] = arr[i];
+
+        // Store the last element as whether it is unique or
+        // repeated, it hasn't stored previously
+        temp[j++] = arr[n - 1];
+
+        // Modify original array
+        for (int i = 0; i < j; i++)
+            arr[i] = temp[i];
+
+        return j;
+    }
+}
+```
+
+**Time Complexity:** O(N)&#x20;
+
+**Auxiliary Space:** O(N)
+
+#### Method 2: Maintaining a separate index for unique elements
+
+**Steps**
+
+* Traverse input array from **i = 0 to N**:
+  * Keep track of the count of unique elements. Let this count be **j**.
+  * Swap **arr\[j]** with **arr\[i]**.
+* At last, return **j**.
+
+```java
+public class Application {
+    public static void main(String[] args) {
+        int[] arr = { 1, 2, 2, 3, 3, 3, 4, 5, 7 };
+        System.out.println(Arrays.toString(arr));
+
+        int n = removeDuplicates(arr);
+
+        // Print updated array
+        for (int i=0; i<n; i++)
+            System.out.print(arr[i] + " ");
+    }
+
+    static int removeDuplicates(int arr[])
+    {
+        int n = arr.length;
+        if (n == 0 || n == 1)
+            return n;
+
+        // Store index of next unique element
+        int j = 0;
+
+        // Iterate and update the index
+        for (int i = 0; i < n-1; i++)
+            if (arr[i] != arr[i+1])
+                arr[j++] = arr[i];
+
+        arr[j++] = arr[n-1];
+
+        return j;
+    }
+}
+```
+
+**Time Complexity:** O(N) \
+**Auxiliary Space:** O(1)
 
 
 
