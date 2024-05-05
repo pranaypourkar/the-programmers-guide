@@ -634,7 +634,110 @@ public class Application {
 
 #### Description
 
+The Memento Pattern is a behavioral design pattern that allows to capture and externalize an object's internal state without violating encapsulation, so that the object can be restored to this state later. It is often used when we need to provide undo functionality or to save and restore the state of an object.
 
+**Key elements:**
+
+1. **Originator:** The object whose state needs to be captured and restored.
+2. **Memento:** An object that stores the saved state of the Originator. It should be lightweight and hold only the necessary data to restore the state.
+3. **Caretaker (Optional):** An object responsible for managing the Memento objects. It might provide methods to create and store Mementos, and potentially retrieve them for restoring the Originator's state.
+
+#### **Benefits of Memento Pattern**
+
+* **Reduced memory usage:** Memento objects can be lightweight if they only store essential data for restoration.
+* **Improved undo/redo functionality:** Allows implementing undo/redo features by managing a history of Memento objects.
+* **Encapsulation:** Hides the internal state of the Originator object.
+
+#### **Drawbacks of Memento Pattern**
+
+* **Increased complexity:** Introduces additional classes (Memento, Caretaker) which can add complexity.
+* **Potential memory overhead**
+
+#### Example
+
+Consider a example of a text editor with an undo feature. The Memento Pattern can be used to implement the undo functionality, allowing users to revert changes made to the text.
+
+In this example, we have a `TextMemento` class representing the state of the text editor at a particular point in time. We have a `TextEditor` class representing the text editor, which allows setting and getting the text content, as well as saving and restoring its state using mementos. We have a `TextEditorApp` class acting as a caretaker, which manages the text editor's history of states using a stack.
+
+```java
+// Memento: TextMemento
+class TextMemento {
+    private final String state;
+
+    public TextMemento(String state) {
+        this.state = state;
+    }
+
+    public String getState() {
+        return state;
+    }
+}
+
+// Originator: TextEditor
+class TextEditor {
+    private String text;
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public TextMemento save() {
+        return new TextMemento(text);
+    }
+
+    public void restore(TextMemento memento) {
+        text = memento.getState();
+    }
+}
+
+// Caretaker: TextEditorApp
+class TextEditorApp {
+    private final TextEditor textEditor;
+    private final Stack<TextMemento> history;
+
+    public TextEditorApp(TextEditor textEditor) {
+        this.textEditor = textEditor;
+        this.history = new Stack<>();
+    }
+
+    public void typeText(String text) {
+        history.push(textEditor.save());
+        textEditor.setText(textEditor.getText() + text);
+    }
+
+    public void undo() {
+        if (!history.isEmpty()) {
+            TextMemento memento = history.pop();
+            textEditor.restore(memento);
+        }
+    }
+}
+
+// Main Application class
+public class Application {
+    public static void main(String[] args) {
+        // Create a text editor
+        TextEditor textEditor = new TextEditor();
+        TextEditorApp textEditorApp = new TextEditorApp(textEditor);
+
+        // Type some text
+        textEditorApp.typeText("Hello, ");
+
+        // Save the state
+        textEditorApp.typeText("world!");
+
+        // Undo the last action
+        textEditorApp.undo();
+
+        // Get the current text
+        System.out.println(textEditor.getText()); // Output: Hello,
+    }
+}
+```
 
 
 
@@ -642,7 +745,119 @@ public class Application {
 
 #### Description
 
+The Observer Pattern is a behavioral design pattern that defines a one-to-many dependency between objects so that when one object changes its state, all its dependents are notified and updated automatically. It is commonly used in scenarios where one object's state change should trigger actions in other objects without them being tightly coupled.
 
+**Key Elements**
+
+1. **Subject:** The object that maintains a list of its dependents (observers) and notifies them when its state changes.
+2. **Observer:** The interface or abstract class defining the update method that observers implement to be notified of changes.
+3. **Concrete Observers:** Classes that implement the Observer interface and define specific logic for handling notifications from the subject.
+
+#### **Benefits of Observer Pattern**
+
+* **Loose coupling:** Observers don't need to know the internal state of the subject, promoting loose coupling.
+* **Decoupled updates:** Changes in the subject are automatically propagated to observers, improving flexibility.
+* **Efficient handling of multiple observers:** The subject can notify all observers efficiently.
+
+#### **Drawbacks of Observer Pattern**
+
+* **Potential for infinite loops:** If the notification chain is not designed carefully, it could create an infinite loop.
+* **Increased complexity:** Introduces additional classes (subject, observer interface) which can add complexity.
+
+#### **When to Use Observer Pattern**
+
+The Observer Pattern is suitable when:
+
+* We need to notify multiple objects about changes in a single object.
+* We want to decouple the sender (subject) from the receivers (observers).
+* We need to support dynamic attachment and detachment of observers.
+
+#### Example
+
+Consider a example of a weather monitoring system. In this system, various displays need to be updated whenever the weather conditions change. The Observer Pattern can be used to implement this behavior.
+
+In this example, we have a `WeatherStation` interface that defines methods to add, remove, and notify observers. We have a concrete subject class `WeatherData` that implements the `WeatherStation` interface and manages weather data. We have an `Observer` interface that defines the `update()` method to be called when the subject's state changes. We have a concrete observer class `Display` that implements the `Observer` interface and displays weather information.
+
+```java
+// Subject: WeatherStation
+interface WeatherStation {
+    void addObserver(Observer observer);
+    void removeObserver(Observer observer);
+    void notifyObservers();
+}
+
+// Concrete Subject: WeatherData
+class WeatherData implements WeatherStation {
+    private float temperature;
+    private float humidity;
+    private float pressure;
+    private final List<Observer> observers;
+
+    public WeatherData() {
+        observers = new ArrayList<>();
+    }
+
+    public void setMeasurements(float temperature, float humidity, float pressure) {
+        this.temperature = temperature;
+        this.humidity = humidity;
+        this.pressure = pressure;
+        notifyObservers();
+    }
+
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update(temperature, humidity, pressure);
+        }
+    }
+}
+
+// Observer: Observer
+interface Observer {
+    void update(float temperature, float humidity, float pressure);
+}
+
+// Concrete Observer: Display
+class Display implements Observer {
+    private final String name;
+
+    public Display(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void update(float temperature, float humidity, float pressure) {
+        System.out.println(name + ": Temperature=" + temperature + ", Humidity=" + humidity + ", Pressure=" + pressure);
+    }
+}
+
+/ Using Observer Pattern in Main Application class
+public class Application {
+    public static void main(String[] args) {
+        // Create weather station and displays
+        WeatherStation weatherStation = new WeatherData();
+        Observer display1 = new Display("Display 1");
+        Observer display2 = new Display("Display 2");
+
+        // Register displays as observers
+        weatherStation.addObserver(display1);
+        weatherStation.addObserver(display2);
+
+        // Update weather data
+        ((WeatherData) weatherStation).setMeasurements(25.5f, 65.2f, 1013.2f);
+    }
+}
+```
 
 
 
@@ -650,7 +865,100 @@ public class Application {
 
 #### Description
 
+The State Pattern is a behavioral design pattern that allows an object to alter its behavior when its internal state changes. This pattern is useful when an object needs to change its behavior dynamically depending on its state, without a proliferation of conditional statements. It encapsulates the states of an object into separate classes and delegates the state-specific behavior to these classes.
 
+**Key Elements**
+
+1. **Context:** The object whose behavior changes based on its state. It holds a reference to the current state object.
+2. **State Interface:** Defines an interface for all state objects. This interface typically declares a method to perform an action relevant to the state.
+3. **Concrete State Classes:** Implement the State interface and define the behavior specific to a particular state.
+
+#### **Benefits of State Pattern**
+
+* **Improved code maintainability:** State logic is encapsulated in separate classes, making code easier to understand and modify.
+* **Loose coupling:** The context object doesn't depend on the implementation details of concrete state classes.
+* **Flexible behavior changes:** Adding new states is easier as it only involves creating a new concrete state class.
+
+#### **Drawbacks of State Pattern**
+
+* **Increased complexity:** Introduces additional classes (states, interface) which can add complexity for simple scenarios.
+* **State explosion:** As the number of states grows, managing them can become cumbersome.
+
+#### **When to Use State Pattern**
+
+The State Pattern is suitable when:
+
+* An object's behavior changes significantly based on its internal state.
+* You want to encapsulate state-specific logic and avoid complex conditional statements in the main object.
+* You anticipate the need to add new states in the future.
+
+#### Example
+
+Consider a example of a traffic light system, where the behavior of a traffic light changes based on its current state. The State Pattern can be used to implement this behavior.
+
+In this example, we have a `TrafficLight` class representing the context, which maintains a reference to the current state of the traffic light. We have a `State` interface defining a common method `change()` for changing the state of the traffic light. We have concrete state classes (`RedState`, `GreenState`, and `YellowState`) representing different states of the traffic light and implementing the `State` interface. Each state class defines its behavior when the traffic light changes to that state.
+
+```java
+// Context: TrafficLight
+class TrafficLight {
+    private State state;
+
+    public TrafficLight() {
+        // Set initial state
+        state = new RedState();
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public void change() {
+        state.change(this);
+    }
+}
+
+// State: State
+interface State {
+    void change(TrafficLight trafficLight);
+}
+
+// Concrete States: RedState, GreenState, YellowState
+class RedState implements State {
+    @Override
+    public void change(TrafficLight trafficLight) {
+        System.out.println("Traffic light turns red");
+        trafficLight.setState(new GreenState());
+    }
+}
+
+class GreenState implements State {
+    @Override
+    public void change(TrafficLight trafficLight) {
+        System.out.println("Traffic light turns green");
+        trafficLight.setState(new YellowState());
+    }
+}
+
+class YellowState implements State {
+    @Override
+    public void change(TrafficLight trafficLight) {
+        System.out.println("Traffic light turns yellow");
+        trafficLight.setState(new RedState());
+    }
+}
+
+// Using State Pattern
+public class Application {
+    public static void main(String[] args) {
+        TrafficLight trafficLight = new TrafficLight();
+
+        // Change traffic light states
+        trafficLight.change(); // Red -> Green
+        trafficLight.change(); // Green -> Yellow
+        trafficLight.change(); // Yellow -> Red
+    }
+}
+```
 
 
 
@@ -658,7 +966,94 @@ public class Application {
 
 #### Description
 
+The Strategy Pattern is a behavioral design pattern that defines a family of algorithms, encapsulates each one, and makes them interchangeable. It allows a client to choose the appropriate algorithm from the family at runtime without modifying the client code. This pattern enables algorithms to vary independently from the clients that use them.
 
+**Key Elements**
+
+1. **Strategy Interface:** This interface defines the method(s) that all concrete strategy classes must implement. This ensures a consistent way to execute the algorithm.
+2. **Concrete Strategy Classes:** These classes implement the `Strategy` interface and provide the specific logic for each algorithm variation.
+3. **Context:** The object that uses the strategy. It holds a reference to a concrete strategy object and delegates the work to it.
+
+#### **Benefits of Strategy Pattern**
+
+* **Improved code reusability:** Algorithms are encapsulated in separate classes, promoting reuse across different parts of the application.
+* **Flexible algorithm selection:** The context can easily switch between different sorting strategies at runtime.
+* **Open/Closed Principle compliance:** New sorting algorithms can be added without modifying existing code.
+
+#### **Drawbacks of Strategy Pattern**
+
+* **Increased complexity:** Introduces additional classes (strategies, interface) which can add complexity for simple algorithms.
+* **Performance overhead:** Method calls and object creation for strategies might introduce slight overhead compared to directly implementing the logic.
+
+#### **When to Use Strategy Pattern**
+
+The Strategy Pattern is suitable when:
+
+* We need to use different algorithms for a specific task in an application.
+* We anticipate the need to add new algorithms in the future.
+* We want to decouple the selection of the algorithm from the code that uses it.
+
+#### Example
+
+Consider a example of sorting algorithms, where different sorting algorithms can be applied interchangeably depending on the requirements. The Strategy Pattern can be used to implement this behavior.
+
+In this example, we have a `SortingStrategy` interface defining a common method `sort()` for sorting algorithms. We have concrete strategy classes (`BubbleSortStrategy` and `QuickSortStrategy`) representing different sorting algorithms and implementing the `SortingStrategy` interface. Each strategy class encapsulates a specific sorting algorithm. We have a `Sorter` class acting as a context, which maintains a reference to the current sorting strategy. The `Sorter` class has a method `performSort()` that delegates the sorting task to the selected strategy.
+
+```java
+// Strategy: SortingStrategy
+interface SortingStrategy {
+    void sort(int[] array);
+}
+
+// Concrete Strategies: BubbleSortStrategy, QuickSortStrategy
+class BubbleSortStrategy implements SortingStrategy {
+    @Override
+    public void sort(int[] array) {
+        // Implement bubble sort algorithm
+        System.out.println("Sorting array using Bubble Sort");
+        // Sorting logic...
+    }
+}
+
+class QuickSortStrategy implements SortingStrategy {
+    @Override
+    public void sort(int[] array) {
+        // Implement quick sort algorithm
+        System.out.println("Sorting array using Quick Sort");
+        // Sorting logic...
+    }
+}
+
+// Context: Sorter
+class Sorter {
+    private SortingStrategy strategy;
+
+    public void setStrategy(SortingStrategy strategy) {
+        this.strategy = strategy;
+    }
+
+    public void performSort(int[] array) {
+        strategy.sort(array);
+    }
+}
+
+// Using Strategy Pattern
+public class Application {
+    public static void main(String[] args) {
+        Sorter sorter = new Sorter();
+
+        // Use Bubble Sort strategy
+        sorter.setStrategy(new BubbleSortStrategy());
+        int[] array1 = {5, 3, 8, 1, 2};
+        sorter.performSort(array1);
+
+        // Use Quick Sort strategy
+        sorter.setStrategy(new QuickSortStrategy());
+        int[] array2 = {7, 4, 6, 9, 0};
+        sorter.performSort(array2);
+    }
+}
+```
 
 
 
@@ -666,7 +1061,89 @@ public class Application {
 
 #### Description
 
+The Template Method Pattern is a behavioral design pattern that defines the skeleton of an algorithm in a method, deferring some steps to subclasses. It allows subclasses to redefine certain steps of an algorithm without changing its structure, promoting code reuse and providing a common structure for related algorithms.
 
+**Key Elements**
+
+1. **Abstract Class (Template):** Defines the overall structure of the algorithm with a combination of:
+   * **Fixed steps:** Implemented directly in the superclass.
+   * **Abstract methods:** To be implemented by subclasses, defining the variation points in the algorithm.
+2. **Concrete Subclasses:** Inherit the template and implement the abstract methods with their specific logic, customizing the algorithm's behavior.
+
+#### **Benefits of Template Method Pattern**
+
+* **Code reuse:** Promotes code reuse by defining the common structure of the algorithm in the superclass.
+* **Consistent structure:** Ensures a consistent overall structure for the algorithm across subclasses.
+* **Customization:** Allows subclasses to customize the algorithm's behavior by implementing abstract methods.
+* **Open/Closed Principle compliance:** Different behaviors can be added without modifying the existing code.
+
+#### **Drawbacks of Template Method Pattern**
+
+* **Reduced flexibility:** Subclasses might be restricted by the fixed steps defined in the superclass.
+* **Increased complexity:** Introduces an extra layer of abstraction (the template class) which can add complexity for simple algorithms.
+
+#### **When to Use Template Method Pattern**
+
+The Template Method Pattern is suitable when:
+
+* We have a common algorithm with variations in specific steps.
+* We want to promote code reuse and ensure a consistent algorithmic structure.
+* We anticipate the need to add new subclasses with different variations of the algorithm.
+
+#### Example
+
+Consider a game with different characters (subclasses) that share a common attack behavior but have unique attack styles. The Template Method Pattern allows defining a general attack logic.
+
+```java
+// Abstract Class (Template) - defines the attack skeleton
+public abstract class Character {
+
+  public void performAttack() {
+    prepareForAttack(); // Fixed step (common to all)
+    executeAttack(); // Abstract step (to be implemented by subclasses)
+    finishAttack(); // Fixed step (common to all)
+  }
+
+  protected abstract void executeAttack(); // Variation point
+
+  private void prepareForAttack() {
+    System.out.println("Character raises weapon...");
+  }
+
+  private void finishAttack() {
+    System.out.println("Character recovers...");
+  }
+}
+
+// Concrete Subclass (implements specific attack logic)
+public class Knight extends Character {
+
+  @Override
+  protected void executeAttack() {
+    System.out.println("Knight swings sword!");
+  }
+}
+
+// Concrete Subclass (implements specific attack logic)
+public class Mage extends Character {
+
+  @Override
+  protected void executeAttack() {
+    System.out.println("Mage casts fireball!");
+  }
+}
+
+// Using Template Method Pattern
+public class Main {
+  public static void main(String[] args) {
+    Character knight = new Knight();
+    knight.performAttack(); // Output: Character raises weapon... Knight swings sword! Character recovers...
+
+    Character mage = new Mage();
+    mage.performAttack(); // Output: Character raises weapon... Mage casts fireball! Character recovers...
+  }
+}
+```
 
 
 
