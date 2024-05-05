@@ -196,6 +196,10 @@ for (int i=1;i<=d;i++) {
 **Time Complexity:** O(N \* d)\
 **Auxiliary Space:** O(1)
 
+#### Method 3:  Using Juggling algorithm for array rotation
+
+Refer to this page ->&#x20;
+
 
 
 ## String
