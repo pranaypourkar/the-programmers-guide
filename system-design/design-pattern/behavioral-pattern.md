@@ -542,6 +542,92 @@ public class Main {
 
 #### Description
 
+The Mediator Pattern is a behavioral design pattern that promotes loose coupling between objects by encapsulating how they interact and communicate with each other. It defines an object (the mediator) that coordinates the communication between multiple objects (colleagues), allowing them to interact without being directly coupled to each other. This pattern centralizes communication logic, making it easier to manage and maintain complex interactions between objects.
+
+The mediator acts as a central hub for interactions, facilitating communication and reducing dependencies between objects:
+
+1. **Mediator Interface (Optional):** This interface defines methods that objects can use to interact with the mediator. It might include methods for registering objects, sending messages, or notifying about changes.
+2. **Concrete Mediator Class:** This class implements the mediator's logic for coordinating communication between objects. It might maintain a list of registered objects, handle message routing, and manage interactions between them.
+3. **Colleagues (Concrete Objects):** These objects represent the entities that need to collaborate. They don't directly reference each other, instead, they interact through the mediator.
+
+#### **Benefits of Mediator Pattern**
+
+* **Reduced coupling:** Objects don't depend on each other directly, promoting loose coupling and maintainability.
+* **Centralized control:** The mediator can manage communication complexity and enforce rules or coordination between objects.
+* **Improved flexibility:** Adding or removing objects becomes easier as they only need to interact with the mediator.
+
+#### **Drawbacks of Mediator Pattern**
+
+* **Increased complexity:** Introduces an additional layer of abstraction (the mediator) which can add complexity.
+* **Potential bottleneck:** The mediator might become a bottleneck if it manages a large number of objects and complex interactions.
+* **Reduced flexibility for object behavior:** Objects might lose some autonomy as they rely on the mediator for communication.
+
+#### **When to Use Mediator Pattern**
+
+The Mediator Pattern is suitable when:
+
+* We have a complex network of objects that need to communicate frequently.
+* We want to reduce coupling between objects and improve maintainability.
+* We need centralized control over communication and interactions between objects.
+
+#### Example
+
+Let's consider a example of a chat room application, where users can send messages to each other. The Mediator Pattern can be used to create a chat room mediator that facilitates communication between users without them needing to know about each other.
+
+In this example, we create a `TextChatRoom` mediator object representing a chat room. We create `User` objects representing users in the chat room. Users interact with the chat room by sending messages through the mediator, without needing to know about each other.
+
+```java
+// Mediator: ChatRoom
+interface ChatRoom {
+    void sendMessage(User sender, String message);
+}
+
+// Concrete Mediator: TextChatRoom
+class TextChatRoom implements ChatRoom {
+    @Override
+    public void sendMessage(User sender, String message) {
+        System.out.println(sender.getName() + " sends message: " + message);
+    }
+}
+
+// Colleague: User
+class User {
+    private final String name;
+    private final ChatRoom chatRoom;
+
+    public User(String name, ChatRoom chatRoom) {
+        this.name = name;
+        this.chatRoom = chatRoom;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void sendMessage(String message) {
+        chatRoom.sendMessage(this, message);
+    }
+}
+
+// Main Application class
+public class Application {
+    public static void main(String[] args) {
+        // Create a chat room
+        ChatRoom chatRoom = new TextChatRoom();
+
+        // Create users
+        User user1 = new User("Alice", chatRoom);
+        User user2 = new User("Bob", chatRoom);
+
+        // User1 sends a message
+        user1.sendMessage("Hello, Bob!");
+
+        // User2 sends a message
+        user2.sendMessage("Hi, Alice!");
+    }
+}
+```
+
 
 
 ### **Memento Pattern**
