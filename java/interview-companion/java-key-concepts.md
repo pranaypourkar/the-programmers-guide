@@ -233,5 +233,30 @@ public abstract class AbstractPaymentGateway implements PaymentProcessor {
 
 
 
+### When is the object created with new keyword
 
+In Java, the object is created with the `new` keyword during **runtime**.
+
+The `new` keyword plays a crucial role in the object creation process:
+
+1. **Memory Allocation:** It triggers the allocation of memory for the new object on the heap. The heap is a special area of memory dedicated to storing objects in Java.
+2. **Constructor Call:** It invokes the constructor of the class specified after `new`. The constructor is responsible for initializing the object's state by assigning values to its fields.
+
+Therefore, the `new` keyword initiates object creation and memory allocation at runtime, not during compilation. This allows for dynamic object creation based on your program's needs.
+
+
+
+### Statically Typed (like Java) and Dynamically Typed Languages
+
+**Statically Typed Languages (like Java):**
+
+* **Type declaration at compile time:** We explicitly declare the data type (e.g., `int`, `String`) of a variable when we define it.
+* **Compile-time type checking:** The compiler verifies if the assigned values match the declared data type during compilation. This helps catch errors early on.
+* **Strong type safety:** Variables can only hold values of their declared type, preventing unexpected behavior at runtime.
+
+**Dynamically Typed Languages:**
+
+* **Type inferred at runtime:** The data type of a variable is determined by the value assigned to it at runtime, not by explicit declaration.
+* **Runtime type checking:** Type checking happens during program execution, not before. This offers more flexibility but can lead to runtime errors if incorrect types are used.
+* **Weaker type safety:** Variables can hold different data types throughout the program, potentially causing issues if not handled carefully.
 
