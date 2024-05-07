@@ -1,7 +1,10 @@
 # Table of contents
 
 * [Java](README.md)
-  * [Java Overview](java/java-overview.md)
+  * [Java Overview](java/java-overview/README.md)
+    * [Basics](java/java-overview/basics.md)
+    * [Data Types](java/java-overview/data-types/README.md)
+      * [Default Values](java/java-overview/data-types/default-values.md)
   * [Code Style](java/code-style.md)
   * [Tools](java/tools.md)
   * [Algorithm](system-design/algorithm.md)

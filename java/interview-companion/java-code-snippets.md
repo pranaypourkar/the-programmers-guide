@@ -29,7 +29,9 @@ System.out.println();
 for (i=0;i&#x3C;10;++i) {
     System.out.print(i);
 }
-</code></pre></td><td>0123456789 0123456789</td><td>Both loops will print the same sequence of numbers because the difference between <code>++i</code> and <code>i++</code> only matters when the incremented value of <code>i</code> is being used within the same expression.</td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody></table>
+</code></pre></td><td>0123456789 0123456789</td><td>Both loops will print the same sequence of numbers because the difference between <code>++i</code> and <code>i++</code> only matters when the incremented value of <code>i</code> is being used within the same expression.</td></tr><tr><td><pre class="language-java"><code class="lang-java">int i;
+System.out.print(i);
+</code></pre></td><td>Compile Error</td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody></table>
 
 
 
