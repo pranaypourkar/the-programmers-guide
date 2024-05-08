@@ -2,7 +2,7 @@
 
 In Java, the `this` keyword is a reference to the current instance of the class. It can be used inside a method or constructor to refer to the current object on which the method or constructor is being invoked.
 
-## **Reference to Current Object**:&#x20;
+## **Reference to Current Object**
 
 When we use `this`, we're referring to the object on which the current method or constructor is being called.
 
@@ -90,11 +90,11 @@ class Point {
 }
 ```
 
-### **Scope**:&#x20;
+### **Scope**
 
 The scope of `this` is limited to non-static contexts, such as instance methods and constructors. It cannot be used in **static** methods.
 
-### **No Separate Allocation**:&#x20;
+### **No Separate Allocation**
 
 `this` itself does not have any memory allocation. It's simply a reference to the current object instance.
 
