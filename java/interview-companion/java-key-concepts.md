@@ -260,3 +260,147 @@ Therefore, the `new` keyword initiates object creation and memory allocation at 
 * **Runtime type checking:** Type checking happens during program execution, not before. This offers more flexibility but can lead to runtime errors if incorrect types are used.
 * **Weaker type safety:** Variables can hold different data types throughout the program, potentially causing issues if not handled carefully.
 
+
+
+### `final` keyword on field, method and class
+
+The `final` keyword in Java is used to restrict modifications or inheritance. Here's a breakdown of its meaning when applied to fields (variables), methods, and classes:
+
+#### **Final Field (Variable):**
+
+* When a field (variable) is declared as `final`, its value cannot be changed after it's initialized. This ensures the value remains constant throughout the program.
+* **Example:**
+
+```java
+final int MAX_VALUE = 100;
+MAX_VALUE = 200; // This will cause a compile-time error because the value is final
+```
+
+#### **Final Method:**
+
+* When a method is declared as `final`, it cannot be overridden by subclasses. This prevents subclasses from modifying the behavior of that specific method.
+* **Example:**
+
+```java
+class Parent {
+  final void someMethod() {
+    System.out.println("Parent's method implementation");
+  }
+}
+
+class Child extends Parent {
+  // This will cause a compile-time error because someMethod() is final
+  void someMethod() {
+    System.out.println("Child's method implementation (not allowed)");
+  }
+}
+```
+
+#### **Final Class:**
+
+* When a class is declared as `final`, it cannot be extended or subclassed. This means you cannot create new classes that inherit from the final class.
+* **Example:**
+
+```java
+final class MathUtils {
+  static int add(int a, int b) {
+    return a + b;
+  }
+}
+
+// This will cause a compile-time error because MathUtils is final
+class MyMath extends MathUtils {
+  // ... (not allowed)
+}
+```
+
+#### **When to Use `final`:**
+
+Consider using `final` when:
+
+* We want to ensure a variable's value remains constant.
+* We want to prevent method overrides in subclasses (for specific well-defined behaviors).
+* We have a class that serves a utility purpose and doesn't need subclasses.
+
+By understanding the meaning of `final` with fields, methods, and classes, we can effectively control mutability, inheritance, and code structure in Java programs.
+
+
+
+### `transient` keyword in java
+
+The `transient` keyword in Java is used specifically in the context of **serialization**. Serialization is the process of converting an object's state into a stream of bytes that can be stored or transmitted. Deserialization is the opposite process of recreating an object from a byte stream. Transient fields are initialized to their default values during deserialization.
+
+Here's how the `transient` keyword affects serialization:
+
+**Purpose:**
+
+* When we declare a field (variable) of a class as `transient`, its value **will not be serialized** when the object is serialized.
+* This is useful for data members that don't represent the essential state of the object or that can be easily recalculated during deserialization. Or when we have fields that do not need to be saved or transferred along with the object's state.
+
+**Example**:
+
+```java
+// User class
+package src.main.java;
+
+import java.io.Serializable;
+
+public class User implements Serializable {
+
+    private String name;
+    private transient String password; // Password should not be serialized
+    private int age;
+
+    public User(String name, String password, int age) {
+        this.name = name;
+        this.password = password;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    // No getter for password (avoids accidental exposure)
+
+    @Override
+    public String toString() {
+        return "User [name=" + name + ", password (hidden), age=" + age + "]";
+    }
+}
+
+// Main Application class
+package src.main.java;
+
+import java.io.*;
+
+public class Application {
+
+    public static void main(String[] args) {
+        User user = new User("Alice", "secret123", 25);
+
+        // Serialize
+        try (FileOutputStream fileOut = new FileOutputStream("user.txt");
+             ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+            out.writeObject(user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // De-Serialize
+        try (FileInputStream fileIn = new FileInputStream("user.txt");
+             ObjectInputStream in = new ObjectInputStream(fileIn)) {
+            User deserializedUser = (User) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+
+

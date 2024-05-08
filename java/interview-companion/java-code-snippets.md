@@ -1,7 +1,5 @@
 # Java Code Snippets
 
-1. Commands and sample output
-
 <table data-full-width="true"><thead><tr><th>Code</th><th width="202">Output</th><th>Comment</th></tr></thead><tbody><tr><td><pre class="language-java"><code class="lang-java">System.out.print("Amigo");
 System.out.println("Is The");
 System.out.print("Best");
@@ -31,7 +29,15 @@ for (i=0;i&#x3C;10;++i) {
 }
 </code></pre></td><td>0123456789 0123456789</td><td>Both loops will print the same sequence of numbers because the difference between <code>++i</code> and <code>i++</code> only matters when the incremented value of <code>i</code> is being used within the same expression.</td></tr><tr><td><pre class="language-java"><code class="lang-java">int i;
 System.out.print(i);
-</code></pre></td><td>Compile Error</td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody></table>
+</code></pre></td><td>Compile Error</td><td></td></tr><tr><td><pre class="language-java"><code class="lang-java">System.out.println(s1 = "aaa"); // aaa
+System.out.println(i = 10); // 10
+</code></pre></td><td></td><td>Assignmnet operator while printing is valid</td></tr><tr><td><pre class="language-java"><code class="lang-java">int[] arr = new int[10];
+System.out.println(arr);
+</code></pre></td><td><code>[I@hashcode</code> (the actual hashcode will vary). This is not the actual content of the array, but a memory address and a hashcode representing the array object itself.</td><td><p>An array in Java is an object. It doesn't have a built-in way to directly print its contents using <code>System.out.println(arr)</code>. When you try to print the array itself, Java prints the object representation, which includes:<code>[I</code>: This indicates the array's type. <code>[I</code> signifies an array of integers (<code>int</code>).</p><p><code>@</code>: This symbol separates the type information from the hashcode.</p><p><code>hashcode</code>: This is a unique identifier generated for the array object itself. It's used for internal memory management purposes.</p></td></tr><tr><td><pre class="language-java"><code class="lang-java">public static void main(String[] args) {
+    int[] arr = new int[10];
+    System.out.println(arr[9]);
+}
+</code></pre></td><td>0</td><td>Array elements are initialized with default 0 value.</td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody></table>
 
 
 

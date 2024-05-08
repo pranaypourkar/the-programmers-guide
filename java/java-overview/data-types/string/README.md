@@ -128,6 +128,7 @@ Because strings are immutable, operations such as concatenation (`+` operator) o
 * `int codePointAt(int index)`: Returns the Unicode code point at the specified index.
 * `int codePointBefore(int index)`: Returns the Unicode code point before the specified index.
 * `int codePointCount(int beginIndex, int endIndex)`: Returns the number of Unicode code points in the specified range of text.
+* `void getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin)`:  It is used to copy characters from a `String` into a destination character array. It allows to specify the range of characters to be copied and the destination array where the characters will be stored.
 
 ### **Searching:**
 
@@ -166,3 +167,17 @@ Because strings are immutable, operations such as concatenation (`+` operator) o
 
 * `static String valueOf(primitive data type x)`: Returns the string representation of the passed argument.
 * `static String valueOf(Object obj)`: Returns the string representation of the passed object.
+
+### Encoding and Decoding
+
+#### Methods for String to Byte Conversion:
+
+`getBytes(String charsetName)`: Converts the string to a byte array using the specified character encoding.
+
+`getBytes()`: Converts the string to a byte array using the platform's default character encoding.
+
+#### Methods for Byte to String Conversion:
+
+`String(byte[] bytes)`: Constructs a new String by decoding the specified byte array using the platform's default character encoding.
+
+`String(byte[] bytes, String charsetName)`: Constructs a new String by decoding the specified byte array using the specified character encoding.
