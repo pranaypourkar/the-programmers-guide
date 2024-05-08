@@ -37,7 +37,19 @@ System.out.println(arr);
     int[] arr = new int[10];
     System.out.println(arr[9]);
 }
-</code></pre></td><td>0</td><td>Array elements are initialized with default 0 value.</td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody></table>
+</code></pre></td><td>0</td><td>Array elements are initialized with default 0 value.</td></tr><tr><td><pre class="language-java"><code class="lang-java">public class Application {
+    static ArithmeticException e;
+    public static void main(String[] args) {
+        throw e;
+    }
+}
+</code></pre></td><td>NullPointer Exception</td><td></td></tr><tr><td><pre class="language-javascript"><code class="lang-javascript">public class Application {
+    static ArithmeticException e = new ArithmeticException();
+    public static void main(String[] args) {
+        throw e;
+    }
+}
+</code></pre></td><td>Arithmetic Excpetion</td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody></table>
 
 
 
