@@ -4,6 +4,10 @@
 
 Abstraction is one of the key concepts in object-oriented programming (OOP) that allows to represent complex real-world entities in a simplified manner. It involves hiding the complex implementation details of a system or object and exposing only the essential features or functionalities to the outside world. Abstraction focuses on what an object does rather than how it accomplishes its tasks.
 
+{% hint style="info" %}
+Abstraction is a broader principle, while abstract classes are a specific tool used to implement abstraction.
+{% endhint %}
+
 ## Key Points about Abstraction
 
 1. **Hiding Complexity**: Abstraction hides the complex implementation details of a system or object, allowing users to interact with it at a higher level without needing to understand the intricacies of its internal workings.
@@ -85,3 +89,155 @@ Consider the concept of a `Vehicle` in a transportation system. From a user's pe
 
 
 
+## What is Abstract class?
+
+### Description
+
+An abstract class in Java is a class that cannot be instantiated directly, meaning you cannot create objects of an abstract class using the `new` keyword. Instead, it serves as a blueprint for other classes and may contain both abstract and concrete methods.
+
+{% hint style="info" %}
+#### Rules for Abstract Classes:
+
+1. If a class contains at least one abstract method, it must be declared as abstract.
+2. Abstract methods cannot have a body (implementation) and end with a semicolon (;).
+3. Abstract classes cannot be instantiated directly with the `new` keyword.
+4. Subclasses of an abstract class must either provide implementations for all abstract methods or be declared abstract themselves.
+{% endhint %}
+
+### **Key Characteristics:**
+
+1. **Abstract Keyword:** An abstract class is declared using the `abstract` keyword before the class name.
+
+```java
+// Abstract class
+public abstract class Shape {
+    // Abstract method
+    public abstract double area();
+
+    // Concrete method
+    public void display() {
+        System.out.println("This is a shape.");
+    }
+}
+```
+
+2. **Abstract Methods:** Abstract methods are method declarations that **don't have a body** (implementation). They are declared using the `abstract` keyword before the method return type. Subclasses that inherit from the abstract class **must provide implementations** for all inherited abstract methods. Abstract methods define the functionality that subclasses must adhere to, promoting a common interface within the class hierarchy.
+
+```java
+// Abstract class with abstract method
+abstract class AbstractShape {
+    // Abstract method without implementation
+    public abstract double area();
+}
+
+// Concrete subclass implementing AbstractShape
+class Circle extends AbstractShape {
+    private double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    // Implementing abstract method
+    @Override
+    public double area() {
+        return Math.PI * radius * radius;
+    }
+}
+```
+
+3. **Non-Abstract Methods:** Abstract classes can also have concrete methods (methods with a body) that provide default implementations for common functionalities. Subclasses can inherit and potentially override these methods to customize behavior.
+
+```java
+// Abstract class with both abstract and concrete methods
+abstract class AbstractShape {
+    // Abstract method without implementation
+    public abstract double area();
+
+    // Concrete method with implementation
+    public void display() {
+        System.out.println("This is a shape.");
+    }
+}
+
+// Concrete subclass implementing AbstractShape
+class Circle extends AbstractShape {
+    private double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    // Implementing abstract method
+    @Override
+    public double area() {
+        return Math.PI * radius * radius;
+    }
+}
+```
+
+4. **Instantiation:** You cannot create objects directly from an abstract class using the `new` keyword. Subclasses, which are not abstract, can be instantiated.
+
+```java
+// Abstract class
+abstract class AbstractShape {
+    // Abstract method without implementation
+    public abstract double area();
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        // Cannot instantiate AbstractShape directly
+        // AbstractShape shape = new AbstractShape(); // Error: Cannot instantiate abstract class
+
+        // But can use polymorphism with concrete subclasses
+        AbstractShape circle = new Circle(5);
+        System.out.println("Area of circle: " + circle.area());
+    }
+}
+```
+
+5. **Can Contain Fields**: Abstract classes can contain fields (variables), constructors, static methods, and instance methods, similar to regular classes.
+
+```java
+// Abstract class with fields
+abstract class Animal {
+    private String name;
+
+    // Constructor
+    public Animal(String name) {
+        this.name = name;
+    }
+
+    // Getter method for name
+    public String getName() {
+        return name;
+    }
+
+    // Abstract method
+    public abstract void makeSound();
+}
+
+// Concrete subclass
+class Dog extends Animal {
+    // Constructor
+    public Dog(String name) {
+        super(name);
+    }
+
+    // Implementation of abstract method
+    @Override
+    public void makeSound() {
+        System.out.println(getName() + " barks!");
+    }
+}
+
+// Main class
+public class Main {
+    public static void main(String[] args) {
+        Animal dog = new Dog("Buddy");
+        dog.makeSound(); // Output: Buddy barks!
+    }
+}
+```
