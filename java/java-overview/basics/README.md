@@ -35,3 +35,7 @@
 **Java Development Kit (JDK)**: JDK is a software development kit used to develop Java applications. It includes the Java Runtime Environment (JRE), compiler, debugger, and other tools.
 
 **Integrated Development Environments (IDEs)**: IDEs like Eclipse, IntelliJ IDEA, and NetBeans provide tools and features to streamline Java development, including code editing, debugging, and project management.
+
+**Subclass** : A subclass is also known as a derived class or a child class. A subclass is a class that inherits attributes and behaviors (fields and methods) from another class called its superclass or parent class. The subclass can extend the functionality of its superclass by adding new methods and fields or by overriding existing methods. It can also have its own unique methods and fields.
+
+\
