@@ -16,13 +16,13 @@ After creating the bean instance, Spring populates its properties with values. T
 
 #### 3. Bean Post-Processing (Initialization Callbacks):
 
-Once the properties are set, the container calls any registered BeanPostProcessors to perform any necessary post-processing on the bean instance. BeanPostProcessors allow for custom modifications to bean instances before and after initialization. These are beans that can intercept the lifecycle of other beans and perform additional logic before or after initialization. Two important methods defined in BeanPostProcessor interface are `postProcessBeforeInitialization()` and `postProcessAfterInitialization()`.
+Once the properties are set, the container calls any registered BeanPostProcessors to perform any necessary post-processing on the bean instance. BeanPostProcessors allow for custom modifications to bean instances <mark style="background-color:yellow;">**before**</mark> and <mark style="background-color:yellow;">**after**</mark> initialization. These are beans that can intercept the lifecycle of other beans and perform additional logic before or after initialization. Two important methods defined in BeanPostProcessor interface are `postProcessBeforeInitialization()` and `postProcessAfterInitialization()`.
 
 #### 4. Bean Custom Initialization:
 
 After the post-processing phase, the container calls the bean's initialization callbacks to perform custom initialization logic. This can be achieved through:
 
-* Implementing the `InitializingBean` interface and overriding the `afterPropertiesSet()` method.
+* Implementing the `InitializingBean` interface (_**org.springframework.beans.factory.InitializingBean**_) and overriding the `afterPropertiesSet()` method.
 * Specifying an initialization method using the `init-method` attribute in XML configuration or `@PostConstruct` annotation in Java configuration.
 
 The initialization callbacks are typically used to perform any initialization tasks required by the bean before it's ready for use.
