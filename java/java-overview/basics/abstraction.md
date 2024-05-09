@@ -104,7 +104,17 @@ An abstract class in Java is a class that cannot be instantiated directly, meani
 4. Subclasses of an abstract class must either provide implementations for all abstract methods or be declared abstract themselves.
 {% endhint %}
 
-### **Key Characteristics:**
+{% hint style="warning" %}
+Thread is not a abstract class.
+
+Opposite of Abstract class is concrete class.
+
+Abstract class supports multilevel inheritance.
+
+Interface is also used to achieve abstraction.
+{% endhint %}
+
+### **Key Characteristics**
 
 1. **Abstract Keyword:** An abstract class is declared using the `abstract` keyword before the class name.
 
@@ -241,3 +251,54 @@ public class Main {
     }
 }
 ```
+
+
+
+### Other Details
+
+#### Abstract class in Java can contain inner abstract classes, inner concrete classes, and static methods within it.
+
+```java
+abstract class OuterAbstract {
+    // Abstract inner class
+    abstract class InnerAbstract {
+        public abstract void abstractMethod();
+    }
+
+    // Concrete inner class
+    class InnerConcrete {
+        public void concreteMethod() {
+            System.out.println("Concrete method in InnerConcrete class.");
+        }
+    }
+
+    // Static method
+    public static void staticMethod() {
+        System.out.println("Static method in OuterAbstract class.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Accessing static method
+        OuterAbstract.staticMethod(); // Output: Static method in OuterAbstract class.
+
+        // Creating instance of concrete inner class
+        OuterAbstract outer = new OuterAbstract() {
+            // Anonymous subclass of OuterAbstract
+        };
+        OuterAbstract.InnerConcrete innerConcrete = outer.new InnerConcrete();
+        innerConcrete.concreteMethod(); // Output: Concrete method in InnerConcrete class.
+
+        // Creating instance of abstract inner class (needs to be extended)
+        OuterAbstract.InnerAbstract innerAbstract = outer.new InnerAbstract() {
+            @Override
+            public void abstractMethod() {
+                System.out.println("Abstract method implementation in InnerAbstract class.");
+            }
+        };
+        innerAbstract.abstractMethod(); // Output: Abstract method implementation in InnerAbstract class.
+    }
+}
+```
+
