@@ -1,6 +1,6 @@
 # Set 1 - Maths theory & Pattern
 
-## Write a Program to Swap Two Numbers
+## Program to Swap Two Numbers
 
 Approaches based on time and space complexity
 
@@ -60,7 +60,7 @@ There are many approaches.
 
 1. **Using Arrays**
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="188"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="188"><figcaption></figcaption></figure>
 
 ```java
 public static void decimalToBinary(int n) 
@@ -377,7 +377,7 @@ public static void printPascal(int k)
 
 ## Print fibonacci series
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Using Iterative Method
 
@@ -513,7 +513,7 @@ for (int row=0;row<arr.length;row++){
 
 ## GCD or HCF of two numbers
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Using Iteration
 
@@ -535,7 +535,7 @@ int gcd(int a, int b) {
 
 ### Using Euclidean algorithm for GCD of two numbers (Involves Recursion)
 
-<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```java
     // Recursive function to return gcd of a and b
@@ -706,3 +706,91 @@ int findLCM(int a, int b)
 **Time Complexity:** O(min(a,b))\
 **Auxiliary Space:** O(1)
 
+
+
+## Check if String is Palindrome
+
+A string is said to be a palindrome if it is the same if we start reading it from left to right or right to left. In this article, we will learn how to check if a string is a palindrome in Java.
+
+<figure><img src="../../../.gitbook/assets/image.png" alt="" width="330"><figcaption></figcaption></figure>
+
+### Using Iteration Method
+
+```java
+static boolean isPalindrome(String str)
+    {
+        // Initializing an empty string to store the reverse of the original str
+        String rev = "";
+
+        for (int i = str.length() - 1; i >= 0; i--) {
+            rev = rev + str.charAt(i);
+        }
+
+        // Checking if both the strings are equal
+        return str.equals(rev);
+    }
+```
+
+**Time Complexity:** O(n)
+
+**Space Complexity:** O(n)
+
+### Using Improved Iteration Method
+
+```java
+static boolean isPalindrome(String str) {
+        int size = str.length();
+        for (int i=0; i<size/2;i++) {
+            if (str.charAt(i) != str.charAt(size-i-1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+```
+
+**Time Complexity:** O(n) (number of iterations is proportional to n/2 i.e. half of string)
+
+**Space Complexity:** O(1)
+
+### Using String Builder
+
+```java
+static boolean isPalindrome2(String str) {
+        StringBuilder sb = new StringBuilder(str);
+        String reverse = sb.reverse().toString();
+        return str.equals(reverse);
+    }
+```
+
+**Time Complexity:** O(n)
+
+**Space Complexity:** O(n)
+
+### Using Recursion
+
+This is like the two-pointer approach where we will check the first and the last value of the string.
+
+```java
+// i = 0, j = A.length() - 1, A = input string
+public static boolean isPalindrome(int i, int j,
+                                       String A)
+    {
+        // comparing the two pointers
+        if (i >= j) {
+            return true;
+        }
+
+        // comparing the characters on those pointers
+        if (A.charAt(i) != A.charAt(j)) {
+            return false;
+        }
+
+        // checking everything again recursively
+        return isPalindrome(i + 1, j - 1, A);
+    }
+```
+
+**Time Complexity:** O(n), where n is the length of the input string. Function recursively calls itself for the characters at positions (i+1, j-1) until the pointers i and j cross each other or the characters at the pointers are not equal.
+
+**Space Complexity:** O(n), where n is the length of the input string. This is because each recursive call creates a new stack frame that stores the current values of the function parameters and local variables. In the worst case, the function call stack may grow as large as n/2 (when the input string is a palindrome), so the space complexity is O(n).

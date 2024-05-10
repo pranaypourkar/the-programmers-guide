@@ -355,7 +355,7 @@ public class Application {
 
 ### Remove all occurrences of an element from Array
 
-<figure><img src="../../../.gitbook/assets/image.png" alt="" width="530"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1).png" alt="" width="530"><figcaption></figcaption></figure>
 
 #### Method 1: Using iteration
 
@@ -382,6 +382,14 @@ int[] result = Arrays.stream(arr)
                 .toArray();
 ```
 
+* **Time Complexity**: O(n)
+
+The `Arrays.stream(arr)` operation takes O(n) time, where n is the length of the input array `arr`. The `filter()` operation iterates through each element of the stream and applies the predicate `num -> num != key`. In the worst case, this operation also takes O(n) time. The `toArray()` operation collects the elements of the stream into an array, which takes O(n) time.
+
+* **Space Complexity**: O(n)
+
+The space complexity is O(n) because we are creating a new array to store the filtered elements. The size of this array is equal to the number of elements that pass the filter condition, which could be up to n elements in the worst case.
+
 #### Method 3: Using List
 
 ```java
@@ -395,7 +403,11 @@ int[] result = arrList.stream()
         .toArray();
 ```
 
+* **Time Complexity**: O(n)
 
+Creating the list `arrList` from the array `arr` using `IntStream.of(arr).boxed().collect(Collectors.toList())` takes O(n) time, where n is the length of the input array `arr`. Remaining is same as above Method.
+
+* **Space Complexity**: O(n)
 
 
 

@@ -49,7 +49,12 @@ System.out.println(arr);
         throw e;
     }
 }
-</code></pre></td><td>Arithmetic Excpetion</td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody></table>
+</code></pre></td><td>Arithmetic Excpetion</td><td></td></tr><tr><td><pre class="language-java"><code class="lang-java">int[] result = {1,2,3};
+List&#x3C;Integer> arrList = IntStream.of(arr)
+        .boxed()
+        .collect(Collectors.toList());
+
+</code></pre></td><td></td><td>Convert int[] to List&#x3C;Integer></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr></tbody></table>
 
 
 
