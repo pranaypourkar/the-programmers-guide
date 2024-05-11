@@ -12,6 +12,8 @@ The Spring Bean Lifecycle refers to the well-defined stages a bean goes through 
 
 ## Stages
 
+<figure><img src="../../../.gitbook/assets/image (85).png" alt="" width="563"><figcaption><p>Reference - <a href="https://bootcamptoprod.com/spring-bean-life-cycle-explained/">https://bootcamptoprod.com/spring-bean-life-cycle-explained/</a></p></figcaption></figure>
+
 ### 1. Bean Instantiation:
 
 The first step in the bean lifecycle is the instantiation of the bean. This occurs when the Spring IoC container reads the bean definition and creates an instance of the bean (corresponding class) based on the configuration metadata provided (e.g., XML configuration, Java annotations, or Java-based configuration). This instantiation can happen through various mechanisms depending on the bean scope (singleton, prototype, etc.).&#x20;
@@ -218,8 +220,6 @@ Additional dependency will be needed to include in pom.xml for javax annotations
 Not all stages are mandatory. For instance, a bean might not require custom initialization or destruction logic.
 {% endhint %}
 
-
-
 ## Example
 
 ### Structure
@@ -412,8 +412,6 @@ public class Application {
 ### Run the application and verify the output
 
 <figure><img src="../../../.gitbook/assets/image (83).png" alt=""><figcaption></figcaption></figure>
-
-
 
 ## FAQs
 
