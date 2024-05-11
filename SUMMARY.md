@@ -76,6 +76,8 @@
       * [HTTP Verbs or Methods](api/api-design/rest-api/http-verbs-or-methods.md)
       * [HTTP Headers](api/api-design/rest-api/http-headers.md)
   * [API Architecture](api/api-architecture.md)
+  * [API Specification](api/api-specification/README.md)
+    * [OpenAPI](api/api-specification/openapi.md)
 * [Spring](spring/README.md)
   * [Spring Overview](spring/spring-overview/README.md)
     * [Spring Core](spring/spring-overview/spring-core.md)
