@@ -140,4 +140,6 @@
   * [Terminology](sql/terminology.md)
   * [DBMS](sql/dbms/README.md)
     * [RDBMS](sql/dbms/rdbms.md)
+    * [DBMS Architecture](sql/dbms/dbms-architecture.md)
+    * [DBMS Structure](sql/dbms/dbms-structure.md)
   * [Best Practice](sql/best-practice.md)
