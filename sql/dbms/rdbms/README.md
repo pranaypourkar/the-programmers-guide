@@ -8,7 +8,7 @@
 It is called Relational Database Management System (RDBMS) because it is based on the relational model introduced by E.F. Codd.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 ## **Key Points**
 

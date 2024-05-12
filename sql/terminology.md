@@ -60,3 +60,7 @@ A special type of stored procedure that is automatically executed or fired in re
 
 Components within a statement that define specific actions (e.g., SELECT clause in a SELECT statement).
 
+### Operator
+
+A special keyword used to join or change clauses within a WHERE clause. Also known as logical operators. Eg. OR, AND, IN etc
+
