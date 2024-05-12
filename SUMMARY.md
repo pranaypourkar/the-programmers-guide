@@ -138,5 +138,6 @@
     * [Dynamic Property Registration](tests/integration-test/dynamic-property-registration.md)
 * [SQL](sql/README.md)
   * [Terminology](sql/terminology.md)
-  * [DBMS](sql/dbms.md)
+  * [DBMS](sql/dbms/README.md)
+    * [RDBMS](sql/dbms/rdbms.md)
   * [Best Practice](sql/best-practice.md)
