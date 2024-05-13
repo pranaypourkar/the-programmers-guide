@@ -64,3 +64,13 @@ Components within a statement that define specific actions (e.g., SELECT clause 
 
 A special keyword used to join or change clauses within a WHERE clause. Also known as logical operators. Eg. OR, AND, IN etc
 
+### **Degree**
+
+Represents the number of columns in a table. It indicates the complexity of each record (row) in the table. A higher degree (more columns) can provide richer data but also increases storage requirements and complexity of managing the data.\
+**Example**: A Customers table with columns for CustomerID, FirstName, LastName, Email, and PhoneNumber has a degree of 5.
+
+### **Cardinality**
+
+Represents the number of rows in a table. It indicates the overall size or volume of data stored in the table. A higher cardinality (more rows) can lead to larger storage needs and potentially slower query performance for retrieving data.\
+**Example**: A Customers table with information for 1000 customers has a cardinality of 1000.
+
