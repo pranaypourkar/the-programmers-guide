@@ -33,11 +33,21 @@ We have a university where a Student enrolls in courses. A Student must be assig
 
 <figure><img src="../../../../.gitbook/assets/image (2).png" alt="" width="563"><figcaption></figcaption></figure>
 
+{% hint style="success" %}
+Note the underlined primary key attribute
+{% endhint %}
+
 ### Step 5: Create ERD Diagram
 
 <figure><img src="../../../../.gitbook/assets/image (94).png" alt="" width="563"><figcaption></figcaption></figure>
 
 
 
+## MySQL Sample ERD Diagrams
 
+### Employee - Department
+
+[https://www3.ntu.edu.sg/home/ehchua/programming/sql/SampleDatabases.html](https://www3.ntu.edu.sg/home/ehchua/programming/sql/SampleDatabases.html)
+
+<figure><img src="../../../../.gitbook/assets/SampleEmployees.png" alt="" width="485"><figcaption></figcaption></figure>
 
