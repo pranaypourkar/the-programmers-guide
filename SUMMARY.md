@@ -142,6 +142,7 @@
     * [RDBMS](sql/dbms/rdbms/README.md)
       * [SQL Commands](sql/dbms/rdbms/sql-commands/README.md)
         * [DDL (Data Definition Language)](sql/dbms/rdbms/sql-commands/ddl-data-definition-language.md)
+        * [DML (Data Manipulation Language)](sql/dbms/rdbms/sql-commands/dml-data-manipulation-language.md)
         * [DBA (Database Administrator)](sql/dbms/rdbms/sql-commands/dba-database-administrator.md)
       * [Entity Relationship Diagram (ERD)](sql/dbms/rdbms/entity-relationship-diagram-erd/README.md)
         * [ERD Examples](sql/dbms/rdbms/entity-relationship-diagram-erd/erd-examples.md)
