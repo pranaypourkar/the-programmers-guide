@@ -148,6 +148,7 @@
         * [DQL (Data Query Language)](sql/dbms/rdbms/sql-commands/dql-data-query-language.md)
       * [O’Reilly SQL Cookbook (2nd Edition)](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/README.md)
         * [Retrieving Records](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/retrieving-records.md)
+        * [Sorting Query Results](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/sorting-query-results.md)
       * [Entity Relationship Diagram (ERD)](sql/dbms/rdbms/entity-relationship-diagram-erd/README.md)
         * [ERD Examples](sql/dbms/rdbms/entity-relationship-diagram-erd/erd-examples.md)
       * [Other Concepts](sql/dbms/rdbms/other-concepts/README.md)
