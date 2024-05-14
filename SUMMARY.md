@@ -150,6 +150,8 @@
         * [Retrieving Records](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/retrieving-records.md)
       * [Entity Relationship Diagram (ERD)](sql/dbms/rdbms/entity-relationship-diagram-erd/README.md)
         * [ERD Examples](sql/dbms/rdbms/entity-relationship-diagram-erd/erd-examples.md)
+      * [Other Concepts](sql/dbms/rdbms/other-concepts/README.md)
+        * [Order of Execution of the query](sql/dbms/rdbms/other-concepts/order-of-execution-of-the-query.md)
     * [DBMS Architecture](sql/dbms/dbms-architecture.md)
     * [DBMS Structure](sql/dbms/dbms-structure.md)
   * [Best Practice](sql/best-practice.md)
