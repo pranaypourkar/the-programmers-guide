@@ -149,6 +149,7 @@
       * [O’Reilly SQL Cookbook (2nd Edition)](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/README.md)
         * [Retrieving Records](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/retrieving-records.md)
         * [Sorting Query Results](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/sorting-query-results.md)
+        * [Working with Multiple Tables](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/working-with-multiple-tables.md)
       * [Entity Relationship Diagram (ERD)](sql/dbms/rdbms/entity-relationship-diagram-erd/README.md)
         * [ERD Examples](sql/dbms/rdbms/entity-relationship-diagram-erd/erd-examples.md)
       * [Other Concepts](sql/dbms/rdbms/other-concepts/README.md)
