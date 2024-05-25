@@ -4,6 +4,12 @@
 
 SQL operators are symbols or keywords used to perform operations on data. They can be classified into several categories.
 
+{% hint style="info" %}
+**Clauses:** In SQL, clauses are typically complete statements within a query that define specific parts of its functionality. Examples include `SELECT`, `FROM`, `WHERE`, `JOIN`, etc. These clauses work together to form the overall query structure.
+
+**Operators:** Operators are symbols or keywords that perform specific operations on data or expressions within a query. They typically combine values or manipulate data in some way.
+{% endhint %}
+
 ## Different Operators
 
 ### **Arithmetic Operators**:&#x20;
