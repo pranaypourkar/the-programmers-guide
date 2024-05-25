@@ -6,6 +6,8 @@ The `MINUS` operator in SQL is used to return all rows from the first `SELECT` s
 
 {% hint style="info" %}
 **Supported Databases**: The `MINUS` operator is supported by Oracle and some other SQL databases but not by all, such as MySQL or SQL Server. In databases that do not support `MINUS`, similar functionality can be achieved using `LEFT JOIN` or subqueries.
+
+The `MINUS` and `EXCEPT` operators serve the same purpose i.e. they return all rows from the first `SELECT` statement that are not present in the second `SELECT` statement. However, their interchangeability depends on the specific SQL database management system (DBMS) being used.
 {% endhint %}
 
 1. **Eliminates Duplicates**: The `MINUS` operator automatically removes duplicate rows from the result set.
