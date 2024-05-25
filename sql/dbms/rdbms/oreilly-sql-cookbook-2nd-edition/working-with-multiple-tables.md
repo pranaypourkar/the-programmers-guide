@@ -89,5 +89,61 @@ select deptno from dept
 where deptno not in (select deptno from emp)
 ```
 
+## Retrieving Rows from One Table That Do Not Correspond to Rows in Another
+
+We want to find rows that are in one table that do not have a match in another table, for two tables that have common keys. For example, we want to find which departments have no employees.
+
+```
+select d.*
+from dept d left outer join emp e
+on (d.deptno = e.deptno)
+where e.deptno is null
+```
+
+## Adding Joins to a Query Without Interfering with Other Joins
+
+We have a query that returns the results. You need additional information, but when trying to get it, we started losing data from the original result set.
+
+**Example**: We want to return all employees, the location of the department in which they work, and the date they received a bonus.
+
+```
+select e.ename, d.loc, eb.received
+ from emp e join dept d
+  on (e.deptno=d.deptno)
+ left join emp_bonus eb
+  on (e.empno=eb.empno)
+order by 2
+```
+
+## Determining Whether Two Tables Have the Same Data
+
+We want to know whether two tables or views have the same data (cardinality and values). We can perform SET difference MINUS or EXCEPT, depending on the DBMS, to make the problem of comparing tables easy to solve.
+
+```
+(
+select empno,ename,job,mgr,hiredate,sal,comm,deptno,count(*) as cnt
+  from V
+  group by empno,ename,job,mgr,hiredate,sal,comm,deptno
+minus
+select empno,ename,job,mgr,hiredate,sal,comm,deptno,count(*) as cnt
+  from emp
+  group by empno,ename,job,mgr,hiredate,sal,comm,deptno
+)
+union all
+(
+select empno,ename,job,mgr,hiredate,sal,comm,deptno,count(*) as cnt
+  from emp
+  group by empno,ename,job,mgr,hiredate,sal,comm,deptno
+minus
+select empno,ename,job,mgr,hiredate,sal,comm,deptno,count(*) as cnt
+  from V
+  group by empno,ename,job,mgr,hiredate,sal,comm,deptno
+)
+```
+
+
+
+
+
 
 
