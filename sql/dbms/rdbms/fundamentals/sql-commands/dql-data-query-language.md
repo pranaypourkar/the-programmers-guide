@@ -1,6 +1,6 @@
 # DQL (Data Query Language)
 
-DQL (Data Query Language) forms the core of data retrieval in Oracle. DQL commands, specifically the `SELECT` statement, allows to extract and manipulate data from the database tables based on specific criteria.
+DQL (Data Query Language) forms the core of data retrieval. DQL commands, specifically the `SELECT` statement, allows to extract and manipulate data from the database tables based on specific criteria.
 
 ## SELECT
 
