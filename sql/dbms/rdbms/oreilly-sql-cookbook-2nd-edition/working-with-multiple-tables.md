@@ -174,8 +174,6 @@ FROM table1
 NATURAL JOIN table2;
 ```
 
-
-
 {% hint style="info" %}
 #### Equijoin
 
@@ -204,9 +202,110 @@ JOIN Customers USING (CustomerID);
 ```
 {% endhint %}
 
+## `INTERSECT` Clause
+
+The `INTERSECT` clause in SQL is used to combine the results of two or more `SELECT` queries and return only the rows that are common to all queries. In other words, it returns the intersection of the result sets.
+
+### Characteristics of the `INTERSECT` Clause:
+
+1. **Returns Common Rows**: The `INTERSECT` clause returns only the rows that appear in the result sets of both queries.
+2. **Duplicate Elimination**: Duplicate rows are removed from the final result set. The result set contains only distinct rows.
+3. **Column Match**: The number of columns and the data types of the columns in the `SELECT` statements must match.
+
+```sql
+SELECT column1, column2, ...
+FROM table1
+INTERSECT
+SELECT column1, column2, ...
+FROM table2;
+```
+
+### Example:
+
+Consider two tables, `employees` and `managers`. We want to find employees who are also managers using `INTERSECT` clause
+
+**`employees` table:**
+
+| emp\_id | name    | dept\_id |
+| ------- | ------- | -------- |
+| 1       | Alice   | 101      |
+| 2       | Bob     | 102      |
+| 3       | Charlie | 103      |
+| 4       | Dave    | 104      |
+
+**`managers` table:**
+
+| mgr\_id | name    | dept\_id |
+| ------- | ------- | -------- |
+| 2       | Bob     | 102      |
+| 3       | Charlie | 103      |
+| 5       | Eve     | 105      |
+
+```sql
+SELECT name, dept_id
+FROM employees
+INTERSECT
+SELECT name, dept_id
+FROM managers;
+```
+
+#### Output:
+
+| name    | dept\_id |
+| ------- | -------- |
+| Bob     | 102      |
+| Charlie | 103      |
 
 
 
+## Combining Related Rows
+
+Suppose we want to return rows from multiple tables by joining on a known common column or joining on columns that share common values. For example, we want to display the names of all employees in department 10 along with the location of each employee’s department, but that data is stored in two separate tables.
+
+```
+select e.ename, d.loc 
+from emp e, dept d
+where e.deptno = d.deptno and e.deptno = 10;
+```
+
+{% hint style="info" %}
+The solution is an example of a join, or more accurately an equi-join, which is a type of inner join. Use the JOIN clause if we prefer to have the join logic in the FROM clause rather than the WHERE clause. Both styles are ANSI compliant.
+{% endhint %}
+
+```
+select e.ename, d.loc
+from emp e inner join dept d
+on (e.deptno = d.deptno)
+where e.deptno = 10
+```
+
+## Finding Rows in Common Between Two Tables
+
+We want to find common rows between two tables, but there are multiple columns on which we can join. Suppose we have a view **V** with us.
+
+<pre><code>-- Solution 1 using where clause
+select e.empno,e.ename,e.job,e.sal,e.deptno
+from emp e, V
+where e.ename = v.ename
+and e.job = v.job
+and e.sal = v.sal
+
+-- Solution 2 using join clause
+select e.empno,e.ename,e.job,e.sal,e.deptno
+from emp e join V
+on ( e.ename = v.ename
+and e.job = v.job
+and e.sal = v.sal )
+
+-- Solution 3 using intersect (specific to Oracle, PostgreSQL)
+select empno,ename,job,sal,deptno
+from emp
+where (ename,job,sal) in (
+select ename,job,sal from emp
+intersect
+select ename,job,sal from V
+<strong>)
+</strong></code></pre>
 
 
 
