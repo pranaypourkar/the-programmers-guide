@@ -4,6 +4,20 @@
 
 The `EXCEPT` operator in SQL is used to return all rows from the first `SELECT` statement that are not present in the second `SELECT` statement. It effectively subtracts the result set of the second query from the result set of the first query. It is often used to find differences between two sets of data.
 
+{% hint style="info" %}
+Oracle supports both EXCEPT and its functionally equivalent counterpart, MINUS.
+
+**Why EXCEPT is Preferred:**
+
+* Wider adoption across different SQL database systems.
+* Alignment with the ANSI SQL standard for portability.
+
+**Choosing EXCEPT or EXCEPT ALL:**
+
+* Use `EXCEPT` (default) for distinct results, excluding duplicates.
+* Use `EXCEPT ALL` (optional) if we specifically need all rows from the difference, including duplicates present in the first result set.
+{% endhint %}
+
 ## Characteristics of the `EXCEPT` Operator
 
 1. **Eliminates Duplicates**: The `EXCEPT` operator automatically removes duplicate rows from the result set.

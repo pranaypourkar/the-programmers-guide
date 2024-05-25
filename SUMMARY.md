@@ -151,6 +151,8 @@
           * [INTERSECT](sql/dbms/rdbms/fundamentals/sql-operators/intersect.md)
           * [EXCEPT](sql/dbms/rdbms/fundamentals/sql-operators/except.md)
           * [MINUS](sql/dbms/rdbms/fundamentals/sql-operators/minus.md)
+          * [IN and NOT IN](sql/dbms/rdbms/fundamentals/sql-operators/in-and-not-in.md)
+          * [EXISTS and NOT EXISTS](sql/dbms/rdbms/fundamentals/sql-operators/exists-and-not-exists.md)
         * [SQL Clauses](sql/dbms/rdbms/fundamentals/sql-clauses/README.md)
           * [Joins](sql/dbms/rdbms/fundamentals/sql-clauses/joins.md)
       * [O’Reilly SQL Cookbook (2nd Edition)](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/README.md)

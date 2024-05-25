@@ -71,3 +71,23 @@ select ename,job,sal from V
 
 ## Retrieving Values from One Table That Do Not Exist in Another
 
+We want to find those values in one table that do not also exist in other table. For example, we want to find which departments (if any) in table DEPT do not exist in table EMP.
+
+```
+-- DB2, PostgreSQL, and SQL Server : Use the set operation EXCEPT:
+select deptno from dept
+except
+select deptno from emp
+
+-- Oracle : Use the set operation MINUS:
+select deptno from dept
+minus
+select deptno from emp
+
+-- Mysql
+select deptno from dept
+where deptno not in (select deptno from emp)
+```
+
+
+
