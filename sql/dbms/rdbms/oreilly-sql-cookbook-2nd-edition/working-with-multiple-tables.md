@@ -1,4 +1,4 @@
-# Working with Multiple Tables
+# 3. Working with Multiple Tables
 
 ## Stacking One Rowset atop Another (Union All)
 

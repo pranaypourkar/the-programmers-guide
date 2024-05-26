@@ -1,4 +1,4 @@
-# Sorting Query Results
+# 2. Sorting Query Results
 
 ## Returning Query Results in a Specified Order
 

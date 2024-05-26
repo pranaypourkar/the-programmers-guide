@@ -1,4 +1,4 @@
-# Retrieving Records
+# 1. Retrieving Records
 
 ## Retrieving All Rows and Columns from a Table
 
