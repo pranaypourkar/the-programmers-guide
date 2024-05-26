@@ -155,6 +155,7 @@
           * [EXISTS and NOT EXISTS](sql/dbms/rdbms/fundamentals/sql-operators/exists-and-not-exists.md)
         * [SQL Clauses](sql/dbms/rdbms/fundamentals/sql-clauses/README.md)
           * [Joins](sql/dbms/rdbms/fundamentals/sql-clauses/joins.md)
+          * [PARTITION BY](sql/dbms/rdbms/fundamentals/sql-clauses/partition-by.md)
       * [O’Reilly SQL Cookbook (2nd Edition)](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/README.md)
         * [Retrieving Records](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/retrieving-records.md)
         * [Sorting Query Results](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/sorting-query-results.md)

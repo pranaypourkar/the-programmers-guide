@@ -177,6 +177,7 @@ Sample table EMP\_BONUS contains the following data:
 <figure><img src="../../../../.gitbook/assets/image.png" alt="" width="493"><figcaption></figcaption></figure>
 
 ```
+-- Solution 1
 select deptno,
     sum(distinct sal) as total_sal,
     sum(bonus) as total_bonus
@@ -194,6 +195,17 @@ from (
     and e.deptno = 10
 ) x
 group by deptno
+
+-- Solution 2 using window function
+select e.empno,
+    e.ename,
+    sum(distinct e.sal) over (partition by e.deptno) as total_sal,
+    e.deptno,
+    sum(e.sal*case when eb.type = 1 then .1
+        when eb.type = 2 then .2
+        else .3 end) over (partition by deptno) as total_bonus
+from emp e, emp_bonus eb
+where e.empno = eb.empno and e.deptno = 10
 ```
 
 {% hint style="info" %}
@@ -206,7 +218,7 @@ Same scenario as above but not all employees in department 10 have been given bo
 
 <figure><img src="../../../../.gitbook/assets/image (1).png" alt="" width="256"><figcaption></figcaption></figure>
 
-```
+<pre><code>-- Solution 1
 select deptno,
     sum(distinct sal) as total_sal,
     sum(bonus) as total_bonus
@@ -224,7 +236,48 @@ from (
     where e.deptno = 10
 )
 group by deptno
+
+-- Solution 2 using window function
+select distinct deptno,total_sal,total_bonus
+from (
+    select e.empno,
+        e.ename,
+        sum(distinct e.sal) over (partition by e.deptno) as total_sal,
+        e.deptno,
+<strong>        sum(e.sal*case when eb.type is null then 0
+</strong>            when eb.type = 1 then .1
+            when eb.type = 2 then .2
+            else .3
+            end) over (partition by deptno) as total_bonus
+    from emp e left outer join emp_bonus eb
+    on (e.empno = eb.empno)
+    where e.deptno = 10
+) x
+</code></pre>
+
+## Returning Missing Data from Multiple Tables
+
+We want to return missing data from multiple tables simultaneously. Solution is to use FULL OUTER JOIN to return missing rows from both tables along with matching rows.
+
 ```
+select d.deptno,d.dname,e.ename
+from dept d full outer join emp e
+on (d.deptno=e.deptno)
+```
+
+## Using NULLs in Operations and Comparisons
+
+NULL is never equal to or not equal to any value, not even itself, but we want to evaluate values returned by a nullable column. For example, we want to find all employees in EMP whose commission is less than the commission of employee ALAN. Employees with a NULL commission should be included as well. Solution is to use function such as COALESCE to transform the NULL value into a real value that can be used in standard evaluation.
+
+```
+select ename,comm
+from emp
+where coalesce(comm,0) < ( select comm
+    from emp
+    where ename = 'ALAN' )
+```
+
+
 
 
 
