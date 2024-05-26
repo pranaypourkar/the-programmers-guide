@@ -151,6 +151,81 @@ _`select count(`_`) from dept`
 Because UNION will filter out duplicates, only one row will be returned if the tables’ cardinalities are the same. Because two rows are returned in this example, we know that the tables do not contain identical row sets
 {% endhint %}
 
+## Identifying and Avoiding Cartesian Products
+
+We want to return the name of each employee in department 20 along with the location of the department. The following query is returning incorrect data due to cartesian product
+
+```
+-- Incorrect query
+select e.ename, d.loc
+from emp e, dept d
+where e.deptno = 20;
+
+-- Correct query
+select e.ename, d.loc
+from emp e, dept d
+where e.deptno = 10
+and d.deptno = e.deptno
+```
+
+## Performing Joins When Using Aggregates
+
+We want to perform an aggregation, but the query involves multiple tables. For example, we want to find the sum of the salaries for employees in department 10 along with the sum of their bonuses. Some employees have more than one bonus but all employees in department 10 have been given bonuses.
+
+Sample table EMP\_BONUS contains the following data:
+
+<figure><img src="../../../../.gitbook/assets/image.png" alt="" width="493"><figcaption></figcaption></figure>
+
+```
+select deptno,
+    sum(distinct sal) as total_sal,
+    sum(bonus) as total_bonus
+from (
+    select e.empno,
+        e.ename,
+        e.sal,
+        e.deptno,
+        e.sal*case when eb.type = 1 then .1
+            when eb.type = 2 then .2
+            else .3
+            end as bonus
+    from emp e, emp_bonus eb
+    where e.empno = eb.empno
+    and e.deptno = 10
+) x
+group by deptno
+```
+
+{% hint style="info" %}
+We have to be careful when computing aggregates across joins. Typically when duplicates are returned due to a join, we can avoid miscalculations by aggregate functions in two ways: Using DISTINCT or by performing the aggregation first prior to joining because the aggregate will already be computed before the join.
+{% endhint %}
+
+## Performing Outer Joins When Using Aggregates
+
+Same scenario as above but not all employees in department 10 have been given bonuses.
+
+<figure><img src="../../../../.gitbook/assets/image (1).png" alt="" width="256"><figcaption></figcaption></figure>
+
+```
+select deptno,
+    sum(distinct sal) as total_sal,
+    sum(bonus) as total_bonus
+from (
+    select e.empno,
+        e.ename,
+        e.sal,
+        e.deptno,
+        e.sal*case when eb.type is null then 0
+            when eb.type = 1 then .1
+            when eb.type = 2 then .2
+            else .3 end as bonus
+    from emp e left outer join emp_bonus eb
+    on (e.empno = eb.empno)
+    where e.deptno = 10
+)
+group by deptno
+```
+
 
 
 
