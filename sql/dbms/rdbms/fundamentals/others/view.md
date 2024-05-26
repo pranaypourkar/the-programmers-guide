@@ -65,13 +65,13 @@ WHERE dept_id = 101 AND salary > 5000;
 
 We can query a view just like a table.
 
-### **Example:**
+### **Example**
 
 ```sql
 SELECT * FROM high_salary_dept101;
 ```
 
-### **Result:**
+### **Result**
 
 | name | salary |
 | ---- | ------ |
@@ -86,7 +86,7 @@ A view is considered updatable if it allows `INSERT`, `UPDATE`, or `DELETE` oper
 * The view must not include set operations (`UNION`, `INTERSECT`, `MINUS`).
 * The view must not use aggregate functions or `DISTINCT`.
 
-### **Example:**
+### **Example**
 
 ```sql
 CREATE VIEW employees_dept101 AS
@@ -115,7 +115,7 @@ To remove a view, use the `DROP VIEW` statement.
 DROP VIEW view_name;
 ```
 
-### **Example:**
+### **Example**
 
 ```sql
 DROP VIEW high_salary_dept101;
