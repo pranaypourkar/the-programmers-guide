@@ -163,6 +163,7 @@
         * [2. Sorting Query Results](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/sorting-query-results.md)
         * [3. Working with Multiple Tables](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/working-with-multiple-tables.md)
         * [4. Inserting, Updating, and Deleting](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/4.-inserting-updating-and-deleting.md)
+        * [5. Metadata Queries](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/5.-metadata-queries.md)
       * [Entity Relationship Diagram (ERD)](sql/dbms/rdbms/entity-relationship-diagram-erd/README.md)
         * [ERD Examples](sql/dbms/rdbms/entity-relationship-diagram-erd/erd-examples.md)
       * [Other Concepts](sql/dbms/rdbms/other-concepts/README.md)
