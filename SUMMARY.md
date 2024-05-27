@@ -158,6 +158,8 @@
           * [PARTITION BY](sql/dbms/rdbms/fundamentals/sql-clauses/partition-by.md)
           * [WITH](sql/dbms/rdbms/fundamentals/sql-clauses/with.md)
           * [CONNECT BY](sql/dbms/rdbms/fundamentals/sql-clauses/connect-by.md)
+        * [SQL Functions](sql/dbms/rdbms/fundamentals/sql-functions/README.md)
+          * [Oracle Specific](sql/dbms/rdbms/fundamentals/sql-functions/oracle-specific.md)
         * [Others](sql/dbms/rdbms/fundamentals/others/README.md)
           * [View](sql/dbms/rdbms/fundamentals/others/view.md)
       * [O’Reilly SQL Cookbook (2nd Edition)](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/README.md)
