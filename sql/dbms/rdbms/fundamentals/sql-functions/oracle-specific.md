@@ -111,3 +111,55 @@ FROM DUAL;
 SELECT FIRST_NAME, LENGTH(FIRST_NAME) AS length_of_name
 FROM employees;
 ```
+
+TRIM
+
+The `TRIM` function in Oracle is used to remove leading and trailing spaces or other specified characters from a string. It is particularly useful for cleaning up data by removing unnecessary whitespace or specific unwanted characters from the beginning and end of strings.
+
+#### Syntax
+
+```sql
+TRIM([ [LEADING | TRAILING | BOTH] [trim_character] FROM ] string)
+```
+
+#### Parameters
+
+* **LEADING | TRAILING | BOTH**: Specifies which side(s) of the string to trim. The default is `BOTH`.
+  * **LEADING**: Trims characters from the beginning of the string.
+  * **TRAILING**: Trims characters from the end of the string.
+  * **BOTH**: Trims characters from both the beginning and the end of the string.
+* **trim\_character**: The character to be trimmed from the string. If not specified, spaces are trimmed by default.
+* **string**: The string expression from which the characters are to be trimmed.
+
+#### Return Value
+
+The function returns a new string with the specified characters removed from the specified side(s).
+
+### Examples
+
+```
+-- Remove leading and trailing spaces from a string
+SELECT TRIM('  Hello World  ') AS trimmed_string FROM DUAL;
+-- Output -> Hello World
+
+-- Remove leading and trailing asterisks (*) from a string
+SELECT TRIM('*' FROM '***Hello***') AS trimmed_string FROM DUAL;
+-- Output -> Hello
+
+-- Remove only the leading spaces from a string
+SELECT TRIM(LEADING ' ' FROM '  Hello World  ') AS trimmed_string FROM DUAL;
+-- Output -> Hello World 
+
+-- Remove only the trailing spaces from a string
+SELECT TRIM(TRAILING ' ' FROM '  Hello World  ') AS trimmed_string FROM DUAL;
+-- Output ->
+
+-- Using TRIM with a Column
+SELECT FIRST_NAME, TRIM(FIRST_NAME) AS trimmed_name
+FROM employees;
+```
+
+
+
+
+
