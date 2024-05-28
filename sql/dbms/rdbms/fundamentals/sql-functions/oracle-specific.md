@@ -535,3 +535,48 @@ SELECT employee_id,
 FROM employees;
 
 ```
+
+## INSTR
+
+### Description
+
+The `INSTR` function in Oracle is used to search for a substring within a string and return the position at which the substring is found. If the substring is not found, it returns 0. This function is useful for string manipulation and searching within text data.
+
+### Syntax
+
+```sql
+INSTR(string, substring [, start_position [, nth_appearance]])
+```
+
+### Parameters
+
+* **string**: The string to be searched.
+* **substring**: The substring to search for.
+* **start\_position** (optional): The position in the string to start the search. The default is 1.
+* **nth\_appearance** (optional): Specifies which occurrence of the substring to search for. The default is 1.
+
+### Return Value
+
+The function returns the position of the first character of the nth occurrence of the substring in the string. If the substring is not found, it returns 0.
+
+### Examples
+
+<pre><code>SELECT INSTR('Oracle Database', 'a') AS position
+FROM DUAL;
+-- Output -> 2
+
+SELECT INSTR('Oracle Database', 'a', 3) AS position
+FROM DUAL;
+-- Output -> 8
+
+SELECT INSTR('Oracle Database', 'a', 1, 2) AS position
+FROM DUAL;
+-- Output -> 12
+
+SELECT INSTR('Oracle Database', 'x') AS position
+FROM DUAL;
+<strong>-- Output -> 0
+</strong></code></pre>
+
+
+
