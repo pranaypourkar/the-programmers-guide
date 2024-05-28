@@ -2,6 +2,8 @@
 
 {% hint style="info" %}
 The `CONNECT BY` clause is specific to Oracle and is a feature unique to Oracle Database for handling hierarchical queries. However, other relational database management systems (RDBMS) have their own ways of dealing with hierarchical data, often using Common Table Expressions (CTEs) to achieve similar results.
+
+For hierarchical queries, the pseudocolumn LEVEL starts with 1 (for queries not using CONNECT BY, LEVEL is 0, unless we are on release 10g and later when LEVEL is available only when using CONNECT BY) and increments by one after each evaluation (for each level of depth in the hierarchy).
 {% endhint %}
 
 ## Description

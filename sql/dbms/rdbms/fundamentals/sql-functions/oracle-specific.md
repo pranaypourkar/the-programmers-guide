@@ -411,3 +411,66 @@ CONNECT BY LEVEL <= 5;
 Sample Output
 
 <figure><img src="../../../../../.gitbook/assets/image (5).png" alt="" width="452"><figcaption></figcaption></figure>
+
+## SUBSTR
+
+### Description
+
+The `SUBSTR` function in Oracle extracts a substring from a string, starting from a specified position and optionally for a specified length.
+
+### Syntax
+
+```sql
+SUBSTR(string, start_position, [length])
+```
+
+### Parameters
+
+* **string**: The input string from which the substring will be extracted.
+* **start\_position**: The position at which the extraction starts. This is a 1-based index.
+  * If `start_position` is positive, it starts from the beginning of the string.
+  * If `start_position` is negative, it starts from the end of the string and counts backwards.
+* **length** (optional): The number of characters to extract. If omitted, the function returns the substring from `start_position` to the end of the string.
+
+{% hint style="info" %}
+**Positive Start Position**: Starts extracting from the beginning of the string.
+
+**Negative Start Position**: Starts extracting from the end of the string.
+
+**Length**: If not specified, extraction goes to the end of the string.
+
+**Return Value**: Returns `NULL` if `start_position` is beyond the string length or if `length` is less than or equal to 0
+{% endhint %}
+
+### Return Value
+
+The function returns a substring of the specified length starting from the specified position. If `start_position` is beyond the length of the string, the function returns `NULL`. If `length` is less than or equal to 0, the function returns `NULL`.
+
+### Examples
+
+```
+-- Extract a substring from the 7th character to the end of the string
+SELECT SUBSTR('Hello World', 7) AS substring FROM DUAL;
+-- Output -> World
+
+-- Extract 5 characters starting from the 1st character
+SELECT SUBSTR('Hello World', 1, 5) AS substring FROM DUAL;
+-- Output -> Hello
+
+-- Extract 5 characters starting from the 6th character from the end
+SELECT SUBSTR('Hello World', -6, 5) AS substring FROM DUAL;
+-- Output -> World
+
+-- Extracting from a Column
+SELECT FIRST_NAME, SUBSTR(FIRST_NAME, 1, 3) AS first_three_chars
+FROM employees;
+```
+
+
+
+
+
+
+
+
+
