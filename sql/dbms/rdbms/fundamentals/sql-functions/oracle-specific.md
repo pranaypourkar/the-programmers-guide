@@ -352,3 +352,62 @@ SELECT LPAD(FIRST_NAME, 15, '-') AS padded_name
 FROM employees;
 
 </code></pre>
+
+## SYS\_CONNECT\_BY\_PATH
+
+### Description
+
+The `SYS_CONNECT_BY_PATH` function in Oracle is used in hierarchical queries to return the path of a column value from the root to the current row in a tree-structured format. It is particularly useful for displaying hierarchical relationships in a readable format.
+
+### Syntax
+
+```sql
+SYS_CONNECT_BY_PATH(column, delimiter)
+```
+
+### Parameters
+
+* **column**: The column for which the path is to be constructed.
+* **delimiter**: The character or string that separates the levels in the hierarchy.
+
+### Return Value
+
+The function returns a string that represents the path from the root node to the current node, with each level separated by the specified delimiter.
+
+### Usage Context
+
+The `SYS_CONNECT_BY_PATH` function is used in the context of hierarchical queries, which are queries that use the `CONNECT BY` clause to define parent-child relationships within the data.
+
+{% hint style="info" %}
+If the column used in `SYS_CONNECT_BY_PATH` is `NULL`, it includes the `NULL` values in the path.
+{% endhint %}
+
+### Examples
+
+#### Employee Manager Hierarchy
+
+We have an `employees` table with columns `EMPLOYEE_ID`, `MANAGER_ID`, and `FIRST_NAME`. We need to display the hierarchical path of employee names with the help of `SYS_CONNECT_BY_PATH`
+
+```
+SELECT EMPLOYEE_ID, FIRST_NAME, 
+       SYS_CONNECT_BY_PATH(FIRST_NAME, ' -> ') AS hierarchy_path
+FROM employees
+START WITH MANAGER_ID IS NULL
+CONNECT BY PRIOR EMPLOYEE_ID = MANAGER_ID;
+```
+
+Sample Output
+
+<figure><img src="../../../../../.gitbook/assets/image (4).png" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Create sequence or generate data
+
+```
+SELECT LEVEL, SYS_CONNECT_BY_PATH(LEVEL, ' -> ') AS level_path
+FROM DUAL
+CONNECT BY LEVEL <= 5;
+```
+
+Sample Output
+
+<figure><img src="../../../../../.gitbook/assets/image (5).png" alt="" width="452"><figcaption></figcaption></figure>

@@ -352,7 +352,7 @@ logging:
 
 Hit the API again via Postman and monitor the logs.
 
-<figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
