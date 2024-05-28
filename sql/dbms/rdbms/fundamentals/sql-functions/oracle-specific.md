@@ -83,7 +83,13 @@ SELECT FIRST_NAME, TRANSLATE(FIRST_NAME, 'ae', 'oi') AS new_name
 FROM employees;
 ```
 
+### How TRANSLATE differs from REPLACE?
+
+<table data-full-width="true"><thead><tr><th width="270">Feature</th><th>REPLACE</th><th>TRANSLATE</th></tr></thead><tbody><tr><td><strong>Purpose</strong></td><td>Replace occurrences of a substring</td><td>Replace occurrences of individual characters</td></tr><tr><td><strong>Syntax</strong></td><td><code>REPLACE(string, search_string, replacement_string)</code></td><td><code>TRANSLATE(string, from_string, to_string)</code></td></tr><tr><td><strong>Operation</strong></td><td>Works on substrings</td><td>Works on individual characters</td></tr><tr><td><strong>Case Sensitivity</strong></td><td>Case-sensitive</td><td>Case-sensitive</td></tr><tr><td><strong>Character Mapping</strong></td><td>One-to-one mapping for the entire substring</td><td>One-to-one character mapping</td></tr><tr><td><strong>Use Case Example</strong></td><td>Replace all occurrences of "cat" with "dog"</td><td>Replace all occurrences of 'a' with 'b', 'e' with 'i'</td></tr><tr><td><strong>When <code>search_string</code> or <code>from_string</code> is not found</strong></td><td>No change</td><td>No change</td></tr><tr><td><strong>Handling of NULLs</strong></td><td>If any argument is <code>NULL</code>, returns <code>NULL</code></td><td>If any argument is <code>NULL</code>, returns <code>NULL</code></td></tr><tr><td><strong>Performance</strong></td><td>Generally used for fewer, more complex replacements</td><td>Generally faster for character replacements</td></tr><tr><td><strong>Removing Characters</strong></td><td>Cannot directly remove a substring without replacing</td><td>Can remove characters by providing an empty <code>to_string</code></td></tr><tr><td><strong>Example 1</strong></td><td><code>REPLACE('Hello World', 'World', 'Oracle')</code> returns <code>Hello Oracle</code></td><td><code>TRANSLATE('Hello', 'Hlo', 'Bri')</code> returns <code>Berro</code></td></tr><tr><td><strong>Example 2</strong></td><td><code>REPLACE('banana', 'a', 'o')</code> returns <code>bonono</code></td><td><code>TRANSLATE('banana', 'an', 'om')</code> returns <code>bomomo</code></td></tr><tr><td><strong>Use in Columns</strong></td><td><code>SELECT REPLACE(column_name, 'old', 'new') FROM table</code></td><td><code>SELECT TRANSLATE(column_name, 'from_chars', 'to_chars') FROM table</code></td></tr></tbody></table>
+
 ## LENGTH
+
+### Description
 
 The `LENGTH` function in Oracle is used to return the number of characters in a string.
 
@@ -112,17 +118,19 @@ SELECT FIRST_NAME, LENGTH(FIRST_NAME) AS length_of_name
 FROM employees;
 ```
 
-TRIM
+## TRIM
+
+### Description
 
 The `TRIM` function in Oracle is used to remove leading and trailing spaces or other specified characters from a string. It is particularly useful for cleaning up data by removing unnecessary whitespace or specific unwanted characters from the beginning and end of strings.
 
-#### Syntax
+### Syntax
 
 ```sql
 TRIM([ [LEADING | TRAILING | BOTH] [trim_character] FROM ] string)
 ```
 
-#### Parameters
+### Parameters
 
 * **LEADING | TRAILING | BOTH**: Specifies which side(s) of the string to trim. The default is `BOTH`.
   * **LEADING**: Trims characters from the beginning of the string.
@@ -131,7 +139,7 @@ TRIM([ [LEADING | TRAILING | BOTH] [trim_character] FROM ] string)
 * **trim\_character**: The character to be trimmed from the string. If not specified, spaces are trimmed by default.
 * **string**: The string expression from which the characters are to be trimmed.
 
-#### Return Value
+### Return Value
 
 The function returns a new string with the specified characters removed from the specified side(s).
 
@@ -159,7 +167,187 @@ SELECT FIRST_NAME, TRIM(FIRST_NAME) AS trimmed_name
 FROM employees;
 ```
 
+## CAST&#x20;
 
+### Description
 
+The `CAST` function in Oracle is used to convert one data type to another. It is a versatile function that allows to change the data type of an expression to a different data type, which is particularly useful when dealing with different types of data in queries.
 
+### Syntax
 
+```sql
+CAST(expression AS target_data_type)
+```
+
+### Parameters
+
+* **expression**: The value or column that you want to convert.
+* **target\_data\_type**: The data type to which you want to convert the expression.
+
+### Supported Data Types
+
+The `CAST` function supports conversion to and from a wide range of data types like
+
+* VARCHAR2, CHAR
+* NUMBER, INTEGER, FLOAT
+* DATE, TIMESTAMP
+* BLOB, CLOB
+
+### Examples
+
+```
+-- Convert a VARCHAR2 column to a NUMBER:
+SELECT CAST('123' AS NUMBER) AS number_value FROM DUAL;
+
+-- Convert a NUMBER to a VARCHAR2
+SELECT CAST(123 AS VARCHAR2(10)) AS string_value FROM DUAL;
+
+-- Convert a DATE to a TIMESTAMP
+SELECT CAST(SYSDATE AS TIMESTAMP) AS timestamp_value FROM DUAL;
+
+-- Using CAST in a Table Query
+SELECT employee_id, hire_date, CAST(hire_date AS TIMESTAMP) AS hire_timestamp FROM employees;
+
+-- Combining CAST with Other Functions
+SELECT CAST(ROUND(123.456, 2) AS VARCHAR2(10)) AS rounded_string FROM DUAL;
+
+-- Oracle will raise an error
+SELECT CAST('abc' AS NUMBER) AS invalid_conversion FROM DUAL;
+```
+
+{% hint style="info" %}
+**NULL Handling**: If the expression is `NULL`, the `CAST` function returns NULL of the target data type.
+{% endhint %}
+
+## LOWER
+
+### Description
+
+The `LOWER` function converts all characters in a string to lowercase.
+
+### **Syntax**
+
+```sql
+LOWER(string)
+```
+
+### **Parameters**
+
+* **string**: The input string to be converted to lowercase.
+
+### **Return Value**
+
+The function returns a new string with all characters converted to lowercase.
+
+### **Examples**
+
+```
+SELECT LOWER('Hello World') AS lower_string FROM DUAL;
+-- Output -> hello world
+
+SELECT LOWER(FIRST_NAME) AS lower_name FROM employees;
+```
+
+## UPPER
+
+### Description
+
+The `UPPER` function converts all characters in a string to uppercase.
+
+### **Syntax**
+
+```sql
+UPPER(string)
+```
+
+### **Parameters**
+
+* **string**: The input string to be converted to uppercase.
+
+### **Return Value**
+
+The function returns a new string with all characters converted to uppercase.
+
+### **Examples**
+
+```
+SELECT UPPER('Hello World') AS upper_string FROM DUAL;
+-- Output -> HELLO WORLD
+
+SELECT UPPER(FIRST_NAME) AS upper_name FROM employees;
+```
+
+## RPAD
+
+### Description
+
+The `RPAD` function pads the right side of a string with a specified character to a specified length.
+
+### **Syntax**
+
+```sql
+RPAD(string, length, [pad_string])
+```
+
+### **Parameters**
+
+* **string**: The input string to be padded.
+* **length**: The total length of the resulting string after padding.
+* **pad\_string** (optional): The string to pad with. If not specified, spaces are used.
+
+### **Return Value**
+
+The function returns a new string of the specified length, padded with the specified character (or spaces) on the right side.
+
+### **Examples**
+
+```
+-- Pad a string with spaces to a length of 10
+SELECT RPAD('Hello', 10) AS padded_string FROM DUAL;
+-- Output -> Hello     
+
+-- Pad a string with asterisks (*) to a length of 10
+SELECT RPAD('Hello', 10, '*') AS padded_string FROM DUAL;
+-- Output -> Hello*****
+
+SELECT RPAD(FIRST_NAME, 15, '-') AS padded_name FROM employees;
+```
+
+## LPAD
+
+### Description
+
+The `LPAD` function pads the left side of a string with a specified character to a specified length.
+
+### **Syntax**
+
+```sql
+LPAD(string, length, [pad_string])
+```
+
+### **Parameters**
+
+* **string**: The input string to be padded.
+* **length**: The total length of the resulting string after padding.
+* **pad\_string** (optional): The string to pad with. If not specified, spaces are used.
+
+### **Return Value**
+
+The function returns a new string of the specified length, padded with the specified character (or spaces) on the left side.
+
+### **Examples**
+
+<pre><code>-- Pad a string with spaces to a length of 10
+SELECT LPAD('Hello', 10) AS padded_string FROM DUAL;
+<strong>-- Output ->     Hello
+</strong><strong>
+</strong><strong>-- Pad a string with asterisks (*) to a length of 10
+</strong>SELECT LPAD('Hello', 10, '*') AS padded_string
+FROM DUAL;
+-- Output -> *****Hello
+
+-- Pad a column
+SELECT LPAD(FIRST_NAME, 15, '-') AS padded_name
+FROM employees;
+
+</code></pre>
