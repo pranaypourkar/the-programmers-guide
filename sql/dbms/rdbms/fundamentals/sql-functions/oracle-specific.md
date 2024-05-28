@@ -466,11 +466,72 @@ SELECT FIRST_NAME, SUBSTR(FIRST_NAME, 1, 3) AS first_three_chars
 FROM employees;
 ```
 
+## NVL
 
+### Description
 
+The `NVL` function in Oracle is used to replace `NULL` values with a specified value. This function is particularly useful when dealing with potential `NULL` values in your data and you want to ensure that your results are complete and meaningful.
 
+### Syntax
 
+```sql
+NVL(expression1, expression2)
+```
 
+### Parameters
 
+* **expression1**: The expression to be checked for `NULL`.
+* **expression2**: The value to be returned if `expression1` is `NULL`.
 
+### Return Value
 
+The function returns `expression2` if `expression1` is `NULL`. If `expression1` is not `NULL`, it returns `expression1`.
+
+### Examples
+
+```
+SELECT NVL(NULL, 'Default Value') AS result FROM DUAL;
+-- Output -> Default Value
+
+SELECT FIRST_NAME, NVL(FIRST_NAME, 'Unknown') AS name
+FROM employees;
+```
+
+## COALESCE
+
+### Description
+
+The `COALESCE` function in Oracle is used to return the first non-null expression among its arguments. It's a more versatile and flexible alternative to the `NVL` function, as it can handle multiple expressions and return the first one that is not `NULL`.
+
+### Syntax
+
+```sql
+COALESCE(expr1, expr2, ..., exprn)
+```
+
+### Parameters
+
+* **expr1, expr2, ..., exprn**: The expressions to be evaluated in the order they are provided. The function returns the first non-null expression.
+
+{% hint style="info" %}
+`COALESCE` stops evaluating expressions once it finds the first non-null expression, potentially improving performance.
+{% endhint %}
+
+### Return Value
+
+The function returns the first non-null expression among its arguments. If all arguments are `NULL`, it returns `NULL`.
+
+### Examples
+
+```
+-- Return the first non-null value
+SELECT COALESCE(NULL, NULL, 'First Non-Null', 'Second Non-Null') AS result
+FROM DUAL;
+-- Output -> First Non-Null
+
+-- Employees table with columns commission_pct, bonus, and salary
+SELECT employee_id, 
+       COALESCE(commission_pct, bonus, salary) AS compensation
+FROM employees;
+
+```
