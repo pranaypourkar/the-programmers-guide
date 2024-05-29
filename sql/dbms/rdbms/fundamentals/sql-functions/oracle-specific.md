@@ -655,11 +655,65 @@ FROM DUAL
 WHERE REGEXP_LIKE('HelloWorld', '^\D*$');
 ```
 
+## REGEXP\_REPLACE
 
+The `REGEXP_REPLACE` function in Oracle is used to search a string for a regular expression pattern and replace it with another string. It is useful for advanced string manipulation where patterns and replacements can be specified with regular expressions.
 
+### Syntax
 
+```sql
+REGEXP_REPLACE(source_string, pattern, replace_string [, position [, occurrence [, match_parameter]]])
+```
 
+### Parameters
 
+* **source\_string**: The string to search within.
+* **pattern**: The regular expression pattern to search for.
+* **replace\_string**: The string to replace the matched pattern with.
+* **position** (optional): The position in the source string to start the search. The default is 1.
+* **occurrence** (optional): The occurrence of the pattern to be replaced. The default is 0, meaning all occurrences.
+* **match\_parameter** (optional): A string that can include one or more of the following modifiers:
+  * `'i'`: Case-insensitive matching.
+  * `'c'`: Case-sensitive matching (default).
+  * `'n'`: The period `.` does not match the newline character.
+  * `'m'`: The string is treated as multiple lines. The `^` and `$` match the start and end of any line within the source string.
 
+### Examples
 
+```
+-- Replace all occurrences of a pattern
+SELECT REGEXP_REPLACE('123abc456', '[0-9]', 'X') AS result
+FROM DUAL;
+-- Output -> XXXabcXXX
+
+-- Replace First Occurrence
+SELECT REGEXP_REPLACE('123abc456', '[0-9]', 'X', 1, 1) AS result
+FROM DUAL;
+-- Output -> X23abc456
+
+-- Replace all occurrences of a pattern, ignoring case
+SELECT REGEXP_REPLACE('abcABCabc', 'a', 'X', 1, 0, 'i') AS result
+FROM DUAL;
+-- Output -> XbcXBCXbc
+
+-- Use captured groups in the replacement string
+SELECT REGEXP_REPLACE('abc123', '([a-z]+)([0-9]+)', '\2\1') AS result
+FROM DUAL;
+-- Output -> 123abc
+
+-- Replace all non-word characters with a space
+SELECT REGEXP_REPLACE('Hello, World! 123.', '\W', ' ') AS result
+FROM DUAL;
+-- Output -> Hello World 123
+
+-- Remove all digits from a string
+SELECT REGEXP_REPLACE('Phone: 123-456-7890', '\d', '') AS result
+FROM DUAL;
+-- Output -> Phone: --
+
+-- Replace the first character of each line in a multiline string
+SELECT REGEXP_REPLACE('Line1\nLine2\nLine3', '^.', 'X', 1, 0, 'm') AS result
+FROM DUAL;
+-- Output -> Xine1\nXine2\nXine3
+```
 
