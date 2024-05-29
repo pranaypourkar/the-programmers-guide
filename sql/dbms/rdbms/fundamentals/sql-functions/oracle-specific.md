@@ -580,3 +580,86 @@ FROM DUAL;
 
 ## REGEXP\_LIKE
 
+### Description
+
+The `REGEXP_LIKE` function in Oracle is used to perform regular expression matching. It is a powerful function for pattern matching and is particularly useful for complex search conditions. It allows to search for a string that matches a regular expression pattern.
+
+### Syntax
+
+```sql
+REGEXP_LIKE(source_string, pattern [, match_parameter])
+```
+
+### Parameters
+
+* **source\_string**: The string to be searched.
+* **pattern**: The regular expression pattern to search for.
+* **match\_parameter** (optional): A string that can include one or more of the following modifiers:
+  * `'i'`: Case-insensitive matching.
+  * `'c'`: Case-sensitive matching (default).
+  * `'n'`: The period `.` does not match the newline character.
+  * `'m'`: The string is treated as multiple lines. The `^` and `$` match the start and end of any line within the source string.
+
+### Common regular expression symbols
+
+<table><thead><tr><th width="224">Symbol</th><th>Description</th></tr></thead><tbody><tr><td><code>^</code></td><td>Matches the start of a string.</td></tr><tr><td><code>$</code></td><td>Matches the end of a string.</td></tr><tr><td><code>.</code></td><td>Matches any single character except newline.</td></tr><tr><td><code>[]</code></td><td>Matches any single character within the brackets.</td></tr><tr><td><code>[^]</code></td><td>Matches any single character not within the brackets.</td></tr><tr><td><code>*</code></td><td>Matches 0 or more occurrences of the preceding element.</td></tr><tr><td><code>+</code></td><td>Matches 1 or more occurrences of the preceding element.</td></tr><tr><td><code>?</code></td><td>Matches 0 or 1 occurrence of the preceding element.</td></tr><tr><td><code>{n}</code></td><td>Matches exactly n occurrences of the preceding element.</td></tr><tr><td><code>{n,}</code></td><td>Matches n or more occurrences of the preceding element.</td></tr><tr><td><code>{n,m}</code></td><td>Matches at least n and at most m occurrences of the preceding element.</td></tr><tr><td><code>\d</code></td><td>Matches any digit (equivalent to <code>[0-9]</code>).</td></tr><tr><td><code>\D</code></td><td>Matches any non-digit.</td></tr><tr><td><code>\w</code></td><td>Matches any word character (alphanumeric plus underscore).</td></tr><tr><td><code>\W</code></td><td>Matches any non-word character.</td></tr><tr><td><code>\s</code></td><td>Matches any whitespace character (space, tab, newline).</td></tr><tr><td><code>\S</code></td><td>Matches any non-whitespace character.</td></tr><tr><td><code>\b</code></td><td>Matches a word boundary.</td></tr><tr><td><code>\B</code></td><td>Matches a non-word boundary.</td></tr><tr><td><code>()</code></td><td>Groups expressions and captures the matched text.</td></tr><tr><td><code>(?:...)</code></td><td>Groups expressions without capturing the matched text.</td></tr><tr><td><code>(?=...)</code></td><td>Positive lookahead; matches if the expression within the parentheses can be matched.</td></tr><tr><td><code>(?!...)</code></td><td>Negative lookahead; matches if the expression within the parentheses cannot be matched.</td></tr><tr><td><code>(?&#x3C;=...)</code></td><td>Positive lookbehind; matches if the preceding text matches the expression within the parentheses.</td></tr><tr><td><code>(?&#x3C;!...)</code></td><td>Negative lookbehind; matches if the preceding text does not match the expression within the parentheses.</td></tr><tr><td><code>\</code></td><td>Escapes a special character to match it literally.</td></tr></tbody></table>
+
+### Examples
+
+```
+-- Return employees whose first name starts with 'J'
+SELECT first_name FROM employees WHERE REGEXP_LIKE(first_name, '^J');
+
+-- Case-Insensitive Matching
+SELECT first_name FROM employees
+WHERE REGEXP_LIKE(first_name, '^j', 'i');
+
+-- Return employees whose first name is either 'John' or 'Jane'
+SELECT first_name FROM employees
+WHERE REGEXP_LIKE(first_name, '^(John|Jane)$');
+
+-- Returns employees whose first name contains any digit
+SELECT first_name FROM employees
+WHERE REGEXP_LIKE(first_name, '[0-9]');
+
+-- Returns employees whose first name starts with 'A' and is exactly 4 characters long
+SELECT first_name FROM employees
+WHERE REGEXP_LIKE(first_name, '^A.{3}$');
+
+-- Returns employees whose first name ends with 'smith', regardless of case
+SELECT first_name FROM employees
+WHERE REGEXP_LIKE(first_name, 'smith$', 'i');
+
+-- Returns comments that contain lines starting with 'Thank you', treating the comment as multiple lines
+SELECT comment FROM feedback
+WHERE REGEXP_LIKE(comment, '^Thank you', 'm')
+
+-- Check if a string is exactly 4 characters long
+SELECT 'Match' AS result
+FROM DUAL
+WHERE REGEXP_LIKE('Test', '^.{4}$');
+
+-- Check if a string contains 'abc' and is not affected by newlines
+SELECT 'Match' AS result
+FROM DUAL
+WHERE REGEXP_LIKE('abc\ndef', 'abc', 'n');
+
+-- Check if any line in a multiline string starts with 'Hello'
+SELECT 'Match' AS result
+FROM DUAL
+WHERE REGEXP_LIKE('First line\nHello world', '^Hello', 'm');
+
+-- Check if a string does not contain any digits
+SELECT 'Match' AS result
+FROM DUAL
+WHERE REGEXP_LIKE('HelloWorld', '^\D*$');
+```
+
+
+
+
+
+
+
+
+
