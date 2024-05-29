@@ -578,5 +578,5 @@ FROM DUAL;
 <strong>-- Output -> 0
 </strong></code></pre>
 
-
+## REGEXP\_LIKE
 
