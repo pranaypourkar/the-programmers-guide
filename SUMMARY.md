@@ -170,7 +170,7 @@
         * [5. Metadata Queries](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/5.-metadata-queries.md)
         * [6. Working with Strings](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/6.-working-with-strings.md)
         * [7. Working with Numbers](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/page-2.md)
-        * [Page 3](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/page-3.md)
+        * [Date Arithmetic](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/date-arithmetic.md)
       * [Entity Relationship Diagram (ERD)](sql/dbms/rdbms/entity-relationship-diagram-erd/README.md)
         * [ERD Examples](sql/dbms/rdbms/entity-relationship-diagram-erd/erd-examples.md)
       * [Other Concepts](sql/dbms/rdbms/other-concepts/README.md)
