@@ -21,7 +21,7 @@ Also known as standalone architecture or single-user architecture. In 1-Tier Arc
 
 Suitable for small-scale applications or personal databases.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
 
 **Advantages:**
 
@@ -41,7 +41,7 @@ It divides the DBMS into two tiers: the client tier and the server tier. The cli
 
 Suitable for medium to large-scale applications, providing better scalability, performance, and manageability compared to single-tier architecture.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 **Advantages:**
 

@@ -80,3 +80,50 @@ select count(comm) from emp
 When we do COUNT(\*), counting is rows (regardless of actual value, which is why rows containing NULL and non-NULL values are counted). But when we do COUNT a column, we  are counting the number of non-NULL values in that column.
 {% endhint %}
 
+## Generating a Running Total
+
+We want to calculate a running total or cumulative of values in a column
+
+```
+select ename, sal,
+sum(sal) over (order by sal,empno) as running_total
+from emp
+order by 2
+```
+
+<figure><img src="../../../../.gitbook/assets/image.png" alt="" width="248"><figcaption></figcaption></figure>
+
+## Generating a Running Product
+
+We want to compute a running product on a numeric column
+
+```
+-- Oracle
+select empno,ename,sal,
+exp(sum(ln(sal))over(order by sal,empno)) as running_prod
+from emp
+where deptno = 10
+```
+
+{% hint style="info" %}
+#### Steps to Calculate the Product Using `LN` and `EXP`
+
+1. **Calculate the natural logarithm (`LN`) of each number.**
+2. **Sum the logarithms.**
+3. **Take the exponential (`EXP`) of the sum to get the product.**
+
+```sql
+SELECT EXP(SUM(LN(value))) AS product
+FROM (
+  SELECT 2 AS value FROM DUAL UNION ALL
+  SELECT 3 AS value FROM DUAL UNION ALL
+  SELECT 4 AS value FROM DUAL
+);
+-- Output -> 24
+```
+{% endhint %}
+
+## Smoothing a Series of Values
+
+
+
