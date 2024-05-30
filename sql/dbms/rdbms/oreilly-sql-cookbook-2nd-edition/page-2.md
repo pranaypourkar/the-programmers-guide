@@ -217,3 +217,84 @@ from emp
 where deptno=20
 ```
 
+## Determining the Percentage of a Total
+
+We want to determine the percentage that values in a specific column represent against a total. For example, we want to determine what percentage of all salaries are the salaries in DEPTNO 10 (the percentage that DEPTNO 10 salaries contribute to the total)
+
+<pre><code><strong>-- Oracle
+</strong><strong>select distinct (d10/total)*100 as pct
+</strong>from (
+    select deptno,
+    sum(sal)over() total,
+    sum(sal)over(partition by deptno) d10
+    from emp
+) x
+where deptno=10
+</code></pre>
+
+## Aggregating Nullable Columns
+
+We want to perform an aggregation on a column, but the column is nullable.
+
+```
+select avg(coalesce(comm,0)) as avg_comm
+from emp
+where deptno=30
+```
+
+## Computing Averages Without High and Low Values
+
+We want to compute an average, but excluding the highest and lowest values
+
+```
+-- Oracle
+select avg(sal)
+from (
+    select sal, 
+    min(sal)over() min_sal, 
+    max(sal)over() max_sal
+from emp
+) x
+where sal not in (min_sal,max_sal)
+```
+
+## Converting Alphanumeric Strings into Numbers
+
+We have alphanumeric data and would like to return numbers only. You want to return the number 123321 from the string “pjenil123g321.”
+
+<pre><code>-- Oracle
+select cast(
+<strong>    replace(
+</strong>        translate( 'paul123f321','abcdefghijklmnopqrstuvwxyz', rpad('#',26,'#')),'#','') as integer ) as num
+from dual;
+</code></pre>
+
+## Changing Values in a Running Total
+
+We want to modify the values in a running total depending on the values in another column.
+
+```
+SELECT
+    CASE
+        WHEN trx = 'PY' THEN
+            'PAYMENT'
+        ELSE
+            'PURCHASE'
+    END trx_type,
+    amt,
+    SUM(
+        CASE
+            WHEN trx = 'PY' THEN
+                - amt
+            ELSE
+                amt
+        END
+    )
+    OVER(
+    ORDER BY
+        id, amt
+    )   AS balance
+FROM
+    v
+```
+
