@@ -968,3 +968,216 @@ FROM DUAL;
 -- Output -> 123.456
 ```
 
+### MEDIAN
+
+The `MEDIAN` function computes the median of a set of values. The median is the value separating the higher half from the lower half of a data sample.
+
+#### **Syntax**
+
+```sql
+MEDIAN(value_expression) OVER ( [partition_by_clause] order_by_clause )
+```
+
+#### **Example**
+
+Assume we have a table `employees` with a `salary` column. To calculate the median salary for the entire table:
+
+```sql
+-- calculate the median salary for the entire table
+SELECT 
+    MEDIAN(salary) OVER () AS median_salary
+FROM 
+    employees;
+    
+-- calculate the median salary for each department
+SELECT 
+    department_id, 
+    MEDIAN(salary) OVER (PARTITION BY department_id) AS median_salary
+FROM 
+    employees;    
+```
+
+### PERCENTILE\_CONT
+
+The `PERCENTILE_CONT` function is an inverse distribution function that returns the value corresponding to the specified percentile in a group of values.
+
+#### **Syntax**
+
+```sql
+PERCENTILE_CONT(percentile) WITHIN GROUP (ORDER BY value_expression) 
+OVER ( [partition_by_clause] )
+```
+
+* **percentile**: A numeric value between 0 and 1. For example, 0.5 represents the 50th percentile (median).
+* **value\_expression**: The column or expression on which the percentile calculation is performed.
+
+**Example**
+
+Calculate the median (50th percentile) salary for the entire table:
+
+```sql
+SELECT 
+    PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY salary) AS median_salary
+FROM 
+    employees;
+```
+
+Calculate the 90th percentile salary for each department:
+
+```sql
+SELECT 
+    department_id, 
+    PERCENTILE_CONT(0.9) WITHIN GROUP (ORDER BY salary) 
+    OVER (PARTITION BY department_id) AS perc90_salary
+FROM 
+    employees;
+```
+
+
+
+## Window functions
+
+Window functions in SQL, also known as analytic functions, allows to perform calculations across a set of table rows that are somehow related to the current row. This is similar to aggregate functions but unlike aggregate functions, window functions do not cause rows to become grouped into a single output row—the rows retain their separate identities.
+
+### LAG
+
+The `LAG` function provides access to a row at a given physical offset prior to the current row within the partition.
+
+#### **Syntax**
+
+```sql
+LAG(value_expression [, offset] [, default]) OVER ( [partition_by_clause] order_by_clause )
+```
+
+* **value\_expression**: The column or expression to evaluate.
+* **offset**: The number of rows back from the current row from which to obtain the value (default is 1).
+* **default**: The value to return if the offset goes out of the bounds of the partition.
+
+**Example**
+
+```sql
+--  Get the hire date of the previous employee for each row in the employees table
+SELECT 
+    employee_id, 
+    hire_date, 
+    LAG(hire_date, 1) OVER (ORDER BY hire_date) AS prev_hire_date
+FROM 
+    employees;
+```
+
+### LEAD
+
+The `LEAD` function provides access to a row at a given physical offset following the current row within the partition.
+
+#### **Syntax**
+
+```sql
+LEAD(value_expression [, offset] [, default]) OVER ( [partition_by_clause] order_by_clause )
+```
+
+* **value\_expression**: The column or expression to evaluate.
+* **offset**: The number of rows back from the current row from which to obtain the value (default is 1).
+* **default**: The value to return if the offset goes out of the bounds of the partition.
+
+#### **Example**
+
+```sql
+-- Get the hire date of the previous employee for each row in the employees table
+SELECT 
+    employee_id, 
+    hire_date, 
+    LEAD(hire_date, 1) OVER (ORDER BY hire_date) AS next_hire_date
+FROM 
+    employees;
+```
+
+### ROW\_NUMBER
+
+The `ROW_NUMBER` function assigns a unique number to each row to which it is applied, starting from 1.
+
+#### **Syntax**
+
+```sql
+ROW_NUMBER() OVER ( [partition_by_clause] order_by_clause )
+```
+
+#### **Example**
+
+```sql
+-- Assign a unique rank to each employee based on their salary in descending order
+SELECT 
+    employee_id, 
+    salary, 
+    ROW_NUMBER() OVER (ORDER BY salary DESC) AS rank
+FROM 
+    employees;
+```
+
+### RANK
+
+The `RANK` function provides the rank of a row within the partition of a result set. The rank of a row is one plus the number of ranks that come before it.
+
+#### **Syntax**
+
+```sql
+RANK() OVER ( [partition_by_clause] order_by_clause )
+```
+
+**Example**
+
+```sql
+-- Ranks employees based on their salary, in descending order. 
+-- Rows with equal values receive the same rank, and the next rank value will be skipped.
+SELECT 
+    employee_id, 
+    salary, 
+    RANK() OVER (ORDER BY salary DESC) AS salary_rank
+FROM 
+    employees;
+```
+
+### DENSE\_RANK
+
+The `DENSE_RANK` function is similar to `RANK`, but it does not skip rank values if there are ties.
+
+#### **Syntax**
+
+```sql
+DENSE_RANK() OVER ( [partition_by_clause] order_by_clause )
+```
+
+#### **Example**
+
+<pre class="language-sql"><code class="lang-sql"><strong>-- Ranks employees based on their salary, in descending order, without skipping any rank values.
+</strong><strong>SELECT 
+</strong>    employee_id, 
+    salary, 
+    DENSE_RANK() OVER (ORDER BY salary DESC) AS salary_dense_rank
+FROM 
+    employees;
+</code></pre>
+
+### NTILE
+
+The `NTILE` function distributes the rows in an ordered partition into a specified number of groups, and assigns a number to each row indicating the group to which it belongs.
+
+#### **Syntax**
+
+```sql
+NTILE(num_buckets) OVER ( [partition_by_clause] order_by_clause )
+```
+
+#### **Example**
+
+<pre class="language-sql"><code class="lang-sql"><strong>-- Divides the employees into four groups based on their salary, 
+</strong><strong>-- and assigns each row a number indicating its quartile.
+</strong><strong>SELECT 
+</strong>    employee_id, 
+    salary, 
+    NTILE(4) OVER (ORDER BY salary DESC) AS salary_quartile
+FROM 
+    employees;
+</code></pre>
+
+
+

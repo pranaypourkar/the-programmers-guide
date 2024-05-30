@@ -91,7 +91,7 @@ from emp
 order by 2
 ```
 
-<figure><img src="../../../../.gitbook/assets/image.png" alt="" width="248"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3).png" alt="" width="248"><figcaption></figcaption></figure>
 
 ## Generating a Running Product
 
@@ -125,5 +125,95 @@ FROM (
 
 ## Smoothing a Series of Values
 
+We have a series of values that appear over time, such as monthly sales figures. We want to implement a simple smoother, such as weighted running average.
 
+A moving average can be calculated by summing the current value and the preceding n-1 values and dividing by n.
+
+<figure><img src="../../../../.gitbook/assets/image.png" alt="" width="410"><figcaption></figcaption></figure>
+
+```
+select date1, 
+sales,
+lag(sales,1) over(order by date1) as salesLagOne,
+lag(sales,2) over(order by date1) as salesLagTwo,
+(sales
+    + (lag(sales,1) over(order by date1))
+    + lag(sales,2) over(order by date1))/3 as MovingAverage
+from sales
+```
+
+## Calculating a Mode
+
+We want to find the mode.
+
+{% hint style="info" %}
+Mode is the element that appears most frequently for a given set of data.
+
+For example, \
+select sal from emp where deptno = 20 order by sal;
+
+**SAL**
+
+800 \
+1100 \
+2975 \
+3000 \
+3000 \
+\
+The mode is 3000.
+{% endhint %}
+
+```
+select sal,
+dense_rank()over(order by cnt desc) as rnk
+    from (
+    select sal,count(*) as cnt
+    from emp
+    where deptno = 20
+    group by sal
+) x
+```
+
+<div align="left">
+
+<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+ 
+
+<figure><img src="../../../../.gitbook/assets/image (2).png" alt="" width="158"><figcaption></figcaption></figure>
+
+</div>
+
+## Calculating a Median
+
+We want to calculate the median.
+
+{% hint style="info" %}
+Median is the value of the middle member of a set of ordered elements.
+
+For example, \
+select sal from emp where deptno = 20 order by sal&#x20;
+
+SAL\
+800 \
+1100 \
+2975 \
+3000 \
+3000 \
+\
+The median is 2975.
+{% endhint %}
+
+```
+-- Oracle (Solution 1)
+select median(sal)
+from emp
+where deptno=20
+
+-- Oracle (Solution 2)
+select 
+percentile_cont(0.5) within group(order by sal)
+from emp
+where deptno=20
+```
 
