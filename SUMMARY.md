@@ -169,7 +169,7 @@
         * [4. Inserting, Updating, and Deleting](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/4.-inserting-updating-and-deleting.md)
         * [5. Metadata Queries](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/5.-metadata-queries.md)
         * [6. Working with Strings](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/6.-working-with-strings.md)
-        * [Page 2](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/page-2.md)
+        * [7. Working with Numbers](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/7.-working-with-numbers.md)
         * [Page 3](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/page-3.md)
       * [Entity Relationship Diagram (ERD)](sql/dbms/rdbms/entity-relationship-diagram-erd/README.md)
         * [ERD Examples](sql/dbms/rdbms/entity-relationship-diagram-erd/erd-examples.md)

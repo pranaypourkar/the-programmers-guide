@@ -717,3 +717,68 @@ FROM DUAL;
 -- Output -> Xine1\nXine2\nXine3
 ```
 
+## Arithmetic Functions
+
+### AVG
+
+The `AVG` function calculates the average value of a numeric column.
+
+#### **Syntax**
+
+```sql
+SELECT AVG(column_name) AS avg_value
+FROM table_name;
+```
+
+### MIN
+
+The `MIN` function returns the smallest value in a set.
+
+#### **Syntax**
+
+```sql
+SELECT MIN(column_name) AS min_value
+FROM table_name;
+```
+
+### MAX
+
+The `MAX` function returns the largest value in a set.
+
+#### **Syntax**
+
+```sql
+SELECT MAX(column_name) AS max_value
+FROM table_name;
+```
+
+### COUNT
+
+The `COUNT` function returns the number of rows that match a specified condition.
+
+#### **Syntax**
+
+```sql
+SELECT COUNT(column_name) AS count_value
+FROM table_name;
+```
+
+### SUM
+
+The `SUM` function returns the total sum of a numeric column.
+
+#### **Syntax**
+
+```sql
+SELECT SUM(column_name) AS sum_value
+FROM table_name;
+```
+
+{% hint style="info" %}
+When we do COUNT(\*), counting is rows (regardless of actual value, which is why rows containing NULL and non-NULL values are counted). But when we do COUNT a column, we are counting the number of non-NULL values in that column.
+{% endhint %}
+
+
+
+
+
