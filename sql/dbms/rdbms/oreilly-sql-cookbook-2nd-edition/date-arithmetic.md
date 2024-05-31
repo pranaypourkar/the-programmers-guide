@@ -137,7 +137,18 @@ GROUP BY
 
 <figure><img src="../../../../.gitbook/assets/image (115).png" alt=""><figcaption></figcaption></figure>
 
+## Determining the Date Difference Between the Current Record and the Next Record
 
+We want to determine the difference in days between two dates (specifically dates stored in two different rows).
 
-
+```
+select ename, hiredate, next_hd,
+next_hd - hiredate diff
+from (
+    select deptno, ename, hiredate,
+    lead(hiredate)over(order by hiredate) next_hd
+    from emp
+)
+where deptno=10
+```
 
