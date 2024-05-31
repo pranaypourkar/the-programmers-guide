@@ -26,7 +26,9 @@ START WITH condition
 CONNECT BY PRIOR parent_column = child_column;
 ```
 
-## Example
+## Examples
+
+### Employee and Manager
 
 Consider a table `employees` with the following structure:
 
@@ -43,7 +45,7 @@ In this table:
 * `EMPLOYEE_ID` is the unique identifier for each employee (child).
 * `MANAGER_ID` is the unique identifier for the manager of each employee (parent).
 
-### Hierarchical Query Using `CONNECT BY`
+#### Hierarchical Query Using `CONNECT BY`
 
 To retrieve the hierarchy starting from the top-level manager:
 
@@ -55,7 +57,7 @@ START WITH MANAGER_ID IS NULL
 CONNECT BY PRIOR EMPLOYEE_ID = MANAGER_ID
 ```
 
-### Explanation:
+#### Explanation:
 
 * **SELECT EMPLOYEE\_ID, NAME, LEVEL, SYS\_CONNECT\_BY\_PATH(NAME, '->') AS PATH**: Selects the employee ID, name, hierarchical level, and the path from the root.
 * **FROM employees**: Specifies the source table.
@@ -82,7 +84,7 @@ This translates to:
 * **PRIOR EMPLOYEE\_ID = MANAGER\_ID**
 {% endhint %}
 
-### Result:
+#### Result:
 
 | EMPLOYEE\_ID | NAME | LEVEL | PATH               |
 | ------------ | ---- | ----- | ------------------ |
@@ -99,6 +101,21 @@ This translates to:
 **START WITH**: Specifies the root row(s) of the hierarchy. If omitted, all rows are considered roots, which is usually not desired.
 
 **SYS\_CONNECT\_BY\_PATH**: Returns the path from the root to the current row, which is useful for displaying the hierarchy as a string.
+
+
+
+### Print difference of 2 dates into rows
+
+Given 2 dates, print all the dates within those 2 dates including itself.
+
+```
+SELECT 
+    TO_DATE(level - 1 + TO_CHAR(TO_DATE('2024-05-28', 'YYYY-MM-DD'), 'YYYYDDD'), 'YYYYDDD') AS calendar_date
+  FROM DUAL
+  CONNECT BY LEVEL <= TRUNC(TO_DATE('2024-05-31', 'YYYY-MM-DD')) - TRUNC(TO_DATE('2024-05-28', 'YYYY-MM-DD')) + 1
+```
+
+<figure><img src="../../../../../.gitbook/assets/image (113).png" alt="" width="131"><figcaption></figcaption></figure>
 
 
 
