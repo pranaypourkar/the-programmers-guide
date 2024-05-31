@@ -1179,5 +1179,141 @@ FROM
     employees;
 </code></pre>
 
+## Date Functions
+
+### ADD\_MONTHS
+
+The `ADD_MONTHS` function adds a specified number of months to a date.
+
+#### **Syntax**
+
+```sql
+ADD_MONTHS(date, number_of_months)
+```
+
+* **date**: The starting date.
+* **number\_of\_months**: The number of months to add (can be positive or negative).
+
+#### **Example**
+
+```
+-- Add 3 months to the current dat
+SELECT ADD_MONTHS(SYSDATE, 3) AS new_date
+FROM DUAL;
+
+-- Subtract 2 months from a specific date
+SELECT ADD_MONTHS(TO_DATE('2023-05-25', 'YYYY-MM-DD'), -2) AS new_date
+FROM DUAL;
+```
+
+### TO\_CHAR (with Date Formatting)
+
+The `TO_CHAR` function converts a date or number to a string using a specified format.
+
+#### **Syntax**
+
+```sql
+TO_CHAR(date, 'format_model')
+```
+
+* **date**: The date value to be converted.
+* **format\_model**: The format in which the date should be returned. Common format models include:
+  * `'YYYY'`: Four-digit year.
+  * `'MM'`: Two-digit month.
+  * `'DD'`: Two-digit day.
+  * `'DY'`: Three-character day of the week (e.g., MON, TUE).
+  * `'HH24'`: Hour of the day in 24-hour format.
+  * `'MI'`: Minutes.
+  * `'SS'`: Seconds.
+
+#### **Example**
+
+```
+SELECT 
+    TO_CHAR(SYSDATE, 'YYYY-MM-DD') AS formatted_date,
+    TO_CHAR(SYSDATE, 'DY') AS day_of_week,
+    TO_CHAR(SYSDATE, 'HH24:MI:SS') AS time_of_day
+FROM DUAL;
+```
+
+<figure><img src="../../../../../.gitbook/assets/image (114).png" alt="" width="317"><figcaption></figcaption></figure>
+
+### TO\_DATE
+
+The `TO_DATE` function converts a string to a date using a specified format.
+
+#### **Syntax**
+
+```sql
+TO_DATE(string, 'format_model')
+```
+
+* **string**: The string to be converted to a date.
+* **format\_model**: The format in which the string is provided. The format model should match the string format.
+
+#### **Example**
+
+```
+SELECT 
+    TO_DATE('2024-05-25', 'YYYY-MM-DD') AS converted_date
+FROM DUAL;
+
+SELECT 
+    TO_DATE('25-MAY-2024 14:30:00', 'DD-MON-YYYY HH24:MI:SS') AS converted_date
+FROM DUAL;
+```
+
+### MONTHS\_BETWEEN
+
+The `MONTHS_BETWEEN` function returns the number of months between two dates. The result can include a fractional part if the dates are not exactly a whole number of months apart.
+
+#### **Syntax**
+
+```sql
+MONTHS_BETWEEN(date1, date2)
+```
+
+* **date1**: The later date.
+* **date2**: The earlier date.
+
+#### **Example**
+
+```
+SELECT 
+    MONTHS_BETWEEN(TO_DATE('2024-05-25', 'YYYY-MM-DD'), TO_DATE('2024-01-15', 'YYYY-MM-DD')) AS months_diff
+FROM 
+    DUAL;
+-- Output -> 4.3225806
+```
+
+### TRUNC
+
+The `TRUNC` function truncates a date to the specified unit of measure. This function is often used to remove the time portion of a date or to truncate the date to a specific level (e.g., year, month).
+
+#### **Syntax**
+
+```sql
+TRUNC(date [, format])
+```
+
+* **date**: The date to be truncated.
+* **format**: The unit of measure to truncate the date to (optional). Common format models include:
+  * `'YYYY'`: Truncate to the first day of the year.
+  * `'MM'`: Truncate to the first day of the month.
+  * `'DD'`: Truncate to midnight of the current day (default if format is not specified).
+
+#### Example
+
+```
+SELECT 
+    TRUNC(TO_DATE('2024-05-25 14:30:00', 'YYYY-MM-DD HH24:MI:SS')) AS trunc_day,
+    TRUNC(TO_DATE('2024-05-25 14:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'MM') AS trunc_month,
+    TRUNC(TO_DATE('2024-05-25 14:30:00', 'YYYY-MM-DD HH24:MI:SS'), 'YYYY') AS trunc_year
+FROM 
+    DUAL;
+```
+
+<figure><img src="../../../../../.gitbook/assets/image (116).png" alt=""><figcaption></figcaption></figure>
+
 
 
