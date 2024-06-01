@@ -1389,7 +1389,146 @@ FROM
 --2024	5	15
 ```
 
+## Conditional Functions
 
+### DECODE&#x20;
 
+The `DECODE` function provides functionality similar to a CASE statement. It allows to perform conditional querying and can transform data within a query based on specific conditions.
 
+#### **Syntax**
+
+```sql
+DECODE(expression, search1, result1, search2, result2, ..., default)
+```
+
+* **expression**: The value to be evaluated.
+* **search1, search2, ...**: The values to compare against the expression.
+* **result1, result2, ...**: The results to return if the corresponding search value matches the expression.
+* **default**: The default result to return if no match is found (optional).
+
+#### **Example**
+
+Suppose we have an `employees` table with an `employee_id` and a `department_id`, and want to translate department IDs into department names.
+
+```sql
+SELECT
+    employee_id,
+    department_id,
+    DECODE(department_id,
+           10, 'Finance',
+           20, 'HR',
+           30, 'IT',
+           40, 'Sales',
+           'Unknown') AS department_name
+FROM
+    employees;
+```
+
+### CASE&#x20;
+
+The `CASE` statement in Oracle SQL is a versatile conditional expression that allows to implement conditional logic directly in your SQL queries. It is similar to the `DECODE` function but more powerful and flexible because it can handle complex conditions and multiple data types.
+
+#### Syntax
+
+There are two types of `CASE` statements: the simple `CASE` statement and the searched `CASE` statement.
+
+#### **Simple CASE Statement**
+
+The simple `CASE` statement compares an expression to a set of simple expressions to determine the result.
+
+```sql
+CASE expression
+    WHEN value1 THEN result1
+    WHEN value2 THEN result2
+    ...
+    ELSE default_result
+END
+```
+
+#### **Searched CASE Statement**
+
+The searched `CASE` statement evaluates a set of Boolean expressions to determine the result.
+
+```sql
+CASE
+    WHEN condition1 THEN result1
+    WHEN condition2 THEN result2
+    ...
+    ELSE default_result
+END
+```
+
+#### Examples
+
+**Example 1: Simple CASE Statement**
+
+Suppose we have an `employees` table with columns `employee_id`, `first_name`, `last_name`, and `department_id`, and want to translate department IDs into department names.
+
+```sql
+SELECT
+    employee_id,
+    first_name,
+    last_name,
+    department_id,
+    CASE department_id
+        WHEN 10 THEN 'Finance'
+        WHEN 20 THEN 'HR'
+        WHEN 30 THEN 'IT'
+        WHEN 40 THEN 'Sales'
+        ELSE 'Unknown'
+    END AS department_name
+FROM
+    employees;
+```
+
+#### **Example 2: Searched CASE Statement**
+
+Suppose we want to classify employees based on their salary ranges.
+
+```sql
+SELECT
+    employee_id,
+    first_name,
+    last_name,
+    salary,
+    CASE
+        WHEN salary < 30000 THEN 'Low'
+        WHEN salary BETWEEN 30000 AND 70000 THEN 'Medium'
+        WHEN salary > 70000 THEN 'High'
+        ELSE 'Unknown'
+    END AS salary_level
+FROM
+    employees;
+```
+
+#### **Example 3: Combining CASE with Other SQL Features**
+
+You can combine the `CASE` statement with other SQL clauses such as `ORDER BY` and `FETCH FIRST`.
+
+```sql
+SELECT
+    employee_id,
+    first_name,
+    last_name,
+    salary,
+    department_id,
+    CASE department_id
+        WHEN 10 THEN 'Finance'
+        WHEN 20 THEN 'HR'
+        WHEN 30 THEN 'IT'
+        WHEN 40 THEN 'Sales'
+        ELSE 'Unknown'
+    END AS department_name,
+    CASE
+        WHEN salary < 30000 THEN 'Low'
+        WHEN salary BETWEEN 30000 AND 70000 THEN 'Medium'
+        WHEN salary > 70000 THEN 'High'
+        ELSE 'Unknown'
+    END AS salary_level
+FROM
+    employees
+ORDER BY
+    salary DESC
+FETCH FIRST 5 ROWS ONLY;
+```
 
