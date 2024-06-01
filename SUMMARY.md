@@ -171,6 +171,8 @@
         * [6. Working with Strings](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/6.-working-with-strings.md)
         * [7. Working with Numbers](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/page-2.md)
         * [8. Date Arithmetic](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/date-arithmetic.md)
+        * [9. Date Manipulation](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/9.-date-manipulation.md)
+        * [Page 2](<sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/page-2 (1).md>)
       * [Entity Relationship Diagram (ERD)](sql/dbms/rdbms/entity-relationship-diagram-erd/README.md)
         * [ERD Examples](sql/dbms/rdbms/entity-relationship-diagram-erd/erd-examples.md)
       * [Other Concepts](sql/dbms/rdbms/other-concepts/README.md)
