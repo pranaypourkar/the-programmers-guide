@@ -638,7 +638,7 @@ CONNECT BY PRIOR EMPLOYEE_ID = MANAGER_ID;
 
 Sample Output
 
-<figure><img src="../../../../../.gitbook/assets/image (4).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (4) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 2. Create sequence or generate data
 
@@ -1314,6 +1314,82 @@ FROM
 ```
 
 <figure><img src="../../../../../.gitbook/assets/image (116).png" alt=""><figcaption></figcaption></figure>
+
+### LAST\_DAY
+
+The `LAST_DAY` function returns the last day of the month that contains the specified date.
+
+#### **Syntax**
+
+```sql
+LAST_DAY(date)
+```
+
+* **date**: The date from which to determine the last day of the month.
+
+#### **Example**
+
+```sql
+-- Get the last day of the month for a specific date
+SELECT 
+    LAST_DAY(TO_DATE('2024-05-15', 'YYYY-MM-DD')) AS last_day_of_month
+FROM 
+    DUAL;
+-- Output --> 2024-05-31
+```
+
+### NEXT\_DAY
+
+The `NEXT_DAY` function returns the date of the first specified weekday that is later than the given date.
+
+#### **Syntax**
+
+```sql
+NEXT_DAY(date, 'day_of_week')
+```
+
+* **date**: The starting date.
+* **day\_of\_week**: The name of the weekday (in English). It can be abbreviated (e.g., 'MON' for Monday).
+
+#### **Example**
+
+<pre class="language-sql"><code class="lang-sql"><strong>-- Find the next Monday after a specific date
+</strong><strong>SELECT 
+</strong>    NEXT_DAY(TO_DATE('2024-05-15', 'YYYY-MM-DD'), 'MONDAY') AS next_monday
+FROM 
+    DUAL;
+-- Output --> 2024-05-20
+</code></pre>
+
+### EXTRACT
+
+The `EXTRACT` function extracts a specific part of a date (such as year, month, day, hour, minute, second) or an interval.
+
+#### **Syntax**
+
+```sql
+EXTRACT(part FROM date)
+```
+
+* **part**: The part of the date to extract. Common parts include `YEAR`, `MONTH`, `DAY`, `HOUR`, `MINUTE`, `SECOND`.
+* **date**: The date from which to extract the part.
+
+#### **Example**
+
+```sql
+-- Extract the year, month, and day from a date
+SELECT 
+    EXTRACT(YEAR FROM TO_DATE('2024-05-15', 'YYYY-MM-DD')) AS year,
+    EXTRACT(MONTH FROM TO_DATE('2024-05-15', 'YYYY-MM-DD')) AS month,
+    EXTRACT(DAY FROM TO_DATE('2024-05-15', 'YYYY-MM-DD')) AS day
+FROM 
+    DUAL;
+-- Output
+--YEAR	MONTH	DAY
+--2024	5	15
+```
+
+
 
 
 
