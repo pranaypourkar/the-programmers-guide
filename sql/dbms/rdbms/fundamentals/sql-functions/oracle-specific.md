@@ -1606,6 +1606,10 @@ FROM
 GROUP BY ROLLUP (columns);
 ```
 
+#### ROLLUP vs CUBE
+
+<table data-full-width="true"><thead><tr><th width="223">Feature</th><th>CUBE</th><th>ROLLUP</th></tr></thead><tbody><tr><td>Purpose</td><td>Generates subtotals for all possible combinations of a set of dimensions.</td><td>Generates subtotals and grand totals for a hierarchical set of dimensions.</td></tr><tr><td>Hierarchical Levels</td><td>Covers all combinations of the specified columns, resulting in a full cross-tabulation of subtotals.</td><td>Covers a hierarchy of the specified columns, resulting in subtotal rows at each level of the hierarchy and a grand total.</td></tr><tr><td>Number of Groupings</td><td>2^n (where n is the number of columns). For example, for 3 columns, it generates 8 groupings.</td><td>n+1 (where n is the number of columns). For example, for 3 columns, it generates 4 groupings.</td></tr><tr><td>Subtotals</td><td>Includes subtotals for all possible combinations, including combinations of 1, 2, up to n-1 columns.</td><td>Includes subtotals for each column and progressively fewer columns until only the grand total is left.</td></tr><tr><td>Grand Total</td><td>Included as one of the combinations where all specified columns are set to NULL.</td><td>Included as the final grouping where all specified columns are set to NULL.</td></tr><tr><td>Use Case</td><td>Useful for comprehensive data analysis with all possible dimension combinations.</td><td>Useful for hierarchical data analysis where subtotals are needed at each level of the hierarchy.</td></tr><tr><td>Example Syntax</td><td><code>GROUP BY CUBE (col1, col2, col3)</code></td><td><code>GROUP BY ROLLUP (col1, col2, col3)</code></td></tr></tbody></table>
+
 #### Example 1
 
 ```
@@ -1647,6 +1651,73 @@ GROUP BY ROLLUP (product_id);
 ```
 
 <figure><img src="../../../../../.gitbook/assets/image (7).png" alt="" width="202"><figcaption></figcaption></figure>
+
+### CUBE
+
+The `CUBE` function in Oracle SQL is an extension of the `GROUP BY` clause that generates subtotals for all possible combinations of a given set of dimensions. It is useful for producing a cross-tabulation of data and can create a comprehensive result set that includes subtotals and a grand total for multi-dimensional data analysis.
+
+#### Syntax
+
+```sql
+SELECT
+    column1,
+    column2,
+    aggregate_function(column3)
+FROM
+    table
+GROUP BY CUBE (column1, column2);
+```
+
+#### Example 1
+
+```
+SELECT
+    product_id,
+    region_id,
+    SUM(sales_amount) AS total_sales
+FROM
+    (
+        SELECT 1 AS product_id, 1 AS region_id, 100 AS sales_amount FROM dual UNION ALL
+        SELECT 1 AS product_id, 2 AS region_id, 150 AS sales_amount FROM dual UNION ALL
+        SELECT 2 AS product_id, 1 AS region_id, 200 AS sales_amount FROM dual UNION ALL
+        SELECT 2 AS product_id, 2 AS region_id, 250 AS sales_amount FROM dual
+    )
+GROUP BY CUBE (product_id, region_id);
+```
+
+{% hint style="info" %}
+* Rows where `region_id` is `NULL` are subtotals for each `product_id`.
+* Rows where `product_id` is `NULL` are subtotals for each `region_id`.
+* The row where both `product_id` and `region_id` are `NULL` is the grand total.
+{% endhint %}
+
+<figure><img src="../../../../../.gitbook/assets/image (151).png" alt="" width="260"><figcaption></figcaption></figure>
+
+#### Example 2
+
+```
+SELECT
+    product_id,
+    SUM(sales_amount) AS total_sales
+FROM
+    (
+        SELECT 1 AS product_id, 1 AS region_id, 100 AS sales_amount FROM dual UNION ALL
+        SELECT 1 AS product_id, 2 AS region_id, 150 AS sales_amount FROM dual UNION ALL
+        SELECT 2 AS product_id, 1 AS region_id, 200 AS sales_amount FROM dual UNION ALL
+        SELECT 2 AS product_id, 2 AS region_id, 250 AS sales_amount FROM dual
+    )
+GROUP BY CUBE (product_id);
+```
+
+<figure><img src="../../../../../.gitbook/assets/image (152).png" alt="" width="189"><figcaption></figcaption></figure>
+
+
+
+
+
+
+
+
 
 
 
