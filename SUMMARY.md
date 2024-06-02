@@ -155,7 +155,7 @@
           * [EXISTS and NOT EXISTS](sql/dbms/rdbms/fundamentals/sql-operators/exists-and-not-exists.md)
         * [SQL Clauses](sql/dbms/rdbms/fundamentals/sql-clauses/README.md)
           * [Joins](sql/dbms/rdbms/fundamentals/sql-clauses/joins.md)
-          * [PARTITION BY](sql/dbms/rdbms/fundamentals/sql-clauses/partition-by.md)
+          * [OVER](sql/dbms/rdbms/fundamentals/sql-clauses/over.md)
           * [WITH](sql/dbms/rdbms/fundamentals/sql-clauses/with.md)
           * [CONNECT BY](sql/dbms/rdbms/fundamentals/sql-clauses/connect-by.md)
           * [MODEL](sql/dbms/rdbms/fundamentals/sql-clauses/model.md)

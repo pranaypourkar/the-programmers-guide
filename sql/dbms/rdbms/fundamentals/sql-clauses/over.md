@@ -1,20 +1,64 @@
-# PARTITION BY
+# OVER
 
 ## Description
 
 Window functions, also known as analytic functions, are a powerful feature in SQL that allows to perform calculations across a set of table rows that are somehow related to the current row. This is different from regular aggregate functions which return a single aggregate value for a set of rows. Window functions retain the individual rows while calculating aggregates, ranks, running totals, or other calculations. The `PARTITION BY` clause is used within window functions to divide the result set into partitions to which the window function is applied.
 
 {% hint style="info" %}
-Window functions are not supported by all Database Management Systems (DBMS). Oracle, Microsoft SQL Server, MySQL, etc supports.
+Window functions are not supported by all Database Management Systems (DBMS). Oracle, Microsoft SQL Server, MySQL, etc supports it.
 {% endhint %}
 
 ## Syntax
 
 ```
 SELECT column1,
-       window_function() OVER ([PARTITION BY partition_expression] [ORDER BY order_expression]) AS alias
+       window_function() OVER ([PARTITION BY partition_expression] [ORDER BY order_expression] [RANGE|ROWS BETWEEN start_expr AND end_expr]) AS alias
 FROM table_name;
 ```
+
+* **window\_function()**: This is a placeholder for any window function, such as `SUM()`, `AVG()`, `ROW_NUMBER()`, `RANK()`, etc.
+* **OVER**: Indicates the use of a window function.
+* **\[PARTITION BY partition\_expression]**: (Optional) Divides the result set into partitions to which the window function is applied. Each partition is processed separately.
+* **\[ORDER BY order\_expression]**: (Optional) Specifies the order of rows within each partition or within the entire result set if `PARTITION BY` is not used. This is necessary for functions that depend on the order, like cumulative sums or rankings.
+* **\[RANGE BETWEEN start\_expr AND end\_expr]**: (Optional) Defines a window frame, which is a set of rows relative to the current row. `RANGE` considers rows within a certain range of values, while `ROWS` considers a specific number of rows. This can be especially useful for cumulative sums, moving averages, or other types of running totals.
+
+{% hint style="info" %}
+Keywords useful when using `RANGE`
+
+**INTERVAL**: Specifies a time interval. Used with date or timestamp columns to define the range in terms of days, months, years, etc.&#x20;
+
+RANGE BETWEEN INTERVAL '1' DAY PRECEDING AND CURRENT ROW
+
+
+
+**PRECEDING**: Indicates that the boundary of the frame is before the current row.&#x20;
+
+RANGE BETWEEN INTERVAL '1' DAY PRECEDING AND CURRENT ROW
+
+
+
+**FOLLOWING**: Indicates that the boundary of the frame is after the current row.&#x20;
+
+RANGE BETWEEN CURRENT ROW AND INTERVAL '1' DAY FOLLOWING
+
+
+
+**CURRENT ROW**: Refers to the current row being processed.&#x20;
+
+RANGE BETWEEN INTERVAL '1' DAY PRECEDING AND CURRENT ROW
+
+
+
+**UNBOUNDED PRECEDING**: Specifies the start of the frame from the first row of the partition.&#x20;
+
+RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+
+
+
+**UNBOUNDED FOLLOWING**: Specifies the end of the frame to the last row of the partition.&#x20;
+
+RANGE BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING
+{% endhint %}
 
 ## Common Window Functions
 
@@ -41,6 +85,8 @@ FROM table_name;
 {% hint style="info" %}
 All these window functions require the `OVER (...)` clause to define the window for the calculation.
 {% endhint %}
+
+
 
 ## Examples
 
@@ -92,23 +138,58 @@ FROM sales;
 | 1002         | 400          | 700          |
 | 1003         | 200          | 200          |
 
+### Example: Using `RANGE BETWEEN` with `SUM`
 
+Sample Input
 
+<figure><img src="../../../../../.gitbook/assets/image (160).png" alt="" width="489"><figcaption></figcaption></figure>
 
+We want to calculate the cumulative sales amount within the last 90 days for each row.
 
+```
+SELECT
+    sales_date,
+    sales_amount,
+    SUM(sales_amount) OVER (
+        ORDER BY sales_date
+        RANGE BETWEEN INTERVAL '90' DAY PRECEDING AND CURRENT ROW
+    ) AS cumulative_sales
+FROM
+    sales;
+```
 
+<figure><img src="../../../../../.gitbook/assets/image (161).png" alt="" width="563"><figcaption></figcaption></figure>
 
+### Example with `ROWS BETWEEN`
 
+For considering the last 3 rows instead of a time interval, we would use `ROWS BETWEEN`
 
+```
+SELECT
+    sales_date,
+    sales_amount,
+    SUM(sales_amount) OVER (
+        ORDER BY sales_date
+        ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
+    ) AS cumulative_sales
+FROM
+    sales;
+```
 
+### Example Using `PARTITION BY` with `RANGE`
 
+We want to calculate cumulative sales within each year and the cumulative sales should be within the last 90 days for each year.
 
-
-
-
-
-
-
-
-
+```
+SELECT
+    sales_date,
+    sales_amount,
+    SUM(sales_amount) OVER (
+        PARTITION BY EXTRACT(YEAR FROM sales_date)
+        ORDER BY sales_date
+        RANGE BETWEEN INTERVAL '90' DAY PRECEDING AND CURRENT ROW
+    ) AS cumulative_sales
+FROM
+    sales;
+```
 
