@@ -178,7 +178,7 @@
         * [9. Date Manipulation](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/9.-date-manipulation.md)
         * [10. Working with Ranges](<sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/page-2 (1) (1).md>)
         * [11. Advanced Searching](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/11.-advanced-searching.md)
-        * [Page 2](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/page-2.md)
+        * [12. Reporting and Reshaping](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/12.-reporting-and-reshaping.md)
         * [13. Hierarchical Queries](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/13.-hierarchical-queries.md)
         * [Page 3](sql/dbms/rdbms/oreilly-sql-cookbook-2nd-edition/page-3.md)
       * [Entity Relationship Diagram (ERD)](sql/dbms/rdbms/entity-relationship-diagram-erd/README.md)
