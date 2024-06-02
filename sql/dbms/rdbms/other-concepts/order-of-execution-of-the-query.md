@@ -55,7 +55,7 @@ SELECT LAST_NAME, FIRST_NAME
 ORDER BY FIRST_NAME;
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 SELECT DEPARTMENT, COUNT(*)
@@ -114,7 +114,7 @@ SELECT rownum,EMPLOYEE_ID,FIRST_NAME,LAST_NAME FROM EMPLOYEES
 WHERE DEPARTMENT_ID = 50 order by FIRST_NAME;
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```
 SELECT rownum, EMPLOYEE_ID, LAST_NAME
