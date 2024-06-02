@@ -160,6 +160,8 @@
           * [CONNECT BY](sql/dbms/rdbms/fundamentals/sql-clauses/connect-by.md)
           * [MODEL](sql/dbms/rdbms/fundamentals/sql-clauses/model.md)
           * [FETCH FIRST](sql/dbms/rdbms/fundamentals/sql-clauses/fetch-first.md)
+          * [KEEP](sql/dbms/rdbms/fundamentals/sql-clauses/keep.md)
+          * [OFFSET with FETCH](sql/dbms/rdbms/fundamentals/sql-clauses/offset-with-fetch.md)
         * [SQL Functions](sql/dbms/rdbms/fundamentals/sql-functions/README.md)
           * [Oracle Specific](sql/dbms/rdbms/fundamentals/sql-functions/oracle-specific.md)
         * [Others](sql/dbms/rdbms/fundamentals/others/README.md)
