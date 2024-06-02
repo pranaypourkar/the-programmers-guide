@@ -81,6 +81,7 @@ RANGE BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING
 * **`LAST_VALUE(expression) OVER (...)`:** Retrieves the last value of an expression encountered within a window. It's helpful for grabbing the final value within a partition or ordered set.
 * **`LEAD(expression, offset) OVER (...)`:** Looks ahead a specified number of rows (`offset`) and returns the value of the expression at that position. It's useful for comparing values with future positions within the window.
 * **`LAG(expression, offset) OVER (...)`:** Looks behind a specified number of rows (`offset`) and returns the value of the expression at that position. It's useful for comparing values with past positions within the window.
+* **`RATIO_TO_REPORT(expression)`**: It is an analytic function used to calculate the ratio of a value to the sum of a set of values. It is commonly used to determine the proportion of a value within a group relative to the total for that group.
 
 {% hint style="info" %}
 All these window functions require the `OVER (...)` clause to define the window for the calculation.
@@ -176,7 +177,7 @@ FROM
     sales;
 ```
 
-### Example Using `PARTITION BY` with `RANGE`
+### Example using `PARTITION BY` with `RANGE`
 
 We want to calculate cumulative sales within each year and the cumulative sales should be within the last 90 days for each year.
 
@@ -192,4 +193,38 @@ SELECT
 FROM
     sales;
 ```
+
+### Example using RATIO\_TO\_REPORT
+
+Suppose we have a table `sales` with the following structure:
+
+| product\_id | region\_id | sales\_amount |
+| ----------- | ---------- | ------------- |
+| 1           | 1          | 100           |
+| 1           | 2          | 150           |
+| 2           | 1          | 200           |
+| 2           | 2          | 250           |
+
+We want to calculate the ratio of each `sales_amount` to the total `sales_amount` for each `region_id`
+
+```
+SELECT
+    product_id,
+    region_id,
+    sales_amount,
+    RATIO_TO_REPORT(sales_amount) OVER (PARTITION BY region_id) AS ratio_to_total
+FROM
+    sales;
+```
+
+**Output**
+
+| product\_id | region\_id | sales\_amount | ratio\_to\_total |
+| ----------- | ---------- | ------------- | ---------------- |
+| 1           | 1          | 100           | 0.3333           |
+| 2           | 1          | 200           | 0.6667           |
+| 1           | 2          | 150           | 0.3750           |
+| 2           | 2          | 250           | 0.6250           |
+
+
 
