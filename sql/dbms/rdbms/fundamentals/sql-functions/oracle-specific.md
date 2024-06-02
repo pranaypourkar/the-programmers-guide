@@ -638,7 +638,7 @@ CONNECT BY PRIOR EMPLOYEE_ID = MANAGER_ID;
 
 Sample Output
 
-<figure><img src="../../../../../.gitbook/assets/image (4) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (4) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 2. Create sequence or generate data
 
@@ -650,7 +650,7 @@ CONNECT BY LEVEL <= 5;
 
 Sample Output
 
-<figure><img src="../../../../../.gitbook/assets/image (5).png" alt="" width="452"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (5) (1).png" alt="" width="452"><figcaption></figcaption></figure>
 
 ## Null Handling Functions
 
@@ -1531,4 +1531,122 @@ ORDER BY
     salary DESC
 FETCH FIRST 5 ROWS ONLY;
 ```
+
+## Advanced Aggregation Function
+
+### GROUPING Function
+
+The `GROUPING` function is used to distinguish between a detail row and an aggregate row created by a `ROLLUP` or `CUBE` operation. It returns `1` for a row created by `ROLLUP` or `CUBE` and `0` for a regular row.
+
+#### **Syntax**
+
+```sql
+GROUPING(column_name)
+```
+
+#### Example 1
+
+```
+SELECT
+    product_id,
+    region_id,
+    SUM(sales_amount) AS total_sales,
+    GROUPING(product_id) AS is_product_total,
+    GROUPING(region_id) AS is_region_total
+FROM
+    (
+        SELECT 1 AS product_id, 1 AS region_id, 100 AS sales_amount FROM dual UNION ALL
+        SELECT 1 AS product_id, 2 AS region_id, 150 AS sales_amount FROM dual UNION ALL
+        SELECT 2 AS product_id, 1 AS region_id, 200 AS sales_amount FROM dual UNION ALL
+        SELECT 2 AS product_id, 2 AS region_id, 250 AS sales_amount FROM dual
+    )
+GROUP BY ROLLUP (product_id, region_id);
+
+```
+
+{% hint style="info" %}
+* `is_product_total` is `1` when the row is a product subtotal.
+* `is_region_total` is `1` when the row is a region subtotal.
+* Both are `1` when the row is the grand total.
+{% endhint %}
+
+<figure><img src="../../../../../.gitbook/assets/image (8).png" alt="" width="482"><figcaption></figcaption></figure>
+
+#### Example 2
+
+```
+SELECT
+    product_id,
+    SUM(sales_amount) AS total_sales,
+    GROUPING(product_id) AS is_product_total
+FROM
+    (
+        SELECT 1 AS product_id, 1 AS region_id, 100 AS sales_amount FROM dual UNION ALL
+        SELECT 1 AS product_id, 2 AS region_id, 150 AS sales_amount FROM dual UNION ALL
+        SELECT 2 AS product_id, 1 AS region_id, 200 AS sales_amount FROM dual UNION ALL
+        SELECT 2 AS product_id, 2 AS region_id, 250 AS sales_amount FROM dual
+    )
+GROUP BY ROLLUP (product_id);
+```
+
+<figure><img src="../../../../../.gitbook/assets/image (9).png" alt="" width="315"><figcaption></figcaption></figure>
+
+### ROLLUP Function
+
+The `ROLLUP` function is an extension to the `GROUP BY` clause that creates subtotals and a grand total. It allows you to create aggregate values at multiple levels of a hierarchy.
+
+#### **Syntax**
+
+```sql
+SELECT
+    columns,
+    aggregate_function(column_name)
+FROM
+    table
+GROUP BY ROLLUP (columns);
+```
+
+#### Example 1
+
+```
+SELECT
+    product_id,
+    region_id,
+    SUM(sales_amount) AS total_sales
+FROM
+    (
+        SELECT 1 AS product_id, 1 AS region_id, 100 AS sales_amount FROM dual UNION ALL
+        SELECT 1 AS product_id, 2 AS region_id, 150 AS sales_amount FROM dual UNION ALL
+        SELECT 2 AS product_id, 1 AS region_id, 200 AS sales_amount FROM dual UNION ALL
+        SELECT 2 AS product_id, 2 AS region_id, 250 AS sales_amount FROM dual
+    )
+GROUP BY ROLLUP (product_id, region_id);
+```
+
+<figure><img src="../../../../../.gitbook/assets/image (6).png" alt="" width="286"><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+* Rows where `region_id` is `NULL` are subtotals for each `product_id`.
+* The row where both `product_id` and `region_id` are `NULL` is the grand total.
+{% endhint %}
+
+#### Example 2
+
+```
+SELECT
+    product_id,
+    SUM(sales_amount) AS total_sales
+FROM
+    (
+        SELECT 1 AS product_id, 1 AS region_id, 100 AS sales_amount FROM dual UNION ALL
+        SELECT 1 AS product_id, 2 AS region_id, 150 AS sales_amount FROM dual UNION ALL
+        SELECT 2 AS product_id, 1 AS region_id, 200 AS sales_amount FROM dual UNION ALL
+        SELECT 2 AS product_id, 2 AS region_id, 250 AS sales_amount FROM dual
+    )
+GROUP BY ROLLUP (product_id);
+```
+
+<figure><img src="../../../../../.gitbook/assets/image (7).png" alt="" width="202"><figcaption></figcaption></figure>
+
+
 
