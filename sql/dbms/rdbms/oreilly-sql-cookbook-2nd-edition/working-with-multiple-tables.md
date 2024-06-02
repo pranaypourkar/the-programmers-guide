@@ -174,7 +174,7 @@ We want to perform an aggregation, but the query involves multiple tables. For e
 
 Sample table EMP\_BONUS contains the following data:
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="493"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="493"><figcaption></figcaption></figure>
 
 ```
 -- Solution 1
@@ -216,7 +216,7 @@ We have to be careful when computing aggregates across joins. Typically when dup
 
 Same scenario as above but not all employees in department 10 have been given bonuses.
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="256"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="256"><figcaption></figcaption></figure>
 
 <pre><code>-- Solution 1
 select deptno,
