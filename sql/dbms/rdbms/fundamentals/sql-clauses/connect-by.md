@@ -16,6 +16,7 @@ The `CONNECT BY` clause in Oracle is used for hierarchical queries, which are qu
 2. **LEVEL**: A pseudo-column that returns the level number of a node in a tree structure. The root level is 1, the next level is 2, and so on.
 3. **START WITH**: This clause specifies the root of the hierarchy, i.e., the starting point of the query.
 4. **SYS\_CONNECT\_BY\_PATH**: A function that returns the path of a node from the root.
+5. **CONNECT\_BY\_ROOT** and **CONNECT\_BY\_ISLEAF:** `CONNECT_BY_ROOT` and `CONNECT_BY_ISLEAF` are hierarchical query pseudocolumns used with the `CONNECT BY` clause to navigate and manipulate hierarchical data structures, such as organizational charts or parts explosions. These pseudocolumns are especially useful when working with self-referential tables where a row refers to another row in the same table.
 
 ## Syntax
 
@@ -25,6 +26,24 @@ FROM table_name
 START WITH condition
 CONNECT BY PRIOR parent_column = child_column;
 ```
+
+### CONNECT\_BY\_ROOT
+
+The `CONNECT_BY_ROOT` pseudocolumn is used to return the root row of the hierarchy from the current row. This means it retrieves the starting point (root) of the hierarchy for each row in the result set.
+
+```sql
+CONNECT_BY_ROOT column_name
+```
+
+### CONNECT\_BY\_ISLEAF
+
+The `CONNECT_BY_ISLEAF` pseudocolumn is used to indicate whether a row is a leaf node in the hierarchy. A leaf node is a node that does not have any children
+
+```sql
+CONNECT_BY_ISLEAF
+```
+
+
 
 ## Examples
 
@@ -102,8 +121,6 @@ This translates to:
 
 **SYS\_CONNECT\_BY\_PATH**: Returns the path from the root to the current row, which is useful for displaying the hierarchy as a string.
 
-
-
 ### Print difference of 2 dates into rows
 
 Given 2 dates, print all the dates within those 2 dates including itself.
@@ -116,6 +133,40 @@ SELECT
 ```
 
 <figure><img src="../../../../../.gitbook/assets/image (113).png" alt="" width="131"><figcaption></figcaption></figure>
+
+### Display each employee along with their root manager
+
+```
+SELECT
+    employee_id,
+    employee_name,
+    manager_id,
+    CONNECT_BY_ROOT employee_name AS root_manager
+FROM
+    employees
+CONNECT BY
+    PRIOR employee_id = manager_id
+START WITH
+    manager_id IS NULL;
+```
+
+### Display whether each employee is a leaf node in the hierarchy
+
+```
+SELECT
+    employee_id,
+    employee_name,
+    manager_id,
+    CONNECT_BY_ISLEAF AS is_leaf
+FROM
+    employees
+CONNECT BY
+    PRIOR employee_id = manager_id
+START WITH
+    manager_id IS NULL;
+```
+
+
 
 
 
