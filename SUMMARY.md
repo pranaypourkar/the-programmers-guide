@@ -199,7 +199,7 @@
   * [Commands](git/commands/README.md)
     * [Setup and Configuration Commands](git/commands/setup-and-configuration-commands.md)
     * [Getting and Creating Projects](git/commands/getting-and-creating-projects.md)
-    * [Basic Snapshotting](git/commands/basic-snapshotting.md)
+    * [Tracking Changes](git/commands/tracking-changes.md)
     * [Branching and Merging](git/commands/branching-and-merging.md)
     * [Sharing and Updating Projects](git/commands/sharing-and-updating-projects.md)
     * [Inspection and Comparison](git/commands/inspection-and-comparison.md)
