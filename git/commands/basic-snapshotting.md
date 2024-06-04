@@ -172,7 +172,7 @@ git diff -U3
 git diff --color
 ```
 
-### Example Outputs
+### Example Output
 
 ```
 git diff
@@ -235,7 +235,6 @@ git add filename.txt
 -- Stages all changes in the current directory and subdirectories
 git add .
 
-
 -- Add All Changes (Except Untracked Files)
 -- Stages modifications and deletions, but not new untracked files
 git add -u
@@ -285,9 +284,86 @@ When running `git status` after staging changes with `git add`
 
 ### Description
 
+It is used to remove files from the working directory and the staging area (index). This command stages the removal of files so that they will be deleted in the next commit.
 
+### Usage
 
+```sh
+git rm [<options>] [--] <file>...
+```
 
+* `<file>`: Specifies the file(s) to be removed.
+
+### What It Does
+
+1. **Removes Files from the Working Directory**: Deletes the specified files from the working directory.
+2. **Stages the Removal**: Stages the deletion of the specified files, so the changes will be included in the next commit.
+3. **Does Not Remove Directories**: Only removes files, not directories.
+
+### Common Use Cases
+
+```git
+-- Remove a Specific File
+-- Removes filename.txt from both the working directory and the staging area
+git rm filename.txt
+
+-- Remove Multiple Files
+-- Removes both file1.txt and file2.txt
+git rm file1.txt file2.txt
+
+-- Remove Files Using a Pattern
+-- Removes all .log files from the working directory and stages the deletion
+git rm '*.log'
+
+-- Force Remove
+-- Forces the removal of filename.txt even if it has been modified
+git rm -f filename.txt
+
+-- Keep File in Working Directory
+-- Removes filename.txt from the staging area but leaves it in the working directory. 
+-- This is useful for stopping tracking of a file without deleting it locally.
+git rm --cached filename.txt
+
+-- Untracked Files 
+-- If we want to remove untracked files from the working directory, we can use the git clean command instead
+git clean -f
+```
+
+### Options
+
+* `-f` or `--force`: Forces the removal of files. This is required if the files have been modified or if they are staged for commit.
+* `-r` or `--recursive`: Allows recursive removal of files in directories.
+* `--cached`: Removes the file only from the staging area, not from the working directory. This stops Git from tracking the file.
+* `-n` or `--dry-run`: Shows what would be removed without actually removing the files.
+
+```
+git rm -f filename.txt
+git rm -r dirname/
+git rm --cached filename.txt
+git rm -n filename.txt
+```
+
+### Example Workflow
+
+```git
+-- Check Current Status
+git status
+
+-- Remove a File
+git rm filename.txt
+
+-- Check Status Again
+git status
+
+-- Commit the Changes
+git commit -m "Remove filename.txt"
+```
+
+### Example Output
+
+When running `git status` after using `git rm`
+
+<figure><img src="../../.gitbook/assets/image (163).png" alt="" width="461"><figcaption></figcaption></figure>
 
 
 
