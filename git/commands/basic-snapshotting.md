@@ -12,18 +12,47 @@ It is used to display the state of the working directory and the staging area. I
 git status [<options>]
 ```
 
-#### What It Shows
+#### Options
+
+`-s` or `--short` : It gives the output in a more concise, short format.
+
+Example short format output:
+
+```ruby
+M file3.txt
+?? file4.txt
+```
+
+{% hint style="info" %}
+`M` indicates a modified file.\
+`??` indicates an untracked file.
+{% endhint %}
+
+`-b` or `--branch:` Shows the branch and tracking information in a short format.
+
+```sh
+git status -s
+git status -b
+```
+
+### What It Shows
 
 * **Untracked Files**: Files in your working directory that aren't tracked by Git.
 * **Tracked Files**: Files that are tracked by Git and have changes that haven't been staged yet.
 * **Staged Changes**: Files that have changes staged for the next commit.
 * **Branch Information**: The current branch you are on and whether your local branch is ahead, behind, or has diverged from the remote branch.
 
+{% hint style="info" %}
+**Status Indication**: `git status` provides hints on what to do next, such as commands to stage files, unstage files, or discard changes.
+
+**Performance**: `git status` can be slow in large repositories because it checks the entire working directory. In such cases, using `git status -uno` (show untracked files only) might improve performance.
+{% endhint %}
+
 ### Example Output
 
 Here’s an example of what `git status` might display
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 Or
 
@@ -58,34 +87,6 @@ Untracked files:
   * `modified: file3.txt`: `file3.txt` has been modified but not staged.
 * **Untracked Files**:
   * `file4.txt`: `file4.txt` is a new file that isn't being tracked by Git.
-
-### Common Options
-
-* `-s` or `--short` : It gives the output in a more concise, short format.
-
-Example short format output:
-
-```ruby
-M file3.txt
-?? file4.txt
-```
-
-{% hint style="info" %}
-`M` indicates a modified file.\
-`??` indicates an untracked file.
-{% endhint %}
-
-* `-b` or `--branch:` Shows the branch and tracking information in a short format.
-
-```sh
-git status -s
-git status -b
-```
-
-{% hint style="info" %}
-* **Status Indication**: `git status` provides hints on what to do next, such as commands to stage files, unstage files, or discard changes.
-* **Performance**: `git status` can be slow in large repositories because it checks the entire working directory. In such cases, using `git status -uno` (show untracked files only) might improve performance.
-{% endhint %}
 
 ### Common Workflow
 
@@ -124,7 +125,27 @@ By default, git diff shows the differences in the command-line interface. Howeve
 git diff [<options>] [<commit>] [--] [<path>...]
 ```
 
-#### Basic Use Cases
+#### Options
+
+* `--staged` or `--cached`: Compare the staged changes with the last commit.
+* `--name-only`: Show only the names of changed files.
+* `--name-status`: Show the names and status of changed files.
+* `-p` or `--patch`: Generate patch (standard output format).
+* `--stat`: Show a summary of changes
+* `-U<n>` or `--unified=<n>`: Generate diffs with \<n> lines of context.
+* `--color`: Colorize the diff output.
+
+```git
+git diff --staged
+git diff --name-only
+git diff --name-status
+git diff -p
+git diff --stat
+git diff -U3
+git diff --color
+```
+
+### Basic Use Cases
 
 ```git
 -- Compare Working Directory to Staging Area
@@ -152,33 +173,13 @@ git diff <commit> -- <file>
 git diff <branch1> <branch2>
 ```
 
-### Common Options
-
-* `--staged` or `--cached`: Compare the staged changes with the last commit.
-* `--name-only`: Show only the names of changed files.
-* `--name-status`: Show the names and status of changed files.
-* `-p` or `--patch`: Generate patch (standard output format).
-* `--stat`: Show a summary of changes
-* `-U<n>` or `--unified=<n>`: Generate diffs with \<n> lines of context.
-* `--color`: Colorize the diff output.
-
-```git
-git diff --staged
-git diff --name-only
-git diff --name-status
-git diff -p
-git diff --stat
-git diff -U3
-git diff --color
-```
-
 ### Example Output
 
 ```
 git diff
 ```
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="539"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt="" width="539"><figcaption></figcaption></figure>
 
 ```
 git diff <filename>
@@ -209,6 +210,26 @@ git add [<options>] [--] <pathspec>...
 * `<pathspec>`: Specifies the files or directories to be added. This can be a specific file, a directory, or a pattern.
 * `[--]`: Used to separate paths from options, useful if the paths might be mistaken for options.
 
+#### Options
+
+`-A` or `--all`: Stages all changes (modifications, deletions, and untracked files).
+
+`-p` or `--patch`: Interactively stage changes, allowing you to review each hunk before staging
+
+`-u` or `--update`: Stages modifications and deletions, but not new untracked files.
+
+`-n` or `--dry-run`: Shows what would be staged without actually staging the changes.
+
+`-v` or `--verbose`: Shows the files as they are being added.
+
+```
+git add -A
+git add -p
+git add -u
+git add -n
+git add -v
+```
+
 ### What It Does
 
 1. **Stages Changes**: Adds changes in specified files or directories to the staging area.
@@ -216,12 +237,13 @@ git add [<options>] [--] <pathspec>...
 3. **Does Not Affect Unchanged Files**: Does not change the state of files that haven't been modified.
 
 {% hint style="info" %}
-* **Staging Area**: The staging area (also called the index) is an intermediate area where changes are listed to be included in the next commit. This allows to build up a commit incrementally, adding and reviewing changes before committing them.
-* **Removing Files**: To remove a file from the staging area, use:
+**Staging Area**: The staging area (also called the index) is an intermediate area where changes are listed to be included in the next commit. This allows to build up a commit incrementally, adding and reviewing changes before committing them.
+
+**Removing Files**: To remove a file from the staging area, use:
 
 git restore --staged filename.txt
 
-* **Interactive Mode**: Using `git add -p` is especially useful for selectively staging parts of files.
+**Interactive Mode**: Using `git add -p` is especially useful for selectively staging parts of files.
 {% endhint %}
 
 ### Common Use Cases
@@ -252,26 +274,6 @@ git add '*.txt'
 git restore --staged filename.txt
 ```
 
-### Options
-
-`-A` or `--all`: Stages all changes (modifications, deletions, and untracked files).
-
-`-p` or `--patch`: Interactively stage changes, allowing you to review each hunk before staging
-
-`-u` or `--update`: Stages modifications and deletions, but not new untracked files.
-
-`-n` or `--dry-run`: Shows what would be staged without actually staging the changes.
-
-`-v` or `--verbose`: Shows the files as they are being added.
-
-```
-git add -A
-git add -p
-git add -u
-git add -n
-git add -v
-```
-
 ### Example Output
 
 When running `git status` after staging changes with `git add`
@@ -293,6 +295,23 @@ git rm [<options>] [--] <file>...
 ```
 
 * `<file>`: Specifies the file(s) to be removed.
+
+#### Options
+
+`-f` or `--force`: Forces the removal of files. This is required if the files have been modified or if they are staged for commit.
+
+`-r` or `--recursive`: Allows recursive removal of files in directories.
+
+`--cached`: Removes the file only from the staging area, not from the working directory. This stops Git from tracking the file.
+
+`-n` or `--dry-run`: Shows what would be removed without actually removing the files.
+
+```
+git rm -f filename.txt
+git rm -r dirname/
+git rm --cached filename.txt
+git rm -n filename.txt
+```
 
 ### What It Does
 
@@ -329,20 +348,6 @@ git rm --cached filename.txt
 git clean -f
 ```
 
-### Options
-
-* `-f` or `--force`: Forces the removal of files. This is required if the files have been modified or if they are staged for commit.
-* `-r` or `--recursive`: Allows recursive removal of files in directories.
-* `--cached`: Removes the file only from the staging area, not from the working directory. This stops Git from tracking the file.
-* `-n` or `--dry-run`: Shows what would be removed without actually removing the files.
-
-```
-git rm -f filename.txt
-git rm -r dirname/
-git rm --cached filename.txt
-git rm -n filename.txt
-```
-
 ### Example Workflow
 
 ```git
@@ -371,9 +376,91 @@ When running `git status` after using `git rm`
 
 ### Description
 
+It is used to record changes in the repository. It captures a snapshot of the project’s currently staged changes, making them part of the project’s history.
 
+### Usage
 
+```sh
+git commit [<options>] [--] [<file>...]
+```
 
+* `<file>`: Optionally specify files to commit. If omitted, all staged changes will be committed.
 
+#### Options
 
+`-m <msg>` or `--message=<msg>`: Specifies the commit message directly in the command
 
+`-a` or `--all`: Stages all tracked, modified files and commits them in one step
+
+`-v` or `--verbose`: Shows the diff of changes in the editor during commit message writing.
+
+`--amend`: Modifies the previous commit with new changes and/or a new commit message
+
+`--dry-run`: Shows what would be committed without actually committing the changes.
+
+`-q` or `--quiet`: Suppresses commit output
+
+```
+git commit -m "Add new feature"
+git commit -a -m "Update all modified files"
+git commit -v
+git commit --amend -m "Correct previous commit message"
+git commit --dry-run
+git commit -q -m "Silent commit"
+```
+
+### What It Does
+
+1. **Creates a Commit**: Saves the staged changes as a new commit in the repository.
+2. **Includes a Commit Message**: Each commit requires a message describing the changes.
+3. **Associates Metadata**: Each commit includes metadata like the author, date, and a unique hash identifier.
+
+{% hint style="info" %}
+**Commit Messages**: Commit messages should be descriptive and concise, explaining the rationale for the changes. It's good practice to follow conventions such as the 50/72 rule: a short summary of 50 characters or less, followed by a blank line, and then a detailed description wrapped at 72 characters.
+
+**Atomic Commits**: Each commit should represent a single logical change. This helps in understanding the project history and makes it easier to identify when specific changes were introduced.
+
+**Amending Commits**: Be cautious with `--amend` if we've already pushed the original commit to a shared repository, as it rewrites history and can cause issues for others working with the same repository.
+
+**Revert Commits:** If we have committed some changes and now wanted to undo the commit and bring back changes to staging or unstaging area then refer to **git reset** command.
+{% endhint %}
+
+### Common Use Cases
+
+```git
+-- Commit All Staged Changes
+-- Commits all changes that have been staged with a message
+git commit -m "Your commit message"
+
+-- Commit Specific Files
+-- Commits only the specified files
+git commit <file1> <file2> -m "Commit message"
+
+-- Interactive Commit
+-- Opens the default text editor to enter a commit message
+git commit
+```
+
+### Example Workflow
+
+```
+-- 1. Stage Changes
+git add .
+
+-- 2. Commit All Staged Changes
+git commit -m "Initial commit"
+
+-- 3. Modify a File and Commit with Amend
+echo "new content" >> file.txt
+git add file.txt
+git commit --amend -m "Add new content to file.txt"
+
+-- 4. Commit All Tracked and Modified Files
+git commit -a -m "Update modified files"
+```
+
+### Example Output
+
+When running `git commit -m "Initial commit"`
+
+<figure><img src="../../.gitbook/assets/image.png" alt="" width="395"><figcaption></figcaption></figure>
