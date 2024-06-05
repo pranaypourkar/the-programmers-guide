@@ -107,17 +107,7 @@ git clone [<options>] <repository> [<directory>]
 * `<repository>`: The URL or path of the repository to be cloned. This can be a remote repository URL or a local directory path.
 * `[<directory>]`: The name of the new directory to be created for the cloned repository. If omitted, Git will create a new directory named after the repository.
 
-{% hint style="info" %}
-* **Remote URL Types**: The repository URL can be an HTTPS URL, an SSH URL, a Git protocol URL, or a local file path.
-  * HTTPS: `https://github.com/username/repository.git`
-  * SSH: `git@github.com:username/repository.git`
-  * Git: `git://github.com/username/repository.git`
-  * Local: `/path/to/local/repository`
-* **Authentication**: When cloning from a private repository, we may need to provide authentication details (username and password for HTTPS, SSH keys for SSH).
-* **Mirroring**: Using `--mirror` is different from a regular clone. It creates a bare repository that is a mirror of the remote repository, including all refs
-{% endhint %}
-
-### Options
+#### Options
 
 * `-l` or `--local`: When the repository to clone is on the local machine, this flag will perform a local clone by making hard links, not actual file copies, when possible.
 * `--no-hardlinks`: Clone without using hard links (default behavior when cloning from a local repository).
@@ -129,6 +119,19 @@ git clone [<options>] <repository> [<directory>]
 * `--single-branch`: Clone only the history leading to the tip of a single branch, rather than all branches.
 * `--recurse-submodules`: Initialize all submodules within the clone.
 * `--mirror`: Clone a repository as a mirror, including all refs.
+
+{% hint style="info" %}
+**Remote URL Types**: The repository URL can be an HTTPS URL, an SSH URL, a Git protocol URL, or a local file path.
+
+* HTTPS: `https://github.com/username/repository.git`
+* SSH: `git@github.com:username/repository.git`
+* Git: `git://github.com/username/repository.git`
+* Local: `/path/to/local/repository`
+
+**Authentication**: When cloning from a private repository, we may need to provide authentication details (username and password for HTTPS, SSH keys for SSH).
+
+**Mirroring**: Using `--mirror` is different from a regular clone. It creates a bare repository that is a mirror of the remote repository, including all refs
+{% endhint %}
 
 ### Basic Examples
 

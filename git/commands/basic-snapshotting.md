@@ -422,7 +422,7 @@ git commit -q -m "Silent commit"
 
 **Amending Commits**: Be cautious with `--amend` if we've already pushed the original commit to a shared repository, as it rewrites history and can cause issues for others working with the same repository.
 
-**Revert Commits:** If we have committed some changes and now wanted to undo the commit and bring back changes to staging or unstaging area then refer to **git reset** command.
+<mark style="background-color:orange;">**Revert Commits:**</mark> If we have committed some changes and now wanted to undo the commit and bring back changes to staging or unstaging area then refer to **git reset** command.
 {% endhint %}
 
 ### Common Use Cases
