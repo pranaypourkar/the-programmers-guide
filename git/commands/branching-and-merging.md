@@ -335,13 +335,104 @@ git add .
 git commit
 ```
 
+### Resolve Git Merge Conflicts
+
+Merge conflicts occur when changes from different branches interfere with each other and Git can't automatically combine them. Resolving merge conflicts involves identifying conflicting changes, deciding which changes to keep, and then completing the merge process.
+
+#### Example Workflow to Resolve Merge Conflicts
+
+```git
+----------- Prepare our Branches (main and feature)
+-- Initialize a new Git repository
+git init conflict-demo
+cd conflict-demo
+
+-- Create and switch to the main branch
+git checkout -b main
+
+-- Create a sample file and commit it
+echo "Line 1" > example.txt
+git add example.txt
+git commit -m "Initial commit on main"
+
+-- Create and switch to the feature branch
+git checkout -b feature
+
+-- Make changes to the file in the feature branch
+echo "Line 2 from feature" >> example.txt
+git add example.txt
+git commit -m "Add Line 2 from feature"
+
+-- Switch back to the main branch
+git checkout main
+
+-- Make conflicting changes to the file in the main branch
+echo "Line 2 from main" >> example.txt
+git add example.txt
+git commit -m "Add Line 2 from main"
+-----------
 
 
-## git rebase
+-- Merge the Feature Branch into Main
+-- Attempt to merge the feature branch into the main branch, which will result in a conflict.
+git merge feature
 
-### Description
+-- Git Identifies Conflicts
+-- Git will detect conflicts and pause the merge process. We will see output like this
+# Auto-merging example.txt
+# CONFLICT (content): Merge conflict in example.txt
+# Automatic merge failed; fix conflicts and then commit the result.
 
+-- Check the Status
+-- Verify the status to see which files are in conflict
+git status
+#On branch main
+#You have unmerged paths.
+#  (fix conflicts and run "git commit")
+#  (use "git merge --abort" to abort the merge)
 
+# Unmerged paths:
+#  (use "git add <file>..." to mark resolution)
+#        both modified:   example.txt
+
+-- Open and Resolve Conflicts
+-- Open the conflicted file (example.txt) in a text editor. Git will mark the conflicts like this
+# Line 1
+# <<<<<<< HEAD
+# Line 2 from main
+# =======
+# Line 2 from feature
+# >>>>>>> feature
+
+-- Resolve the conflict by deciding which lines to keep, modify, or combine. For example, we  qcould resolve it to:
+-- Save the file after resolving the conflict.
+# Line 1
+# Line 2 from main
+# Line 2 from feature
+
+-- Add the Resolved File
+-- After resolving conflicts, mark the file as resolved by adding it to the staging area.
+git add example.txt
+
+--  Complete the Merge
+-- Commit the resolved changes to complete the merge
+git commit -m "Resolve merge conflict between main and feature"
+
+-- Verify the Merge
+-- Check the status and log to ensure the merge is completed successfully.
+git status
+git log --oneline --graph
+
+```
+
+{% hint style="info" %}
+#### Tips for Resolving Conflicts
+
+* **Use a Merge Tool**: Tools like `kdiff3`, `meld`, or IDE-integrated tools can help visualize and resolve conflicts.
+* **Commit Often**: Smaller, frequent commits make it easier to resolve conflicts.
+* **Communicate**: Coordinate with your team to avoid overlapping changes.
+* **Test Thoroughly**: After resolving conflicts, ensure that the project works as expected.
+{% endhint %}
 
 
 
@@ -361,5 +452,7 @@ git commit
 
 
 
+## git rebase
 
+### Description
 
