@@ -229,11 +229,11 @@ git status
 
 When running `git checkout branch-name`
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="311"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4).png" alt="" width="311"><figcaption></figcaption></figure>
 
 When creating and switching to a new branch with `git checkout -b new-branch`
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="302"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt="" width="302"><figcaption></figcaption></figure>
 
 ## git merge
 
@@ -320,11 +320,11 @@ git merge feature-branch
 
 When running `git merge feature-branch`
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt="" width="251"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt="" width="251"><figcaption></figcaption></figure>
 
 If a merge commit is created (for a three-way merge)
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt="" width="327"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt="" width="327"><figcaption></figcaption></figure>
 
 ### Merge Conflicts
 
@@ -440,19 +440,288 @@ git log --oneline --graph
 
 ### Description
 
+It is used to switch branches or restore working tree files. It was introduced to provide a more intuitive and focused way to switch branches compared to `git checkout`, which can be confusing due to its multiple functionalities.
 
+### Usage
 
+```sh
+git switch [<options>] <branch>
+git switch -c <new-branch>
+```
 
+#### Options
+
+`-c <new-branch>` or `--create <new-branch>`: Creates a new branch and switches to it.
+
+`-C <new-branch>` or `--create-force <new-branch>`: Creates a new branch and switches to it, or resets an existing branch to start from the current HEAD.
+
+`--detach`: Switches to the specified commit without creating a new branch, putting you in a detached HEAD state.
+
+`-d` or `--discard-changes`: Discards local changes in the working directory when switching branches.
+
+`--force` or `-f`: Forces the switch, discarding local changes if necessary.
+
+<pre class="language-sh"><code class="lang-sh">git switch -c new-branch
+<strong>git switch -C new-branch
+</strong>git switch --detach commit-sha
+<strong>git switch -d branch-name
+</strong>git switch --force branch-name
+</code></pre>
+
+### What It Does
+
+1. **Switches to an Existing Branch**: Changes the current working branch to another specified branch.
+2. **Creates and Switches to a New Branch**: Creates a new branch and switches to it in one command.
+
+{% hint style="info" %}
+**Detached HEAD State**: Using `git switch --detach commit-sha` puts you in a detached HEAD state, meaning you are not on a branch. Any commits made in this state are not associated with any branch and can be lost if not handled properly.
+{% endhint %}
+
+{% hint style="info" %}
+**Switch vs. Checkout**: While `git switch` focuses on changing branches, `git checkout` can also be used to check out files or commits. Git introduced `git switch` and `git restore` to make these operations more intuitive:
+
+* `git switch` for switching branches.
+* `git restore` for restoring files.
+{% endhint %}
+
+### Common Use Cases
+
+```git
+-- Switch to an Existing Branch
+-- This switches the current working branch to branch-name.
+-- This attempts to switch to branch-name even if there are uncommitted changes in the current branch. 
+-- If the switch cannot be completed due to conflicts, Git will inform and we must resolve these before switching.
+git switch branch-name
+
+-- Create and Switch to a New Branch
+-- This creates a new branch named new-branch and switches to it.
+git switch -c new-branch
+```
+
+### Example Workflow
+
+```
+-- Check Current Branch
+git branch
+
+-- Create and Switch to a New Feature Branch
+git switch -c feature-branch
+
+-- Work on the Feature and Commit Changes
+echo "New feature" > feature.txt
+git add feature.txt
+git commit -m "Add new feature"
+
+-- Switch Back to Main Branch
+git switch main
+```
+
+### Example Output
+
+When running `git switch branch-name`
+
+<figure><img src="../../.gitbook/assets/image.png" alt="" width="279"><figcaption></figcaption></figure>
+
+When creating and switching to a new branch with `git switch -c new-branch`
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="281"><figcaption></figcaption></figure>
 
 ## **git restore**
 
 ### Description
 
+It is used to restore working tree files. It was introduced to provide a more focused way to undo changes and restore files compared to the multi-functional `git checkout` command.
 
+### Usage
+
+```sh
+git restore [<options>] [--source=<tree>] [--staged] [--worktree] [--] <pathspec>…
+```
+
+#### Options
+
+`--source=<tree>`: Specifies the source from which to restore the file. This can be a commit hash, branch name, tag, etc.
+
+`--staged`: Restores the specified file(s) from the staging area, effectively unstaging them.
+
+`--worktree`: Restores the specified file(s) in the working directory. This is the default behavior.
+
+`--force` or `-f`: Forcefully restores the file, discarding any uncommitted changes.
+
+```
+git restore --source=commit-sha <file>
+git restore --staged <file>
+git restore --worktree <file>
+git restore --force <file>
+```
+
+### What It Does
+
+1. **Restores Files to Their Last Committed State**: Discards changes in the working directory, reverting files to their state at the last commit.
+2. **Unstages Files**: Moves files from the staging area back to the working directory.
+3. **Restores Files from a Specific Commit**: Reverts files to their state at a specific commit.
+
+{% hint style="info" %}
+**Safety**: `git restore` is a safer way to handle file restoration compared to `git checkout`, as it is more explicit in its intentions and helps avoid unintended switches between branches or commits.
+{% endhint %}
+
+### Common Use Cases
+
+```git
+-- Discard Local Changes in the Working Directory
+-- Reverts the specified file to its state at the last commit.
+git restore <file>
+
+-- Unstage Changes
+-- Removes the specified file from the staging area, keeping the changes in the working director
+git restore --staged <file>
+
+-- Restore a File from a Specific Commit
+-- Restores the specified file to its state in the specified commit.
+git restore --source=<commit> <file>
+```
+
+### Example Workflow
+
+```git
+-- Modify a File
+echo "Some changes" > file.txt
+
+-- Check the Status
+git status
+# On branch main
+# Changes not staged for commit:
+# (use "git add <file>..." to update what will be committed)
+# (use "git restore <file>..." to discard changes in working directory)
+#   modified:   file.txt
+
+-- Discard Changes in the Working Directory
+-- This reverts file.txt to its state at the last commit
+git restore file.txt
+
+-- Stage the File and Then Unstage It:
+git add file.txt
+git restore --staged file.txt
+
+-- Restore a File to a Specific Commit
+git restore --source=commit-sha file.txt
+```
+
+### Example Output
+
+When running `git restore file.txt`, we might see no output if the command succeeds, and the file will be reverted to its last committed state. If there are errors, such as the file not being in the specified source, Git will inform you of the issue.
 
 
 
 ## git rebase
 
 ### Description
+
+It is used to integrate changes from one branch into another. It is an alternative to merging, but instead of creating a new commit that combines the changes from the branches, rebasing moves or reapplies commits from one branch onto another. This results in a cleaner, linear project history.
+
+### Usage
+
+```sh
+git rebase [<options>] [<upstream>] [<branch>]
+```
+
+#### Options
+
+`-i` or `--interactive`: Starts an interactive rebase session where you can edit, reorder, squash, or drop commits.
+
+`--continue`: Continues the rebase process after conflicts have been resolved.
+
+`-skip`: Skips the current commit and proceeds with the rebase
+
+`--abort`: Aborts the rebase process and resets the branch to its state before the rebase started.
+
+`--onto <newbase>`: Rebases the commits onto a new base.
+
+```
+git rebase -i main
+git rebase --continue
+git rebase --skip
+git rebase --abort
+git rebase --onto newbase oldbase feature-branch
+```
+
+### What It Does
+
+1. **Moves Commits**: Takes the commits from your current branch and applies them onto another branch.
+2. **Reapplies Commits**: The commits are reapplied one by one on top of the new base commit.
+
+{% hint style="info" %}
+**Linear History**: Rebasing is often used to maintain a linear project history, making it easier to follow and review.
+
+**Rewriting History**: Rebase changes commit hashes, effectively rewriting history. This can cause issues if you rebase commits that have already been pushed to a shared repository.
+
+**Interactive Rebase**: Interactive rebasing is powerful for cleaning up commits, such as combining multiple commits into a single commit or editing commit messages
+{% endhint %}
+
+### Common Use Cases
+
+```git
+-- Rebase Current Branch onto Another Branch
+-- Moves the commits from feature-branch to the tip of main
+git checkout feature-branch
+git rebase main
+
+-- Interactive Rebase
+-- Allows to edit, squash, reorder, or drop commits during the rebase process
+git rebase -i main
+
+-- Continue a Rebase After Resolving Conflicts
+-- After resolving conflicts during a rebase, this command continues the rebase process
+git rebase --continue
+
+-- Skip a Commit during a Rebase
+-- Skips the current patch (commit) and proceeds with the rebase
+git rebase --skip
+
+-- Abort a Rebase in Progress
+-- Stops the rebase process and resets the branch to its original state before the rebase started.
+git rebase --abort
+```
+
+### Example Workflow
+
+```
+-- Check Current Branch
+git branch
+
+-- Rebase Feature Branch onto Main
+git checkout feature-branch
+git rebase main
+
+-- Resolve Any Conflicts:
+
+-- If conflicts arise, Git will pause the rebase and mark the conflicts in the files. 
+-- We need to resolve these conflicts manually.
+
+-- Continue the Rebase
+git add .
+git rebase --continue
+
+-- If Another Conflict Arises
+-- Repeat the conflict resolution steps and continue the rebase until it completes.
+
+```
+
+### Example Output
+
+When running `git rebase main`
+
+<figure><img src="../../.gitbook/assets/image (2).png" alt="" width="494"><figcaption></figcaption></figure>
+
+If a conflict occurs, Git will provide instructions.
+
+<figure><img src="../../.gitbook/assets/image (3).png" alt="" width="534"><figcaption></figcaption></figure>
+
+### Rebase vs Merge
+
+<table data-full-width="true"><thead><tr><th width="210">Feature</th><th>Git Rebase</th><th>Git Merge</th></tr></thead><tbody><tr><td><strong>Purpose</strong></td><td>Reapply commits on top of another base branch</td><td>Combine the histories of two branches</td></tr><tr><td><strong>History</strong></td><td>Creates a linear, cleaner history</td><td>Creates a history with merge commits</td></tr><tr><td><strong>Commit Hashes</strong></td><td>Changes commit hashes (rewrites history)</td><td>Preserves commit hashes</td></tr><tr><td><strong>Usage Scenario</strong></td><td>Clean up feature branch before merging into main</td><td>Regularly integrating changes from one branch to another</td></tr><tr><td><strong>Conflicts</strong></td><td>Must be resolved during the rebase process</td><td>Must be resolved during the merge process</td></tr><tr><td><strong>Branch State After</strong></td><td>Current branch starts from the tip of the target branch</td><td>Current branch includes a merge commit</td></tr><tr><td><strong>Merge Commits</strong></td><td>No merge commits; commits are replayed individually</td><td>Creates a merge commit</td></tr><tr><td><strong>Local/Remote</strong></td><td>Best for local branch integration</td><td>Commonly used for both local and remote integration</td></tr><tr><td><strong>Impact on History</strong></td><td>Rewrites commit history</td><td>Adds to commit history</td></tr><tr><td><strong>Interactive Option</strong></td><td>Supports interactive rebase to edit, squash, reword commits</td><td>Does not support interactive merges</td></tr><tr><td><strong>Conflicts Resolution</strong></td><td>Conflicts need to be resolved as they appear and then continue</td><td>Conflicts resolved once during merge</td></tr><tr><td><strong>Usage Command</strong></td><td><code>git rebase target-branch</code></td><td><code>git merge target-branch</code></td></tr><tr><td><strong>Typical Use Case</strong></td><td>Clean up commit history before merging feature branches</td><td>Regular updates and integration of branches</td></tr><tr><td><strong>Visual History</strong></td><td>Linear and simplified</td><td>Branched with merge commits</td></tr></tbody></table>
+
+
+
+
 
