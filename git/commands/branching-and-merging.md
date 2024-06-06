@@ -112,11 +112,232 @@ When running `git branch`
 
 ### Description
 
+It is used for switching between branches, creating new branches, and checking out specific commits or files from your Git history. Although many of its functions have been replaced or supplemented by `git switch` and `git restore`, `git checkout` is still a fundamental Git command with versatile uses.
 
+### Usage
 
+```sh
+git checkout [<options>] <branch>
+git checkout [<options>] <commit>
+git checkout [<options>] <branch> -- <path>
+git checkout [<options>] <commit> -- <path>
+```
 
+#### Options
+
+`-b <new-branch>`: Creates a new branch and switches to it.
+
+`-B <new-branch>`: Creates a new branch (or resets an existing branch) to the current commit and switches to it.
+
+`-f` or `--force`: Forces the checkout, discarding local changes.
+
+`--ours` / `--theirs`: During a merge conflict, checks out our/their version of a conflicted file.
+
+```
+git checkout -b new-branch
+git checkout -B new-branch
+git checkout -f branch-name
+git checkout --ours path/to/file
+git checkout --theirs path/to/file
+```
+
+{% hint style="info" %}
+If we want to checkout remote branch i.e. create new branch and add remote origin reference to it, then create a new branch in remote (Gitlab etc) via UI and do git pull in local to get reference to remote branch. Then we will be able to run checkout remote branch and git push, pull etc will work.h
+{% endhint %}
+
+{% hint style="info" %}
+**Using `git switch` and `git restore`**: For switching branches and restoring files, Git introduced `git switch` and `git restore` to make commands more intuitive.
+
+Switch branches: **git switch branch-name**
+
+Create and switch to a new branch: **git switch -c new-branch**
+
+Restore files: **git restore path/to/file**
+{% endhint %}
+
+{% hint style="info" %}
+**Detached HEAD State**: Checking out a specific commit (not a branch) puts us in a detached HEAD state. Any commits made in this state are not associated with any branch and can be lost if not handled properly. See the detached head workflow below.
+{% endhint %}
+
+### Example Workflows
+
+#### Workflow involving creation of new branch
+
+```git
+-- Check Current Branch
+git branch
+
+-- Create and Switch to a New Feature Branch
+git checkout -b new-feature-branch
+
+-- Work on the Feature and Commit Changes
+echo "New feature" > feature.txt
+git add feature.txt
+git commit -m "Add new feature"
+
+-- Switch Back to Main Branch
+git checkout main
+
+-- Merge Feature Branch into Main
+git merge feature-branch
+
+-- Delete Feature Branch
+git branch -d feature-branch
+```
+
+#### Workflow involving detached head and how to recover
+
+```git
+-- Enter Detached HEAD State
+-- Replace commit-sha with the SHA-1 hash of the commit we want to check out. This puts in a detached HEAD state.
+git checkout commit-sha
+
+-- Verify Detached HEAD State
+-- We will see a message indicating that you are in a detached HEAD state
+git status
+-- Sample message -> HEAD detached at commit-sha
+
+-- Work in Detached HEAD State
+-- Make changes and commit them if needed. Remember, these commits are not on any branch yet.
+echo "Changes in detached HEAD state" > file.txt
+git add file.txt
+git commit -m "Commit in detached HEAD state"
+
+-- Create a New Branch from Detached HEAD State
+-- If we want to keep the changes and not lose them, we should create a new branch from the detached HEAD state
+-- This command creates a new branch named new-branch starting from the current commit and switches to it.
+git checkout -b new-branch
+
+-- Verify New Branch
+-- With this we will see that we are now on the new-branch
+git branch
+
+-- Switch Back to Main Branch
+-- If we decide not to keep the changes made in the detached HEAD state, we can simply switch back to an existing branch (e.g., main):
+-- This will leave our detached HEAD state and switch back to the main branch
+git checkout main
+
+-- Verify Branch Switch
+git status
+```
+
+{% hint style="info" %}
+**Detached HEAD State**: Be cautious when working in a detached HEAD state. If we make commits and do not create a new branch, these commits can be lost when we switch branches.
+{% endhint %}
+
+### Example Output
+
+When running `git checkout branch-name`
+
+<figure><img src="../../.gitbook/assets/image.png" alt="" width="311"><figcaption></figcaption></figure>
+
+When creating and switching to a new branch with `git checkout -b new-branch`
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="302"><figcaption></figcaption></figure>
 
 ## git merge
+
+### Description
+
+It is used to combine changes from different branches into a single branch. This is an essential feature for collaborative workflows, where multiple contributors work on different features or fixes in separate branches and then need to integrate these changes into a main branch.
+
+{% hint style="info" %}
+**Fast-forward Merges**: These occur when the current branch has no new commits since the branch being merged was created, making it unnecessary to create a merge commit.
+
+**Three-way Merges**: These occur when both branches have new commits since the last common ancestor, requiring Git to create a merge commit to combine the changes.
+
+**Merge Conflicts**: Conflicts arise when changes in the two branches overlap. Git marks these conflicts in the files, and they must be resolved manually.
+{% endhint %}
+
+### Usage
+
+```sh
+git merge [<options>] <branch>
+```
+
+* `<branch>`: The branch that we want to merge into your current branch.
+
+#### Options
+
+`--no-ff`: Creates a merge commit even if the merge resolves as a fast-forward. This preserves the feature branch's history.
+
+`--ff-only`: Ensures that the merge can only happen if it's a fast-forward merge. If not, the merge is aborted.
+
+`-squash`: Combines all changes from the branch being merged into a single commit on the target branch.
+
+`-m <message>`: Allows you to specify a commit message for the merge commit.
+
+```
+git merge --no-ff feature-branch
+git merge --ff-only feature-branch
+git merge --squash feature-branch
+git merge -m "Merge feature-branch into main" feature-branch
+```
+
+### What It Does
+
+1. **Fast-forward Merge**: If the current branch has not diverged from the branch being merged, Git simply moves the current branch pointer forward.
+2. **Three-way Merge**: If the branches have diverged, Git performs a three-way merge using the common ancestor of the two branches. This can result in merge conflicts that need to be resolved manually.
+
+### Common Use Cases
+
+```git
+-- Merge a Feature Branch into Main
+-- This merges feature-branch into the main branch
+git checkout main
+git merge feature-branch
+
+-- Merge and Create a Merge Commit
+-- This forces a merge commit, even if a fast-forward merge is possible. This is useful for preserving the history of feature branches.
+git merge --no-ff feature-branch
+
+-- Abort a Merge in Progress
+-- This aborts the merge process and returns the branch to its pre-merge state.
+git merge --abort
+
+```
+
+### Example Workflow
+
+```
+-- Create a Feature Branch and Switch to It
+git checkout -b feature-branch
+
+-- Make Changes and Commit
+echo "New feature" > feature.txt
+git add feature.txt
+git commit -m "Add new feature"
+
+-- Switch Back to Main Branch
+git checkout main
+
+-- Merge the Feature Branch into Main
+git merge feature-branch
+
+```
+
+### Example Output
+
+When running `git merge feature-branch`
+
+<figure><img src="../../.gitbook/assets/image (2).png" alt="" width="251"><figcaption></figcaption></figure>
+
+If a merge commit is created (for a three-way merge)
+
+<figure><img src="../../.gitbook/assets/image (4).png" alt="" width="327"><figcaption></figcaption></figure>
+
+### Merge Conflicts
+
+If there are conflicting changes in the branches being merged, Git will highlight these conflicts, and we'll need to resolve them manually. After resolving conflicts, we need to stage the changes and complete the merge with -
+
+```sh
+git add .
+git commit
+```
+
+
+
+## git rebase
 
 ### Description
 
@@ -124,7 +345,15 @@ When running `git branch`
 
 
 
-## git rebase
+## **git switch**&#x20;
+
+### Description
+
+
+
+
+
+## **git restore**
 
 ### Description
 
