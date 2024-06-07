@@ -370,7 +370,7 @@ When running `git status` after using `git rm`
 
 <figure><img src="../../.gitbook/assets/image (163).png" alt="" width="461"><figcaption></figcaption></figure>
 
-
+<figure><img src="../../.gitbook/assets/1.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## git commit
 
