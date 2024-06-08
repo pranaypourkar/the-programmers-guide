@@ -208,3 +208,4 @@
     * [Stashing and Cleaning](git/commands/stashing-and-cleaning.md)
     * [Advanced Manipulations](git/commands/advanced-manipulations.md)
     * [Other Commands](git/commands/other-commands.md)
+  * [Workflows](git/workflows.md)
