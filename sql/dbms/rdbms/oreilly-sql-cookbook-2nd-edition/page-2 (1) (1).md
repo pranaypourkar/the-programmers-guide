@@ -57,7 +57,7 @@ where next_proj_start = proj_end
 
 We want to return the DEPTNO, ENAME, and SAL of each employee along with the difference in SAL between employees in the same department. The difference should be between each current employee and the employee hired immediately afterward. For each employee hired last in his department, return “N/A” for the difference.
 
-<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt="" width="352"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="352"><figcaption></figcaption></figure>
 
 ```
 with next_sal_tab (deptno,ename,sal,hiredate,next_sal)
@@ -81,7 +81,7 @@ We have located the ranges of consecutive values and want to find just their sta
 
 **Sample data and output**
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ```
 SELECT
@@ -121,7 +121,7 @@ We want to return the number of employees hired each year for the entire decade 
 
 **Sample Output**
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="116"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="116"><figcaption></figcaption></figure>
 
 ```
 SELECT
@@ -151,7 +151,7 @@ FROM
 
 We need to have row source generator like below.
 
-<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="88"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="88"><figcaption></figcaption></figure>
 
 ```
 SELECT

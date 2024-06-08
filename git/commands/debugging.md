@@ -203,7 +203,7 @@ git grep -n "function"
 
 When running `git grep "search_term"`
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt="" width="395"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt="" width="395"><figcaption></figcaption></figure>
 
 ## git fsck
 
@@ -274,5 +274,5 @@ git fsck --progress
 
 When running `git fsck`
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="476"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4).png" alt="" width="476"><figcaption></figcaption></figure>
 
