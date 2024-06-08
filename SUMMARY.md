@@ -196,6 +196,7 @@
     * [SQL Practice Problems](sql/interview-companion/sql-practice-problems/README.md)
       * [Set 1](sql/interview-companion/sql-practice-problems/set-1.md)
 * [GIT](git/README.md)
+  * [Internals of GIT](git/internals-of-git.md)
   * [Commands](git/commands/README.md)
     * [Setup and Configuration Commands](git/commands/setup-and-configuration-commands.md)
     * [Getting and Creating Projects](git/commands/getting-and-creating-projects.md)
