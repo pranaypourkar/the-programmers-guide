@@ -207,6 +207,8 @@ And then to prune the reflog:
 </strong></code></pre>
 {% endhint %}
 
+<figure><img src="../../.gitbook/assets/image.png" alt="" width="473"><figcaption></figcaption></figure>
+
 ### Common Use Cases
 
 ```
@@ -376,3 +378,31 @@ Summary
 * **Merge to Main**: Merge the hotfix branch into `main` and push.
 * **Cherry-Pick to Production**: Apply the fix to `production` using `git cherry-pick` and handle any conflicts that arise.
 * **Push to Production**: Push the changes to the remote `production` branch.
+
+
+
+#### Handling Conflicts During Cherry-Picking
+
+If there are conflicts when cherry-picking, we will see something like this
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="375"><figcaption></figcaption></figure>
+
+```
+-----Steps to resolve conflicts------
+-- Check the files with conflicts
+git status
+
+-- Edit the files to resolve conflicts
+-- Resolve conflicts manually
+vim critical_file.py  
+
+-- Stage the resolved files
+git add critical_file.py
+
+-- Continue the cherry-pick process
+git cherry-pick --continue
+
+-- Push the resolved changes
+git push origin production
+```
+
