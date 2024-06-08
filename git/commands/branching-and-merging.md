@@ -233,7 +233,7 @@ When running `git checkout branch-name`
 
 When creating and switching to a new branch with `git checkout -b new-branch`
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt="" width="302"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt="" width="302"><figcaption></figcaption></figure>
 
 ## git merge
 
@@ -520,11 +520,11 @@ git switch main
 
 When running `git switch branch-name`
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="279"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="279"><figcaption></figcaption></figure>
 
 When creating and switching to a new branch with `git switch -c new-branch`
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="281"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt="" width="281"><figcaption></figcaption></figure>
 
 ## **git restore**
 

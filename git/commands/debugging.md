@@ -90,9 +90,128 @@ During the bisecting process
 
 ## git grep
 
+### Description
 
+It is used to search through the contents of files in a Git repository. It is similar to the Unix `grep` command but specifically optimized for searching within a Git repository. This command is useful for finding specific text patterns, code snippets, or occurrences of keywords across your codebase.
 
+### Usage
 
+```sh
+git grep [<options>] <pattern> [-- <paths>…​]
+```
+
+### Options
+
+`-i`: Perform a case-insensitive search.
+
+`-n`: Show line numbers of matches.
+
+`-c`: Count the number of matches in each file.
+
+`-v`: Invert match to show lines that do not match the pattern.
+
+`-l`: Show only the names of files containing matches.
+
+`-L`: Show only the names of files not containing matches.
+
+`--and`: Combine multiple patterns with a logical AND
+
+`--or`: Combine multiple patterns with a logical OR.
+
+`--not`: Exclude matches for a pattern
+
+`--recurse-submodules`: Search in submodules recursively
+
+```
+git grep -i "search_term"
+git grep -n "search_term"
+git grep -c "search_term"
+git grep -v "search_term"
+git grep -l "search_term"
+git grep -L "search_term"
+git grep --and -e "pattern1" -e "pattern2"
+git grep --or -e "pattern1" -e "pattern2"
+git grep --not -e "exclude_pattern"
+git grep --recurse-submodules "search_term"
+```
+
+{% hint style="info" %}
+**Regular Expressions**: `git grep` supports basic regular expressions. You can use them to perform more complex searches.
+
+<pre><code><strong>git grep "search_[a-z]+"
+</strong></code></pre>
+
+**Combining Options**: You can combine multiple options to refine your search further.
+
+<pre><code><strong>git grep -i -n -- "pattern" -- path/to/dir
+</strong></code></pre>
+
+**Exclude Binary Files**: `git grep` automatically excludes binary files from the search, ensuring that the output remains readable.
+{% endhint %}
+
+### What It Does
+
+1. **Searches for Patterns**: Finds occurrences of a specified pattern in the files tracked by Git.
+2. **Filters by Path**: Limits the search to specific directories or files if paths are provided.
+3. **Supports Various Options**: Offers a range of options to customize the search, such as case-insensitivity, counting matches, and showing line numbers.
+
+### Common Use Cases
+
+```
+-- Search for a Pattern in the Repository
+-- Finds all occurrences of search_term in the repository
+git grep "search_term"
+
+-- Search in a Specific Directory or File
+-- Limits the search to the specified directory or file
+git grep "search_term" -- path/to/directory
+git grep "search_term" -- path/to/file.txt
+
+-- Search Case-Insensitive
+-- Performs a case-insensitive search for search_term
+git grep -i "search_term"
+
+-- Count the Number of Matches
+-- Displays the number of matches in each file
+git grep -c "search_term"
+
+-- Show Line Numbers
+-- Shows the line numbers of matches in the output
+git grep -n "search_term"
+```
+
+### Example Workflow
+
+```
+-- finds all occurrences of "TODO" in the repository
+git grep "TODO"
+
+-- searches for "main" in src/main.c
+git grep "main" -- src/main.c
+
+-- case-insensitive search for "error"
+git grep -i "error"
+
+-- count the number of matches for "def" in each file
+git grep -c "def"
+
+-- show line numbers for each match of "function"
+git grep -n "function"
+```
+
+### Example Output
+
+When running `git grep "search_term"`
+
+<figure><img src="../../.gitbook/assets/image.png" alt="" width="395"><figcaption></figcaption></figure>
 
 ## git fsck
+
+### Description
+
+
+
+
+
+
 
