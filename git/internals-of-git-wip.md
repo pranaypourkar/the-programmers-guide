@@ -1,4 +1,4 @@
-# Internals of GIT
+# Internals of GIT \[WIP]
 
 ## Description
 
@@ -105,3 +105,6 @@ git cat-file -s <object-hash>
 git cat-file -p <object-hash>
 ```
 
+
+
+Reference - [https://towardsdatascience.com/how-git-truly-works-cd9c375966f6](https://towardsdatascience.com/how-git-truly-works-cd9c375966f6)
