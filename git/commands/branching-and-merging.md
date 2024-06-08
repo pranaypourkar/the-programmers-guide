@@ -233,7 +233,7 @@ When running `git checkout branch-name`
 
 When creating and switching to a new branch with `git checkout -b new-branch`
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt="" width="302"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt="" width="302"><figcaption></figcaption></figure>
 
 ## git merge
 
@@ -524,7 +524,7 @@ When running `git switch branch-name`
 
 When creating and switching to a new branch with `git switch -c new-branch`
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt="" width="281"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt="" width="281"><figcaption></figcaption></figure>
 
 ## **git restore**
 
@@ -723,5 +723,68 @@ If a conflict occurs, Git will provide instructions.
 
 
 
+## git tag
 
+### Description
+
+It is used to create, list, delete, and verify tags in Git. Tags are used to mark specific points in the repository’s history, typically used for marking release points (e.g., v1.0.0, v2.0.0).
+
+### Usage
+
+```git
+---- Creating a Tag
+-- Lightweight Tag: A lightweight tag is simply a pointer to a specific commit
+git tag <tagname>
+-- Annotated Tag: An annotated tag is stored as a full Git object and contains additional metadata such as the tagger name, email, date, and a message.
+git tag -a <tagname> -m "Tag message"
+
+---- Listing Tags
+git tag
+
+---- Viewing a Tag's Details
+git show <tagname>
+
+---- Deleting a Tag
+git tag -d <tagname>
+
+---- Pushing Tags to Remote
+-- Push a single tag
+git push origin <tagname>
+-- Push all tags
+git push origin --tags
+
+---- Deleting a Remote Tag
+-- Delete locally
+git tag -d <tagname>
+-- Delete from remote
+git push origin :refs/tags/<tagname>
+```
+
+### Example Workflow
+
+```
+---- Tagging a New Release
+-- Create an annotated tag for the new release
+git tag -a v1.2.0 -m "Release version 1.2.0 with new features"
+-- Push the tag to the remote repository
+git push origin v1.2.0
+
+---- Listing and Verifying Tags
+-- List all tags
+git tag
+-- View details of a specific tag
+git show v1.2.0
+
+---- Deleting a Tag
+-- Delete a tag locally
+git tag -d v1.1.0
+-- Delete the same tag from the remote repository
+git push origin :refs/tags/v1.1.0
+```
+
+### Example output
+
+Viewing Tag Information with `git show v1.0.0`
+
+<figure><img src="../../.gitbook/assets/image.png" alt="" width="505"><figcaption></figcaption></figure>
 
