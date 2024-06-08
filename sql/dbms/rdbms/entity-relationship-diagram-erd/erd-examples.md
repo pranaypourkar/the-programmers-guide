@@ -31,7 +31,7 @@ We have a university where a Student enrolls in courses. A Student must be assig
 * Course: CourseID, CourseName
 * Professor: EmployeeId, ProfessorName, EmployeeAge
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 {% hint style="success" %}
 Note the underlined primary key attribute

@@ -185,13 +185,13 @@ git diff
 git diff <filename>
 ```
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt="" width="539"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1).png" alt="" width="539"><figcaption></figcaption></figure>
 
 ```
 git diff --stat
 ```
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1).png" alt="" width="467"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1).png" alt="" width="467"><figcaption></figcaption></figure>
 
 
 

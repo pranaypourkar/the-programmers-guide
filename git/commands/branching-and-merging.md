@@ -320,7 +320,7 @@ git merge feature-branch
 
 When running `git merge feature-branch`
 
-<figure><img src="../../.gitbook/assets/image (2) (1).png" alt="" width="251"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt="" width="251"><figcaption></figcaption></figure>
 
 If a merge commit is created (for a three-way merge)
 
@@ -520,7 +520,7 @@ git switch main
 
 When running `git switch branch-name`
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="279"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3).png" alt="" width="279"><figcaption></figcaption></figure>
 
 When creating and switching to a new branch with `git switch -c new-branch`
 
@@ -711,11 +711,11 @@ git rebase --continue
 
 When running `git rebase main`
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt="" width="494"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt="" width="494"><figcaption></figcaption></figure>
 
 If a conflict occurs, Git will provide instructions.
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt="" width="534"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt="" width="534"><figcaption></figcaption></figure>
 
 ### Rebase vs Merge
 

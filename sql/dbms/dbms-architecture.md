@@ -65,7 +65,7 @@ The 3-Tier architecture contains another layer (Application Layer) between the c
 
 Provides better scalability, modularity, and flexibility compared to two-tier architecture. Enables the separation of concerns between user interfaces, application logic, and data management.
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="320"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="320"><figcaption></figcaption></figure>
 
 **Advantages:**
 

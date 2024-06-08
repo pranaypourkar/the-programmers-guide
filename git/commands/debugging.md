@@ -203,15 +203,76 @@ git grep -n "function"
 
 When running `git grep "search_term"`
 
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="395"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2).png" alt="" width="395"><figcaption></figcaption></figure>
 
 ## git fsck
 
 ### Description
 
+It is used to perform an integrity check on a Git repository. It verifies the connectivity and validity of the objects in the database, ensuring that everything is intact and that there are no corrupted objects. This command is particularly useful for diagnosing issues within the repository, such as broken links between commits, missing objects, and other potential data integrity problems.
 
+### Usage
 
+```sh
+git fsck [<options>]
+```
 
+#### Options
 
+`--full`: Perform a full check, including looking for missing objects.
 
+`--unreachable`: Print objects that are unreachable from any of the reference nodes.
+
+`--lost-found`: Write dangling objects into `.git/lost-found`
+
+`--name-objects`: Show object names
+
+`--progress`: Show progress information during the check.
+
+`--strict`: Enable more strict checking
+
+`--dangling`: Show dangling objects
+
+```
+git fsck --full
+git fsck --unreachable
+git fsck --lost-found
+git fsck --name-objects
+git fsck --progress
+git fsck --strict
+git fsck --dangling
+```
+
+### What It Does
+
+1. **Verifies Object Connectivity**: Ensures that all objects referenced by commits, trees, and other objects are present and properly linked.
+2. **Checks Object Validity**: Validates the contents of each object to make sure they are correct and uncorrupted.
+3. **Reports Issues**: Identifies and reports any issues found during the integrity check, such as dangling commits, missing blobs, or corrupted objects.
+
+{% hint style="info" %}
+**Dangling Objects**: These are objects (commits, blobs, trees) that are not reachable from any reference. They are not necessarily a problem but might indicate orphaned changes.
+
+**Missing Objects**: These indicate corruption or incomplete transfer of the repository and need to be addressed to ensure the repository's integrity.
+
+**Lost and Found**: Objects written to the `.git/lost-found` directory are still in the repository but are not reachable by any branch or tag. You can inspect these objects to determine if they are needed.
+{% endhint %}
+
+### Common Use Cases
+
+```
+-- Basic integrity check on the repository, reporting any issues found
+git fsck
+
+-- Performs a more thorough check, including looking for missing objects and ensuring all objects are correctly linked.
+git fsck --full
+
+-- Shows progress information during the integrity check, useful for large repositories
+git fsck --progress
+```
+
+### Example Output
+
+When running `git fsck`
+
+<figure><img src="../../.gitbook/assets/image.png" alt="" width="476"><figcaption></figcaption></figure>
 

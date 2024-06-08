@@ -91,7 +91,7 @@ from emp
 order by 2
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="248"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="248"><figcaption></figcaption></figure>
 
 ## Generating a Running Product
 
@@ -180,7 +180,7 @@ dense_rank()over(order by cnt desc) as rnk
 
  
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="158"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="158"><figcaption></figcaption></figure>
 
 </div>
 

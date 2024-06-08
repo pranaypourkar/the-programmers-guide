@@ -2,7 +2,7 @@
 
 ## Transposing a Result Set Using Oracle’s MODEL Clause
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1).png" alt="" width="314"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt="" width="314"><figcaption></figcaption></figure>
 
 ```
 select max(d10) d10,
@@ -34,7 +34,7 @@ We want to extract the values between the square brackets
 
 Sample Output
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt="" width="330"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt="" width="330"><figcaption></figcaption></figure>
 
 ```
 create view V
@@ -75,7 +75,7 @@ select 'Days in 2020: '||
 from dual
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1).png" alt="" width="177"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt="" width="177"><figcaption></figcaption></figure>
 
 ## Searching for Mixed Alphanumeric Strings
 
