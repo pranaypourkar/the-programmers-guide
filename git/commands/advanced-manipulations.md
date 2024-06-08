@@ -178,11 +178,80 @@ git push --force
 
 ### Description
 
-
+It is used to record updates to the tip of branches and other references in the Git repository. It allows to view the history of changes to the HEAD reference, including actions such as commits, resets, and checkouts. This is particularly useful for recovering lost commits or changes that we thought were gone.
 
 ### Usage
 
+```sh
+git reflog
+```
 
+#### What It Does
+
+1. **Records History**: Keeps a log of where our references have been, including branch tips and HEAD.
+2. **Recovery Tool**: Helps to recover commits or branches that have been altered or deleted.
+3. **View Actions**: Shows actions that have changed the state of our repository.
+
+{% hint style="info" %}
+**Cleanup Reflog**:
+
+Over time, the reflog can grow large. To expire old entries:
+
+```sh
+git reflog expire --expire=30.days.ago --all
+```
+
+And then to prune the reflog:
+
+<pre><code><strong>git gc --prune=now
+</strong></code></pre>
+{% endhint %}
+
+### Common Use Cases
+
+```
+-- View Reference Logs
+-- Displays a list of all changes made to the HEAD, including the commit SHA, the action taken, and a brief description.
+git reflog
+
+-- Recover Lost Commits
+-- If we've lost a commit, we can find its SHA in the reflog and check it out
+git reflog
+git checkout <commit-SHA>
+
+-- Undo a Recent Change
+-- We an use the reflog to find a previous state of our repository and reset to that state
+git reflog
+git reset --hard <commit-SHA>
+```
+
+### Example Workflow
+
+```
+-- View Recent HEAD Changes
+git reflog
+# Example output:
+# 1234567 (HEAD -> main) HEAD@{0}: commit: Added new feature
+# 89abcdef HEAD@{1}: reset: moving to HEAD~1
+# fedcba98 HEAD@{2}: commit: Fixed a bug
+# 7654321 HEAD@{3}: commit: Initial commit
+
+-- Recover a Lost Commit
+-- Suppose we accidentally reset our branch and lost a commit. We can find it using the reflog
+git reflog
+-- Find the SHA of the lost commit from the reflog output. Let's say it's 89abcdef
+git checkout 89abcdef
+-- If we want to move our branch pointer back to this commit, we can create a new branch or reset our current branch
+git checkout -b recover-lost-commit 89abcdef
+-- Or Reset
+git reset --hard 89abcdef
+
+-- Undo a Hard Reset
+-- If we've done a hard reset and want to revert it, find the previous state in the reflog
+git reflog
+-- Let's say we find the desired commit SHA as fedcba98.
+git reset --hard fedcba98
+```
 
 
 
@@ -190,6 +259,120 @@ git push --force
 
 ### Description
 
-
+It allows us to apply the changes from one or more existing commits to the current branch. This is useful when we want to copy a commit from another branch without merging the entire branch. Cherry-picking can be helpful for backporting bug fixes or features to another branch.
 
 ### Usage
+
+```sh
+git cherry-pick <commit>
+```
+
+#### Options
+
+`--continue`: Resumes the cherry-pick after resolving conflicts.
+
+`--abort`: Aborts the cherry-pick process and tries to return the branch to its previous state.
+
+`--quit`: Stops the cherry-pick but keeps the changes in the working directory.
+
+`-n` or `--no-commit`: Applies the changes from the specified commits without creating a commit.
+
+`-x`: Appends a line to the commit message indicating which commit this change was cherry-picked from.
+
+```
+git cherry-pick --continue
+git cherry-pick --abort
+git cherry-pick --quit
+git cherry-pick -n <commit>
+git cherry-pick -x <commit>
+```
+
+### What It Does
+
+1. **Applies Commit Changes**: Copies the changes introduced by the specified commit(s) to the current branch.
+2. **Commits the Changes**: Automatically creates a new commit with these changes.
+
+### Common Use Cases
+
+<pre><code>-- Single Commit
+-- Applies the changes from a single commit to the current branch
+git cherry-pick &#x3C;commit>
+
+-- Multiple Commits
+-- Applies changes from multiple commits in the specified order.
+git cherry-pick &#x3C;commit1> &#x3C;commit2> &#x3C;commit3>
+
+-- Range of Commits
+-- Applies changes from a range of commits, not including &#x3C;commit1> but including &#x3C;commit2>.
+git cherry-pick &#x3C;commit1>..&#x3C;commit2>
+
+-- Continuing After Conflict Resolution
+-- If a conflict occurs during cherry-picking, resolve the conflicts and then continue
+git add &#x3C;resolved-files>
+git cherry-pick --continue
+
+-- Abort Cherry-Pick:
+<strong>-- If you want to abort a cherry-pick in progress
+</strong>git cherry-pick --abort
+</code></pre>
+
+### Example Workflow
+
+#### Scenario: Hotfix on a Production Branch
+
+Imagine we have a `main` branch where our main development happens and a `production` branch that reflects the code running in production. A critical bug is found in production, and we fix it on a feature branch. We need to apply this fix to both the `production` branch and the `main` branch.
+
+```
+-----Branch Setup-----
+-- Assume we are currently on the main branch
+git checkout main
+git pull origin main
+
+-- Create a new branch for the hotfix
+git checkout -b hotfix/critical-bug
+
+
+-----Fix the Bug and Commit------
+-- Edit files to fix the bug
+vim critical_file.py
+
+-- Stage and commit the fix
+git add critical_file.py
+git commit -m "Fix critical bug affecting production"
+
+
+------Merge the Fix to main------
+-- Switch back to the main branch
+git checkout main
+
+-- Merge the hotfix branch into main
+git merge hotfix/critical-bug
+
+-- Push the changes to the remote main branch
+git push origin main
+
+
+-------Apply the Fix to production Using Cherry-Pick----
+-- Switch to the production branch
+git checkout production
+git pull origin production
+
+-- Cherry-pick the hotfix commit from main to production
+git cherry-pick <hotfix-commit-sha>
+
+-- Resolve any conflicts if necessary
+-- If conflicts occur, resolve them manually, then:
+git add <resolved-files>
+git cherry-pick --continue
+
+-- Push the changes to the remote production branch
+git push origin production
+```
+
+Summary
+
+* **Hotfix Branch**: Create a hotfix branch to fix the issue.
+* **Commit the Fix**: Make changes and commit them on the hotfix branch.
+* **Merge to Main**: Merge the hotfix branch into `main` and push.
+* **Cherry-Pick to Production**: Apply the fix to `production` using `git cherry-pick` and handle any conflicts that arise.
+* **Push to Production**: Push the changes to the remote `production` branch.
