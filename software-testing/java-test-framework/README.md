@@ -113,6 +113,41 @@ While not directly supported by most Java testing frameworks, tools like JMeter 
 
 **Use Case**: Useful for acceptance testing and ensuring all stakeholders have a common understanding of the requirements
 
+### Selenium
+
+**Description**: Selenium is a popular framework for automating web applications for testing purposes. It supports multiple browsers and operating systems, and it can be integrated with various programming languages, including Java.
+
+**Features:**
+
+* **Cross-Browser Testing**: Supports major browsers like Chrome, Firefox, Safari, and Edge.
+* **Cross-Platform Testing**: Runs on Windows, macOS, and Linux.
+* **Programming Language Support**: Works with Java, Python, C#, Ruby, and JavaScript.
+* **Selenium WebDriver**: Allows for the creation of robust, browser-based regression automation suites and tests.
+* **Selenium Grid**: Enables running tests on different machines and browsers simultaneously.
+* **Selenium IDE**: A Chrome and Firefox plugin that allows recording and playback of user actions.
+
+### PowerMock
+
+**Description**: PowerMock is an extension of the EasyMock and Mockito frameworks that allows for mocking static methods, constructors, final classes, private methods, and more. It is particularly useful when dealing with legacy code or code that is difficult to test due to its design.
+
+**Features**:
+
+* **Mocking Static Methods**: Allows creating mocks for static methods.
+* **Mocking Constructors**: Enables mocking object creation.
+* **Mocking Final Classes and Methods**: Supports mocking final classes and methods.
+* **Partial Mocks**: Allows for partial mocking of objects.
+
+### WireMock
+
+**Description**: WireMock is a flexible library for stubbing and mocking web services. It allows developers to simulate HTTP services and test how their applications interact with these services. It's useful for testing APIs, handling edge cases, and ensuring robustness.
+
+**Features**:
+
+* **Stub Creation**: Define how the mock server should respond to various requests.
+* **Verification**: Verify that certain requests were made.
+* **Simulation**: Simulate various scenarios, including failures, delays, and complex behaviors.
+* **Standalone Server**: Can run as a standalone server or be embedded in test code.
+
 ## Advantages of using Java Testing Frameworks
 
 * **Increased Efficiency:** Automating tests and using reusable components saves time and resources.
