@@ -141,6 +141,8 @@
   * [Software Testing Life Cycle (STLC)](software-testing/software-testing-life-cycle-stlc.md)
   * [Integration Test](tests/integration-test/README.md)
     * [Dynamic Property Registration](tests/integration-test/dynamic-property-registration.md)
+  * [Java Test Framework](software-testing/java-test-framework/README.md)
+    * [Popular Test Frameworks](software-testing/java-test-framework/popular-test-frameworks.md)
 * [SQL](sql/README.md)
   * [Terminology](sql/terminology.md)
   * [DBMS](sql/dbms/README.md)
