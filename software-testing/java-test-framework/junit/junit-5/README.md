@@ -144,22 +144,29 @@ org.junit.jupiter.engine
 
 <figure><img src="../../../../.gitbook/assets/image (2).png" alt="" width="239"><figcaption></figcaption></figure>
 
-## Annotations in `org.junit.jupiter.api`
+```
+org.junit.jupiter.api.condition
+```
+
+<figure><img src="../../../../.gitbook/assets/image (191).png" alt="" width="301"><figcaption></figcaption></figure>
+
+
+
+## Annotations
 
 This package contains the core annotations and assertions for writing tests in JUnit Jupiter.
 
-### Test Annotations
+### Test Annotations (`org.junit.jupiter.api)`
 
 These annotations are used to define and configure tests.
 
 * **`@Test`**: Marks a method as a test method.
-* **`@ParameterizedTest`**: Marks a method as a parameterized test.
 * **`@RepeatedTest`**: Marks a method to be repeated a specified number of times.
 * **`@TestFactory`**: Marks a method as a factory for dynamic tests.
 * **`@TestTemplate`**: Marks a method as a template for tests to be invoked multiple times.
 * **`@Disabled`**: Disables a test class or test method.
 
-### Lifecycle Annotations
+### Lifecycle Annotations (`org.junit.jupiter.api)`
 
 These annotations are used to define setup and teardown logic for tests.
 
@@ -168,7 +175,7 @@ These annotations are used to define setup and teardown logic for tests.
 * **`@BeforeAll`**: Indicates that the annotated method should be executed before all `@Test` methods in the current class.
 * **`@AfterAll`**: Indicates that the annotated method should be executed after all `@Test` methods in the current class.
 
-### Display and Tag Annotations
+### Display and Tag Annotations (`org.junit.jupiter.api)`
 
 These annotations are used for setting display names and tagging tests for selective execution.
 
@@ -176,7 +183,7 @@ These annotations are used for setting display names and tagging tests for selec
 * **`@DisplayNameGeneration`**: Defines a custom display name generation strategy for test classes.
 * **`@Tag`**: Declares tags for filtering tests.
 
-### Conditional Test Execution Annotations
+### Conditional Test Execution Annotations (`org.junit.jupiter.api.condition`)
 
 These annotations are used to enable or disable tests based on certain conditions.
 
