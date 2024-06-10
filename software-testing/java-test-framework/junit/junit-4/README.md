@@ -49,7 +49,7 @@ However, if we want more advanced functionalities like custom test listeners or 
 
 ## Annotations in `org.junit`
 
-JUnit 4 introduced a variety of annotations (Interfaces) to simplify test creation and management. `org.junit` provides core JUnit 4 annotations. Here is a list of JUnit 4 annotations categorized by their functionality.
+JUnit 4 introduced a variety of annotations to simplify test creation and management. `org.junit` provides core JUnit 4 annotations. Here is a list of JUnit 4 annotations categorized by their functionality.
 
 ### Test Annotations
 
