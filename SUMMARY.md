@@ -19,6 +19,7 @@
     * [Java Virtual Machine (JVM)](java/java-overview/java-virtual-machine-jvm.md)
   * [Java Features by Version](java/java-features-by-version/README.md)
     * [How New Java Features are Released ?](java/java-features-by-version/how-new-java-features-are-released.md)
+    * [Java Versions](java/java-features-by-version/java-versions.md)
   * [Concepts](java/concepts/README.md)
     * [Streams](java/concepts/streams/README.md)
       * [flatmap](java/concepts/streams/flatmap.md)
