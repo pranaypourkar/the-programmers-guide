@@ -829,13 +829,21 @@ Enhances annotation processing.
 
 Enhances database connectivity.
 
-### **Java Compiler API**
-
-Adds programmatic access to compiler.
-
 ### **Web Services Enhancements**
 
 Improves web service support.
+
+### JAX-WS&#x20;
+
+Provides a framework for building web services and clients using Java, supporting SOAP and WSDL.
+
+### JAXB 2.0 and StAX parser&#x20;
+
+AXB 2.0 offers a framework for converting Java objects to XML and vice versa, while the StAX parser provides a streaming API for XML processing, enabling efficient, low-level XML reading and writing.
+
+### New GC algorithms
+
+Introduces new garbage collection algorithms to improve performance, scalability, and pause-time predictability in memory management.
 
 
 
@@ -865,13 +873,17 @@ Supports variable-length arguments.
 
 Adds for-each loop.
 
-### **Concurrency Utilities**
+### **Concurrency Utilities** in `java.util.concurrent`
 
 Enhances concurrency support.
 
+### Static Imports
+
+Allows importing static members (fields and methods) of classes, enabling their direct use without class qualification, thus improving code readability and conciseness.
 
 
-## Java 4 (February 2002)
+
+## Java 4  (1.4) (February 2002)
 
 **Assertions**
 
