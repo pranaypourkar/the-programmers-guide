@@ -289,15 +289,15 @@ Enhances G1 GC performance.
 
 ## Java 13 (September 2019)
 
-**Text Blocks (Preview)**
+### **Text Blocks (Preview)**
 
 Introduces multi-line string literals.
 
-**Switch Expressions (Preview)**
+### **Switch Expressions (Preview)**
 
 Enhances switch statements.
 
-**Reimplement the Legacy Socket API**
+### **Reimplement the Legacy Socket API**
 
 Improves socket API implementation.
 
