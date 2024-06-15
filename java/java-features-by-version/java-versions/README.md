@@ -13,6 +13,10 @@ description: >-
 
 Simplifies sharing of immutable data within and across threads.&#x20;
 
+### Structured Concurrency **(Second Preview)**
+
+Simplifies concurrent programming.
+
 ### **Stream Gatherers (Preview)**&#x20;
 
 Enhances the Stream API for more flexible data aggregation.
@@ -25,7 +29,7 @@ Improves handling of dynamic string content.
 
 Makes the code cleaner and more readable.
 
-### **Foreign Function & Memory API (Final)**&#x20;
+### **Foreign Function & Memory API**
 
 Facilitates interaction with native code and memory.
 
@@ -33,15 +37,35 @@ Facilitates interaction with native code and memory.
 
 Allows simpler execution of multi-file programs.
 
+### Region Pinning for G1
+
+Improves garbage collection efficiency by allowing certain regions to be pinned, preventing them from being moved or collected during garbage collection cycles.
+
+### Statements before super(…) (Preview)
+
+Allows statements to execute before a call to `super(…)` in a constructor, enhancing initialization flexibility.
+
+### Class-File API (Preview)
+
+Provides a standardized way to read, write, and transform Java class files programmatically.
+
+### Vector API (Seventh Incubator)
+
+Offers advanced SIMD (Single Instruction, Multiple Data) operations for higher performance computing.
+
+### Implicitly Declared Classes and Instance Main Methods (Second Preview)
+
+Simplifies Java programs by allowing the omission of explicit class declarations and enabling shorter syntax for `main`methods.
+
 
 
 ## Java 21 (September 2023)
 
-### Virtual Threads (Preview)
+### Virtual Threads
 
 Lightweight threads for high-concurrency applications.
 
-### Pattern Matching for switch (Third Preview)
+### Pattern Matching for switch
 
 Enhances switch statements for complex data
 
@@ -53,7 +77,7 @@ Adds new collection interfaces.
 
 Simplifies handling of unused variables.
 
-### Record Patterns (Second Preview)
+### Record Patterns
 
 Allows pattern matching in records.
 
@@ -65,15 +89,43 @@ Improves handling of scoped values in concurrent applications.
 
 Simplifies dynamic string generation.
 
-### Generational ZGC (Preview)
+### Generational ZGC&#x20;
 
 Enhances Z Garbage Collector.
+
+### Structured Concurrency **(Preview)**
+
+Simplifies concurrent programming.
+
+### Foreign Function & Memory API (Third Preview)
+
+Provides mechanisms to call native code and safely access native memory from Java.
+
+### Deprecate the Windows 32-bit x86 Port for Removal
+
+Marks the Windows 32-bit x86 port for potential future removal, focusing support on more modern platforms.
+
+### Prepare to Disallow the Dynamic Loading of Agents
+
+Prepares the JVM to disallow dynamically loading Java agents into running applications for improved security and stability.
+
+### Key Encapsulation Mechanism API
+
+Introduces an API for key encapsulation mechanisms to simplify and secure cryptographic key exchange operations.
+
+### Implicitly Declared Classes and Instance Main Methods (Preview)
+
+Simplifies Java programs by allowing the omission of explicit class declarations and enabling shorter syntax for `main`methods.
+
+### Vector API (Sixth Incubator)
+
+Offers advanced SIMD (Single Instruction, Multiple Data) operations for higher performance computing.
 
 
 
 ## Java 20 (March 2023)
 
-### **Pattern Matching for switch (Second Preview)**
+### **Pattern Matching for switch (**Fourth **Preview)**
 
 Refines switch pattern matching.
 
@@ -81,7 +133,7 @@ Refines switch pattern matching.
 
 Initial introduction of scoped values.
 
-### **Record Patterns (First Preview)**
+### **Record Patterns** (Second Preview)
 
 Introduces pattern matching in records.
 
@@ -92,6 +144,14 @@ Enhances interaction with native code and memory.
 ### **Virtual Threads (Second Preview)**
 
 Refines virtual threads.
+
+### Structured Concurrency (Second Incubator)
+
+Simplifies concurrent programming by managing multiple tasks in a structured manner, improving readability and reliability of concurrent code.
+
+### Vector API (Fifth Incubator)
+
+Provides advanced SIMD (Single Instruction, Multiple Data) operations, allowing for more efficient data processing and higher performance computing through parallelism.
 
 
 
@@ -105,13 +165,21 @@ Introduces lightweight threads.
 
 Simplifies concurrent programming.
 
-### **Pattern Matching for switch (Preview)**
+### **Pattern Matching for switch (Third Preview)**
 
 Adds pattern matching to switch.
 
 ### **Foreign Function & Memory API (Preview)**
 
 Facilitates native code interaction.
+
+### Record Patterns (Preview)
+
+Enhances pattern matching by allowing deconstruction of record types directly in pattern matching constructs, improving code readability and conciseness.
+
+### Linux/RISC-V Port
+
+Adds support for the RISC-V instruction set architecture on the Linux operating system, expanding Java's reach to new hardware platforms.
 
 ### **Vector API (Fourth Incubator)**
 
@@ -153,6 +221,10 @@ Moves toward removing finalization.
 
 Improves address resolution.
 
+### Pattern Matching for _switch_ (Second Preview)
+
+Enhances switch statements by allowing patterns to be used directly within the switch, enabling more powerful data-driven logic and reducing boilerplate code.
+
 
 
 ## Java 17 (September 2021, LTS)
@@ -193,33 +265,97 @@ Moves toward removing applets.
 
 Increases encapsulation of internal APIs.
 
+### Restore Always-Strict Floating-Point Semantics
+
+Ensures that floating-point operations always adhere to strict IEEE 754 standards, enhancing consistency and predictability.
+
+### Remove RMI Activation
+
+Eliminates the Remote Method Invocation (RMI) Activation mechanism, simplifying the RMI API and reducing maintenance.
+
+### Deprecate the Security Manager for Removal
+
+Marks the Security Manager for future removal, steering developers towards modern security practices.
+
+### Vector API (Second Incubator)
+
+Introduces SIMD (Single Instruction, Multiple Data) operations, enabling high-performance data processing through vectorized computations.
+
+### macOS/AArch64 Port
+
+Adds support for the Apple Silicon (AArch64) architecture on macOS, enabling Java to run natively on Apple's ARM-based devices, improving performance and compatibility.
+
 
 
 ## Java 16 (March 2021)
 
-### **Records**
+### **Vector API (Incubator)**
 
-Simplifies data classes.
+Introduces SIMD operations for efficient data processing.
 
-### **Pattern Matching for instanceof**
+### **Enable C++14 Language Features**
 
-Simplifies type checks.
+Enables the use of C++14 language features in JDK C++ code.
 
-### **Sealed Classes (Second Preview)**
+### **Migrate from Mercurial to Git**
 
-Further restricts class hierarchies.
+Moves the OpenJDK source code repository from Mercurial to Git.
 
-### **Strongly Encapsulate JDK Internals by Default**
+### **Migrate to GitHub**
 
-Increases encapsulation of internal APIs.
+Transfers the OpenJDK project to GitHub for better collaboration.
+
+### **ZGC: Concurrent Thread-Stack Processing**:&#x20;
+
+Enhances the Z Garbage Collector with concurrent thread-stack processing.
+
+### **Unix-Domain Socket Channels**
+
+Adds support for Unix-domain socket channels.
+
+### **Alpine Linux Port**
+
+Ports the JDK to Alpine Linux, a lightweight Linux distribution.
+
+### **Elastic Metaspace**&#x20;
+
+Improves memory management in the Metaspace area.
+
+### **Windows/AArch64 Port**
+
+Adds support for the Windows operating system on AArch64 architecture.
+
+### **Foreign Linker API (Incubator)**
+
+Provides an API to call native code from Java.
+
+### **Warnings for Value-Based Classes**
+
+Issues warnings when value-based classes are misused.
+
+### **Packaging Tool**
+
+Introduces a tool for packaging Java applications.
 
 ### **Foreign-Memory Access API (Third Incubator)**
 
-Enhances foreign memory access.
+Enhances the API for accessing foreign memory.
 
-### **Vector API (Second Incubator)**
+### **Pattern Matching for `instanceof`**
 
-Further SIMD enhancements.
+Simplifies type checks by introducing pattern matching.
+
+### **Records**
+
+Introduces a concise syntax for immutable data classes.
+
+### **Strongly Encapsulate JDK Internals by Default**
+
+Increases encapsulation of internal APIs to enhance security.
+
+### **Sealed Classes (Second Preview)**
+
+Restricts which classes can extend or implement a class or interface.
 
 
 
@@ -233,7 +369,7 @@ Restricts class hierarchies.
 
 Supports dynamically generated classes.
 
-### **Text Blocks (Second Preview)**
+### **Text Blocks**
 
 Enhances multi-line strings.
 
@@ -245,11 +381,23 @@ Enhances foreign memory access.
 
 Refines type checks.
 
-### **ZGC: A Scalable Low-Latency Garbage Collector**
+### EdDSA Algorithm&#x20;
 
-Enhances garbage collection.
+A modern digital signature scheme offering efficient performance and strong security.
 
+### Removed Nashorn JavaScript Engine&#x20;
 
+Deprecated JavaScript engine removed from Java, encouraging alternative implementations.
+
+### Reimplement the Legacy DatagramSocket API&#x20;
+
+Refactored implementation enhancing reliability and performance for network communication.
+
+### Records (Second Preview)
+
+Simplified data-centric classes improving code readability and maintainability in Java.
+
+## >>>>>
 
 ## Java 14 (March 2020)
 

@@ -8,7 +8,7 @@ New Java features are introduced through a structured and well-defined process t
 
 ### 1. **Proposal and Drafting**
 
-* **JEP (JDK Enhancement Proposal)**: The introduction of a new feature usually begins with a JEP. A JEP is a document that describes the feature, its motivation, its design, and how it will be implemented. The JEP process ensures that every new feature is thoroughly considered and documented before development begins.
+* [**JEP**](https://openjdk.org/jeps/0) **(JDK Enhancement Proposal)**: The introduction of a new feature usually begins with a JEP. A JEP is a document that describes the feature, its motivation, its design, and how it will be implemented. The JEP process ensures that every new feature is thoroughly considered and documented before development begins.
 * **Community Input**: The JEP is discussed within the Java community, including developers, experts, and stakeholders. This helps refine the idea and gather initial feedback.
 
 ### 2. **Incubation (Optional)**
