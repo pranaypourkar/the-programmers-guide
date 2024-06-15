@@ -397,7 +397,7 @@ Refactored implementation enhancing reliability and performance for network comm
 
 Simplified data-centric classes improving code readability and maintainability in Java.
 
-## >>>>>
+
 
 ## Java 14 (March 2020)
 
@@ -405,7 +405,7 @@ Simplified data-centric classes improving code readability and maintainability i
 
 Enhances switch statements.
 
-### **Text Blocks (Preview)**
+### **Text Blocks (Second Preview)**
 
 Adds multi-line string literals.
 
@@ -433,6 +433,22 @@ Initial introduction for foreign memory access.
 
 Enhances G1 GC performance.
 
+### JFR Event Streaming
+
+Enables continuous monitoring and analysis of Java Flight Recorder data in real-time.
+
+### Non-Volatile Mapped Byte Buffers
+
+Allows direct access to non-volatile memory, ensuring data persistence across program runs.
+
+### Remove the Concurrent Mark Sweep (CMS) Garbage Collector
+
+Discontinued CMS to streamline and enhance the performance of Java's garbage collection.
+
+### Remove the Pack200 Tools and API
+
+Eliminated outdated compression tools and API, simplifying Java's class file handling.
+
 
 
 ## Java 13 (September 2019)
@@ -449,6 +465,22 @@ Enhances switch statements.
 
 Improves socket API implementation.
 
+### Dynamic CDS Archive
+
+Creates and updates class-data sharing archives dynamically at runtime to improve startup performance.
+
+### ZGC: Uncommit Unused Memory
+
+Enhances the Z Garbage Collector to automatically release unused memory back to the operating system.
+
+### FileSystems.newFileSystem() Method
+
+Allows creation of a new file system from a given path or URI, enabling advanced file manipulation.
+
+### DOM and SAX Factories with Namespace Support
+
+Ensures DOM and SAX parser factories fully support XML namespaces, improving XML processing capabilities.
+
 
 
 ## Java 12 (March 2019)
@@ -464,6 +496,26 @@ Enhances access to JVM constants.
 ### **One AArch64 Port, Not Two**
 
 Simplifies ARM 64-bit support.
+
+### Collectors.teeing() in Stream API&#x20;
+
+Combines two collectors to process the same elements in a stream and merge their results.
+
+### String API Changes&#x20;
+
+Introduces new methods for string manipulation
+
+### Files.mismatch(Path, Path)&#x20;
+
+Identifies the first differing byte position between two files, aiding file comparison.
+
+### Compact Number Formatting&#x20;
+
+Formats numbers in a human-readable, concise way based on locale, such as "1K" instead of "1,000".
+
+### Support for Unicode 11
+
+Adds support for the latest Unicode standard, enhancing character and emoji handling.
 
 
 
@@ -501,61 +553,141 @@ Adds pattern matching.
 
 Removes outdated modules.
 
-### **Launch Single-File Source-Code Programs**
+### **Launch Single-File Source-Code Programs** Without Compilation
 
 Simplifies single-file program execution.
+
+### String API Changes
+
+Introduces new methods for string manipulation.
+
+### Collection.toArray(IntFunction)
+
+Provides a streamlined way to convert collections to arrays, specifying the array type.
+
+### Files.readString() and Files.writeString()
+
+Simplifies reading from and writing to files as strings, enhancing file I/O operations.
+
+### Optional.isEmpty()
+
+Adds a method to check if an `Optional` is empty, improving code readability and null handling.
 
 
 
 ## Java 10 (March 2018)
 
-### **Local-Variable Type Inference**
+### Local Variable Type Inference&#x20;
 
-Adds `var` for local variables.
+Introduces the `var` keyword, allowing local variable types to be inferred by the compiler.
 
-### **Parallel Full GC for G1**
+### Time-Based Release Versioning&#x20;
 
-Enhances G1 garbage collection.
+Implements a predictable release cycle with version numbers based on the release date.
 
-### **Application Class-Data Sharing**
+### Garbage-Collector Interface&#x20;
 
-Improves startup and memory footprint.
+Provides a common interface for different garbage collectors, simplifying integration and management.
 
-### **Time-Based Release Versioning**
+### Parallel Full GC for G1&#x20;
 
-Introduces new versioning scheme.
+Enhances the G1 garbage collector with parallel processing for full garbage collection, improving performance.
+
+### Heap Allocation on Alternative Memory Devices&#x20;
+
+Supports allocating Java heap on non-volatile memory devices, enhancing flexibility.
+
+### Consolidate the JDK Forest into a Single Repository&#x20;
+
+Merges multiple repositories into a single one to streamline development and reduce complexity.
+
+### Application Class-Data Sharing&#x20;
+
+Enables sharing of class data among applications to reduce startup time and memory footprint.
+
+### Additional Unicode Language-Tag Extensions&#x20;
+
+Supports more language-tag extensions for better internationalization and localization.
+
+### Root Certificates&#x20;
+
+Provides a default set of root certificates for improved security and trust management.
+
+### Experimental Java-Based JIT Compiler&#x20;
+
+Introduces a Just-In-Time compiler written in Java, known as Graal, for experimental use.
+
+### Thread-Local Handshakes
+
+Allows executing a callback on a specific thread without global synchronization, improving thread management.
+
+### Remove the Native-Header Generation Tool&#x20;
+
+Eliminates the `javah` tool, as its functionality is integrated into `javac`.
+
+### New Added APIs and Options&#x20;
+
+Introduces new APIs and command-line options to enhance functionality and usability.
+
+### Removed APIs and Options
+
+Deprecates and removes obsolete APIs and options to simplify the codebase and encourage modern practices.
 
 
 
-## Java 9 (September 2017)
+## [Java 9](https://openjdk.org/projects/jdk9/) (September 2017)
 
-### **Module System (Project Jigsaw)**
+### Java Platform Module System&#x20;
 
-Introduces modularity.
+Introduces a module system to improve application modularization, encapsulation, and dependency management.&#x20;
 
-### **JShell (Interactive Java REPL)**
+### Interface Private Methods&#x20;
 
-Adds a read-eval-print loop.
+Allows private methods within interfaces to share common code among default and static methods.&#x20;
 
-### **Multi-Release JAR Files**
+### HTTP 2 Client&#x20;
 
-Supports multi-version JARs.
+Provides a modern HTTP client API supporting HTTP/2 and WebSocket, replacing the legacy HttpURLConnection.&#x20;
 
-### **Variable Handles**
+### JShell – REPL Tool&#x20;
 
-Adds atomic access to variables.
+Offers an interactive Read-Eval-Print Loop (REPL) tool for quickly testing and prototyping Java code.&#x20;
 
-### **Reactive Streams**
+### Platform and JVM Logging&#x20;
 
-Supports reactive programming.
+Enhances logging capabilities across the platform and JVM, providing more detailed and configurable logging.&#x20;
 
-### **Enhanced Deprecation**
+### Process API Updates&#x20;
 
-Improves deprecation mechanism.
+Adds new methods to the Process API for better control and management of operating system processes.&#x20;
 
-### **Platform Logging API and Service**
+### Collection API Updates&#x20;
 
-Enhances logging support.
+Introduces new utility methods for collections.&#x20;
+
+### Improvements in Stream API&#x20;
+
+Adds new methods for more versatile stream processing.&#x20;
+
+### Multi-Release JAR Files&#x20;
+
+Enables JAR files to contain version-specific class files, allowing better compatibility with different Java versions.&#x20;
+
+### @Deprecated Tag Changes&#x20;
+
+Enhances the @Deprecated annotation to include information about the deprecation reason and replacement.&#x20;
+
+### Stack Walking&#x20;
+
+Introduces a stack-walking API for more efficient and flexible stack frame traversal and inspection.&#x20;
+
+### Java Docs Updates&#x20;
+
+Improves Javadoc tool with HTML5 support, search capability, and better overall documentation generation.&#x20;
+
+### Miscellaneous Other Features&#x20;
+
+Includes various minor enhancements and performance improvements across the Java platform.
 
 
 
@@ -569,10 +701,6 @@ Adds functional programming constructs.
 
 Introduces streams for data processing.
 
-### **Default Methods**
-
-Allows default methods in interfaces.
-
 ### **Date and Time API**
 
 Adds new date/time API.
@@ -583,11 +711,35 @@ Adds a new JavaScript engine.
 
 ### **Type Annotations**
 
-Enhances annotation support.
+Enhances annotation support on Java Types.
 
 ### **Repeating Annotations**
 
 Allows repeating annotations.
+
+### Functional interface and default methods
+
+Introduces functional interfaces with a single abstract method, and default methods in interfaces, allowing method implementations within interfaces.
+
+### Optionals
+
+Provides the `Optional` class to represent potentially absent values, reducing the need for null checks and improving code readability.
+
+### Unsigned Integer Arithmetic
+
+Adds support for unsigned integer operations, enabling arithmetic without negative numbers for certain use cases.
+
+### Statically-linked JNI libraries
+
+Allows JNI libraries to be statically linked with the JVM, improving performance and deployment simplicity.
+
+### Launch JavaFX applications from jar files
+
+Enables direct launching of JavaFX applications packaged in JAR files, simplifying application deployment.
+
+### Remove the permanent generation from GC
+
+Eliminates the permanent generation space in the HotSpot garbage collector, replacing it with the metaspace, for better memory management and performance.
 
 
 
@@ -597,10 +749,6 @@ Allows repeating annotations.
 
 Adds small language improvements.
 
-### **InvokeDynamic**
-
-Improves dynamic language support.
-
 ### **Fork/Join Framework**
 
 Adds parallel processing framework.
@@ -609,10 +757,6 @@ Adds parallel processing framework.
 
 Enhances I/O capabilities.
 
-### **Timsort for Arrays**
-
-Improves array sorting.
-
 ### **String in Switch Statements**
 
 Allows strings in switch.
@@ -620,6 +764,50 @@ Allows strings in switch.
 ### **Automatic Resource Management (ARM) Blocks**
 
 Adds try-with-resources.
+
+### JVM support for dynamic languages
+
+Enhances the JVM with the `invokedynamic` instruction to better support dynamic languages like Groovy, Scala, and JRuby.
+
+### Compressed 64-bit pointers
+
+Introduces compressed object pointers (oops) in 64-bit JVMs to reduce memory footprint and improve performance.
+
+### The diamond operator
+
+Simplifies generic instance creation by inferring type parameters from the context, reducing boilerplate code.
+
+### Simplified varargs method declaration
+
+Improves varargs method declarations to avoid unchecked warnings and enhance type safety.
+
+### Binary integer literals
+
+Allows binary integer literals using the `0b` prefix for better readability of binary values in code.
+
+### Underscores in numeric literals&#x20;
+
+Permits underscores in numeric literals for improved readability of large numbers.
+
+### Improved exception handling
+
+Adds multi-catch and final rethrow to handle multiple exceptions in a single catch block and rethrow exceptions with more type safety.
+
+### WatchService
+
+Provides a file system change notification API to monitor and respond to file system events like creation, modification, and deletion.
+
+### Timsort is used to sort collections and arrays of objects instead of merge sort&#x20;
+
+Adopts Timsort for sorting collections and arrays of objects, offering better performance in many scenarios.
+
+### APIs for the graphics features&#x20;
+
+Introduces new APIs and enhances existing ones to support advanced graphics features and capabilities.
+
+### Support for new network protocols, including SCTP and Sockets Direct Protocol
+
+Adds support for the Stream Control Transmission Protocol (SCTP) and Sockets Direct Protocol (SDP) to expand networking capabilities.
 
 
 
