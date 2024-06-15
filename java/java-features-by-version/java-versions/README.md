@@ -7,7 +7,7 @@ description: >-
 
 # Java Versions
 
-## Java 22 (March 2024)
+## [Java 22](https://openjdk.org/projects/jdk/22/) (March 2024)
 
 ### **Scoped Values (Second Preview)**
 
@@ -59,7 +59,7 @@ Simplifies Java programs by allowing the omission of explicit class declarations
 
 
 
-## Java 21 (September 2023)
+## [Java 21](https://openjdk.org/projects/jdk/21/) (September 2023)
 
 ### Virtual Threads
 
@@ -123,7 +123,7 @@ Offers advanced SIMD (Single Instruction, Multiple Data) operations for higher p
 
 
 
-## Java 20 (March 2023)
+## [Java 20](https://openjdk.org/projects/jdk/20/) (March 2023)
 
 ### **Pattern Matching for switch (**Fourth **Preview)**
 
@@ -155,7 +155,7 @@ Provides advanced SIMD (Single Instruction, Multiple Data) operations, allowing 
 
 
 
-## Java 19 (September 2022)
+## [Java 19](https://openjdk.org/projects/jdk/19/) (September 2022)
 
 ### **Virtual Threads (Preview)**
 
@@ -191,7 +191,7 @@ SIMD is short for Single Instruction/Multiple Data, while the term SIMD operatio
 
 
 
-## Java 18 (March 2022)
+## [Java 18](https://openjdk.org/projects/jdk/18/) (March 2022)
 
 ### **Simple Web Server**
 
@@ -227,7 +227,7 @@ Enhances switch statements by allowing patterns to be used directly within the s
 
 
 
-## Java 17 (September 2021, LTS)
+## [Java 17](https://openjdk.org/projects/jdk/17/) (September 2021, LTS)
 
 ### **Pattern Matching for switch (Preview)**
 
@@ -287,7 +287,7 @@ Adds support for the Apple Silicon (AArch64) architecture on macOS, enabling Jav
 
 
 
-## Java 16 (March 2021)
+## [Java 16](https://openjdk.org/projects/jdk/16/) (March 2021)
 
 ### **Vector API (Incubator)**
 
@@ -359,7 +359,7 @@ Restricts which classes can extend or implement a class or interface.
 
 
 
-## Java 15 (September 2020)
+## [Java 15](https://openjdk.org/projects/jdk/15/) (September 2020)
 
 ### **Sealed Classes (Preview)**
 
@@ -399,7 +399,7 @@ Simplified data-centric classes improving code readability and maintainability i
 
 
 
-## Java 14 (March 2020)
+## [Java 14](https://openjdk.org/projects/jdk/14/) (March 2020)
 
 ### **Switch Expressions (Standard)**
 
@@ -451,7 +451,7 @@ Eliminated outdated compression tools and API, simplifying Java's class file han
 
 
 
-## Java 13 (September 2019)
+## [Java 13](https://openjdk.org/projects/jdk/13/) (September 2019)
 
 ### **Text Blocks (Preview)**
 
@@ -483,7 +483,7 @@ Ensures DOM and SAX parser factories fully support XML namespaces, improving XML
 
 
 
-## Java 12 (March 2019)
+## [Java 12](https://openjdk.org/projects/jdk/12/) (March 2019)
 
 ### **Switch Expressions (Preview)**
 
@@ -519,7 +519,7 @@ Adds support for the latest Unicode standard, enhancing character and emoji hand
 
 
 
-## Java 11 (September 2018, LTS)
+## [Java 11](https://openjdk.org/projects/jdk/11/) (September 2018, LTS)
 
 ### **Dynamic Class-File Constants**
 
@@ -575,7 +575,7 @@ Adds a method to check if an `Optional` is empty, improving code readability and
 
 
 
-## Java 10 (March 2018)
+## [Java 10](https://openjdk.org/projects/jdk/10/) (March 2018)
 
 ### Local Variable Type Inference&#x20;
 
@@ -691,7 +691,7 @@ Includes various minor enhancements and performance improvements across the Java
 
 
 
-## Java 8 (March 2014, LTS)
+## [Java 8](https://openjdk.org/projects/jdk8/) (March 2014, LTS)
 
 ### **Lambda Expressions**
 
@@ -743,7 +743,7 @@ Eliminates the permanent generation space in the HotSpot garbage collector, repl
 
 
 
-## Java 7 (July 2011)
+## [Java 7](https://openjdk.org/projects/jdk7/) (July 2011)
 
 ### **Project Coin (Small Language Enhancements)**
 
@@ -811,7 +811,7 @@ Adds support for the Stream Control Transmission Protocol (SCTP) and Sockets Dir
 
 
 
-## Java 6 (December 2006)
+## [Java 6](https://openjdk.org/projects/jdk6/) (December 2006)
 
 ### **Scripting Language Support**
 
@@ -885,16 +885,126 @@ Allows importing static members (fields and methods) of classes, enabling their 
 
 ## Java 4  (1.4) (February 2002)
 
-**Assertions**
+### **Assertions**
 
 Adds assertion capability.
 
+### **Regular Expressions**
+
+Provides a powerful way to search, manipulate, and validate strings using patterns.
+
+### **Exception Chaining**
+
+Allows exceptions to be nested within each other, providing more detailed information about the root cause of an exception.
+
+### **Internet Protocol Version 6 (IPv6) Support**
+
+Enhances networking capabilities to support the IPv6 addressing scheme alongside IPv4.
+
+### **New I/O (NIO)**
+
+Introduces a non-blocking I/O API (java.nio package) for performing I/O operations with better scalability and performance.
+
+### **Logging API**
+
+Provides a flexible and configurable logging framework (java.util.logging package) for generating log messages in Java applications.
+
+### **Image I/O API**
+
+Offers support for reading and writing images in various formats, facilitating image processing tasks.
+
+### **Integrated XML Parser and XSLT Processor (JAXP)**
+
+Provides APIs for parsing XML documents (SAX, DOM) and applying XSLT transformations, enabling XML data processing.
+
+### **Integrated Security and Cryptography Extensions (JCE, JSSE, JAAS)**
+
+Enhances Java's security capabilities with the Java Cryptography Extension (JCE), Java Secure Socket Extension (JSSE) for secure communication, and Java Authentication and Authorization Service (JAAS) for authentication and access control.
+
+### **Java Web Start**
+
+Enables launching Java applications directly from the web browser, allowing users to run Java applications with a single click.
+
+### **Preferences API (java.util.prefs)**
+
+Provides a cross-platform solution for storing and retrieving user and system preference and configuration data persistently.
 
 
-## Java 3 and earlier
 
-Java 2 (December 1998): Introduction of Swing, Collections Framework
+## Java 3  (1.3) (May 2000)
 
-JDK 1.1 (February 1997): Inner classes, JavaBeans, JDBC
+### HotSpot JVM
 
-JDK 1.0 (January 1996): Initial release
+A high-performance Java Virtual Machine that uses adaptive optimization techniques, such as just-in-time (JIT) compilation and garbage collection, to improve application performance.
+
+### Java Naming and Directory Interface (JNDI)
+
+Provides a unified interface for accessing various naming and directory services, allowing Java applications to discover and look up data and resources.
+
+### Java Platform Debugger Architecture (JPDA)
+
+A comprehensive framework for debugging Java applications, consisting of three layers: the Java Debug Wire Protocol (JDWP), the Java Virtual Machine Tool Interface (JVMTI), and the Java Debug Interface (JDI).
+
+### JavaSound
+
+A set of APIs for capturing, processing, and playing sound and music, supporting various audio file formats, and enabling developers to incorporate audio features into their applications.
+
+### Synthetic proxy classes
+
+Dynamically generated classes that implement one or more interfaces, enabling the creation of proxy objects for handling method invocations, often used in AOP (Aspect-Oriented Programming) and dynamic proxies.
+
+
+
+## Java 2  (1.2) (December 1998)
+
+### strictfp keyword&#x20;
+
+Ensures consistent floating-point calculations across different platforms by enforcing strict IEEE 754 compliance.
+
+### Swing graphical API&#x20;
+
+Provides a rich set of GUI components for building desktop applications with a pluggable look-and-feel, including buttons, tables, trees, and more.
+
+### Sun’s JVM was equipped with a JIT compiler for the first time&#x20;
+
+Introduced Just-In-Time (JIT) compilation to convert bytecode to native machine code at runtime, significantly improving execution speed.
+
+### Java plug-in&#x20;
+
+Allows Java applets to run in web browsers, facilitating the deployment of Java applications via the web.
+
+### Collections framework
+
+Introduces a unified architecture for handling and manipulating collections of objects, including interfaces, implementations, and algorithms for lists, sets, queues, and maps.
+
+
+
+## Java 1  (1.1) (January 1996)
+
+### **AWT Event Model**
+
+Defines a robust mechanism for handling user interactions and other events in Abstract Window Toolkit (AWT) components, using event listeners and event objects.
+
+### **Inner Classes**
+
+Introduces classes defined within other classes, including member classes, local classes, anonymous classes, and static nested classes, to logically group classes and enhance encapsulation.
+
+### **JavaBeans**
+
+Provides a reusable software component model for Java, with conventions for property getters and setters, event handling, and introspection, facilitating the development and integration of modular components.
+
+### **JDBC (Java Database Connectivity)**
+
+Offers a standard API for connecting and executing queries with relational databases, allowing Java applications to interact with a variety of database management systems.
+
+### **RMI (Remote Method Invocation)**
+
+Enables the invocation of methods on remote objects in different JVMs, supporting distributed computing in Java applications.
+
+### **Reflection Supported Introspection Only, No Modification at Runtime Was Possible**
+
+Initially, Java's reflection API allowed examining the structure of classes and objects (introspection) but did not support runtime modifications.
+
+### **JIT (Just In Time) Compiler for Windows**
+
+Sun's JVM for Windows included a JIT compiler for the first time, enhancing the performance of Java applications by converting bytecode to native code at runtime.
