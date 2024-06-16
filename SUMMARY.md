@@ -21,6 +21,7 @@
     * [How New Java Features are Released ?](java/java-features-by-version/how-new-java-features-are-released.md)
     * [Java Versions](java/java-features-by-version/java-versions/README.md)
       * [Java 22](java/java-features-by-version/java-versions/java-22.md)
+    * [Java Distributions](java/java-features-by-version/java-distributions.md)
     * [FAQ](java/java-features-by-version/faq.md)
   * [Concepts](java/concepts/README.md)
     * [Streams](java/concepts/streams/README.md)

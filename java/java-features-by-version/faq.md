@@ -8,13 +8,13 @@ Java versions before 9 had a different naming scheme. So, Java 8 can also be cal
 
 <figure><img src="../../.gitbook/assets/image (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
-## How Java versions differs? Do we learn a specific one? <a href="#what_is_the_difference_between_the_java_versions_should_i_learn_a_specific_one" id="what_is_the_difference_between_the_java_versions_should_i_learn_a_specific_one"></a>
+## 2. How Java versions differs? Do we learn a specific one? <a href="#what_is_the_difference_between_the_java_versions_should_i_learn_a_specific_one" id="what_is_the_difference_between_the_java_versions_should_i_learn_a_specific_one"></a>
 
 Considering a example of Python where there are breakages between releases, like say Python 2 to 3, Java is special here. Java in this regard is backwards compatible. This means that our Java 5 or 8 program is guaranteed to run with a Java 8-20 virtual machine with a few exceptions which can be ignored for now.
 
 However, it does not work the other way around, say our program relies on Java 20 features, that are not available under a Java 8 JVM.
 
-## Does Oracle website offers both JREs and JDKs ?
+## 3. Does Oracle website offers both JREs and JDKs ?
 
 Up until Java 8, the Oracle's website offered JREs and JDKs as separate downloads - even though the JDK also always included a JRE in a separate folder. With Java 9 that distinction was gone, and we are _always_ downloading a JDK. The directory structure of JDKs also changed, with not having an explicit JRE folder anymore.
 
