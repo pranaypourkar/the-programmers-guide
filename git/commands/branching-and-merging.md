@@ -233,7 +233,7 @@ When running `git checkout branch-name`
 
 When creating and switching to a new branch with `git checkout -b new-branch`
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt="" width="302"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="302"><figcaption></figcaption></figure>
 
 ## git merge
 
@@ -320,7 +320,7 @@ git merge feature-branch
 
 When running `git merge feature-branch`
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt="" width="251"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt="" width="251"><figcaption></figcaption></figure>
 
 If a merge commit is created (for a three-way merge)
 
@@ -524,7 +524,7 @@ When running `git switch branch-name`
 
 When creating and switching to a new branch with `git switch -c new-branch`
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt="" width="281"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt="" width="281"><figcaption></figcaption></figure>
 
 ## **git restore**
 
@@ -711,7 +711,7 @@ git rebase --continue
 
 When running `git rebase main`
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt="" width="494"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt="" width="494"><figcaption></figcaption></figure>
 
 If a conflict occurs, Git will provide instructions.
 
