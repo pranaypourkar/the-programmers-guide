@@ -43,6 +43,7 @@
         * [Base16](java/concepts/text-encoding/base-encoding/base16.md)
         * [Base32](java/concepts/text-encoding/base-encoding/base32.md)
         * [Base64](java/concepts/text-encoding/base-encoding/base64.md)
+      * [ASCII](java/concepts/text-encoding/ascii.md)
   * [Others Concepts](java/others/README.md)
     * [ISO Standards](java/others/iso-standards.md)
     * [Date and Time](java/others/date-and-time.md)
