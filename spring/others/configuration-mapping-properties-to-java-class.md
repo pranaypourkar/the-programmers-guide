@@ -1,4 +1,4 @@
-# Mapping Properties to Java Class
+# Configuration: Mapping Properties to Java Class
 
 It is possible to map the data given in the spring application yaml/json/properties file with the java class directly. This process, known as mapping, allows to directly link the data in the configuration files to corresponding fields in Java classes. With this. it is easy the update the data directly in the properties file without need to build the application again.
 
@@ -16,7 +16,7 @@ payment:
       - 'Holidays'
     purposeAr:
                                                                       'آحرون' - 
-                                                                       'العطل' -     
+                                                                     'العطل' -      
     purposeFr:
       - 'Autres'
       - 'Vacances'
@@ -186,7 +186,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (28).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (28).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 {% hint style="info" %}
 Make sure to include below dependencies and failsafe plugin to test
@@ -220,5 +220,42 @@ Make sure to include below dependencies and failsafe plugin to test
 ```
 {% endhint %}
 
+<mark style="background-color:purple;">**Example 4**</mark>**: Mapping card types and fees in a Map.**
 
+Define the properties in **application.yaml** file.
+
+```yaml
+bank:
+  credit:
+    cards:
+      fees:
+        platinum:
+          fee: "5.0"
+          vat: "5.0"
+        lifestyle:
+          fee: "5.0"
+          vat: "5.0"
+```
+
+Create **CardProperties.java** class
+
+```java
+package org.example.config;
+
+import java.util.Map;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@ConfigurationProperties(prefix = "bank.credit.cards")
+@Getter
+@Setter
+public class CardProperties {
+
+    private Map<String, Map<String, String>> fees;
+
+}
+```
 

@@ -112,7 +112,7 @@
       * [WebClient](spring/concepts/inter-service-communication/webclient.md)
       * [OpenFeign](spring/concepts/inter-service-communication/openfeign.md)
   * [Others](spring/others/README.md)
-    * [Mapping Properties to Java Class](spring/others/mapping-properties-to-java-class.md)
+    * [Configuration: Mapping Properties to Java Class](spring/others/configuration-mapping-properties-to-java-class.md)
     * [Utilities](spring/others/utilities/README.md)
       * [Provide by Spring framework](spring/others/utilities/provide-by-spring-framework/README.md)
         * [FileCopyUtils](spring/others/utilities/provide-by-spring-framework/filecopyutils.md)
