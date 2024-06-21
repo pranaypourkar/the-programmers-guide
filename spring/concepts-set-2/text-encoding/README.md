@@ -54,6 +54,19 @@ A mapping between the character set and a sequence of bytes. Different encoding 
 4. **US-ASCII**: A 7-bit encoding covering the English alphabet and basic symbols.
 5. **UTF-32**: Fixed-length encoding using 4 bytes per character, simpler but less space-efficient.
 
+{% hint style="info" %}
+`java.nio.charset.StandardCharsets` is a class introduced in Java 7 (JDK 1.7) that provides a convenient way to access a set of standard charsets commonly used for text encoding and decoding. These charsets are guaranteed to be available on all Java platforms, ensuring consistent behavior regardless of the underlying operating system or environment.
+
+It defines static final fields for each standard charset, providing human-readable names for easy access.
+
+* `UTF_8`: The most widely used and recommended encoding for modern applications, supporting a vast range of characters.
+* `ISO_8859_1` (Latin-1): Covers basic Western European characters but is limited for languages with additional symbols.
+* `US_ASCII`: The most basic encoding, suited only for English and some Western European languages.
+* `UTF_16`: Less common than UTF-8, often used internally by Java for string representation.
+* `UTF_16BE`: A variant of UTF-16 with big-endian byte order.
+* `UTF_16LE`: A variant of UTF-16 with little-endian byte order.
+{% endhint %}
+
 ## Best Practices
 
 1. **Use Standard Encodings**: Prefer UTF-8 for its compatibility and efficiency.

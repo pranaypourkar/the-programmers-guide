@@ -60,7 +60,7 @@ These characters include punctuation, digits, uppercase and lowercase letters.
 
 
 
-<figure><img src="../../../../.gitbook/assets/image (195).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (195).png" alt=""><figcaption></figcaption></figure>
 
 ## Usage of ASCII
 
