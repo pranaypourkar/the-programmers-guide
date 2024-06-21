@@ -12,7 +12,7 @@ Base32 is a method of encoding binary data into a text format using a set of 32 
 
 ## Base32 Mapping
 
-<figure><img src="../../../../../.gitbook/assets/image.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (3).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Base32 Encoding Process
 
@@ -51,6 +51,16 @@ Let's encode the string "Hello" using Base32.
    * 00011 -> D
    * 01111 -> P
 4. **Result**: The Base32 encoded string is "JBSWY3DP".
+
+{% hint style="info" %}
+Character: 'H'
+
+**ASCII Value**: The ASCII value of 'H' is 72.
+
+**Binary Conversion**:
+
+* 72 in binary: `01001000`
+{% endhint %}
 
 ## Use Cases for Base32 Encoding
 

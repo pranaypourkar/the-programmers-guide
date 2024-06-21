@@ -4,9 +4,9 @@
 
 Java versions before 9 had a different naming scheme. So, Java 8 can also be called _1.8_, Java 5 can be called _1.5_ etc. With the switch to time-based releases with Java 9 the naming scheme also changed, and Java versions aren’t prefixed with 1.x anymore.
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt="" width="563"><figcaption></figcaption></figure>
-
 <figure><img src="../../.gitbook/assets/image (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## 2. How Java versions differs? Do we learn a specific one? <a href="#what_is_the_difference_between_the_java_versions_should_i_learn_a_specific_one" id="what_is_the_difference_between_the_java_versions_should_i_learn_a_specific_one"></a>
 

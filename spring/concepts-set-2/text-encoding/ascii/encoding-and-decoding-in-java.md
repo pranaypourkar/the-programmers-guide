@@ -1,0 +1,26 @@
+# Encoding and Decoding in Java
+
+## Converting character to ASCII value, vice versa&#x20;
+
+```java
+public class Ascii {
+    public static void main(String [] args) {
+
+        // Getting ASCII Value of a Character
+        char ch1 = 'A';
+        int asciiValue1 = (int) ch1;
+        System.out.println("ASCII value of " + ch1 + " is: " + asciiValue1);
+
+        // Getting Character from ASCII Value
+        int asciiValue2 = 65;
+        char ch2 = (char) asciiValue2;
+        System.out.println("Character for ASCII value " + asciiValue2 + " is: " + ch2);
+
+    }
+}
+```
+
+<figure><img src="../../../../.gitbook/assets/image.png" alt="" width="500"><figcaption></figcaption></figure>
+
+
+
