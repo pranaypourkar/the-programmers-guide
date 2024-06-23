@@ -6,6 +6,8 @@
 
 Encoding in Java refers to the process of converting characters (letters, numbers, symbols etc) from human readable form into a sequence of bytes that computers can understand and manipulate. Text encoding is crucial for handling different character sets and ensuring that text data is correctly interpreted and displayed across various systems and platforms. It establishes a mapping between characters and their corresponding codes. Different encoding schemes define different mappings.
 
+For example, encoding a random string to binary ASCII code typically requires an ASCII table with the respective decimal values of each of the string's characters. After encoded, digital devices can process, store or transmit these codes. However, displaying ASCII to human operators of such devices involves decoding the codes from binary to a readable version.
+
 {% hint style="info" %}
 **Text Encodings vs. BASE Encodings:**
 
@@ -93,6 +95,7 @@ It defines static final fields for each standard charset, providing human-readab
 
 ```java
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 
 public class EncodingExample {
     public static void main(String[] args) {
@@ -102,6 +105,14 @@ public class EncodingExample {
         byte[] utf16Bytes = text.getBytes(StandardCharsets.UTF_16);
         byte[] asciiBytes = text.getBytes(StandardCharsets.US_ASCII);
 
+        // From readable string to decimal format
+        // Refer to the respective encoding scheme table for corresponding character code
+        System.out.println("UTF-8 decimal form: " + Arrays.toString(utf8Bytes));
+        System.out.println("UTF-16 decimal form: " + Arrays.toString(utf16Bytes));
+        System.out.println("US-ASCII decimal form: " + Arrays.toString(asciiBytes));
+
+        // From binary form to human-readable
+        // Look up the respective scheme table to convert decimal codes to a readable string
         System.out.println("UTF-8 Encoded: " + new String(utf8Bytes, StandardCharsets.UTF_8));
         System.out.println("UTF-16 Encoded: " + new String(utf16Bytes, StandardCharsets.UTF_16));
         System.out.println("US-ASCII Encoded: " + new String(asciiBytes, StandardCharsets.US_ASCII));
@@ -109,7 +120,7 @@ public class EncodingExample {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (209).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (210).png" alt=""><figcaption></figcaption></figure>
 
 ### Handling Base Encoding in Java
 
