@@ -1,4 +1,4 @@
-# Examples
+# Text Encoding Decoding Examples
 
 ## Reading a UTF8 saved file with different encoding&#x20;
 
@@ -210,9 +210,27 @@ public class EncodingDecodingFiles {
 
 </div>
 
+## Internationalization and Localization
 
+Text encoding is essential for supporting multiple languages (i18n) and localizing applications (l10n). Java’s support for Unicode ensures that applications can handle diverse character sets seamlessly.
 
+```java
+import java.io.UnsupportedEncodingException;
 
+public class InternationalizationExample {
+    public static void main(String[] args) {
+        String chineseText = "你好，世界！";
 
+        try {
+            byte[] utf8Bytes = chineseText.getBytes("UTF-8");
+            String decodedText = new String(utf8Bytes, "UTF-8");
+            System.out.println("Decoded Chinese Text: " + decodedText);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
 
+<figure><img src="../../../../.gitbook/assets/image (211).png" alt="" width="272"><figcaption></figcaption></figure>
 

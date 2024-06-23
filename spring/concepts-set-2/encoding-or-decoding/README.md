@@ -8,13 +8,6 @@ Encoding in Java refers to the process of converting characters (letters, number
 
 For example, encoding a random string to binary ASCII code typically requires an ASCII table with the respective decimal values of each of the string's characters. After encoded, digital devices can process, store or transmit these codes. However, displaying ASCII to human operators of such devices involves decoding the codes from binary to a readable version.
 
-{% hint style="info" %}
-**Text Encodings vs. BASE Encodings:**
-
-* **Text Encodings:** Define how characters (letters, numbers, symbols) are represented using a set of numerical codes (e.g., UTF-8 for various languages, ISO-8859-1 for Western European languages).
-* **BASE Encodings:** Encode binary data (not just text) into a human-readable format using a limited set of characters (e.g., Base64 with A-Z, a-z, 0-9, +, /). BASE encodings primarily focus on representing arbitrary binary data (like images, audio, compressed files) in a text-based format suitable for transmission or storage. While they can be used for text data as well, it's not their primary purpose.
-{% endhint %}
-
 ### Use Cases of Encoding
 
 1. **Data Storage**:
@@ -37,28 +30,6 @@ For example, encoding a random string to binary ASCII code typically requires an
 **Data Integrity**: Ensures that text data is correctly interpreted and displayed, preventing issues like character corruption or loss of information.
 
 **Support for Multiple Languages**: Allows applications to support and display text in various languages, enhancing global reach and usability.
-
-### Common Text Encodings
-
-1. **UTF-8**: A widely used encoding that supports all Unicode characters. It's efficient and backward-compatible with ASCII.
-2. **UTF-16**: Encodes characters using one or two 16-bit units, often used in Java's internal string representation.
-3. **ISO-8859-1 (Latin-1)**: An 8-bit encoding that covers Western European languages.
-4. **US-ASCII**: A 7-bit encoding covering the English alphabet and basic symbols.
-5. **UTF-32**: Fixed-length encoding using 4 bytes per character, simpler but less space-efficient.
-6. **Windows-1252 (CP1252):** An 8-bit character encoding based on ISO-8859-1, with additional characters for commonly used symbols and Central/Eastern European languages. Text files and system encoding on older Windows systems (may not be fully compatible with other platforms).
-
-### **Common BASE Encodings**
-
-* **Base64:** Most widely used, encodes data into a format using A-Z, a-z, 0-9, +, /.
-* **Base32:** More compact than Base64, uses A-Z, a-z, 2-7 (URL-safe for embedding in URLs).
-* **Base16 (Hexadecimal):** Uses 0-9, A-F to represent each byte of data as two hexadecimal digits (mainly for debugging or visualization).
-
-{% hint style="info" %}
-**How BASE Encodings Relate to Text Encodings ?**
-
-* After BASE decoding (converting back from the encoded format), the resulting data might be in a specific text encoding depending on the original data.
-* For example, if we Base64-encoded a plain text file in UTF-8, decoding it would provide the original text data still encoded in UTF-8.
-{% endhint %}
 
 {% hint style="info" %}
 **What is Character Set ?**
@@ -122,7 +93,7 @@ public class EncodingExample {
 
 <figure><img src="../../../.gitbook/assets/image (210).png" alt=""><figcaption></figcaption></figure>
 
-### Handling Base Encoding in Java
+### Handling BASE Encoding in Java
 
 ```java
 import java.util.Base64;
@@ -147,5 +118,70 @@ public class Base64Example {
 
 <figure><img src="../../../.gitbook/assets/image (208).png" alt="" width="563"><figcaption></figcaption></figure>
 
+## Decoding
 
+### About
+
+Decoding is the process of reversing the steps taken during encoding. It involves converting the encoded data back into its original form, ensuring it's interpreted and displayed correctly by the receiving system or application. Basically, it is a process of converting encoded byte data back into human-readable text.
+
+### Use Cases of Decoding
+
+**Data Retrieval**: Decoding data retrieved from databases, files, or network responses.
+
+* **Data Display**: Ensuring correctly interpreted and displayed text in user interfaces.
+* **Data Parsing**: Processing text data in various formats like JSON, XML, and HTML.
+
+### **Benefits:**
+
+* **Data Integrity**: Ensures the accurate interpretation of byte data.
+* **Interoperability**: Allows for seamless data exchange across different systems.
+* **Internationalization**: Supports multiple languages and character sets.
+
+### Handling Text Decoding in Java
+
+```java
+import java.io.UnsupportedEncodingException;
+
+public class DecodingExample {
+    public static void main(String[] args) {
+        byte[] utf8Bytes = {72, 101, 108, 108, 111, 44, 32, 87, 111, 114, 108, 100, 33};
+        
+        try {
+            String decodedText = new String(utf8Bytes, "UTF-8");
+            System.out.println("Decoded Text: " + decodedText);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+<figure><img src="../../../.gitbook/assets/image (212).png" alt="" width="272"><figcaption></figcaption></figure>
+
+## Common Text Encodings
+
+1. **UTF-8**: A widely used encoding that supports all Unicode characters. It's efficient and backward-compatible with ASCII.
+2. **UTF-16**: Encodes characters using one or two 16-bit units, often used in Java's internal string representation.
+3. **ISO-8859-1 (Latin-1)**: An 8-bit encoding that covers Western European languages.
+4. **US-ASCII**: A 7-bit encoding covering the English alphabet and basic symbols.
+5. **UTF-32**: Fixed-length encoding using 4 bytes per character, simpler but less space-efficient.
+6. **Windows-1252 (CP1252):** An 8-bit character encoding based on ISO-8859-1, with additional characters for commonly used symbols and Central/Eastern European languages. Text files and system encoding on older Windows systems (may not be fully compatible with other platforms).
+
+## **Common BASE Encodings**
+
+* **Base64:** Most widely used, encodes data into a format using A-Z, a-z, 0-9, +, /.
+* **Base32:** More compact than Base64, uses A-Z, a-z, 2-7 (URL-safe for embedding in URLs).
+* **Base16 (Hexadecimal):** Uses 0-9, A-F to represent each byte of data as two hexadecimal digits (mainly for debugging or visualization).
+
+## **Text Encodings vs. BASE Encodings**
+
+* **Text Encodings:** Define how characters (letters, numbers, symbols) are represented using a set of numerical codes (e.g., UTF-8 for various languages, ISO-8859-1 for Western European languages).
+* **BASE Encodings:** Encode binary data (not just text) into a human-readable format using a limited set of characters (e.g., Base64 with A-Z, a-z, 0-9, +, /). BASE encodings primarily focus on representing arbitrary binary data (like images, audio, compressed files) in a text-based format suitable for transmission or storage. While they can be used for text data as well, it's not their primary purpose.
+
+{% hint style="info" %}
+**How BASE Encodings Relate to Text Encodings ?**
+
+* After BASE decoding (converting back from the encoded format), the resulting data might be in a specific text encoding depending on the original data.
+* For example, if we Base64-encoded a plain text file in UTF-8, decoding it would provide the original text data still encoded in UTF-8.
+{% endhint %}
 
