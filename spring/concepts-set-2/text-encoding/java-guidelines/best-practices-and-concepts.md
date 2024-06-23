@@ -1,6 +1,6 @@
 # Best Practices and Concepts
 
-## How Java String and Char works internally
+## How Java `String` and `char` works internally
 
 In Java, `String` and `char` types are designed to work with Unicode characters, and they handle text internally using the UTF-16 encoding.&#x20;
 
@@ -171,3 +171,82 @@ When we save a file in a specific encoding and then try to open it in a differen
 4. **File Metadata and Headers**:
    * Use metadata and headers in protocols (like HTTP headers or HTML meta tags) to specify the encoding.
    * Example: `<meta charset="UTF-8">` in HTML files.
+
+## Defining encoding property in Springboot pom.xml file
+
+In a Springboot application, the `pom.xml` file often contains a property to define the character encoding. This is usually set to `UTF-8` to ensure that the project uses UTF-8 encoding for source files and resources. The property being referred is `project.build.sourceEncoding` and `project.reporting.outputEncoding`
+
+### Explanation of Properties
+
+1. **`project.build.sourceEncoding`**:
+   * This property defines the character encoding for the source code files.
+   * Setting it to `UTF-8` ensures that the Java source files are read and compiled using UTF-8 encoding.
+2. **`project.reporting.outputEncoding`**:
+   * This property defines the character encoding for the output of reporting tasks (e.g., site generation).
+   * Setting it to `UTF-8` ensures that the generated reports are encoded in UTF-8.
+
+{% hint style="info" %}
+The Maven Compiler Plugin does not automatically take the `project.build.sourceEncoding` property from the `<properties>` section. We need to explicitly configure the Maven Compiler Plugin to use this property.
+
+However, setting the encoding in the `<properties>` section ensures that we can reuse this property value consistently across different plugins and configurations.&#x20;
+{% endhint %}
+
+### Why UTF-8?
+
+* **Consistency**: Ensures that all parts of the project, including source code and reports, use the same character encoding.
+* **Compatibility**: UTF-8 is a widely used encoding that supports all Unicode characters, making it a good choice for internationalization.
+* **Best Practice**: Using UTF-8 helps avoid issues with character encoding mismatches, especially in projects that might involve multiple developers and different systems.
+
+### Impact on a Spring Boot Application
+
+Setting these properties in `pom.xml` file ensures that:
+
+* The Maven compiler plugin uses UTF-8 to read and compile Java source files.
+* Any generated reports (e.g., Javadoc, site reports) are encoded in UTF-8.
+* Resources such as `application.properties` or `application.yml` are processed with the specified encoding, avoiding potential issues with special characters.
+
+### Example with Maven Compiler Plugin
+
+The `maven-compiler-plugin` is configured to use the source encoding property. It is configured to use UTF-8 to read and compile Java source files.
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>example-project</artifactId>
+    <version>1.0.0</version>
+
+    <properties>
+        <java.version>11</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- Dependencies here -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <!-- Other plugins -->
+        </plugins>
+    </build>
+
+</project>
+
+```
+
+
+
