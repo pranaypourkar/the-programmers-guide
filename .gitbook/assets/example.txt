@@ -1,0 +1,7 @@
+Hello, World!
+Accented characters: á, é, í, ó, ú, ü, ñ, ç
+Cyrillic characters: А, Б, В, Г, Д, Е, Ж, З, И, Й
+Greek characters: Α, Β, Γ, Δ, Ε, Ζ, Η, Θ, Ι, Κ
+Chinese characters: 你好，世界！
+Special symbols: €, ©, ™, ∑, √, ≈, π, ÷, ≤, ≥
+Emoji: 😀, 🚀, 🌍, ❤️, 👍

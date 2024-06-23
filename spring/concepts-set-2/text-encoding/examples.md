@@ -14,7 +14,7 @@ Special symbols: €, ©, ™, ∑, √, ≈, π, ÷, ≤, ≥
 Emoji: 😀, 🚀, 🌍, ❤️, 👍
 ```
 
-{% file src="broken-reference" %}
+{% file src="../../../.gitbook/assets/example.txt" %}
 
 ```java
 package encoding_decoding;
@@ -57,7 +57,7 @@ public class EncodingDecodingFiles {
 }
 ```
 
-
+<figure><img src="../../../.gitbook/assets/image (199).png" alt=""><figcaption></figcaption></figure>
 
 ## **Writing a File with Specified Encoding**
 
