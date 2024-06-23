@@ -16,7 +16,7 @@ Special symbols: €, ©, ™, ∑, √, ≈, π, ÷, ≤, ≥
 Emoji: 😀, 🚀, 🌍, ❤️, 👍
 ```
 
-{% file src="../../../.gitbook/assets/example.txt" %}
+{% file src="../../../../.gitbook/assets/example.txt" %}
 
 <pre class="language-java"><code class="lang-java"><strong>package encoding_decoding;
 </strong>
@@ -58,7 +58,7 @@ public class EncodingDecodingFiles {
 }
 </code></pre>
 
-<figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
 ## **Writing a string content to a file with specified encoding**
 
@@ -120,27 +120,27 @@ ISO-8859-1 does not support characters like Cyrillic, Greek, Chinese, or Emoji. 
 Similar to ISO-8859-1, Windows-1252 has limited support for non-Western characters
 {% endhint %}
 
-<figure><img src="../../../.gitbook/assets/image (6).png" alt="" width="350"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (6).png" alt="" width="350"><figcaption></figcaption></figure>
 
-{% file src="../../../.gitbook/assets/example-ISO-8859-1.txt" %}
+{% file src="../../../../.gitbook/assets/example-ISO-8859-1.txt" %}
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
 
-{% file src="../../../.gitbook/assets/example-UTF8.txt" %}
+{% file src="../../../../.gitbook/assets/example-UTF8.txt" %}
 
-<figure><img src="../../../.gitbook/assets/image (5).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (5).png" alt="" width="375"><figcaption></figcaption></figure>
 
-{% file src="../../../.gitbook/assets/example-UTF16.txt" %}
+{% file src="../../../../.gitbook/assets/example-UTF16.txt" %}
 
-<figure><img src="../../../.gitbook/assets/image (3).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3).png" alt="" width="375"><figcaption></figcaption></figure>
 
-{% file src="../../../.gitbook/assets/example-Windows-1252.txt" %}
+{% file src="../../../../.gitbook/assets/example-Windows-1252.txt" %}
 
-<figure><img src="../../../.gitbook/assets/image (4).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (4).png" alt="" width="375"><figcaption></figcaption></figure>
 
-{% file src="../../../.gitbook/assets/example-ASCII.txt" %}
+{% file src="../../../../.gitbook/assets/example-ASCII.txt" %}
 
-<figure><img src="../../../.gitbook/assets/image (7).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (7).png" alt="" width="375"><figcaption></figcaption></figure>
 
 ## Reading the above saved file in respective character set
 
@@ -202,11 +202,11 @@ public class EncodingDecodingFiles {
 
 <div>
 
-<figure><img src="../../../.gitbook/assets/image (200).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (200).png" alt="" width="375"><figcaption></figcaption></figure>
 
  
 
-<figure><img src="../../../.gitbook/assets/image (202).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (202).png" alt="" width="375"><figcaption></figcaption></figure>
 
 </div>
 
