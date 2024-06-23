@@ -20,7 +20,7 @@ public class Ascii {
 }
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image.png" alt="" width="500"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (9).png" alt="" width="500"><figcaption></figcaption></figure>
 
 
 
