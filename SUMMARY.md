@@ -142,6 +142,7 @@
       * [Set 1 - General](spring/interview-companion/spring-key-concepts/set-1-general.md)
       * [Set 2 - Core Spring](spring/interview-companion/spring-key-concepts/set-2-core-spring.md)
     * [Spring Code Snippets](spring/interview-companion/spring-code-snippets.md)
+  * [Best Practice](spring/best-practice.md)
 * [Maven](maven/README.md)
   * [Build & Lifecycle](maven/build-and-lifecycle.md)
   * [Command-line Options](maven/command-line-options.md)
