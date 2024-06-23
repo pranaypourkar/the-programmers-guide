@@ -96,7 +96,7 @@ import java.nio.charset.StandardCharsets;
 
 public class EncodingExample {
     public static void main(String[] args) {
-        String text = "Hello, World!";
+        String text = "This is some text with special characters: ñ, ö, €";
 
         byte[] utf8Bytes = text.getBytes(StandardCharsets.UTF_8);
         byte[] utf16Bytes = text.getBytes(StandardCharsets.UTF_16);
@@ -109,7 +109,7 @@ public class EncodingExample {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (207).png" alt="" width="257"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (209).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Handling Base Encoding in Java
 
