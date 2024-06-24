@@ -39,6 +39,9 @@ Keys used to derive other keys, often used in hierarchical key management system
 
 * Algorithms that derive keys from a master key, password, or other secret value. Examples include PBKDF2 (Password-Based Key Derivation Function 2), bcrypt, and scrypt.
 * KDFs apply cryptographic operations to ensure the derived keys are secure and resistant to attacks such as brute force and dictionary attacks.
+  * **PBKDF2 (Password-Based Key Derivation Function 2)**: Uses a password, a salt, and an iteration count to produce a derived key. It is designed to be computationally intensive to thwart brute-force attacks.
+  * **bcrypt**: Designed for hashing passwords, bcrypt incorporates a salt and an adaptive cost factor, making it increasingly difficult to crack over time.
+  * **scrypt**: Similar to bcrypt, but also includes memory-hard functions, making it more resistant to hardware attacks.
 
 ### **Cryptographic Protocols**:
 
@@ -50,6 +53,13 @@ Keys used to derive other keys, often used in hierarchical key management system
 
 * Dedicated hardware devices designed to generate, store, and manage cryptographic keys securely.
 * HSMs provide physical and logical protection against key compromise and offer high-quality random number generation.
+
+### **Operating System and Library Functions:**
+
+* Modern operating systems and cryptographic libraries offer built-in functions for generating symmetric keys. These functions typically use secure PRNGs or access hardware-based randomness sources:
+  * **Linux**: The `/dev/random` and `/dev/urandom` interfaces provide access to the system's entropy pool for generating random numbers.
+  * **Windows**: The CryptGenRandom function in the Windows CryptoAPI generates cryptographically secure random numbers.
+  * **Cryptographic Libraries**: Libraries such as OpenSSL, Bouncy Castle, and Java Cryptography Architecture (JCA) provide APIs for secure key generation.
 
 ## **Best Practices for Key Generation**
 
