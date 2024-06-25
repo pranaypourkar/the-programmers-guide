@@ -24,6 +24,16 @@ OpenSSL is a widely-used toolkit for implementing SSL/TLS and other cryptographi
 
 <figure><img src="../../../../../../.gitbook/assets/image (216).png" alt="" width="563"><figcaption></figcaption></figure>
 
+### Openssl genpkey options available
+
+<figure><img src="../../../../../../.gitbook/assets/image.png" alt="" width="563"><figcaption></figcaption></figure>
+
+
+
+
+
+
+
 ## Symmetric Key
 
 Symmetric key generation involves creating a secret key that will be used for both encryption and decryption processes in symmetric cryptography. The strength and security of the encryption depend on the quality of the generated key.
@@ -57,8 +67,6 @@ openssl rand -hex <key_length> > <output_file>
 // Generate a 256-bit (32 bytes) random key and saves it to symmetric.key
 openssl rand -out symmetric.key 32
 ```
-
-
 
 ### **Encrypting Data**
 
@@ -144,7 +152,72 @@ openssl enc -d -aes-256-cbc -in data.txt.enc -out data.txt -k -base64 $(cat secr
 openssl enc -d -aes-256-cbc -in data.txt.enc -out data.txt -pass pass:your_password
 ```
 
+## **Asymmetric Key**
+
+Asymmetric key cryptography, also known as public-key cryptography, utilizes a pair of mathematically linked keys: a public key and a private key.
+
+{% hint style="info" %}
+**Key Pair:**
+
+* **Public Key:** This key is freely distributed and can be shared with anyone. It's used for encryption. Anyone with the public key can encrypt data, but only the holder of the corresponding private key can decrypt it.
+* **Private Key:** This key is kept secret and never shared. It's used for decryption. Only the entity possessing the private key can decrypt data encrypted with the corresponding public key.
+
+The public key cannot be reversed and used for decryption like a private key. This is a fundamental design principle that ensures the security of the system.
+{% endhint %}
+
+### Generating a Private Key
+
+```
+openssl genpkey -algorithm <alogorithm type> -out private_key.pem [options]
+```
+
+* `algorithm`:   Type of algorithm to use. For example RSA, DSA, EC etc.
 
 
 
+```asciidoc
+// Examples
+
+// RSA algorithm is widely used for key generation
+// -pkeyopt rsa_keygen_bits:2048: Specifies the key size (2048 bits)
+openssl genpkey -algorithm RSA -out private_key.pem -pkeyopt rsa_keygen_bits:2048
+
+// The Digital Signature Algorithm
+// -pkeyopt dsa_paramgen_bits:2048: Specifies the key size (2048 bits)
+openssl genpkey -algorithm DSA -out private_key.pem -pkeyopt dsa_paramgen_bits:2048
+
+// Elliptic Curve cryptography
+// -name prime256v1: Specifies the curve name
+openssl ecparam -name prime256v1 -genkey -noout -out private_key.pem
+```
+
+
+
+
+
+### **Generating a Public Key**
+
+
+
+### **Encrypting Data**
+
+
+
+### **Decrypting Data**
+
+
+
+### **Creating a Certificate Signing Request (CSR)**
+
+
+
+### **Self-Signing a Certificate**
+
+
+
+### **Signing Data**
+
+
+
+### **Verifying a Signature**
 
