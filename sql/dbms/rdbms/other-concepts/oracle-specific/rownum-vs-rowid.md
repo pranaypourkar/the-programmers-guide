@@ -35,5 +35,5 @@ SELECT * FROM employees WHERE ROWNUM < 10;
 * ROWNUM can also be used for assigning unique values for every row in a table.
 * The user can also use ROWNUM to present the dataset in a report with serial numbers.
 
-<figure><img src="../../../../../.gitbook/assets/image (5) (1) (1).png" alt="" width="488"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (5) (1) (1) (1).png" alt="" width="488"><figcaption></figcaption></figure>
 
