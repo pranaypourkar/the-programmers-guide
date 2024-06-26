@@ -28,19 +28,25 @@ Alias is a unique identifier for an entry in a keystore.
 
 ### Key
 
-#### Generating a Key Pair
+Generating a Symmetric Key&#x20;
+
+Generating an Asymmetric Key Pair
 
 #### **Setting a Key Entry's Alias**
 
 #### Changing a Key Password
+
+#### Exporting a Key Pair&#x20;
+
+#### Importing a Key Pair&#x20;
+
+#### Deleting a Key Entry
 
 
 
 ### Certificate
 
 #### Exporting a Certificate
-
-#### Importing a Certificate into a Keystore
 
 #### Displaying Certificate Information
 
@@ -52,7 +58,11 @@ Alias is a unique identifier for an entry in a keystore.
 
 ### Certificate Signing Request (CSR)
 
-#### Generating a CSR
+Generating a CSR&#x20;
+
+Submitting a CSR to a CA&#x20;
+
+Importing a Signed Certificate from a CSR
 
 
 
@@ -70,6 +80,8 @@ Alias is a unique identifier for an entry in a keystore.
 
 #### Creating a Keystore
 
+#### Importing a Certificate into a Keystore
+
 #### Changing a Keystore Password
 
 #### **Viewing Keystore Details**
@@ -79,6 +91,10 @@ Alias is a unique identifier for an entry in a keystore.
 #### Listing Entries in a Keystore
 
 #### Deleting an Entry from a Keystore
+
+Importing a Keystore&#x20;
+
+Exporting a Keystore
 
 
 
@@ -92,7 +108,11 @@ Alias is a unique identifier for an entry in a keystore.
 
 #### Listing Entries in a Truststore
 
+Verifying TrustStore Contents&#x20;
 
+Updating a TrustStore&#x20;
+
+Backing Up a TrustStore
 
 
 
