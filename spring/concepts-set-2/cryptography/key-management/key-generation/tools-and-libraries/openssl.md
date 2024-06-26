@@ -26,9 +26,19 @@ OpenSSL is a widely-used toolkit for implementing SSL/TLS and other cryptographi
 
 ### Openssl genpkey options available
 
-<figure><img src="../../../../../../.gitbook/assets/image.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (218).png" alt="" width="563"><figcaption></figcaption></figure>
 
+### Openssl ecparam options available
 
+<figure><img src="../../../../../../.gitbook/assets/image (217).png" alt="" width="563"><figcaption></figcaption></figure>
+
+### Openssl pkey options available
+
+<figure><img src="../../../../../../.gitbook/assets/image (219).png" alt="" width="563"><figcaption></figcaption></figure>
+
+### Openssl pkeyutl options available
+
+<figure><img src="../../../../../../.gitbook/assets/image (220).png" alt="" width="563"><figcaption></figcaption></figure>
 
 
 
@@ -186,26 +196,88 @@ openssl genpkey -algorithm RSA -out private_key.pem -pkeyopt rsa_keygen_bits:204
 // -pkeyopt dsa_paramgen_bits:2048: Specifies the key size (2048 bits)
 openssl genpkey -algorithm DSA -out private_key.pem -pkeyopt dsa_paramgen_bits:2048
 
-// Elliptic Curve cryptography
+// Elliptic Curve (EC) cryptography
 // -name prime256v1: Specifies the curve name
 openssl ecparam -name prime256v1 -genkey -noout -out private_key.pem
 ```
 
-
-
-
-
 ### **Generating a Public Key**
 
+OpenSSL can create the corresponding public key from the private key
 
+```
+openssl rsa -in <private_key_file> -pubout -out <public_key_file>
+```
+
+* `<private_key_file>`: Path to the existing private key file (generated in step 1).
+* `<public_key_file>`: Path to the file where the public key will be stored (in PEM format).
+
+```
+// Examples
+
+// Generate a public key from a private key
+openssl pkey -in private_key.pem -pubout -out public_key.pem
+
+// Command is specifically designed for RSA key operations
+openssl rsa -in my_private_key.pem -pubout -out my_public_key.pem
+
+```
 
 ### **Encrypting Data**
+
+In asymmetric encryption, we use the public key of the recipient to encrypt data and the corresponding private key of the recipient to decrypt it.
+
+```
+openssl pkeyutl -encrypt -in <input_file> -out <output_file> -pubin -inkey recipient_public_key.pem
+```
+
+* `-encrypt`: Encrypt the input data.
+* `-pubin`: Indicates the input key is a public key.
+* `-inkey public_key.pem`: Path to the recipient's public key used for encryption (PEM format).
+* `-in plaintext.txt`: Input file to encrypt.
+* `-out encrypted.bin`: Output the encrypted data to `encrypted.bin`
+
+```asciidoc
+// Examples
+
+// Encrypting data using recipient's public key (RSA)
+openssl pkeyutl -encrypt -in message.txt -out message.enc -pubin -inkey recipient_public_key.pem
+
+// Encrypting data using recipient's public key (DSA)
+openssl pkeyutl -encrypt -in message.txt -out message.enc -pubin -inkey recipient_public_key.pem
+
+// Encrypting data using recipient's public key (ECC)
+openssl pkeyutl -encrypt -in message.txt -out message.enc -pubin -inkey recipient_public_key.pe
+```
 
 
 
 ### **Decrypting Data**
 
+While asymmetric encryption uses public keys, decryption relies on the corresponding private key.
 
+```
+openssl pkeyutl -decrypt -in message.enc -out message.txt -inkey your_private_key.pem
+```
+
+* `-`decrypt: Decrypt the input data.
+* `-pubin`: Indicates the input key is a public key.
+* `-inkey your_private_key.pem`: Path to the recipient's private key used for decryption (PEM format).
+* `-in encryptedtext.enc`: Input file with encrypted data.
+* `-out plaintext.txt`: Output the decrypted data to `plaintext.txt`
+
+```
+// Examples
+
+// Decrypting data using your private key (RSA)
+openssl pkeyutl -decrypt -in message.enc -out message.txt -inkey your_private_key.pem
+
+// Decrypting data using your private key (DSA)
+openssl pkeyutl -decrypt -in message.enc -out message.txt -inkey your_private_key.pem
+
+// Decrypting data using your private key (ECC)
+openssl pkeyutl -decrypt -in message.enc -out message.txt -inkey your_private_key.pem
+```
 
 ### **Creating a Certificate Signing Request (CSR)**
 
