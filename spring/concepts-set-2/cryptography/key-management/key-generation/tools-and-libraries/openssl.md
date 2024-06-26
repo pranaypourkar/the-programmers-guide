@@ -40,6 +40,10 @@ OpenSSL is a widely-used toolkit for implementing SSL/TLS and other cryptographi
 
 <figure><img src="../../../../../../.gitbook/assets/image (220).png" alt="" width="563"><figcaption></figcaption></figure>
 
+### Openssl req options
+
+<figure><img src="../../../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
 
 
 
@@ -280,6 +284,38 @@ openssl pkeyutl -decrypt -in message.enc -out message.txt -inkey your_private_ke
 ```
 
 ### **Creating a Certificate Signing Request (CSR)**
+
+A Certificate Signing Request (CSR) is a data structure containing information used to obtain a digital certificate from a Certificate Authority (CA)
+
+```bash
+openssl req -new -key private_key.pem -out csr.pem [options]
+```
+
+* `-new`: Indicates a new CSR creation.
+* `-key my_private_key.pem`: Specifies the path to your private key file.
+* `-out my_csr.csr`: Specifies the output file for the CSR.
+* `[-subj "/C=US/ST=California/L=San Francisco/O=My Company/CN=www.example.com"]`: This is an optional subject field. It defines information about the entity requesting the certificate. You can replace the values with your own details:
+  * `/C=US`: Country (2-letter code)
+  * `/ST=California`: State/Province
+  * `/L=San Francisco`: Locality (City)
+  * `/O=My Company`: Organization Name
+  * `/CN=www.example.com`: Common Name (Domain name or server identifier)
+
+{% hint style="info" %}
+Once we have the CSR file (e.g., `my_csr.csr`), we can submit it to a Certificate Authority (CA) of our choice to obtain the digital certificate. The CA will validate the information and issue a certificate signed by their trusted root certificate.
+{% endhint %}
+
+```
+// Examples
+
+// Generate a CSR with default settings
+openssl req -new -key private_key.pem -out csr.pem
+
+// Generating the CSR with Subject Information
+openssl req -new -key my_private_key.pem -out my_csr.csr \
+  -subj "/C=US/ST=California/L=San Francisco/O=My Company/CN=www.example.com"
+
+```
 
 
 
