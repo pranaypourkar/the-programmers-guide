@@ -187,8 +187,6 @@ openssl genpkey -algorithm <alogorithm type> -out private_key.pem [options]
 
 * `algorithm`:   Type of algorithm to use. For example RSA, DSA, EC etc.
 
-
-
 ```asciidoc
 // Examples
 
@@ -210,7 +208,7 @@ openssl ecparam -name prime256v1 -genkey -noout -out private_key.pem
 OpenSSL can create the corresponding public key from the private key
 
 ```
-openssl rsa -in <private_key_file> -pubout -out <public_key_file>
+openssl pkey -in <private_key_file> -pubout -out <public_key_file>
 ```
 
 * `<private_key_file>`: Path to the existing private key file (generated in step 1).
@@ -253,8 +251,6 @@ openssl pkeyutl -encrypt -in message.txt -out message.enc -pubin -inkey recipien
 // Encrypting data using recipient's public key (ECC)
 openssl pkeyutl -encrypt -in message.txt -out message.enc -pubin -inkey recipient_public_key.pe
 ```
-
-
 
 ### **Decrypting Data**
 
@@ -317,15 +313,98 @@ openssl req -new -key my_private_key.pem -out my_csr.csr \
 
 ```
 
-
-
 ### **Self-Signing a Certificate**
 
+While obtaining a certificate from a trusted Certificate Authority (CA) is generally recommended, OpenSSL allows us to create a self-signed certificate for testing or internal purposes.
 
+```
+openssl req -x509 -sha256 -days 365 -newkey rsa:2048 -keyout my_server_key.pem \
+  -out my_server_cert.crt [-subj "/C=US/ST=California/L=San Francisco/O=My Company/CN=www.example.com"]
+```
+
+* `-x509`: This flag indicates creating a self-signed certificate.
+* `-sha256`: Specifies the signature hashing algorithm (SHA-256 is recommended).
+* `-days 365`: Sets the validity period of the certificate to 365 days .
+* `-newkey rsa:2048`: Generates a new RSA key (2048 bits) and stores it in `my_server_key.pem`.
+* `-keyout my_server_key.pem`: Specifies the output file for the private key (same as before).
+* `-out my_server_cert.crt`: Specifies the output file for the self-signed certificate.
+* `[-subj "/C=US/ST=California/L=San Francisco/O=My Company/CN=www.example.com"]`: This optional subject information is similar to CSR creation.
+
+{% hint style="info" %}
+**Trusting the Self-Signed Certificate:**
+
+Since it's self-signed, most browsers and applications will show a security warning when using this certificate.
+
+Here are two approaches, depending on our needs:
+
+**For testing on a local machine:** We  can import the self-signed certificate into our browser's trust store. However, this is not recommended for production environments due to security risks.
+
+**For internal use on a closed network:** We can configure our applications and servers to trust the self-signed certificate's fingerprint or subject information. However, exercise caution as this bypasses the validation provided by trusted CAs.
+{% endhint %}
+
+```
+// Examples
+
+// Create a self signed certificate
+openssl req -x509 -key private_key.pem -in csr.pem -out certificate.pem -days 365
+
+// Create a self signed certificate with subject
+openssl req -x509 -sha256 -days 365 -key my_server_key.pem \
+  -out my_server_cert.crt [-subj "/C=US/ST=California/L=San Francisco/O=My Company/CN=www.example.com"]
+  
+// Create a private key along with self signed certificate
+openssl req -x509 -sha256 -days 365 -newkey rsa:2048 -keyout my_server_key.pem \
+  -out my_server_cert.crt -subj "/C=US/ST=California/L=San Francisco/O=My Company/CN=www.example.com"
+  
+```
 
 ### **Signing Data**
 
+Digital signatures are a crucial aspect of secure communication, allowing verification of data integrity and origin. OpenSSL provides functionalities for signing data using your private key.
 
+```
+openssl dgst -sha256 -sign my_private_key.pem -out signature.txt data.txt
+```
+
+* `-sha256`: Specifies the hashing algorithm used to create a digest of the data (SHA-256 is recommended).
+* `-sign my_private_key.pem`: Indicates signing with our private key stored in `my_private_key.pem`.
+* `-out signature.txt`: Specifies the output file for the signature .
+* `data.txt`: The path to the file containing the data we want to sign.
+
+{% hint style="info" %}
+Anyone with access to our public key (derived from our private key) can verify the signature to confirm the data's authenticity and integrity.
+{% endhint %}
+
+```
+// Examples
+
+// Sign data using a private key with SHA-256 hash algorithm.
+openssl dgst -sha256 -sign private_key.pem -out signature.bin plaintext.txt
+```
 
 ### **Verifying a Signature**
+
+Verify a signature using a public key
+
+```
+openssl dgst -sha256 -verify signer_public_key.pem -signature signature.txt data.txt
+```
+
+* `-sha256`: Specifies the hashing algorithm used during signing (ensure it matches the signing process).
+* `-verify signer_public_key.pem`: Indicates verification using the public key of the signer. This file (e.g., `signer_public_key.pem`) should be obtained from a trusted source.
+* `-signature signature.txt`: Specifies the path to the signature file created during signing.
+* `data.txt`: The path to the original data file (or the data itself if not in a file).
+
+**Output:**
+
+* If the verification is successful, OpenSSL will print "Verified OK". This indicates the data has not been tampered with and the signature is valid.
+* If the verification fails, it will display an error message. This might suggest the data has been modified, the signature is invalid, or the wrong public key was used.
+
+{% hint style="info" %}
+1. **Signing Process:** During signing, a cryptographic hash function is used to create a "digest" of the data. This digest is a unique fingerprint of the data's content. The signer then uses their private key to encrypt this digest, creating a digital signature.
+2. **Verification Process:** During verification, the same hashing algorithm is used to create a new digest of the received data. Then, the verifier uses the signer's public key (which can be mathematically derived from their private key) to decrypt the attached signature.
+3. **Verification Outcome:** If the decrypted signature (digest) matches the newly created digest of the received data,verification is successful. This indicates that:
+   * The data has not been altered since it was signed, as any changes would result in a different digest.
+   * The signature is authentic, as only the private key corresponding to the public key used for verification could have created the valid signature.
+{% endhint %}
 

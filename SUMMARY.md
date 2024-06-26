@@ -146,6 +146,7 @@
         * [Key Generation](spring/concepts-set-2/cryptography/key-management/key-generation/README.md)
           * [Tools and Libraries](spring/concepts-set-2/cryptography/key-management/key-generation/tools-and-libraries/README.md)
             * [OpenSSL](spring/concepts-set-2/cryptography/key-management/key-generation/tools-and-libraries/openssl.md)
+          * [Key & Certificate File Formats](spring/concepts-set-2/cryptography/key-management/key-generation/key-and-certificate-file-formats.md)
         * [Key Distribution](spring/concepts-set-2/cryptography/key-management/key-distribution.md)
         * [Key Storage](spring/concepts-set-2/cryptography/key-management/key-storage.md)
         * [Key Rotation](spring/concepts-set-2/cryptography/key-management/key-rotation.md)
