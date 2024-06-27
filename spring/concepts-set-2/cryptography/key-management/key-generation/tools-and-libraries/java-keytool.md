@@ -301,9 +301,67 @@ keytool -list -v -alias mycert -keystore keystore.jks -storepass changeit
 
 #### **Checking Certificate Expiration Date**
 
+Checking the expiration date of a certificate stored in a keystore.
+
+```bash
+keytool -list -v -alias <alias_name> -keystore <keystore_name> -storepass <password> | grep -i "valid from"
+```
+
+* `-list -v`: Lists the contents of the keystore in verbose mode, showing detailed information.
+* `-alias mycert`: Specifies the alias for the certificate entry.
+* `-keystore keystore.jks`: Specifies the keystore file.
+* `-storepass changeit`: Password for the keystore.
+* `| grep -i "valid from"`: Filters the output to show the validity period of the certificate.
+
+```
+// Examples
+
+// Check the expiration date of a certificate
+keytool -list -v -alias mycert -keystore keystore.jks -storepass changeit | grep -i "valid from"
+```
+
 #### **Renewing an Expired Certificate**
 
+Renewing a certificate that is about to expire by generating a new Certificate Signing Request (CSR) and importing the renewed certificate.
 
+{% hint style="info" %}
+**Steps**:
+
+1. **Generate a new CSR** using the existing key pair.
+2. **Submit the CSR** to a Certificate Authority (CA) to get a renewed certificate.
+3. **Import the renewed certificate** into the keystore.
+{% endhint %}
+
+**CSR Generation**
+
+```bash
+keytool -certreq -alias <alias_name> -file <csr_file> -keystore <keystore_name> -storepass <password>
+```
+
+* `-certreq`: Generates a Certificate Signing Request (CSR).
+* `-alias mycert`: Specifies the alias for the certificate entry.
+* `-file mycert.csr`: Path to the CSR file.
+* `-keystore keystore.jks`: Specifies the keystore file.
+* `-storepass changeit`: Password for the keystore.
+
+**Importing Renewed Certificate**
+
+```bash
+keytool -importcert -alias <alias_name> -file <renewed_certificate_file> -keystore <keystore_name> -storepass <password>
+```
+
+* `-importcert`: Imports a certificate into the keystore.
+* `-file renewed_mycert.crt`: Path to the renewed certificate file.
+
+```
+// Examples
+
+// Generate a new CSR for the existing key pair
+keytool -certreq -alias mycert -file mycert.csr -keystore keystore.jks -storepass changeit
+
+// Import the renewed certificate into the keystore
+keytool -importcert -alias mycert -file renewed_mycert.crt -keystore keystore.jks -storepass changeit
+```
 
 ### Certificate Signing Request (CSR)
 
