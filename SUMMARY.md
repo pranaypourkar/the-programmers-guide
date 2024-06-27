@@ -147,6 +147,7 @@
           * [Tools and Libraries](spring/concepts-set-2/cryptography/key-management/key-generation/tools-and-libraries/README.md)
             * [OpenSSL](spring/concepts-set-2/cryptography/key-management/key-generation/tools-and-libraries/openssl.md)
             * [Java Keytool](spring/concepts-set-2/cryptography/key-management/key-generation/tools-and-libraries/java-keytool/README.md)
+              * [Concept](spring/concepts-set-2/cryptography/key-management/key-generation/tools-and-libraries/java-keytool/concept.md)
               * [Use Cases](spring/concepts-set-2/cryptography/key-management/key-generation/tools-and-libraries/java-keytool/use-cases.md)
           * [Key & Certificate File Formats](spring/concepts-set-2/cryptography/key-management/key-generation/key-and-certificate-file-formats.md)
         * [Key Distribution](spring/concepts-set-2/cryptography/key-management/key-distribution.md)

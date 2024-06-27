@@ -16,11 +16,7 @@ Certificates are digital documents that bind a public key to an entity (e.g., pe
 Alias is a unique identifier for an entry in a keystore.
 {% endhint %}
 
-## Concept
 
-### Keystore vs Truststore
-
-<table><thead><tr><th width="164">Feature</th><th>Keystore</th><th>TrustStore</th></tr></thead><tbody><tr><td>Purpose</td><td>Stores private keys and certificates</td><td>Stores trusted certificates</td></tr><tr><td>Content Type</td><td>Private keys and certificates</td><td>Certificates only</td></tr><tr><td>Usage</td><td>Decryption, signing</td><td>Identity verification (HTTPS, etc.)</td></tr><tr><td>Management</td><td>You manage the keys and certificates</td><td>You import certificates from trusted sources</td></tr><tr><td>Security</td><td>Private keys require strong protection</td><td>Less critical for security, but validation recommended</td></tr></tbody></table>
 
 ## Keytool Command Options
 
