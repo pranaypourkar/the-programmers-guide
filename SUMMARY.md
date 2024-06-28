@@ -240,7 +240,7 @@
     * [DBMS Architecture](sql/dbms/dbms-architecture.md)
     * [DBMS Structure](sql/dbms/dbms-structure.md)
   * [Best Practice](sql/best-practice.md)
-* [Web Communication and Security](web-communication-and-security/README.md)
+* [Web Communication and Security](web-communication-and-security.md)
   * [User Flows](web-communication-and-security/user-flows.md)
 * [GIT](git/README.md)
   * [Internals of GIT \[WIP\]](git/internals-of-git-wip.md)
