@@ -88,3 +88,16 @@ PKI is a framework that uses asymmetric cryptography for securing communications
 
 * **Data Encryption Keys (DEKs)**: Symmetric DEKs are used for encrypting bulk data. These keys are generated and rotated by the KMS. Encrypted DEKs are stored with the data, and the KMS decrypts them as needed.
 * **Automated Key Rotation**: Cloud KMS solutions provide automated key rotation policies, ensuring symmetric keys are regularly updated without manual intervention.
+
+## Example
+
+### sFTP Transfer
+
+A company ABC drops a file at a sFTP location in Linux system of company PQR. Company PQR then process that file and reshares it to company ABC at their sFTP location. Both uses asymmteric key encryption decryption of the data files.
+
+Company ABC and PQR generates the private-public key on the linux system with the help of ssh-keygen and then shares the public key over the email with each other. Then they use repective public keys to encrypt data before sharing with others. Respective companies uses their private keys to decrypt the data before file processing&#x20;
+
+
+
+
+
