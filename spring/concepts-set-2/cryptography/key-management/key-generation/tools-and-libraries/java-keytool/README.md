@@ -22,13 +22,13 @@ Alias is a unique identifier for an entry in a keystore.
 
 ### keytool -genseckey
 
-<figure><img src="../../../../../../../.gitbook/assets/image.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../../.gitbook/assets/image (1).png" alt="" width="375"><figcaption></figcaption></figure>
 
 ### keytool -genkeypair and -changealias
 
 <div>
 
-<figure><img src="../../../../../../../.gitbook/assets/image (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../../.gitbook/assets/image (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
 
  
 

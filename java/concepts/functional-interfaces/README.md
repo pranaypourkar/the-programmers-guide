@@ -31,14 +31,16 @@ interface Calculator {
 public class Application {
     public static void main(String[] args) {
         // Define a lambda expression for addition
-        Calculator addition = Integer::sum;
+        Calculator additionWithMethodReference = Integer::sum;
+        Calculator additionWithLambdaExpression = (a,b) -> Integer.sum(a,b);
 
         // Use the custom functional interface
-        log.info("Addition: {}", addition.calculate(5, 3));
+        log.info("Addition: {}", additionWithMethodReference.calculate(5, 3));
+        log.info("Addition: {}", additionWithLambdaExpression.calculate(5, 3));
     }
 }
 ```
 
 Execute the program
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image.png" alt="" width="563"><figcaption></figcaption></figure>

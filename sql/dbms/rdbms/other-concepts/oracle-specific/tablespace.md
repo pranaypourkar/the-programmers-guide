@@ -12,7 +12,7 @@ In other words, Oracle logically stores data in the tablespaces and physically s
 
 The following picture illustrates the relationship between a database, tablespaces, and datafiles
 
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 By using tablespaces, we can perform the following operations:
 
