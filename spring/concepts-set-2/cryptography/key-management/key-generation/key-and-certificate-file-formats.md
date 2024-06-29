@@ -25,6 +25,10 @@ PEM (Privacy-Enhanced Mail) format is a Base64 encoded ASCII format that represe
 **.crt** or **.cer**: Commonly used for PEM-encoded certificates. For instance, `server.crt` could contain a PEM-encoded SSL/TLS server certificate.
 {% endhint %}
 
+{% hint style="info" %}
+A `.key` file, when it contains a symmetric key like an AES key, is typically in binary format. This binary format is not human-readable and cannot be meaningfully viewed or edited with a text editor. However, for certain types of keys (such as RSA private keys or certificates), a `.key` file might be in a PEM format, which is Base64-encoded and can be viewed with a text editor.
+{% endhint %}
+
 ### **DER (Distinguished Encoding Rules)**
 
 * **Extension**: `.der`, `.cer`
