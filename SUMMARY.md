@@ -154,6 +154,7 @@
           * [Examples](spring/concepts-set-2/cryptography/encryption-or-decryption/symmetric-encryption/examples.md)
         * [Asymmetric Encryption](spring/concepts-set-2/cryptography/encryption-or-decryption/asymmetric-encryption/README.md)
           * [Algorithm](spring/concepts-set-2/cryptography/encryption-or-decryption/asymmetric-encryption/algorithm.md)
+          * [Mode of Operation](spring/concepts-set-2/cryptography/encryption-or-decryption/asymmetric-encryption/mode-of-operation.md)
           * [Examples](spring/concepts-set-2/cryptography/encryption-or-decryption/asymmetric-encryption/examples.md)
       * [Java Cryptography Architecture (JCA)](spring/concepts-set-2/cryptography/java-cryptography-architecture-jca.md)
       * [Compliance and Regulation](spring/concepts-set-2/cryptography/compliance-and-regulation/README.md)

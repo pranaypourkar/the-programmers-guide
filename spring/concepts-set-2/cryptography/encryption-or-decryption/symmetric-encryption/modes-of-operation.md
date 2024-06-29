@@ -42,7 +42,7 @@ Imagine if we have a document and want to encrypt with a secret key. Here's how 
 
 ### **1. Electronic Codebook (ECB)**
 
-* **Description**: Encrypts each block of plaintext independently using the block cipher.
+* **Description**: Encrypts each block of plaintext independently using the block cipher. With ECB mode, we break the plaintext into N bit segments, and send each one through the block cipher separately. The block cipher is deterministic, and so if two plaintext blocks happen to be the same, so will the corresponding ciphertext blocks.
 * **Advantages**: Simple and parallelizable.
 * **Disadvantages**: Identical plaintext blocks result in identical ciphertext blocks, revealing patterns and making it insecure for most applications.
 * **Usage**: Rarely used in practice due to its security weaknesses.
