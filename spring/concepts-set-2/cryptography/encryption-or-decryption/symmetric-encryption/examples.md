@@ -151,6 +151,8 @@ Usually, Base64 excrypted text is shared among applications (say Web/Mobile Appl
 
 {% hint style="success" %}
 Always ensure that the IV used for encryption is the same one used for decryption. Proper handling and storage of the IV are essential for secure cryptographic operations.
+
+Note that default blocksize of AES is 16 byte (128 bits)
 {% endhint %}
 
 ```java
