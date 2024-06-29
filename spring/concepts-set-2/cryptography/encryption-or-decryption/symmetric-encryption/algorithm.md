@@ -154,3 +154,17 @@ A5/1 and A5/2 are stream ciphers used in GSM cellular networks.
 6. **Encrypt Data in Transit and at Rest:** Apply encryption to protect data both during transmission and when stored.
 7. **Regular Security Audits:** Periodically review and update encryption practices to address new threats and vulnerabilities.
 
+## Important Checklist to check before starting any development
+
+1. **Encryption Algorithm**: Choose an appropriate encryption algorithm based on the security requirements. AES (Advanced Encryption Standard) is widely recommended for its security and efficiency.
+2. **Mode of Operation**: Understand different modes of operation such as CBC (Cipher Block Chaining), ECB (Electronic Codebook), or GCM (Galois/Counter Mode). Each mode offers different properties like security and parallelization. Select the mode appropriately.
+3. **Padding Scheme**: Select a padding scheme like PKCS#7 (or PKCS#5) to handle input data that is not a multiple of the block size.
+4. **Key Size**: Decide on the AES key size (128, 192, or 256 bits) based on the security requirements. Larger key sizes generally provide stronger encryption but may impact performance.
+5. **Initialization Vector (IV)**: Understand the role of the IV in encryption. Use a unique IV for each encryption operation to ensure security, especially in CBC mode.
+6. **Security Provider**: Choose a cryptographic provider library like Bouncy Castle (`BC`), which extends Java's default security features and supports more algorithms.
+7. **Key Management**: Plan how to securely store and manage encryption keys. Consider using hardware security modules (HSMs) or secure key management services.
+8. **Performance**: Evaluate the performance impact of encryption operations, especially when dealing with large volumes of data or real-time applications.
+9. **Security Considerations**: Be aware of security best practices such as key rotation, secure key exchange, and protection against side-channel attacks.
+10. **Legal and Compliance**: Understand legal and compliance requirements related to encryption, data protection laws (like GDPR), and export restrictions on cryptographic algorithms.
+11. **Testing and Validation**: Develop and conduct thorough testing of the encryption implementation to ensure correctness, security, and interoperability with other systems.
+12. **Documentation**: Maintain comprehensive documentation of the encryption approach, including algorithm choices, parameters, and key management procedures.
