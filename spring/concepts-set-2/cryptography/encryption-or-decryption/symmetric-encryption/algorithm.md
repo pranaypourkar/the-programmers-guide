@@ -144,6 +144,31 @@ A5/1 and A5/2 are stream ciphers used in GSM cellular networks.
 
 <table data-full-width="true"><thead><tr><th width="219">Feature</th><th>Block Ciphers</th><th>Stream Ciphers</th></tr></thead><tbody><tr><td><strong>Encryption Unit</strong></td><td>Encrypts data in fixed-size blocks (e.g., 64, 128 bits)</td><td>Encrypts data bit-by-bit or byte-by-byte</td></tr><tr><td><strong>Key Size</strong></td><td>Typically fixed and standardized (e.g., 128, 192, 256 bits for AES)</td><td>Varies, but often large (e.g., 128, 256 bits)</td></tr><tr><td><strong>Padding</strong></td><td>Required if plaintext is not a multiple of block size</td><td>Not required</td></tr><tr><td><strong>Modes of Operation</strong></td><td>Uses modes (e.g., ECB, CBC, CTR, GCM) to encrypt data larger than a block</td><td>Not applicable, inherently suitable for variable-length data</td></tr><tr><td><strong>Complexity</strong></td><td>Generally more complex due to the need for modes of operation</td><td>Simpler encryption process</td></tr><tr><td><strong>Encryption Speed</strong></td><td>Can be slower due to block processing and padding</td><td>Generally faster, especially for real-time applications</td></tr><tr><td><strong>Error Propagation</strong></td><td>Errors in one block may affect subsequent blocks (depending on the mode)</td><td>Errors are confined to the corrupted bits/bytes</td></tr><tr><td><strong>Typical Use Cases</strong></td><td>File encryption, disk encryption, SSL/TLS, database encryption</td><td>Real-time communications, streaming media encryption</td></tr><tr><td><strong>Security Considerations</strong></td><td>Requires secure mode of operation to avoid vulnerabilities (e.g., ECB is insecure)</td><td>Reusing keystreams can lead to severe security issues</td></tr><tr><td><strong>Common Algorithms</strong></td><td>AES, DES, 3DES, Blowfish, Twofish</td><td>RC4, Salsa20, ChaCha20</td></tr><tr><td><strong>Parallelization</strong></td><td>Modes like CTR and GCM allow parallel processing</td><td>Not inherently parallelizable, but fast per bit/byte</td></tr><tr><td><strong>Key and IV Management</strong></td><td>IV (Initialization Vector) required for many modes</td><td>Requires careful management to ensure keystream uniqueness</td></tr><tr><td><strong>Implementation Complexity</strong></td><td>Higher due to block processing and multiple modes of operation</td><td>Generally simpler implementation</td></tr></tbody></table>
 
+## Initialization Vector
+
+An Initialization Vector (IV) is a pseudo-random value used in conjunction with a secret key to ensure that encryption produces different ciphertexts even when the same plaintext is encrypted multiple times. The IV ensures that the encryption is more secure by introducing an element of randomness.
+
+### **Characteristics**
+
+* **Size**: The IV is typically the same size as the block size of the encryption algorithm. For instance, in AES (which has a block size of 128 bits), the IV is also 128 bits (16 bytes).
+* **Randomness**: The IV should be pseudo-random and unique for each encryption operation to prevent patterns from emerging in the ciphertext.
+* **Deterministic Generation**: For deterministic encryption, the IV might be generated in a predictable manner, but this is generally less secure than using a random IV.
+
+### **Role in Encryption**
+
+* **Cipher Block Chaining (CBC) Mode**: In CBC mode, the IV is XORed with the first block of plaintext before encryption. This ensures that identical plaintext blocks will encrypt to different ciphertext blocks when different IVs are used.
+* **Counter (CTR) Mode**: In CTR mode, the IV (often called a nonce in this context) is combined with a counter to generate a unique keystream for each block of plaintext.
+
+### **Security Implications**
+
+* **IV Reuse**: Reusing an IV with the same key for different plaintexts can lead to vulnerabilities. For example, in CBC mode, if two identical plaintext blocks are encrypted with the same IV, they will produce identical ciphertext blocks, making it easier for attackers to detect patterns.
+* **IV Transmission**: The IV does not need to be kept secret. It is typically transmitted along with the ciphertext. However, it must be unique and unpredictable for each encryption operation.
+
+### **Practical Usage**
+
+* **Random Generation**: In most applications, the IV is generated using a secure random number generator (e.g., `SecureRandom` in Java) to ensure its unpredictability.
+* **Prepending IV to Ciphertext**: It is a common practice to prepend the IV to the ciphertext. This allows the IV to be easily extracted and used during decryption.
+
 ## Best Practices
 
 1. **Use Strong Algorithms:** Prefer modern and secure algorithms like AES and ChaCha20.
