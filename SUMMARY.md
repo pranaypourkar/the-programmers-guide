@@ -201,6 +201,7 @@
       * [KDF - TBD](spring/concepts-set-2/cryptography/kdf-tbd/README.md)
         * [Salt & Nonce](spring/concepts-set-2/cryptography/kdf-tbd/salt-and-nonce.md)
       * [Pseudorandom Number Generators (PRNGs)  - TBD](spring/concepts-set-2/cryptography/pseudorandom-number-generators-prngs-tbd.md)
+    * [MapStruct Mapper](spring/concepts-set-2/mapstruct-mapper.md)
   * [Best Practice](spring/best-practice.md)
 * [Software Testing](tests.md)
   * [Software Testing Methodologies](software-testing/software-testing-methodologies/README.md)
