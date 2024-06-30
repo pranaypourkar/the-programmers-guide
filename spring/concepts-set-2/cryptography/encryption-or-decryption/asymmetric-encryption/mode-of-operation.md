@@ -39,5 +39,5 @@ In asymmetric encryption, such as RSA, the concept of "block size" is different 
 {% hint style="info" %}
 We might see like this "RSA/ECB/PKCS1Padding"
 
-The mode of operation `"ECB"` doesn't mean anything in this context, it should have been`"None"` or it should have been left out completely.&#x20;
+The mode of operation `"ECB"` doesn't mean anything in this context, it should have been`"NONE"` or it should have been left out completely.&#x20;
 {% endhint %}
