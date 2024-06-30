@@ -19,6 +19,38 @@ Asymmetric encryption, also known as public-key cryptography, uses a pair of key
 
 * **Key Functions**: Different keys for encryption and decryption, which allows for secure key exchange and digital signature verification.
 
+{% hint style="info" %}
+**Why it is not possible to encrypt using private key and decrypt using public key?**
+
+Encrypting with a private key and decrypting with a public key is not the typical use case for asymmetric encryption algorithms like RSA. Here are the main reasons why this approach is not commonly used:
+
+#### Purpose of Asymmetric Encryption
+
+1. **Confidentiality**:
+   * The primary use of asymmetric encryption is to ensure confidentiality. Data is encrypted with the recipient's public key and can only be decrypted with the recipient's private key. This ensures that only the intended recipient can read the encrypted data.
+2. **Authentication and Integrity**:
+   * The opposite process, where data is "encrypted" (more accurately, signed) with a private key and "decrypted" (verified) with a public key, is used for digital signatures. This process ensures that the data was created by the holder of the private key and has not been tampered with, providing authentication and integrity.
+
+#### Technical Constraints
+
+1. **Security Assumptions**: The security of RSA relies on the difficulty of factoring large prime numbers. The encryption operation (using the public key) is computationally easy, while decryption (using the private key) is hard without the private key. Reversing these roles would not align with the cryptographic assumptions and could weaken security.
+2. **Key Pair Usage**: The private key is kept secret and should not be used for operations that could expose it to unauthorized parties. Encrypting data with the private key would mean the encrypted data could be decrypted by anyone with the public key, which defeats the purpose of keeping the private key secure.
+
+#### Practical Considerations
+
+1. **Performance**: RSA encryption and decryption operations are computationally expensive. Using the private key for encryption would require the private key holder to perform a large number of costly operations, which is impractical for most use cases.
+2. **Data Exposure**: Encrypting with the private key means the data can be decrypted by anyone with the public key. This is contrary to the purpose of keeping data confidential and secure. In the context of digital signatures, using the private key to sign data is appropriate because it provides authentication, not confidentiality.
+
+#### Digital Signatures vs. Encryption
+
+1. **Digital Signatures**:
+   * When we "encrypt" with the private key (more precisely, sign), we create a digital signature. This signature can be verified by anyone with the corresponding public key to ensure the authenticity and integrity of the data.
+   * Example: Alice signs a message with her private key. Bob uses Alice's public key to verify the signature, ensuring the message came from Alice and hasn't been altered.
+2. **Encryption**:
+   * When we encrypt with the public key, we ensure that only the intended recipient, who holds the private key, can decrypt the data.
+   * Example: Bob encrypts a message with Alice's public key. Only Alice can decrypt it with her private key, ensuring the message remains confidential.
+{% endhint %}
+
 ## **Advantages**
 
 **Secure Key Distribution:** No need to securely share a single key. The public key can be distributed freely, and only the private key needs to be kept secure.
