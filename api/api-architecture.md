@@ -1,12 +1,12 @@
-# API Architecture
+# Api Architecture
 
-## What is API Architecture?
+## What is Api Architecture?
 
 API architecture refers to the high-level design principles that govern how an API is structured, organized and interacts with other components within a system or between different systems. It defines how data flows within the API system, ensuring functionality, scalability, and maintainability. Choosing the right architecture depends on factors like the API's complexity, scalability needs, and performance requirements.
 
 
 
-## Different API Architectures
+## Different Api Architectures
 
 Below are some common API architectures -&#x20;
 

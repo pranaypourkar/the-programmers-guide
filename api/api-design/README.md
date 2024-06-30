@@ -1,6 +1,6 @@
-# API Design
+# Api Design
 
-### API Design
+### Api Design
 
 API design refers to the process of defining the interface between a software component (the API provider) and its consumers (applications or other software components). It outlines how data is exposed, accessed, and manipulated by external systems. Effective API design is crucial for building well-structured, maintainable, and easy-to-use integrations.
 
