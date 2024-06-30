@@ -4,6 +4,14 @@
 
 **Cryptography** is the science of securing information by transforming it into an unreadable format. It involves various techniques and algorithms designed to protect data confidentiality, integrity, authenticity, and non-repudiation. Cryptography ensures that sensitive information can be stored and transmitted securely, preventing unauthorized access and tampering. Cryptography includes a wide range of practices, algorithms, and protocols beyond just encryption and decryption.
 
+{% hint style="success" %}
+**What are cryptographic algorithms and cryptographic protocols ?**
+
+A cryptographic algorithm is a mathematical procedure that is used to encrypt or decrypt data. For eg. Symmetric-key encryption algorithms, Asymmetric-key encryption algorithms, Hash functions.
+
+A cryptographic protocol is a set of rules that define how cryptographic algorithms are used to achieve a specific security goal. For eg. Transport Layer Security (TLS), Secure Shell (SSH), Internet Protocol Security (IPSec).
+{% endhint %}
+
 ## **Types of Cryptographic Algorithms**
 
 ### **Symmetric Key Cryptography**:
@@ -52,7 +60,7 @@
 * Ensures that a party cannot deny the authenticity of their signature on a document or a message they sent.
 * Achieved through digital signatures.
 
-## **Real-World Applications of Cryptography**
+## **Applications of Cryptography**
 
 1. **Secure Communication**:
    * Encrypting email, instant messages, and video calls to ensure that only intended recipients can read the content.

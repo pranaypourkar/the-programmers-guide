@@ -62,3 +62,7 @@
 
 **Tokenization**: The process of replacing sensitive data with unique identification symbols that retain essential information without compromising security.
 
+**Salts**: A salt is a random value added to the input of a hash function to ensure that identical inputs produce different hash outputs.
+
+**Nonce**: A nonce (number used once) is a random or pseudo-random value that is used only once in a cryptographic communication.
+
