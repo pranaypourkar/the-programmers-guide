@@ -18,9 +18,7 @@ return soapBaseClient
 
 ### Java Code
 
-
-
-
+Create a generic `RequestMethod.java` functional interface which will point the Soap Service method reference or lambda
 
 ```java
 @FunctionalInterface
@@ -29,7 +27,7 @@ public interface RequestMethod<P, R> {
 }
 ```
 
-
+Create a generic `Request.java` class with `payload` and `then` methods.
 
 ```java
 import java.util.function.Function;
@@ -59,7 +57,7 @@ public class Request<RequestPayloadType, ResponsePayloadType> {
 }
 ```
 
-
+Create a generic `RequestCallback.java` class with `fetchResponse`  and several other methods to handle success or error scenario.
 
 ```java
 import com.soap.services.ResponseHeaderType;
@@ -122,7 +120,7 @@ public class RequestCallback<ResponsePayloadType, ProcessedResponseType> {
 }
 ```
 
-
+Create a `SoapBaseClient.java` class with generic `request`  method.
 
 ```java
 import org.springframework.stereotype.Component;
@@ -140,7 +138,7 @@ public class SoapBaseClient {
 }
 ```
 
-
+Now, we can call Soap service like below.
 
 ```java
 import com.example.mapper.SoapClientRequestMapper;
@@ -172,7 +170,7 @@ public class SoapServiceClient {
 }
 ```
 
-
+Request mapper class.
 
 ```java
 import com.soap.services.GetUserRequest;
@@ -186,6 +184,8 @@ public interface SoapClientRequestMapper {
     GetUserRequest toGetUserRequest(String userId);
 }
 ```
+
+Response mapper class.
 
 ```java
 import com.soap.services.GetUserResponse;
