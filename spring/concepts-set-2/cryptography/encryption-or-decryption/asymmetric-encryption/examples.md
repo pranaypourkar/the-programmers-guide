@@ -39,6 +39,10 @@ keytool -genkeypair -alias mykey -keyalg RSA -keysize 2048 -validity 365 -keysto
 
 ### **Step 2: Export the Public Key**
 
+{% hint style="warning" %}
+This step is optional. Instead of exporting the key, we can directly both private and public key from the keystore. See Step 4 for more details.
+{% endhint %}
+
 Export the public key to a file.
 
 ```sh
@@ -115,6 +119,85 @@ public class EncryptionDecryptionRSA {
         CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
         Certificate cert = certFactory.generateCertificate(new FileInputStream(filename));
         return cert.getPublicKey();
+    }
+}
+```
+
+### Step 4: **Encrypt Decrypt the 6-Digit Code without using separately generated certificate key**
+
+```java
+import java.io.FileInputStream;
+import java.security.KeyStore;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.Security;
+import java.security.cert.Certificate;
+import java.util.Base64;
+import javax.crypto.Cipher;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+
+public class EncryptionDecryptionRSA2 {
+
+    static {
+        Security.addProvider(new BouncyCastleProvider());
+    }
+
+    private static final String KEYSTORE_TYPE = "JKS";
+    private static final String STORE_BASE_PATH = "/Users/pranayp/Documents/Project/Personal/sample-java-project/src/main/resources/store/";
+    private static final String KEYSTORE_FILE = STORE_BASE_PATH + "mykeystore.jks";
+    private static final String KEYSTORE_PASSWORD = "changeit";
+    private static final String KEY_ALIAS = "mykey";
+    private static final String KEY_PASSWORD = "changeit";
+
+
+    public static void main(String[] args) {
+        try {
+            KeyStore keystore = loadKeyStore();
+            PublicKey publicKey = getPublicKey(keystore);
+            PrivateKey privateKey = getPrivateKey(keystore);
+
+            String plaintext = "123456";
+            System.out.println("Original: " + plaintext);
+
+            String encrypted = encrypt(plaintext, publicKey);
+            System.out.println("Encrypted: " + encrypted);
+
+            String decrypted = decrypt(encrypted, privateKey);
+            System.out.println("Decrypted: " + decrypted);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static KeyStore loadKeyStore() throws Exception {
+        KeyStore keystore = KeyStore.getInstance(KEYSTORE_TYPE);
+        try (FileInputStream fis = new FileInputStream(KEYSTORE_FILE)) {
+            keystore.load(fis, KEYSTORE_PASSWORD.toCharArray());
+        }
+        return keystore;
+    }
+
+    public static PublicKey getPublicKey(KeyStore keystore) throws Exception {
+        Certificate cert = keystore.getCertificate(KEY_ALIAS);
+        return cert.getPublicKey();
+    }
+
+    public static PrivateKey getPrivateKey(KeyStore keystore) throws Exception {
+        return (PrivateKey) keystore.getKey(KEY_ALIAS, KEY_PASSWORD.toCharArray());
+    }
+
+    public static String encrypt(String plaintext, PublicKey publicKey) throws Exception {
+        Cipher cipher = Cipher.getInstance("RSA/NONE/PKCS1Padding", "BC");
+        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+        byte[] encryptedBytes = cipher.doFinal(plaintext.getBytes());
+        return Base64.getEncoder().encodeToString(encryptedBytes);
+    }
+
+    public static String decrypt(String encryptedText, PrivateKey privateKey) throws Exception {
+        Cipher cipher = Cipher.getInstance("RSA/NONE/PKCS1Padding", "BC");
+        cipher.init(Cipher.DECRYPT_MODE, privateKey);
+        byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(encryptedText));
+        return new String(decryptedBytes);
     }
 }
 ```
