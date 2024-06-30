@@ -1,2 +1,0 @@
-# Pseudorandom Number Generators (PRNGs)
-
