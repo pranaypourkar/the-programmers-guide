@@ -4,6 +4,8 @@
 
 MapStruct is a code generator that simplifies the implementation of mappings between Java bean types based on a convention-over-configuration approach. It is a tool designed to help developers map data from one Java object to another. It is a popular choice for mapping objects, especially in large-scale enterprise applications, due to its performance and ease of use.
 
+Refer to documentation for more details: [https://mapstruct.org/documentation/1.5/reference/html/](https://mapstruct.org/documentation/1.5/reference/html/)
+
 {% hint style="info" %}
 **What is "Convention-Over-Configuration"?**
 
@@ -34,16 +36,21 @@ the API and main functionality for object mapping. -->
 <dependency>
     <groupId>org.mapstruct</groupId>
     <artifactId>mapstruct</artifactId>
-    <version>1.4.2.Final</version>
+    <version>1.5.5.Final</version>
 </dependency>
 <!-- This dependency includes the MapStruct annotation processor which 
 generates the implementation of the mapper interfaces at compile time. -->
 <dependency>
     <groupId>org.mapstruct</groupId>
     <artifactId>mapstruct-processor</artifactId>
-    <version>1.4.2.Final</version>
+    <version>1.5.5.Final</version>
 </dependency>
 ```
+
+It comprises the following artifacts:
+
+* _org.mapstruct:mapstruct_: contains the required annotations such as `@Mapping`
+* _org.mapstruct:mapstruct-processor_: contains the annotation processor which generates mapper implementations
 
 ```xml
 <!-- The maven-compiler-plugin is a Maven plugin used to compile Java source files. 
@@ -56,20 +63,25 @@ processor is correctly set up during the compilation phase. -->
     <configuration>
         <annotationProcessorPaths>
             <path>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-            </path>
-            <path>
                 <groupId>org.mapstruct</groupId>
                 <artifactId>mapstruct-processor</artifactId>
                 <version>${mapstruct.version}</version>
             </path>
         </annotationProcessorPaths>
         <useIncrementalCompilation>false</useIncrementalCompilation>
+        <showWarnings>true</showWarnings>
+        <compilerArgs>
+            <arg>-Amapstruct.suppressGeneratorTimestamp=true</arg>
+            <arg>-Amapstruct.suppressGeneratorVersionInfoComment=true</arg>
+            <arg>-Amapstruct.verbose=true</arg>
+        </compilerArgs>
     </configuration>
 </plugin>
 ```
+
+MapStruct processor options -
+
+<table data-full-width="true"><thead><tr><th width="207">Option</th><th width="605">    Purpose</th><th>   Default</th></tr></thead><tbody><tr><td><code>mapstruct. suppressGeneratorTimestamp</code></td><td>If set to <code>true</code>, the creation of a time stamp in the <code>@Generated</code> annotation in the generated mapper classes is suppressed.</td><td><code>false</code></td></tr><tr><td><code>mapstruct.verbose</code></td><td>If set to <code>true</code>, MapStruct in which MapStruct logs its major decisions. Note, at the moment of writing in Maven, also <code>showWarnings</code> needs to be added due to a problem in the maven-compiler-plugin configuration.</td><td><code>false</code></td></tr><tr><td><code>mapstruct. suppressGeneratorVersionInfoComment</code></td><td>If set to <code>true</code>, the creation of the <code>comment</code>attribute in the <code>@Generated</code> annotation in the generated mapper classes is suppressed. The comment contains information about the version of MapStruct and about the compiler used for the annotation processing.</td><td><code>false</code></td></tr><tr><td><code>mapstruct.defaultComponentModel</code></td><td><p>The name of the component model based on which mappers should be generated.</p><p>Supported values are:</p><ul><li><code>default</code>: the mapper uses no component model, instances are typically retrieved via <code>Mappers#getMapper(Class)</code></li><li><code>cdi</code>: the generated mapper is an application-scoped (from javax.enterprise.context or jakarta.enterprise.context, depending on which one is available with javax.inject having priority) CDI bean and can be retrieved via <code>@Inject</code></li><li><code>spring</code>: the generated mapper is a singleton-scoped Spring bean and can be retrieved via <code>@Autowired</code> or lombok annotation like <code>@RequiredArgsConstructor</code></li><li><code>jsr330</code>: the generated mapper is annotated with {@code @Named} and can be retrieved via <code>@Inject</code> (from javax.inject or jakarta.inject, depending which one is available with javax.inject having priority), e.g. using Spring</li><li><code>jakarta</code>: the generated mapper is annotated with {@code @Named} and can be retrieved via <code>@Inject</code> (from jakarta.inject), e.g. using Spring</li><li><code>jakarta-cdi</code>: the generated mapper is an application-scoped (from jakarta.enterprise.context) CDI bean and can be retrieved via <code>@Inject</code></li></ul><p>If a component model is given for a specific mapper via <code>@Mapper#componentModel()</code>, the value from the annotation takes precedence.</p></td><td><code>default</code></td></tr><tr><td><code>mapstruct.defaultInjectionStrategy</code></td><td><p>The type of the injection in mapper via parameter <code>uses</code>. This is only used on annotated based component models such as CDI, Spring and JSR 330.</p><p>Supported values are:</p><ul><li><code>field</code>: dependencies will be injected in fields</li><li><code>constructor</code>: will be generated constructor. Dependencies will be injected via constructor.</li></ul><p>When CDI <code>componentModel</code> a default constructor will also be generated. If a injection strategy is given for a specific mapper via <code>@Mapper#injectionStrategy()</code>, the value from the annotation takes precedence over the option.</p></td><td><code>field</code></td></tr><tr><td><code>mapstruct.unmappedTargetPolicy</code></td><td><p>The default reporting policy to be applied in case an attribute of the target object of a mapping method is not populated with a source value.</p><p>Supported values are:</p><ul><li><code>ERROR</code>: any unmapped target property will cause the mapping code generation to fail</li><li><code>WARN</code>: any unmapped target property will cause a warning at build time</li><li><code>IGNORE</code>: unmapped target properties are ignored</li></ul><p>If a policy is given for a specific mapper via <code>@Mapper#unmappedTargetPolicy()</code>, the value from the annotation takes precedence. If a policy is given for a specific bean mapping via <code>@BeanMapping#unmappedTargetPolicy()</code>, it takes precedence over both <code>@Mapper#unmappedTargetPolicy()</code> and the option.</p></td><td><code>WARN</code></td></tr><tr><td><code>mapstruct.unmappedSourcePolicy</code></td><td><p>The default reporting policy to be applied in case an attribute of the source object of a mapping method is not populated with a target value.</p><p>Supported values are:</p><ul><li><code>ERROR</code>: any unmapped source property will cause the mapping code generation to fail</li><li><code>WARN</code>: any unmapped source property will cause a warning at build time</li><li><code>IGNORE</code>: unmapped source properties are ignored</li></ul><p>If a policy is given for a specific mapper via <code>@Mapper#unmappedSourcePolicy()</code>, the value from the annotation takes precedence. If a policy is given for a specific bean mapping via <code>@BeanMapping#ignoreUnmappedSourceProperties()</code>, it takes precedence over both <code>@Mapper#unmappedSourcePolicy()</code> and the option.</p></td><td><code>WARN</code></td></tr><tr><td><code>mapstruct. disableBuilders</code></td><td>If set to <code>true</code>, then MapStruct will not use builder patterns when doing the mapping. This is equivalent to doing <code>@Mapper( builder = @Builder( disableBuilder = true ) )</code> for all of your mappers.</td><td><code>false</code></td></tr></tbody></table>
 
 ## **Core Features**
 
