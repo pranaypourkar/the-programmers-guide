@@ -4,6 +4,17 @@
 
 Fluent API design in Java refers to a style of coding where the API is designed to be readable and expressive by chaining method calls in a fluid manner. This approach makes the code more intuitive and easier to understand by resembling natural language phrases. Fluent APIs are typically used to build complex objects or configurations through a series of method calls. <mark style="background-color:purple;">This pattern is often implemented using method chaining and builder patterns.</mark>
 
+{% hint style="info" %}
+Fluent setters are setters that return the same type as the type being modified.
+
+```
+public Builder seatCount(int seatCount) {
+    this.seatCount = seatCount;
+    return this;
+}
+```
+{% endhint %}
+
 ## Key Characteristics
 
 1. **Method Chaining:** Each method returns an instance of the current object, allowing multiple methods to be called in a single statement.
