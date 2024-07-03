@@ -34,6 +34,7 @@
     * [Java Practice Programs](java/interview-companion/java-practice-programs/README.md)
       * [Set 1 - Maths theory & Pattern](java/interview-companion/java-practice-programs/set-1-maths-theory-and-pattern.md)
       * [Set 2 - Arrays](java/interview-companion/java-practice-programs/set-2-arrays.md)
+      * [Set 3 - Strings](interview-guide/java-interview-companion/java-practice-programs/set-3-strings.md)
   * [SQL Interview Companion](sql/interview-companion/README.md)
     * [SQL Practice Problems](sql/interview-companion/sql-practice-problems/README.md)
       * [Set 1](sql/interview-companion/sql-practice-problems/set-1.md)
