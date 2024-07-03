@@ -60,7 +60,7 @@ There are many approaches.
 
 1. **Using Arrays**
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="188"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="188"><figcaption></figcaption></figure>
 
 ```java
 public static void decimalToBinary(int n) 
@@ -142,7 +142,7 @@ public static int binaryToDecimal(int binaryNumber) {
 
 ## Factorial of a number
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Small number
 
@@ -247,14 +247,14 @@ static String findFactorialOfLargeNumber(int a) {
 
 ## Print Pascal Triangle
 
-<figure><img src="../../../.gitbook/assets/image (66).png" alt="" width="231"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (66).png" alt="" width="231"><figcaption></figcaption></figure>
 
 ### Using nCr formula
 
 * In this approach, we directly calculate the combinations using the formula $$𝑛!/(𝑟!*(𝑛−𝑟))$$.
 * Each entry in Pascal's Triangle corresponds to a specific combination $$𝑛𝐶𝑟nCr$$, where $$𝑛n$$ is the row number and $$𝑟r$$ is the position within the row.
 
-<figure><img src="../../../.gitbook/assets/image (67).png" alt=""><figcaption><p>Theory</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (67).png" alt=""><figcaption><p>Theory</p></figcaption></figure>
 
 ```java
 package src.main.java;
@@ -289,7 +289,7 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (68).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (68).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 **Time complexity**: O(2n) due to recursive method
 
@@ -299,13 +299,13 @@ public class Application {
 
 ### Using Binomial Coefficient
 
-<figure><img src="../../../.gitbook/assets/image (70).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (70).png" alt=""><figcaption></figcaption></figure>
 
 
 
 #### Method 1:
 
-<figure><img src="../../../.gitbook/assets/image (71).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (71).png" alt=""><figcaption></figcaption></figure>
 
 <pre class="language-java"><code class="lang-java"><strong>    // Function to calculate binomial coefficient C(n, k)
 </strong>    public static int binomialCoefficient(int n, int k) {
@@ -377,7 +377,7 @@ public static void printPascal(int k)
 
 ## Print fibonacci series
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Using Iterative Method
 
@@ -413,7 +413,7 @@ public static void printFibonacci(int n) {
 
 ## Print number triangle
 
-<figure><img src="../../../.gitbook/assets/image (72).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (72).png" alt=""><figcaption></figcaption></figure>
 
 <pre class="language-java"><code class="lang-java"><strong>        int n = 4;
 </strong>
@@ -442,13 +442,13 @@ public static void printFibonacci(int n) {
         }
 </code></pre>
 
-<figure><img src="../../../.gitbook/assets/image (73).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (73).png" alt=""><figcaption></figcaption></figure>
 
 
 
 ## Find Transpose of Matrix
 
-<figure><img src="../../../.gitbook/assets/image (77).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (77).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Square Matrix
 
@@ -509,11 +509,11 @@ for (int row=0;row<arr.length;row++){
         }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (78).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (78).png" alt=""><figcaption></figcaption></figure>
 
 ## GCD or HCF of two numbers
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Using Iteration
 
@@ -535,7 +535,7 @@ int gcd(int a, int b) {
 
 ### Using Euclidean algorithm for GCD of two numbers (Involves Recursion)
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```java
     // Recursive function to return gcd of a and b
@@ -565,7 +565,7 @@ int gcd(int a, int b) {
 
 ### **Optimization** Euclidean algorithm **by checking divisibility**
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ```java
 int gcd(int a, int b)
@@ -669,7 +669,7 @@ For example, LCM of 15 and 20 is 60, and LCM of 5 and 7 is 35.
 
 ### Using GCD of 2 numbers and Formula
 
-<figure><img src="../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ```java
 int gcd(int a, int b) 
@@ -712,7 +712,7 @@ int findLCM(int a, int b)
 
 A string is said to be a palindrome if it is the same if we start reading it from left to right or right to left. In this article, we will learn how to check if a string is a palindrome in Java.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="330"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="330"><figcaption></figcaption></figure>
 
 ### Using Iteration Method
 
