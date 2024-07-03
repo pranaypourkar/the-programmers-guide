@@ -283,6 +283,7 @@
     * [Java Interview Companion](interview-guide/technical/java-interview-companion/README.md)
       * [Java Key Concepts](interview-guide/technical/java-interview-companion/java-key-concepts/README.md)
         * [Set 1](interview-guide/technical/java-interview-companion/java-key-concepts/set-1.md)
+        * [Set 2](interview-guide/technical/java-interview-companion/java-key-concepts/set-2.md)
       * [Java Code Snippets](interview-guide/technical/java-interview-companion/java-code-snippets.md)
       * [Java Practice Programs](interview-guide/technical/java-interview-companion/java-practice-programs/README.md)
         * [Set 1 - Maths theory & Pattern](interview-guide/technical/java-interview-companion/java-practice-programs/set-1-maths-theory-and-pattern.md)
