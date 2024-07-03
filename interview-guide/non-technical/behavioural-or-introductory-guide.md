@@ -105,6 +105,14 @@ Looking ahead, I aspire to further my expertise in cross-platform development an
 * Challenges faced and how you overcame them.
 * The impact or results of the project.
 
+### Followup Question
+
+* Which tools were used in the project and why?&#x20;
+* Why you made this technical choices. (proactive vs reactive)&#x20;
+* If you could change one technical thing about your current project, what would it be?&#x20;
+* Which tasks you did not like carrying out in the project.&#x20;
+* How did you keep the scope & timeline in mind while delivering the project?
+
 ## **"Tell us about the Project You’re Most Proud Of"**
 
 ### **Points to Cover**
