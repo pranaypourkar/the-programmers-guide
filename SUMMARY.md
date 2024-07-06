@@ -301,4 +301,4 @@
     * [Applicant Tracking System (ATS)](interview-guide/general/applicant-tracking-system-ats.md)
     * [General Interview Preparation Tips](interview-guide/general/general-interview-preparation-tips.md)
 * [Personal Projects - TBU](personal-projects-tbu/README.md)
-  * [Hackathons](personal-projects-tbu/hackathons.md)
+  * [Hackathon](personal-projects-tbu/hackathon.md)
