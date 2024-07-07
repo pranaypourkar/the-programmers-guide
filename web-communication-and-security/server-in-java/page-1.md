@@ -12,6 +12,17 @@ A web server is a software component that delivers static data like images, file
 4. The web server returns static content such as HTML pages, images, videos, or files in an HTTP response to the browser
 5. The browser then displays the information
 
+{% hint style="info" %}
+The terms "Web Server" and "Application Server" are often used interchangeably, but they serve distinct purposes.
+
+* **Key Differences**:
+  * **Web Server**: Primarily serves HTTP content and is optimized for handling static content. It may support dynamic content through plugins or scripting languages like Perl, PHP, ASP, or JSP.
+  * **Application Server**: Includes all features of a Web Server but extends functionality to support additional protocols such as RMI/RPC. It provides comprehensive support for dynamic content generation and includes advanced services like connection pooling, object pooling, transactions, and messaging.
+* **Integration and Usage**:
+  * Most application servers integrate a web server component, allowing them to handle both static and dynamic content efficiently.
+  * In production environments, web servers often act as reverse proxies to application servers. They serve static content directly and transparently forward requests for dynamic content to the application server, leveraging their respective strengths in content handling.
+{% endhint %}
+
 ## Can Web Server handle dynamic content?
 
 Modern web servers can handle dynamic content to some extent, but their primary role traditionally revolves around serving static content.
