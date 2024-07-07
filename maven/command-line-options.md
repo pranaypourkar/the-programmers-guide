@@ -4,7 +4,7 @@ description: An overview of the options available while executing maven commands
 
 # Command-line Options
 
-**Different Command line Options**
+## **Different Command line Options**
 
 * \-D: Specifies system properties or project properties.&#x20;
 
@@ -36,7 +36,7 @@ description: An overview of the options available while executing maven commands
 
 
 
-**Chaining Phases**
+## **Chaining Phases**
 
 Multiple phases can be chained using spaces in a single command. This executes each phase sequentially.
 
@@ -54,7 +54,7 @@ In Maven, when resolving dependencies, the order in which repositories are check
 
 
 
-**Skipping phases:**
+## **Skipping phases**
 
 * To skip a specific phase (-Dmaven.\<phase>.skip=true).&#x20;
 
