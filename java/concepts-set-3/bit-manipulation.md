@@ -50,11 +50,11 @@ There are three different ways the signed binary numbers can be represented.
 
 In sign-magnitude representation, the Most Significant bit of the number is a sign bit and the remaining bit represents the magnitude of the number in a true binary form. For example, if some signed number is represented in the 8-bit sign-magnitude form then MSB is a sign bit and the remaining 7 bits represent the magnitude of the number in a true binary form.
 
-<figure><img src="../../../.gitbook/assets/image (55).png" alt="" width="254"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (55).png" alt="" width="254"><figcaption></figcaption></figure>
 
 Here is the representation of + 34 and -34 in a 8-bit sign-magnitude form.
 
-<figure><img src="../../../.gitbook/assets/image (57).png" alt="" width="326"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (57).png" alt="" width="326"><figcaption></figcaption></figure>
 
 Since the magnitude of both numbers is the same, the first 7 bits in the representation are the same for both numbers. For +34, the MSB is 0, and for -34, the MSB or sign bit is 1.
 
@@ -68,7 +68,7 @@ In 1’s complement representation, the representation of the positive number is
 
 For example, if we want to represent -34 in 8-bit 1’s complement form, then first write the positive number (+34). And invert all 1s in that number by 0s and 0s by 1s in that number. The corresponding inverted number represents the -34 in 1’s complement form. It is also called 1s complement of the number +34.
 
-<figure><img src="../../../.gitbook/assets/image (58).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (58).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Using n-bits, the range of numbers that can be represented in 1’s complement form is from **– (2n-1 – 1) to (2n -1 – 1)**.&#x20;
 
@@ -78,7 +78,7 @@ Using n-bits, the range of numbers that can be represented in 1’s complement f
 
 In 2’s complement representation also, the representation of the positive number is same as 1’s complement and sign-magnitude form.
 
-<figure><img src="../../../.gitbook/assets/image (59).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (59).png" alt="" width="563"><figcaption></figcaption></figure>
 
 But the representation of the negative number is different. For example, if we want to represent -34 in 2’s complement form then
 

@@ -33,6 +33,8 @@ Every exception in Java is a subclass of the `Throwable` class. The two main sub
   * **Corrupted data:** The program might be unable to process data that is in an invalid or inconsistent state.
 {% endhint %}
 
+
+
 There are **different ways to handle exceptions**, depending on the requirements of the program and the nature of the exceptions being thrown. Here are some of the ways to handle.
 
 **Using try-catch Block**: try-catch block can be used to catch exceptions and handle them gracefully. Inside the try block, place the code that might throw an exception, and inside the catch block, specify the type of exception that needs to be handled and provide the code to handle it.
@@ -98,6 +100,8 @@ try (ResourceType resource = new ResourceType()) {
     // Code to handle the exception
 }
 ```
+
+
 
 **Best Practices in Exception Handling**
 
