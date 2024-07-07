@@ -6,9 +6,13 @@ description: >-
 
 # Build & Lifecycle
 
+## About
+
 Maven organizes the build process into several lifecycle wherein each comprising a series of phases.
 
-**Clean Lifecycle:** This lifecycle is responsible for cleaning up the project. It includes the following phases:&#x20;
+## **Clean Lifecycle**
+
+This lifecycle is responsible for cleaning up the project. It includes the following phases:&#x20;
 
 * **pre-clean**: Executes tasks before the project is cleaned.&#x20;
 
@@ -31,7 +35,9 @@ site: Site documentation (if generated)
 
 
 
-**Default Lifecycle:** The default lifecycle handles the build process and includes different phases. Phases are executed in a sequential order, ensuring specific tasks are completed before moving on. There are 8 standard phases.
+## **Default Lifecycle**
+
+The default lifecycle handles the build process and includes different phases. Phases are executed in a sequential order, ensuring specific tasks are completed before moving on. There are 8 standard phases.
 
 * **validate**: Verify project structure and configuration correctness.
 
@@ -49,10 +55,6 @@ site: Site documentation (if generated)
 * **site**: Generate project site documentation.
 
 <figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="488"><figcaption></figcaption></figure>
-
-
-
-
 
 The Above standard 8 phases provide a structured framework, but plugins can introduce additional phases or customize existing ones for specific purposes. They are not technically part of the core lifecycle. Instead, they are bindings to goals of various plugins that are automatically executed during specific phases of the standard lifecycle. <mark style="color:red;">For example</mark>, the generate-sources phase is bound to the generate-sources goal of the maven-compiler-plugin. Similarly, process-resources is bound to the process-resources goal of the maven-resources-plugin.
 
@@ -92,9 +94,9 @@ Below are typically associated with <mark style="color:green;">maven-failsafe-pl
 * **integration-test:** Runs integration tests using an appropriate testing framework.&#x20;
 * **post-integration-test:** Executes tasks after integration tests are run.
 
+## **Site Lifecycle**
 
-
-**Site Lifecycle**: This lifecycle is responsible for generating a project's site documentation. The directory where Maven generates the site documentation is `target/site`. It includes the following phases:
+This lifecycle is responsible for generating a project's site documentation. The directory where Maven generates the site documentation is `target/site`. It includes the following phases:
 
 * **pre-site:** Executes tasks before the site is generated.&#x20;
 * **site:** Generates the project's site documentation.&#x20;
@@ -152,9 +154,7 @@ We can customize the default phases and their associated behavior using Maven's 
 ```
 {% endhint %}
 
-
-
-**Default Plugins**
+## **Default Plugins**
 
 Maven plugins consist of one or more goals, which represent specific tasks or actions. Maven comes bundled with several default plugins that provide essential functionality for managing and building projects. No need to import default plugin specifically in pom.xml, if default configuration is needed for the project.
 
