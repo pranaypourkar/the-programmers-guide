@@ -279,7 +279,7 @@
   * [User Flows](web-communication-and-security/user-flows.md)
   * [Server in Java](web-communication-and-security/server-in-java/README.md)
     * [Application Server](web-communication-and-security/server-in-java/application-server.md)
-    * [Page 1](web-communication-and-security/server-in-java/page-1.md)
+    * [Web Server](web-communication-and-security/server-in-java/web-server.md)
 * [Interview Guide](interview-guide/README.md)
   * [Non-Technical](interview-guide/non-technical/README.md)
     * [Behavioural or Introductory Guide](interview-guide/non-technical/behavioural-or-introductory-guide.md)
