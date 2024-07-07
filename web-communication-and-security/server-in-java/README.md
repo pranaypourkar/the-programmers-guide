@@ -63,3 +63,41 @@ Spring Boot is designed to simplify the development of stand-alone, production-g
 {% hint style="info" %}
 While Spring Boot applications can be deployed to traditional application servers, they are commonly deployed as standalone JAR files or Docker containers, leveraging cloud-native deployment practices and container orchestration platforms (like Kubernetes).
 {% endhint %}
+
+When we create a standalone Spring Boot application, it usually comes with an embedded web server. This web server allows our application to run independently without requiring an external web or application server to be installed. The most common embedded web servers used in Spring Boot are:
+
+* **Apache Tomcat** (default)
+* **Jetty**
+* **Undertow**
+
+These embedded web servers provide the necessary environment to serve web requests and handle HTTP interactions.
+
+### Functionalities of Embedded Web Servers
+
+**Web Server Functionalities:**
+
+* **HTTP Request Handling**: Serves HTTP requests and responses.
+* **Servlet and JSP Support**: Provides support for Java servlets and JSP pages.
+* **Static Content Serving**: Serves static content such as HTML, CSS, and JavaScript files.
+* **Security**: Basic security features like HTTPS, authentication, and authorization.
+* **Session Management**: Manages user sessions and cookies.
+
+### Comparison with Full-Fledged Application Servers
+
+A full-fledged application server, such as JBoss EAP, Oracle WebLogic, or IBM WebSphere, offers more advanced features beyond what an embedded web server provides. These additional features are tailored for enterprise applications and complex deployment environments.
+
+**Application Server Functionalities:**
+
+* **Enterprise JavaBeans (EJB)**: Support for EJBs, which provide a framework for developing modular enterprise applications.
+* **Transaction Management**: Advanced transaction management, including distributed transactions.
+* **JMS (Java Message Service)**: Messaging capabilities for asynchronous communication.
+* **JCA (Java Connector Architecture)**: Integration with legacy systems and enterprise information systems.
+* **JPA (Java Persistence API)**: Advanced ORM (Object-Relational Mapping) for database interactions.
+* **Resource Management**: Connection pooling, JNDI (Java Naming and Directory Interface) for resource lookup.
+* **High Availability and Clustering**: Features for clustering, load balancing, and failover.
+* **Advanced Security**: Comprehensive security models, including role-based access control (RBAC), LDAP integration, and more.
+
+### Comparison Diagram
+
+<table data-full-width="true"><thead><tr><th width="180">Feature/Aspect</th><th>Embedded Web Server (Spring Boot)</th><th>Full-Fledged Application Server</th></tr></thead><tbody><tr><td><strong>Ease of Use</strong></td><td>Simple to set up and use, great for microservices</td><td>More complex, suited for large-scale enterprise apps</td></tr><tr><td><strong>Deployment</strong></td><td>Self-contained, runs as a standalone JAR/WAR</td><td>Requires installation and configuration of server</td></tr><tr><td><strong>HTTP Handling</strong></td><td>Yes</td><td>Yes</td></tr><tr><td><strong>Servlet and JSP Support</strong></td><td>Yes</td><td>Yes</td></tr><tr><td><strong>Transaction Management</strong></td><td>Basic support via Spring's @Transactional</td><td>Advanced, including distributed transactions</td></tr><tr><td><strong>EJB Support</strong></td><td>No</td><td>Yes</td></tr><tr><td><strong>Messaging (JMS)</strong></td><td>Limited, via Spring JMS</td><td>Full support</td></tr><tr><td><strong>Resource Management</strong></td><td>Basic (e.g., connection pooling)</td><td>Advanced (e.g., JNDI, resource adapters)</td></tr><tr><td><strong>High Availability</strong></td><td>Basic clustering/load balancing possible</td><td>Advanced clustering/load balancing/failover</td></tr><tr><td><strong>Security</strong></td><td>Basic, integrated with Spring Security</td><td>Comprehensive security models</td></tr><tr><td><strong>Persistence</strong></td><td>Yes (via Spring Data JPA)</td><td>Yes (via JPA, with more features)</td></tr><tr><td><strong>Monitoring and Management</strong></td><td>Basic, with tools like Actuator</td><td>Advanced, with built-in and third-party tools</td></tr><tr><td><strong>Scalability</strong></td><td>Good for microservices and small-medium apps</td><td>Excellent for large, enterprise-grade applications</td></tr></tbody></table>
+
