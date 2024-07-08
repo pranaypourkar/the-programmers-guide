@@ -1,4 +1,4 @@
-# Set 4 - Search and Sort
+# Set 4 - Search
 
 ## Program for Linear Search <a href="#id-24-write-a-java-program-for-linear-search" id="id-24-write-a-java-program-for-linear-search"></a>
 
