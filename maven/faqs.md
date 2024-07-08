@@ -570,5 +570,77 @@ A snapshot in Maven represents a version of the project that is currently in dev
 3. **Project POM**: Main project configurations that override parent POM settings.
 4. **Parent POM**: Base configurations inherited by the project.
 
+## How Maven uses Convention over Configuration?
+
+Maven's features and plugins are initialized with default conventions and the basic functionality of Maven requires minimum or no configuration.
+
+## How do I install a 3rd party jar (for example) into the Maven repository?
+
+To install a third-party JAR into your local Maven repository, you can use the `mvn install:install-file` command. This command allows you to specify the file path of the JAR and the necessary Maven coordinates such as `groupId`, `artifactId`, `version`, and `packaging`. Here is a step-by-step guide on how to do this:
+
+#### Step-by-Step Guide
+
+1. **Prepare the JAR File**: Make sure you have the JAR file you want to install locally on your system. Note the path to this file.
+2.  **Run the Maven Command**: Use the following command to install the JAR into your local Maven repository:
+
+    ```sh
+    mvn install:install-file -Dfile=<path-to-file> -DgroupId=<group-id> \
+        -DartifactId=<artifact-id> -Dversion=<version> -Dpackaging=<packaging>
+    ```
+
+    * **`-Dfile`**: Path to the JAR file you want to install.
+    * **`-DgroupId`**: The group ID you want to assign to the JAR.
+    * **`-DartifactId`**: The artifact ID you want to assign to the JAR.
+    * **`-Dversion`**: The version number you want to assign to the JAR.
+    * **`-Dpackaging`**: The packaging type (usually `jar`).
+
+#### Example
+
+Let's assume you have a JAR file located at `/path/to/external-library-1.0.0.jar` and you want to install it with the following Maven coordinates:
+
+* **Group ID**: `com.example`
+* **Artifact ID**: `external-library`
+* **Version**: `1.0.0`
+* **Packaging**: `jar`
+
+The command would be:
+
+```sh
+mvn install:install-file -Dfile=/path/to/external-library-1.0.0.jar -DgroupId=com.example \
+    -DartifactId=external-library -Dversion=1.0.0 -Dpackaging=jar
+```
+
+#### Using a POM File (Optional)
+
+If you have a POM file for the JAR, you can include it using the `-DpomFile` parameter:
+
+```sh
+mvn install:install-file -Dfile=/path/to/external-library-1.0.0.jar -DgroupId=com.example \
+    -DartifactId=external-library -Dversion=1.0.0 -Dpackaging=jar -DpomFile=/path/to/external-library.pom
+```
+
+#### Verifying the Installation
+
+After running the command, the JAR file should be installed in your local Maven repository, typically located at `~/.m2/repository/com/example/external-library/1.0.0/`.
+
+You can verify the installation by checking if the following files are present in the directory:
+
+```bash
+~/.m2/repository/com/example/external-library/1.0.0/external-library-1.0.0.jar
+~/.m2/repository/com/example/external-library/1.0.0/external-library-1.0.0.pom
+```
+
+#### Adding the Dependency to Your Project
+
+Once the JAR is installed in your local Maven repository, you can add it as a dependency in your project's `pom.xml`:
+
+```xml
+<dependency>
+  <groupId>com.example</groupId>
+  <artifactId>external-library</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
 
 
