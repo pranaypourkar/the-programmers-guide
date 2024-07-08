@@ -642,5 +642,23 @@ Once the JAR is installed in your local Maven repository, you can add it as a de
 </dependency>
 ```
 
+## List out the dependency scope in Maven?
 
+**Compile**: It is the default scope, and it indicates what dependency is available in the classpath of the project\
+**Provided**: It indicates that the dependency is provided by JDK or web server or container at runtime\
+**Runtime**: This tells that the dependency is not needed for compilation but is required during execution\
+**Test**: It says dependency is available only for the test compilation and execution phases\
+**System**: It indicates you have to provide the system path\
+**Import**: This indicates that the identified or specified POM should be replaced with the dependencies in that POM’s section
+
+## &#x20;List out the build phases in Maven?
+
+**Validate**: validate the project is correct and all necessary information is offered.\
+**Compile**:  compile the source code of the project.\
+**Test**: test the compiled source code employing an appropriate unit testing framework and these tests should not require the code deployed or packaged.\
+**Package**: take the compiled code and package it in its distributable format like a JAR.\
+**Integration-Test**: process and deploy the package if needed to run integration tests\
+**Verify**: run any tests to verify the package is still valid and meets quality requirements.\
+**Install**: install the package into the native repository, to be used as a dependency in alternative projects regionally.\
+**Deploy**: copies the final package to the remote repository for sharing with alternative projects and developers.
 

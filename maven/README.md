@@ -14,13 +14,91 @@ It provides the developer a complete build lifecycle framework. On executing Mav
 While primarily used for Java projects, Maven can also be employed for building projects in other languages with the help of plugins.
 {% endhint %}
 
-## Features
+## List of various aspect that maven manages
 
-1. **Build Automation**: Maven automates the process of compiling code, packaging binaries, running tests, generating documentation, and deploying artifacts.
-2. **Dependency Management**: Maven manages project dependencies through a central repository, reducing the need for manual management.
-3. **Project Structure**: Enforces a standard directory layout for projects, which helps maintain consistency across multiple projects.
-4. **Plugin Architecture**: Maven uses plugins to perform tasks during the build process. Plugins can handle tasks like compiling code, running tests, and creating JAR files.
-5. **Lifecycle Management**: Maven defines a set of lifecycle phases (e.g., `validate`, `compile`, `test`, `package`, `install`, `deploy`) that dictate the order in which build tasks are executed.
+### 1. **Build Management**
+
+* **Compilation**: Compiles the source code of the project.
+* **Packaging**: Packages the compiled code into distributable formats such as JAR, WAR, etc.
+* **Assembly**: Combines multiple artifacts, source files, and other resources into a single archive.
+
+### 2. **Dependency Management**
+
+* **Transitive Dependencies**: Automatically resolves and includes dependencies of dependencies.
+* **Dependency Scope**: Manages different scopes such as `compile`, `provided`, `runtime`, `test`, and `system`.
+* **Dependency Versions**: Manages versions of dependencies to ensure compatibility and resolve conflicts.
+
+### 3. **Project Management**
+
+* **Project Structure**: Defines a standard directory layout for projects.
+* **Project Documentation**: Generates project documentation including reports on code quality, dependencies, etc.
+* **Project Metadata**: Manages metadata such as project name, version, description, licenses, and organization information.
+
+### 4. **Lifecycle Management**
+
+* **Default Lifecycle**: Manages the standard phases of a project build (validate, compile, test, package, verify, install, deploy).
+* **Clean Lifecycle**: Manages the cleanup of project artifacts generated during previous builds.
+* **Site Lifecycle**: Manages the creation of a project's site documentation.
+
+### 5. **Plugin Management**
+
+* **Build Plugins**: Extends Maven’s capabilities by integrating with various build tools and processes (e.g., Surefire for testing, Compiler for compilation).
+* **Reporting Plugins**: Generates reports on various aspects of the project (e.g., Javadoc, Checkstyle, PMD).
+* **Custom Plugins**: Supports custom plugins for specific build requirements and workflows.
+
+### 6. **Repository Management**
+
+* **Local Repository**: Stores dependencies and plugins locally.
+* **Central Repository**: Uses Maven Central Repository for resolving dependencies.
+* **Remote Repositories**: Configures additional remote repositories for dependency resolution.
+* **Snapshot and Release Repositories**: Manages different repositories for snapshot and release versions of artifacts.
+
+### 7. **Configuration Management**
+
+* **Properties**: Defines and manages properties for use within the POM and plugins.
+* **Profiles**: Manages different configurations and builds for different environments or use cases.
+* **Settings**: Manages user-specific and global configurations in `settings.xml`.
+
+### 8. **Project Inheritance and Aggregation**
+
+* **Parent POM**: Uses parent POMs for sharing configurations across multiple projects.
+* **Multi-module Projects**: Manages multiple related projects within a single build.
+
+### 9. **Version Management**
+
+* **Release Management**: Manages the process of releasing project versions.
+* **Versioning Schemes**: Manages versioning schemes including snapshots and stable releases.
+* **Dependency Versions**: Manages and resolves versions of dependencies.
+
+### 10. **Continuous Integration**
+
+* **Integration with CI Tools**: Integrates with Continuous Integration tools like Jenkins, Bamboo, etc., for automated builds and tests.
+
+### 11. **Site Generation**
+
+* **Project Site**: Generates a project website including documentation, reports, and project information.
+* **Reports**: Includes various reports such as unit test results, code coverage, code quality metrics, etc.
+
+### 12. **Artifact Management**
+
+* **Artifact Deployment**: Deploys artifacts to remote repositories.
+* **Artifact Distribution**: Distributes artifacts via repositories for use by other projects.
+
+### 13. **Testing Management**
+
+* **Unit Testing**: Manages and runs unit tests.
+* **Integration Testing**: Supports integration testing phases.
+* **Test Reports**: Generates and manages test reports.
+
+### 14. **Resource Management**
+
+* **Resource Filtering**: Filters resources for environment-specific configurations.
+* **Resource Copying**: Copies resources to the output directory during the build process.
+
+### 15. **Extensions and Customization**
+
+* **Maven Extensions**: Supports extensions to modify the build lifecycle.
+* **Custom Lifecycle**: Defines custom lifecycles and phases.
 
 ## **Benefits of using Maven:**
 
@@ -108,12 +186,28 @@ Maven projects follow a standard directory layout:
 
 ## Plugins
 
-Maven uses plugins to extend its functionality. For example,
+A Maven plugin is a group of goals. However, these goals aren’t necessarily all bound to the same phase. Maven uses plugins to extend its functionality.&#x20;
+
+Some of the Maven Plugins are:
 
 * **Compiler Plugin**: Compiles Java source files.
 * **Surefire Plugin**: Runs unit tests.
 * **Jar Plugin**: Creates JAR files from the compiled code.
 * **Assembly Plugin**: Creates distributions from your project.
+
+Maven plugins are used to:
+
+* create jar file
+* create war file
+* compile code files
+* unit testing of code
+* create project documentation
+* create project reports etc.
+
+Maven provides following two types of Plugins
+
+* **Build plugins −** They execute during the build and should be configured in the \<build/> element of pom.xml
+* **Reporting plugins −** They execute during the site generation and they should be configured in the \<reporting/> element of the pom.xml
 
 ## Profiles
 
