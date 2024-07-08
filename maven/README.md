@@ -129,6 +129,12 @@ Libraries or other projects that a project relies on. These are declared in the 
 * **Transitive Dependencies**: Automatically includes dependencies required by our project's dependencies.
 * **Scopes**: Define the classpath for different build tasks (e.g., `compile`, `test`, `provided`, `runtime`, `system`).
 
+### Configuration
+
+* **Settings File**: `settings.xml` is used to configure Maven execution environment, such as repository locations and authentication information.
+  * Global Settings: Located in `${MAVEN_HOME}/conf/settings.xml`.
+  * User Settings: Located in `${user.home}/.m2/settings.xml`.
+
 ### **Repositories**
 
 Locations where Maven stores and retrieves project dependencies and plugins. There are local, central, and remote repositories.
@@ -223,12 +229,6 @@ Maven projects follow a standard directory layout:
 * `mvn package`: Packages the compiled code into a distributable format (e.g., JAR, WAR).
 * `mvn install`: Installs the package into the local repository.
 * `mvn deploy`: Deploys the package to a remote repository.
-
-## Configuration
-
-* **Settings File**: `settings.xml` is used to configure Maven execution environment, such as repository locations and authentication information.
-  * Global Settings: Located in `${MAVEN_HOME}/conf/settings.xml`.
-  * User Settings: Located in `${user.home}/.m2/settings.xml`.
 
 ## Best Practices
 
