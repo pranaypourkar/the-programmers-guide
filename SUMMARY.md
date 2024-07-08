@@ -302,6 +302,7 @@
         * [Set 1 - Maths theory & Pattern](interview-guide/technical/java-interview-companion/java-practice-programs/set-1-maths-theory-and-pattern.md)
         * [Set 2 - Arrays](interview-guide/technical/java-interview-companion/java-practice-programs/set-2-arrays.md)
         * [Set 3 - Strings](interview-guide/technical/java-interview-companion/java-practice-programs/set-3-strings.md)
+        * [Set 4 - Search and Sort](interview-guide/technical/java-interview-companion/java-practice-programs/set-4-search-and-sort.md)
     * [SQL Interview Companion](interview-guide/technical/sql-interview-companion/README.md)
       * [SQL Practice Problems](interview-guide/technical/sql-interview-companion/sql-practice-problems/README.md)
         * [Set 1](interview-guide/technical/sql-interview-companion/sql-practice-problems/set-1.md)

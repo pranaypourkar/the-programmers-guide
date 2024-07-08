@@ -295,3 +295,31 @@ private static String method6(String input) {
 // Space Complexity - O(N)
 ```
 
+## 4. Remove Leading Zeros From String
+
+**Input :** 0000012345\
+**Output:** 12345
+
+**Input:** 000012345090\
+**Output:** 12345090
+
+```java
+private static String method1(String input) {
+        if (input.length() == 1 || input.charAt(0) != '0') {
+            return input;
+        }
+
+        int i = 0;
+
+        for (i=0 ;i< input.length() - 2; i++) {
+            if ((input.charAt(i) == '0' && input.charAt(i+1) != '0' )){
+                break;
+            }
+        }
+
+        return input.substring(i+1);
+    }
+// Time Complexity - O(N)
+// Space Complexity - O(N)
+```
+
