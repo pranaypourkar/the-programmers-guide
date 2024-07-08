@@ -103,6 +103,7 @@
     * [Reporting](maven/plugins/reporting.md)
     * [Integration and Testing](maven/plugins/integration-and-testing.md)
     * [Performance Optimization](maven/plugins/performance-optimization.md)
+  * [FAQs](maven/faqs.md)
 * [Spring](spring/README.md)
   * [Spring Overview](spring/spring-overview/README.md)
     * [Spring Core](spring/spring-overview/spring-core.md)

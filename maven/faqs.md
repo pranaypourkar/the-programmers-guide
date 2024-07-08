@@ -1,0 +1,399 @@
+---
+description: Frequently Asked Question on Maven
+---
+
+# FAQs
+
+## How do we rename a maven project?
+
+1\) Rename the project using Eclipse or other IDE.
+
+2\) Update the artifactId in your pom.xml
+
+## Can we use different name for POM.xml?
+
+&#x20;    Yes. We could mention file name using the -f option.
+
+&#x20;   **mvn -f** parent-pom.xml
+
+## What are the minimum requirements for a POM?
+
+At a bare minimum, the POM must include the following elements:
+
+1. **Project Root:** The root element of the POM file
+2. **Model Version (`modelVersion`)**: Specifies the model version for the POM. The current model version is `4.0.0`.
+3. **Group ID (`groupId`)**: Specifies the group that the project belongs to. This is typically a reversed domain name (e.g., `com.example`).
+4. **Artifact ID (`artifactId`)**: The unique identifier for the project within the group.
+5. **Version (`version`)**: Specifies the version of the project.
+
+#### Example of a minimal `pom.xml` file:
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.example</groupId>
+  <artifactId>my-project</artifactId>
+  <version>1.0.0</version>
+</project>
+```
+
+Explanation of Each Element
+
+* **`<project>`**: The root element of the POM file.
+* **`xmlns` and `xsi:schemaLocation`**: These attributes define the XML namespace and schema location for the POM.
+* **`<modelVersion>`**: Indicates the version of the POM model, which should be `4.0.0`.
+* **`<groupId>`**: A unique identifier for the project’s group. This is typically based on the project's package structure or the domain of the organization.
+* **`<artifactId>`**: The name of the project. This ID must be unique within the group.
+* **`<version>`**: The version of the project. This can follow semantic versioning (e.g., `1.0.0`, `1.0.1`, `1.1.0`, etc.).
+
+## What is Maven artifact?
+
+An artifact is a JAR (for example), that gets deployed to a Maven repository. Each artifact has a group ID , an artifact ID (artifact name) and a version string.
+
+## What is MOJO?
+
+Maven plain Old Java Object. Each mojo is an executable goal in Maven.
+
+## How do I skip the tests?
+
+Include the parameter -Dmaven.test.skip=true or -DskipTests=true in the
+
+## How can I run a single unit test?
+
+Use the parameter -Dtest=MyTestClassName at the command line.
+
+## What is Maven plugin?
+
+Plugin is a distribution of one or more related mojos.
+
+## Different types of dependency scope?
+
+In Maven, dependency scopes define the visibility and lifecycle of a dependency. The scope of a dependency determines where it is available in the project lifecycle (compile, test, runtime, etc.) and whether it is included in the final package. Here are the different types of dependency scopes in Maven:
+
+#### 1. `compile`
+
+* **Default Scope**: If no scope is specified, the dependency is assumed to be in the `compile` scope.
+* **Availability**: Available in all classpaths (compilation, testing, runtime, and packaged in the final artifact).
+* **Use Case**: For dependencies required for the project to compile, such as the main application libraries.
+
+```
+<dependency>
+  <groupId>org.springframework</groupId>
+  <artifactId>spring-core</artifactId>
+  <version>5.3.9</version>
+  <scope>compile</scope> <!-- This is the default, so it can be omitted -->
+</dependency>
+```
+
+#### 2. `provided`
+
+* **Availability**: Available in the compilation and test classpaths but not in the runtime classpath.
+* **Use Case**: For dependencies provided by the runtime environment (e.g., a servlet API provided by the application server).
+
+```
+<dependency>
+  <groupId>javax.servlet</groupId>
+  <artifactId>servlet-api</artifactId>
+  <version>2.5</version>
+  <scope>provided</scope>
+</dependency>
+```
+
+#### 3. `runtime`
+
+* **Availability**: Available in the runtime and test classpaths but not in the compilation classpath.
+* **Use Case**: For dependencies required only at runtime, such as JDBC drivers.
+
+```
+<dependency>
+  <groupId>mysql</groupId>
+  <artifactId>mysql-connector-java</artifactId>
+  <version>8.0.23</version>
+  <scope>runtime</scope>
+</dependency>
+```
+
+#### 4. `test`
+
+* **Availability**: Available only in the test classpath.
+* **Use Case**: For dependencies needed only for testing purposes, such as testing frameworks (e.g., JUnit).
+
+```
+<dependency>
+  <groupId>junit</groupId>
+  <artifactId>junit</artifactId>
+  <version>4.13.2</version>
+  <scope>test</scope>
+</dependency>
+```
+
+#### 5. `system`
+
+* **Availability**: Similar to `provided`, but the JAR file for the dependency must be explicitly provided and not downloaded from a repository.
+* **Use Case**: For dependencies that must be explicitly specified and are not available in any remote repository.
+* **Additional Requirement**: Requires the `systemPath` element to specify the path to the JAR file.
+
+```
+<dependency>
+  <groupId>com.example</groupId>
+  <artifactId>example-library</artifactId>
+  <version>1.0.0</version>
+  <scope>system</scope>
+  <systemPath>${project.basedir}/libs/example-library-1.0.0.jar</systemPath>
+</dependency>
+```
+
+#### 6. `import` (for dependency management)
+
+* **Availability**: Only used in the `<dependencyManagement>` section.
+* **Use Case**: Used to import dependencies from a BOM (Bill of Materials) POM.
+
+```
+<dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-dependencies</artifactId>
+      <version>2.5.4</version>
+      <scope>import</scope>
+      <type>pom</type>
+    </dependency>
+  </dependencies>
+</dependencyManagement>
+```
+
+## What makes a fully qualified name for the artifact?
+
+Three properties group ID, artifact ID and the version string together identifies the artifact.
+
+## Where do we find .class files of a Maven project?
+
+Under the folder ${basedir}/target/classes/.
+
+## What is Super POM?
+
+The Super POM is the ultimate parent POM for all Maven projects. It defines default configurations and settings that apply to every Maven project, providing a set of shared, base configurations. When we create a Maven project, our project's `pom.xml` implicitly inherits from this Super POM unless we explicitly specify a different parent.
+
+### Location
+
+The Super POM is provided by the Maven installation and is located in the `maven-model-builder` library.
+
+### Key Aspects
+
+* **Inheritance**: Every `pom.xml` file in Maven implicitly inherits from the Super POM.
+* **Defaults**: It defines default behaviors, properties, and configurations that can be overridden by your project's `pom.xml`.
+* **Extensibility**: By extending the Super POM, Maven projects benefit from standardized build processes and settings.
+
+### Example of the Super POM
+
+Here is a simplified version of what the Super POM contains:
+
+```xml
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.apache.maven</groupId>
+  <artifactId>super-pom</artifactId>
+  <version>1.0</version>
+  <packaging>pom</packaging>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.apache.maven</groupId>
+        <artifactId>maven-model</artifactId>
+        <version>3.6.0</version>
+        <scope>compile</scope>
+      </dependency>
+      <!-- More default dependencies -->
+    </dependencies>
+  </dependencyManagement>
+
+  <repositories>
+    <repository>
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <!-- More default plugins -->
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
+```
+
+#### Default Settings from the Super POM
+
+Here are some of the default configurations provided by the Super POM:
+
+1. **Repositories**:
+   * The central repository (`https://repo.maven.apache.org/maven2`) is defined as the default repository.
+2. **Plugin Repositories**:
+   * The central plugin repository is also defined.
+3. **Build Plugins**:
+   * Common build plugins and their versions are specified, such as `maven-clean-plugin`, `maven-compiler-plugin`, and `maven-surefire-plugin`.
+4. **Dependency Management**:
+   * Default dependencies and their versions are managed.
+
+### Overriding the Super POM
+
+We can override or extend the settings provided by the Super POM in our project's `pom.xml`. For example:
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.example</groupId>
+  <artifactId>my-project</artifactId>
+  <version>1.0.0</version>
+
+  <repositories>
+    <repository>
+      <id>my-repo</id>
+      <url>http://mycompany.com/maven2</url>
+    </repository>
+  </repositories>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
+```
+
+#### How to View the Super POM
+
+You can view the Super POM by running the following Maven command:
+
+```sh
+mvn help:effective-pom
+```
+
+This command generates the effective POM for our project, which includes the merged configurations from your `pom.xml` and the Super POM.
+
+### Add a New POM as Parent
+
+To add a new POM as a parent to our Maven project, we need to specify the parent POM in our project's `pom.xml` file. This is done using the `<parent>` element. The parent POM can provide shared configurations, dependencies, and plugins for all child projects.
+
+#### Steps to Add a New POM as Parent
+
+1.  **Define the Parent POM**: Create a parent POM with the common configurations that you want to share across multiple projects.
+
+    ```xml
+    <project xmlns="http://maven.apache.org/POM/4.0.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+      <modelVersion>4.0.0</modelVersion>
+      
+      <groupId>com.example</groupId>
+      <artifactId>parent-project</artifactId>
+      <version>1.0.0</version>
+      <packaging>pom</packaging>
+      
+      <dependencyManagement>
+        <dependencies>
+          <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>5.3.9</version>
+          </dependency>
+          <!-- Add more dependencies as needed -->
+        </dependencies>
+      </dependencyManagement>
+
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>3.8.1</version>
+              <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+              </configuration>
+            </plugin>
+            <!-- Add more plugins as needed -->
+          </plugins>
+        </pluginManagement>
+      </build>
+    </project>
+    ```
+2.  **Add the Parent POM to the Child Project**: In your child project's `pom.xml`, specify the parent POM using the `<parent>` element.
+
+    ```xml
+    <project xmlns="http://maven.apache.org/POM/4.0.0"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+      <modelVersion>4.0.0</modelVersion>
+
+      <parent>
+        <groupId>com.example</groupId>
+        <artifactId>parent-project</artifactId>
+        <version>1.0.0</version>
+      </parent>
+
+      <groupId>com.example</groupId>
+      <artifactId>child-project</artifactId>
+      <version>1.0.0</version>
+
+      <dependencies>
+        <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-core</artifactId>
+        </dependency>
+        <!-- Add more dependencies as needed -->
+      </dependencies>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+          </plugin>
+          <!-- Add more plugins as needed -->
+        </plugins>
+      </build>
+    </project>
+    ```
+
+#### How It Works
+
+* **Inheritance**: The child project inherits the configurations from the parent POM, including dependency management, plugins, properties, and other settings.
+* **Override**: The child project can override any configuration from the parent POM by redefining it in its own `pom.xml`.
+* **Dependency Management**: The child project will use the versions of dependencies specified in the parent POM's `<dependencyManagement>` section unless overridden in the child POM.
+
+#### Benefits
+
+* **Centralized Configuration**: Common configurations are centralized in the parent POM, making it easier to manage and update them.
+* **Consistency**: Ensures consistency across multiple projects by sharing the same configurations.
+* **Reduced Redundancy**: Reduces redundancy in configuration by avoiding duplication of common settings in each child project.
