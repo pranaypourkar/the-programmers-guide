@@ -8,7 +8,7 @@ description: Frequently Asked Question on Maven
 
 1\) Rename the project using Eclipse or other IDE.
 
-2\) Update the artifactId in your pom.xml
+2\) Update the artifactId in our pom.xml
 
 ## Can we use different name for POM.xml?
 
@@ -168,6 +168,10 @@ In Maven, dependency scopes define the visibility and lifecycle of a dependency.
 ## What makes a fully qualified name for the artifact?
 
 Three properties group ID, artifact ID and the version string together identifies the artifact.
+
+```
+ <groupId>:<artifactId>:<version>
+```
 
 ## Where do we find .class files of a Maven project?
 
@@ -397,3 +401,174 @@ To add a new POM as a parent to our Maven project, we need to specify the parent
 * **Centralized Configuration**: Common configurations are centralized in the parent POM, making it easier to manage and update them.
 * **Consistency**: Ensures consistency across multiple projects by sharing the same configurations.
 * **Reduced Redundancy**: Reduces redundancy in configuration by avoiding duplication of common settings in each child project.
+
+## Difference between compile and install.
+
+`compile` compiles the source code of the project whereas `install` installs the package into the local repository, for use as a dependency in other projects locally.
+
+## How do I specify packaging/distributable format in Maven?
+
+The packaging for our project can be specified via the POM element **\<packaging>**.
+
+Some of the valid packaging values are **jar, war, ear and pom**. If no packaging value has been specified, it will default to **jar**.&#x20;
+
+```
+<project ...>
+  ...
+  <packaging>war</packaging>
+  ...
+</project>
+```
+
+## What is Transitive Dependency?
+
+In Maven, a transitive dependency is an indirect dependency that a project inherits from its direct dependencies. This means if Project A depends on Project B, and Project B depends on Project C, then Project A will also have Project C as a dependency. Transitive dependencies allow for automatic inclusion of necessary dependencies without explicitly specifying them in the `pom.xml` file.
+
+**Example**
+
+**Project A `pom.xml`:**
+
+```xml
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>project-a</artifactId>
+  <version>1.0.0</version>
+  <dependencies>
+    <dependency>
+      <groupId>com.example</groupId>
+      <artifactId>project-b</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+  </dependencies>
+</project>
+```
+
+**Project B `pom.xml`:**
+
+```xml
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>project-b</artifactId>
+  <version>1.0.0</version>
+  <dependencies>
+    <dependency>
+      <groupId>com.example</groupId>
+      <artifactId>project-c</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+  </dependencies>
+</project>
+```
+
+In this case, Project A will have both Project B and Project C as dependencies.
+
+## Difference Between `maven compile` and `maven install`
+
+* **`mvn compile`**:
+  * **Purpose**: Compiles the source code of the project.
+  * **Lifecycle Phase**: Executes up to the `compile` phase.
+  * **Outcome**: Generates `.class` files in the `target/classes` directory.
+  * **Usage**: Used when you only need to compile the code and not perform further actions like testing or packaging.
+* **`mvn install`**:
+  * **Purpose**: Installs the package into the local repository, for use as a dependency in other projects locally.
+  * **Lifecycle Phase**: Executes all phases in the default lifecycle up to `install` (includes compile, test, package, etc.).
+  * **Outcome**: Installs the resulting artifact (e.g., JAR, WAR) into the local Maven repository (`~/.m2/repository`).
+  * **Usage**: Used when you want to build the project and make it available for other local projects to use as a dependency
+
+## What is Maven Snapshot ?
+
+A snapshot in Maven represents a version of the project that is currently in development and may change. Snapshots are used to indicate that the version is not stable and is still under active development.
+
+* **Snapshot Versioning**: Snapshot versions are denoted with `-SNAPSHOT` at the end of the version number (e.g., `1.0.0-SNAPSHOT`).
+* **Updating**: Maven checks for updates to snapshot dependencies on each build, ensuring the latest development version is used.
+* **Storage**: Snapshots are stored in a special directory in the repository to keep track of different builds.
+
+**Example**
+
+**Snapshot Dependency in `pom.xml`:**
+
+```xml
+<dependency>
+  <groupId>com.example</groupId>
+  <artifactId>example-project</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+</dependency>
+```
+
+## What is Maven's order of inheritance?
+
+**Parent POM**:
+
+* **Description**: The parent POM is the first source of inherited configurations. If our project specifies a parent POM using the `<parent>` element, all configurations, properties, dependency management, plugins, and plugin management defined in the parent POM are inherited by the child POM.
+* **Inheritance**: Elements from the parent POM are inherited first and can be overridden by the child POM.
+*   **Example**:
+
+    ```xml
+    <parent>
+      <groupId>com.example</groupId>
+      <artifactId>parent-project</artifactId>
+      <version>1.0.0</version>
+    </parent>
+    ```
+
+**Project POM**:
+
+* **Description**: The project POM (`pom.xml`) is the main configuration file for our Maven project. It contains the project's own configurations, dependencies, properties, and build settings.
+* **Precedence**: Configurations in the project POM override those inherited from the parent POM.
+*   **Example**:
+
+    ```xml
+    <project>
+      <modelVersion>4.0.0</modelVersion>
+      <groupId>com.example</groupId>
+      <artifactId>child-project</artifactId>
+      <version>1.0.0</version>
+      <parent>
+        <groupId>com.example</groupId>
+        <artifactId>parent-project</artifactId>
+        <version>1.0.0</version>
+      </parent>
+      <!-- Project-specific configurations -->
+    </project>
+    ```
+
+**Settings**:
+
+* **Description**: The settings file (`settings.xml`) contains user-specific configurations for Maven, including repository locations, proxies, and user credentials. There are two `settings.xml` files: one global (located in `MAVEN_HOME/conf`) and one user-specific (located in `~/.m2`).
+* **Precedence**: Settings in `settings.xml` can override configurations in the project POM, particularly for repository settings and user-specific configurations.
+*   **Example** (`~/.m2/settings.xml`):
+
+    ```xml
+    <settings>
+      <mirrors>
+        <mirror>
+          <id>central-mirror</id>
+          <mirrorOf>central</mirrorOf>
+          <url>http://mirror.example.com/maven2</url>
+        </mirror>
+      </mirrors>
+      <!-- Other user-specific settings -->
+    </settings>
+    ```
+
+**CLI Parameters**:
+
+* **Description**: Command Line Interface (CLI) parameters provided when invoking Maven commands. These include system properties, profiles, and other command-line options.
+* **Precedence**: CLI parameters have the highest precedence and can override configurations specified in both the settings file and the project POM. They are useful for temporary configurations and for passing arguments dynamically.
+*   **Example**:
+
+    ```sh
+    mvn clean install -Dproperty=value -Pprofile
+    ```
+
+#### Order of Precedence
+
+1. **CLI Parameters**: Highest precedence, overrides all other configurations.
+2. **Settings**: User-specific configurations that override project POM settings.
+3. **Project POM**: Main project configurations that override parent POM settings.
+4. **Parent POM**: Base configurations inherited by the project.
+
+
+
