@@ -109,24 +109,38 @@ While primarily used for Java projects, Maven can also be employed for building 
 
 ## Core Concepts
 
-* **POM (Project Object Model)**: The `pom.xml` file is the heart of a Maven project. It contains information about the project and configuration details used by Maven to build the project.\
-  We can use different name for POM.xml but we need to use option `-f.` \
-  For example,  `mvn -f parent-pom.xml`
+### **POM (Project Object Model)**
+
+The `pom.xml` file is the heart of a Maven project. It contains information about the project and configuration details used by Maven to build the project.\
+We can use different name for POM.xml but we need to use option `-f.` \
+For example,  `mvn -f parent-pom.xml`
 
 {% hint style="info" %}
 When we create a Maven project, our project's `pom.xml` implicitly inherits from the Super POM unless we explicitly specify a different parent.
 {% endhint %}
 
-* **Dependencies**: Libraries or other projects that a project relies on. These are declared in the `pom.xml` file and Maven handles downloading and managing them.
-* **Repositories**: Locations where Maven stores and retrieves project dependencies and plugins. There are local, central, and remote repositories.
-  * **Local Repository**: Contains all the dependencies that have been downloaded and cached for reuse in future builds.\
-    Default location: `${user.home}/.m2/repository`.
-  *   **Central Repository**: The default repository provided by Maven. Maven provides most of the generic dependency resources at this remote location.&#x20;
+### **Dependencies**&#x20;
 
-      Default central repository URL: `https://repo.maven.apache.org/maven2`.
+Libraries or other projects that a project relies on. These are declared in the `pom.xml` file and Maven handles downloading and managing them.
 
-      Maven checks this repository if dependencies are not found in the local or remote repositories.
-  * **Remote Repositories**: Additional repositories that can be specified in the `pom.xm` under the `<repositories>` section. Can also be defined in the `settings.xml` file under the `<profiles>` section.
+### Dependency Management
+
+* Maven coordinates dependency versions using the `dependencyManagement` section in the `pom.xml`.
+* **Transitive Dependencies**: Automatically includes dependencies required by our project's dependencies.
+* **Scopes**: Define the classpath for different build tasks (e.g., `compile`, `test`, `provided`, `runtime`, `system`).
+
+### **Repositories**
+
+Locations where Maven stores and retrieves project dependencies and plugins. There are local, central, and remote repositories.
+
+* **Local Repository**: Contains all the dependencies that have been downloaded and cached for reuse in future builds.\
+  Default location: `${user.home}/.m2/repository`.
+*   **Central Repository**: The default repository provided by Maven. Maven provides most of the generic dependency resources at this remote location.&#x20;
+
+    Default central repository URL: `https://repo.maven.apache.org/maven2`.
+
+    Maven checks this repository if dependencies are not found in the local or remote repositories.
+* **Remote Repositories**: Additional repositories that can be specified in the `pom.xm` under the `<repositories>` section. Can also be defined in the `settings.xml` file under the `<profiles>` section.
 
 ```xml
 <!-- Example configuration in pom.xml -->
@@ -159,6 +173,38 @@ Maven retrieves dependencies in a specific sequence, checking various repositori
    * The default central repository is `https://repo.maven.apache.org/maven2`.
 {% endhint %}
 
+### Plugins
+
+Maven uses plugins to extend its functionality. A Maven plugin is a group of goals. However, these goals aren’t necessarily all bound to the same phase. &#x20;
+
+Some of the Maven Plugins are:
+
+* **Compiler Plugin**: Compiles Java source files.
+* **Surefire Plugin**: Runs unit tests.
+* **Jar Plugin**: Creates JAR files from the compiled code.
+* **Assembly Plugin**: Creates distributions from your project.
+
+Maven plugins are used to:
+
+* create jar file
+* create war file
+* compile code files
+* unit testing of code
+* create project documentation
+* create project reports etc.
+
+Maven provides following two types of Plugins
+
+* **Build plugins −** They execute during the build and should be configured in the \<build/> element of pom.xml
+* **Reporting plugins −** They execute during the site generation and they should be configured in the \<reporting/> element of the pom.xml
+
+### Profiles
+
+Maven profiles allow customization of the build process for different environments or use cases:
+
+* Defined in `pom.xml` or `profiles.xml`.
+* Can activate profiles based on conditions such as system properties, OS, or custom activators.
+
 ## Project Structure
 
 Maven projects follow a standard directory layout:
@@ -183,44 +229,6 @@ Maven projects follow a standard directory layout:
 * **Settings File**: `settings.xml` is used to configure Maven execution environment, such as repository locations and authentication information.
   * Global Settings: Located in `${MAVEN_HOME}/conf/settings.xml`.
   * User Settings: Located in `${user.home}/.m2/settings.xml`.
-
-## Plugins
-
-A Maven plugin is a group of goals. However, these goals aren’t necessarily all bound to the same phase. Maven uses plugins to extend its functionality.&#x20;
-
-Some of the Maven Plugins are:
-
-* **Compiler Plugin**: Compiles Java source files.
-* **Surefire Plugin**: Runs unit tests.
-* **Jar Plugin**: Creates JAR files from the compiled code.
-* **Assembly Plugin**: Creates distributions from your project.
-
-Maven plugins are used to:
-
-* create jar file
-* create war file
-* compile code files
-* unit testing of code
-* create project documentation
-* create project reports etc.
-
-Maven provides following two types of Plugins
-
-* **Build plugins −** They execute during the build and should be configured in the \<build/> element of pom.xml
-* **Reporting plugins −** They execute during the site generation and they should be configured in the \<reporting/> element of the pom.xml
-
-## Profiles
-
-Maven profiles allow customization of the build process for different environments or use cases:
-
-* Defined in `pom.xml` or `profiles.xml`.
-* Can activate profiles based on conditions such as system properties, OS, or custom activators.
-
-## Dependency Management
-
-* Maven coordinates dependency versions using the `dependencyManagement` section in the `pom.xml`.
-* **Transitive Dependencies**: Automatically includes dependencies required by your project's dependencies.
-* **Scopes**: Define the classpath for different build tasks (e.g., `compile`, `test`, `provided`, `runtime`, `system`).
 
 ## Best Practices
 
