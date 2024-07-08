@@ -6,3 +6,6 @@ description: >-
 
 # Build Lifecycle Management
 
+jar:jar goal
+
+dependency:copy-dependencies goal

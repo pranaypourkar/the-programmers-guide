@@ -33,11 +33,9 @@ site: Site documentation (if generated)
 ```
 {% endhint %}
 
-
-
 ## **Default Lifecycle**
 
-The default lifecycle handles the build process and includes different phases. Phases are executed in a sequential order, ensuring specific tasks are completed before moving on. There are 8 standard phases.
+The default lifecycle handles the build process and includes different phases. Phases are executed in a sequential order, ensuring specific tasks are completed before moving on. There are <mark style="background-color:purple;">8 standard phases</mark>.
 
 * **validate**: Verify project structure and configuration correctness.
 
