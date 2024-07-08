@@ -83,3 +83,215 @@ public static boolean method4(String input) {
 
 
 
+## &#x20;2. Check whether two strings are anagram
+
+An anagram of a string is another string that contains the same characters, only the order of characters can be different.
+
+### Method 1: Using Sort
+
+```java
+private static boolean method1(char[] charArray1, char[] charArray2) {
+        // Using sorting and comparison
+        Arrays.sort(charArray1);
+        Arrays.sort(charArray2);
+        return Arrays.equals(charArray1, charArray2);
+    }
+
+// Time Complexity - O(N) + O(NlogN) = O(NlogN) 
+// Space Complexity - O(1)
+```
+
+### Method 2: **Count characters using 2 arrays**
+
+```java
+private static boolean method2(char[] charArray1, char[] charArray2) {
+        if (charArray1.length != charArray2.length) {
+            return false;
+        }
+
+        // Using 2 arrays with character count
+        int[] count1 = new int[256];
+        int[] count2 = new int[256];
+
+        for (int i=0; i<charArray1.length; i++) {
+            count1[charArray1[i]]++;
+            count2[charArray2[i]]++;
+        }
+
+        for (int i=0; i<256; i++) {
+            if (count1[i] != count2[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    
+// Time Complexity - O(N)
+// Space Complexity - O(N)
+```
+
+### Method 3: **Count characters using 1 array**
+
+```java
+private static boolean method3(char[] charArray1, char[] charArray2) {
+        if (charArray1.length != charArray2.length) {
+            return false;
+        }
+
+        int[] count = new int[256];
+
+        for (int i=0; i<charArray1.length; i++) {
+            count[charArray1[i]]++;
+            count[charArray2[i]]--;
+        }
+
+        for (int i = 0; i < 256; i++)
+            if (count[i] != 0) {
+                return false;
+            }
+        return true;
+    }
+    
+// Time Complexity - O(N)
+// Space Complexity - O(N)
+```
+
+### Method 4: **Using HashMap**
+
+```java
+private static boolean method4(char[] charArray1, char[] charArray2) {
+        Map<Character, Integer> map = new HashMap<>();
+        for(char c : charArray1) {
+            if (!map.containsKey(c)) {
+                map.put(c, 1);
+            } else {
+                map.put(c, map.get(c) + 1);
+            }
+        }
+
+        for(char c : charArray2) {
+            map.put(c, map.get(c) - 1);
+        }
+
+        for(Map.Entry<Character, Integer> characterIntegerEntry : map.entrySet()) {
+            if (characterIntegerEntry.getValue() != 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    
+// Time Complexity - O(n)
+// Space Complexity - O(n)
+```
+
+## Program to reverse a String
+
+<pre><code><strong>Input: str= "Tool"
+</strong><strong>Output: "looT"
+</strong></code></pre>
+
+### Method 1: Using StringBuilder
+
+```java
+private static String method1(String input) {
+        StringBuilder sb = new StringBuilder(input);
+        return sb.reverse().toString();
+    }
+// Time Complexity - O(N)
+// Space Complexity - O(N)
+```
+
+### Method 2: Using iteration
+
+```java
+private static String method2(String input) {
+        String reverse = "";
+        for (int i=input.length()-1; i>=0; i--) {
+           reverse = reverse.concat(String.valueOf(input.charAt(i)));
+        }
+
+        return reverse;
+    }
+// Time Complexity - O(N)
+// Space Complexity - O(N)
+```
+
+### Method 3: Using Byte Array
+
+```java
+private static String method3(String input) {
+        byte[] strAsByteArray = input.getBytes();
+
+        byte[] result = new byte[strAsByteArray.length];
+
+        for (int i = 0; i < strAsByteArray.length; i++) {
+            result[i] = strAsByteArray[strAsByteArray.length - i - 1];
+        }
+
+        return new String(result);
+    }
+// Time Complexity - O(N)
+// Space Complexity - O(N)
+```
+
+### Method 4: Using Arraylist and Streams
+
+```java
+private static String method4(String input) {
+        char[] inputCharArray = input.toCharArray();
+        List<Character> charArrayList = new ArrayList<>();
+
+        for (char c : inputCharArray) {
+            charArrayList.add(c);
+        }
+
+        Collections.reverse(charArrayList);
+
+        return charArrayList.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining());
+
+    }
+// Time Complexity - O(N)
+// Space Complexity - O(N)
+```
+
+### Method 5: Using StringBuffer
+
+```java
+private static String method5(String input) {
+        StringBuffer sb = new StringBuffer(input);
+        return sb.reverse().toString();
+    }
+// Time Complexity - O(N)
+// Space Complexity - O(N)
+```
+
+### Method 6: Using Stacks
+
+```java
+private static String method6(String input) {
+        Stack<Character> stack=new Stack<>();
+
+        for(char c:input.toCharArray())
+        {
+            //pushing all the characters
+            stack.push(c);
+        }
+
+        String temp="";
+
+        while(!stack.isEmpty())
+        {
+            //popping all the chars and appending to temp
+            temp+=stack.pop();
+        }
+        return temp;
+    }
+// Time Complexity - O(N)
+// Space Complexity - O(N)
+```
+
