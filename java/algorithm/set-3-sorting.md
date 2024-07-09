@@ -588,38 +588,162 @@ public class RadixSort {
 
 ## 8. **Bucket Sort**
 
-**Description:** Bucket Sort distributes the elements into a number of buckets, sorts each bucket individually (often using another sorting algorithm or recursively), and then concatenates the sorted buckets.
+**Description:** Bucket sort is a sorting technique that divides the elements into a fixed number of buckets (or bins) based on a specific range or hash function. Each bucket is then sorted individually using any suitable sorting algorithm like insertion sort. Finally, the sorted buckets are concatenated to form the final sorted array.
 
 **Time Complexity:**
 
-* Best Case: O(n+k)O(n+k)
-* Average Case: O(n+k)O(n+k)
-* Worst Case: O(n2)O(n2)
+* Best Case: O(n+k)
+* Average Case: O(n+k))
+* Worst Case: O(n^2)
 
-**Space Complexity:** O(n+k)O(n+k)
+**Space Complexity:** O(n+k)
 
 **Use Cases:**
 
 * Sorting uniformly distributed data
 * Useful when input is drawn from a known distribution
+* Efficient for data with a limited range or when elements can be distributed evenly across buckets.
+* Works well with other sorting algorithms for the individual buckets (e.g., insertion sort for small bucket sizes).
+* Performance depends heavily on the chosen number of buckets and the distribution of elements.
+* Might require additional space for the buckets array.
 
-#### 9. **Counting Sort**
+{% hint style="info" %}
+**Algorithms:**
 
-**Description:** Counting Sort is a non-comparison-based sorting algorithm that counts the number of occurrences of each distinct element and uses this information to place elements into the sorted array.
+1. **Bucket Creation:**
+   * Define the number of buckets based on the range of elements or a hashing function.
+   * Initialize an array of empty buckets (often implemented as linked lists or arrays).
+2. **Element Distribution:**
+   * Iterate through the elements in the input array.
+   * Based on the value of each element, assign it to the appropriate bucket using a hashing function or by calculating its bucket index within the defined range.
+3. **Sorting Buckets:**
+   * Apply a simple sorting algorithm (like insertion sort) to sort the elements within each individual bucket. This ensures elements within each bucket are sorted.
+4. **Concatenation:**
+   * Iterate through the buckets array and combine the sorted elements from each bucket sequentially into the original array.
+{% endhint %}
+
+```java
+public class BucketSort {
+    void bucketSort(float arr[], int n) {
+        if (n <= 0)
+            return;
+
+        ArrayList<Float>[] bucket = new ArrayList[n];
+
+        for (int i = 0; i < n; i++) {
+            bucket[i] = new ArrayList<Float>();
+        }
+
+        for (int i = 0; i < n; i++) {
+            int bucketIndex = (int) arr[i] * n;
+            bucket[bucketIndex].add(arr[i]);
+        }
+
+        for (int i = 0; i < n; i++) {
+            Collections.sort(bucket[i]);
+        }
+
+        int index = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < bucket[i].size(); j++) {
+                arr[index++] = bucket[i].get(j);
+            }
+        }
+    }
+}
+```
+
+## 9. **Counting Sort**
+
+**Description:** Counting sort is a sorting algorithm that efficiently sorts elements when the range of possible values is limited. It works by creating a count array to store the frequency of each unique element in the original array. This count array is then used to place elements in their correct positions in the sorted output array.
 
 **Time Complexity:**
 
-* Best Case: O(n+k)O(n+k)
-* Average Case: O(n+k)O(n+k)
-* Worst Case: O(n+k)O(n+k)
+* Best Case: O(n+k)
+* Average Case: O(n+k)
+* Worst Case: O(n+k)
 
-**Space Complexity:** O(k)O(k)
+**Space Complexity:** O(k)
 
 **Use Cases:**
 
 * Sorting integers within a small range
 * Efficient for datasets where range of the elements is not significantly larger than the number of elements
+* Not suitable for large ranges of possible values, as the count array size becomes significant.
+
+{% hint style="info" %}
+**Algorithm:**
+
+1. **Find Maximum and Initialize Count Array:**
+   * Find the maximum value in the input array. This defines the size of the count array needed to store the frequency of each possible element value.
+   * Initialize a count array with size `max + 1`, where `max` is the maximum value found in the input array. Each element in the count array will represent the number of times a corresponding value appears in the original array.
+2. **Counting Occurrences:**
+   * Iterate through the input array.
+   * For each element `arr[i]`, increment the count at the corresponding index `arr[i]` in the count array. This effectively keeps track of how many times each unique value appears.
+3. **Prefix Sum:**
+   * Iterate through the count array, calculating the cumulative sum of frequencies.This step ensures that the final position of each element in the sorted output array can be determined using the count array.
+4. **Stable Placement:**
+   * Iterate through the input array in reverse order (right to left).
+   * For each element `arr[i]`, use the corresponding count value (which represents the number of elements less than or equal to it) as an index to place the element in the output array.
+   * Decrement the count value for the current element to avoid placing duplicates incorrectly.
+5. **Copy to Original Array (Optional):**
+   * If the original array needs to be modified with the sorted elements, copy the sorted elements from the output array back to the original array.
+{% endhint %}
+
+**Example**
+
+```java
+public class CountingSort {
+
+    public static void countingSort(int[] arr, int n) {
+        int max = arr[0];
+        for (int i = 1; i < n; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+
+        int[] count = new int[max + 1];
+        int[] output = new int[n];
+
+        // Store count of occurrences in count[]
+        for (int i = 0; i < n; i++) {
+            count[arr[i]]++;
+        }
+
+        // Prefix sum for cumulative count
+        for (int i = 1; i <= max; i++) {
+            count[i] += count[i - 1];
+        }
+
+        // Build the output array (stable placement)
+        for (int i = n - 1; i >= 0; i--) {
+            output[count[arr[i]] - 1] = arr[i];
+            count[arr[i]]--;
+        }
+
+        // Copy the sorted elements back to original array (optional)
+        if (arr == output) {
+            return;
+        }
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = output[i];
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {6, 1, 2, 3, 5, 4};
+        int n = arr.length;
+
+        countingSort(arr, n);
+
+        System.out.println("Sorted array:");
+        for (int i : arr) System.out.print(i + " ");
+    }
+}
+```
 
 ## Comparison Table
 
-<table data-full-width="true"><thead><tr><th>Algorithm</th><th>Best Case</th><th>Average Case</th><th>Worst Case</th><th>Space Complexity</th><th>Use Cases</th></tr></thead><tbody><tr><td>Bubble Sort</td><td>O(n)O(n)</td><td>O(n2)O()</td><td>O(n2)O(n2)</td><td>O(1)O(1)</td><td>Small datasets, educational purposes</td></tr><tr><td>Selection Sort</td><td>O(n2)O(n2)</td><td>O(n2)O(n2)</td><td>O(n2)O(n2)</td><td>O(1)O(1)</td><td>Small datasets</td></tr><tr><td>Insertion Sort</td><td>O(n)O(n)</td><td>O(n2)O(n2)</td><td>O(n2)O(n2)</td><td>O(1)O(1)</td><td>Small datasets, adaptive sorting</td></tr><tr><td>Merge Sort</td><td>O(nlog⁡n)O(nlogn)</td><td>O(nlog⁡n)O(nlogn)</td><td>O(nlog⁡n)O(nlogn)</td><td>O(n)O(n)</td><td>Linked lists, external sorting</td></tr><tr><td>Quick Sort</td><td>O(nlog⁡n)O(nlogn)</td><td>O(nlog⁡n)O(nlogn)</td><td>O(n2)O(n2)</td><td>O(log⁡n)O(logn)</td><td>General-purpose, fast average performance</td></tr><tr><td>Heap Sort</td><td>O(nlog⁡n)O(nlogn)</td><td>O(nlog⁡n)O(nlogn)</td><td>O(nlog⁡n)O(nlogn)</td><td>O(1)O(1)</td><td>Space-constrained environments</td></tr><tr><td>Radix Sort</td><td>O(nk)O(nk)</td><td>O(nk)O(nk)</td><td>O(nk)O(nk)</td><td>O(n+k)O(n+k)</td><td>Large datasets, integer/strings</td></tr><tr><td>Bucket Sort</td><td>O(n+k)O(n+k)</td><td>O(n+k)O(n+k)</td><td>O(n2)O(n2)</td><td>O(n+k)O(n+k)</td><td>Uniformly distributed data</td></tr><tr><td>Counting Sort</td><td>O(n+k)O(n+k)</td><td>O(n+k)O(n+k)</td><td>O(n+k)O(n+k)</td><td>O(k)O(k)</td><td>Small range integers</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th>Algorithm</th><th>Best Case</th><th>Average Case</th><th>Worst Case</th><th>Space Complexity</th><th>Use Cases</th></tr></thead><tbody><tr><td>Bubble Sort</td><td>O(n)</td><td>O(n2)</td><td>O(n2)O(n2)</td><td>O(1)O(1)</td><td>Small datasets, educational purposes</td></tr><tr><td>Selection Sort</td><td>O(n2)</td><td>O(n2)</td><td>O(n2)O(n2)</td><td>O(1)O(1)</td><td>Small datasets</td></tr><tr><td>Insertion Sort</td><td>O(n)</td><td>O(n2)</td><td>O(n2)</td><td>O(1)</td><td>Small datasets, adaptive sorting</td></tr><tr><td>Merge Sort</td><td>O(nlog⁡n)</td><td>O(nlogn)</td><td>O(nlog⁡n)</td><td>O(n)</td><td>Linked lists, external sorting</td></tr><tr><td>Quick Sort</td><td>O(nlogn)</td><td>O(nlogn)</td><td>O(n2)</td><td>O(logn)</td><td>General-purpose, fast average performance</td></tr><tr><td>Heap Sort</td><td>O(nlogn)</td><td>O(nlogn)</td><td>O(nlog⁡n)</td><td>O(1)</td><td>Space-constrained environments</td></tr><tr><td>Radix Sort</td><td>O(nk)</td><td>O(nk)</td><td>O(nk)</td><td>O(n+k)</td><td>Large datasets, integer/strings</td></tr><tr><td>Bucket Sort</td><td>O(n+k)</td><td>O(n+k)</td><td>O(n2)</td><td>O(n+k)</td><td>Uniformly distributed data</td></tr><tr><td>Counting Sort</td><td>O(n+k)</td><td>O(n+k)</td><td>O(n+k)</td><td>O(k)</td><td>Small range integers</td></tr></tbody></table>
