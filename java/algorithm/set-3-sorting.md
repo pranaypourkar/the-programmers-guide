@@ -307,45 +307,192 @@ public class MergeSort {
 }
 ```
 
-
-
-#### 5. **Quick Sort**
+## 5. **Quick Sort**
 
 **Description:** Quick Sort is a divide and conquer algorithm that picks an element as a pivot, partitions the array around the pivot, and recursively sorts the partitions.
 
 **Time Complexity:**
 
-* Best Case: O(nlog⁡n)O(nlogn)
-* Average Case: O(nlog⁡n)O(nlogn)
-* Worst Case: O(n2)O(n2) (rare, can be mitigated with good pivot selection strategies like randomized or median-of-three)
+* Best Case: O(nlog⁡n)
+* Average Case: O(nlog⁡n)
+* Worst Case: O(n^2) (rare, can be mitigated with good pivot selection strategies like randomized or median-of-three)
 
-**Space Complexity:** O(log⁡n)O(logn) (in-place)
+**Space Complexity:** O(log⁡n) (in-place)
 
 **Use Cases:**
 
-* Generally faster in practice compared to other O(nlog⁡n)O(nlogn) algorithms
-* Used in systems and applications where average-case performance matters
+* Generally faster in practice compared to other O(nlog⁡n) algorithms
+* Used in systems and applications where average-case performance matters.
+* Efficient for large datasets due to its average O(n log n) time complexity.
+* In-place sorting algorithm, meaning it sorts the data within the original array without requiring significant additional memory allocation.
+* Pivot selection strategy can significantly impact performance.
 
-#### 6. **Heap Sort**
+{% hint style="info" %}
+**Algorithm**:
 
-**Description:** Heap Sort is a comparison-based sorting technique based on a binary heap data structure. It involves building a heap from the input data and then repeatedly extracting the maximum element from the heap and reconstructing the heap.
+**Steps:**
+
+1. **Base Case:**
+   * If the array has only one element (or is empty), it's already sorted. Return the array itself.
+2. **Choose Pivot:**
+   * Select a pivot element from the array. This can be the first, last, or a randomly chosen element.
+3. **Partitioning:**
+   * Rearrange the array elements such that all elements less than the pivot are placed to its left side, and all elements greater than the pivot are placed to its right side. The pivot itself can be placed at its final sorted position.
+4. **Recursive Calls:**
+   * Recursively call Quick Sort on the sub-array containing elements less than the pivot.
+   * Recursively call Quick Sort on the sub-array containing elements greater than the pivot.
+
+**Partitioning Process:**
+
+* Two indices (`i` and `j`) are used to traverse the array.
+* `i` starts at the leftmost index (excluding the pivot) and iterates towards the right.
+* `j` starts at the rightmost index (excluding the pivot) and iterates towards the left.
+* If `arr[i]` is greater than the pivot, swap `arr[i]` with the element at the next position (`j+1`) and increment `j`.
+* If `arr[j]` is less than the pivot, decrement `j`.
+* Continue iterating until `i` and `j` meet or cross.
+* Swap the pivot element with the element at index `j` (which now holds the correct position for the pivot).
+{% endhint %}
+
+**Example**
+
+```java
+public class QuickSort {
+
+    public static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            // pi is partitioning index, arr[pi] is now at right place
+            int pi = partition(arr, low, high);
+
+            // Recursively sort elements before and after partition
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+        }
+    }
+
+    private static int partition(int[] arr, int low, int high) {
+        int pivot = arr[high];
+        int i = (low - 1); // index of smaller element
+
+        for (int j = low; j <= high - 1; j++) {
+            // If current element is smaller than the pivot
+            if (arr[j] < pivot) {
+                i++;
+                swap(arr, i, j);
+            }
+        }
+        swap(arr, i + 1, high);
+        return (i + 1);
+    }
+
+    private static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {10, 7, 8, 9, 1, 5};
+        int n = arr.length;
+        quickSort(arr, 0, n - 1);
+}    
+```
+
+## 6. **Heap Sort**
+
+**Description:** Heap Sort is a sorting technique that leverages the properties of a heap data structure to efficiently sort an array. It involves converting the input array into a max-heap (where the root element has the largest value), and then repeatedly removing the largest element (root) and placing it at the end of the sorted sub-array. This process continues until the entire array is sorted.
 
 **Time Complexity:**
 
-* Best Case: O(nlog⁡n)O(nlogn)
-* Average Case: O(nlog⁡n)O(nlogn)
-* Worst Case: O(nlog⁡n)O(nlogn)
+* Best Case: O(nlog⁡n)
+* Average Case: O(nlog⁡n)
+* Worst Case: O(nlog⁡n)
 
-**Space Complexity:** O(1)O(1) (in-place)
+**Space Complexity:** O(1) (in-place)
 
 **Use Cases:**
 
 * Situations where space complexity matters
 * Embedded systems where memory usage is constrained
 
-#### 7. **Radix Sort**
+{% hint style="info" %}
+**Algorithm:**
 
-**Description:** Radix Sort is a non-comparison-based sorting algorithm that sorts numbers by processing individual digits. It processes digits from the least significant digit to the most significant digit.
+1. **Build Heap:**
+   * Rearrange the array elements to create a max-heap. This can be done using techniques like bottom-up heapification or heapify for each element.
+2. **Extract Maximum:**
+   * Remove the root element (largest element in a max-heap) from the heap and swap it with the last element of the unsorted sub-array.
+3. **Heapify Down:**
+   * Maintain the heap property (largest element at the root) by applying heapify down operation on the sub-array excluding the last element (now sorted).
+4. **Repeat:**
+   * Repeat steps 2 and 3 until there are no elements left in the heap (which signifies a sorted array).
+{% endhint %}
+
+**Example**
+
+```java
+public class HeapSort {
+
+    public static void heapSort(int[] arr) {
+        int n = arr.length;
+
+        // Build a max heap
+        for (int i = n / 2 - 1; i >= 0; i--) {
+            heapify(arr, n, i);
+        }
+
+        // Extract one by one from heap
+        for (int i = n - 1; i > 0; i--) {
+            // Move current root to end
+            swap(arr, 0, i);
+
+            // call max heapify on the reduced heap
+            heapify(arr, i, 0);
+        }
+    }
+
+    private static void heapify(int[] arr, int n, int i) {
+        int largest = i; // Initialize largest as root
+        int left = 2 * i + 1; // left = 2*i + 1
+        int right = 2 * i + 2; // right = 2*i + 2
+
+        // If left child is larger than root
+        if (left < n && arr[left] > arr[largest])
+            largest = left;
+
+        // If right child is larger than largest so far
+        if (right < n && arr[right] > arr[largest])
+            largest = right;
+
+        // If largest is not root
+        if (largest != i) {
+            swap(arr, i, largest);
+
+            // Recursively heapify the affected sub-tree
+            heapify(arr, n, largest);
+        }
+    }
+
+    private static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {12, 11, 13, 5, 6, 7};
+        int n = arr.length;
+
+        heapSort(arr);
+
+        System.out.println("Sorted array:");
+        for (int i : arr) System.out.print(i + " ");
+    }
+}
+```
+
+## 7. **Radix Sort**
+
+**Description:** Radix sort is a non-comparative sorting technique that works efficiently for integers by sorting digits individually, from the least significant digit (LSD) to the most significant digit (MSD). It leverages the concept of place value to group elements based on their digits and then sorts them within those groups.
 
 **Time Complexity:**
 
@@ -359,8 +506,87 @@ public class MergeSort {
 
 * Sorting integers or strings
 * Useful for large datasets where comparison-based sorting algorithms are inefficient
+* Efficient for sorting integers with a fixed number of digits or limited range.
+* Stable sorting algorithm, meaning it preserves the original order of equal elements.
+* Non-comparative sorting, offering advantages for specific hardware architectures.
+* Not as efficient for sorting strings or data with variable-length keys.
+* Requires additional space for buckets during sorting.
 
-#### 8. **Bucket Sort**
+{% hint style="info" %}
+**Algorithm:**
+
+1. **Initialize:**
+   * Define the array of integers to be sorted.
+   * Find the maximum value in the array to determine the number of passes required (number of digits in the maximum value).
+2. **Iteration through Digits (LSD to MSD):**
+   * Iterate through each digit position (from the least significant digit to the most significant digit).
+3. **Grouping by Digits:**
+   * Use a stable sorting algorithm (like counting sort) to distribute elements into buckets based on the current digit position. This groups elements with the same digit value.
+4. **Merging Buckets:**
+   * After grouping by each digit, combine the elements from the buckets back into the original array in a stable order. This effectively sorts the array partially based on the current digit position.
+5. **Repeat for Significant Digits:**
+   * Repeat steps 2-4 for each subsequent digit position (moving towards the most significant digit) until the entire array is sorted.
+{% endhint %}
+
+**Example**
+
+```java
+public class RadixSort {
+
+    public static void radixSort(int[] arr) {
+        int max = getMax(arr); // Find the maximum value
+
+        for (int exp = 1; max / exp > 0; exp *= 10) {
+            countSort(arr, exp);
+        }
+    }
+
+    private static void countSort(int[] arr, int exp) {
+        int n = arr.length;
+        int[] output = new int[n]; // Output array
+        int[] count = new int[10]; // Count array for digits
+
+        // Store count of occurrences in count[]
+        for (int i = 0; i < n; i++) {
+            count[(arr[i] / exp) % 10]++;
+        }
+
+        // Cumulative count
+        for (int i = 1; i < 10; i++) {
+            count[i] += count[i - 1];
+        }
+
+        // Build the output array
+        for (int i = n - 1; i >= 0; i--) {
+            output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+            count[(arr[i] / exp) % 10]--;
+        }
+
+        // Copy the sorted elements back to original array
+        System.arraycopy(output, 0, arr, 0, n);
+    }
+
+    private static int getMax(int[] arr) {
+        int max = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+        return max;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {170, 45, 75, 90, 802, 24, 2, 66};
+        radixSort(arr);
+
+        System.out.println("Sorted array:");
+        for (int i : arr) System.out.print(i + " ");
+    }
+}
+```
+
+## 8. **Bucket Sort**
 
 **Description:** Bucket Sort distributes the elements into a number of buckets, sorts each bucket individually (often using another sorting algorithm or recursively), and then concatenates the sorted buckets.
 
