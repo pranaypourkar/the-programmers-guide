@@ -58,7 +58,7 @@ This is the most optimal method as here directly computations are carried on ove
 
 There are many approaches.
 
-1. **Using Arrays**
+### **Using Arrays**
 
 <figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="188"><figcaption></figcaption></figure>
 
@@ -84,7 +84,7 @@ public static void decimalToBinary(int n)
     } 
 ```
 
-2. **Using Bitwise Operators**
+### **Using Bitwise Operators**
 
 ```java
 public void decToBinary(int n) 
@@ -104,7 +104,7 @@ public void decToBinary(int n)
 Bitwise operators work faster than arithmetic operators used in above methods
 {% endhint %}
 
-3. **Without using arrays**
+### **Without using arrays**
 
 ```java
 public static int decimalToBinary(int decimalNumber) {
@@ -118,7 +118,13 @@ public static int decimalToBinary(int decimalNumber) {
 }
 ```
 
+### Using inbuit method
 
+```java
+long binary1 = 10L, binary2 = 11L;
+String binaryStr1 = Long.toBinaryString(binary1); // 1010
+String binaryStr2 = Long.toBinaryString(binary2); // 1011
+```
 
 ## Convert Binary number to Decimal number
 
@@ -136,13 +142,81 @@ public static int binaryToDecimal(int binaryNumber) {
 }
 ```
 
+## Add two binary numbers given in long format
 
+Input first binary number: 10\
+Input second binary number: 11
 
+_Expected Output:_ Sum of two binary numbers: 101
 
+### Method 1: Using inbuilt method
+
+```java
+long binary1 = 10L, binary2 = 11L;
+
+// Parse binary strings as BigIntegers
+BigInteger num1 = new BigInteger(String.valueOf(binary1), 2); // 2
+BigInteger num2 = new BigInteger(String.valueOf(binary2), 2); // 3
+
+// Add the two BigIntegers
+BigInteger sum = num1.add(num2);
+
+// Convert the result to binary string
+String result = sum.toString(2);
+
+// Print the result
+System.out.println("Sum of two binary numbers: " + result);
+```
+
+### Method 2: Using Modulo Division
+
+```java
+  // Declare variables to store two binary numbers, an index, and a remainder
+  long binary1, binary2;
+  int i = 0, remainder = 0;
+  
+  // Create an array to store the sum of binary digits
+  int[] sum = new int[20];
+  
+  // Create a Scanner object to read input from the user
+  Scanner in = new Scanner(System.in);
+
+  // Prompt the user to input the first binary number
+  System.out.print("Input first binary number: ");
+  binary1 = in.nextLong();
+  
+  // Prompt the user to input the second binary number
+  System.out.print("Input second binary number: ");
+  binary2 = in.nextLong();
+
+  // Perform binary addition while there are digits in the binary numbers
+  while (binary1 != 0 || binary2 != 0) 
+  {
+   // Calculate the sum of binary digits and update the remainder
+   sum[i++] = (int)((binary1 % 10 + binary2 % 10 + remainder) % 2);
+   remainder = (int)((binary1 % 10 + binary2 % 10 + remainder) / 2);
+   binary1 = binary1 / 10;
+   binary2 = binary2 / 10;
+  }
+  
+  // If there is a remaining carry, add it to the sum
+  if (remainder != 0) {
+   sum[i++] = remainder;
+  }
+  
+  // Decrement the index to prepare for printing
+  --i;
+  
+  // Display the sum of the two binary numbers
+  System.out.print("Sum of two binary numbers: ");
+  while (i >= 0) {
+   System.out.print(sum[i--]);
+  }
+```
 
 ## Factorial of a number
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="211"><figcaption></figcaption></figure>
 
 ### Small number
 
@@ -706,91 +780,3 @@ int findLCM(int a, int b)
 **Time Complexity:** O(min(a,b))\
 **Auxiliary Space:** O(1)
 
-
-
-## Check if String is Palindrome
-
-A string is said to be a palindrome if it is the same if we start reading it from left to right or right to left. In this article, we will learn how to check if a string is a palindrome in Java.
-
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="330"><figcaption></figcaption></figure>
-
-### Using Iteration Method
-
-```java
-static boolean isPalindrome(String str)
-    {
-        // Initializing an empty string to store the reverse of the original str
-        String rev = "";
-
-        for (int i = str.length() - 1; i >= 0; i--) {
-            rev = rev + str.charAt(i);
-        }
-
-        // Checking if both the strings are equal
-        return str.equals(rev);
-    }
-```
-
-**Time Complexity:** O(n)
-
-**Space Complexity:** O(n)
-
-### Using Improved Iteration Method
-
-```java
-static boolean isPalindrome(String str) {
-        int size = str.length();
-        for (int i=0; i<size/2;i++) {
-            if (str.charAt(i) != str.charAt(size-i-1)) {
-                return false;
-            }
-        }
-        return true;
-    }
-```
-
-**Time Complexity:** O(n) (number of iterations is proportional to n/2 i.e. half of string)
-
-**Space Complexity:** O(1)
-
-### Using String Builder
-
-```java
-static boolean isPalindrome2(String str) {
-        StringBuilder sb = new StringBuilder(str);
-        String reverse = sb.reverse().toString();
-        return str.equals(reverse);
-    }
-```
-
-**Time Complexity:** O(n)
-
-**Space Complexity:** O(n)
-
-### Using Recursion
-
-This is like the two-pointer approach where we will check the first and the last value of the string.
-
-```java
-// i = 0, j = A.length() - 1, A = input string
-public static boolean isPalindrome(int i, int j,
-                                       String A)
-    {
-        // comparing the two pointers
-        if (i >= j) {
-            return true;
-        }
-
-        // comparing the characters on those pointers
-        if (A.charAt(i) != A.charAt(j)) {
-            return false;
-        }
-
-        // checking everything again recursively
-        return isPalindrome(i + 1, j - 1, A);
-    }
-```
-
-**Time Complexity:** O(n), where n is the length of the input string. Function recursively calls itself for the characters at positions (i+1, j-1) until the pointers i and j cross each other or the characters at the pointers are not equal.
-
-**Space Complexity:** O(n), where n is the length of the input string. This is because each recursive call creates a new stack frame that stores the current values of the function parameters and local variables. In the worst case, the function call stack may grow as large as n/2 (when the input string is a palindrome), so the space complexity is O(n).
