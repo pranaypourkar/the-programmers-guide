@@ -58,9 +58,10 @@ Here is the representation of + 34 and -34 in a 8-bit sign-magnitude form.
 
 Since the magnitude of both numbers is the same, the first 7 bits in the representation are the same for both numbers. For +34, the MSB is 0, and for -34, the MSB or sign bit is 1.
 
-Using n-bits, the range of numbers that can be represented in Sign Magnitude Representation is from **– (2n-1 – 1) to (2n -1 – 1)**.
+Using n-bits, the range of numbers that can be represented in Sign Magnitude Representation is from **– (2^(n-1) – 1) to (2^(n -1) – 1)**.
 
-
+* Positive range: `0` to `(2^(n-1) - 1)`
+* Negative range: `-1` to `-(2^(n-1) - 1)`
 
 **1’s Complement Representation**
 
@@ -70,7 +71,7 @@ For example, if we want to represent -34 in 8-bit 1’s complement form, then fi
 
 <figure><img src="../../.gitbook/assets/image (58).png" alt="" width="563"><figcaption></figcaption></figure>
 
-Using n-bits, the range of numbers that can be represented in 1’s complement form is from **– (2n-1 – 1) to (2n -1 – 1)**.&#x20;
+Using n-bits, the range of numbers that can be represented in 1’s complement form is from **– (2^(n-1) – 1) to (2^(n -1) – 1)**.&#x20;
 
 
 
@@ -106,7 +107,7 @@ Java provides several bitwise operators that perform operations on corresponding
 **Significance:**
 
 * **Filtering:** AND operation acts as a filter to identify bits that are set to 1 in both operands. It allows you to select specific bits based on a pattern.
-* **Checking Conditions:** You can use AND to check if certain conditions are met by examining specific bit positions.
+* **Checking Conditions:** We can use AND to check if certain conditions are met by examining specific bit positions.
 * **Data Masking:** By using AND with a specific mask (a binary number with specific bits set to 0 or 1), you can isolate or clear certain bits in a data value.
 
 **Applications:**
