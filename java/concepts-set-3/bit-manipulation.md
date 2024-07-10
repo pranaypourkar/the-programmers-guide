@@ -98,7 +98,11 @@ Bit manipulation in Java refers to the process of working with individual bits w
 
 ## **Bitwise Operators:**
 
-Java provides several bitwise operators that perform operations on corresponding bits of two integers. These operators include:
+Java provides several bitwise operators that perform operations on corresponding bits of two integers.
+
+<figure><img src="../../.gitbook/assets/image.png" alt="" width="385"><figcaption></figcaption></figure>
+
+These operators include:
 
 1. **Bitwise AND ( & )**: Performs a bit-by-bit AND operation. The resulting bit is 1 only if the corresponding bits in both operands are 1.
 

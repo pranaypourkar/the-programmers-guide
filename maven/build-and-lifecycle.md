@@ -101,7 +101,7 @@ This lifecycle is responsible for generating a project's site documentation. The
 * **post-site:** Executes tasks after the site is generated.&#x20;
 * **site-deploy:** Deploys the generated site documentation to the specified server.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) ( (8).png" alt="" width="317"><figcaption><p>Generated Site Reports</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) ( (9).png" alt="" width="317"><figcaption><p>Generated Site Reports</p></figcaption></figure>
 
 {% file src="../.gitbook/assets/bookstore-reference – Project Information.pdf" %}
 Sample Site Document

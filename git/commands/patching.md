@@ -80,7 +80,7 @@ git apply --whitespace=fix my_changes.patch
 
 When running `git apply patchfile.patch.` This indicates that the patch could not be applied cleanly to `file.c` at line 10.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="308"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="308"><figcaption></figcaption></figure>
 
 ## git am
 
