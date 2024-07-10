@@ -45,6 +45,7 @@
       * [String](java/java-overview/data-types/string/README.md)
         * [StringBuilder](java/java-overview/data-types/string/stringbuilder.md)
         * [StringBuffer](java/java-overview/data-types/string/stringbuffer.md)
+        * [Multiline String](java/java-overview/data-types/string/multiline-string.md)
     * [Java Virtual Machine (JVM)](java/java-overview/java-virtual-machine-jvm.md)
   * [Java Features by Version](java/java-features-by-version/README.md)
     * [How New Java Features are Released ?](java/java-features-by-version/how-new-java-features-are-released.md)
