@@ -96,11 +96,21 @@ Bit manipulation in Java refers to the process of working with individual bits w
 
 <mark style="background-color:yellow;">Java, like many other programming languages and systems, uses a system called two's complement to represent signed numerical values in bits.</mark>
 
+## **Truth Tables**
+
+<div>
+
+<figure><img src="../../.gitbook/assets/image (236).png" alt="" width="253"><figcaption></figcaption></figure>
+
+ 
+
+<figure><img src="../../.gitbook/assets/image.png" alt="" width="385"><figcaption></figcaption></figure>
+
+</div>
+
 ## **Bitwise Operators:**
 
 Java provides several bitwise operators that perform operations on corresponding bits of two integers.
-
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="385"><figcaption></figcaption></figure>
 
 These operators include:
 
