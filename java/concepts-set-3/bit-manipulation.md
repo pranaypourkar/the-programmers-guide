@@ -1,5 +1,29 @@
 # Bit Manipulation
 
+## **Truth Tables**
+
+<div>
+
+<figure><img src="../../.gitbook/assets/image (236).png" alt="" width="253"><figcaption></figcaption></figure>
+
+ 
+
+<figure><img src="../../.gitbook/assets/image.png" alt="" width="385"><figcaption></figcaption></figure>
+
+</div>
+
+<div>
+
+<figure><img src="../../.gitbook/assets/image (237).png" alt="" width="539"><figcaption></figcaption></figure>
+
+ 
+
+<figure><img src="../../.gitbook/assets/image (238).png" alt=""><figcaption></figcaption></figure>
+
+</div>
+
+<figure><img src="../../.gitbook/assets/image (239).png" alt="" width="368"><figcaption></figcaption></figure>
+
 ## Theory:
 
 1 byte comprises of 8 bits and any integer or character can be represented using bits in computers, which we call its binary form(contains only 1 or 0) or in its base 2 form.\
@@ -95,18 +119,6 @@ But the representation of the negative number is different. For example, if we w
 Bit manipulation in Java refers to the process of working with individual bits within an integer data type. This allows to perform operations on data at a very fundamental level, which can be useful for optimization, low-level programming, and implementing specific algorithms. Bitwise operators are good for saving space and sometimes to cleverly remove dependencies.
 
 <mark style="background-color:yellow;">Java, like many other programming languages and systems, uses a system called two's complement to represent signed numerical values in bits.</mark>
-
-## **Truth Tables**
-
-<div>
-
-<figure><img src="../../.gitbook/assets/image (236).png" alt="" width="253"><figcaption></figcaption></figure>
-
- 
-
-<figure><img src="../../.gitbook/assets/image.png" alt="" width="385"><figcaption></figcaption></figure>
-
-</div>
 
 ## **Bitwise Operators:**
 
