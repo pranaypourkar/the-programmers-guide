@@ -122,8 +122,10 @@ public static int decimalToBinary(int decimalNumber) {
 
 ```java
 long binary1 = 10L, binary2 = 11L;
+int binary3 = 123;
 String binaryStr1 = Long.toBinaryString(binary1); // 1010
 String binaryStr2 = Long.toBinaryString(binary2); // 1011
+String binaryStr3 = Integer.toBinaryString(binary3);
 ```
 
 ## Convert Binary number to Decimal number
@@ -142,14 +144,16 @@ public static int binaryToDecimal(int binaryNumber) {
 }
 ```
 
-## Add two binary numbers given in long format
+## Binary Arithmetic
+
+### Add two binary numbers given in long format
 
 Input first binary number: 10\
 Input second binary number: 11
 
 _Expected Output:_ Sum of two binary numbers: 101
 
-### Method 1: Using inbuilt method
+#### Method 1: Using inbuilt method
 
 ```java
 long binary1 = 10L, binary2 = 11L;
@@ -168,7 +172,7 @@ String result = sum.toString(2);
 System.out.println("Sum of two binary numbers: " + result);
 ```
 
-### Method 2: Using Modulo Division
+#### Method 2: Using Modulo Division
 
 ```java
   // Declare variables to store two binary numbers, an index, and a remainder
@@ -213,6 +217,67 @@ System.out.println("Sum of two binary numbers: " + result);
    System.out.print(sum[i--]);
   }
 ```
+
+### Multiply two binary numbers given in long format
+
+Input first binary number: 10\
+Input second binary number: 11
+
+_Expected Output:_ Sum of two binary numbers: 110
+
+#### Method 1: Using inbuilt method
+
+```java
+long longBinary1 = 10L, longBinary2 = 11L;
+
+BigInteger binary1 = new BigInteger(String.valueOf(longBinary1),2); // 2
+BigInteger binary2 = new BigInteger(String.valueOf(longBinary2),2); // 3
+
+BigInteger result = binary1.multiply(binary2);
+
+System.out.println(result.toString(2)); // 110
+System.out.println(result.toString(10)); // 6
+```
+
+#### Method 2: Using Modulo operation
+
+```java
+public static void main(String[] args) {
+        long longBinary1 = 10L, longBinary2 = 11L;
+        int sum, idx=0, position=0;
+        int[] result = new int[16]; // Assume max 16 bit
+
+        while(longBinary2!=0) {
+            sum = (int) (longBinary1*(longBinary2%10));
+            position = add(result, sum, idx);
+
+            idx++;
+            longBinary2 = longBinary2/10;
+        }
+
+        position--;
+        while(position>=0) {
+            System.out.print(result[position]);
+            position--;
+        }
+    }
+
+    private static int add(int[] result, int sum, int idx) {
+        sum = (int) (sum*Math.pow(10,idx));
+        int j = 0, carry = 0;
+        while (sum != 0) {
+            int tmp = result[j] + sum%10 + carry;
+            result[j] = tmp%2;
+            carry = tmp/2;
+
+            j++;
+            sum = sum/10;
+        }
+        return j;
+    }
+```
+
+
 
 ## Factorial of a number
 
