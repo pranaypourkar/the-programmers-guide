@@ -14,6 +14,7 @@
   * [Containerisation - TBU](application-containerisation-tbu/containerisation-tbu.md)
   * [Container Orchestration - TBU](application-containerisation-tbu/container-orchestration-tbu.md)
   * [Cloud Platforms and Container Services - TBU](application-containerisation-tbu/cloud-platforms-and-container-services-tbu.md)
+* [Cloud Computing](cloud-computing.md)
 * [Git](git/README.md)
   * [Internals of Git \[TBD\]](git/internals-of-git-tbd.md)
   * [Commands](git/commands/README.md)
