@@ -19,7 +19,6 @@
     * [Cloud Terminology](cloud-computing/cloud-fundamentals/cloud-terminology.md)
     * [Cloud Models](cloud-computing/cloud-fundamentals/cloud-models.md)
     * [Cloud Service Models](cloud-computing/cloud-fundamentals/cloud-service-models.md)
-    * [Cloud Deployment Models](cloud-computing/cloud-fundamentals/cloud-deployment-models.md)
     * [Benefits, Challenges and Risk of Cloud Computing](cloud-computing/cloud-fundamentals/benefits-challenges-and-risk-of-cloud-computing.md)
     * [Cloud Ecosystem](cloud-computing/cloud-fundamentals/cloud-ecosystem.md)
 * [Git](git/README.md)
