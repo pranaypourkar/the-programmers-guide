@@ -52,7 +52,7 @@ The default lifecycle handles the build process and includes different phases. P
 * **deploy**: Copies the final package to the remote repository for sharing with other developers and projects.&#x20;
 * **site**: Generate project site documentation.
 
-<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="488"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="488"><figcaption></figcaption></figure>
 
 The Above standard 8 phases provide a structured framework, but plugins can introduce additional phases or customize existing ones for specific purposes. They are not technically part of the core lifecycle. Instead, they are bindings to goals of various plugins that are automatically executed during specific phases of the standard lifecycle. <mark style="color:red;">For example</mark>, the generate-sources phase is bound to the generate-sources goal of the maven-compiler-plugin. Similarly, process-resources is bound to the process-resources goal of the maven-resources-plugin.
 
@@ -101,7 +101,7 @@ This lifecycle is responsible for generating a project's site documentation. The
 * **post-site:** Executes tasks after the site is generated.&#x20;
 * **site-deploy:** Deploys the generated site documentation to the specified server.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) ( (9).png" alt="" width="317"><figcaption><p>Generated Site Reports</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (10).png" alt="" width="317"><figcaption><p>Generated Site Reports</p></figcaption></figure>
 
 {% file src="../.gitbook/assets/bookstore-reference – Project Information.pdf" %}
 Sample Site Document
@@ -156,7 +156,7 @@ We can customize the default phases and their associated behavior using Maven's 
 
 Maven plugins consist of one or more goals, which represent specific tasks or actions. Maven comes bundled with several default plugins that provide essential functionality for managing and building projects. No need to import default plugin specifically in pom.xml, if default configuration is needed for the project.
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="518"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="518"><figcaption></figcaption></figure>
 
 **maven-clean-plugin**: Provides functionality for cleaning the project by deleting generated files and directories. It is typically bound to the clean phase of the build lifecycle.
 

@@ -638,7 +638,7 @@ CONNECT BY PRIOR EMPLOYEE_ID = MANAGER_ID;
 
 Sample Output
 
-<figure><img src="../../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 2. Create sequence or generate data
 
@@ -650,7 +650,7 @@ CONNECT BY LEVEL <= 5;
 
 Sample Output
 
-<figure><img src="../../../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1).png" alt="" width="452"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="452"><figcaption></figcaption></figure>
 
 ## Null Handling Functions
 
@@ -1570,7 +1570,7 @@ GROUP BY ROLLUP (product_id, region_id);
 * Both are `1` when the row is the grand total.
 {% endhint %}
 
-<figure><img src="../../../../../.gitbook/assets/image (8) (1) (1).png" alt="" width="482"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (8) (1) (1) (1).png" alt="" width="482"><figcaption></figcaption></figure>
 
 #### Example 2
 
@@ -1589,7 +1589,7 @@ FROM
 GROUP BY ROLLUP (product_id);
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (9) (1) (1).png" alt="" width="315"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (9) (1) (1) (1).png" alt="" width="315"><figcaption></figcaption></figure>
 
 ### ROLLUP Function
 
@@ -1627,7 +1627,7 @@ FROM
 GROUP BY ROLLUP (product_id, region_id);
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (6) (1) (1).png" alt="" width="286"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (6) (1) (1) (1).png" alt="" width="286"><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 * Rows where `region_id` is `NULL` are subtotals for each `product_id`.
@@ -1650,7 +1650,7 @@ FROM
 GROUP BY ROLLUP (product_id);
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (7) (1) (1).png" alt="" width="202"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (7) (1) (1) (1).png" alt="" width="202"><figcaption></figcaption></figure>
 
 ### CUBE
 

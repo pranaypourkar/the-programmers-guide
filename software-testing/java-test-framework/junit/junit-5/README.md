@@ -130,11 +130,11 @@ org.junit.jupiter.api
 
 <div align="left">
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt="" width="322"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt="" width="322"><figcaption></figcaption></figure>
 
  
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="268"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="268"><figcaption></figcaption></figure>
 
 </div>
 
@@ -142,7 +142,7 @@ org.junit.jupiter.api
 org.junit.jupiter.engine
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt="" width="239"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="239"><figcaption></figcaption></figure>
 
 ```
 org.junit.jupiter.api.condition
