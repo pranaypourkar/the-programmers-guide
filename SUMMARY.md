@@ -17,6 +17,7 @@
 * [Cloud Computing](cloud-computing/README.md)
   * [Cloud Fundamentals](cloud-computing/cloud-fundamentals/README.md)
     * [Cloud Terminology](cloud-computing/cloud-fundamentals/cloud-terminology.md)
+    * [Core Terminology](cloud-computing/cloud-fundamentals/core-terminology.md)
     * [Cloud Models](cloud-computing/cloud-fundamentals/cloud-models.md)
     * [Cloud Service Models](cloud-computing/cloud-fundamentals/cloud-service-models.md)
     * [Benefits, Challenges and Risk of Cloud Computing](cloud-computing/cloud-fundamentals/benefits-challenges-and-risk-of-cloud-computing.md)
