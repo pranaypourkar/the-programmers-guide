@@ -35,7 +35,7 @@ keytool -genkeypair -alias mykey -keyalg RSA -keysize 2048 -validity 365 -keysto
 * `-keypass changeit`: The password for the key.
 * `-dname`: The Distinguished Name (DN) for the certificate.
 
-<figure><img src="../../../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### **Step 2: Export the Public Key**
 
@@ -55,7 +55,7 @@ keytool -exportcert -alias mykey -keystore mykeystore.jks -file publickey.cer -s
 * `-file publickey.cer`: The output file for the public key.
 * `-storepass changeit`: The password for the keystore.
 
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Step 3: **Encrypt Decrypt the 6-Digit Code**
 

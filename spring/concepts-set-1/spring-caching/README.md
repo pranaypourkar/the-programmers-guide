@@ -10,7 +10,7 @@ description: >-
 
 A cache is like a quick-access storage area located between an application and a database or another app. It keeps data that's often used so that when you need it again, it's readily available, making things faster because it doesn't have to fetch the data from the slower main storage every time.
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="258"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="258"><figcaption></figcaption></figure>
 
 ### Types of Caching
 

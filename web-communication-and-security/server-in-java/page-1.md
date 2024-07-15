@@ -34,7 +34,7 @@ Modern web servers can handle dynamic content to some extent, but their primary 
 
 ## Architecture Diagram
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 **Components**
 
