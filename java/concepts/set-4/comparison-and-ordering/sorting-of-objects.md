@@ -112,12 +112,67 @@ System.out.println(stringList);
 <figure><img src="../../../../.gitbook/assets/image (248).png" alt="" width="269"><figcaption></figcaption></figure>
 
 {% hint style="success" %}
-We can replace `Collections.sort(..)` with `givenList.sort(...)`. For example
+We can replace `Collections.sort(...)` with `givenList.sort(...)`.\
+Note that a comparator function is mandatory to pass in sort method here.
+
+For example
 
 ```
 intList.sort(Collections.reverseOrder());
 ```
 {% endhint %}
 
+### Custom Object
 
+Consider a Person class below as a custom object
+
+```java
+public class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
+```
+
+#### Ascending Order
+
+```java
+List<Person> people = new ArrayList<>();
+people.add(new Person("Alice", 30));
+people.add(new Person("Bob", 25));
+people.add(new Person("Charlie", 35));
+
+// Sorting by age in ascending order
+Collections.sort(people, Comparator.comparingInt(Person::getAge));
+people.forEach(p -> System.out.println(p.getName() + " - " + p.getAge()));
+```
+
+<figure><img src="../../../../.gitbook/assets/image (249).png" alt="" width="172"><figcaption></figcaption></figure>
+
+#### Descending Order
+
+```java
+List<Person> people = new ArrayList<>();
+people.add(new Person("Alice", 30));
+people.add(new Person("Bob", 25));
+people.add(new Person("Charlie", 35));
+
+// Sorting by age in descending order
+people.sort(Comparator.comparingInt(Person::getAge).reversed());
+people.forEach(p -> System.out.println(p.getName() + " - " + p.getAge()));
+```
+
+<figure><img src="../../../../.gitbook/assets/image (250).png" alt="" width="131"><figcaption></figcaption></figure>
 
