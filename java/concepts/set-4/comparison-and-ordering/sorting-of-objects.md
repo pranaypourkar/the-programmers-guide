@@ -228,7 +228,7 @@ stringSet.addAll(Set.of("banana", "apple", "cherry"));
 System.out.println(stringSet);
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt="" width="346"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1).png" alt="" width="346"><figcaption></figcaption></figure>
 
 ### **Custom Objects**
 
@@ -243,7 +243,7 @@ people.add(new Person("Charlie", 35));
 people.forEach(p -> System.out.println(p.getName() + " - " + p.getAge()));
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1).png" alt="" width="206"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1).png" alt="" width="206"><figcaption></figcaption></figure>
 
 ```java
 Set<Person> personSet = new HashSet<>();
@@ -257,7 +257,7 @@ personList.sort(Comparator.comparingInt(Person::getAge));
 personList.forEach(p -> System.out.println(p.getName() + " - " + p.getAge()));
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (3) (1).png" alt="" width="191"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3) (1) (1).png" alt="" width="191"><figcaption></figcaption></figure>
 
 #### **Descending Order**
 
@@ -273,7 +273,7 @@ personList.sort(Comparator.comparingInt(Person::getAge).reversed());
 personList.forEach(p -> System.out.println(p.getName() + " - " + p.getAge()));
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (4) (1).png" alt="" width="158"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (4) (1) (1).png" alt="" width="158"><figcaption></figcaption></figure>
 
 ```java
 Set<Person> people = new TreeSet<>(Comparator.comparingInt(Person::getAge).reversed());
@@ -284,7 +284,7 @@ people.add(new Person("Charlie", 35));
 people.forEach(p -> System.out.println(p.getName() + " - " + p.getAge()));
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (5) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (5) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Maps
 
@@ -306,7 +306,7 @@ for (Map.Entry<Integer, String> entry : sortedMap.entrySet())
 System.out.println("Entry Key - " + entry.getKey() + " Entry Value - " + entry.getValue());
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (6) (1).png" alt="" width="368"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (6) (1) (1).png" alt="" width="368"><figcaption></figcaption></figure>
 
 #### Ascending Order by Values
 
@@ -329,7 +329,7 @@ for (Map.Entry<Integer, String> entry : sortedMapByValue.entrySet()) {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1).png" alt="" width="281"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt="" width="281"><figcaption></figcaption></figure>
 
 #### Descending Order by Keys
 
@@ -347,7 +347,7 @@ for (Map.Entry<Integer, String> entry : sortedMap.entrySet()) {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (7) (1).png" alt="" width="296"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (7) (1) (1).png" alt="" width="296"><figcaption></figcaption></figure>
 
 #### Descending Order by Values
 
@@ -369,7 +369,7 @@ for (Map.Entry&#x3C;Integer, String> entry : sortedMapByValue.entrySet()) {
 }
 </code></pre>
 
-<figure><img src="../../../../.gitbook/assets/image.png" alt="" width="277"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (7).png" alt="" width="277"><figcaption></figcaption></figure>
 
 ### Custom Object
 
@@ -424,7 +424,7 @@ Map<String, Person> sortedByKeyMap = new TreeMap<>(personMap);
 sortedByKeyMap.forEach((key, value) -> System.out.println(key + ": " + value));
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (2).png" alt="" width="332"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1).png" alt="" width="332"><figcaption></figcaption></figure>
 
 #### Descending Order by Keys
 
@@ -441,7 +441,7 @@ sortedByKeyDescMap.putAll(personMap);
 sortedByKeyDescMap.forEach((key, value) -> System.out.println(key + ": " + value));
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (3).png" alt="" width="329"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3) (1).png" alt="" width="329"><figcaption></figcaption></figure>
 
 #### Ascending Order by Values (Person's Age)
 
@@ -463,7 +463,7 @@ for (Map.Entry<String, Person> entry : entries) {
 sortedByValueMap.forEach((key, value) -> System.out.println(key + ": " + value));
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (4).png" alt="" width="328"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (4) (1).png" alt="" width="328"><figcaption></figcaption></figure>
 
 #### Descending Order by Values (Person's Age)
 
@@ -485,7 +485,7 @@ for (Map.Entry<String, Person> entry : entries) {
 sortedByValueMap.forEach((key, value) -> System.out.println(key + ": " + value));
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (5).png" alt="" width="318"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (5) (1).png" alt="" width="318"><figcaption></figcaption></figure>
 
 ## Nested List
 
@@ -509,7 +509,7 @@ nestedList.sort(Comparator.comparingInt(list -> list.get(0)));
 nestedList.forEach(System.out::println);
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (6).png" alt="" width="128"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (6) (1).png" alt="" width="128"><figcaption></figcaption></figure>
 
 #### Descending Order
 
@@ -529,7 +529,7 @@ nestedList.sort(Comparator.comparingInt((List<Integer> list) -> list.get(0)).rev
 nestedList.forEach(System.out::println);
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (7).png" alt="" width="82"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (7) (1).png" alt="" width="82"><figcaption></figcaption></figure>
 
 ### Custom Object
 
@@ -607,23 +607,7 @@ nestedPersonList.forEach(System.out::println);
 
 #### Ascending Order
 
-
-
-
-
-#### Descending Order
-
-
-
-
-
-
-
-### Custom Object
-
-#### Ascending Order
-
-```
+```java
 Map<Integer, Map<Integer, String>> nestedMap = new HashMap<>();
 nestedMap.put(1, new HashMap<>(Map.of(3, "three", 1, "one", 2, "two")));
 nestedMap.put(2, new HashMap<>(Map.of(6, "six", 5, "five", 4, "four")));
@@ -643,9 +627,162 @@ sortedNestedMap.forEach((key, value) -> System.out.println(STR."Key: \{key} Valu
 
 #### Descending Order
 
+```java
+Map<Integer, Map<Integer, String>> nestedMap = new HashMap<>();
+nestedMap.put(1, new HashMap<>(Map.of(3, "three", 1, "one", 2, "two")));
+nestedMap.put(2, new HashMap<>(Map.of(6, "six", 5, "five", 4, "four")));
 
+// Sort inner maps in reverse order
+for (Map.Entry<Integer, Map<Integer, String>> entry : nestedMap.entrySet()) {
+    Map<Integer, String> sortedInnerMap = new TreeMap<>(Collections.reverseOrder());
+    sortedInnerMap.putAll(entry.getValue());
+    nestedMap.put(entry.getKey(), sortedInnerMap);
+}
 
+// Sort outer map in reverse order
+Map<Integer, Map<Integer, String>> sortedNestedMap = new TreeMap<>(Collections.reverseOrder());
+sortedNestedMap.putAll(nestedMap);
 
+sortedNestedMap.forEach((key, value) -> System.out.println(STR."Key: \{key} Value: \{value}"));
+```
+
+<figure><img src="../../../../.gitbook/assets/image.png" alt="" width="290"><figcaption></figcaption></figure>
+
+### Custom Object
+
+Assuming `Person` as keys in nested maps.
+
+#### Ascending Order
+
+```java
+Map<Person, Map<Person, String>> nestedPersonMap = new HashMap<>();
+nestedPersonMap.put(new Person("Group1", 50), new HashMap<>(Map.of(new Person("Alice", 30), "Alice", new Person("Bob", 25), "Bob")));
+nestedPersonMap.put(new Person("Group2", 60), new HashMap<>(Map.of(new Person("Charlie", 35), "Charlie", new Person("Dave", 28), "Dave")));
+
+// Sort inner maps by age
+for (Map.Entry<Person, Map<Person, String>> entry : nestedPersonMap.entrySet()) {
+    Map<Person, String> sortedInnerMap = new TreeMap<>(Comparator.comparingInt(Person::getAge));
+    sortedInnerMap.putAll(entry.getValue());
+    nestedPersonMap.put(entry.getKey(), sortedInnerMap);
+}
+
+// Sort outer map by age
+Map<Person, Map<Person, String>> sortedNestedPersonMap = new TreeMap<>(Comparator.comparingInt(Person::getAge));
+sortedNestedPersonMap.putAll(nestedPersonMap);
+
+sortedNestedPersonMap.forEach((key, value) -> System.out.println(STR."Key: \{key} Value: \{value}"));
+```
+
+<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+#### Descending Order
+
+```java
+Map<Person, Map<Person, String>> nestedPersonMap = new HashMap<>();
+nestedPersonMap.put(new Person("Group1", 50), new HashMap<>(Map.of(new Person("Alice", 30), "Alice", new Person("Bob", 25), "Bob")));
+nestedPersonMap.put(new Person("Group2", 60), new HashMap<>(Map.of(new Person("Charlie", 35), "Charlie", new Person("Dave", 28), "Dave")));
+
+// Sort inner maps by age in reverse order
+for (Map.Entry<Person, Map<Person, String>> entry : nestedPersonMap.entrySet()) {
+        Map<Person, String> sortedInnerMap = new TreeMap<>(Comparator.comparingInt(Person::getAge).reversed());
+        sortedInnerMap.putAll(entry.getValue());
+        nestedPersonMap.put(entry.getKey(), sortedInnerMap);
+}
+
+// Sort outer map by age in reverse order
+Map<Person, Map<Person, String>> sortedNestedPersonMap = new TreeMap<>(Comparator.comparingInt(Person::getAge).reversed());
+sortedNestedPersonMap.putAll(nestedPersonMap);
+
+sortedNestedPersonMap.forEach((key, value) -> System.out.println(STR."Key: \{key} Value: \{value}"));
+```
+
+<figure><img src="../../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+
+## Nested Set
+
+Since `Set` does not maintain order, we'll use a sorted `Set` implementation like `TreeSet`.
+
+### **Wrapper Primitives**
+
+#### **Ascending Order**
+
+```java
+Set<Set<Integer>> nestedSet = new HashSet<>();
+nestedSet.add(new HashSet<>(Arrays.asList(3, 5, 1)));
+nestedSet.add(new HashSet<>(Arrays.asList(8, 2, 6)));
+
+// Sort inner sets
+Set<Set<Integer>> sortedNestedSet = new TreeSet<>(Comparator.comparingInt(set -> set.iterator().next()));
+for (Set<Integer> set : nestedSet) {
+        sortedNestedSet.add(new TreeSet<>(set));
+}
+
+sortedNestedSet.forEach(System.out::println);
+```
+
+<figure><img src="../../../../.gitbook/assets/image (3).png" alt="" width="95"><figcaption></figcaption></figure>
+
+#### **Descending Order**
+
+```java
+Set<Set<Integer>> nestedSet = new HashSet<>();
+nestedSet.add(new HashSet<>(Arrays.asList(3, 5, 1)));
+nestedSet.add(new HashSet<>(Arrays.asList(8, 2, 6)));
+
+// Sort inner sets
+Set<Set<Integer>> sortedNestedSet = new TreeSet<>(Comparator.comparingInt((Set<Integer> set) -> set.iterator().next()).reversed());
+for (Set<Integer> set : nestedSet) {
+        sortedNestedSet.add(new TreeSet<>(set).descendingSet());
+}
+
+sortedNestedSet.forEach(System.out::println);
+```
+
+<figure><img src="../../../../.gitbook/assets/image (4).png" alt="" width="92"><figcaption></figcaption></figure>
+
+### **Custom Object**
+
+Assuming `Person` as elements in sets.
+
+#### **Ascending Order**
+
+```java
+Set<Set<Person>> nestedPersonSet = new HashSet<>();
+nestedPersonSet.add(new HashSet<>(Arrays.asList(new Person("Alice", 30), new Person("Bob", 25))));
+nestedPersonSet.add(new HashSet<>(Arrays.asList(new Person("Charlie", 35), new Person("Dave", 28))));
+
+// Sort inner sets by age
+Set<Set<Person>> sortedNestedPersonSet = new TreeSet<>(Comparator.comparingInt(set -> set.iterator().next().getAge()));
+for (Set<Person> set : nestedPersonSet) {
+        Set<Person> sortedInnerSet = new TreeSet<>(Comparator.comparingInt(Person::getAge));
+        sortedInnerSet.addAll(set);
+        sortedNestedPersonSet.add(sortedInnerSet);
+}
+
+sortedNestedPersonSet.forEach(System.out::println);
+```
+
+<figure><img src="../../../../.gitbook/assets/image (5).png" alt="" width="476"><figcaption></figcaption></figure>
+
+#### **Descending Orde**
+
+```java
+Set<Set<Person>> nestedPersonSet = new HashSet<>();
+nestedPersonSet.add(new HashSet<>(Arrays.asList(new Person("Alice", 30), new Person("Bob", 25))));
+nestedPersonSet.add(new HashSet<>(Arrays.asList(new Person("Charlie", 35), new Person("Dave", 28))));
+
+// Sort inner sets by age
+Set<Set<Person>> sortedNestedPersonSet = new TreeSet<>(Comparator.comparingInt((Set<Person> set) -> set.iterator().next().getAge()).reversed());
+for (Set<Person> set : nestedPersonSet) {
+    Set<Person> sortedInnerSet = new TreeSet<>(Comparator.comparingInt(Person::getAge).reversed());
+    sortedInnerSet.addAll(set);
+    sortedNestedPersonSet.add(sortedInnerSet);
+}
+
+sortedNestedPersonSet.forEach(System.out::println);
+```
+
+<figure><img src="../../../../.gitbook/assets/image (6).png" alt="" width="479"><figcaption></figcaption></figure>
 
 
 

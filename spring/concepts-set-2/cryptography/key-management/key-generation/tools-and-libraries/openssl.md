@@ -42,7 +42,7 @@ OpenSSL is a widely-used toolkit for implementing SSL/TLS and other cryptographi
 
 ### Openssl req options
 
-<figure><img src="../../../../../../.gitbook/assets/image (5) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 
 
