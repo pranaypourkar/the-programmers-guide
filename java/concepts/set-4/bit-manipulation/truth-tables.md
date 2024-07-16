@@ -2,7 +2,7 @@
 
 ## **Bitwise Operation**
 
-<figure><img src="../../../../.gitbook/assets/image (9).png" alt="" width="385"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (9) (1).png" alt="" width="385"><figcaption></figcaption></figure>
 
 ## Binary Arithmetic
 
