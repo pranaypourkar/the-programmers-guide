@@ -203,7 +203,7 @@ git grep -n "function"
 
 When running `git grep "search_term"`
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="395"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="395"><figcaption></figcaption></figure>
 
 ## git fsck
 

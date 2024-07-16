@@ -228,7 +228,7 @@ stringSet.addAll(Set.of("banana", "apple", "cherry"));
 System.out.println(stringSet);
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1).png" alt="" width="346"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1).png" alt="" width="346"><figcaption></figcaption></figure>
 
 ### **Custom Objects**
 
@@ -243,7 +243,7 @@ people.add(new Person("Charlie", 35));
 people.forEach(p -> System.out.println(p.getName() + " - " + p.getAge()));
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1).png" alt="" width="206"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1).png" alt="" width="206"><figcaption></figcaption></figure>
 
 ```java
 Set<Person> personSet = new HashSet<>();
@@ -257,7 +257,7 @@ personList.sort(Comparator.comparingInt(Person::getAge));
 personList.forEach(p -> System.out.println(p.getName() + " - " + p.getAge()));
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (3) (1) (1).png" alt="" width="191"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1).png" alt="" width="191"><figcaption></figcaption></figure>
 
 #### **Descending Order**
 
@@ -329,7 +329,7 @@ for (Map.Entry<Integer, String> entry : sortedMapByValue.entrySet()) {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt="" width="281"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1).png" alt="" width="281"><figcaption></figcaption></figure>
 
 #### Descending Order by Keys
 
@@ -424,7 +424,7 @@ Map<String, Person> sortedByKeyMap = new TreeMap<>(personMap);
 sortedByKeyMap.forEach((key, value) -> System.out.println(key + ": " + value));
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1).png" alt="" width="332"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1).png" alt="" width="332"><figcaption></figcaption></figure>
 
 #### Descending Order by Keys
 
@@ -441,7 +441,7 @@ sortedByKeyDescMap.putAll(personMap);
 sortedByKeyDescMap.forEach((key, value) -> System.out.println(key + ": " + value));
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (3) (1).png" alt="" width="329"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3) (1) (1).png" alt="" width="329"><figcaption></figcaption></figure>
 
 #### Ascending Order by Values (Person's Age)
 
@@ -646,7 +646,7 @@ sortedNestedMap.putAll(nestedMap);
 sortedNestedMap.forEach((key, value) -> System.out.println(STR."Key: \{key} Value: \{value}"));
 ```
 
-<figure><img src="../../../../.gitbook/assets/image.png" alt="" width="290"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3).png" alt="" width="290"><figcaption></figcaption></figure>
 
 ### Custom Object
 
@@ -673,7 +673,7 @@ sortedNestedPersonMap.putAll(nestedPersonMap);
 sortedNestedPersonMap.forEach((key, value) -> System.out.println(STR."Key: \{key} Value: \{value}"));
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 #### Descending Order
 
@@ -696,7 +696,7 @@ sortedNestedPersonMap.putAll(nestedPersonMap);
 sortedNestedPersonMap.forEach((key, value) -> System.out.println(STR."Key: \{key} Value: \{value}"));
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Nested Set
 
@@ -720,7 +720,7 @@ for (Set<Integer> set : nestedSet) {
 sortedNestedSet.forEach(System.out::println);
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (3).png" alt="" width="95"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (3) (1).png" alt="" width="95"><figcaption></figcaption></figure>
 
 #### **Descending Order**
 

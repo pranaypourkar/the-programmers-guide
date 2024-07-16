@@ -95,6 +95,94 @@ Reference: [https://redhat-scholars.github.io/openshift-starter-guides/rhs-opens
 
 <figure><img src="../../.gitbook/assets/common-environment-ocp-architecture-1.png" alt=""><figcaption></figcaption></figure>
 
+### Infrastructure Layer
+
+This layer lets us host applications on virtual servers or physical servers, as well as private or public cloud infrastructure
+
+### Service Layer
+
+This layer lets us define pods and access policies. Here are several features of the service layer:
+
+* Provides a permanent IP address and host name for your pods.
+* Lets us connect applications together
+* Enables us to use simple internal load balancing for distributing tasks across multiple application components.
+
+The service layer runs our clusters. An OpenShift cluster uses two types of nodes—**main nodes** (responsible for managing the cluster, also called master nodes) and **worker nodes** (responsible for running applications).
+
+### **Main Nodes**
+
+Main nodes are in charge of managing the OpenShift cluster, performing four key tasks:
+
+API and authentication—administration requests must go through APIs. Each request is encrypted by SSL and authenticated to ensure the cluster remains secure.
+
+Data store—the state and any information related to the environment and application is kept in data stores.
+
+Scheduler—pod placements are determined by schedulers, which take into account the current environment and utilization aspects like CPU and memory.
+
+Health and scaling—health of pods is monitored and scaled by self-healing and auto-scaling processes that take into account CPU utilization. Once a pod fails, the main node automatically restarts it. If a pod fails too often, the automated process marks it as a bad pod and stops restarting it for a temporary period of time.
+
+### **Worker Nodes**
+
+Each worker consists of pods. In OpenShift, a pod is the smallest unit you can define, deploy, and manage. A pod can host one or more containers.
+
+A container hosts applications and relevant dependencies. You can deploy containers as stateless or stateful.
+
+Containers located in the same pod share an IP address, local storage, and attached storage volumes. A pod can host a sidecar container, which you can use to add components like a service mesh, logging or monitoring tools.
+
+### Persistent Storage
+
+Containers are ephemeral and are often restarted or deleted. This is not ideal for storing data. To prevent data loss, you can use persistent storage, which lets you define stateful applications and data.
+
+### Routing Layer
+
+This layer provides external access to cluster applications from any device. The routing layer also performs auto-routing and load balancing for unhealthy pods.
+
+
+
+## Components of OpenShift
+
+One of the key components of OpenShift architecture is to manage containerized infrastructure in Kubernetes. Kubernetes is responsible for Deployment and Management of infrastructure. In any Kubernetes cluster, we can have more than one master and multiple nodes, which ensures there is no point of failure in the setup.
+
+{% hint style="info" %}
+The openshift environment consists of the following systems:
+
+\-> Master node(s)\
+\-> Worker or "application" nodes\
+\-> Dynamic Provisioned Storage
+
+OpenShift container platform is available in two package levels.
+
+**OpenShift Container Local** − This is for those developers who wish to deploy and test applications on the local machine. This package is mainly used by development teams for developing and testing applications.
+
+**OpenShift Container Lab** − This is designed for extended evaluation of application starting from development till deployment to pre-prod environment.
+
+There are **three ways** to interact with OpenShift: the command line, the web interface, and the RESTful API.
+{% endhint %}
+
+<div>
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+ 
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
+</div>
+
+### Kubernetes Master Machine Components
+
+<figure><img src="../../.gitbook/assets/image (2).png" alt="" width="308"><figcaption></figcaption></figure>
+
+#### Kubernetes Master Machine Components
+
+**Etcd** − It stores the configuration information, which can be used by each of the nodes in the cluster. It is a high availability key value store that can be distributed among multiple nodes. It should only be accessible by Kubernetes API server as it may have sensitive information. It is a distributed key value Store which is accessible to all.
+
+**API Serve**r − Kubernetes is an API server which provides all the operation on cluster using the API. API server implements an interface which means different tools and libraries can readily communicate with it. A kubeconfig is a package along with the server side tools that can be used for communication. It exposes Kubernetes API”.
+
+**Controller Manager** − This component is responsible for most of the collectors that regulate the state of the cluster and perform a task. It can be considered as a daemon which runs in a non-terminating loop and is responsible for collecting and sending information to API server. It works towards getting the shared state of the cluster and then make changes to bring the current status of the server to a desired state. The key controllers are replication controller, endpoint controller, namespace controller, and service account controller. The controller manager runs different kind of controllers to handle nodes, endpoint, etc.
+
+**Scheduler** − It is a key component of Kubernetes master. It is a service in master which is responsible for distributing the workload. It is responsible for tracking the utilization of working load on cluster nodes and then placing the workload on which resources are available and accepting the workload. In other words, this is the mechanism responsible for allocating pods to available nodes. The scheduler is responsible for workload utilization and allocating a pod to a new node.
+
 
 
 

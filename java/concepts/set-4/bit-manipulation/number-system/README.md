@@ -38,7 +38,7 @@ Number systems are methods for representing numbers in a consistent manner. They
 
 * The binary number 1011 can be expressed as
 
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1).png" alt="" width="461"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt="" width="461"><figcaption></figcaption></figure>
 
 ### **Usage:**
 
@@ -61,7 +61,7 @@ Number systems are methods for representing numbers in a consistent manner. They
 
 * The octal number 345 can be expressed as:
 
-<figure><img src="../../../../../.gitbook/assets/image (2) (1) (1) (1).png" alt="" width="400"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt="" width="400"><figcaption></figcaption></figure>
 
 ### **Usage:**
 
@@ -84,7 +84,7 @@ Number systems are methods for representing numbers in a consistent manner. They
 
 * The hexadecimal number 1A3 can be expressed as:
 
-<figure><img src="../../../../../.gitbook/assets/image (3) (1) (1) (1).png" alt="" width="458"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt="" width="458"><figcaption></figcaption></figure>
 
 ### **Usage:**
 
