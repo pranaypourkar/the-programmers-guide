@@ -784,5 +784,236 @@ sortedNestedPersonSet.forEach(System.out::println);
 
 <figure><img src="../../../../.gitbook/assets/image (6).png" alt="" width="479"><figcaption></figcaption></figure>
 
+## Nested List of Set
 
+### Wrapper Primitives
+
+#### Ascending Order
+
+```java
+List<Set<Integer>> nestedListSet = new ArrayList<>();
+nestedListSet.add(new HashSet<>(Arrays.asList(3, 5, 1)));
+nestedListSet.add(new HashSet<>(Arrays.asList(8, 2, 6)));
+
+// Sort inner sets
+List<Set<Integer>> sortedNestedListSet = new ArrayList<>();
+for (Set<Integer> set : nestedListSet) {
+        Set<Integer> sortedSet = new TreeSet<>(set);
+        sortedNestedListSet.add(sortedSet);
+}
+
+// Sort outer list based on the first element of each inner set
+sortedNestedListSet.sort(Comparator.comparingInt(set -> set.iterator().next()));
+
+// Print sorted nested list of sets
+System.out.println("Ascending Order:");
+sortedNestedListSet.forEach(System.out::println);
+```
+
+<figure><img src="../../../../.gitbook/assets/image (251).png" alt="" width="106"><figcaption></figcaption></figure>
+
+#### Descending Order
+
+```java
+List<Set<Integer>> nestedListSet = new ArrayList<>();
+nestedListSet.add(new HashSet<>(Arrays.asList(3, 5, 1)));
+nestedListSet.add(new HashSet<>(Arrays.asList(8, 2, 6)));
+
+// Sort inner sets in reverse order
+List<Set<Integer>> sortedNestedListSet = new ArrayList<>();
+for (Set<Integer> set : nestedListSet) {
+        Set<Integer> sortedSet = new TreeSet<>(Collections.reverseOrder());
+        sortedSet.addAll(set);
+        sortedNestedListSet.add(sortedSet);
+}
+
+// Sort outer list based on the first element of each inner set in reverse order
+sortedNestedListSet.sort(Comparator.comparingInt((Set<Integer> set) -> set.iterator().next()).reversed());
+
+// Print sorted nested list of sets
+System.out.println("Descending Order:");
+sortedNestedListSet.forEach(System.out::println);
+```
+
+<figure><img src="../../../../.gitbook/assets/image (252).png" alt="" width="168"><figcaption></figcaption></figure>
+
+### Custom Objects
+
+Person Class
+
+```java
+class Person {
+    private String id;
+    private String name;
+    private int age;
+
+    public Person(String id, String name, int age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{id='" + id + "', name='" + name + "', age=" + age + '}';
+    }
+}
+```
+
+#### Ascending Order
+
+<pre class="language-java"><code class="lang-java">List&#x3C;Set&#x3C;Person>> nestedListSet = new ArrayList&#x3C;>();
+nestedListSet.add(new HashSet&#x3C;>(Arrays.asList(new Person("1", "Alice", 30), new Person("2", "Bob", 25))));
+nestedListSet.add(new HashSet&#x3C;>(Arrays.asList(new Person("3", "Charlie", 35), new Person("4", "Dave", 28))));
+
+// Sort inner sets by age
+List&#x3C;Set&#x3C;Person>> sortedNestedListSet = new ArrayList&#x3C;>();
+for (Set&#x3C;Person> set : nestedListSet) {
+<strong>        Set&#x3C;Person> sortedSet = new TreeSet&#x3C;>(Comparator.comparingInt(Person::getAge));
+</strong>        sortedSet.addAll(set);
+        sortedNestedListSet.add(sortedSet);
+}
+
+// Sort outer list based on the first person's age in each inner set
+sortedNestedListSet.sort(Comparator.comparingInt(set -> set.iterator().next().getAge()));
+
+// Print sorted nested list of sets
+System.out.println("Ascending Order by Age:");
+sortedNestedListSet.forEach(System.out::println);
+</code></pre>
+
+<figure><img src="../../../../.gitbook/assets/image (253).png" alt=""><figcaption></figcaption></figure>
+
+#### Descending Order
+
+```java
+List<Set<Person>> nestedListSet = new ArrayList<>();
+nestedListSet.add(new HashSet<>(Arrays.asList(new Person("1", "Alice", 30), new Person("2", "Bob", 25))));
+nestedListSet.add(new HashSet<>(Arrays.asList(new Person("3", "Charlie", 35), new Person("4", "Dave", 28))));
+
+// Sort inner sets by age in reverse order
+List<Set<Person>> sortedNestedListSet = new ArrayList<>();
+for (Set<Person> set : nestedListSet) {
+        Set<Person> sortedSet = new TreeSet<>(Comparator.comparingInt(Person::getAge).reversed());
+        sortedSet.addAll(set);
+        sortedNestedListSet.add(sortedSet);
+}
+
+// Sort outer list based on the first person's age in each inner set in reverse order
+sortedNestedListSet.sort(Comparator.comparingInt((Set<Person> set) -> set.iterator().next().getAge()).reversed());
+
+// Print sorted nested list of sets
+System.out.println("Descending Order by Age:");
+sortedNestedListSet.forEach(System.out::println);
+```
+
+<figure><img src="../../../../.gitbook/assets/image (254).png" alt="" width="563"><figcaption></figcaption></figure>
+
+## Nested List of Map
+
+### Wrapper Primitives
+
+#### Ascending Order
+
+```java
+List<Map<Integer, String>> nestedListMap = new ArrayList<>();
+nestedListMap.add(new HashMap<>(Map.of(3, "three", 1, "one", 2, "two")));
+nestedListMap.add(new HashMap<>(Map.of(6, "six", 5, "five", 4, "four")));
+
+// Sort inner maps
+List<Map<Integer, String>> sortedNestedListMap = new ArrayList<>();
+for (Map<Integer, String> map : nestedListMap) {
+        Map<Integer, String> sortedMap = new TreeMap<>(map);
+        sortedNestedListMap.add(sortedMap);
+}
+
+// Sort outer list based on the first key in each inner map
+sortedNestedListMap.sort(Comparator.comparingInt(map -> map.keySet().iterator().next()));
+
+// Print sorted nested list of maps
+System.out.println("Ascending Order:");
+sortedNestedListMap.forEach(System.out::println);
+```
+
+<figure><img src="../../../../.gitbook/assets/image (255).png" alt="" width="221"><figcaption></figcaption></figure>
+
+#### Descending Order
+
+```java
+List<Map<Integer, String>> nestedListMap = new ArrayList<>();
+nestedListMap.add(new HashMap<>(Map.of(3, "three", 1, "one", 2, "two")));
+nestedListMap.add(new HashMap<>(Map.of(6, "six", 5, "five", 4, "four")));
+
+// Sort inner maps in reverse order
+List<Map<Integer, String>> sortedNestedListMap = new ArrayList<>();
+for (Map<Integer, String> map : nestedListMap) {
+        Map<Integer, String> sortedMap = new TreeMap<>(Collections.reverseOrder());
+        sortedMap.putAll(map);
+        sortedNestedListMap.add(sortedMap);
+}
+
+// Sort outer list based on the first key in each inner map in reverse order
+sortedNestedListMap.sort(Comparator.comparingInt((Map<Integer, String> map) -> map.keySet().iterator().next()).reversed());
+
+// Print sorted nested list of maps
+System.out.println("Descending Order:");
+sortedNestedListMap.forEach(System.out::println);
+```
+
+<figure><img src="../../../../.gitbook/assets/image (256).png" alt="" width="226"><figcaption></figcaption></figure>
+
+### Custom Object
+
+#### Ascending Order
+
+```java
+List<Map<String, Person>> nestedListMap = new ArrayList<>();
+nestedListMap.add(new HashMap<>(Map.of("2", new Person("2", "Bob", 25), "1", new Person("1", "Alice", 30))));
+nestedListMap.add(new HashMap<>(Map.of("4", new Person("4", "Dave", 28), "3", new Person("3", "Charlie", 35))));
+
+// Sort inner maps by key
+List<Map<String, Person>> sortedNestedListMap = new ArrayList<>();
+for (Map<String, Person> map : nestedListMap) {
+        Map<String, Person> sortedMap = new TreeMap<>(map);
+        sortedNestedListMap.add(sortedMap);
+}
+
+// Sort outer list based on the first key in each inner map
+sortedNestedListMap.sort(Comparator.comparing(map -> map.keySet().iterator().next()));
+
+// Print sorted nested list of maps
+System.out.println("Ascending Order by Key:");
+sortedNestedListMap.forEach(System.out::println);
+```
+
+<figure><img src="../../../../.gitbook/assets/image (257).png" alt="" width="563"><figcaption></figcaption></figure>
+
+#### Descending Order
+
+```java
+List<Map<String, Person>> nestedListMap = new ArrayList<>();
+nestedListMap.add(new HashMap<>(Map.of("2", new Person("2", "Bob", 25), "1", new Person("1", "Alice", 30))));
+nestedListMap.add(new HashMap<>(Map.of("4", new Person("4", "Dave", 28), "3", new Person("3", "Charlie", 35))));
+
+// Sort inner maps by key in reverse order
+List<Map<String, Person>> sortedNestedListMap = new ArrayList<>();
+for (Map<String, Person> map : nestedListMap) {
+        Map<String, Person> sortedMap = new TreeMap<>(Collections.reverseOrder());
+        sortedMap.putAll(map);
+        sortedNestedListMap.add(sortedMap);
+}
+
+// Sort outer list based on the first key in each inner map in reverse order
+sortedNestedListMap.sort(Comparator.comparing((Map<String, Person> map) -> map.keySet().iterator().next()).reversed());
+
+// Print sorted nested list of maps
+System.out.println("Descending Order by Key:");
+sortedNestedListMap.forEach(System.out::println);
+```
+
+<figure><img src="../../../../.gitbook/assets/image (258).png" alt="" width="563"><figcaption></figcaption></figure>
 
