@@ -28,7 +28,7 @@ Kubernetes is an open-source container orchestration platform, with several vend
 
 #### Workflow and configuration
 
-OpenShift uses Kubernetes as its foundation, so it shares the same core principles. To deploy containerized applications across server clusters, the user writes configuration files that define how the applications should deploy. Both Kubernetes and OpenShift support the YAML and JSON configuration languages and offer load-balancing and routing capabilities. You can run either platform on-premises or in the public cloud.
+OpenShift uses Kubernetes as its foundation, so it shares the same core principles. To deploy containerized applications across server clusters, the user writes configuration files that define how the applications should deploy. Both Kubernetes and OpenShift support the YAML and JSON configuration languages and offer load-balancing and routing capabilities. We can run either platform on-premises or in the public cloud.
 
 #### APIs and integrations
 
@@ -67,19 +67,19 @@ OpenShift Container Platform uses standard Docker images to create containers. I
 
 ### 3. Container Image Registries
 
-An image registry is necessary to manage container images and allow OpenShift to store and retrieve images when provisioning resources. You can use either Docker Hub, any other registry, or the OpenShift Container Platform’s internal image registry.
+An image registry is necessary to manage container images and allow OpenShift to store and retrieve images when provisioning resources. We can use either Docker Hub, any other registry, or the OpenShift Container Platform’s internal image registry.
 
 ### 4. Pods
 
-In Kubernetes, a pod is the smallest operating unit of a cluster, letting you deploy one or more containers on a host machine, and scale out to additional machines as needed. Pods are roughly equivalent to machine instances, with each pod having an internal IP address and its own port space—the containers in a pod share networking and local storage.OpenShift Container Platform doesn’t support changes to pod definitions while they are running. Changes are implemented by terminating a pod and recreating a modified version. Pods are expendable and don’t maintain state when reconstituted, so they should be managed by a higher-level controller and not by users.
+In Kubernetes, a pod is the smallest operating unit of a cluster, letting us deploy one or more containers on a host machine, and scale out to additional machines as needed. Pods are roughly equivalent to machine instances, with each pod having an internal IP address and its own port space—the containers in a pod share networking and local storage. OpenShift Container Platform doesn’t support changes to pod definitions while they are running. Changes are implemented by terminating a pod and recreating a modified version. Pods are expendable and don’t maintain state when reconstituted, so they should be managed by a higher-level controller and not by users.
 
 ### 5. Services
 
-Kubernetes services act as internal load balancers—they identify sets of replicated pods and help proxy their connections. You can add or remove pods from a service, and the service always remains available, allowing other objects to refer to the service’s consistent address. Default service clusterIP addresses allow pods to access each other.
+Kubernetes services act as internal load balancers—they identify sets of replicated pods and help proxy their connections. We can add or remove pods from a service, and the service always remains available, allowing other objects to refer to the service’s consistent address. Default service clusterIP addresses allow pods to access each other.
 
 ### 6. Users
 
-Users are the agents that interact with the OpenShift Container Platform—user objects can be given role-based permissions, either individually or as groups. Users must authenticate to access the platform; unauthenticated API requests are treated as requests by an anonymous user. Roles and policies determine what each user is authorized to do.
+Users are the agents that interact with the OpenShift Container Platform - user objects can be given role-based permissions, either individually or as groups. Users must authenticate to access the platform; unauthenticated API requests are treated as requests by an anonymous user. Roles and policies determine what each user is authorized to do.
 
 ### 7. Builds
 
@@ -87,7 +87,7 @@ Builds are the process of creating an object based on input parameters, usually 
 
 ### 8. Image Streams
 
-Image streams and their associated tags provide abstractions for referencing container images in OpenShift Container Platform. They do not contain image data, but rather present a visualization of related images and changes made to them. You can set up builds and deployments that respond to image stream notifications
+Image streams and their associated tags provide abstractions for referencing container images in OpenShift Container Platform. They do not contain image data, but rather present a visualization of related images and changes made to them. We can set up builds and deployments that respond to image stream notifications
 
 ## OCP Architecture
 
@@ -104,7 +104,7 @@ This layer lets us host applications on virtual servers or physical servers, as 
 This layer lets us define pods and access policies. Here are several features of the service layer:
 
 * Provides a permanent IP address and host name for your pods.
-* Lets us connect applications together
+* Lets connect applications together
 * Enables us to use simple internal load balancing for distributing tasks across multiple application components.
 
 The service layer runs our clusters. An OpenShift cluster uses two types of nodes—**main nodes** (responsible for managing the cluster, also called master nodes) and **worker nodes** (responsible for running applications).
@@ -125,13 +125,13 @@ Health and scaling—health of pods is monitored and scaled by self-healing and 
 
 Each worker consists of pods. In OpenShift, a pod is the smallest unit you can define, deploy, and manage. A pod can host one or more containers.
 
-A container hosts applications and relevant dependencies. You can deploy containers as stateless or stateful.
+A container hosts applications and relevant dependencies. We can deploy containers as stateless or stateful.
 
-Containers located in the same pod share an IP address, local storage, and attached storage volumes. A pod can host a sidecar container, which you can use to add components like a service mesh, logging or monitoring tools.
+Containers located in the same pod share an IP address, local storage, and attached storage volumes. A pod can host a sidecar container, which we can use to add components like a service mesh, logging or monitoring tools.
 
 ### Persistent Storage
 
-Containers are ephemeral and are often restarted or deleted. This is not ideal for storing data. To prevent data loss, you can use persistent storage, which lets you define stateful applications and data.
+Containers are ephemeral and are often restarted or deleted. This is not ideal for storing data. To prevent data loss, we can use persistent storage, which lets define stateful applications and data.
 
 ### Routing Layer
 
@@ -216,10 +216,10 @@ Cluster Subdomain: apps.sandbox-m2.ll9k.p1.openshiftapps.com
 Kubernetes defines different types of workloads that are appropriate for different kinds of applications. To determine the appropriate workload for your application, consider if the application is:
 
 * Meant to run to completion and be done. An example is an application that starts up to produce a report and exits when the report is complete. The application might not run again then for a month. Suitable OpenShift Container Platform objects for these types of applications include Job and CronJob objects.
-* Expected to run continuously. For long-running applications, you can write a deployment.
-* Required to be highly available. If your application requires high availability, then you want to size your deployment to have more than one instance. A Deployment or DeploymentConfig object can incorporate a replica set for that type of application. With replica sets, pods run across multiple nodes to make sure the application is always available, even if a worker goes down.
-* Need to run on every node. Some types of Kubernetes applications are intended to run in the cluster itself on every master or worker node. DNS and monitoring applications are examples of applications that need to run continuously on every node. You can run this type of application as a daemon set. You can also run a daemon set on a subset of nodes, based on node labels.
-* Require life-cycle management. When you want to hand off your application so that others can use it, consider creating an Operator. Operators let you build in intelligence, so it can handle things like backups and upgrades automatically. Coupled with the Operator Lifecycle Manager (OLM), cluster managers can expose Operators to selected namespaces so that users in the cluster can run them.
+* Expected to run continuously. For long-running applications, we can write a deployment.
+* Required to be highly available. If our application requires high availability, then we want to size our deployment to have more than one instance. A Deployment or DeploymentConfig object can incorporate a replica set for that type of application. With replica sets, pods run across multiple nodes to make sure the application is always available, even if a worker goes down.
+* Need to run on every node. Some types of Kubernetes applications are intended to run in the cluster itself on every master or worker node. DNS and monitoring applications are examples of applications that need to run continuously on every node. We can run this type of application as a daemon set. We can also run a daemon set on a subset of nodes, based on node labels.
+* Require life-cycle management. When we want to hand off our application so that others can use it, consider creating an Operator. Operators let us build in intelligence, so it can handle things like backups and upgrades automatically. Coupled with the Operator Lifecycle Manager (OLM), cluster managers can expose Operators to selected namespaces so that users in the cluster can run them.
 * Have identity or numbering requirements. An application might have identity requirements or numbering requirements. For example, you might be required to run exactly three instances of the application and to name the instances 0, 1, and 2. A stateful set is suitable for this application. Stateful sets are most useful for applications that require independent storage, such as databases and zookeeper clusters.
 
 ### Applying the manifest
