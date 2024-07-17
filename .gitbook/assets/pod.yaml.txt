@@ -1,0 +1,166 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    k8s.v1.cni.cncf.io/network-status: |-
+      [{
+          "name": "openshift-sdn",
+          "interface": "eth0",
+          "ips": [
+              "10.130.6.72"
+          ],
+          "default": true,
+          "dns": {}
+      }]
+    k8s.v1.cni.cncf.io/networks-status: |-
+      [{
+          "name": "openshift-sdn",
+          "interface": "eth0",
+          "ips": [
+              "10.130.6.72"
+          ],
+          "default": true,
+          "dns": {}
+      }]
+    kubernetes.io/limit-ranger: 'LimitRanger plugin set: cpu, memory request for container
+      parksmap; cpu, memory limit for container parksmap'
+    openshift.io/generated-by: OpenShiftWebConsole
+    openshift.io/scc: restricted
+  creationTimestamp: "2022-01-11T18:19:05Z"
+  generateName: parksmap-56899576dd-
+  labels:
+    app: parksmap
+    component: parksmap
+    deploymentconfig: parksmap
+    pod-template-hash: 56899576dd
+    role: frontend
+  name: parksmap-56899576dd-w9p8f
+  namespace: pranaypourkar17-dev
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: parksmap-56899576dd
+    uid: 490b6082-98c7-4197-9ece-40ac8f3d6f74
+  resourceVersion: "529226810"
+  uid: 28dfb6e0-bf2d-4f8d-9437-9437c3b534f3
+spec:
+  containers:
+  - image: image-registry.openshift-image-registry.svc:5000/pranaypourkar17-dev/parksmap@sha256:89d1e324846cb431df9039e1a7fd0ed2ba0c51aafbae73f2abd70a83d5fa173b
+    imagePullPolicy: Always
+    name: parksmap
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    resources:
+      limits:
+        cpu: "1"
+        memory: 750Mi
+      requests:
+        cpu: 10m
+        memory: 64Mi
+    securityContext:
+      capabilities:
+        drop:
+        - KILL
+        - MKNOD
+        - SETGID
+        - SETUID
+      runAsUser: 1008370000
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-vdfpq
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  imagePullSecrets:
+  - name: default-dockercfg-b25cd
+  nodeName: ip-10-0-196-71.us-east-2.compute.internal
+  preemptionPolicy: PreemptLowerPriority
+  priority: -3
+  priorityClassName: sandbox-users-pods
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext:
+    fsGroup: 1008370000
+    seLinuxOptions:
+      level: s0:c91,c90
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoSchedule
+    key: node.kubernetes.io/memory-pressure
+    operator: Exists
+  volumes:
+  - name: kube-api-access-vdfpq
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+      - configMap:
+          items:
+          - key: service-ca.crt
+            path: service-ca.crt
+          name: openshift-service-ca.crt
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2022-01-11T18:19:05Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2022-01-11T18:19:12Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2022-01-11T18:19:12Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2022-01-11T18:19:05Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: cri-o://8b8acee80dd21524ab4ecd0209f178ad939d40ee19f09dd61ba999812e5d3aeb
+    image: image-registry.openshift-image-registry.svc:5000/pranaypourkar17-dev/parksmap@sha256:89d1e324846cb431df9039e1a7fd0ed2ba0c51aafbae73f2abd70a83d5fa173b
+    imageID: image-registry.openshift-image-registry.svc:5000/alxmkh-dev/parksmap@sha256:89d1e324846cb431df9039e1a7fd0ed2ba0c51aafbae73f2abd70a83d5fa173b
+    lastState: {}
+    name: parksmap
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2022-01-11T18:19:11Z"
+  hostIP: 10.0.196.71
+  phase: Running
+  podIP: 10.130.6.72
+  podIPs:
+  - ip: 10.130.6.72
+  qosClass: Burstable
+  startTime: "2022-01-11T18:19:05Z"

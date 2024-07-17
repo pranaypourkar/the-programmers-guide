@@ -141,6 +141,16 @@ This layer provides external access to cluster applications from any device. The
 
 ## Components of OpenShift
 
+<div>
+
+<figure><img src="../../.gitbook/assets/test1.jpg" alt=""><figcaption></figcaption></figure>
+
+ 
+
+<figure><img src="../../.gitbook/assets/test2.jpg" alt=""><figcaption></figcaption></figure>
+
+</div>
+
 One of the key components of OpenShift architecture is to manage containerized infrastructure in Kubernetes. Kubernetes is responsible for Deployment and Management of infrastructure. In any Kubernetes cluster, we can have more than one master and multiple nodes, which ensures there is no point of failure in the setup.
 
 {% hint style="info" %}
@@ -159,17 +169,7 @@ OpenShift container platform is available in two package levels.
 There are **three ways** to interact with OpenShift: the command line, the web interface, and the RESTful API.
 {% endhint %}
 
-<div>
-
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
-
- 
-
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
-
-</div>
-
-### Kubernetes Master Machine Components
+### Kubernetes  Components
 
 <figure><img src="../../.gitbook/assets/image (2).png" alt="" width="308"><figcaption></figcaption></figure>
 
@@ -183,7 +183,220 @@ There are **three ways** to interact with OpenShift: the command line, the web i
 
 **Scheduler** − It is a key component of Kubernetes master. It is a service in master which is responsible for distributing the workload. It is responsible for tracking the utilization of working load on cluster nodes and then placing the workload on which resources are available and accepting the workload. In other words, this is the mechanism responsible for allocating pods to available nodes. The scheduler is responsible for workload utilization and allocating a pod to a new node.
 
+#### Kubernetes Node Components
+
+Following are the key components of the Node server, which are necessary to communicate with the Kubernetes master.
+
+**Docker** − The first requirement of each node is Docker which helps in running the encapsulated application containers in a relatively isolated but lightweight operating environment.
+
+**Kubelet Service** − This is a small service in each node, which is responsible for relaying information to and from the control plane service. It interacts with etcd store to read the configuration details and Wright values. This communicates with the master component to receive commands and work. The kubelet process then assumes responsibility for maintaining the state of work and the node server. It manages network rules, port forwarding, etc.
+
+**Kubernetes Proxy Service** − This is a proxy service which runs on each node and helps in making the services available to the external host. It helps in forwarding the request to correct containers. Kubernetes Proxy Service is capable of carrying out primitive load balancing. It makes sure that the networking environment is predictable and accessible but at the same time it is isolated as well. It manages pods on node, volumes, secrets, creating new containers health checkup, etc.
+
+### Integrated OpenShift Container Registry
+
+OpenShift container registry is an inbuilt storage unit of Red Hat, which is used for storing Docker images. With the latest integrated version of OpenShift, it has come up with a user interface to view images in OpenShift internal storage. These registries are capable of holding images with specified tags, which are later used to build containers out of it.
+
+## Developer Sandbox
+
+Developer Sandbox for Red Hat OpenShift is a free Kubernetes cloud environment in a shared, multi-tenant OpenShift cluster that is pre-configured with a set of developer tools. The Developer Sandbox is active for 30 days and renewable once it expires
+
+<figure><img src="../../.gitbook/assets/test3 (2).png" alt="" width="530"><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/test4 (1).png" alt=""><figcaption></figcaption></figure>
+
+Sample Console url: [https://console-openshift-console.apps.sandbox-m2.ll9k.p1.openshiftapps.com/project-details/ns/pranaypourkar17-dev](https://console-openshift-console.apps.sandbox-m2.ll9k.p1.openshiftapps.com/project-details/ns/pranaypourkar17-dev)
+
+Cluster Subdomain: apps.sandbox-m2.ll9k.p1.openshiftapps.com
+
+## Notes
+
+### Types of workloads
+
+Kubernetes defines different types of workloads that are appropriate for different kinds of applications. To determine the appropriate workload for your application, consider if the application is:
+
+* Meant to run to completion and be done. An example is an application that starts up to produce a report and exits when the report is complete. The application might not run again then for a month. Suitable OpenShift Container Platform objects for these types of applications include Job and CronJob objects.
+* Expected to run continuously. For long-running applications, you can write a deployment.
+* Required to be highly available. If your application requires high availability, then you want to size your deployment to have more than one instance. A Deployment or DeploymentConfig object can incorporate a replica set for that type of application. With replica sets, pods run across multiple nodes to make sure the application is always available, even if a worker goes down.
+* Need to run on every node. Some types of Kubernetes applications are intended to run in the cluster itself on every master or worker node. DNS and monitoring applications are examples of applications that need to run continuously on every node. You can run this type of application as a daemon set. You can also run a daemon set on a subset of nodes, based on node labels.
+* Require life-cycle management. When you want to hand off your application so that others can use it, consider creating an Operator. Operators let you build in intelligence, so it can handle things like backups and upgrades automatically. Coupled with the Operator Lifecycle Manager (OLM), cluster managers can expose Operators to selected namespaces so that users in the cluster can run them.
+* Have identity or numbering requirements. An application might have identity requirements or numbering requirements. For example, you might be required to run exactly three instances of the application and to name the instances 0, 1, and 2. A stateful set is suitable for this application. Stateful sets are most useful for applications that require independent storage, such as databases and zookeeper clusters.
+
+### Applying the manifest
+
+Kubernetes manifests let us create a more complete picture of the components that make up our Kubernetes applications. We write these manifests as YAML files and deploy them by applying them to the cluster, for example, by running the `oc apply` command.
+
+We have some sort of CI pipeline that builds the images and pushes them to a registry. In particular, a GitOps pipeline integrates your container development with the Git repositories that we use to store the software that is required to build your applications.
+
+The workflow to this point might look like:
+
+* Day 1: We write some YAML. We then run the oc apply command to apply that YAML to the cluster and test that it works.
+* Day 2: We put our YAML container configuration file into our own Git repository. From there, people who want to install that app, or help improve it, can pull down the YAML and apply it to their cluster to run the app.
+* Day 3: Consider writing an Operator for our application.
+
+### Image Pull Policy
+
+<figure><img src="../../.gitbook/assets/img5 (1).png" alt=""><figcaption></figcaption></figure>
+
+### Base image options
+
+Red Hat provides a new set of base images referred to as Red Hat Universal Base Images (UBI). These images are based on Red Hat Enterprise Linux and are similar to base images that Red Hat has offered in the past, with one major difference: they are freely redistributable without a Red Hat subscription. As a result, we can build our application on UBI images without having to worry about how they are shared or the need to create different images for different environments.
+
+### Registry options
+
+Container registries are where we store container images so we can share them with others and make them available to the platform where they ultimately run. We can select large, public container registries that offer free accounts or a premium version that offer more storage and special features. To get Red Hat images and certified partner images, we can draw from the Red Hat Registry. The Red Hat Registry is represented by two locations: registry.access.redhat.com, which is unauthenticated and deprecated, and registry.redhat.io, which requires authentication.
+
+Large, public registries include Docker Hub and Quay.io. The Quay.io registry is owned and managed by Red Hat. Many of the components used in OpenShift Container Platform are stored in Quay.io, including container images and the Operators that are used to deploy OpenShift Container Platform itself. Quay.io also offers the means of storing other types of content, including Helm charts.
+
+If we want our own, private container registry, OpenShift Container Platform itself includes a private container registry that is installed with OpenShift Container Platform and runs on its cluster. Red Hat also offers a private version of the Quay.io registry called Red Hat Quay. Red Hat Quay includes geo replication, Git build triggers, Clair image scanning, and many other features.
+
+#### Diagram
+
+\-> Process of building and pushing an image
+
+<figure><img src="../../.gitbook/assets/img6.png" alt=""><figcaption></figcaption></figure>
+
+## &#x20;Example: Parksmap Architecture
+
+ParksMap is a geo-spatial data visualization application built using the microservices architecture and is composed of a set of services which are developed using different programming languages and frameworks. The main service is a web application which has a server-side component in charge of aggregating the geo-spatial APIs provided by multiple independent backend services and a client-side component in JavaScript that is responsible for visualizing the geo-spatial data on the map. The client-side component which runs in our browser communicates with the server-side via WebSockets protocol in order to update the map in real-time.
+
+There will be a set of independent backend services deployed that will provide different mapping and geo-spatial information. These backends will be dynamically discovered by using service discovery mechanisms provided by OpenShift which will be discussed in more details in the following labs.
+
+### Deploy the web component&#x20;
+
+Deploy the web component of the ParksMap application which is also called parksmap
+
+<figure><img src="../../.gitbook/assets/img2.png" alt="" width="344"><figcaption></figcaption></figure>
+
+1. Click on + and select container images
+
+<figure><img src="../../.gitbook/assets/img3.png" alt="" width="563"><figcaption></figcaption></figure>
+
+2. Enter the below sample details
+
+Container Registry Image: quay.io/openshiftroadshow/parksmap:latest
+
+The Quay.io registry is owned and managed by Red Hat.
+
+Source code: https://github.com/openshift-roadshow/parksmap-web
+
+<figure><img src="../../.gitbook/assets/img4.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/img5 (2).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/img6 (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/img7.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/img8.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/img9.png" alt="" width="563"><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/img10.png" alt="" width="563"><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/img11.png" alt="" width="533"><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/img12.png" alt="" width="398"><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/img13.png" alt="" width="392"><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/img14.png" alt="" width="563"><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/img15.png" alt=""><figcaption></figcaption></figure>
+
+## CLI (Command Line Interface)
+
+### Copy Login command
+
+<figure><img src="../../.gitbook/assets/img1.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/img2 (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/img3 (1).png" alt=""><figcaption></figcaption></figure>
+
+### Change project
+
+oc project pranaypourkar17-dev
+
+<figure><img src="../../.gitbook/assets/img4 (1).png" alt=""><figcaption></figcaption></figure>
+
+### Get All Pods
+
+oc get pods
+
+<figure><img src="../../.gitbook/assets/img5 (3).png" alt=""><figcaption></figcaption></figure>
+
+### Get specific Pod details
+
+oc get pod \<pod\_name> -o yaml
+
+oc get pod parksmap-56899576dd-w9p8f -o yaml
+
+<figure><img src="../../.gitbook/assets/img6 (2).png" alt=""><figcaption></figcaption></figure>
+
+{% file src="../../.gitbook/assets/pod.yaml.txt" %}
+
+### Describe a pod
+
+oc describe pod \<pod name>
+
+oc describe pod parksmap-56899576dd-w9p8f
+
+<figure><img src="../../.gitbook/assets/img7 (1).png" alt=""><figcaption></figcaption></figure>
+
+### View All the Services
+
+oc get services
+
+<figure><img src="../../.gitbook/assets/img8 (1).png" alt=""><figcaption></figcaption></figure>
+
+Here, We have a Service named parksmap with an IP/Port combination of 172.30.35.117/8080TCP. IP address may be different, as each Service receives a unique IP address upon creation. Service IPs are fixed and never change for the life of the Service.
+
+### View specific Service details
+
+oc get service \<service name> -o yaml
+
+oc get service parksmap -o yaml
+
+<figure><img src="../../.gitbook/assets/img9 (1).png" alt=""><figcaption></figcaption></figure>
+
+### Describe a service
+
+oc describe service \<service name>
+
+oc describe service parksmap
+
+<figure><img src="../../.gitbook/assets/img10 (1).png" alt=""><figcaption></figcaption></figure>
+
+Note: Only one endpoint is listed. That is because there is only one Pod currently running
 
 
 
+## Frequently Used Terms
+
+### Image
+
+Kubernetes (Docker) images are the key building blocks of Containerized Infrastructure. As of now, Kubernetes only supports Docker images. Each container in a pod has its Docker image running inside it. When configuring a pod, the image property in the configuration file has the same syntax as the Docker command.
+
+### Container
+
+They are the ones which are created after the image is deployed on a Kubernetes cluster node.
+
+### Node&#x20;
+
+A node is a working machine in Kubernetes cluster, which is also known as minion for master. They are working units which can a physical, VM, or a cloud instance.
+
+### Pod
+
+A pod is a collection of containers and its storage inside a node of a Kubernetes cluster. It is possible to create a pod with multiple containers inside it. For example, keeping the database container and web server container inside the pod
+
+A Node can have multiple pods, and the Kubernetes control plane automatically handles scheduling the pods across the Nodes in the cluster. The control plane's automatic scheduling takes into account the available resources on each Node
+
+### oc - OpenShift Command Line Interface (CLI)
+
+With the OpenShift command line interface, we can create applications and manage OpenShift projects from a terminal.
+
+### Helm 3
+
+Helm 3 is a package manager for Kubernetes applications which enables defining, installing, and upgrading applications packaged as Helm Charts.
 
