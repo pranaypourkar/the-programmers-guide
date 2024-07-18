@@ -91,9 +91,247 @@ MapStruct provides a set of core features that allow to map properties between d
 * **Handling Null Values**: By default, MapStruct maps null values, but we can customize this behavior.
 * **Customizing Mappings with `@Mapping`**: This annotation allows to define how individual fields are mapped.
 
+## Data type conversions <a href="#datatype-conversions" id="datatype-conversions"></a>
+
+It is possible to have mapped attribute with the same type or different in the source and target objects. We need to understand how MapStruct deals with such data type conversions.
+
+### Implicit type conversions <a href="#implicit-type-conversions" id="implicit-type-conversions"></a>
+
+Mapstruct applies the following conversion automatically.
+
+* Between all Java primitive data types and their corresponding wrapper types, e.g. between `int` and `Integer`, `boolean` and `Boolean` etc. When converting a wrapper type into the corresponding primitive type a `null` check will be performed.
+* Between all Java primitive number types and the wrapper types, e.g. between `int` and `long` or `byte` and `Integer`
+
+{% hint style="info" %}
+The `Mapper` and `MapperConfig` annotations have a method `typeConversionPolicy` to control warnings / errors. Due to backward compatibility reasons the default value is `ReportingPolicy.IGNORE`.
+{% endhint %}
+
+* Between all Java primitive types (including their wrappers) and `String`, e.g. between `int` and `String` or `Boolean`and `String`. A format string as understood by `java.text.DecimalFormat` can be specified.
+
+```java
+@Mapper
+public interface CarMapper {
+
+    @Mapping(source = "price", numberFormat = "$#.00")
+    CarDto carToCarDto(Car car);
+
+    @IterableMapping(numberFormat = "$#.00")
+    List<String> prices(List<Integer> prices);
+}
+```
+
+* Between `enum` types and `String`.
+* Between big number types (`java.math.BigInteger`, `java.math.BigDecimal`) and Java primitive types (including their wrappers) as well as String. A format string `java.text.DecimalFormat` can be specified.
+
+```
+@Mapper
+public interface EventMapper {
+
+    @Mapping(source = "fee", numberFormat = "#.##E0")
+    EventDto eventToEventDto(Event event);
+
+}
+```
+
+* Between `JAXBElement<T>` and `T`, `List<JAXBElement<T>>` and `List<T>`
+* Between `java.util.Calendar`/`java.util.Date` and JAXB’s `XMLGregorianCalendar`
+* Between `java.util.Date`/`XMLGregorianCalendar` and `String`. A format string as understood by `java.text.SimpleDateFormat` can be specified via the `dateFormat` option
+
+```
+@Mapper
+public interface EventMapper {
+
+    @Mapping(source = "paymenDate", dateFormat = "dd.MM.yyyy")
+    EventDto eventToEventDto(Event event);
+
+    @IterableMapping(dateFormat = "dd.MM.yyyy")
+    List<String> stringListToDateList(List<Date> dates);
+}
+```
+
+* Between Jodas `org.joda.time.DateTime`, `org.joda.time.LocalDateTime`, `org.joda.time.LocalDate`, `org.joda.time.LocalTime` and `String`. A format string as understood by `java.text.SimpleDateFormat` can be specified via the `dateFormat` option (see above).
+* Between Jodas `org.joda.time.DateTime` and  `javax.xml.datatype.XMLGregorianCalendar`, `java.util.Calendar`.
+* Between Jodas `org.joda.time.LocalDateTime`, `org.joda.time.LocalDate` and `javax.xml.datatype.XMLGregorianCalendar`, `java.util.Date`.
+* Between `java.time.LocalDate`, `java.time.LocalDateTime` and `javax.xml.datatype.XMLGregorianCalendar`.
+* Between `java.time.ZonedDateTime`, `java.time.LocalDateTime`, `java.time.LocalDate`, `java.time.LocalTime`from Java 8 Date-Time package and `String`. A format string as understood by `java.text.SimpleDateFormat` can be specified via the `dateFormat` option (see above).
+* Between `java.time.Instant`, `java.time.Duration`, `java.time.Period` from Java 8 Date-Time package and `String` using the `parse` method in each class to map from `String` and using `toString` to map into `String`.
+* Between `java.time.ZonedDateTime` from Java 8 Date-Time package and `java.util.Date` where, when mapping a `ZonedDateTime` from a given `Date`, the system default timezone is used.
+* Between `java.time.LocalDateTime` from Java 8 Date-Time package and `java.util.Date` where timezone UTC is used as the timezone.
+* Between `java.time.LocalDate` from Java 8 Date-Time package and `java.util.Date` / `java.sql.Date` where timezone UTC is used as the timezone.
+* Between `java.time.Instant` from Java 8 Date-Time package and `java.util.Date`.
+* Between `java.time.ZonedDateTime` from Java 8 Date-Time package and `java.util.Calendar`.
+* Between `java.sql.Date` and `java.util.Date`
+* Between `java.sql.Time` and `java.util.Date`
+* Between `java.sql.Timestamp` and `java.util.Date`
+* When converting from a `String`, omitting `Mapping#dateFormat`, it leads to usage of the default pattern and date format symbols for the default locale. An exception to this rule is `XmlGregorianCalendar` which results in parsing the `String` according to XML Schema.
+* Between `java.util.Currency` and `String`.
+  * When converting from a `String`, the value needs to be a valid ISO-4217 alphabetic code otherwise an `IllegalArgumentException` is thrown.
+* Between `java.util.UUID` and `String`.
+  * When converting from a `String`, the value needs to be a valid UUID otherwise an `IllegalArgumentException` is thrown.
+* Between `String` and `StringBuilder`
+* Between `java.net.URL` and `String`.
+  * When converting from a `String`, the value needs to be a valid URL otherwise a `MalformedURLException` is thrown.
+
+### Mapping nested object references <a href="#mapping-object-references" id="mapping-object-references"></a>
+
+Suppose, Event has reference to Address object.
+
+```java
+@Mapper
+public interface EventMapper {
+    EventDto eventToEventDto(Event event);
+
+    AddressDto addressToAddressDto(Address address);
+}
+```
+
+### Controlling nested bean mappings <a href="#controlling-nested-bean-mappings" id="controlling-nested-bean-mappings"></a>
+
+MapStruct will generate a method based on the name of the source and target property. In many occasions these names do not match. The ‘.’ notation in an `@Mapping` source or target type can be used to control how properties should be mapped when names do not match.
+
+```java
+@Mapper
+public interface FishTankMapper {
+    @Mapping(target = "fish.kind", source = "fish.type")
+    @Mapping(target = "fish.name", ignore = true)
+    @Mapping(target = "ornament", source = "interior.ornament")
+    @Mapping(target = "material.materialType", source = "material")
+    @Mapping(target = "quality.report.organisation.name", source = "quality.report.organisationName")
+    FishTankDto map( FishTank source );
+}
+```
+
+### Invoking custom mapping method <a href="#invoking-custom-mapping-method" id="invoking-custom-mapping-method"></a>
+
+Sometimes, some fields require custom logic. For example, MapStruct will take the entire parameter `source` and generate code to call the custom method `mapVolume`in order to map the `FishTank` object to the target property `volume`.
+
+```java
+public class FishTank {
+    Fish fish;
+    String material;
+    Quality quality;
+    int length;
+    int width;
+    int height;
+}
+
+public class FishTankWithVolumeDto {
+    FishDto fish;
+    MaterialDto material;
+    QualityDto quality;
+    VolumeDto volume;
+}
+
+public class VolumeDto {
+    int volume;
+    String description;
+}
+
+@Mapper
+public abstract class FishTankMapperWithVolume {
+
+    @Mapping(target = "fish.kind", source = "source.fish.type")
+    @Mapping(target = "material.materialType", source = "source.material")
+    @Mapping(target = "quality.document", source = "source.quality.report")
+    @Mapping(target = "volume", source = "source")
+    abstract FishTankWithVolumeDto map(FishTank source);
+
+    VolumeDto mapVolume(FishTank source) {
+        int volume = source.length * source.width * source.height;
+        String desc = volume < 100 ? "Small" : "Large";
+        return new VolumeDto(volume, desc);
+    }
+}
+```
+
+### Invoking other mappers <a href="#invoking-other-mappers" id="invoking-other-mappers"></a>
+
+MapStruct can also invoke mapping methods defined in other classes, be it mappers generated by MapStruct or hand-written mapping methods. For eg, when generating code for the implementation of the `carToCarDto()` method, MapStruct will look for a method which maps a `Date` object into a String, find it on the `DateMapper` class and generate an invocation of `asString()` for mapping the `manufacturingDate` attribute.
+
+```java
+// Manually implemented class
+public class DateMapper {
+    public String asString(Date date) {
+        return date != null ? new SimpleDateFormat( "yyyy-MM-dd" )
+            .format( date ) : null;
+    }
+
+    public Date asDate(String date) {
+        try {
+            return date != null ? new SimpleDateFormat( "yyyy-MM-dd" )
+                .parse( date ) : null;
+        }
+        catch ( ParseException e ) {
+            throw new RuntimeException( e );
+        }
+    }
+}
+
+// Using the DateMapper in a mapper
+@Mapper(uses=DateMapper.class)
+public interface CarMapper {
+    CarDto carToCarDto(Car car);
+}
+```
+
+### Passing context or state objects to custom methods <a href="#passing-context" id="passing-context"></a>
+
+Additional _context_ or _state_ information can be passed through generated mapping methods to custom methods with `@Context` parameters. Such parameters are passed to other mapping methods, `@ObjectFactory` methods or `@BeforeMapping` / `@AfterMapping` methods when applicable and can thus be used in custom code.
+
+```java
+public abstract CarDto toCar(Car car, @Context Locale translationLocale);
+
+protected OwnerManualDto translateOwnerManual(OwnerManual ownerManual, @Context Locale locale) {
+    // manually implemented logic to translate the OwnerManual with the given Locale
+}
+```
+
+```java
+//GENERATED CODE
+public CarDto toCar(Car car, Locale translationLocale) {
+    if ( car == null ) {
+        return null;
+    }
+
+    CarDto carDto = new CarDto();
+
+    carDto.setOwnerManual( translateOwnerManual( car.getOwnerManual(), translationLocale );
+    // more generated mapping code
+
+    return carDto;
+}
+```
+
+### Mapping method resolution <a href="#mapping-method-resolution" id="mapping-method-resolution"></a>
+
+When mapping a property from one type to another, MapStruct looks for the most specific method which maps the source type into the target type. The method may either be declared on the same mapper interface or on another mapper which is registered via `@Mapper#uses()`
+
+### Combining qualifiers @Named with defaults <a href="#combining_qualifiers_with_defaults" id="combining_qualifiers_with_defaults"></a>
+
+Default value will be used if the returned value from the @Named method is null.
+
+```java
+@Mapper
+public interface MovieMapper {
+     @Mapping( target = "category", qualifiedByName = "CategoryToString", defaultValue = "DEFAULT" )
+     GermanRelease toGerman( OriginalRelease movies );
+
+     @Named("CategoryToString")
+     default String defaultValueForQualifier(Category cat) {
+         // some mapping logic
+     }
+}
+```
+
+### Mapping collections <a href="#mapping-collections" id="mapping-collections"></a>
+
+
+
+
+
 ## Basic Mapping
 
-The `@Mapper` annotation causes the MapStruct code generator to create an implementation of the `UserMapper` interface during build-time.
+The `@Mapper` annotation causes the MapStruct code generator to create an implementation of the `UserMapper` interface during build-time. MapStruct will generate a method based on the name of the source and target property.
 
 {% hint style="info" %}
 * When a property has the same name as its target entity counterpart, it will be mapped implicitly.
