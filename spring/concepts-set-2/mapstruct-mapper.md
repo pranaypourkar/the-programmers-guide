@@ -323,12 +323,6 @@ public interface MovieMapper {
 }
 ```
 
-### Mapping collections <a href="#mapping-collections" id="mapping-collections"></a>
-
-
-
-
-
 ## Basic Mapping
 
 The `@Mapper` annotation causes the MapStruct code generator to create an implementation of the `UserMapper` interface during build-time. MapStruct will generate a method based on the name of the source and target property.
@@ -564,8 +558,6 @@ public interface CarMapper {
 }
 ```
 
-
-
 ## Composition Mapping <a href="#mapping-composition" id="mapping-composition"></a>
 
 MapStruct supports the use of meta annotations like @Retention. This allows `@Mapping` to be used on other (user defined) annotations for re-use purposes.&#x20;
@@ -593,6 +585,48 @@ public interface TransactionMapper {
     PaymentEntity map(PaymentDto source);
 }
 ```
+
+## Mapping collections <a href="#mapping-collections" id="mapping-collections"></a>
+
+As per documentation, the mapping of collection types (`List`, `Set` etc.) is done in the same way as mapping bean types, i.e. by defining mapping methods with the required source and target types in a mapper interface
+
+```java
+@Mapper
+public interface CarMapper {
+    Set<String> integerSetToStringSet(Set<Integer> integers);
+
+    List<CarDto> carsToCarDtos(List<Car> cars);
+
+    CarDto carToCarDto(Car car);
+}
+```
+
+{% hint style="info" %}
+MapStruct has a `CollectionMappingStrategy`, with the possible values: `ACCESSOR_ONLY`, `SETTER_PREFERRED`, `ADDER_PREFERRED` and `TARGET_IMMUTABLE`. The option `DEFAULT` is synonymous to `ACCESSOR_ONLY`.
+
+An `adder` method is typically used in case of generated (JPA) entities, to add a single element (entity) to an underlying collection. Invoking the adder establishes a parent-child relation between parent - the bean (entity) on which the adder is invoked - and its child(ren), the elements (entities) in the collection
+{% endhint %}
+
+### Mapping maps <a href="#mapping-maps" id="mapping-maps"></a>
+
+```java
+public interface SourceTargetMapper {
+    @MapMapping(valueDateFormat = "dd.MM.yyyy")
+    Map<String, String> longDateMapToStringStringMap(Map<Long, Date> source);
+}
+```
+
+### Implementation types used for collection mappings <a href="#implementation-types-for-collection-mappings" id="implementation-types-for-collection-mappings"></a>
+
+As per documentation, when an iterable or map mapping method declares an interface type as return type, one of its implementation types will be instantiated in the generated code.&#x20;
+
+<table><thead><tr><th width="286">Interface type</th><th>Implementation type</th></tr></thead><tbody><tr><td><code>Iterable</code></td><td><code>ArrayList</code></td></tr><tr><td><code>Collection</code></td><td><code>ArrayList</code></td></tr><tr><td><code>List</code></td><td><code>ArrayList</code></td></tr><tr><td><code>Set</code></td><td><code>LinkedHashSet</code></td></tr><tr><td><code>SortedSet</code></td><td><code>TreeSet</code></td></tr><tr><td><code>NavigableSet</code></td><td><code>TreeSet</code></td></tr><tr><td><code>Map</code></td><td><code>LinkedHashMap</code></td></tr><tr><td><code>SortedMap</code></td><td><code>TreeMap</code></td></tr><tr><td><code>NavigableMap</code></td><td><code>TreeMap</code></td></tr><tr><td><code>ConcurrentMap</code></td><td><code>ConcurrentHashMap</code></td></tr><tr><td><code>ConcurrentNavigableMap</code></td><td><code>ConcurrentSkipListMap</code></td></tr></tbody></table>
+
+## Mapping Streams <a href="#mapping-streams" id="mapping-streams"></a>
+
+
+
+
 
 
 
