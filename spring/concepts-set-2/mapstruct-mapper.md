@@ -624,6 +624,98 @@ As per documentation, when an iterable or map mapping method declares an interfa
 
 ## Mapping Streams <a href="#mapping-streams" id="mapping-streams"></a>
 
+As per documentation, mapping of `java.util.Stream` is done in a similar way as the mapping of collection types, i.e. by defining mapping methods with the required source and target types in a mapper interface.
+
+```java
+@Mapper
+public interface CarMapper {
+    Set<String> integerStreamToStringSet(Stream<Integer> integers);
+
+    List<CarDto> carsToCarDtos(Stream<Car> cars);
+
+    CarDto carToCarDto(Car car);
+}
+```
+
+## Mapping Values <a href="#mapping-enum-types" id="mapping-enum-types"></a>
+
+### Mapping enum to enum types <a href="#mapping_enum_to_enum_types" id="mapping_enum_to_enum_types"></a>
+
+```java
+@Mapper
+public interface OrderMapper {
+    OrderMapper INSTANCE = Mappers.getMapper( OrderMapper.class );
+
+    @ValueMappings({
+        @ValueMapping(target = "SPECIAL", source = "EXTRA"),
+        @ValueMapping(target = "DEFAULT", source = "STANDARD"),
+        @ValueMapping(target = "DEFAULT", source = "NORMAL")
+    })
+    ExternalOrderType orderTypeToExternalOrderType(OrderType orderType);
+}
+```
+
+{% hint style="info" %}
+As per documentation, MapStruct also support for mapping any remaining (unspecified) mappings to a default. This can be used only once in a set of value mappings and only applies to the source. It comes in two flavors: `<ANY_REMAINING>` and `<ANY_UNMAPPED>`. They cannot be used at the same time.
+
+In case of source `<ANY_REMAINING>` MapStruct will continue to map a source enum constant to a target enum constant with the same name. The remainder of the source enum constants will be mapped to the target specified in the `@ValueMapping` with `<ANY_REMAINING>` source.
+
+MapStruct will **not** attempt such name based mapping for `<ANY_UNMAPPED>` and directly apply the target specified in the `@ValueMapping` with `<ANY_UNMAPPED>` source to the remainder.
+
+MapStruct is able to handle `null` sources and `null` targets by means of the `<NULL>` keyword.
+
+In addition, the constant value `<THROW_EXCEPTION>` can be used for throwing an exception for particular value mappings.
+{% endhint %}
+
+```java
+@Mapper
+public interface SpecialOrderMapper {
+
+    SpecialOrderMapper INSTANCE = Mappers.getMapper( SpecialOrderMapper.class );
+
+    // MapStruct would have refrained from mapping the RETAIL and B2B when <ANY_UNMAPPED> was used instead of <ANY_REMAINING>
+    @ValueMappings({
+        @ValueMapping( source = MappingConstants.NULL, target = "DEFAULT" ),
+        @ValueMapping( source = "STANDARD", target = MappingConstants.NULL ),
+        @ValueMapping( source = MappingConstants.ANY_REMAINING, target = "SPECIAL" )
+    })
+    ExternalOrderType orderTypeToExternalOrderType(OrderType orderType);
+}
+```
+
+```java
+@Mapper
+public interface SpecialOrderMapper {
+
+    SpecialOrderMapper INSTANCE = Mappers.getMapper( SpecialOrderMapper.class );
+
+    @ValueMappings({
+        @ValueMapping( source = "STANDARD", target = "DEFAULT" ),
+        @ValueMapping( source = "C2C", target = MappingConstants.THROW_EXCEPTION )
+    })
+    ExternalOrderType orderTypeToExternalOrderType(OrderType orderType);
+}
+```
+
+### Mapping enum-to-String or String-to-enum <a href="#mapping_enum_to_string_or_string_to_enum" id="mapping_enum_to_string_or_string_to_enum"></a>
+
+MapStruct supports enum to a String mapping on the similar lines.
+
+### Custom name transformation <a href="#custom_name_transformation" id="custom_name_transformation"></a>
+
+As per documentation, when no `@ValueMapping`(s) are defined then each constant from the source enum is mapped to a constant with the same name in the target enum type. However, there are cases where the source enum needs to be transformed before doing the mapping. E.g. a suffix needs to be applied to map from the source into the target enum.
+
+MapStruct provides the following enum name transformation strategies:
+
+* _suffix_ - Applies a suffix on the source enum
+* _stripSuffix_ - Strips a suffix from the source enum
+* _prefix_ - Applies a prefix on the source enum
+* _stripPrefix_ - Strips a prefix from the source enum
+* _case_ - Applies case transformation to the source enum. Supported _case_ transformations are:
+  * _upper_ - Performs upper case transformation to the source enum
+  * _lower_ - Performs lower case transformation to the source enum
+  * _capital_ - Performs capitalisation of the first character of every word in the source enum and everything else to lowercase. A word is split by "\_"\
+    \
 
 
 
