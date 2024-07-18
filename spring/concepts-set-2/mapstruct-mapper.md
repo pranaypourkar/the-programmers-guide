@@ -272,7 +272,7 @@ CarMapper mapper = Mappers.getMapper( CarMapper.class );
 But with this, we need to repeatedly instantiating new instances if we need to use it in several classes. To fix this, a mapper interface should define a member called `INSTANCE` which holds a single instance of the mapper type.
 
 <pre class="language-java"><code class="lang-java"><strong>// Declaring an instance of a mapper (interface)
-</strong><strong>@Mapper
+</strong><strong>@Mapper(componentModel = ComponentModel.SPRING)
 </strong>public interface CarMapper {
 
     CarMapper INSTANCE = Mappers.getMapper( CarMapper.class );
@@ -289,17 +289,42 @@ public abstract class CarMapper {
     CarDto carToCarDto(Car car);
 }
 
+// Usage in other classes
 CarDto dto = CarMapper.INSTANCE.carToCarDto( car );
 
 </code></pre>
-
-
 
 #### Using DI framework
 
 &#x20;When using Spring Framework, it is recommended to obtain mapper objects via dependency injection and not via the `Mappers`class as described above.
 
+```java
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
+public interface EventMapper {
+...
+}
 
+// Usage
+@RequiredArgsConstructor
+@Component
+public class SomeEventProcessor {
+...
+private final EventMapper eventMapper;
+...
+..
+}
+```
+
+### Injection strategy <a href="#injection-strategy" id="injection-strategy"></a>
+
+When using dependency injection, we can choose between field and constructor injection. This can be done by providing injection strategy via `@Mapper` or `@MapperConfig` annotation. Constructor injection is recommended to simplify testing. As per documentation, for abstract classes or decorators setter injection should be used.
+
+```java
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, injectionStrategy = InjectionStrategy.CONSTRUCTOR)
+public interface CarMapper {
+    CarDto carToCarDto(Car car);
+}
+```
 
 
 
