@@ -91,9 +91,7 @@ MapStruct provides a set of core features that allow to map properties between d
 * **Handling Null Values**: By default, MapStruct maps null values, but we can customize this behavior.
 * **Customizing Mappings with `@Mapping`**: This annotation allows to define how individual fields are mapped.
 
-## Java Code
-
-### Basic Mapping
+## Basic Mapping
 
 The `@Mapper` annotation causes the MapStruct code generator to create an implementation of the `UserMapper` interface during build-time.
 
@@ -162,7 +160,7 @@ public interface UserMapper {
 }
 ```
 
-#### Using builders <a href="#mapping-with-builders" id="mapping-with-builders"></a>
+### Using builders <a href="#mapping-with-builders" id="mapping-with-builders"></a>
 
 MapStruct also supports mapping of immutable types via builders. When performing a mapping MapStruct checks if there is a builder for the type being mapped. This is done via the `BuilderProvider` SPI. If a Builder exists for a certain type, then that builder will be used for the mappings.
 
@@ -200,7 +198,7 @@ public interface PersonMapper {
 }
 ```
 
-#### Using Constructors <a href="#mapping-with-constructors" id="mapping-with-constructors"></a>
+### Using Constructors <a href="#mapping-with-constructors" id="mapping-with-constructors"></a>
 
 MapStruct supports using constructors for mapping target types. When doing a mapping MapStruct checks if there is a builder for the type being mapped. If there is no builder, then MapStruct looks for a single accessible constructor.&#x20;
 
@@ -242,9 +240,70 @@ public interface PersonMapper {
 }
 ```
 
+### Mapping `Map` to Bean <a href="#mapping-map-to-bean" id="mapping-map-to-bean"></a>
+
+We want to map  `Map<String, ???>` into a specific bean. When a raw map or a map that does not have a String as a key is used, then a warning will be generated.
+
+```java
+public class Customer {
+    private Long id;
+    private String name;
+
+    //getters and setter omitted for brevity
+}
+
+@Mapper
+public interface CustomerMapper {
+    // Here, source act as key. Mapstruct will try to use map.containsKey( "customerName" ) to check and then ex
+    // map.get( "id" ) to get the value and assign to target
+    @Mapping(target = "name", source = "customerName")
+    Customer toCustomer(Map<String, String> map);
+}
+```
+
+### Retrieving a mapper in another class to use its methods <a href="#retrieving-mapper" id="retrieving-mapper"></a>
+
+#### Without using DI framework
+
+```
+CarMapper mapper = Mappers.getMapper( CarMapper.class );
+```
+
+But with this, we need to repeatedly instantiating new instances if we need to use it in several classes. To fix this, a mapper interface should define a member called `INSTANCE` which holds a single instance of the mapper type.
+
+<pre class="language-java"><code class="lang-java"><strong>// Declaring an instance of a mapper (interface)
+</strong><strong>@Mapper
+</strong>public interface CarMapper {
+
+    CarMapper INSTANCE = Mappers.getMapper( CarMapper.class );
+
+    CarDto carToCarDto(Car car);
+}
+
+// Declaring an instance of a mapper (abstract class)
+@Mapper
+public abstract class CarMapper {
+
+    public static final CarMapper INSTANCE = Mappers.getMapper( CarMapper.class );
+
+    CarDto carToCarDto(Car car);
+}
+
+CarDto dto = CarMapper.INSTANCE.carToCarDto( car );
+
+</code></pre>
 
 
-### Composition Mapping <a href="#mapping-composition" id="mapping-composition"></a>
+
+#### Using DI framework
+
+&#x20;When using Spring Framework, it is recommended to obtain mapper objects via dependency injection and not via the `Mappers`class as described above.
+
+
+
+
+
+## Composition Mapping <a href="#mapping-composition" id="mapping-composition"></a>
 
 MapStruct supports the use of meta annotations like @Retention. This allows `@Mapping` to be used on other (user defined) annotations for re-use purposes.&#x20;
 
