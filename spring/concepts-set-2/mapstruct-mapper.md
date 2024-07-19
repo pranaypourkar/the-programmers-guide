@@ -392,6 +392,29 @@ public interface UserMapper {
 }
 ```
 
+### Default values and constants <a href="#default-values-and-constants" id="default-values-and-constants"></a>
+
+Default values and constants are specified as String values. If the source is null, default value will be used.
+
+```java
+@Mapper(uses = StringListMapper.class)
+public interface SourceTargetMapper {
+
+    SourceTargetMapper INSTANCE = Mappers.getMapper( SourceTargetMapper.class );
+
+    @Mapping(target = "stringProperty", source = "stringProp", defaultValue = "undefined")
+    @Mapping(target = "longProperty", source = "longProp", defaultValue = "-1")
+    @Mapping(target = "stringConstant", constant = "Constant Value")
+    @Mapping(target = "integerConstant", constant = "14")
+    @Mapping(target = "longWrapperConstant", constant = "3001")
+    @Mapping(target = "dateConstant", dateFormat = "dd-MM-yyyy", constant = "09-01-2014")
+    @Mapping(target = "stringListConstants", constant = "jack-jill-tom")
+    Target sourceToTarget(Source s);
+}
+```
+
+
+
 ### Using builders <a href="#mapping-with-builders" id="mapping-with-builders"></a>
 
 MapStruct also supports mapping of immutable types via builders. When performing a mapping MapStruct checks if there is a builder for the type being mapped. This is done via the `BuilderProvider` SPI. If a Builder exists for a certain type, then that builder will be used for the mappings.
@@ -714,9 +737,57 @@ MapStruct provides the following enum name transformation strategies:
 * _case_ - Applies case transformation to the source enum. Supported _case_ transformations are:
   * _upper_ - Performs upper case transformation to the source enum
   * _lower_ - Performs lower case transformation to the source enum
-  * _capital_ - Performs capitalisation of the first character of every word in the source enum and everything else to lowercase. A word is split by "\_"\
-    \
+  * _capital_ - Performs capitalisation of the first character of every word in the source enum and everything else to lowercase. A word is split by "\_"
 
+```java
+@Mapper
+public interface CheeseMapper {
+    CheeseMapper INSTANCE = Mappers.getMapper( CheeseMapper.class );
+
+    @EnumMapping(nameTransformationStrategy = "suffix", configuration = "_TYPE")
+    CheeseTypeSuffixed map(CheeseType cheese);
+
+    @InheritInverseConfiguration
+    CheeseType map(CheeseTypeSuffix cheese);
+}
+```
+
+## Object factories <a href="#object-factories" id="object-factories"></a>
+
+By default, the generated code for mapping one bean type into another or updating a bean will call the default constructor to instantiate the target type. Alternatively, Mapstruct supports custom object factories which will be invoked to obtain instances of the target type.
+
+```java
+public class DtoFactory {
+     public CarDto createCarDto() {
+         return // ... custom factory logic
+     }
+}
+
+public class EntityFactory {
+     public <T extends BaseEntity> T createEntity(@TargetType Class<T> entityClass) {
+         return // ... custom factory logic
+     }
+}
+
+@Mapper(uses= { DtoFactory.class, EntityFactory.class } )
+public interface CarMapper {
+    CarMapper INSTANCE = Mappers.getMapper( CarMapper.class );
+
+    CarDto carToCarDto(Car car);
+
+    Car carDtoToCar(CarDto carDto);
+}
+
+@Mapper(uses = { DtoFactory.class, EntityFactory.class, CarMapper.class } )
+public interface OwnerMapper {
+
+    OwnerMapper INSTANCE = Mappers.getMapper( OwnerMapper.class );
+
+    void updateOwnerDto(Owner owner, @MappingTarget OwnerDto ownerDto);
+
+    void updateOwner(OwnerDto ownerDto, @MappingTarget Owner owner);
+}
+```
 
 
 
