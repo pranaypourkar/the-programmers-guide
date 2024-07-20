@@ -399,7 +399,6 @@ Default values and constants are specified as String values. If the source is nu
 ```java
 @Mapper(uses = StringListMapper.class)
 public interface SourceTargetMapper {
-
     SourceTargetMapper INSTANCE = Mappers.getMapper( SourceTargetMapper.class );
 
     @Mapping(target = "stringProperty", source = "stringProp", defaultValue = "undefined")
@@ -413,7 +412,160 @@ public interface SourceTargetMapper {
 }
 ```
 
+### Expressions <a href="#expressions" id="expressions"></a>
 
+As per documentation, MapStruct will not validate the java expression at generation-time, but errors will show up in the generated classes during compilation. Fully qualified package name is specified because MapStruct does not take care of the import of the `TimeAndFormat` class (unless it’s used otherwise explicitly in the `SourceTargetMapper`). This can be resolved by defining `imports` on the `@Mapper` annotation.
+
+```java
+@Mapper
+public interface SourceTargetMapper {
+
+    SourceTargetMapper INSTANCE = Mappers.getMapper( SourceTargetMapper.class );
+
+    @Mapping(target = "timeAndFormat",
+         expression = "java( new org.sample.TimeAndFormat( s.getTime(), s.getFormat() ) )")
+    Target sourceToTarget(Source s);
+}
+
+
+imports org.sample.TimeAndFormat;
+
+@Mapper( imports = TimeAndFormat.class )
+public interface SourceTargetMapper {
+
+    SourceTargetMapper INSTANCE = Mappers.getMapper( SourceTargetMapper.class );
+
+    @Mapping(target = "timeAndFormat",
+         expression = "java( new TimeAndFormat( s.getTime(), s.getFormat() ) )")
+    Target sourceToTarget(Source s);
+}
+```
+
+### Default Expressions <a href="#default-expressions" id="default-expressions"></a>
+
+Default expressions are a combination of default values and expressions. They will only be used when the source attribute is `null`.
+
+```java
+imports java.util.UUID;
+
+@Mapper( imports = UUID.class )
+public interface SourceTargetMapper {
+
+    SourceTargetMapper INSTANCE = Mappers.getMapper( SourceTargetMapper.class );
+
+    @Mapping(target="id", source="sourceId", defaultExpression = "java( UUID.randomUUID().toString() )")
+    Target sourceToTarget(Source s);
+}
+```
+
+### Subclass Mapping <a href="#sub-class-mappings" id="sub-class-mappings"></a>
+
+It is used when both input and result types have an inheritance relation. Suppose an `Apple` and a `Banana`, which are both specializations of `Fruit`.
+
+```java
+@Mapper
+public interface FruitMapper {
+    @SubclassMapping( source = AppleDto.class, target = Apple.class )
+    @SubclassMapping( source = BananaDto.class, target = Banana.class )
+    Fruit map( FruitDto source );
+}
+```
+
+If we would just use a normal mapping both the `AppleDto` and the `BananaDto` would be made into a `Fruit` object, instead of an `Apple` and a `Banana` object.&#x20;
+
+### Determining the result type <a href="#determining-result-type" id="determining-result-type"></a>
+
+When result types have an inheritance relation, selecting either mapping method (`@Mapping`) or a factory method (`@BeanMapping`) can become ambiguous. Suppose an Apple and a Banana, which are both specializations of Fruit.
+
+```java
+public class FruitFactory {
+    public Apple createApple() {
+        return new Apple( "Apple" );
+    }
+
+    public Banana createBanana() {
+        return new Banana( "Banana" );
+    }
+}
+
+@Mapper( uses = FruitFactory.class )
+public interface FruitMapper {
+    @BeanMapping( resultType = Apple.class )
+    Fruit map( FruitDto source );
+}
+```
+
+### Controlling mapping result for 'null' arguments <a href="#mapping-result-for-null-arguments" id="mapping-result-for-null-arguments"></a>
+
+As per documentation, when the source argument of the mapping method equals `null`  then by default `null` will be returned.
+
+However, by specifying `nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT` on `@BeanMapping`, `@IterableMapping`, `@MapMapping`, or globally on `@Mapper` or `@MapperConfig`, the mapping result can be altered to return empty **default** values. This means for:
+
+* **Bean mappings**: an 'empty' target bean will be returned, with the exception of constants and expressions, they will be populated when present.
+* **Iterables / Arrays**: an empty iterable will be returned.
+* **Maps**: an empty map will be returned.
+
+### Source presence checking and Conditional Mapping
+
+Some frameworks generate bean properties that have a source presence checker. Often this is in the form of a method `hasXYZ`, `XYZ` being a property on the source bean in a bean mapping method. MapStruct will call this `hasXYZ` instead of performing a `null` check when it finds such `hasXYZ` method.
+
+Conditional Mapping is a type of [Source presence checking](https://mapstruct.org/documentation/1.5/reference/html/#source-presence-check). The difference is that it allows users to write custom condition methods that will be invoked to check if a property needs to be mapped or not.
+
+A custom condition method is a method that is annotated with `org.mapstruct.Condition` and returns `boolean`.
+
+e.g. if you only want to map a String property when it is not \`null, and it is not empty then you can do something like:
+
+```java
+@Mapper
+public interface CarMapper {
+    CarDto carToCarDto(Car car);
+
+    @Condition
+    default boolean isNotEmpty(String value) {
+        return value != null && !value.isEmpty();
+    }
+}
+```
+
+When using this in combination with an update mapping method it will replace the `null-check` there, for example:
+
+```java
+@Mapper
+public interface CarMapper {
+    CarDto carToCarDto(Car car, @MappingTarget CarDto carDto);
+
+    @Condition
+    default boolean isNotEmpty(String value) {
+        return value != null && !value.isEmpty();
+    }
+}
+```
+
+### Exceptions <a href="#exceptions" id="exceptions"></a>
+
+Calling applications may require handling of exceptions when calling a mapping method. These exceptions could be thrown by hand-written logic and by the generated built-in mapping methods or type-conversions of MapStruct.
+
+```java
+@Mapper(uses = HandWritten.class)
+public interface CarMapper {
+    CarDto carToCarDto(Car car) throws GearException;
+}
+
+public class HandWritten {
+    private static final String[] GEAR = {"ONE", "TWO", "THREE", "OVERDRIVE", "REVERSE"};
+
+    public String toGear(Integer gear) throws GearException, FatalException {
+        if ( gear == null ) {
+            throw new FatalException("null is not a valid gear");
+        }
+
+        if ( gear < 0 && gear > GEAR.length ) {
+            throw new GearException("invalid gear");
+        }
+        return GEAR[gear];
+    }
+}
+```
 
 ### Using builders <a href="#mapping-with-builders" id="mapping-with-builders"></a>
 
@@ -422,7 +574,6 @@ MapStruct also supports mapping of immutable types via builders. When performing
 ```java
 // Builder Pattern for Person class
 public class Person {
-
     private final String name;
 
     protected Person(Person.Builder builder) {
@@ -789,7 +940,83 @@ public interface OwnerMapper {
 }
 ```
 
+## Reusing mapping configurations <a href="#reusing_mapping_configurations" id="reusing_mapping_configurations"></a>
 
+### Mapping configuration inheritance <a href="#mapping-configuration-inheritance" id="mapping-configuration-inheritance"></a>
 
+Method-level configuration annotations such as `@Mapping`, `@BeanMapping`, `@IterableMapping`, etc., can be **inherited**from one mapping method to a **similar** method using the annotation `@InheritConfiguration`
 
+```java
+@Mapper
+public interface CarMapper {
+    @Mapping(target = "numberOfSeats", source = "seatCount")
+    Car carDtoToCar(CarDto car);
 
+    @InheritConfiguration
+    void carDtoIntoCar(CarDto carDto, @MappingTarget Car car);
+}
+```
+
+### Inverse mappings <a href="#inverse-mappings" id="inverse-mappings"></a>
+
+In case of bi-directional mappings, e.g. from entity to DTO and from DTO to entity, the mapping rules for the forward method and the reverse method are often similar and can simply be inversed by switching `source` and `target`
+
+```java
+@Mapper
+public interface CarMapper {
+
+    @Mapping(target = "seatCount", source = "numberOfSeats")
+    CarDto carToDto(Car car);
+
+    @InheritInverseConfiguration
+    @Mapping(target = "numberOfSeats", ignore = true)
+    Car carDtoToCar(CarDto carDto);
+}
+```
+
+### Shared configurations <a href="#shared-configurations" id="shared-configurations"></a>
+
+MapStruct offers the possibility to define a shared configuration by pointing to a central interface annotated with `@MapperConfig`. For a mapper to use the shared configuration, the configuration interface needs to be defined in the `@Mapper#config` property. Attributes specified in `@Mapper` take precedence over the attributes specified via the referenced configuration class
+
+```java
+@MapperConfig(
+    uses = CustomMapperViaMapperConfig.class,
+    unmappedTargetPolicy = ReportingPolicy.ERROR
+)
+public interface CentralConfig {
+}
+
+@Mapper(config = CentralConfig.class, uses = { CustomMapperViaMapper.class } )
+// Effective configuration:
+// @Mapper(
+//     uses = { CustomMapperViaMapper.class, CustomMapperViaMapperConfig.class },
+//     unmappedTargetPolicy = ReportingPolicy.ERROR
+// )
+public interface SourceTargetMapper {
+  ...
+}
+```
+
+## Customizing mappings <a href="#customizing_mappings" id="customizing_mappings"></a>
+
+If we need to apply custom logic before or after certain mapping methods, MapStruct provides two ways for doing so: decorators which allow for a type-safe customization of specific mapping methods and the before-mapping and after-mapping lifecycle methods which allow for a generic customization of mapping methods with given source or target types.
+
+### Mapping customization with before-mapping and after-mapping methods <a href="#customizing-mappings-with-before-and-after" id="customizing-mappings-with-before-and-after"></a>
+
+```java
+@Mapper
+public abstract class VehicleMapper {
+    @BeforeMapping
+    protected void flushEntity(AbstractVehicle vehicle) {
+        // I would call my entity manager's flush() method here to make sure my entity
+        // is populated with the right @Version before I let it map into the DTO
+    }
+
+    @AfterMapping
+    protected void fillTank(AbstractVehicle vehicle, @MappingTarget AbstractVehicleDto result) {
+        result.fuelUp( new Fuel( vehicle.getTankCapacity(), vehicle.getFuelType() ) );
+    }
+
+    public abstract CarDto toCarDto(Car car);
+}
+```
