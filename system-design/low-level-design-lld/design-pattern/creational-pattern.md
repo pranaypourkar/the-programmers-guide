@@ -191,9 +191,9 @@ public class Main {
 
 Create a Shape interface and concrete classes implementing the Shape interface.
 
-<figure><img src="../../.gitbook/assets/image (75).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (75).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (76).png" alt="" width="311"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (76).png" alt="" width="311"><figcaption></figcaption></figure>
 
 ```java
 // Shape interface
