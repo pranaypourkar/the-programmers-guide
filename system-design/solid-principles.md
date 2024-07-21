@@ -247,6 +247,75 @@ The main goal of DIP is to reduce the dependency between components, making the 
 
 ### **Examples**
 
-**Example 1**: Suppose we have a `FileLogger` class that logs messages to a file. Instead of directly creating an instance of `FileLogger` within another class, we can use dependency injection to pass an instance of `Logger` (an abstraction) to the dependent class. This way, the dependent class doesn't depend on the concrete implementation (`FileLogger`), but on an abstraction (`Logger`). This makes it easier to switch to a different logging mechanism in the future without modifying the dependent class
+**Example 1**: Suppose we have a `FileLogger` class that logs messages to a file. Instead of directly creating an instance of `FileLogger` within another class, we can use dependency injection to pass an instance of `Logger` (an abstraction) to the dependent class. This way, the dependent class doesn't depend on the concrete implementation (`FileLogger`), but on an abstraction (`Logger`). This makes it easier to switch to a different logging mechanism in the future without modifying the dependent class.
+
+#### Without DIP:
+
+Here, the `Application` class depends directly on the `FileLogger` class, creating a tight coupling.
+
+```java
+class FileLogger {
+    public void log(String message) {
+        // Code to log message to a file
+        System.out.println("Logging to file: " + message);
+    }
+}
+
+class Application {
+    private FileLogger logger = new FileLogger();
+
+    public void doSomething() {
+        // Business logic
+        logger.log("Something happened");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Application app = new Application();
+        app.doSomething();
+    }
+}
+```
+
+#### With DIP:
+
+Here, we introduce an abstraction `Logger`, and `Application` depends on this abstraction. This allows for easier substitution of the logging mechanism.
+
+```java
+interface Logger {
+    void log(String message);
+}
+
+class FileLogger implements Logger {
+    @Override
+    public void log(String message) {
+        // Code to log message to a file
+        System.out.println("Logging to file: " + message);
+    }
+}
+
+class Application {
+    private Logger logger;
+
+    // Dependency Injection via Constructor
+    public Application(Logger logger) {
+        this.logger = logger;
+    }
+
+    public void doSomething() {
+        // Business logic
+        logger.log("Something happened");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Logger fileLogger = new FileLogger();
+        Application app = new Application(fileLogger);
+        app.doSomething();
+    }
+}
+```
 
 **Example 2:** Let's say a class `PaymentProcessor` directly depends on a specific payment gateway like `PayPalGateway` to process payments. If we want to switch to a different gateway (e.g., `StripeGateway`), we'd need to modify the `PaymentProcessor` class. DIP suggests using an abstraction like a `PaymentGateway` interface that both `PayPalGateway` and `StripeGateway` implement. The `PaymentProcessor` would then depend on the `PaymentGateway` interface, allowing us to switch between gateways easily without modifying the core logic.
