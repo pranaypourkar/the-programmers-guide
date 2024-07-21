@@ -28,7 +28,7 @@ Named after Barbara Liskov, this principle states that objects of a superclass s
 **Behavioral Compatibility:** The subclass should enhance or extend the behavior of the superclass without changing its expected behavior.
 {% endhint %}
 
-**Example**: Consider a `Rectangle` class with a `setWidth` and `setHeight` method. We might have a `Square` class that inherits from `Rectangle`. However, if we try to set a different width and height for a `Square` object, it would violate its square property. LSP ensures that subclasses adhere to the contract established by their superclass. In this case, the `Square` class should have its own logic to ensure both width and height are always the same.
+**Example 1**: Consider a `Rectangle` class with a `setWidth` and `setHeight` method. We might have a `Square` class that inherits from `Rectangle`. However, if we try to set a different width and height for a `Square` object, it would violate its square property. LSP ensures that subclasses adhere to the contract established by their superclass. In this case, the `Square` class should have its own logic to ensure both width and height are always the same.
 
 <table data-full-width="true"><thead><tr><th>Incorrect (LSP Violation):</th><th>Correct (LSP Adherence)</th></tr></thead><tbody><tr><td><pre class="language-java"><code class="lang-java">class Rectangle {
   private int width;
@@ -71,6 +71,9 @@ public class Main {
     Square square = new Square();
     square.setWidth(10); // This will also set height to 10 (incorrect)
     System.out.println("Square Area: " + square.getArea()); // 100 (incorrect, should be 100)
+    
+    // substituting a Square for a Rectangle violates the Liskov Substitution Principle 
+    // because it changes the expected behavior of Rectangle
   }
 }
 </code></pre></td><td><pre class="language-java" data-full-width="true"><code class="lang-java">class Shape {
@@ -123,6 +126,54 @@ public class Main {
   }
 }
 </code></pre></td></tr></tbody></table>
+
+**Example 2:** Consider other example involving birds.
+
+**Without LSP**
+
+Here, substituting an `Ostrich` for a `Bird` violates LSP because it changes the expected behavior (flying).
+
+```java
+class Bird {
+    public void fly() {
+        System.out.println("Bird is flying");
+    }
+}
+
+class Ostrich extends Bird {
+    @Override
+    public void fly() {
+        throw new UnsupportedOperationException("Ostriches can't fly");
+    }
+}
+```
+
+**With LSP**
+
+To adhere to LSP, we can redesign our hierarchy to properly reflect capabilities. Now, `Sparrow` can fly, and `Ostrich` does not pretend to be able to fly, maintaining LSP.
+
+```java
+class Bird {
+    public void eat() {
+        System.out.println("Bird is eating");
+    }
+}
+
+interface Flyable {
+    void fly();
+}
+
+class Sparrow extends Bird implements Flyable {
+    @Override
+    public void fly() {
+        System.out.println("Sparrow is flying");
+    }
+}
+
+class Ostrich extends Bird {
+    // Ostrich doesn't implement Flyable, hence no fly method
+}
+```
 
 ## **I - Interface Segregation Principle (ISP)**&#x20;
 
