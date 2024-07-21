@@ -22,6 +22,12 @@ This principle suggests that software entities (such as classes, modules, functi
 
 Named after Barbara Liskov, this principle states that objects of a superclass should be replaceable with objects of a subclass without affecting the correctness of the program. In simpler terms, if S is a subtype of T, then objects of type T may be replaced with objects of type S without altering any of the desirable properties of the program.
 
+{% hint style="info" %}
+**Substitutability:** You should be able to use a subclass wherever a superclass is expected without the program failing.
+
+**Behavioral Compatibility:** The subclass should enhance or extend the behavior of the superclass without changing its expected behavior.
+{% endhint %}
+
 **Example**: Consider a `Rectangle` class with a `setWidth` and `setHeight` method. We might have a `Square` class that inherits from `Rectangle`. However, if we try to set a different width and height for a `Square` object, it would violate its square property. LSP ensures that subclasses adhere to the contract established by their superclass. In this case, the `Square` class should have its own logic to ensure both width and height are always the same.
 
 <table data-full-width="true"><thead><tr><th>Incorrect (LSP Violation):</th><th>Correct (LSP Adherence)</th></tr></thead><tbody><tr><td><pre class="language-java"><code class="lang-java">class Rectangle {
@@ -128,7 +134,17 @@ This principle emphasizes that clients should not be forced to depend on interfa
 
 ## **D - Dependency Inversion Principle (DIP)**&#x20;
 
-This principle states that high-level modules should not depend on low-level modules; both should depend on abstractions. It also suggests that abstractions should not depend on details; rather, details should depend on abstractions. This helps in achieving decoupling and allows for easier changes and substitutions.
+This Principle is about decoupling high-level and low-level components by introducing an abstraction layer. This principle states that high-level modules should not depend on low-level modules; both should depend on abstractions. It also suggests that abstractions should not depend on details; rather, details should depend on abstractions. This helps in achieving decoupling and allows for easier changes and substitutions.
+
+The main goal of DIP is to reduce the dependency between components, making the system more modular, flexible, and easier to maintain or extend.
+
+{% hint style="info" %}
+**High-Level Modules:** These are modules that contain the core business logic.
+
+**Low-Level Modules:** These are modules that provide utility functions and specific implementations.
+
+**Abstractions:** Interfaces or abstract classes that define contracts without specifying implementation details.
+{% endhint %}
 
 **Example 1**: Suppose we have a `FileLogger` class that logs messages to a file. Instead of directly creating an instance of `FileLogger` within another class, we can use dependency injection to pass an instance of `Logger` (an abstraction) to the dependent class. This way, the dependent class doesn't depend on the concrete implementation (`FileLogger`), but on an abstraction (`Logger`). This makes it easier to switch to a different logging mechanism in the future without modifying the dependent class
 
