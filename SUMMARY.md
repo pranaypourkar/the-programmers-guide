@@ -86,6 +86,7 @@
         * [ExecutorService](java/concepts/set-1/asynchronous-computation/executorservice/README.md)
           * [Thread Pool](java/concepts/set-1/asynchronous-computation/executorservice/thread-pool.md)
           * [Types of Work Queues](java/concepts/set-1/asynchronous-computation/executorservice/types-of-work-queues.md)
+          * [Rejection Policies](java/concepts/set-1/asynchronous-computation/executorservice/rejection-policies.md)
           * [ExecutorService Implementations](java/concepts/set-1/asynchronous-computation/executorservice/executorservice-implementations.md)
     * [Set 2](java/concepts-set-2/README.md)
       * [ISO Standards](java/concepts-set-2/iso-standards.md)

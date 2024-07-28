@@ -187,6 +187,10 @@ ExecutorService executor = new ThreadPoolExecutor(
 * If no threads are available, the task is either blocked or rejected based on the configuration.
 * No task queuing, tasks are processed immediately if a thread is available.
 
+{% hint style="info" %}
+In a `SynchronousQueue`, tasks are directly handed off to a worker thread without being queued. This type of queue does not have any capacity to store tasks. When a new task is submitted to an `ExecutorService` backed by a `SynchronousQueue`, and all threads in the pool (up to the `maximumPoolSize`) are fully occupied, the handling of the new task depends on the configured `RejectedExecutionHandler`.
+{% endhint %}
+
 ### **Advantages**:
 
 * Ensures that tasks are executed as soon as they are submitted.
