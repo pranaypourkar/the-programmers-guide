@@ -10,7 +10,7 @@ A thread pool in Java is a collection of pre-instantiated reusable threads that 
 
 The minimum number of threads to keep in the pool, even if they are idle. These threads will stay alive and be reused to execute incoming tasks.
 
-**Behavior:**
+#### **Behavior**
 
 * If the number of tasks is less than or equal to the core pool size, new threads are created to handle them.
 * Once the core pool size is reached, subsequent tasks are queued unless the queue is full.
@@ -19,7 +19,7 @@ The minimum number of threads to keep in the pool, even if they are idle. These 
 
 The maximum number of threads allowed in the pool.
 
-**Behavior:**
+#### **Behavior**
 
 * If the number of tasks exceeds the core pool size and the queue is full, new threads are created up to the maximum pool size to handle the overflow.
 * If the maximum pool size is reached and the queue is full, the `RejectedExecutionHandler` is invoked to handle the task.
@@ -28,7 +28,7 @@ The maximum number of threads allowed in the pool.
 
 The amount of time an idle thread can remain alive in the pool before being terminated.
 
-**Behavior:**
+#### **Behavior**
 
 * When the number of threads exceeds the core pool size, excess idle threads are terminated after the keep alive time elapses. This helps to optimize resource utilization.
 
@@ -36,17 +36,26 @@ The amount of time an idle thread can remain alive in the pool before being term
 
 A queue used to hold tasks before they are executed. Different types of work queues affect how tasks are scheduled, ordered, and managed.
 
-**Behavior:**
+#### **Behavior**
 
 * When the number of tasks exceeds the core pool size, new tasks are added to the work queue.
 * The type of queue (e.g., `ArrayBlockingQueue`, `LinkedBlockingQueue`) affects the behavior of the thread pool.
 
-**Types of Work Queues**
+#### Types of Work Queues
 
-1. **Unbounded Queues (e.g.,** `LinkedBlockingQueue`**)**:
-2. **Bounded Queues (e.g.,** `ArrayBlockingQueue`**)**:
-3. **Priority Queues (e.g.,** `PriorityBlockingQueue`**)**:
-4. **Synchronous Queues (e.g.,** `SynchronousQueue`**)**:
+1. **Unbounded Queues (e.g.,** `LinkedBlockingQueue`**)**
+2. **Bounded Queues (e.g.,** `ArrayBlockingQueue`**)**
+3. **Priority Queues (e.g.,** `PriorityBlockingQueue`**)**
+4. **Synchronous Queues (e.g.,** `SynchronousQueue`**)**
+
+#### Key Considerations for Choosing a Work Queue
+
+* **Task arrival rate:** How often new tasks are submitted to the pool.
+* **Task processing time:** How long it takes to process a task.
+* **Resource constraints:** Memory and CPU limitations.
+* **Fairness:** How important it is for tasks to be processed in a specific order.
+* **Priority:** Whether tasks have different priorities.
+* **Delayed execution:** If tasks need to be executed at specific times.
 
 ## How They Work Together
 
