@@ -2,7 +2,7 @@
 
 ## About&#x20;
 
-Java's `ExecutorService` provides a framework for managing a pool of threads to execute asynchronous tasks. The framework abstracts the creation, execution, and management of threads, making it easier to work with concurrent tasks. Various implementations of `ExecutorService` cater to different use cases and requirements. Below are some of the main `ExecutorService` implementations in Java.
+Java's `ExecutorService` provides a framework for managing a pool of threads to execute asynchronous tasks. The framework abstracts the creation, execution, and management of threads, making it easier to work with concurrent tasks. Various implementations of `ExecutorService` cater to different use cases and requirements. Below are some of the `ExecutorService` implementations in Java.
 
 ## 1. **ThreadPoolExecutor**
 
@@ -28,4 +28,42 @@ ExecutorService executor = new ThreadPoolExecutor(
     new ThreadPoolExecutor.CallerRunsPolicy() // rejection policy
 );
 ```
+
+## 2. **Custom ThreadPoolExecutor**
+
+For specialized needs, we can extend `ThreadPoolExecutor` and override its methods to provide custom behaviors, such as logging, monitoring, or modifying task handling.
+
+### **Key Characteristics**
+
+* **Customization**: Full control over the executor's behavior, including thread creation, task execution, and termination policies.
+
+### **Usage Example**
+
+```java
+class CustomThreadPoolExecutor extends ThreadPoolExecutor {
+    public CustomThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue) {
+        super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue);
+    }
+
+    @Override
+    protected void beforeExecute(Thread t, Runnable r) {
+        super.beforeExecute(t, r);
+        // Custom logic before task execution
+    }
+
+    @Override
+    protected void afterExecute(Runnable r, Throwable t) {
+        super.afterExecute(r, t);
+        // Custom logic after task execution
+    }
+
+    @Override
+    protected void terminated() {
+        super.terminated();
+        // Custom logic on termination
+    }
+}
+```
+
+
 
