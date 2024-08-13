@@ -48,6 +48,66 @@ ExecutorService executor = new ThreadPoolExecutor(
 );
 ```
 
+We can create a class with name ExecutorConfiguration and add a bean like below.
+
+```java
+package com.company.project.config;
+
+import io.micrometer.context.ContextExecutorService;
+import io.micrometer.context.ContextSnapshotFactory;
+import java.util.concurrent.Executor;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.validation.annotation.Validated;
+
+@Validated
+@Configuration
+public class ExecutorConfiguration {
+
+    @Bean("myThreadPoolExecutor")
+    public Executor executor(ExecutorConfigurationProperties properties) {
+        var executorService = new ThreadPoolExecutor(
+            properties.getCorePoolSize(),
+            properties.getMaxPoolSize(),
+            properties.getKeepAliveSeconds(),
+            TimeUnit.SECONDS,
+            new LinkedBlockingQueue<>(), // Using unbounded blocking queue to avoid rejection, if any
+            new ThreadPoolExecutor.AbortPolicy()
+        );
+        var traceableExecutor = ContextExecutorService.wrap(executorService,
+            ContextSnapshotFactory.builder().build()::captureAll);
+
+        return traceableExecutor;
+    }
+}
+
+
+package com.company.project.config;
+
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.util.unit.DataSize;
+import org.springframework.validation.annotation.Validated;
+
+@Data
+@Validated
+@Configuration
+@ConfigurationProperties("executor.config")
+public class ExecutorConfigurationProperties {
+    // Thread pool properties
+    private int corePoolSize;
+    private int maxPoolSize;
+    private int keepAliveSeconds;
+}
+
+```
+
+
+
 ## 2. **Custom ThreadPoolExecutor**
 
 For specialized needs, we can extend `ThreadPoolExecutor` and override its methods to provide custom behaviors, such as logging, monitoring, or modifying task handling.
