@@ -163,6 +163,74 @@ class CustomThreadPoolExecutor extends ThreadPoolExecutor {
 }
 ```
 
+Assuming, we are building an order processing system where each order goes through multiple steps like validation, payment processing, inventory update, and notification. Each step needs to be handled concurrently for efficiency.
+
+```java
+import java.util.concurrent.*;
+
+public class CustomThreadPoolExecutor extends ThreadPoolExecutor {
+
+    public CustomThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue) {
+        super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue);
+    }
+
+    @Override
+    protected void beforeExecute(Thread t, Runnable r) {
+        super.beforeExecute(t, r);
+        System.out.println("Thread " + t.getName() + " is about to execute task: " + r);
+        // Custom logic before task execution, e.g., logging, security checks, etc.
+    }
+
+    @Override
+    protected void afterExecute(Runnable r, Throwable t) {
+        super.afterExecute(r, t);
+        if (t != null) {
+            System.out.println("Exception occurred during execution: " + t.getMessage());
+        }
+        System.out.println("Task " + r + " has completed execution.");
+        // Custom logic after task execution, e.g., collecting metrics, auditing, etc.
+    }
+
+    @Override
+    protected void terminated() {
+        super.terminated();
+        System.out.println("ThreadPool is shutting down. Performing cleanup.");
+        // Custom logic on termination, e.g., resource deallocation, final reporting, etc.
+    }
+
+    public static void main(String[] args) {
+        // Configure the custom ThreadPoolExecutor
+        CustomThreadPoolExecutor executor = new CustomThreadPoolExecutor(
+                4, // corePoolSize
+                8, // maximumPoolSize
+                30, // keepAliveTime
+                TimeUnit.SECONDS,
+                new LinkedBlockingQueue<>(100) // workQueue with a capacity of 100
+        );
+
+        // Simulate processing orders
+        for (int i = 1; i <= 10; i++) {
+            int orderId = i;
+            executor.submit(() -> processOrder(orderId));
+        }
+
+        // Shutdown the executor
+        executor.shutdown();
+    }
+
+    private static void processOrder(int orderId) {
+        System.out.println("Processing order: " + orderId + " in " + Thread.currentThread().getName());
+        try {
+            // Simulate different processing times for each order
+            Thread.sleep((long) (Math.random() * 3000));
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        System.out.println("Order " + orderId + " processed.");
+    }
+}
+```
+
 ## **3. ScheduledThreadPoolExecutor**
 
 `ScheduledThreadPoolExecutor` is an implementation of `ExecutorService` that supports scheduling tasks with a delay or periodic execution. It extends `ThreadPoolExecutor`.
@@ -192,7 +260,36 @@ scheduledExecutor.scheduleAtFixedRate(() -> {
 }, 0, 10, TimeUnit.SECONDS);
 ```
 
+Suppose we want to print the current time every 5 seconds
 
+```java
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+public class ScheduledThreadPoolExample {
+    public static void main(String[] args) {
+        // Create a ScheduledThreadPoolExecutor with 2 threads
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
+
+        // Schedule a task to run every 5 seconds
+        scheduler.scheduleAtFixedRate(() -> {
+            System.out.println("Current time: " + System.currentTimeMillis());
+        }, 0, 5, TimeUnit.SECONDS); // Initial delay: 0 seconds, Period: 5 seconds
+
+        // Schedule another task to run after a delay of 10 seconds
+        scheduler.schedule(() -> {
+            System.out.println("Task executed after 10 seconds delay");
+        }, 10, TimeUnit.SECONDS);
+
+        // Optionally, schedule a shutdown after a certain period
+        scheduler.schedule(() -> {
+            System.out.println("Shutting down scheduler...");
+            scheduler.shutdown();
+        }, 30, TimeUnit.SECONDS); // Shutdown after 30 seconds
+    }
+}
+```
 
 ## **4. ForkJoinPool**
 
@@ -219,6 +316,69 @@ scheduledExecutor.scheduleAtFixedRate(() -> {
 ```java
 ForkJoinPool forkJoinPool = new ForkJoinPool();
 forkJoinPool.invoke(new RecursiveTaskExample());
+```
+
+Recursive Task to Calculate Sum of an Array
+
+```java
+import java.util.concurrent.RecursiveTask;
+import java.util.concurrent.ForkJoinPool;
+
+public class ForkJoinPoolExample {
+    public static void main(String[] args) {
+        // Sample data
+        int[] array = new int[1000];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = i + 1;
+        }
+
+        // Create a ForkJoinPool
+        ForkJoinPool forkJoinPool = new ForkJoinPool();
+
+        // Submit the task
+        Long sum = forkJoinPool.invoke(new SumTask(array, 0, array.length));
+        System.out.println("Sum: " + sum);
+    }
+}
+
+// RecursiveTask to calculate the sum of an array segment
+class SumTask extends RecursiveTask<Long> {
+    private final int[] array;
+    private final int start;
+    private final int end;
+
+    private static final int THRESHOLD = 100; // Threshold for splitting tasks
+
+    public SumTask(int[] array, int start, int end) {
+        this.array = array;
+        this.start = start;
+        this.end = end;
+    }
+
+    @Override
+    protected Long compute() {
+        // If the task is small enough, compute directly
+        if (end - start <= THRESHOLD) {
+            long sum = 0;
+            for (int i = start; i < end; i++) {
+                sum += array[i];
+            }
+            return sum;
+        } else {
+            // Split the task into two subtasks
+            int mid = (start + end) / 2;
+            SumTask leftTask = new SumTask(array, start, mid);
+            SumTask rightTask = new SumTask(array, mid, end);
+
+            // Fork the subtasks and join the results
+            leftTask.fork();
+            long rightResult = rightTask.compute();
+            long leftResult = leftTask.join();
+            return leftResult + rightResult;
+        }
+    }
+}
+
 ```
 
 
@@ -252,7 +412,36 @@ singleThreadExecutor.submit(() -> {
 });
 ```
 
+Example of logging task
 
+```java
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class SingleThreadExecutorExample {
+    public static void main(String[] args) {
+        // Create a SingleThreadExecutor
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+
+        // Submit tasks
+        for (int i = 0; i < 5; i++) {
+            final int index = i;
+            executor.submit(() -> {
+                System.out.println("Executing task " + index + " by " + Thread.currentThread().getName());
+                // Simulate some work
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            });
+        }
+
+        // Shutdown the executor
+        executor.shutdown();
+    }
+}
+```
 
 ## **6. CachedThreadPool**
 
@@ -281,6 +470,37 @@ ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
 cachedThreadPool.submit(() -> {
     // Task to execute
 });
+```
+
+Handling Multiple Web Requests
+
+```java
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class CachedThreadPoolExample {
+    public static void main(String[] args) {
+        // Create a CachedThreadPool
+        ExecutorService executor = Executors.newCachedThreadPool();
+
+        // Simulate handling multiple web requests
+        for (int i = 0; i < 10; i++) {
+            final int requestId = i;
+            executor.submit(() -> {
+                System.out.println("Handling request " + requestId + " by " + Thread.currentThread().getName());
+                // Simulate request processing
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            });
+        }
+
+        // Shutdown the executor
+        executor.shutdown();
+    }
+}
 ```
 
 
