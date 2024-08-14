@@ -48,7 +48,42 @@ ExecutorService executor = new ThreadPoolExecutor(
 );
 ```
 
-We can create a class with name ExecutorConfiguration and add a bean like below.
+```java
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+public class ThreadPoolExecutorExample {
+    public static void main(String[] args) {
+        // Create a ThreadPoolExecutor with 5 core threads and a maximum of 10 threads
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(
+                5, // core pool size
+                10, // maximum pool size
+                60, // time to keep idle threads alive
+                TimeUnit.SECONDS,
+                new LinkedBlockingQueue<>(100) // task queue with a capacity of 100
+        );
+
+        // Submit tasks to the executor
+        for (int i = 0; i < 20; i++) {
+            final int taskId = i;
+            executor.submit(() -> {
+                System.out.println("Executing task " + taskId + " by " + Thread.currentThread().getName());
+                try {
+                    Thread.sleep(2000); // Simulate work
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            });
+        }
+
+        // Shutdown the executor
+        executor.shutdown();
+    }
+}
+```
+
+We can also create a class with name ExecutorConfiguration and add a bean like below.
 
 ```java
 package com.company.project.config;
@@ -507,7 +542,7 @@ public class CachedThreadPoolExample {
 
 ## **7. Work-Stealing Pool (Java 8+)**
 
-Introduced in Java 8, `Executors.newWorkStealingPool()` creates a `ForkJoinPool` that uses a work-stealing algorithm. It optimizes CPU utilization for tasks that can be broken into smaller pieces.
+Introduced in Java 8, `Executors.newWorkStealingPool()` creates a `ForkJoinPool` that uses a work-stealing algorithm. It is designed to optimize CPU usage by allowing idle threads to steal tasks from busy threads. This pool is particularly useful for parallel tasks that are not uniform in size.
 
 ### **Key Characteristics**
 
@@ -533,6 +568,55 @@ workStealingPool.submit(() -> {
     // Task to execute
 });
 ```
+
+Parallel Processing of Independent Tasks
+
+```java
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class WorkStealingPoolExample {
+    public static void main(String[] args) {
+        // Create a Work-Stealing Pool
+        ExecutorService executor = Executors.newWorkStealingPool();
+
+        // Simulate independent tasks with varying workloads
+        CompletableFuture<Void> task1 = CompletableFuture.runAsync(() -> {
+            System.out.println("Task 1: " + Thread.currentThread().getName());
+            try {
+                Thread.sleep(3000); // Simulate workload
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }, executor);
+
+        CompletableFuture<Void> task2 = CompletableFuture.runAsync(() -> {
+            System.out.println("Task 2: " + Thread.currentThread().getName());
+            try {
+                Thread.sleep(2000); // Simulate workload
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }, executor);
+
+        CompletableFuture<Void> task3 = CompletableFuture.runAsync(() -> {
+            System.out.println("Task 3: " + Thread.currentThread().getName());
+            try {
+                Thread.sleep(1000); // Simulate workload
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }, executor);
+
+        // Wait for all tasks to complete
+        CompletableFuture.allOf(task1, task2, task3).join();
+        executor.shutdown();
+    }
+}
+```
+
+
 
 
 
