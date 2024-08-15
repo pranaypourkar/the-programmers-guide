@@ -88,6 +88,7 @@
           * [Types of Work Queues](java/concepts/set-1/asynchronous-computation/executorservice/types-of-work-queues.md)
           * [Rejection Policies](java/concepts/set-1/asynchronous-computation/executorservice/rejection-policies.md)
           * [ExecutorService Implementations](java/concepts/set-1/asynchronous-computation/executorservice/executorservice-implementations.md)
+          * [ExecutorService Usage](java/concepts/set-1/asynchronous-computation/executorservice/executorservice-usage.md)
     * [Set 2](java/concepts-set-2/README.md)
       * [ISO Standards](java/concepts-set-2/iso-standards.md)
       * [Localization - TBD](java/concepts/set-2/localization-tbd.md)
