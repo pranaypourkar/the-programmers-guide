@@ -1,5 +1,7 @@
 # CompletableFuture
 
+## About
+
 Java **CompletableFuture** is a class introduced in Java 8 as part of the _**java.util.concurrent**_ package that implements the **Future** and **CompletionStage** Interface. It represents a future result of an asynchronous computation that might not be available immediately. It acts like a placeholder for the eventual outcome of an operation that's being executed concurrently by different thread. It provides a way to write asynchronous, non-blocking code in Java, especially when dealing with tasks that might take a long time to complete, such as network requests or database queries.
 
 ### Advantages:
@@ -7,8 +9,6 @@ Java **CompletableFuture** is a class introduced in Java 8 as part of the _**jav
 * **Asynchronous Programming**: CompletableFuture enables you to execute long-running task/tasks without blocking the current thread. This allows the application to remain responsive and handle other requests while the asynchronous operations are in progress.&#x20;
 * **Composable Operations**: CompletableFuture provides a vast set of methods to chain together multiple asynchronous operations, forming complex workflows. We can define what happens after a computation finishes successfully (**thenApply**, **thenAccept**), what to do if it encounters an exception (**exceptionally**), and how to combine results from multiple CompletableFutures (**allOf**, **anyOf**).&#x20;
 * **Improved Error Handling**: CompletableFuture offers more complex mechanisms for handling exceptions that arise during asynchronous computations. We can define fallback actions using **exceptionally** and propagate or chain exceptions using methods like handle.
-
-
 
 ### Some Key Points:
 
@@ -19,8 +19,6 @@ Java **CompletableFuture** is a class introduced in Java 8 as part of the _**jav
 * `runAsync`
 
 `runAsync(Runnable runnable, Executor executor)`: Similar to `supplyAsync()`, but for tasks that do not return a value. The provided `Runnable` is executed asynchronously, and the resulting `CompletableFuture` completes when the task finishes.
-
-
 
 {% hint style="info" %}
 The `executor` parameter is an optional `Executor` that specifies where the async computation will be executed. If provided, the async computation will be executed on the specified `Executor`. If not provided, the async computation will be executed on the default `ForkJoinPool.commonPool()`
@@ -40,8 +38,6 @@ CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -
 // Continue with other tasks...
 ```
 {% endhint %}
-
-
 
 * `thenApply`
 
@@ -138,8 +134,6 @@ CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -
 * **`get()`:** Cannot be used directly within streams due to the checked exceptions it throws. Additional exception handling is required.
 * **`join()`:** Can be used within streams using method references because it throws an unchecked exception. This makes it more convenient for concise stream operations.
 {% endhint %}
-
-
 
 ### Example:
 
