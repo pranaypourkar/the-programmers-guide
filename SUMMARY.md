@@ -228,7 +228,7 @@
       * [Pseudorandom Number Generators (PRNGs)  - TBD](spring/concepts-set-2/cryptography/pseudorandom-number-generators-prngs-tbd.md)
     * [MapStruct Mapper](spring/concepts-set-2/mapstruct-mapper.md)
   * [Concepts: Set 3](spring/concepts-set-3/README.md)
-    * [Asynchronous Computation](spring/concepts-set-3/asynchronous-computation/README.md)
+    * [Asynchronous Computation](spring/concepts-set-3/asynchronous-computation.md)
       * [@Async annotation](spring/concepts-set-3/asynchronous-computation/async-annotation.md)
   * [Best Practice](spring/best-practice.md)
 * [Software Testing](tests.md)
