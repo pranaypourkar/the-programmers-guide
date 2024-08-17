@@ -10,14 +10,20 @@ Asynchronous computation refers to the execution of tasks or operations independ
 
 Parallelism and concurrency are both important concepts in asynchronous computation, but they are distinct and address different aspects of task execution.
 
-### **Concurrency in Async Computation**
+### **Concurrency**
 
 * **Definition:** Concurrency in the context of async computation refers to the ability to handle multiple tasks in overlapping time periods. This doesn't necessarily mean that the tasks are being executed simultaneously (in parallel); rather, they are interleaved in such a way that they make progress over time without waiting for other tasks to complete.
+
+<figure><img src="../../../.gitbook/assets/image.png" alt="" width="563"><figcaption></figcaption></figure>
+
 * **In Async Computation:** When we use asynchronous programming (e.g., `@Async` in Spring), we allow tasks to be handled concurrently. For example, a web server might handle multiple incoming HTTP requests concurrently, ensuring that no single request blocks others.
 
-### **Parallelism in Async Computation**
+### **Parallelism**
 
 * **Definition:** Parallelism is the simultaneous execution of multiple tasks, typically on multiple cores or processors. Parallelism can be seen as a subset of concurrency, but it specifically involves tasks running at the same time on different processing units.
+
+<figure><img src="../../../.gitbook/assets/image (1).png" alt="" width="563"><figcaption></figcaption></figure>
+
 * **In Async Computation:** When asynchronous tasks are executed on a multi-core processor, and each task is running on a separate core, that's parallelism. For instance, multiple computationally intensive tasks can be run in parallel using a thread pool, where each thread is potentially handled by a different core.
 
 ### **How They Relate to Async Computation**

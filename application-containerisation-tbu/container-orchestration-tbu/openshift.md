@@ -171,7 +171,7 @@ There are **three ways** to interact with OpenShift: the command line, the web i
 
 ### Kubernetes  Components
 
-<figure><img src="../../.gitbook/assets/image (2).png" alt="" width="308"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1).png" alt="" width="308"><figcaption></figcaption></figure>
 
 #### Kubernetes Master Machine Components
 
