@@ -6,6 +6,8 @@ Work queues in Java are a critical component of thread pools, used to hold tasks
 
 ## **1. Unbounded Queues**
 
+An unbounded queue is a queue which has no fixed capacity and can grow dynamically to accommodate an unlimited number of tasks. It is suitable for scenarios where the task submission rate is unpredictable or where tasks need to be queued indefinitely without the risk of rejection due to queue overflow. However, unbounded queues can potentially lead to memory exhaustion if tasks are submitted at a faster rate than they can be processed.
+
 **Example**: `LinkedBlockingQueue`
 
 ### **Characteristics**:
@@ -56,6 +58,8 @@ ExecutorService executor = new ThreadPoolExecutor(
 
 ## **2. Bounded Queues**
 
+A bounded queue  with a specified capacity, has a fixed size limit and can only hold a finite number of tasks. It is suitable for scenarios where resource constraints or backpressure mechanisms need to be enforced to prevent excessive memory usage or system overload. Tasks may be rejected or handled according to a specified rejection policy when the queue reaches its capacity.
+
 **Example**: `ArrayBlockingQueue`
 
 ### **Characteristics**:
@@ -104,6 +108,8 @@ ExecutorService executor = new ThreadPoolExecutor(
 ```
 
 ## **3. Priority Queues**
+
+A priority queue orders tasks based on their priority or a specified comparator. It is suitable for scenarios where tasks have different levels of importance or urgency, and higher-priority tasks need to be processed before lower-priority ones. Priority queues ensure that tasks are executed in the order of their priority, regardless of their submission order.
 
 **Example**: `PriorityBlockingQueue`
 
@@ -162,6 +168,8 @@ ExecutorService executor = new ThreadPoolExecutor(
 
 ## **4. Synchronous Queues**
 
+A synchronous queue is a special type of queue that enables one-to-one task handoff between producer and consumer threads. It has a capacity of zero and requires both a producer and a consumer to be available simultaneously for task exchange to occur. Synchronous queues are suitable for scenarios where strict synchronization and coordination between threads are required, such as handoff between thread pools or bounded resource access.
+
 **Example**: `SynchronousQueue`
 
 ### **Characteristics**:
@@ -214,6 +222,8 @@ ExecutorService executor = new ThreadPoolExecutor(
 ```
 
 ## **5. Delay Queues**
+
+`DelayQueue` is a specialized blocking queue in Java that holds elements until a specified delay has expired. It implements the `BlockingQueue` interface and is a part of the `java.util.concurrent` package. The primary use case for `DelayQueue`is to schedule tasks for future execution, where tasks are only accessible after a specific delay period.
 
 **Example**: `DelayQueue`
 
