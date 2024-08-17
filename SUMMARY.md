@@ -82,6 +82,7 @@
         * [Meta Annotation](java/concepts-set-1/annotation/meta-annotation.md)
       * [Generics](java/concepts-set-1/generics.md)
       * [Asynchronous Computation](java/concepts-set-1/asynchronous-computation/README.md)
+        * [Parallelism and Concurrency](java/concepts/set-1/asynchronous-computation/parallelism-and-concurrency.md)
         * [Future](java/concepts/set-1/asynchronous-computation/future.md)
         * [CompletableFuture](java/concepts-set-1/asynchronous-computation/completablefuture.md)
         * [Future v/s CompletableFuture](java/concepts/set-1/asynchronous-computation/future-v-s-completablefuture.md)
