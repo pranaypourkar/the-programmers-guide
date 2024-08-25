@@ -92,6 +92,8 @@
           * [Rejection Policies](java/concepts/set-1/asynchronous-computation/executorservice/rejection-policies.md)
           * [ExecutorService Implementations](java/concepts/set-1/asynchronous-computation/executorservice/executorservice-implementations.md)
           * [ExecutorService Usage](java/concepts/set-1/asynchronous-computation/executorservice/executorservice-usage.md)
+        * [Locks, Atomic Variables, CountDownLatch, CyclicBarrier - TBU](java/concepts/set-1/asynchronous-computation/locks-atomic-variables-countdownlatch-cyclicbarrier-tbu.md)
+        * [Parallel Streams, Fork/Join Framework,Stream API with Parallelism  - TBU](java/concepts/set-1/asynchronous-computation/parallel-streams-fork-join-framework-stream-api-with-parallelism-tbu.md)
     * [Set 2](java/concepts-set-2/README.md)
       * [ISO Standards](java/concepts-set-2/iso-standards.md)
       * [Localization - TBD](java/concepts/set-2/localization-tbd.md)
