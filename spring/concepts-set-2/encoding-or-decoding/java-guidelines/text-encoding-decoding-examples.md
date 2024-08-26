@@ -156,7 +156,7 @@ import java.nio.file.Path;
 public class EncodingDecodingFiles {
     public static void main(String [] args) {
         try {
-            String baseFilePath = "/Users/pranayp@backbase.com/Documents/Project/Personal/sample-java-project/src/main/resources/txt/";
+            String baseFilePath = "/Users/pranayp/Documents/Project/Personal/sample-java-project/src/main/resources/txt/";
 
             // UTF_8
             Path path1 = Path.of(baseFilePath + "example-UTF8.txt");
