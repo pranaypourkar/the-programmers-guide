@@ -43,8 +43,6 @@ public class Application {
 ## Decoding Example
 
 ```java
-package com.backbase.snbdv;
-
 import org.apache.commons.codec.binary.Base32;
 
 @SpringBootApplication
