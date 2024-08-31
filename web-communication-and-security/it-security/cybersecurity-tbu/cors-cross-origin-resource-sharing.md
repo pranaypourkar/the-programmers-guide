@@ -6,7 +6,7 @@
 
 ## Same-Origin Policy (SOP)
 
-Before diving into CORS, it's essential to understand the Same-Origin Policy:
+Before diving into CORS, it's essential to understand the Same-Origin Policy.
 
 * **Origin**: In web terms, the origin is defined as a combination of the scheme (protocol), host (domain), and port number. For example:
   * `https://example.com:443` (Origin A)
@@ -20,25 +20,31 @@ CORS is a mechanism that allows restricted resources (like fonts, images, or API
 
 ### Key Components of CORS
 
-1. **Preflight Requests**:
+1. **Preflight Requests**
    * For certain types of requests, particularly those that might affect user data or involve complex operations (like `PUT`, `DELETE`, or custom headers), the browser sends a preflight request using the `OPTIONS` method to the server. This request checks if the server allows the actual request to proceed.
-2. **HTTP Headers**:
+2. **HTTP Headers**
    * **`Access-Control-Allow-Origin`**: Specifies which origin(s) are permitted to access the resource. This can be a specific origin (`https://example.com`) or a wildcard (`*`) to allow any origin.
    * **`Access-Control-Allow-Methods`**: Lists the HTTP methods (`GET`, `POST`, `PUT`, `DELETE`, etc.) allowed when accessing the resource.
    * **`Access-Control-Allow-Headers`**: Indicates which headers can be used in the actual request.
    * **`Access-Control-Allow-Credentials`**: Specifies whether or not the browser should include any credentials (like cookies or HTTP authentication) with requests to the resource.
    * **`Access-Control-Max-Age`**: Specifies how long the results of a preflight request can be cached by the browser.
-3. **Simple vs. Non-Simple Requests**:
+3. **Simple vs. Non-Simple Requests**
    * **Simple Requests**: These are requests that meet certain criteria, such as using standard methods like `GET`, `POST`, or `HEAD`, and do not require preflight checks.
    * **Non-Simple Requests**: These requests use methods other than `GET`, `POST`, or `HEAD`, or include custom headers, triggering a preflight request to ensure the server allows the action.
 
+{% hint style="info" %}
+**Credentials in CORS**:
+
+By default, CORS requests do not include credentials like cookies or HTTP authentication. However, if the server includes the `Access-Control-Allow-Credentials: true` header and the frontend explicitly allows credentials (`withCredentials: true` in XHR or Fetch), then cookies and credentials are sent with the request.
+{% endhint %}
+
 ### Example Workflow
 
-1. **Simple Request**:
+1. **Simple Request**
    * A browser makes a `GET` request from `https://example.com` to `https://api.example.com/data`.
    * The server at `https://api.example.com` responds with the data and includes an `Access-Control-Allow-Origin` header with `https://example.com` as the value.
    * The browser allows the page to access the data.
-2. **Preflight Request**:
+2. **Preflight Request**
    * A browser makes a `PUT` request from `https://example.com` to `https://api.example.com/update`.
    * Before sending the actual request, the browser sends an `OPTIONS` request (preflight) to check if the server allows `PUT` requests from `https://example.com`.
    * The server responds with appropriate CORS headers (`Access-Control-Allow-Methods`, `Access-Control-Allow-Origin`, etc.).
