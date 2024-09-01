@@ -32,3 +32,68 @@ To find Docker executable and Docker Compose executable, run the below command
 
 <figure><img src="../../../../.gitbook/assets/image (273).png" alt="" width="563"><figcaption></figcaption></figure>
 
+## Step 3: Prepare the docker-compose file
+
+Save the below content in docker-compose file
+
+_docker-compose.yml_
+
+```yaml
+version: "3.9"
+# https://docs.docker.com/compose/compose-file/
+
+services:
+  sftp-server:
+    container_name: sftp-server
+    image: antrea/sftp #https://hub.docker.com/r/antrea/sftp
+    platform: linux/amd64 #Change the platform as needed
+    ports:
+      - "9922:22"
+    volumes:
+      - ./sftp_test_data:/home/sftpuser/upload/sftp_test_data  # Mount a local directory to the container
+    environment:
+      SFTP_USERS: "sftpuser:pass:1001:100"  # Set the username, password, UID (user id), and GID (group user id)
+      SFTP_CHROOT: "/home/sftpuser"  # Restrict user to the home directory
+
+networks:
+  default:
+    name: default_network
+```
+
+Since, we are attaching a volume of local `sftp_test_data` folder, create a folder and add some test files there.
+
+<figure><img src="../../../../.gitbook/assets/image (274).png" alt="" width="537"><figcaption></figcaption></figure>
+
+## Step 4: Run the docker-compose file
+
+<figure><img src="../../../../.gitbook/assets/image (275).png" alt="" width="563"><figcaption></figcaption></figure>
+
+## Step 5: Connect the sftp server via any tools
+
+Here, we will use FileZilla Client. Download and Install the FileZilla client from below url &#x20;
+
+[https://filezilla-project.org/download.php?type=client#close](https://filezilla-project.org/download.php?type=client#close)
+
+Open the FileZilla Client&#x20;
+
+<figure><img src="../../../../.gitbook/assets/image (276).png" alt="" width="563"><figcaption></figcaption></figure>
+
+Add below details as we configure in docker-compose file
+
+```
+Host: sftp://127.0.0.1
+Username: sftpuser
+Password: pass
+Port: 9922
+```
+
+<figure><img src="../../../../.gitbook/assets/image (277).png" alt="" width="563"><figcaption></figcaption></figure>
+
+Click on Quickconnect and click on OK
+
+<figure><img src="../../../../.gitbook/assets/image (278).png" alt=""><figcaption></figcaption></figure>
+
+Remote site details should be visible now
+
+<figure><img src="../../../../.gitbook/assets/image (279).png" alt=""><figcaption></figcaption></figure>
+
