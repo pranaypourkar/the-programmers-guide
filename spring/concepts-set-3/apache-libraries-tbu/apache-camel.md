@@ -1,5 +1,9 @@
 # Apache Camel
 
+## About
+
+Apache Camel is a powerful integration framework that provides a standardized, open-source approach for connecting different systems and applications. Its architecture is designed to handle complex integration tasks using various components and patterns in a consistent and manageable way.
+
 ## The Need of Apache Camel
 
 ### Problem Statement
