@@ -329,7 +329,7 @@ for (Map.Entry<Integer, String> entry : sortedMapByValue.entrySet()) {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (2).png" alt="" width="281"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (2) (1).png" alt="" width="281"><figcaption></figcaption></figure>
 
 #### Descending Order by Keys
 
@@ -673,7 +673,7 @@ sortedNestedPersonMap.putAll(nestedPersonMap);
 sortedNestedPersonMap.forEach((key, value) -> System.out.println(STR."Key: \{key} Value: \{value}"));
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (2).png" alt=""><figcaption></figcaption></figure>
 
 #### Descending Order
 

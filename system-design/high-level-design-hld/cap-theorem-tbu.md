@@ -15,4 +15,4 @@ What would you tradeoff? P is never tradeoff in deistributed system. Choose betw
 
 
 
-<figure><img src="../../.gitbook/assets/image (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
