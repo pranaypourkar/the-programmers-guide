@@ -245,7 +245,7 @@
           * [Camel Components](spring/concepts-set-3/apache-libraries-tbu/apache-camel/camel-architecture/camel-components.md)
         * [Spring Dependency](spring/concepts-set-3/apache-libraries-tbu/apache-camel/spring-dependency.md)
         * [Different Components](spring/concepts-set-3/apache-libraries-tbu/apache-camel/different-components/README.md)
-          * [Camel SFTP](spring/concepts-set-3/apache-libraries-tbu/apache-camel/different-components/camel-sftp.md)
+          * [Camel SFTP](spring/concepts-set-3/apache-libraries-tbu/apache-camel/camel-sftp.md)
   * [Best Practice](spring/best-practice.md)
 * [Software Testing](tests.md)
   * [Software Testing Methodologies](software-testing/software-testing-methodologies/README.md)
