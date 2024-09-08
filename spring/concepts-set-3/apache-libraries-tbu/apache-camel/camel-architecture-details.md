@@ -2,6 +2,10 @@
 
 Apache Camel is a powerful integration framework that provides a standardized, open-source approach for connecting different systems and applications. Its architecture is designed to handle complex integration tasks using various components and patterns in a consistent and manageable way.
 
+{% hint style="info" %}
+Refer to the official documentation for more details - [https://camel.apache.org/components/4.4.x/index.html](https://camel.apache.org/components/4.4.x/index.html)
+{% endhint %}
+
 ## Diagram
 
 Reference architecture diagram from the documentation [https://camel.apache.org/manual/architecture.html](https://camel.apache.org/manual/architecture.html)
