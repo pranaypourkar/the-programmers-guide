@@ -75,7 +75,7 @@ We can create routes in different languages. Here are a few examples of how the 
 #### Java DSL
 
 ```
-from ("file:/order").to("jms:orderQueue");
+from("file:/order").to("jms:orderQueue");
 ```
 
 #### Spring DSL
