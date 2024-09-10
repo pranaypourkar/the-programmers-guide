@@ -4,6 +4,8 @@
 
 Apache Camel’s SFTP component allows to transfer files to and from SFTP (SSH File Transfer Protocol) servers. It supports both the sending (uploading) and receiving (downloading) of files, making it useful in various integration scenarios where secure file transfer is required.
 
+For more details, refer to official documentation page - [https://camel.apache.org/components/4.4.x/sftp-component.html](https://camel.apache.org/components/4.4.x/sftp-component.html)
+
 ## Key Aspects of Camel SFTP
 
 ### **Component URI Format**
@@ -259,10 +261,4 @@ We can download large files from an SFTP server using streaming, which reduces m
 from("sftp://user@myhost.com/largefile?streamDownload=true")
 .to("file:/local/storage");
 ```
-
-
-
-
-
-
 
