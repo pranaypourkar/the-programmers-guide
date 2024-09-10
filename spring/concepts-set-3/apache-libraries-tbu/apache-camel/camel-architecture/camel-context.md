@@ -6,7 +6,7 @@ Camel Context is the heart of Apache Camel. It acts as the runtime environment w
 
 <figure><img src="../../../../../.gitbook/assets/image (285).png" alt="" width="375"><figcaption></figcaption></figure>
 
-## Key Responsibilities of CamelContext:
+## Key Responsibilities of CamelContext
 
 ### **Lifecycle Management**
 

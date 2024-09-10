@@ -243,6 +243,7 @@
           * [Camel Context](spring/concepts-set-3/apache-libraries-tbu/apache-camel/camel-architecture/camel-context.md)
           * [Camel Endpoints](spring/concepts-set-3/apache-libraries-tbu/apache-camel/camel-architecture/camel-endpoints.md)
           * [Camel Components](spring/concepts-set-3/apache-libraries-tbu/apache-camel/camel-architecture/camel-components.md)
+          * [Camel Exchange & MEP](spring/concepts-set-3/apache-libraries-tbu/apache-camel/camel-architecture/camel-exchange-and-mep.md)
         * [Spring Dependency](spring/concepts-set-3/apache-libraries-tbu/apache-camel/spring-dependency.md)
         * [Different Components](spring/concepts-set-3/apache-libraries-tbu/apache-camel/different-components/README.md)
           * [Camel SFTP](spring/concepts-set-3/apache-libraries-tbu/apache-camel/camel-sftp.md)
