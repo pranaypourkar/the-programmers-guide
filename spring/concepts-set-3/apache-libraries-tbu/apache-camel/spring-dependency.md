@@ -6,6 +6,7 @@
 <dependency>
     <groupId>org.apache.camel.springboot</groupId>
     <artifactId>camel-jsch-starter</artifactId>
+    <version>x.x.x</version>
 </dependency>
 ```
 
@@ -32,5 +33,25 @@ The `camel-ftp` dependency provides both **FTP** and **SFTP** capabilities to Ap
 * **FTP and SFTP**: This dependency supports both **plain FTP** (File Transfer Protocol) and **SFTP** (Secure FTP) using the same library.
 * **Version Control**: We need to specify the version, and it should match your Camel core version to ensure compatibility.
 
+## 3. **`camel-ftp-starter` (Camel FTP/SFTP Spring Component)**
 
+```markup
+<dependency>
+    <groupId>org.apache.camel.springboot</groupId>
+    <artifactId>camel-ftp-starter</artifactId>
+    <version>x.x.x</version>
+</dependency>
+```
+
+The `camel-ftp-starter` is a Spring Boot starter that simplifies the integration of FTP and SFTP protocols in Spring Boot applications. It is an extension of the general `camel-ftp` component, but packaged in a way that takes advantage of Spring Boot’s auto-configuration mechanism.
+
+* **Auto-Configuration**:
+  * This starter will auto-configure the necessary components (`FtpComponent` and `SftpComponent`) for FTP and SFTP operations without requiring manual setup in your Spring Boot application.
+  * As a Spring Boot starter, it simplifies the integration of FTP and SFTP by reducing the boilerplate code we would otherwise need to configure in a non-Spring Boot environment.
+* **FTP and SFTP Support**:
+  * Unlike `camel-jsch-starter` (which only supports SFTP), `camel-ftp-starter` provides support for both **FTP** and **SFTP** protocols.
+  * It uses Apache Commons Net under the hood for FTP and JSCH for SFTP.
+* **Spring Boot Features**:
+  * Leverages Spring Boot’s auto-configuration capabilities, which means we don't have to manually define FTP or SFTP components unless we want custom configurations.
+  * Supports the properties-based configuration of FTP and SFTP servers via the `application.properties` or `application.yml` files in a Spring Boot project.
 
