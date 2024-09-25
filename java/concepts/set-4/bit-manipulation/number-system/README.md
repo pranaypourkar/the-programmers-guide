@@ -38,7 +38,7 @@ Number systems are methods for representing numbers in a consistent manner. They
 
 * The binary number 1011 can be expressed as
 
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt="" width="461"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt="" width="461"><figcaption></figcaption></figure>
 
 ### **Usage:**
 

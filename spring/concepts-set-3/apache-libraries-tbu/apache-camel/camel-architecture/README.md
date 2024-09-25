@@ -10,7 +10,7 @@ Refer to the official documentation for more details - [https://camel.apache.org
 
 Reference architecture diagram from the documentation [https://camel.apache.org/manual/architecture.html](https://camel.apache.org/manual/architecture.html)
 
-<figure><img src="../../../../../.gitbook/assets/image.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Components
 

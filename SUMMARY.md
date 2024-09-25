@@ -333,6 +333,7 @@
         * [Examples](system-design/low-level-design-lld/other-concepts/fluent-api-design/examples.md)
   * [High-Level Design (HLD)](system-design/high-level-design-hld/README.md)
     * [CAP Theorem](system-design/high-level-design-hld/cap-theorem.md)
+    * [Load Balancing - TBU](system-design/high-level-design-hld/load-balancing-tbu.md)
   * [Deployment Patterns](system-design/deployment-patterns.md)
   * [Diagrams](system-design/diagrams.md)
 * [Web Communication and Security](web-communication-and-security.md)
