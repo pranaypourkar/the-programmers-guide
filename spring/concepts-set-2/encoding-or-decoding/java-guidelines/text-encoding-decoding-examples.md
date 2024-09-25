@@ -124,7 +124,7 @@ Similar to ISO-8859-1, Windows-1252 has limited support for non-Western characte
 
 {% file src="../../../../.gitbook/assets/example-ISO-8859-1.txt" %}
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
 
 {% file src="../../../../.gitbook/assets/example-UTF8.txt" %}
 

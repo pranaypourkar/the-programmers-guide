@@ -228,7 +228,7 @@ stringSet.addAll(Set.of("banana", "apple", "cherry"));
 System.out.println(stringSet);
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt="" width="346"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt="" width="346"><figcaption></figcaption></figure>
 
 ### **Custom Objects**
 
