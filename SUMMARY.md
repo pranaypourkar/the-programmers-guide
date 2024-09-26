@@ -335,6 +335,8 @@
     * [CAP Theorem](system-design/high-level-design-hld/cap-theorem.md)
     * [Load Balancing - TBU](system-design/high-level-design-hld/load-balancing-tbu/README.md)
       * [Load Balancer Architecture](system-design/high-level-design-hld/load-balancing-tbu/load-balancer-architecture.md)
+      * [Load Balancer Monitoring Tool](system-design/high-level-design-hld/load-balancing-tbu/load-balancer-monitoring-tool.md)
+    * [Page](system-design/high-level-design-hld/page.md)
   * [Deployment Patterns](system-design/deployment-patterns.md)
   * [Diagrams](system-design/diagrams.md)
 * [Web Communication and Security](web-communication-and-security.md)

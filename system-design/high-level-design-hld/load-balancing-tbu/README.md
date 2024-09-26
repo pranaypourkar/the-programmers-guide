@@ -12,11 +12,11 @@ Load balancing is the process of distributing network traffic across multiple se
 
 
 
-## Types of load balancer based on **deployment type** and **infrastructure**
+## Types of load balancer based on I**nfrastructure &** Configurations
 
 ### 1. **Software Load Balancers**
 
-A software load balancer is an application or service running on standard hardware that distributes network traffic to different servers.
+A Software Load Balancer is an application or service running on standard hardware that distributes network traffic to different servers.
 
 **Key Characteristics:**
 
@@ -38,7 +38,7 @@ A software load balancer is an application or service running on standard hardwa
 
 ### 2. **Hardware Load Balancers**
 
-Hardware load balancers are specialized, dedicated devices designed to distribute network traffic among multiple servers. These are proprietary appliances with embedded software optimized for high-performance load balancing.
+Hardware Load Balancers are specialized, dedicated devices designed to distribute network traffic among multiple servers. These are proprietary appliances with embedded software optimized for high-performance load balancing.
 
 **Key Characteristics:**
 
@@ -60,7 +60,7 @@ Hardware load balancers are specialized, dedicated devices designed to distribut
 
 ### 3. **Virtual Load Balancers**
 
-Virtual load balancers (VLBs) are software-based load balancers running in a virtualized environment, such as a virtual machine (VM) or cloud-based instance. They combine the flexibility of software load balancers with the scalability and reliability offered by virtual environments.
+Virtual Load Balancers (VLBs) are software-based load balancers running in a virtualized environment, such as a virtual machine (VM) or cloud-based instance. They combine the flexibility of software load balancers with the scalability and reliability offered by virtual environments.
 
 **Key Characteristics:**
 
@@ -97,7 +97,7 @@ While **virtual** and **software load balancers** share similarities, such as be
    * **Virtual Load Balancers**: Are **purpose-built for cloud environments** and come with native cloud features like **auto-scaling**, integrated **security tools**, **high availability**, and compatibility with other cloud-native services (e.g., monitoring, logging, CI/CD pipelines).
 {% endhint %}
 
-## Types of load balancer based on **where it happens within the system**
+## Types of load balancer based on Different System Levels
 
 Load balancing can also be categorized based on where it happens within the system. This classification is crucial because different levels of load balancing serve specific purposes within a system’s architecture. These levels correspond to the different layers of the OSI (Open Systems Interconnection) model and can be broadly categorized as **Layer 4 (Transport Layer)**, **Layer 7 (Application Layer)**, and **Global Load Balancing**.
 
@@ -236,6 +236,16 @@ Hybrid load balancing combines multiple load balancing strategies to provide bot
 ## Software-Based or **Virtual** Load Balancing Algorithms
 
 Load balancing algorithms are critical in distributing incoming network traffic across multiple servers to ensure optimal resource utilization, avoid overloading any single server, and improve application performance. Each algorithm has its specific use case, advantages, and trade-offs.
+
+{% hint style="info" %}
+**Static load balancing algorithm**
+
+Static load balancing algorithm distribute the workload without taking into account the current state of the system. It will not be aware of which servers are performing slowly and which servers are not being used efficiently.
+
+**Dynamic load balancing algorithm**
+
+Dynamic load balancing algorithm distribute the workload by taking the current availability, workload, and health of each server into account. They can shift traffic from overburdened or poorly performing servers to underutilized servers, keeping the distribution even and efficient.
+{% endhint %}
 
 ### 1. **Round Robin**
 
