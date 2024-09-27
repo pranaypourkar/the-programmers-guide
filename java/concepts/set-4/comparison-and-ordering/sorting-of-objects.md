@@ -228,7 +228,7 @@ stringSet.addAll(Set.of("banana", "apple", "cherry"));
 System.out.println(stringSet);
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt="" width="346"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt="" width="346"><figcaption></figcaption></figure>
 
 ### **Custom Objects**
 
@@ -424,7 +424,7 @@ Map<String, Person> sortedByKeyMap = new TreeMap<>(personMap);
 sortedByKeyMap.forEach((key, value) -> System.out.println(key + ": " + value));
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (2).png" alt="" width="332"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (2) (1).png" alt="" width="332"><figcaption></figcaption></figure>
 
 #### Descending Order by Keys
 
@@ -696,7 +696,7 @@ sortedNestedPersonMap.putAll(nestedPersonMap);
 sortedNestedPersonMap.forEach((key, value) -> System.out.println(STR."Key: \{key} Value: \{value}"));
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (2).png" alt=""><figcaption></figcaption></figure>
 
 ## Nested Set
 

@@ -4,6 +4,8 @@
 
 In a Java microservices architecture, load balancing plays a crucial role in maintaining the availability, scalability, and reliability of services. Microservices are typically deployed across distributed environments like cloud platforms, containers, or multiple servers, and they often need to handle fluctuating traffic loads while providing fast, reliable responses. Load balancing ensures that incoming requests are distributed efficiently across multiple service instances, preventing any one instance from being overwhelmed.
 
+<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+
 ## **Why Load Balancing is important in Java Microservices ?**
 
 * **High Traffic Handling**: Microservices typically deal with variable traffic loads. Load balancing helps distribute this traffic across different instances of a microservice.
