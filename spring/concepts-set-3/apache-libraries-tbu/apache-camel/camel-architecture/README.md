@@ -10,7 +10,7 @@ Refer to the official documentation for more details - [https://camel.apache.org
 
 Reference architecture diagram from the documentation [https://camel.apache.org/manual/architecture.html](https://camel.apache.org/manual/architecture.html)
 
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (4).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Components
 
@@ -99,6 +99,3 @@ Reference architecture diagram from the documentation [https://camel.apache.org/
 * **JMX**: Camel provides integration with Java Management Extensions (JMX) for monitoring routes, endpoints, and components at runtime.
 * **Health Checks**: Camel provides built-in health checks for routes and components to ensure the system is running smoothly.
 * **Hawtio**: A web-based management console, Hawtio, can be used for managing and monitoring Camel applications.
-
-
-

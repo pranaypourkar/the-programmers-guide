@@ -4,8 +4,6 @@
 
 Creational patterns in software engineering deal with the process of object creation in a flexible and reusable manner. They aim to provide mechanisms to instantiate objects in various situations while promoting loose coupling between the creator and the created objects. Creational patterns often involve hiding the object creation logic and making the system more independent of how its objects are created, composed, and represented
 
-
-
 ## Types of Creational Pattern
 
 ### **Singleton Pattern**
@@ -60,16 +58,12 @@ public class Logger {
 }
 ```
 
-
-
 {% hint style="info" %}
 In a Spring Boot application, the Singleton pattern is utilized extensively due to the nature of Spring's bean management. By default, Spring manages beans as singletons within the container, meaning that only one instance of a bean is created per container context.
 
-#### Example: UserService in a Spring Boot Application
+**Example: UserService in a Spring Boot Application**
 
 Suppose we have a UserService class responsible for managing user-related operations, such as fetching user data from a database, performing user authentication, and so on. We want to ensure that there's only one instance of UserService throughout the application, so we annotate it with `@Service` (or `@Component`) to let Spring manage it as a singleton:
-
-
 
 ```java
 import org.springframework.stereotype.Service;
@@ -89,11 +83,7 @@ public class UserService {
 }
 ```
 
-
-
 By default, Spring will create a single instance of `UserService` and manage it as a singleton bean within the application context. Let's use the `UserService` in a controller. We inject the `UserService` dependency using constructor injection. When the Spring Boot application starts up, Spring creates a single instance of `UserService` and manages it as a singleton bean within the application context. Whenever the `UserController` is instantiated, it receives the same instance of `UserService`. This ensures that all requests to `/userdata` endpoint is handled by the same instance of `UserService`, maintaining consistency and preventing unnecessary object creation.
-
-
 
 ```java
 package org.example.api;
@@ -116,8 +106,6 @@ public class UserController {
 }
 ```
 {% endhint %}
-
-
 
 ### **Factory Method Pattern**
 
@@ -191,9 +179,9 @@ public class Main {
 
 Create a Shape interface and concrete classes implementing the Shape interface.
 
-<figure><img src="../../../.gitbook/assets/image (75).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (297).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (76).png" alt="" width="311"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (298).png" alt="" width="311"><figcaption></figcaption></figure>
 
 ```java
 // Shape interface
@@ -274,8 +262,6 @@ public class Application {
 
 The Factory Method Pattern allows for flexible object creation by delegating the responsibility of creating objects to subclasses, making the system more extensible and maintainable. Each subclass can determine the type of object to create based on its specific requirements.
 
-
-
 ### **Abstract Factory Pattern**
 
 The Abstract Factory Pattern is a creational design pattern that builds upon the Factory Method Pattern. It provides a way to create families of related objects without specifying their concrete types. The Abstract Factory Pattern is useful when we need to create multiple families of related objects or when we want to provide a level of abstraction for creating objects.
@@ -355,7 +341,7 @@ public class Main {
 
 #### Example 2
 
-We have abstract product interfaces `Button` and `TextField` representing UI components. And concrete product classes `LightThemeButton`, `DarkThemeButton`, `LightThemeTextField`, and `DarkThemeTextField` that implement the abstract product interfaces with specific implementations for each theme. We have an abstract factory interface `GUIFactory` with factory methods `createButton()` and `createTextField()` for creating UI components. Also, we created  concrete factory classes `LightThemeFactory` and `DarkThemeFactory` that implement the abstract factory interface and provide implementations for creating UI components for the Light Theme and Dark Theme, respectively.
+We have abstract product interfaces `Button` and `TextField` representing UI components. And concrete product classes `LightThemeButton`, `DarkThemeButton`, `LightThemeTextField`, and `DarkThemeTextField` that implement the abstract product interfaces with specific implementations for each theme. We have an abstract factory interface `GUIFactory` with factory methods `createButton()` and `createTextField()` for creating UI components. Also, we created concrete factory classes `LightThemeFactory` and `DarkThemeFactory` that implement the abstract factory interface and provide implementations for creating UI components for the Light Theme and Dark Theme, respectively.
 
 We create instances of `LightThemeFactory` and `DarkThemeFactory` to represent factories for creating UI components for the Light Theme and Dark Theme, respectively. We use the factory methods `createButton()` and `createTextField()` to create UI components for the respective themes. The concrete factory classes (`LightThemeFactory` and `DarkThemeFactory`) internally handle the creation of UI components based on the specific theme.
 
@@ -460,20 +446,16 @@ public class Application {
 }
 ```
 
-
-
 #### Difference between Factory Method Pattern and Abstract Factory Pattern
 
-| Feature             | Factory Method Pattern                                                           | Abstract Factory Pattern                                                                     |
-| ------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| Focus               | Single type or related types                                                     | Families of related objects                                                                  |
-| Structure           | Factory interface + Concrete Factories                                           | Abstract Factory + Concrete Factories                                                        |
-| Client Interaction  | Calls factory to get a product                                                   | Calls factory to get products from a family                                                  |
-| Benefits            | Decoupling, Flexibility                                                          | Consistency, Flexibility, Multiple Families                                                  |
-| Number of Methods   | Typically includes a single factory method for creating a single type of object. | Typically includes multiple factory methods for creating different types of related objects. |
-| Drawbacks           | Extra abstraction, Simple cases                                                  | More complex, Overkill for simple cases                                                      |
-
-
+| Feature            | Factory Method Pattern                                                           | Abstract Factory Pattern                                                                     |
+| ------------------ | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Focus              | Single type or related types                                                     | Families of related objects                                                                  |
+| Structure          | Factory interface + Concrete Factories                                           | Abstract Factory + Concrete Factories                                                        |
+| Client Interaction | Calls factory to get a product                                                   | Calls factory to get products from a family                                                  |
+| Benefits           | Decoupling, Flexibility                                                          | Consistency, Flexibility, Multiple Families                                                  |
+| Number of Methods  | Typically includes a single factory method for creating a single type of object. | Typically includes multiple factory methods for creating different types of related objects. |
+| Drawbacks          | Extra abstraction, Simple cases                                                  | More complex, Overkill for simple cases                                                      |
 
 ### **Builder Pattern**
 
@@ -586,8 +568,6 @@ public class Application {
 
 By using Lombok's `@Builder` annotation, we can achieve the same functionality as the manually written builder class with less code. Lombok takes care of generating the builder class and its methods, reducing the need for boilerplate code. This makes the code cleaner, more concise, and easier to maintain.
 
-
-
 ### **Prototype Pattern**
 
 #### Description
@@ -671,8 +651,6 @@ public class Application {
 }
 ```
 
-
-
 #### Example 2
 
 Consider a game where we need to create multiple enemies of the same type (e.g., Orcs). Instead of creating each Orc from scratch, you can use a prototype.
@@ -709,4 +687,3 @@ public class Game {
   }
 }
 ```
-

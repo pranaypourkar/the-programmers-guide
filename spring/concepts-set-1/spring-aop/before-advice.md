@@ -16,11 +16,9 @@ Before Advice is executed before the advised method execution. It allows to exec
 
 **Transaction Management**: Before advice can be used to start a transaction before executing methods that require database operations.
 
-
-
 #### Sample Examples
 
-#### <mark style="background-color:blue;">Scenario 1</mark>: Logging request details using custom annotation&#x20;
+#### <mark style="background-color:blue;">Scenario 1</mark>: Logging request details using custom annotation
 
 Create custom annotation `LogRequest`
 
@@ -109,9 +107,9 @@ public class PaymentApi {
 
 Run and execute the API and verify the log response.
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption><p>Postman</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (214).png" alt="" width="563"><figcaption><p>Postman</p></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)   (2).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (213).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 > Passing argNames in the Before Advice annotation.
 >
@@ -128,12 +126,6 @@ Run and execute the API and verify the log response.
 >     log.info("Finish: LogRequest");
 > }
 > ```
-
-
-
-
-
-
 
 {% hint style="info" %}
 Note: The code snippet given in this page is just for understanding and does not contain complete code. (For e.g. missing service class code snippet)

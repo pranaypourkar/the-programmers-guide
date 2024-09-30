@@ -10,8 +10,6 @@ Flexibility and extensibility are often key objectives when designing systems th
 **Strategy pattern:** Encapsulate various payment processing algorithms (such as Cash processing, Local Transfer processing, etc.) into separate classes (strategies) that implement a common interface (`PaymentProcessor`). This allows the system to dynamically select and execute the appropriate algorithm based on the transaction type, promoting flexibility and maintainability in the payment processing logic.
 {% endhint %}
 
-
-
 Let's start by creating an enum with supported payment types.
 
 _**PaymentType.java**_
@@ -45,8 +43,6 @@ public enum PaymentType {
 }
 ```
 
-
-
 Now, create an interface.
 
 _**PaymentProcessor.java**_
@@ -56,8 +52,6 @@ public interface PaymentProcessor {
     void processor(Transaction transaction);
 }
 ```
-
-
 
 Create different payment processors.
 
@@ -93,9 +87,7 @@ public class InternalTransferProcessor implements PaymentProcessor{
 
 * And others
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)   (3).png" alt="" width="255"><figcaption></figcaption></figure>
-
-
+<figure><img src="../../../../.gitbook/assets/image (216).png" alt="" width="255"><figcaption></figcaption></figure>
 
 Now, in the service class, inject all the processor implementation and fetch and trigger appropriate processor logic based on Transaction/Payment Type.
 
@@ -114,8 +106,6 @@ public class PaymentService {
     }
 }
 ```
-
-
 
 We can create Controller class and define the sample endpoint.
 
@@ -141,11 +131,8 @@ public class PaymentApi {
 }
 ```
 
-
-
 Run the application and call the endpoint.
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)   (4).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (217).png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>Log Output</p></figcaption></figure>
-
+<figure><img src="../../../../.gitbook/assets/image (218).png" alt=""><figcaption><p>Log Output</p></figcaption></figure>

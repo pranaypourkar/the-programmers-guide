@@ -2,7 +2,7 @@
 
 ## About
 
-An application server is a Java Virtual Machine (JVM) that runs user application. The application server collaborates with the web server to return a dynamic, customized response to a client request. The client request can consist of servlets, JavaServer Pages (JSP) files, and enterprise beans, and their supporting classes.&#x20;
+An application server is a Java Virtual Machine (JVM) that runs user application. The application server collaborates with the web server to return a dynamic, customized response to a client request. The client request can consist of servlets, JavaServer Pages (JSP) files, and enterprise beans, and their supporting classes.
 
 {% hint style="info" %}
 **About History**
@@ -30,7 +30,7 @@ For example, a user at a web browser visits a company website:
 
 Ref: [https://www.service-architecture.com/articles/application-servers/application-server-definition.html#](https://www.service-architecture.com/articles/application-servers/application-server-definition.html)
 
-<figure><img src="../../.gitbook/assets/image (233).png" alt="" width="423"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (455).png" alt="" width="423"><figcaption></figcaption></figure>
 
 ### 1. **Client Tier**
 

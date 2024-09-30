@@ -1,10 +1,10 @@
 # SQL Commands
 
-SQL (Structured Query Language) is a powerful language for interacting with relational databases. It allows us to create, manipulate, and retrieve data stored in tables.&#x20;
+SQL (Structured Query Language) is a powerful language for interacting with relational databases. It allows us to create, manipulate, and retrieve data stored in tables.
 
 SQL commands are grouped into different categories based on their functionality:
 
-<figure><img src="../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (146).png" alt=""><figcaption></figcaption></figure>
 
 ### **Data Definition Language (DDL):**
 

@@ -4,7 +4,7 @@
 
 Camel Context is the heart of Apache Camel. It acts as the runtime environment where routes are defined and executed, managing the entire lifecycle of the integration processes. Essentially, CamelContext is the container for all the key componets such as routes, components, endpoints, and processors.
 
-<figure><img src="../../../../../.gitbook/assets/image (285).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (528).png" alt="" width="375"><figcaption></figcaption></figure>
 
 ## Key Responsibilities of CamelContext
 
@@ -104,7 +104,7 @@ CamelContext context = new DefaultCamelContext();
 context.start();
 ```
 
-### **Stopping the Context**&#x20;
+### **Stopping the Context**
 
 Stopping the CamelContext gracefully shuts down all the routes and resources. It ensures that in-progress exchanges are completed.
 
@@ -140,4 +140,3 @@ context.start();
 Thread.sleep(5 * 60 * 1000);
 context.stop();
 ```
-

@@ -1,6 +1,6 @@
 # Encoding and Decoding in Java
 
-## Converting character to ASCII value, vice versa&#x20;
+## Converting character to ASCII value, vice versa
 
 ```java
 public class Ascii {
@@ -20,7 +20,4 @@ public class Ascii {
 }
 ```
 
-<figure><img src="../../../../../../.gitbook/assets/image (9) (1) (1).png" alt="" width="500"><figcaption></figcaption></figure>
-
-
-
+<figure><img src="../../../../../../.gitbook/assets/image (50).png" alt="" width="500"><figcaption></figcaption></figure>

@@ -6,13 +6,13 @@ Deployment patterns refer to various strategies and methodologies used in softwa
 
 Some common deployment patterns include:
 
-### **Canary Release**&#x20;
+### **Canary Release**
 
 In this pattern, a new version of the software is gradually rolled out to a small subset of users or servers before being deployed to the entire infrastructure. This allows for early detection of issues and reduces the impact of bugs or performance problems.
 
-<figure><img src="../.gitbook/assets/image (60).png" alt="" width="296"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (282).png" alt="" width="296"><figcaption></figcaption></figure>
 
-### **Blue-Green Deployment**&#x20;
+### **Blue-Green Deployment**
 
 This involves maintaining two identical production environments, one active (blue) and the other inactive (green). The new version of the software is deployed to the inactive environment, and once the deployment is successful and verified, traffic is switched from the active environment to the updated one. This pattern minimizes downtime and allows for easy rollback if issues arise.
 
@@ -20,15 +20,15 @@ This involves maintaining two identical production environments, one active (blu
 
 In a rolling deployment, updates are gradually applied across different parts of the infrastructure while maintaining service availability. This is typically achieved by updating one or a few instances at a time, allowing the system to continue serving traffic throughout the deployment process.
 
-### **Feature Toggle (Feature Flags)**&#x20;
+### **Feature Toggle (Feature Flags)**
 
 Feature toggles allow developers to enable or disable certain features of the software at runtime. This pattern enables gradual rollout of new features to users and provides the ability to turn off features quickly in case of issues. For example, Mobile App using Remote Config BE API to enable or disable certain features. This Remote Config changes can be done via UI console as well without BE deployment. Or by creating feature flag API which allows certain features based on time based restriction (like payments can only be done after a day when user registered)
 
-### **A/B Testing**&#x20;
+### **A/B Testing**
 
 A/B testing involves releasing multiple versions of a feature to different segments of users and measuring their performance or user feedback to determine the most effective version. This pattern helps in making data-driven decisions and optimizing the user experience.
 
-### **Dark Launching**&#x20;
+### **Dark Launching**
 
 In dark launching, new features or updates are deployed to production environments but are not exposed to end-users. Instead, they are tested internally or with a small subset of users to gather feedback and ensure stability before fully releasing them.
 

@@ -2,8 +2,6 @@
 
 `WebClient` is a non-blocking, reactive HTTP client introduced in Spring 5 and is part of the Spring WebFlux module. Reactor is the foundation of WebClient’s functional and fluent API for making HTTP requests in Spring applications, especially in reactive, non-blocking scenarios. It's designed for modern, scalable applications that can handle high volumes of concurrent requests efficiently.
 
-
-
 ### **Some of the key points**
 
 1. **Non-blocking and Reactive**: `WebClient` operates in a non-blocking manner, allowing application to handle multiple concurrent requests efficiently without blocking threads.
@@ -12,9 +10,7 @@
 4. **Customizable and Extensible**: `WebClient` provides various configuration options and allows customization of request and response handling through filters, interceptors, and other mechanisms.
 5. **Supports WebClient.Builder**: We can create a `WebClient` instance using `WebClient.Builder`, which allows for centralized configuration and reuse across multiple requests.
 6. **Codec Integration:** WebClient integrates with Spring's HTTP codecs for automatic marshalling and unmarshalling of request and response data formats (e.g., JSON, XML).
-7. The default _HttpClient_ used by _WebClient_ is the Netty implementation, so to see details like requests we need to change the _**reactor.netty.http.client**_** logging level to **_**DEBUG**._
-
-
+7. The default _HttpClient_ used by _WebClient_ is the Netty implementation, so to see details like requests we need to change the _**reactor.netty.http.client**_\*\* logging level to **\_**DEBUG\*\*.\_
 
 ### Commonly used WebClient configuration
 
@@ -91,8 +87,6 @@ Mono<String> responseMono = webClient.get()
                  throwable -> throwable instanceof IOException); // Retry only for IOExceptions
 ```
 
-
-
 ### **Making HTTP Requests**
 
 WebClient offers a fluent API for building different types of HTTP requests:
@@ -104,15 +98,11 @@ WebClient offers a fluent API for building different types of HTTP requests:
 * `.delete()`: Use this for DELETE requests
 * `exchange()` : This method allows explicit handling of the request and response. It returns a ClientResponse object, which contains details such as status, headers, and the response body. With exchange(), we need to explicitly subscribe to the response using methods like subscribe(), block(), or similar ones. This gives more control over the execution of the request and when we want to consume the response. **exchange() is deprecated in the latest versions**.
 
-
-
 ### Additional Notes
 
 * When using `WebClient` in Spring WebFlux, the `bodyToMono()` and `bodyToFlux()` methods expect to deserialize the response body into a specified class type. If the response status code indicates a client error (4xx) or a server error (5xx), and there's no response body, these methods will throw a `WebClientException`
 * Under the hood, `WebClient` operates using an `ExchangeFunction`, which is responsible for executing requests and handling responses. We can customize this behavior by providing our own `ExchangeFunction` implementation.
 * We can use `bodyToMono(Void.class)` if no response body is expected. This is helpful in _DELETE_ operations.
-
-
 
 ### Examples
 
@@ -156,8 +146,6 @@ server:
 ```
 
 Build and run the application
-
-
 
 * **Service 1**
 
@@ -277,17 +265,13 @@ logging.level.reactor.netty.http.client: DEBUG
 
 Build and run the application
 
-
-
 **Execute the service 1 API via Postman**
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (174).png" alt=""><figcaption></figcaption></figure>
 
 Monitor the logs (have a look at the threads executing the code)
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-
+<figure><img src="../../../.gitbook/assets/image (176).png" alt=""><figcaption></figcaption></figure>
 
 #### Create an employee, Fetching all employees and handling error based on Http status.
 
@@ -344,8 +328,3 @@ public class EmployeeService {
     }
 }
 ```
-
-
-
-
-

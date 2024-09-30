@@ -4,7 +4,7 @@
 
 We want to return data stored in more than one table, conceptually stacking one result set atop the other. The tables do not necessarily have a common key, but their columns do have the same data types. For example
 
-<figure><img src="../../../../.gitbook/assets/image (95).png" alt="" width="199"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (317).png" alt="" width="199"><figcaption></figcaption></figure>
 
 ```
 select ename as ename_and_dname, deptno from emp where deptno = 10
@@ -66,8 +66,6 @@ intersect
 select ename,job,sal from V
 <strong>)
 </strong></code></pre>
-
-
 
 ## Retrieving Values from One Table That Do Not Exist in Another
 
@@ -144,8 +142,8 @@ select empno,ename,job,mgr,hiredate,sal,comm,deptno,count(*) as cnt
 {% hint style="info" %}
 If the tables in question are equal, then no rows are returned. If the tables are different, the rows causing the difference are returned. As an easy first step when comparing tables, we can compare the cardinalities alone rather than including them with the data comparison.
 
-`select count(`_`) from emp`_ \
-_`union`_ \
+`select count(`_`) from emp`_\
+_`union`_\
 _`select count(`_`) from dept`
 
 Because UNION will filter out duplicates, only one row will be returned if the tables’ cardinalities are the same. Because two rows are returned in this example, we know that the tables do not contain identical row sets
@@ -174,7 +172,7 @@ We want to perform an aggregation, but the query involves multiple tables. For e
 
 Sample table EMP\_BONUS contains the following data:
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="493"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (132).png" alt="" width="493"><figcaption></figcaption></figure>
 
 ```
 -- Solution 1
@@ -216,7 +214,7 @@ We have to be careful when computing aggregates across joins. Typically when dup
 
 Same scenario as above but not all employees in department 10 have been given bonuses.
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="256"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (133).png" alt="" width="256"><figcaption></figcaption></figure>
 
 <pre><code>-- Solution 1
 select deptno,
@@ -276,10 +274,3 @@ where coalesce(comm,0) < ( select comm
     from emp
     where ename = 'ALAN' )
 ```
-
-
-
-
-
-
-

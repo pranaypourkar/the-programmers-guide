@@ -84,8 +84,6 @@ git reset --hard HEAD~1
 * This command moves the HEAD to the previous commit and resets both the index and working directory to match this commit.
 * Since there are no changes in the working directory, this operation is straightforward and safe.
 
-
-
 #### When There Are Changes in the Working Directory
 
 **Scenario:**
@@ -103,8 +101,6 @@ git reset --hard HEAD
 
 * This command resets the working directory and index to match the current commit, effectively discarding all uncommitted changes.
 * Use with caution as this will permanently delete your changes.
-
-
 
 #### When There Are Changes in the Working Directory and Staged Changes
 
@@ -124,8 +120,6 @@ git reset
 * This command resets the index to match the current commit but leaves the working directory unchanged.
 * All changes that were staged are now unstaged but remain in the working directory.
 
-
-
 #### When There Are Changes in the Working Directory, Staged Changes, and Commits
 
 **Scenario:**
@@ -143,8 +137,6 @@ git reset --soft HEAD~1
 
 * This command moves the HEAD to the previous commit but keeps all changes in the working directory and index.
 * Useful for undoing a commit while keeping your changes for further editing.
-
-
 
 #### When There Are Changes in the Working Directory, Staged Changes, Commits, and the Commit Has Been Pushed to Remote
 
@@ -171,8 +163,6 @@ git push --force
 * `git reset --soft HEAD~1` moves the HEAD to the previous commit but keeps the changes in the working directory and staging area.
 * If needed, you can amend the changes and commit again.
 * `git push --force` updates the remote repository to match your local repository, effectively undoing the previous commit. Use this command with caution, especially in shared repositories, as it rewrites the commit history.
-
-
 
 ## git reflog
 
@@ -207,7 +197,7 @@ And then to prune the reflog:
 </strong></code></pre>
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="473"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (60).png" alt="" width="473"><figcaption></figcaption></figure>
 
 ### Common Use Cases
 
@@ -254,8 +244,6 @@ git reflog
 -- Let's say we find the desired commit SHA as fedcba98.
 git reset --hard fedcba98
 ```
-
-
 
 ## git cherry-pick
 
@@ -379,13 +367,11 @@ Summary
 * **Cherry-Pick to Production**: Apply the fix to `production` using `git cherry-pick` and handle any conflicts that arise.
 * **Push to Production**: Push the changes to the remote `production` branch.
 
-
-
 #### Handling Conflicts During Cherry-Picking
 
 If there are conflicts when cherry-picking, we will see something like this
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (61).png" alt="" width="375"><figcaption></figcaption></figure>
 
 ```
 -----Steps to resolve conflicts------
@@ -405,4 +391,3 @@ git cherry-pick --continue
 -- Push the resolved changes
 git push origin production
 ```
-

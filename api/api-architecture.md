@@ -4,11 +4,9 @@
 
 API architecture refers to the high-level design principles that govern how an API is structured, organized and interacts with other components within a system or between different systems. It defines how data flows within the API system, ensuring functionality, scalability, and maintainability. Choosing the right architecture depends on factors like the API's complexity, scalability needs, and performance requirements.
 
-
-
 ## Different Api Architectures
 
-Below are some common API architectures -&#x20;
+Below are some common API architectures -
 
 ### **Monolithic Architecture**
 
@@ -27,12 +25,10 @@ The entire programme is developed as a single unit in a monolithic design, makin
 * **Business Logic Layer:** The business logic layer comprises the application's basic functionality and rules. It includes the processing, calculations, and operations that define the behaviour of the application.
 * **Data Access Layer:** This layer is in charge of communicating with the database or data storage. It has parts that control database connections, run queries, and obtain or update data.
 * **Database:** The monolithic architecture typically stores all application data in a single database instance. This core database is accessible by the application's many components to read and write data.
-* **Integration Layer:  I**ntegration layer handles the interactions to communicate with external systems or services. This can involve connecting to third-party APIs, services, or other software components.
+* **Integration Layer: I**ntegration layer handles the interactions to communicate with external systems or services. This can involve connecting to third-party APIs, services, or other software components.
 * **Security and Authentication:** Monolithic architectures use a centralised approach to security and authentication.
 
-<figure><img src="../.gitbook/assets/image (62).png" alt="" width="563"><figcaption></figcaption></figure>
-
-
+<figure><img src="../.gitbook/assets/image (284).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### **Service-Oriented Architecture (SOA)**
 
@@ -57,9 +53,7 @@ Here are the main components of SOA:
 * **Security and Governance:** SOA components often integrate security measures and governance policies to ensure secure and compliant interactions between services.
 * **Enterprise Service Bus (ESB):** An ESB is a middleware solution that facilitates communication, mediation, and integration among diverse services.
 
-<figure><img src="../.gitbook/assets/image (65).png" alt="" width="454"><figcaption></figcaption></figure>
-
-
+<figure><img src="../.gitbook/assets/image (287).png" alt="" width="454"><figcaption></figcaption></figure>
 
 ### **Microservices Architecture**
 
@@ -92,15 +86,11 @@ Here are the primary components of Microservice architecture:
 * **Continuous Integration and Deployment (CI/CD):** Automation tools facilitate continuous integration, testing, and deployment, enabling swift microservice updates.
 * **Development and Testing Tools:** Tools aiding microservice creation, testing, and debugging are pivotal for efficient development processes.
 
-
-
-<figure><img src="../.gitbook/assets/image (63).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (285).png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### Microservices Architecture vs Service-Oriented Architecture (SOA)
 
 <table data-full-width="true"><thead><tr><th>Feature</th><th>Service-Oriented Architecture (SOA)</th><th>Microservices Architecture</th></tr></thead><tbody><tr><td><strong>Scope</strong></td><td>Typically larger in scope, aiming for enterprise-wide integration of services</td><td>Typically smaller in scope, focusing on single business capabilities or functions</td></tr><tr><td><strong>Service Size</strong></td><td>Services tend to be larger and more monolithic, encapsulating multiple functionalities</td><td>Services are smaller and more focused, encapsulating single business capabilities</td></tr><tr><td><strong>Communication Protocol</strong></td><td>Often relies on standardized protocols like SOAP, XML-RPC</td><td>Often uses lightweight protocols like HTTP/REST or messaging systems</td></tr><tr><td><strong>Data Management</strong></td><td>Shared data models and centralized data stores may be common</td><td>Each microservice manages its own data, with decentralized data stores</td></tr><tr><td><strong>Deployment</strong></td><td>Services may be deployed independently, but upgrades may require coordination</td><td>Each microservice is deployed independently, enabling faster deployments and updates</td></tr><tr><td><strong>Scaling</strong></td><td>Scaling often involves scaling entire services</td><td>Scaling can be more granular, scaling individual microservices as needed</td></tr><tr><td><strong>Dependencies</strong></td><td>Services may have complex interdependencies, leading to coupling</td><td>Microservices aim for loose coupling, with each service responsible for its own dependencies</td></tr><tr><td><strong>Governance</strong></td><td>Centralized governance and management of services may be required</td><td>Decentralized governance with teams responsible for their own microservices</td></tr><tr><td><strong>Flexibility</strong></td><td>May be less flexible due to tight coupling between services</td><td>Offers greater flexibility due to loose coupling and smaller service size</td></tr><tr><td><strong>Development Teams</strong></td><td>Cross-functional teams may be responsible for developing and maintaining services</td><td>Individual teams are responsible for developing and maintaining microservices</td></tr><tr><td><strong>Tooling</strong></td><td>Often requires specialized middleware and enterprise service buses (ESBs)</td><td>Relies on lightweight tools and frameworks for development, deployment, and monitoring</td></tr></tbody></table>
-
-
 
 ### **Event Driven Architecture (EDA)**
 
@@ -119,9 +109,7 @@ Here are the primary components of Microservice architecture:
 * **Event Sinks**: Event sinks are endpoints or destinations where processed events are sent for further processing, storage, or analysis. They can include databases, data warehouses, analytics platforms, or other downstream systems that consume event data.
 * **Event-driven Communication**: Event-driven communication enables asynchronous, loosely coupled interactions between system components. It allows components to react to events in real-time, scale independently, and evolve without tight dependencies.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-
+<figure><img src="../.gitbook/assets/image (162).png" alt=""><figcaption></figcaption></figure>
 
 ### **Serverless Architecture**
 
@@ -140,5 +128,4 @@ Here are the primary components of Microservice architecture:
 * **Monitoring and Logging Services**: Monitoring and logging services provide visibility into the performance, health, and behavior of serverless applications. They collect, analyze, and display metrics, logs, and traces generated by serverless functions and services. Examples include AWS CloudWatch, Google Cloud Monitoring, and Azure Monitor, which offer features like metrics dashboards, log aggregation, and alerting.
 * **Deployment and Orchestration Tools**: Deployment and orchestration tools automate the deployment, scaling, and management of serverless applications. They streamline the development lifecycle by providing tools for packaging, deploying, and monitoring serverless functions. Examples include AWS SAM (Serverless Application Model), Serverless Framework, Terraform, and Kubernetes-based serverless platforms like AWS Fargate and Google Cloud Run.
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="541"><figcaption></figcaption></figure>
-
+<figure><img src="../.gitbook/assets/image (163).png" alt="" width="541"><figcaption></figcaption></figure>

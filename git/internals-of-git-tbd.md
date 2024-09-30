@@ -1,4 +1,4 @@
-# Internals of GIT \[WIP]
+# Internals of Git \[TBD]
 
 ## Description
 
@@ -17,7 +17,7 @@ The object model in Git is a core component that underpins how Git stores and ma
 * **Identification:** Identified by a SHA-1 hash of the file content.
 * **Metadata:** Does not store any metadata such as the file name or permissions.
 
-<figure><img src="../.gitbook/assets/image (180).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (402).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Example of creating a blob:
 
@@ -33,7 +33,7 @@ git add hello.txt
 * **Content:** Contains references (hashes) to blobs and other trees, along with the associated metadata (file names, types, and modes).
 * **Identification:** Identified by a SHA-1 hash of its contents.
 
-<figure><img src="../.gitbook/assets/image (184).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (406).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Example of creating a tree:
 
@@ -89,7 +89,7 @@ git tag -a v1.0 -m "Version 1.0"
 
 Here's a simple visualization of how these objects might be linked together.
 
-<figure><img src="../.gitbook/assets/image (178).png" alt="" width="374"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (400).png" alt="" width="374"><figcaption></figcaption></figure>
 
 ### Inspecting Git Objects
 
@@ -104,7 +104,5 @@ git cat-file -s <object-hash>
 -- View object content
 git cat-file -p <object-hash>
 ```
-
-
 
 Reference - [https://towardsdatascience.com/how-git-truly-works-cd9c375966f6](https://towardsdatascience.com/how-git-truly-works-cd9c375966f6)

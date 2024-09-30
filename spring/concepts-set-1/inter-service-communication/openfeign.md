@@ -2,8 +2,6 @@
 
 OpenFeign is a java library that simplifies creating REST clients in Spring applications. It allows to define a Java interface representing the API which we want to consume, and OpenFeign generates a dynamic implementation that handles the HTTP communication. This declarative approach reduces boilerplate code and improves development efficiency. FeignClient depend on abstractions, not on concretions. Meaning, coding to interfaces, not to concrete classes.
 
-
-
 ### Key Points
 
 Some of the key points are listed below.
@@ -18,8 +16,6 @@ Some of the key points are listed below.
 * **Pluggable Serialization**: OpenFeign supports pluggable serialization, allowing to use different serialization libraries like Jackson, Gson, or any custom serializer/deserializer.
 * **Extensibility**: OpenFeign is designed to be extensible, allowing to customize and extend its behavior as needed. We can create custom annotations, interceptors, error decoders, etc., to tailor OpenFeign to specific requirements.
 * OpenFeign primarily operates **synchronously**, meaning that when we make a request using a Feign client interface method, the calling thread will block until the response is received. However, OpenFeign does support asynchronous execution through the use of **Completable futures or reactive programming**. By integrating with reactive libraries like Project Reactor or RxJava, we can perform non-blocking asynchronous HTTP calls using Feign.
-
-
 
 ### Additional notes
 
@@ -46,13 +42,11 @@ public interface SomeApiClient {
   3. _HEADERS_ – log the basic information together with request and response headers
   4. _FULL_ – log the body, headers and metadata for both request and response
 
-
-
 ### Commonly used annotations in OpenFeign
 
 1. **@FeignClient (Required)**
 
-Placed at the interface level, it marks the interface as a Feign client.&#x20;
+Placed at the interface level, it marks the interface as a Feign client.
 
 Properties:
 
@@ -78,7 +72,7 @@ Common annotations include:
 
 Placed on method parameters to map them to template variables in the URI or request body. Used in conjunction with interface annotations like `@GetMapping` that support URI templates.
 
-4. &#x20;**@Headers (Method/Type Level)**
+4. **@Headers (Method/Type Level)**
 
 Used to define request headers globally for the entire interface or for specific methods. Can be placed at the interface or method level.
 
@@ -97,8 +91,6 @@ OpenFeign supports various other annotations for advanced scenarios like:
 * `@FeignDecoder`: Specifies custom decoders for handling response data formats.
 * `@FeignEncoder`: Specifies custom encoders for marshalling request data.
 * `@HeadersTarget`: Used with `@RequestLine` to define header templates.
-
-
 
 ### Example
 
@@ -159,8 +151,6 @@ server:
 
 Build and run the application
 
-
-
 * Service 1
 
 Dependency
@@ -201,8 +191,6 @@ Dependency
 {% hint style="info" %}
 Spring parent version used is given below
 
-
-
 ```xml
 <parent>
     <groupId>org.springframework.boot</groupId>
@@ -212,8 +200,6 @@ Spring parent version used is given below
 </parent>
 ```
 {% endhint %}
-
-
 
 _<mark style="background-color:yellow;">**SampleController.java**</mark>_
 
@@ -239,8 +225,6 @@ public class SampleController {
     }
 }
 ```
-
-
 
 _<mark style="background-color:yellow;">**Service2Client.java**</mark>_
 
@@ -310,13 +294,11 @@ server:
 
 Build and run the application
 
-
-
 Run the service 1 API from Postman
 
-<figure><img src="../../../.gitbook/assets/image (44).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (266).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (45).png" alt=""><figcaption><p>Service 1 logs</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (267).png" alt=""><figcaption><p>Service 1 logs</p></figcaption></figure>
 
 To Enable Feign logging, add the below bean and update application.yaml property file.
 
@@ -352,7 +334,4 @@ logging:
 
 Hit the API again via Postman and monitor the logs.
 
-<figure><img src="../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-
-
+<figure><img src="../../../.gitbook/assets/image (173).png" alt=""><figcaption></figcaption></figure>

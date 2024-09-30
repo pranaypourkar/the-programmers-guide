@@ -52,7 +52,7 @@ git status -b
 
 Here’s an example of what `git status` might display
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (79).png" alt=""><figcaption></figcaption></figure>
 
 Or
 
@@ -106,8 +106,6 @@ git commit -m "Modify file3.txt"
 -- Check Status After Commit
 git status
 ```
-
-
 
 ## git diff
 
@@ -179,21 +177,19 @@ git diff <branch1> <branch2>
 git diff
 ```
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="539"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (80).png" alt="" width="539"><figcaption></figcaption></figure>
 
 ```
 git diff <filename>
 ```
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="539"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (81).png" alt="" width="539"><figcaption></figcaption></figure>
 
 ```
 git diff --stat
 ```
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="467"><figcaption></figcaption></figure>
-
-
+<figure><img src="../../.gitbook/assets/image (82).png" alt="" width="467"><figcaption></figcaption></figure>
 
 ## git add
 
@@ -278,9 +274,7 @@ git restore --staged filename.txt
 
 When running `git status` after staging changes with `git add`
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="538"><figcaption></figcaption></figure>
-
-
+<figure><img src="../../.gitbook/assets/image (83).png" alt="" width="538"><figcaption></figcaption></figure>
 
 ## git rm
 
@@ -368,7 +362,7 @@ git commit -m "Remove filename.txt"
 
 When running `git status` after using `git rm`
 
-<figure><img src="../../.gitbook/assets/image (163).png" alt="" width="461"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (385).png" alt="" width="461"><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/1.png" alt="" width="563"><figcaption></figcaption></figure>
 
@@ -463,4 +457,4 @@ git commit -a -m "Update modified files"
 
 When running `git commit -m "Initial commit"`
 
-<figure><img src="../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1).png" alt="" width="395"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (78).png" alt="" width="395"><figcaption></figcaption></figure>

@@ -16,23 +16,21 @@ Certificates are digital documents that bind a public key to an entity (e.g., pe
 Alias is a unique identifier for an entry in a keystore.
 {% endhint %}
 
-
-
 ## Keytool Command Options
 
 ### keytool -genseckey
 
-<figure><img src="../../../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../../.gitbook/assets/image (33).png" alt="" width="375"><figcaption></figcaption></figure>
 
 ### keytool -genkeypair and -changealias
 
 <div>
 
-<figure><img src="../../../../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../../.gitbook/assets/image (34).png" alt="" width="375"><figcaption></figcaption></figure>
 
  
 
-<figure><img src="../../../../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../../.gitbook/assets/image (35).png" alt="" width="375"><figcaption></figcaption></figure>
 
 </div>
 
@@ -40,11 +38,11 @@ Alias is a unique identifier for an entry in a keystore.
 
 <div>
 
-<figure><img src="../../../../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../../.gitbook/assets/image (36).png" alt="" width="375"><figcaption></figcaption></figure>
 
  
 
-<figure><img src="../../../../../../../.gitbook/assets/image (4) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../../.gitbook/assets/image (37).png" alt="" width="375"><figcaption></figcaption></figure>
 
 </div>
 
@@ -135,7 +133,7 @@ keytool -keypasswd -alias <alias_name> -keystore <keystore_name> -storepass <sto
 keytool -keypasswd -alias mykey -keystore keystore.jks -storepass changeit -keypass oldkeypassword -new newkeypassword
 ```
 
-### Exporting a Key Pair&#x20;
+### Exporting a Key Pair
 
 Exporting a key pair involves converting the key pair from the keystore to a format that can be used by other tools, like PKCS#12
 
@@ -153,12 +151,12 @@ keytool -importkeystore -srckeystore <source_keystore> -destkeystore <destinatio
 * `-srckeypass keypassword`: Password for the source key.
 
 <pre><code><strong>// Examples
-</strong><strong>
-</strong>// Export the key pair with alias 'mykey' from JKS to PKCS12 format
+</strong>
+// Export the key pair with alias 'mykey' from JKS to PKCS12 format
 keytool -importkeystore -srckeystore keystore.jks -destkeystore keystore.p12 -deststoretype PKCS12 -srcalias mykey -deststorepass changeit -srcstorepass changeit -srckeypass keypassword
 </code></pre>
 
-### Importing a Key Pair&#x20;
+### Importing a Key Pair
 
 Importing a key pair involves adding a key pair from an external file (like PKCS#12) into the keystore.
 
@@ -357,7 +355,7 @@ keytool -importcert -alias mycert -file renewed_mycert.crt -keystore keystore.jk
 
 ## Certificate Signing Request (CSR)
 
-### Generating a CSR&#x20;
+### Generating a CSR
 
 Generating a Certificate Signing Request (CSR) involves creating a request for a digital certificate from a Certificate Authority (CA). This request includes your public key and information about your organization.
 
@@ -380,7 +378,7 @@ keytool -certreq -alias mykey -file mycert.csr -keystore keystore.jks -storepass
 
 ### Submitting a CSR to a CA
 
-&#x20;Submitting a CSR to a Certificate Authority (CA) involves sending the CSR file to the CA for signing. The CA will verify the information and return a signed certificate.
+Submitting a CSR to a Certificate Authority (CA) involves sending the CSR file to the CA for signing. The CA will verify the information and return a signed certificate.
 
 {% hint style="info" %}
 **Steps**:
@@ -512,8 +510,6 @@ keytool -exportcert -alias <alias_name> -file <output_file> -keystore <keystore_
 // Export a certificate from the keystore
 keytool -exportcert -alias mykey -file mycert_export.crt -keystore keystore.jks -storepass changeit
 ```
-
-
 
 ## Keystore
 
@@ -800,7 +796,7 @@ keytool -list -keystore truststore.jks -storepass changeit
 
 ### Verifying TrustStore Contents
 
-Verifying the contents of the truststore involves listing detailed information about each entry to ensure the certificates are correct and trusted.&#x20;
+Verifying the contents of the truststore involves listing detailed information about each entry to ensure the certificates are correct and trusted.
 
 ```bash
 keytool -list -v -keystore <truststore_name> -storepass <password>
@@ -817,7 +813,7 @@ keytool -list -v -keystore <truststore_name> -storepass <password>
 keytool -list -v -keystore truststore.jks -storepass changeit
 ```
 
-### Updating a TrustStore&#x20;
+### Updating a TrustStore
 
 Updating a truststore involves adding, removing, or replacing trusted certificates. Use the `-importcert` and `-delete` commands as described below to add, remove, or replace certificates in the truststore.
 

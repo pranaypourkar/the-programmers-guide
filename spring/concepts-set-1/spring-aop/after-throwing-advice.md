@@ -14,8 +14,6 @@ After throwing advice is executed after the target method throws an exception. I
 
 **Transaction Rollback**: Can be used to close open transactions or rolling back database changes in response to exceptions.
 
-
-
 #### Sample Example
 
 #### <mark style="background-color:blue;">Scenario 1</mark>: Capturing exception details via AOP
@@ -47,8 +45,6 @@ public class LoggingAspect {
     }
 }
 ```
-
-
 
 Create controller class. Assuming. some logic in the method throws exception.
 
@@ -94,17 +90,11 @@ public class DataApi {
 }
 ```
 
-
-
 Run the application, trigger the API and observe the logs
 
-<figure><img src="../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (230).png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (9) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>Output</p></figcaption></figure>
-
-
-
-
+<figure><img src="../../../.gitbook/assets/image (231).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 {% hint style="info" %}
 Note: The code snippet given in this page is just for understanding and does not contain complete code. (For e.g. missing service class code snippet)

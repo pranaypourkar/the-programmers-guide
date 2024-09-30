@@ -291,8 +291,8 @@ The function returns a new string of the specified length, padded with the speci
 <pre><code>-- Pad a string with spaces to a length of 10
 SELECT LPAD('Hello', 10) AS padded_string FROM DUAL;
 <strong>-- Output ->     Hello
-</strong><strong>
-</strong><strong>-- Pad a string with asterisks (*) to a length of 10
+</strong>
+<strong>-- Pad a string with asterisks (*) to a length of 10
 </strong>SELECT LPAD('Hello', 10, '*') AS padded_string
 FROM DUAL;
 -- Output -> *****Hello
@@ -539,7 +539,7 @@ FROM DUAL;
 
 ## Datatype Conversion
 
-### CAST&#x20;
+### CAST
 
 #### Description
 
@@ -638,7 +638,7 @@ CONNECT BY PRIOR EMPLOYEE_ID = MANAGER_ID;
 
 Sample Output
 
-<figure><img src="../../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (127).png" alt="" width="563"><figcaption></figcaption></figure>
 
 2. Create sequence or generate data
 
@@ -650,7 +650,7 @@ CONNECT BY LEVEL <= 5;
 
 Sample Output
 
-<figure><img src="../../../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="452"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (128).png" alt="" width="452"><figcaption></figcaption></figure>
 
 ## Null Handling Functions
 
@@ -1033,8 +1033,6 @@ FROM
     employees;
 ```
 
-
-
 ## Window functions
 
 Window functions in SQL, also known as analytic functions, allows to perform calculations across a set of table rows that are somehow related to the current row. This is similar to aggregate functions but unlike aggregate functions, window functions do not cause rows to become grouped into a single output row—the rows retain their separate identities.
@@ -1236,7 +1234,7 @@ SELECT
 FROM DUAL;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (114).png" alt="" width="317"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (336).png" alt="" width="317"><figcaption></figcaption></figure>
 
 ### TO\_DATE
 
@@ -1313,7 +1311,7 @@ FROM
     DUAL;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (116).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (338).png" alt=""><figcaption></figcaption></figure>
 
 ### LAST\_DAY
 
@@ -1391,7 +1389,7 @@ FROM
 
 ## Conditional Functions
 
-### DECODE&#x20;
+### DECODE
 
 The `DECODE` function provides functionality similar to a CASE statement. It allows to perform conditional querying and can transform data within a query based on specific conditions.
 
@@ -1424,7 +1422,7 @@ FROM
     employees;
 ```
 
-### CASE&#x20;
+### CASE
 
 The `CASE` statement in Oracle SQL is a versatile conditional expression that allows to implement conditional logic directly in your SQL queries. It is similar to the `DECODE` function but more powerful and flexible because it can handle complex conditions and multiple data types.
 
@@ -1570,7 +1568,7 @@ GROUP BY ROLLUP (product_id, region_id);
 * Both are `1` when the row is the grand total.
 {% endhint %}
 
-<figure><img src="../../../../../.gitbook/assets/image (8) (1) (1) (1) (1) (1).png" alt="" width="482"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (109).png" alt="" width="482"><figcaption></figcaption></figure>
 
 #### Example 2
 
@@ -1589,7 +1587,7 @@ FROM
 GROUP BY ROLLUP (product_id);
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (9) (1) (1) (1) (1).png" alt="" width="315"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (110).png" alt="" width="315"><figcaption></figcaption></figure>
 
 ### ROLLUP Function
 
@@ -1627,7 +1625,7 @@ FROM
 GROUP BY ROLLUP (product_id, region_id);
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1) (1).png" alt="" width="286"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (107).png" alt="" width="286"><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 * Rows where `region_id` is `NULL` are subtotals for each `product_id`.
@@ -1650,7 +1648,7 @@ FROM
 GROUP BY ROLLUP (product_id);
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1) (1).png" alt="" width="202"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (108).png" alt="" width="202"><figcaption></figcaption></figure>
 
 ### CUBE
 
@@ -1691,7 +1689,7 @@ GROUP BY CUBE (product_id, region_id);
 * The row where both `product_id` and `region_id` are `NULL` is the grand total.
 {% endhint %}
 
-<figure><img src="../../../../../.gitbook/assets/image (151).png" alt="" width="260"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (373).png" alt="" width="260"><figcaption></figcaption></figure>
 
 #### Example 2
 
@@ -1709,15 +1707,4 @@ FROM
 GROUP BY CUBE (product_id);
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (152).png" alt="" width="189"><figcaption></figcaption></figure>
-
-
-
-
-
-
-
-
-
-
-
+<figure><img src="../../../../../.gitbook/assets/image (374).png" alt="" width="189"><figcaption></figcaption></figure>

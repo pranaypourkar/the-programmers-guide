@@ -106,7 +106,7 @@ git branch -d feature-branch
 
 When running `git branch`
 
-<figure><img src="../../.gitbook/assets/image (164).png" alt="" width="227"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (386).png" alt="" width="227"><figcaption></figcaption></figure>
 
 ## git checkout
 
@@ -229,11 +229,11 @@ git status
 
 When running `git checkout branch-name`
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="311"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (73).png" alt="" width="311"><figcaption></figcaption></figure>
 
 When creating and switching to a new branch with `git checkout -b new-branch`
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="302"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (74).png" alt="" width="302"><figcaption></figcaption></figure>
 
 ## git merge
 
@@ -320,11 +320,11 @@ git merge feature-branch
 
 When running `git merge feature-branch`
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="251"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (75).png" alt="" width="251"><figcaption></figcaption></figure>
 
 If a merge commit is created (for a three-way merge)
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="327"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (77).png" alt="" width="327"><figcaption></figcaption></figure>
 
 ### Merge Conflicts
 
@@ -426,7 +426,7 @@ git log --oneline --graph
 ```
 
 {% hint style="info" %}
-#### Tips for Resolving Conflicts
+**Tips for Resolving Conflicts**
 
 * **Use a Merge Tool**: Tools like `kdiff3`, `meld`, or IDE-integrated tools can help visualize and resolve conflicts.
 * **Commit Often**: Smaller, frequent commits make it easier to resolve conflicts.
@@ -434,9 +434,7 @@ git log --oneline --graph
 * **Test Thoroughly**: After resolving conflicts, ensure that the project works as expected.
 {% endhint %}
 
-
-
-## **git switch**&#x20;
+## **git switch**
 
 ### Description
 
@@ -520,11 +518,11 @@ git switch main
 
 When running `git switch branch-name`
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="279"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (69).png" alt="" width="279"><figcaption></figcaption></figure>
 
 When creating and switching to a new branch with `git switch -c new-branch`
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="281"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (70).png" alt="" width="281"><figcaption></figcaption></figure>
 
 ## **git restore**
 
@@ -610,8 +608,6 @@ git restore --source=commit-sha file.txt
 ### Example Output
 
 When running `git restore file.txt`, we might see no output if the command succeeds, and the file will be reverted to its last committed state. If there are errors, such as the file not being in the specified source, Git will inform you of the issue.
-
-
 
 ## git rebase
 
@@ -711,17 +707,15 @@ git rebase --continue
 
 When running `git rebase main`
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="494"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (71).png" alt="" width="494"><figcaption></figcaption></figure>
 
 If a conflict occurs, Git will provide instructions.
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="534"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (72).png" alt="" width="534"><figcaption></figcaption></figure>
 
 ### Rebase vs Merge
 
 <table data-full-width="true"><thead><tr><th width="210">Feature</th><th>Git Rebase</th><th>Git Merge</th></tr></thead><tbody><tr><td><strong>Purpose</strong></td><td>Reapply commits on top of another base branch</td><td>Combine the histories of two branches</td></tr><tr><td><strong>History</strong></td><td>Creates a linear, cleaner history</td><td>Creates a history with merge commits</td></tr><tr><td><strong>Commit Hashes</strong></td><td>Changes commit hashes (rewrites history)</td><td>Preserves commit hashes</td></tr><tr><td><strong>Usage Scenario</strong></td><td>Clean up feature branch before merging into main</td><td>Regularly integrating changes from one branch to another</td></tr><tr><td><strong>Conflicts</strong></td><td>Must be resolved during the rebase process</td><td>Must be resolved during the merge process</td></tr><tr><td><strong>Branch State After</strong></td><td>Current branch starts from the tip of the target branch</td><td>Current branch includes a merge commit</td></tr><tr><td><strong>Merge Commits</strong></td><td>No merge commits; commits are replayed individually</td><td>Creates a merge commit</td></tr><tr><td><strong>Local/Remote</strong></td><td>Best for local branch integration</td><td>Commonly used for both local and remote integration</td></tr><tr><td><strong>Impact on History</strong></td><td>Rewrites commit history</td><td>Adds to commit history</td></tr><tr><td><strong>Interactive Option</strong></td><td>Supports interactive rebase to edit, squash, reword commits</td><td>Does not support interactive merges</td></tr><tr><td><strong>Conflicts Resolution</strong></td><td>Conflicts need to be resolved as they appear and then continue</td><td>Conflicts resolved once during merge</td></tr><tr><td><strong>Usage Command</strong></td><td><code>git rebase target-branch</code></td><td><code>git merge target-branch</code></td></tr><tr><td><strong>Typical Use Case</strong></td><td>Clean up commit history before merging feature branches</td><td>Regular updates and integration of branches</td></tr><tr><td><strong>Visual History</strong></td><td>Linear and simplified</td><td>Branched with merge commits</td></tr></tbody></table>
-
-
 
 ## git tag
 
@@ -786,5 +780,4 @@ git push origin :refs/tags/v1.1.0
 
 Viewing Tag Information with `git show v1.0.0`
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="505"><figcaption></figcaption></figure>
-
+<figure><img src="../../.gitbook/assets/image (59).png" alt="" width="505"><figcaption></figcaption></figure>

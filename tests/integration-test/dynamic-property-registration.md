@@ -54,7 +54,7 @@ class SampleIT {
 }
 ```
 
-<figure><img src="../../.gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (248).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 Make sure to include below dependencies and failsafe plugin
@@ -89,8 +89,6 @@ Make sure to include below dependencies and failsafe plugin
 ```
 {% endcode %}
 {% endhint %}
-
-
 
 2. `@TestPropertySource` : Not strictly for dynamic properties, but rather for overriding application properties specifically within the integration tests or for creating new static properties. It is a **class-level** annotation.
 
@@ -127,11 +125,7 @@ class SampleIT {
 }
 ```
 
-<figure><img src="../../.gitbook/assets/image (27).png" alt=""><figcaption></figcaption></figure>
-
-
-
-
+<figure><img src="../../.gitbook/assets/image (249).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 Both `@TestPropertySource` and `@DynamicPropertySource` are processed **before** the Spring application context is loaded for the integration test. This ensures that the properties defined in these annotations are available for use by the test beans and components.

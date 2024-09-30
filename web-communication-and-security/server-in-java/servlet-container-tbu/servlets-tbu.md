@@ -16,7 +16,7 @@ As of July 2024, the latest stable version of Apache Tomcat is **10.1.10**. You 
 
 The Tomcat architecture is modular, consisting of several components that handle different aspects of request processing and web application management.
 
-<figure><img src="../../../.gitbook/assets/image (235).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (457).png" alt="" width="375"><figcaption></figcaption></figure>
 
 ### **Layers in Tomcat Architecture**
 

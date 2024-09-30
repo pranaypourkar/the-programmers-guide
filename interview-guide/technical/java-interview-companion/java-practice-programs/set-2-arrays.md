@@ -4,7 +4,7 @@
 
 ### Sum of Array Elements
 
-<figure><img src="../../../../.gitbook/assets/image (74).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (296).png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### Method 1: Using iteration
 
@@ -27,8 +27,6 @@ System.out.println(sum); // output - 28
 
 **Auxiliary Space**: O(1)
 
-
-
 #### Method 2: Using Streams
 
 ```java
@@ -41,8 +39,6 @@ System.out.println(sum); // output - 28
 **Time Complexity:** O(n)
 
 **Auxiliary Space:** O(1)
-
-
 
 #### Method 3: Using Recursion
 
@@ -67,11 +63,9 @@ static int arraySum(int[] arr, int index){
 
 **Auxiliary Space: O(n)**
 
+### Largest element in an array
 
-
-### &#x20;Largest element in an array
-
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (160).png" alt=""><figcaption></figcaption></figure>
 
 #### Method 1: Using iteration
 
@@ -89,8 +83,6 @@ for (int a : arr) {
 **Time Complexity:** O(n), where n represents the size of the given array.\
 **Auxiliary Space:** O(1), no extra space is required, so it is a constant.
 
-
-
 #### Method 2: Using streams
 
 ```java
@@ -100,8 +92,6 @@ int max = Arrays.stream(arr).max().getAsInt();
 
 **Time Complexity:** O(n), where n represents the size of the given array.\
 **Auxiliary Space:** O(1), no extra space is required, so it is a constant.
-
-
 
 #### Method 3: Using manual sorting
 
@@ -157,11 +147,9 @@ for (int j : arr) {
 max = Collections.max(list);
 ```
 
+### Array Rotation
 
-
-### &#x20;Array Rotation
-
-<figure><img src="../../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (158).png" alt=""><figcaption></figcaption></figure>
 
 #### Method 1: Using additional array
 
@@ -175,7 +163,7 @@ for (int a=0; a<arr.length; a++) {
 }
 ```
 
-**Time complexity:** O(N) \
+**Time complexity:** O(N)\
 **Auxiliary Space:** O(N)
 
 #### Method 2: Using rotation one by one
@@ -196,11 +184,9 @@ for (int i=1;i<=d;i++) {
 **Time Complexity:** O(N \* d)\
 **Auxiliary Space:** O(1)
 
-#### Method 3:  Using Juggling algorithm for array rotation
+#### Method 3: Using Juggling algorithm for array rotation
 
 Refer to this page -> [https://pranaypourkar.gitbook.io/java-knowledge-base/java/algorithm/set-1#juggling-algorithm-for-array-rotation](https://pranaypourkar.gitbook.io/java-knowledge-base/java/algorithm/set-1#juggling-algorithm-for-array-rotation)
-
-
 
 ### Remove duplicate elements from an Array
 
@@ -251,8 +237,6 @@ Refer to this page -> [https://pranaypourkar.gitbook.io/java-knowledge-base/java
 
 Sort the array and use the approaches given below.
 
-
-
 ### Remove duplicate elements from a SortedArray
 
 #### Method 1: Using Iteration and Sorting
@@ -302,7 +286,7 @@ public class Application {
 }
 ```
 
-**Time Complexity:** O(N) \
+**Time Complexity:** O(N)\
 **Auxiliary Space:** O(N)
 
 #### Method 2: Maintaining a separate index for unique elements
@@ -348,14 +332,12 @@ public class Application {
 }
 ```
 
-**Time Complexity:** O(N) \
+**Time Complexity:** O(N)\
 **Auxiliary Space:** O(1)
-
-
 
 ### Remove all occurrences of an element from Array
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="530"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (152).png" alt="" width="530"><figcaption></figcaption></figure>
 
 #### Method 1: Using iteration
 
@@ -409,12 +391,6 @@ Creating the list `arrList` from the array `arr` using `IntStream.of(arr).boxed(
 
 * **Space Complexity**: O(n)
 
-
-
 ## String
-
-
-
-
 
 ## Char

@@ -4,7 +4,7 @@
 
 A web server is a software component that delivers static data like images, files, and text in response to client requests. Whereas, an application server adds business logic to compute the web server's response. Web server contains only web or servlet container. It can be used for servlet, jsp, struts, jsf etc. It can't be used for EJB.
 
-&#x20;For example, browser and web server communicate as follows:
+For example, browser and web server communicate as follows:
 
 1. The browser uses the URL to find the server’s IP address
 2. The browser sends an HTTP request for information
@@ -34,7 +34,7 @@ Modern web servers can handle dynamic content to some extent, but their primary 
 
 ## Architecture Diagram
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (27).png" alt="" width="563"><figcaption></figcaption></figure>
 
 **Components**
 
@@ -60,6 +60,3 @@ Modern web servers can handle dynamic content to some extent, but their primary 
 * **Jetty:** Another open-source option, known for its embeddability within other applications. Well-suited for microservices architecture.
 * **Undertow:** High-performance web server from Red Hat, offering scalability and efficiency for demanding workloads.
 * **Resin:** Commercially supported, offers features like load balancing, clustering, and Java EE compliance.
-
-
-

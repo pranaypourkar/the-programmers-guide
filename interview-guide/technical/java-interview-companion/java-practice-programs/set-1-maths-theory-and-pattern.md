@@ -52,15 +52,13 @@ This is the most optimal method as here directly computations are carried on ove
 * **Time Complexity:** O(1) - Constant time. Like the previous approaches, this method has a fixed number of operations.
 * **Space Complexity:** O(1) - Constant space. No extra memory is used beyond the variables holding the numbers.
 
-
-
 ## Convert Decimal number to Binary number
 
 There are many approaches.
 
 ### **Using Arrays**
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="188"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (166).png" alt="" width="188"><figcaption></figcaption></figure>
 
 ```java
 public static void decimalToBinary(int n) 
@@ -277,11 +275,9 @@ public static void main(String[] args) {
     }
 ```
 
-
-
 ## Factorial of a number
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="211"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (164).png" alt="" width="211"><figcaption></figcaption></figure>
 
 ### Small number
 
@@ -301,8 +297,6 @@ static int findFactorial(int n) {
 **Time Complexity**: O(n)\
 **Auxiliary Space**: O(1)
 
-
-
 #### **Using Recursive Method**
 
 ```java
@@ -317,15 +311,11 @@ static int findFactorialUsingRecursiveMethod(int n) {
 **Time Complexity**: O(n)\
 **Auxiliary Space**: O(n)
 
-
-
 {% hint style="info" %}
 The above solutions cause overflow for large numbers.
 
-A factorial of 100 has 158 digits and it is not possible to store these many digits even if we use **long int.**&#x20;
+A factorial of 100 has 158 digits and it is not possible to store these many digits even if we use **long int.**
 {% endhint %}
-
-
 
 ### Large number
 
@@ -342,9 +332,7 @@ static BigInteger findFactorialOfLargeNumber(int a) {
 ```
 
 **Time Complexity:** O(N)\
-**Auxiliary Space:** O(1)&#x20;
-
-
+**Auxiliary Space:** O(1)
 
 #### Using Basic Maths Operation with the help of array i.e. storing digits in array and considering carry which helps in increasing size of array.
 
@@ -380,20 +368,16 @@ static String findFactorialOfLargeNumber(int a) {
 **Time Complexity**: O(N log (N!)), where O(N) is for loop and O(log N!) is for nested while loop\
 **Auxiliary Space:** O(max(digits in factorial))
 
-
-
-
-
 ## Print Pascal Triangle
 
-<figure><img src="../../../../.gitbook/assets/image (66).png" alt="" width="231"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (288).png" alt="" width="231"><figcaption></figcaption></figure>
 
 ### Using nCr formula
 
 * In this approach, we directly calculate the combinations using the formula $$𝑛!/(𝑟!*(𝑛−𝑟))$$.
 * Each entry in Pascal's Triangle corresponds to a specific combination $$𝑛𝐶𝑟nCr$$, where $$𝑛n$$ is the row number and $$𝑟r$$ is the position within the row.
 
-<figure><img src="../../../../.gitbook/assets/image (67).png" alt=""><figcaption><p>Theory</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (289).png" alt=""><figcaption><p>Theory</p></figcaption></figure>
 
 ```java
 package src.main.java;
@@ -428,23 +412,19 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (68).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (290).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 **Time complexity**: O(2n) due to recursive method
 
 **Auxiliary Space**: O(n) due to recursive stack space
 
-
-
 ### Using Binomial Coefficient
 
-<figure><img src="../../../../.gitbook/assets/image (70).png" alt=""><figcaption></figcaption></figure>
-
-
+<figure><img src="../../../../.gitbook/assets/image (292).png" alt=""><figcaption></figcaption></figure>
 
 #### Method 1:
 
-<figure><img src="../../../../.gitbook/assets/image (71).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (293).png" alt=""><figcaption></figcaption></figure>
 
 <pre class="language-java"><code class="lang-java"><strong>    // Function to calculate binomial coefficient C(n, k)
 </strong>    public static int binomialCoefficient(int n, int k) {
@@ -470,13 +450,11 @@ public class Application {
     }
 </code></pre>
 
-
-
 #### Method 2:
 
 Using C = C \* (line - a) / a
 
-The ‘A’th entry in a line number _line_ is Binomial Coefficient _C(line, a)_ and all lines start with value 1. The idea is to calculate C(line, a) using C(line, a-1). &#x20;
+The ‘A’th entry in a line number _line_ is Binomial Coefficient _C(line, a)_ and all lines start with value 1. The idea is to calculate C(line, a) using C(line, a-1).
 
 ```java
 public static void printPascal(int k)
@@ -510,13 +488,9 @@ public static void printPascal(int k)
 
 **Auxiliary Space:** O(1)
 
-
-
-
-
 ## Print fibonacci series
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (161).png" alt=""><figcaption></figcaption></figure>
 
 ### Using Iterative Method
 
@@ -548,11 +522,9 @@ public static void printFibonacci(int n) {
     }
 ```
 
-
-
 ## Print number triangle
 
-<figure><img src="../../../../.gitbook/assets/image (72).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (294).png" alt=""><figcaption></figcaption></figure>
 
 <pre class="language-java"><code class="lang-java"><strong>        int n = 4;
 </strong>
@@ -581,13 +553,11 @@ public static void printFibonacci(int n) {
         }
 </code></pre>
 
-<figure><img src="../../../../.gitbook/assets/image (73).png" alt=""><figcaption></figcaption></figure>
-
-
+<figure><img src="../../../../.gitbook/assets/image (295).png" alt=""><figcaption></figcaption></figure>
 
 ## Find Transpose of Matrix
 
-<figure><img src="../../../../.gitbook/assets/image (77).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (299).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Square Matrix
 
@@ -602,8 +572,6 @@ static void transpose(int A[][], int B[][])
                 B[i][j] = A[j][i]; 
     } 
 ```
-
-
 
 #### Method 2: WIthout using additional array
 
@@ -648,11 +616,11 @@ for (int row=0;row<arr.length;row++){
         }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (78).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (300).png" alt=""><figcaption></figcaption></figure>
 
 ## GCD or HCF of two numbers
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (153).png" alt=""><figcaption></figcaption></figure>
 
 ### Using Iteration
 
@@ -669,12 +637,12 @@ int gcd(int a, int b) {
 }
 ```
 
-**Time Complexity:** O(min(a,b)) \
+**Time Complexity:** O(min(a,b))\
 **Auxiliary Space:** O(1)
 
 ### Using Euclidean algorithm for GCD of two numbers (Involves Recursion)
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (154).png" alt=""><figcaption></figcaption></figure>
 
 ```java
     // Recursive function to return gcd of a and b
@@ -700,11 +668,9 @@ int gcd(int a, int b) {
 **Time Complexity:** O(min(a,b))\
 **Auxiliary Space:** O(1) No space is used as it is a tail recursion i.e. no extra space is used apart from the space needed for the function call stack.
 
-
-
 ### **Optimization** Euclidean algorithm **by checking divisibility**
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (155).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ```java
 int gcd(int a, int b)
@@ -734,8 +700,6 @@ int gcd(int a, int b)
 **Time Complexity:** O(min(a, b))\
 **Auxiliary Space:** O(1)
 
-
-
 ### **Optimization using division**
 
 Instead of the Euclidean algorithm by subtraction, a better approach is that we don’t perform subtraction but continuously divide the bigger number by the smaller number.
@@ -753,8 +717,6 @@ Instead of the Euclidean algorithm by subtraction, a better approach is that we 
 **Time Complexity:** O(log(min(a,b)))
 
 **Auxiliary Space:** O(log(min(a,b))
-
-
 
 ### **Iterative implementation using Euclidean Algorithm**
 
@@ -779,8 +741,6 @@ int gcd(int a, int b)
 **Time Complexity:** O(log(min(a,b)))\
 **Auxiliary Space:** O(1)
 
-
-
 ### **Using in-built function in Java for BigIntegers**
 
 ```java
@@ -796,19 +756,15 @@ public static int gcd(int a, int b)
 **Time Complexity:** O(log(min(a, b)))\
 **Auxiliary Space:** O(1)
 
-
-
 ## LCM of two numbers
 
-LCM (Least Common Multiple) of two numbers is the smallest number which can be divided by both numbers.&#x20;
+LCM (Least Common Multiple) of two numbers is the smallest number which can be divided by both numbers.
 
 For example, LCM of 15 and 20 is 60, and LCM of 5 and 7 is 35.
 
-
-
 ### Using GCD of 2 numbers and Formula
 
-<figure><img src="../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (157).png" alt=""><figcaption></figcaption></figure>
 
 ```java
 int gcd(int a, int b) 
@@ -844,4 +800,3 @@ int findLCM(int a, int b)
 
 **Time Complexity:** O(min(a,b))\
 **Auxiliary Space:** O(1)
-

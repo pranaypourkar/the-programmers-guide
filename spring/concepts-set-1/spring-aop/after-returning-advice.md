@@ -10,8 +10,6 @@ After returning advice is executed after the target method successfully returns 
 
 **Notification**: It it can be used to trigger notification logic such as sending SMS, Email etc. after successful response.
 
-
-
 #### Sample Examples
 
 #### <mark style="background-color:blue;">Scenario 1</mark>: Triggering SMS on the successful method invocation
@@ -97,9 +95,9 @@ public class PaymentApi {
 
 Run the application and trigger the API
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)  (10).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (208).png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1)   (1).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (209).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 #### <mark style="background-color:blue;">Scenario 2</mark>: Logging method response using pointcut expression
 
@@ -171,19 +169,11 @@ public class DataApi {
 }
 ```
 
-
-
 Run the application, trigger the API and verify the logs
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (210).png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>Output</p></figcaption></figure>
-
-
-
-
-
-
+<figure><img src="../../../.gitbook/assets/image (211).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 {% hint style="info" %}
 Note: The code snippet given in this page is just for understanding and does not contain complete code. (For e.g. missing service class code snippet)

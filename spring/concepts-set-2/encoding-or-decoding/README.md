@@ -91,7 +91,7 @@ public class EncodingExample {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (210).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (432).png" alt=""><figcaption></figcaption></figure>
 
 ### Handling BASE Encoding in Java
 
@@ -116,7 +116,7 @@ public class Base64Example {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (208).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (430).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Decoding
 
@@ -156,7 +156,7 @@ public class DecodingExample {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (212).png" alt="" width="272"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (434).png" alt="" width="272"><figcaption></figcaption></figure>
 
 ## Common Text Encodings
 
@@ -184,4 +184,3 @@ public class DecodingExample {
 * After BASE decoding (converting back from the encoded format), the resulting data might be in a specific text encoding depending on the original data.
 * For example, if we Base64-encoded a plain text file in UTF-8, decoding it would provide the original text data still encoded in UTF-8.
 {% endhint %}
-

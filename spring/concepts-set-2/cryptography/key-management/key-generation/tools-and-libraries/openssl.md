@@ -8,45 +8,41 @@ OpenSSL is a widely-used toolkit for implementing SSL/TLS and other cryptographi
 
 ## Version
 
-<figure><img src="../../../../../../.gitbook/assets/image (214).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (436).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Help Section
 
 ### Openssl options available
 
-<figure><img src="../../../../../../.gitbook/assets/image (213).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (435).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Openssl Message Digest options available
 
-<figure><img src="../../../../../../.gitbook/assets/image (215).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (437).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Openssl Cipher options available
 
-<figure><img src="../../../../../../.gitbook/assets/image (216).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (438).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Openssl genpkey options available
 
-<figure><img src="../../../../../../.gitbook/assets/image (218).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (440).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Openssl ecparam options available
 
-<figure><img src="../../../../../../.gitbook/assets/image (217).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (439).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Openssl pkey options available
 
-<figure><img src="../../../../../../.gitbook/assets/image (219).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (441).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Openssl pkeyutl options available
 
-<figure><img src="../../../../../../.gitbook/assets/image (220).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (442).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Openssl req options
 
-<figure><img src="../../../../../../.gitbook/assets/image (5) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-
-
-
+<figure><img src="../../../../../../.gitbook/assets/image (38).png" alt=""><figcaption></figcaption></figure>
 
 ## Symmetric Key
 
@@ -185,7 +181,7 @@ The public key cannot be reversed and used for decryption like a private key. Th
 openssl genpkey -algorithm <alogorithm type> -out private_key.pem [options]
 ```
 
-* `algorithm`:   Type of algorithm to use. For example RSA, DSA, EC etc.
+* `algorithm`: Type of algorithm to use. For example RSA, DSA, EC etc.
 
 ```asciidoc
 // Examples
@@ -337,7 +333,7 @@ Since it's self-signed, most browsers and applications will show a security warn
 
 Here are two approaches, depending on our needs:
 
-**For testing on a local machine:** We  can import the self-signed certificate into our browser's trust store. However, this is not recommended for production environments due to security risks.
+**For testing on a local machine:** We can import the self-signed certificate into our browser's trust store. However, this is not recommended for production environments due to security risks.
 
 **For internal use on a closed network:** We can configure our applications and servers to trust the self-signed certificate's fingerprint or subject information. However, exercise caution as this bypasses the validation provided by trusted CAs.
 {% endhint %}
@@ -407,4 +403,3 @@ openssl dgst -sha256 -verify signer_public_key.pem -signature signature.txt data
    * The data has not been altered since it was signed, as any changes would result in a different digest.
    * The signature is authentic, as only the private key corresponding to the public key used for verification could have created the valid signature.
 {% endhint %}
-

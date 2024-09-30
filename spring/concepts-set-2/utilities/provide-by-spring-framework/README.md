@@ -14,8 +14,4 @@ Spring Framework utilities provide a variety of functionalities that can be read
 
 Package - `org.springframework.util.*`
 
-
-
-
-
-<figure><img src="../../../../.gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (243).png" alt=""><figcaption></figcaption></figure>

@@ -18,13 +18,13 @@ However, this system has several issues:
 4. **Different use of Protocols:** Different suppliers might have different ways of interaction with the central processing system (say with CSV file, Plaintext file, Events based or API interfaces etc.). Adding all these logic handling can be complex to the processing system.
 5. **Compatibility Retention:** As the ordering system might evolve over time i.e. orders might come in different formats, there might be a requirement to maintain compatibility with previous version so as to not break the user experience i.e. to have smooth transition.
 
-<figure><img src="../../../../.gitbook/assets/image (281).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (524).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### How Apache Camel Can Solve the Problem
 
 Apache Camel is a powerful integration framework that can help address the challenges in the e-commerce platform. Here's how it can be used:
 
-<figure><img src="../../../../.gitbook/assets/image (282).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (525).png" alt="" width="563"><figcaption></figcaption></figure>
 
 1. **Decentralized Order Processing:**
    * **Route Definition:** Create Camel routes to handle incoming orders and route them to the appropriate suppliers based on the order items.
@@ -42,8 +42,3 @@ Apache Camel is a powerful integration framework that can help address the chall
    * **Alerting:** Configure alerts to notify administrators of any issues or performance problems.
 
 By leveraging Apache Camel's capabilities, the e-commerce platform can achieve a more decentralized, scalable, and efficient order fulfillment process, improving customer satisfaction and overall business performance.
-
-
-
-
-

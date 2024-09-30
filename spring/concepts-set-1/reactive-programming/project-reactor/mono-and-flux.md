@@ -55,9 +55,7 @@ monoName.subscribe(
 );
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (47).png" alt=""><figcaption></figcaption></figure>
-
-
+<figure><img src="../../../../.gitbook/assets/image (269).png" alt=""><figcaption></figcaption></figure>
 
 **Mono.empty()**: This method creates an empty Mono, meaning it emits no items and completes immediately after being subscribed to. It's useful when you need to represent a Mono that has no data to emit.
 
@@ -71,9 +69,7 @@ emptyMono.subscribe(
 );
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (48).png" alt=""><figcaption></figcaption></figure>
-
-
+<figure><img src="../../../../.gitbook/assets/image (270).png" alt=""><figcaption></figcaption></figure>
 
 **Mono.error()**: This method creates a Mono that emits an error signal immediately after being subscribed to. You provide an exception or error object as an argument, and the resulting Mono emits that error to any subscribers
 
@@ -88,7 +84,7 @@ errorMono.subscribe(
 );
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (49).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (271).png" alt=""><figcaption></figcaption></figure>
 
 #### **Transforming Other Data Sources**
 
@@ -105,9 +101,7 @@ monoName.subscribe(
 );
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-
+<figure><img src="../../../../.gitbook/assets/image (167).png" alt=""><figcaption></figcaption></figure>
 
 **Mono.fromSupplier()**
 
@@ -122,9 +116,7 @@ monoName2.subscribe(
 );
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-
+<figure><img src="../../../../.gitbook/assets/image (168).png" alt=""><figcaption></figcaption></figure>
 
 **Mono.create()**
 
@@ -157,7 +149,7 @@ asyncMono.subscribe(
 log.info("Waiting for async operation to complete...");
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (171).png" alt=""><figcaption></figcaption></figure>
 
 #### **Operators for Data Manipulation**
 
@@ -174,9 +166,7 @@ monoNameLength.subscribe(
 );
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-
+<figure><img src="../../../../.gitbook/assets/image (169).png" alt=""><figcaption></figcaption></figure>
 
 **filter() - Filtering Data**
 
@@ -191,15 +181,13 @@ evenNumberMono.subscribe(
 );
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (170).png" alt=""><figcaption></figcaption></figure>
 
 #### **Backpressure Handling**
 
 In general, `Mono` instances in Reactor represent streams that emit at most one item, an error, or nothing (completion). Due to this characteristic, backpressure handling with `Mono` is less common compared to other reactive types like `Flux`, which can emit multiple items. Flux deals with potentially large streams of data where the producer might emit data faster than the consumer can process it. Backpressure becomes essential to prevent overwhelming the subscriber and potential system instability.
 
 However, there are still scenarios where backpressure handling may be relevant with `Mono`, especially when `Mono` is used in combination with other reactive types or in situations where asynchronous operations may produce data at a rate that exceeds the capacity of downstream processing.
-
-
 
 #### Schedulers
 
@@ -234,11 +222,7 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-
-
-
+<figure><img src="../../../../.gitbook/assets/image (172).png" alt=""><figcaption></figcaption></figure>
 
 ## Flux
 

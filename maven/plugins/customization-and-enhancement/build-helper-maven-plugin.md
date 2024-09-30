@@ -16,11 +16,9 @@ It is a useful Maven plugin provided by the Mojo project **"org.codehaus.mojo"**
 
 Visit the official documentation for more details - [https://www.mojohaus.org/build-helper-maven-plugin/usage.html](https://www.mojohaus.org/build-helper-maven-plugin/usage.html)
 
-
-
 **Example 1**: Adding source and test directories to the build path.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) ( (3).png" alt="" width="330"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (193).png" alt="" width="330"><figcaption></figcaption></figure>
 
 ```xml
 <plugin>
@@ -108,7 +106,6 @@ Visit the official documentation for more details - [https://www.mojohaus.org/bu
 </plugin>
 ```
 
-> Run `mvn clean compile`  or click on load maven changes button in Intellij in pom.xml file to reflect the changes.&#x20;
+> Run `mvn clean compile` or click on load maven changes button in Intellij in pom.xml file to reflect the changes.
 >
-> ![](<../../../.gitbook/assets/image (25).png>)
-
+> <img src="../../../.gitbook/assets/image (247).png" alt="" data-size="original">

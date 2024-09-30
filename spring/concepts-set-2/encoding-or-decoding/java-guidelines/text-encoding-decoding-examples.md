@@ -1,6 +1,6 @@
 # Text Encoding Decoding Examples
 
-## Reading a UTF8 saved file with different encoding&#x20;
+## Reading a UTF8 saved file with different encoding
 
 Below is an example of a text file content that includes a variety of characters from different character sets. This file contains English text, accented characters, Cyrillic characters, Greek characters, Chinese characters, and special symbols. While saving the file via editor, UTF8 is used.
 
@@ -58,7 +58,7 @@ public class EncodingDecodingFiles {
 }
 </code></pre>
 
-<figure><img src="../../../../.gitbook/assets/image (8) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (49).png" alt=""><figcaption></figcaption></figure>
 
 ## **Writing a string content to a file with specified encoding**
 
@@ -120,27 +120,27 @@ ISO-8859-1 does not support characters like Cyrillic, Greek, Chinese, or Emoji. 
 Similar to ISO-8859-1, Windows-1252 has limited support for non-Western characters
 {% endhint %}
 
-<figure><img src="../../../../.gitbook/assets/image (6) (1) (1) (1) (1).png" alt="" width="350"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (47).png" alt="" width="350"><figcaption></figcaption></figure>
 
 {% file src="../../../../.gitbook/assets/example-ISO-8859-1.txt" %}
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (42).png" alt="" width="375"><figcaption></figcaption></figure>
 
 {% file src="../../../../.gitbook/assets/example-UTF8.txt" %}
 
-<figure><img src="../../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (46).png" alt="" width="375"><figcaption></figcaption></figure>
 
 {% file src="../../../../.gitbook/assets/example-UTF16.txt" %}
 
-<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (44).png" alt="" width="375"><figcaption></figcaption></figure>
 
 {% file src="../../../../.gitbook/assets/example-Windows-1252.txt" %}
 
-<figure><img src="../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (45).png" alt="" width="375"><figcaption></figcaption></figure>
 
 {% file src="../../../../.gitbook/assets/example-ASCII.txt" %}
 
-<figure><img src="../../../../.gitbook/assets/image (7) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (48).png" alt="" width="375"><figcaption></figcaption></figure>
 
 ## Reading the above saved file in respective character set
 
@@ -202,11 +202,11 @@ public class EncodingDecodingFiles {
 
 <div>
 
-<figure><img src="../../../../.gitbook/assets/image (200).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (422).png" alt="" width="375"><figcaption></figcaption></figure>
 
  
 
-<figure><img src="../../../../.gitbook/assets/image (202).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (424).png" alt="" width="375"><figcaption></figcaption></figure>
 
 </div>
 
@@ -232,5 +232,4 @@ public class InternationalizationExample {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (211).png" alt="" width="272"><figcaption></figcaption></figure>
-
+<figure><img src="../../../../.gitbook/assets/image (433).png" alt="" width="272"><figcaption></figcaption></figure>

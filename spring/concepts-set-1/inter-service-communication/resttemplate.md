@@ -2,8 +2,6 @@
 
 `RestTemplate` is a synchronous client included in the Spring Framework that allows to interact with RESTful web services. It provides a simplified way to send HTTP requests and receive responses. It also supports authentication, making it versatile for various API interactions.
 
-
-
 ### **Key points about RestTemplate**
 
 * **Synchronous communication:** RestTemplate makes synchronous HTTP requests, meaning program waits (blocking) for the response before continuing execution. It can have performance impact in high-concurrency applications.
@@ -32,7 +30,7 @@ To use Apache HttpComponents, add below dependency and configure RestTemplate wi
 {% hint style="info" %}
 To achieve asynchronous behavior when using RestTemplate, we can use it with `CompletableFuture`.
 
-For example -&#x20;
+For example -
 
 ```java
 // URL for the REST API endpoint
@@ -51,8 +49,6 @@ CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
 future.join();
 ```
 {% endhint %}
-
-
 
 ### Commonly used RestTemplate configuration
 
@@ -102,8 +98,6 @@ requestFactory.setHttpClient(HttpClients.createDefault());
 restTemplate.setRequestFactory(requestFactory);
 ```
 
-
-
 ### **RestTemplate methods**
 
 Some of the RestTemplate methods are given below. For more details visit [https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html)
@@ -122,11 +116,11 @@ Sends an HTTP DELETE request to the specified URL. It's a convenience method spe
 
 * `restTemplate.execute(...)`:
 
-This method provides the lowest-level access to HTTP requests.  It takes an instance of `RequestCallback` and `ResponseExtractor` as parameters . This allows for full control over the request and response handling.
+This method provides the lowest-level access to HTTP requests. It takes an instance of `RequestCallback` and `ResponseExtractor` as parameters . This allows for full control over the request and response handling.
 
 * `restTemplate.getForObject(...)`:
 
-Similar to `getForEntity()`, but it directly returns the response body instead of encapsulating the entire response in a `ResponseEntity` object.  Useful when you're only interested in the response body and don't need access to headers or status code separately.
+Similar to `getForEntity()`, but it directly returns the response body instead of encapsulating the entire response in a `ResponseEntity` object. Useful when you're only interested in the response body and don't need access to headers or status code separately.
 
 * `postForObject(...)`:
 
@@ -148,9 +142,7 @@ Sends an HTTP PATCH request to the specified URL. Similar to `postForObject()` b
 
 Sends an HTTP PUT request to the specified URL. Typically used to update an existing resource with the provided request entity. Unlike `postForObject()` and `postForEntity()`, there isn't a `putForObject()` or `putForEntity()` method because `RestTemplate`'s `exchange()` method can be used for PUT requests, providing more flexibility.
 
-
-
-### **Example:**&#x20;
+### **Example:**
 
 #### Service 1 calling GET API of Service 2 using RestTemplate
 
@@ -172,7 +164,7 @@ Dependencies
 
 Sample Service 2
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="313"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (177).png" alt="" width="313"><figcaption></figcaption></figure>
 
 _<mark style="background-color:yellow;">**SampleController.java**</mark>_
 
@@ -206,7 +198,7 @@ Build and run the service 2 application.
 
 Sample Service 1
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) ( (1).png" alt="" width="313"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (178).png" alt="" width="313"><figcaption></figcaption></figure>
 
 _<mark style="background-color:yellow;">**ResttemplateConfig.java**</mark>_
 
@@ -271,13 +263,13 @@ Build and execute the application
 
 * Call the Service 1 API using Postman
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (179).png" alt=""><figcaption></figcaption></figure>
 
 * We can enable basic information logging like request, headers, response code etc by setting logging level below
 
 `logging.level.org.springframework.web.client.RestTemplate=DEBUG`
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (180).png" alt=""><figcaption></figcaption></figure>
 
 * We can enable full logging including request, response body, etc Apache HttpClient
 
@@ -323,11 +315,9 @@ logging.level.org.apache.http: DEBUG
 
 Run both the service 1 and service 2 application from above example
 
-
-
 Run the service 1 API from Postman and monitor the logs
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (182).png" alt=""><figcaption></figcaption></figure>
 
 ```atom
 2024-04-19 15:55:22.074  INFO 21200 --- [nio-8081-exec-5] org.example.api.SampleController         : Calling service 2 API
@@ -375,4 +365,3 @@ Run the service 1 API from Postman and monitor the logs
 2024-04-19 15:55:22.086 DEBUG 21200 --- [nio-8081-exec-5] h.i.c.DefaultManagedHttpClientConnection : http-outgoing-1: set socket timeout to 0
 2024-04-19 15:55:22.086 DEBUG 21200 --- [nio-8081-exec-5] h.i.c.PoolingHttpClientConnectionManager : Connection released: [id: 1][route: {}->http://localhost:8082][total available: 1; route allocated: 1 of 5; total allocated: 1 of 10]
 ```
-

@@ -2,7 +2,7 @@
 
 ## Description
 
-The Spring Bean Lifecycle refers to the well-defined stages a bean goes through in a Spring application, from its creation to its eventual destruction. This lifecycle is managed by the Spring  IoC container (BeanFactory) and ensures proper initialization, configuration, and cleanup of beans.
+The Spring Bean Lifecycle refers to the well-defined stages a bean goes through in a Spring application, from its creation to its eventual destruction. This lifecycle is managed by the Spring IoC container (BeanFactory) and ensures proper initialization, configuration, and cleanup of beans.
 
 ## **Benefits of Managed Bean Lifecycle:**
 
@@ -12,11 +12,11 @@ The Spring Bean Lifecycle refers to the well-defined stages a bean goes through 
 
 ## Stages
 
-<figure><img src="../../../.gitbook/assets/image (85).png" alt="" width="563"><figcaption><p>Reference - <a href="https://bootcamptoprod.com/spring-bean-life-cycle-explained/">https://bootcamptoprod.com/spring-bean-life-cycle-explained/</a></p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (307).png" alt="" width="563"><figcaption><p>Reference - <a href="https://bootcamptoprod.com/spring-bean-life-cycle-explained/">https://bootcamptoprod.com/spring-bean-life-cycle-explained/</a></p></figcaption></figure>
 
 ### 1. Bean Instantiation:
 
-The first step in the bean lifecycle is the instantiation of the bean. This occurs when the Spring IoC container reads the bean definition and creates an instance of the bean (corresponding class) based on the configuration metadata provided (e.g., XML configuration, Java annotations, or Java-based configuration). This instantiation can happen through various mechanisms depending on the bean scope (singleton, prototype, etc.).&#x20;
+The first step in the bean lifecycle is the instantiation of the bean. This occurs when the Spring IoC container reads the bean definition and creates an instance of the bean (corresponding class) based on the configuration metadata provided (e.g., XML configuration, Java annotations, or Java-based configuration). This instantiation can happen through various mechanisms depending on the bean scope (singleton, prototype, etc.).
 
 During this stage, the container creates a new instance of the bean by invoking its constructor. The primary purpose of this stage is to prepare the bean for further initialization.
 
@@ -224,9 +224,9 @@ Not all stages are mandatory. For instance, a bean might not require custom init
 
 ### Structure
 
-<figure><img src="../../../.gitbook/assets/image (84).png" alt="" width="357"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (306).png" alt="" width="357"><figcaption></figcaption></figure>
 
-### pom.xml dependency&#x20;
+### pom.xml dependency
 
 ```xml
 <dependency>
@@ -411,7 +411,7 @@ public class Application {
 
 ### Run the application and verify the output
 
-<figure><img src="../../../.gitbook/assets/image (83).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (305).png" alt=""><figcaption></figcaption></figure>
 
 ## FAQs
 
@@ -423,9 +423,9 @@ Yes, we can combine constructor injection and setter injection in the same bean,
 
 If a bean fails to initialize (e.g., due to an exception), Spring usually stops the application startup and provides error messages or exceptions that indicate the problem.
 
-#### **Can I use AOP (Aspect-Oriented Programming) with Spring** [ **Bean**](https://bootcamptoprod.com/spring-bean-life-cycle-explained/) **life cycle methods?**
+#### **Can I use AOP (Aspect-Oriented Programming) with Spring** [**Bean**](https://bootcamptoprod.com/spring-bean-life-cycle-explained/) **life cycle methods?**
 
-Yes, we can use AOP to apply aspects (cross-cutting concerns) before, after, or around Spring  Bean life cycle methods, enabling you to add custom behaviour such as logging or security checks.
+Yes, we can use AOP to apply aspects (cross-cutting concerns) before, after, or around Spring Bean life cycle methods, enabling you to add custom behaviour such as logging or security checks.
 
 #### **Are there any performance considerations when using Spring Bean life cycle methods extensively?**
 

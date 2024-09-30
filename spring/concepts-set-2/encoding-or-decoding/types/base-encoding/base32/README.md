@@ -12,7 +12,7 @@ Base32 is a method of encoding binary data into a text format using a set of 32 
 
 ## Base32 Mapping
 
-<figure><img src="../../../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (53).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Base32 Encoding Process
 
@@ -68,4 +68,3 @@ Character: 'H'
 2. **DNS Records**: Encoding binary data in DNS records where only certain characters are allowed.
 3. **Secret Keys**: Sharing secret keys in two-factor authentication systems, as it avoids issues with case sensitivity.
 4. **File Names**: Creating URL-safe file names that can be easily transmitted over the web without encoding issues.
-

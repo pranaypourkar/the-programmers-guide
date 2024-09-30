@@ -12,8 +12,6 @@ Around advice wraps around the target method invocation. It allows to control th
 
 **Logging**: Can be used in calculating execution time.
 
-
-
 **Sample Example**
 
 <mark style="background-color:blue;">Scenario 1</mark>: Log method execution time using custom annotation.
@@ -115,17 +113,9 @@ public class DataApi {
 
 Run the application, execute the API and observe the logs
 
-<figure><img src="../../../.gitbook/assets/image (12) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (234).png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (14) (1).png" alt=""><figcaption><p>Output</p></figcaption></figure>
-
-
-
-
-
-
-
-
+<figure><img src="../../../.gitbook/assets/image (236).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 {% hint style="info" %}
 Note: The code snippet given in this page is just for understanding and does not contain complete code. (For e.g. missing service class code snippet)

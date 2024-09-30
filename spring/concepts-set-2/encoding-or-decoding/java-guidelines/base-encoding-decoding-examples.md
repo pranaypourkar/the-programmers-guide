@@ -6,7 +6,7 @@
 
 <figure><img src="../../../../.gitbook/assets/arrows.jpg" alt="" width="375"><figcaption><p>arrows.jpg</p></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (226).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (448).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Step 2: Run the below Java Code to generate Base64 content of the above image
 
@@ -72,4 +72,4 @@ public class ImageToBase64Conversion {
 
 Sample Website: [https://base64.guru/converter/decode/image](https://base64.guru/converter/decode/image)
 
-<figure><img src="../../../../.gitbook/assets/image (227).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (449).png" alt=""><figcaption></figcaption></figure>

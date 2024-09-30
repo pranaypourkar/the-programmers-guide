@@ -21,14 +21,12 @@ ER diagrams are created based on three basic concepts: <mark style="background-c
 <figure><img src="../../../../.gitbook/assets/one-to-many-erd (1).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
-#### What is ER Model?
+**What is ER Model?**
 
 ER Model, which stands for Entity Relationship Model, is a high-level conceptual data model diagram. ER model helps to systematically analyze data requirements to produce a well-designed database. The ER Model represents real-world entities and the relationships between them. Creating an ER Model in DBMS is considered as a best practice before implementing your database.
 
 ER Modeling helps to analyze data requirements systematically to produce a well-designed database. It is considered a best practice to complete ER modeling before implementing database.
 {% endhint %}
-
-
 
 ## ER Diagrams Symbols & Notations
 
@@ -36,7 +34,7 @@ Entity-Relationship (ER) Diagrams use a specific set of symbols and notations to
 
 Following are the main components and its symbols in ER Diagrams:
 
-<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (145).png" alt=""><figcaption></figcaption></figure>
 
 ### **Entity**:
 
@@ -48,7 +46,7 @@ Entities are further categorized into strong and weak entities based on their de
 
 * A self-sufficient entity whose existence doesn't rely on another entity. It has a well-defined identity independent of other entities.
 * Strong entities possess a primary key, a unique identifier that can be used to distinguish each instance (row) of the entity within the table. The primary key enforces data integrity and allows for efficient data retrieval.
-* **Example of Strong Entity:** \
+* **Example of Strong Entity:**\
   **Customer:** In a customer database, the Customer entity would be considered strong. Each customer has a unique identifier (e.g., CustomerID), attributes like name, address, email, etc., and can exist independently in the system without relying on any other entity.
 
 #### **Weak Entity:**
@@ -74,15 +72,15 @@ Shown as an <mark style="background-color:purple;">oval or ellipse</mark> connec
 
 #### **Types of Attributes**
 
-<table data-full-width="true"><thead><tr><th width="214">Attribute Type</th><th width="335">Description</th><th>Example</th></tr></thead><tbody><tr><td>Simple Attribute</td><td>An atomic (indivisible) unit of data that cannot be further broken down into smaller meaningful units.</td><td><p>-> CustomerID (unique identifier for a customer)  </p><p>-> ProductName (name of a product) </p><p>-> Price (unit price of a product)</p></td></tr><tr><td>Composite Attribute</td><td>A logical group of simpler attributes that together define a single concept.</td><td><p>-> Address (composed of Street, City, State, Zip Code) </p><p>-> FullName (composed of FirstName and LastName) </p><p>-> DateOfBirth (composed of Year, Month, Day)</p></td></tr><tr><td>Derived Attribute</td><td>An attribute whose value is calculated or derived from other attributes in the table.</td><td><p>-> Age (calculated from DateOfBirth) </p><p>-> TotalAmount (calculated by multiplying Price with Quantity) </p><p>-> AverageRating (calculated from individual product ratings)</p></td></tr><tr><td>Multi-valued Attribute</td><td>An attribute that can hold multiple values for a single entity instance.</td><td><p>-> Skills (a customer can have multiple skills) </p><p>-> FavoriteColors (a customer can have multiple favorite colors)</p><p>-> PhoneNumbers (a customer can have multiple phone numbers)</p></td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="214">Attribute Type</th><th width="335">Description</th><th>Example</th></tr></thead><tbody><tr><td>Simple Attribute</td><td>An atomic (indivisible) unit of data that cannot be further broken down into smaller meaningful units.</td><td><p>-> CustomerID (unique identifier for a customer)</p><p>-> ProductName (name of a product)</p><p>-> Price (unit price of a product)</p></td></tr><tr><td>Composite Attribute</td><td>A logical group of simpler attributes that together define a single concept.</td><td><p>-> Address (composed of Street, City, State, Zip Code)</p><p>-> FullName (composed of FirstName and LastName)</p><p>-> DateOfBirth (composed of Year, Month, Day)</p></td></tr><tr><td>Derived Attribute</td><td>An attribute whose value is calculated or derived from other attributes in the table.</td><td><p>-> Age (calculated from DateOfBirth)</p><p>-> TotalAmount (calculated by multiplying Price with Quantity)</p><p>-> AverageRating (calculated from individual product ratings)</p></td></tr><tr><td>Multi-valued Attribute</td><td>An attribute that can hold multiple values for a single entity instance.</td><td><p>-> Skills (a customer can have multiple skills)</p><p>-> FavoriteColors (a customer can have multiple favorite colors)</p><p>-> PhoneNumbers (a customer can have multiple phone numbers)</p></td></tr></tbody></table>
 
 ### **Relationship**:
 
-Depicted by a <mark style="background-color:blue;">diamond</mark> shape connecting two entities. Represents the association or connection between different entities. There are three main types of relationships denoted differently:&#x20;
+Depicted by a <mark style="background-color:blue;">diamond</mark> shape connecting two entities. Represents the association or connection between different entities. There are three main types of relationships denoted differently:
 
-\-> **One-to-One (1:1)**: A line is drawn connecting the two diamonds, representing a single instance in one entity relates to a single instance in another entity.&#x20;
+\-> **One-to-One (1:1)**: A line is drawn connecting the two diamonds, representing a single instance in one entity relates to a single instance in another entity.
 
-\-> **One-to-Many (1:N)**: An arrow points from the "one" entity (crow's foot notation) or a line connects the diamond to the "many" entity (older notation), indicating a single instance in the "one" entity relates to multiple instances in the "many" entity.&#x20;
+\-> **One-to-Many (1:N)**: An arrow points from the "one" entity (crow's foot notation) or a line connects the diamond to the "many" entity (older notation), indicating a single instance in the "one" entity relates to multiple instances in the "many" entity.
 
 \-> **Many-to-Many (N:M)**: A separate associative entity (another rectangle) is created between the two entities, typically containing a primary key and foreign keys referencing the related entities. This is used to represent many-to-many relationships because relational databases inherently struggle with this type of relationship.
 
@@ -97,7 +95,7 @@ Depicted by a <mark style="background-color:blue;">diamond</mark> shape connecti
 
 It refers to the number of occurrences of an entity in a relationship. It describes how many instances of one entity relate to how many instances of another entity.
 
-<figure><img src="../../../../.gitbook/assets/image (92).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (314).png" alt=""><figcaption></figcaption></figure>
 
 Here are the different types of cardinal relationships:
 
@@ -107,7 +105,7 @@ Here are the different types of cardinal relationships:
 
 ## How to Create an Entity Relationship Diagram (ERD)
 
-<figure><img src="../../../../.gitbook/assets/image (93).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (315).png" alt=""><figcaption></figcaption></figure>
 
 ### **1. Entity Identification:**
 

@@ -19,11 +19,11 @@ Inversion of Control (IoC) is a design principle, and there are multiple impleme
 
 ### Key concepts of IoC in the context of Spring Framework include:
 
-#### **Dependency Injection (DI)**&#x20;
+#### **Dependency Injection (DI)**
 
 Dependency Injection is a specific implementation of IoC where the dependencies of an object are "injected" into it by an external entity, typically the Spring container. Instead of an object creating its dependencies directly, it receives them from an external source. This reduces the coupling between classes and makes them easier to test and maintain. This whole process is also called wiring in Spring and by using annotations it can be done automatically by Spring, referred to as auto-wiring of beans in Spring.
 
-<figure><img src="../../.gitbook/assets/image (82).png" alt="" width="468"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (304).png" alt="" width="468"><figcaption></figcaption></figure>
 
 **Key Points of Dependency Injection**
 
@@ -110,8 +110,3 @@ Configuration metadata is used to define how beans should be created, wired toge
 #### **Lifecycle Management**
 
 The Spring container manages the lifecycle of beans, including their creation, initialization, and destruction. It ensures that beans are created and configured correctly and that they are available for use when needed. This helps to ensure that resources are managed efficiently and that memory leaks and other issues are avoided.
-
-
-
-
-

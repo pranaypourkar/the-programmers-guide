@@ -58,9 +58,7 @@ These characters include punctuation, digits, uppercase and lowercase letters.
 | ...        | ...      | ...       | ...              |
 | 126        | 01111110 | \~        | Tilde            |
 
-
-
-<figure><img src="../../../../../../.gitbook/assets/image (195).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (417).png" alt=""><figcaption></figcaption></figure>
 
 ## Usage of ASCII
 
@@ -75,9 +73,7 @@ Text files themselves do not typically store encoding information within their c
 * **Incorrect Encoding:** If a file is encoded in UTF-8 and opened with an editor assuming ISO-8859-1 (Latin-1), special characters might appear incorrectly.
 * **"Garbage Characters":** Unrecognizable characters might appear if the wrong encoding is used.
 
-
-
-#### How Text Encoding is Determined
+**How Text Encoding is Determined**
 
 1. **External Metadata**
    * **File Metadata**: Some operating systems and file systems may support metadata that indicates the encoding of a file.
@@ -94,7 +90,7 @@ Text files themselves do not typically store encoding information within their c
    * **User Settings**: Text editors and development environments often allow users to specify the encoding to use when opening or saving a file.
    * **Application Defaults**: Some applications have default encodings they assume when no other information is provided (e.g., UTF-8 for many modern applications).
 
-#### Managing Text Encoding in Different Contexts
+**Managing Text Encoding in Different Contexts**
 
 1. **Text Editors**
    * Many text editors allow users to select or change the encoding when opening or saving a file. Popular editors like VS Code, Sublime Text, and Notepad++ provide options to specify or convert file encodings.
@@ -141,6 +137,3 @@ Text files themselves do not typically store encoding information within their c
 **Con**: Modern systems that need to interact with these older protocols often have to include additional handling for ASCII, complicating their design.
 
 * Example: Modern web servers need to support ASCII for HTTP headers but also need to handle UTF-8 for content, adding complexity to their implementation.
-
-
-

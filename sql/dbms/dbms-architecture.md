@@ -15,13 +15,13 @@ The choice of DBMS architecture depends on various factors like:
 
 DBMS architecture is classified depending upon how many layers are present in the structure of the DBMS. A n-tier DBMS Architecture divides the whole DBMS into related but n independent layers or levels, i.e., a one-tier architecture divides the DBMS into a single layer, a two-tier DBMS architecture divides the DBMS into two layers, a three-tier in three layers, and so on. When the layers are increased in the architecture, the level of abstraction also increases, resulting in an increase in the security and the complexity of the DBMS structure. All these layers are independent, i.e., any modification performed in a particular layer does not affect the other layer present in the architecture.
 
-### **Single-tier Architecture (**Centralized Architecture):
+### \*\*Single-tier Architecture (\*\*Centralized Architecture):
 
-Also known as standalone architecture or single-user architecture. In 1-Tier Architecture, the database is directly available to the user, the user can directly interact with the DBMS and use it that is, the client, server, and Database are all present on the same machine. For Example: to learn MySQL we set up an MySQL server and the database on the local system. This enables us to directly interact with the relational database and execute operations.&#x20;
+Also known as standalone architecture or single-user architecture. In 1-Tier Architecture, the database is directly available to the user, the user can directly interact with the DBMS and use it that is, the client, server, and Database are all present on the same machine. For Example: to learn MySQL we set up an MySQL server and the database on the local system. This enables us to directly interact with the relational database and execute operations.
 
 Suitable for small-scale applications or personal databases.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (147).png" alt="" width="375"><figcaption></figcaption></figure>
 
 **Advantages:**
 
@@ -35,13 +35,13 @@ Suitable for small-scale applications or personal databases.
 2. **Limited Flexibility:** It offers limited flexibility for distributed deployment, making it difficult to scale horizontally or adapt to changing business needs.
 3. **No Separation of Concerns:** There is no clear separation between user interfaces, application logic, and data management, leading to potential maintenance challenges and code complexity.
 
-### **Two-tier Architecture (**Distributed Architecture, **Client-Server Architecture**):
+### \*\*Two-tier Architecture (\*\*Distributed Architecture, **Client-Server Architecture**):
 
 It divides the DBMS into two tiers: the client tier and the server tier. The client tier includes user interfaces (e.g., forms, reports) and application logic. The server tier includes the DBMS engine responsible for data storage, retrieval, and processing. Clients communicate with the server, via APIs like ODBC and JDBC, to access and manipulate data. Multiple users can use it at the same time. Hence, it can be used in an organization.
 
 Suitable for medium to large-scale applications, providing better scalability, performance, and manageability compared to single-tier architecture.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (148).png" alt=""><figcaption></figcaption></figure>
 
 **Advantages:**
 
@@ -55,17 +55,17 @@ Suitable for medium to large-scale applications, providing better scalability, p
 2. **Client Dependency:** Clients rely heavily on server availability and performance, making the system vulnerable to client-side issues or failures.
 3. **Limited Flexibility:** Two-tier architecture may lack flexibility for distributed deployment and may require client software installation and updates.
 
-### **Three-tier Architecture (**Distributed Architecture):
+### \*\*Three-tier Architecture (\*\*Distributed Architecture):
 
-The 3-Tier architecture contains another layer (Application Layer) between the client and server, which handles business logic and interacts with both the database server and the client application. Here, the client can't directly communicate with the server. This architecture divides the DBMS into three tiers: **the presentation tier, application tier, and data tier.**&#x20;
+The 3-Tier architecture contains another layer (Application Layer) between the client and server, which handles business logic and interacts with both the database server and the client application. Here, the client can't directly communicate with the server. This architecture divides the DBMS into three tiers: **the presentation tier, application tier, and data tier.**
 
-* The presentation tier (also known as the front end) handles user interfaces and presentation logic.&#x20;
-* The application tier (also known as the middle tier or logic tier) contains application logic and business rules.&#x20;
-* The data tier (also known as the back end) houses the database server responsible for data storage, retrieval, and management.&#x20;
+* The presentation tier (also known as the front end) handles user interfaces and presentation logic.
+* The application tier (also known as the middle tier or logic tier) contains application logic and business rules.
+* The data tier (also known as the back end) houses the database server responsible for data storage, retrieval, and management.
 
 Provides better scalability, modularity, and flexibility compared to two-tier architecture. Enables the separation of concerns between user interfaces, application logic, and data management.
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="320"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (149).png" alt="" width="320"><figcaption></figcaption></figure>
 
 **Advantages:**
 

@@ -2,13 +2,13 @@
 
 ## **Description**
 
-**RDBMS** stands for Relational Database Management System_._ A Relational Database Management System (RDBMS) is a type of database management system that stores data in a structured format, using tables consisting of rows and columns. All modern database management systems like SQL, MS SQL Server, ORACLE, MySQL, and Microsoft Access are based on RDBMS.
+**RDBMS** stands for Relational Database Management System\_.\_ A Relational Database Management System (RDBMS) is a type of database management system that stores data in a structured format, using tables consisting of rows and columns. All modern database management systems like SQL, MS SQL Server, ORACLE, MySQL, and Microsoft Access are based on RDBMS.
 
 {% hint style="info" %}
 It is called Relational Database Management System (RDBMS) because it is based on the relational model introduced by E.F. Codd.
 {% endhint %}
 
-<figure><img src="../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (150).png" alt=""><figcaption></figcaption></figure>
 
 ## **Key Points**
 
@@ -28,19 +28,19 @@ These are the following categories of data integrity which exist with each RDBMS
 * <mark style="background-color:yellow;">User-defined integrity</mark>: It enforces some specific business rules defined by users. These rules are different from the entity, domain, or referential integrity.
 
 {% hint style="info" %}
-Most commonly used constraint available in SQL&#x20;
+Most commonly used constraint available in SQL
 
-NOT NULL Constraint - Ensures that a column cannot have a NULL value.&#x20;
+NOT NULL Constraint - Ensures that a column cannot have a NULL value.
 
-DEFAULT Constraint - Provides a default value for a column when none is specified.&#x20;
+DEFAULT Constraint - Provides a default value for a column when none is specified.
 
-UNIQUE Key - Ensures that all the values in a column are different.&#x20;
+UNIQUE Key - Ensures that all the values in a column are different.
 
-PRIMARY Key - Uniquely identifies each row/record in a database table.&#x20;
+PRIMARY Key - Uniquely identifies each row/record in a database table.
 
-FOREIGN Key - Uniquely identifies a row/record in any another database table.&#x20;
+FOREIGN Key - Uniquely identifies a row/record in any another database table.
 
-CHECK Constraint - Ensures that all values in a column satisfy certain conditions.&#x20;
+CHECK Constraint - Ensures that all values in a column satisfy certain conditions.
 
 INDEX Constraint - Used to create and retrieve data from the database very quickly.
 {% endhint %}
@@ -75,12 +75,12 @@ Normalization guidelines are divided into **normal forms**; it is like a format 
 
 In 1NF, a table is said to be in the first normal form if it meets the following criteria:
 
-* Rule 1 (Atomic Values):  Every column of a table should contain only atomic values and not a set of values or a composite value. An atomic value is a value that cannot be divided further.
+* Rule 1 (Atomic Values): Every column of a table should contain only atomic values and not a set of values or a composite value. An atomic value is a value that cannot be divided further.
 * Rule 2 (No Repeating Groups): There are no repeating groups of data. This means a table should not contain repeating columns. All columns should have a unique name.
 
 <mark style="background-color:yellow;">Example Violation of 1NF:</mark>
 
-Imagine a table storing customer information with a column named "Phones" where you list all the customer's phone numbers separated by commas. This violates 1NF because a single cell holds multiple values.&#x20;
+Imagine a table storing customer information with a column named "Phones" where you list all the customer's phone numbers separated by commas. This violates 1NF because a single cell holds multiple values.
 
 Imagine a table storing information about employees, with columns named "EmployeeID", "FirstName", "LastName1", and another column also named "LastName2". This table violates 1NF because it has two columns which stores last name.
 
@@ -142,11 +142,8 @@ RDBMS provides security features such as authentication, authorization, and acce
 
 RDBMS offers tools and utilities for performing backups of database contents and restoring them in the event of data loss or system failures. Backup and recovery mechanisms ensure data durability and availability.
 
-
-
 ## Difference between DBMS and RDBMS
 
 RDBMS is a specific type of DBMS with a more structured approach.
 
 <table data-full-width="true"><thead><tr><th width="91">No.</th><th>DBMS</th><th>RDBMS</th></tr></thead><tbody><tr><td>1)</td><td>DBMS applications store <strong>data as file</strong>.</td><td>RDBMS applications store <strong>data in a tabular form</strong>.</td></tr><tr><td>2)</td><td>In DBMS, data is generally stored in either a hierarchical form or a navigational form.</td><td>In RDBMS, the tables have an identifier called primary key and the data values are stored in the form of tables.</td></tr><tr><td>3)</td><td><strong>Normalization is not</strong> present in DBMS.</td><td><strong>Normalization is</strong> present in RDBMS.</td></tr><tr><td>4)</td><td>DBMS does <strong>not apply any security</strong> with regards to data manipulation.</td><td>RDBMS <strong>defines the integrity constraint</strong> for the purpose of ACID (Atomocity, Consistency, Isolation and Durability) property.</td></tr><tr><td>5)</td><td>DBMS uses file system to store data, so there will be <strong>no relation between the tables</strong>.</td><td>in RDBMS, data values are stored in the form of tables, so a <strong>relationship</strong> between these data values will be stored in the form of a table as well.</td></tr><tr><td>6)</td><td>DBMS has to provide some uniform methods to access the stored information.</td><td>RDBMS system supports a tabular structure of the data and a relationship between them to access the stored information.</td></tr><tr><td>7)</td><td>DBMS <strong>does not support distributed database</strong>.</td><td>RDBMS <strong>supports distributed database</strong>.</td></tr><tr><td>8)</td><td>Examples of DBMS are file systems, <strong>xml</strong> etc.</td><td>Example of RDBMS are <strong>mysql</strong>, <strong>postgre</strong>, <strong>sql server</strong>, <strong>oracle</strong> etc.</td></tr></tbody></table>
-

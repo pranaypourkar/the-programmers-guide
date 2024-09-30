@@ -2,7 +2,7 @@
 
 ## About
 
-OpenShift is a comprehensive container orchestration platform developed by Red Hat. It is built on top of Kubernetes and provides a more user-friendly interface and additional tools to facilitate the management of containerized applications.&#x20;
+OpenShift is a comprehensive container orchestration platform developed by Red Hat. It is built on top of Kubernetes and provides a more user-friendly interface and additional tools to facilitate the management of containerized applications.
 
 OpenShift Container Platform is a private <mark style="background-color:purple;">platform-as-a-service (PaaS)</mark> for enterprises that run OpenShift on public cloud or on-premises infrastructure. It runs on the Red Hat Enterprise Linux (RHEL) operating system and functions as a set of Docker-based application containers managed with Kubernetes orchestration
 
@@ -137,8 +137,6 @@ Containers are ephemeral and are often restarted or deleted. This is not ideal f
 
 This layer provides external access to cluster applications from any device. The routing layer also performs auto-routing and load balancing for unhealthy pods.
 
-
-
 ## Components of OpenShift
 
 <div>
@@ -169,9 +167,9 @@ OpenShift container platform is available in two package levels.
 There are **three ways** to interact with OpenShift: the command line, the web interface, and the RESTful API.
 {% endhint %}
 
-### Kubernetes  Components
+### Kubernetes Components
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt="" width="308"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (473).png" alt="" width="308"><figcaption></figcaption></figure>
 
 #### Kubernetes Master Machine Components
 
@@ -256,13 +254,13 @@ If we want our own, private container registry, OpenShift Container Platform its
 
 <figure><img src="../../.gitbook/assets/img6.png" alt=""><figcaption></figcaption></figure>
 
-## &#x20;Example: Parksmap Architecture
+## Example: Parksmap Architecture
 
 ParksMap is a geo-spatial data visualization application built using the microservices architecture and is composed of a set of services which are developed using different programming languages and frameworks. The main service is a web application which has a server-side component in charge of aggregating the geo-spatial APIs provided by multiple independent backend services and a client-side component in JavaScript that is responsible for visualizing the geo-spatial data on the map. The client-side component which runs in our browser communicates with the server-side via WebSockets protocol in order to update the map in real-time.
 
 There will be a set of independent backend services deployed that will provide different mapping and geo-spatial information. These backends will be dynamically discovered by using service discovery mechanisms provided by OpenShift which will be discussed in more details in the following labs.
 
-### Deploy the web component&#x20;
+### Deploy the web component
 
 Deploy the web component of the ParksMap application which is also called parksmap
 
@@ -370,8 +368,6 @@ oc describe service parksmap
 
 Note: Only one endpoint is listed. That is because there is only one Pod currently running
 
-
-
 ## Frequently Used Terms
 
 ### Image
@@ -382,7 +378,7 @@ Kubernetes (Docker) images are the key building blocks of Containerized Infrastr
 
 They are the ones which are created after the image is deployed on a Kubernetes cluster node.
 
-### Node&#x20;
+### Node
 
 A node is a working machine in Kubernetes cluster, which is also known as minion for master. They are working units which can a physical, VM, or a cloud instance.
 
@@ -399,4 +395,3 @@ With the OpenShift command line interface, we can create applications and manage
 ### Helm 3
 
 Helm 3 is a package manager for Kubernetes applications which enables defining, installing, and upgrading applications packaged as Helm Charts.
-

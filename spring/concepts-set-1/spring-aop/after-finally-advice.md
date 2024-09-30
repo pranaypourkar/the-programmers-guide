@@ -10,8 +10,6 @@ After (finally) advice is executed regardless of whether the target method compl
 
 **Logging**: Useful in logging method completion messages or status updates for tracking and debugging purposes. Cleaning up temporary files or resources used during method execution.
 
-
-
 **Sample Example**
 
 <mark style="background-color:blue;">Scenario 1:</mark> Logging the method arguments.
@@ -92,21 +90,11 @@ public class DataApi {
 Note that logic is set to throw exception
 {% endhint %}
 
-
-
 Run the application, execute the API and observe the logs
 
-<figure><img src="../../../.gitbook/assets/image (10) (1) (1) (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (232).png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (11) (1) (1).png" alt=""><figcaption><p>Output</p></figcaption></figure>
-
-
-
-
-
-
-
-
+<figure><img src="../../../.gitbook/assets/image (233).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 {% hint style="info" %}
 Note: The code snippet given in this page is just for understanding and does not contain complete code. (For e.g. missing service class code snippet)

@@ -80,7 +80,7 @@ git apply --whitespace=fix my_changes.patch
 
 When running `git apply patchfile.patch.` This indicates that the patch could not be applied cleanly to `file.c` at line 10.
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="308"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (67).png" alt="" width="308"><figcaption></figcaption></figure>
 
 ## git am
 
@@ -175,8 +175,8 @@ git am --abort
 
 When running `git am patchfile.mbox`
 
-<figure><img src="../../.gitbook/assets/image (175).png" alt="" width="245"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (397).png" alt="" width="245"><figcaption></figcaption></figure>
 
 If a patch fails to apply cleanly
 
-<figure><img src="../../.gitbook/assets/image (177).png" alt="" width="482"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (399).png" alt="" width="482"><figcaption></figcaption></figure>

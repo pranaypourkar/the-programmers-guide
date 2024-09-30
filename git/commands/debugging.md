@@ -86,7 +86,7 @@ git bisect reset
 
 During the bisecting process
 
-<figure><img src="../../.gitbook/assets/image (174).png" alt="" width="543"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (396).png" alt="" width="543"><figcaption></figcaption></figure>
 
 ## git grep
 
@@ -203,7 +203,7 @@ git grep -n "function"
 
 When running `git grep "search_term"`
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="395"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (68).png" alt="" width="395"><figcaption></figcaption></figure>
 
 ## git fsck
 
@@ -274,5 +274,4 @@ git fsck --progress
 
 When running `git fsck`
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1).png" alt="" width="476"><figcaption></figcaption></figure>
-
+<figure><img src="../../.gitbook/assets/image (66).png" alt="" width="476"><figcaption></figcaption></figure>

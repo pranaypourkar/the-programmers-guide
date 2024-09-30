@@ -2,7 +2,7 @@
 
 ## Transposing a Result Set Using Oracle’s MODEL Clause
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="314"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (86).png" alt="" width="314"><figcaption></figcaption></figure>
 
 ```
 select max(d10) d10,
@@ -28,13 +28,13 @@ We have a string field that contains serialized log data. We want to parse throu
 
 Sample Input
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (87).png" alt="" width="375"><figcaption></figcaption></figure>
 
 We want to extract the values between the square brackets
 
 Sample Output
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="330"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (88).png" alt="" width="330"><figcaption></figcaption></figure>
 
 ```
 create view V
@@ -75,7 +75,7 @@ select 'Days in 2020: '||
 from dual
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (3) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="177"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (89).png" alt="" width="177"><figcaption></figcaption></figure>
 
 ## Searching for Mixed Alphanumeric Strings
 
@@ -128,7 +128,7 @@ and instr(translated,'*') > 0
 
 We want to convert a whole number to its binary representation.
 
-<figure><img src="../../../../.gitbook/assets/image (4) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="211"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (90).png" alt="" width="211"><figcaption></figcaption></figure>
 
 Because of MODEL’s ability to iterate and provide array access to row values, it is a best choice for this operation.
 
@@ -154,7 +154,7 @@ from emp
 
 We want to rank the values in a table and then pivot the result set into three columns. The idea is to show the top three, the next three, and then all the rest.
 
-<figure><img src="../../../../.gitbook/assets/image (6) (1) (1) (1) (1) (1).png" alt="" width="325"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (92).png" alt="" width="325"><figcaption></figcaption></figure>
 
 ```
 SELECT
@@ -232,15 +232,15 @@ GROUP BY
 
 **Explanation**
 
-<figure><img src="../../../../.gitbook/assets/image (7) (1) (1) (1) (1) (1).png" alt="" width="293"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (93).png" alt="" width="293"><figcaption></figcaption></figure>
 
 <div align="left">
 
-<figure><img src="../../../../.gitbook/assets/image (8) (1) (1) (1) (1).png" alt="" width="342"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (94).png" alt="" width="342"><figcaption></figcaption></figure>
 
  
 
-<figure><img src="../../../../.gitbook/assets/image (9) (1) (1) (1).png" alt="" width="237"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (95).png" alt="" width="237"><figcaption></figcaption></figure>
 
 </div>
 
@@ -284,7 +284,7 @@ DEPTNO ENAME
 
 Sample Output
 
-<figure><img src="../../../../.gitbook/assets/image (10) (1).png" alt="" width="252"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (96).png" alt="" width="252"><figcaption></figcaption></figure>
 
 ```
 create table IT_research (deptno number, ename varchar2(20))
@@ -376,7 +376,7 @@ entry:robo:tchi:ken:
 
 Sample Output
 
-<figure><img src="../../../../.gitbook/assets/image (11) (1).png" alt="" width="293"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (97).png" alt="" width="293"><figcaption></figcaption></figure>
 
 ```
 create view V
@@ -425,9 +425,9 @@ order by 1
 
 **Explanation**
 
-<figure><img src="../../../../.gitbook/assets/image (12).png" alt="" width="466"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (98).png" alt="" width="466"><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (13).png" alt="" width="472"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (99).png" alt="" width="472"><figcaption></figcaption></figure>
 
 ## Calculating Percent Relative to Total
 
@@ -435,7 +435,7 @@ We want to report a set of numeric values, and you want to show each value as a 
 
 Sample Output
 
-<figure><img src="../../../../.gitbook/assets/image (14).png" alt="" width="263"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (100).png" alt="" width="263"><figcaption></figcaption></figure>
 
 ```
 select job,num_emps,sum(round(pct)) pct_of_all_salaries
@@ -447,4 +447,3 @@ select job,num_emps,sum(round(pct)) pct_of_all_salaries
 )
 group by job,num_emps
 ```
-

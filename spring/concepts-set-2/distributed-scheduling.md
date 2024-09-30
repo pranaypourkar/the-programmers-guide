@@ -4,9 +4,7 @@ In Spring Boot, if we need to execute tasks at a scheduled time, we can use **@S
 
 There are different libraries that support distributed scheduling such as **ShedLock** , **Quartz** , **Akka Scheduler** etc.
 
-
-
-### ShedLock&#x20;
+### ShedLock
 
 ShedLock is a library which is used for distributed locking in scheduled tasks. It ensures that scheduled tasks (such as cron jobs) are executed only once in a distributed environment, even if the application is running on multiple nodes. It uses an external storage mechanism (like a database or cache) to keep track of running schedulers and acquired locks. ShedLock supports multiple lock providers like JDBC, Redis, Zookeeper etc.
 
@@ -20,25 +18,21 @@ ShedLock is a library which is used for distributed locking in scheduled tasks. 
 
 For more details, visit the site - https://github.com/lukas-krecan/ShedLock
 
-
-
 #### Use cases
 
 1. Handling Recurring Jobs with External Dependencies:
 
-**Generating and Sending Reports**: If there is a task that involves fetching data from external APIs, generating reports, and sending them via email, scheduler locks ensure only one instance sends those emails, preventing duplicates and potential overload.&#x20;
+**Generating and Sending Reports**: If there is a task that involves fetching data from external APIs, generating reports, and sending them via email, scheduler locks ensure only one instance sends those emails, preventing duplicates and potential overload.
 
 **External Data Updates**: Tasks that pull data from external sources and update your database can benefit from scheduler locks to avoid conflicting updates and ensure consistency.
 
 2. Long-Running Tasks with Progress Updates:
 
-**Data Processing and Transformation**: For tasks that involve processing large datasets or lengthy file operations, scheduler locks prevent multiple instances from starting the same work, saving resources and ensuring correct completion.&#x20;
+**Data Processing and Transformation**: For tasks that involve processing large datasets or lengthy file operations, scheduler locks prevent multiple instances from starting the same work, saving resources and ensuring correct completion.
 
 **Batch Updates**: Tasks that perform batch updates or data migrations can leverage scheduler locks to prevent conflicts and ensure data integrity.
 
-
-
-#### Example: Using JDBC (mysql) as a lock provider.&#x20;
+#### Example: Using JDBC (mysql) as a lock provider.
 
 Add the required dependency in pom.xml file.
 
@@ -71,11 +65,9 @@ Add the required dependency in pom.xml file.
 With **spring-boot-starter-data-jpa** dependency added and the database configuration properties specified in the`application.yml`, Spring Boot will automatically configure and create a DataSource bean.
 {% endhint %}
 
-
-
 Access the **mysql** database instance via mysql workbench and create the table manually which is to be used by the SchedulerLock.
 
-<figure><img src="../../.gitbook/assets/image (29).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (251).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 Note that table structure is created as per documentation given on the site -
@@ -112,8 +104,6 @@ networks:
 ```
 {% endhint %}
 
-
-
 Create Scheduler lock configuration class **ShedlockConfig.java**
 
 ```java
@@ -145,8 +135,6 @@ public class ShedlockConfig {
 As per documentation given in the main site, by specifying **usingDbTime()** the lock provider will use UTC time based on the DB server clock. If we do not specify this option, clock from the app server will be used (the clocks on app servers may not be synchronized thus leading to various locking issues). It's strongly recommended to use usingDbTime() option as it uses DB engine specific SQL that prevents INSERT conflicts.
 {% endhint %}
 
-
-
 Create **ScheduledTasks.java** file which has the logic to be performed at the scheduled time.
 
 ```java
@@ -176,8 +164,6 @@ The `lockAtMostFor` parameter in ShedLock specifies the maximum duration for whi
 
 This parameter helps prevent potential issues such as deadlocks or long-running tasks holding locks indefinitely, ensuring that locks are released after a reasonable period even if the task encounters unexpected delays or failures.
 {% endhint %}
-
-
 
 Enable Scheduling and Scheduler lock in the main **application.java** file.
 
@@ -210,8 +196,6 @@ ShedLock resolves the lock duration based on the following precedence:
 3. If neither `@SchedulerLock` nor `@EnableSchedulerLock` specify a lock duration, ShedLock will use its default lock duration, which is 10 minutes.
 {% endhint %}
 
-
-
 Add the database related properties in the **application.yml** file
 
 ```yaml
@@ -223,10 +207,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 ```
 
-
-
 Run the application and verify the **logs** and **shedlock** table content.
 
-<figure><img src="../../.gitbook/assets/image (31).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (253).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (32).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (254).png" alt=""><figcaption></figcaption></figure>

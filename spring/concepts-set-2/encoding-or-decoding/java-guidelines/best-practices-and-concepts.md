@@ -2,7 +2,7 @@
 
 ## How Java `String` and `char` works internally
 
-In Java, `String` and `char` types are designed to work with Unicode characters, and they handle text internally using the UTF-16 encoding.&#x20;
+In Java, `String` and `char` types are designed to work with Unicode characters, and they handle text internally using the UTF-16 encoding.
 
 ### Internal Representation of Strings in Java
 
@@ -32,7 +32,7 @@ public class EncodingDecodingFiles {
 ```
 
 \
-![](<../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png>)
+![](<../../../../.gitbook/assets/image (40).png>)
 {% endhint %}
 
 ### How They Work Together
@@ -98,8 +98,6 @@ Here is a step-by-step diagram:
 3. **Display on Console (UTF-8 Decoding)**:
    * The console receives the byte `0x41`.
    * It decodes the byte using UTF-8 and displays the character 'A'.
-
-
 
 ## How Text Editors Handle Encoding
 
@@ -188,7 +186,7 @@ In a Springboot application, the `pom.xml` file often contains a property to def
 {% hint style="info" %}
 The Maven Compiler Plugin does not automatically take the `project.build.sourceEncoding` property from the `<properties>` section. We need to explicitly configure the Maven Compiler Plugin to use this property.
 
-However, setting the encoding in the `<properties>` section ensures that we can reuse this property value consistently across different plugins and configurations.&#x20;
+However, setting the encoding in the `<properties>` section ensures that we can reuse this property value consistently across different plugins and configurations.
 {% endhint %}
 
 ### Why UTF-8?
@@ -247,6 +245,3 @@ The `maven-compiler-plugin` is configured to use the source encoding property. I
 </project>
 
 ```
-
-
-

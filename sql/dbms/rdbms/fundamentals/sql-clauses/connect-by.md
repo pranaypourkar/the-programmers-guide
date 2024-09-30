@@ -43,8 +43,6 @@ The `CONNECT_BY_ISLEAF` pseudocolumn is used to indicate whether a row is a leaf
 CONNECT_BY_ISLEAF
 ```
 
-
-
 ## Examples
 
 ### Employee and Manager
@@ -90,9 +88,7 @@ CONNECT BY PRIOR EMPLOYEE_ID = MANAGER_ID
 2. For each row, find rows where `MANAGER_ID` matches the `EMPLOYEE_ID` of the current row.
 3. Continue this process recursively to build the hierarchy.
 
-
-
-#### Setting Up the Hierarchical Query
+**Setting Up the Hierarchical Query**
 
 To establish the relationship that each employee reports to their manager, we want to specify that:
 
@@ -132,7 +128,7 @@ SELECT
   CONNECT BY LEVEL <= TRUNC(TO_DATE('2024-05-31', 'YYYY-MM-DD')) - TRUNC(TO_DATE('2024-05-28', 'YYYY-MM-DD')) + 1
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (113).png" alt="" width="131"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (335).png" alt="" width="131"><figcaption></figcaption></figure>
 
 ### Display each employee along with their root manager
 
@@ -165,8 +161,3 @@ CONNECT BY
 START WITH
     manager_id IS NULL;
 ```
-
-
-
-
-

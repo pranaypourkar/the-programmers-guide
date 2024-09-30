@@ -2,7 +2,7 @@
 
 ## Scenario 1: Encrypt Decrypt 6 digit code using AES Algorithm
 
-### Given:&#x20;
+### Given:
 
 {% hint style="info" %}
 **Inputs given to us ->**
@@ -32,7 +32,7 @@ Generate the AES key and store it in a JCEKS keystore with the `.jceks` extensio
 keytool -genseckey -alias myaeskey -keyalg AES -keysize 256 -keystore mykeystore.jceks -storetype JCEKS
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (221).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (443).png" alt=""><figcaption></figcaption></figure>
 
 ### Step 2: Export the Key from the Keystore
 
@@ -66,13 +66,13 @@ public class ExportSecretKey {
 }
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (222).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (444).png" alt=""><figcaption></figcaption></figure>
 
 A `.key` file, when it contains a symmetric key like an AES key, is typically in binary format. This binary format is not human-readable and cannot be meaningfully viewed or edited with a text editor.
 
 #### **Convert Binary Key to Hex and Base64 for Viewing**
 
-<figure><img src="../../../../../.gitbook/assets/image (223).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (445).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ```
 // HEX Key
@@ -141,10 +141,10 @@ public class EncryptionDecryption {
 }
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (224).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (446).png" alt="" width="563"><figcaption></figcaption></figure>
 
 {% hint style="success" %}
-Usually, Base64 excrypted text is shared among applications (say Web/Mobile Application sending to Backend in an API or vice versa)&#x20;
+Usually, Base64 excrypted text is shared among applications (say Web/Mobile Application sending to Backend in an API or vice versa)
 {% endhint %}
 
 #### Method 2: Using dynamic Initialization Vector (IV) with key in hex format
@@ -240,7 +240,4 @@ public class EncryptionDecryptionWithHexKey {
 }
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (225).png" alt="" width="563"><figcaption></figcaption></figure>
-
-
-
+<figure><img src="../../../../../.gitbook/assets/image (447).png" alt="" width="563"><figcaption></figcaption></figure>

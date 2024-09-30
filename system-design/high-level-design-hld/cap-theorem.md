@@ -1,4 +1,4 @@
-# CAP Theorem - TBU
+# CAP Theorem
 
 ## About
 
@@ -8,7 +8,7 @@ CAP Theorem, also known as Brewer’s Theorem, is a concept in distributed syste
 2. **Availability (A)**: Every request (read or write) receives a response (success or failure) without guarantee that it contains the most recent write.
 3. **Partition Tolerance (P)**: The system continues to operate despite network partitions or communication breakdowns between parts of the system.
 
-<figure><img src="../../.gitbook/assets/image (286).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (529).png" alt=""><figcaption></figcaption></figure>
 
 ## CAP Theorem
 
@@ -202,6 +202,3 @@ Imagine we have a distributed database that spans multiple data centers. Suddenl
 Since partitions will happen, we must choose between **Consistency** or **Availability**. We cannot have both while also ensuring that the system tolerates network partitions.
 
 This is why the CAP Theorem states that **Consistency, Availability, and Partition Tolerance cannot all be guaranteed simultaneously** in a distributed system. We must choose two.
-
-
-

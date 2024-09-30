@@ -6,7 +6,7 @@
 
 The `java.nio.charset` package provides classes and interfaces for character encoding and decoding. It is part of the Java NIO (New I/O) package introduced in Java 1.4 to provide non-blocking I/O operations, among other features. Understanding character sets is crucial for applications dealing with text processing, file I/O, network communication, and internationalization.
 
-### **Charset** (java.nio.charset.Charset):&#x20;
+### **Charset** (java.nio.charset.Charset):
 
 Represents a named mapping between sequences of sixteen-bit Unicode characters and sequences of bytes. It defines methods for encoding, decoding, and working with character sets.
 
@@ -33,7 +33,7 @@ Represents a named mapping between sequences of sixteen-bit Unicode characters a
 * `CharBuffer decode(ByteBuffer bb)`: Convenience method that decodes bytes into Unicode characters.
 * `int compareTo(Charset that)`: Compares this charset to another.
 
-### **CharsetDecoder** (java.nio.charset.CharsetDecoder):&#x20;
+### **CharsetDecoder** (java.nio.charset.CharsetDecoder):
 
 Converts a byte sequence into a sequence of sixteen-bit Unicode characters.
 
@@ -53,7 +53,7 @@ Converts a byte sequence into a sequence of sixteen-bit Unicode characters.
 * `CoderResult flush(CharBuffer out)`: Flushes this decoder.
 * `CharsetDecoder reset()`: Resets this decoder, clearing any internal state.
 
-### **CharsetEncoder** (java.nio.charset.CharsetEncoder):&#x20;
+### **CharsetEncoder** (java.nio.charset.CharsetEncoder):
 
 Converts a sequence of sixteen-bit Unicode characters into a byte sequence.
 
@@ -74,7 +74,7 @@ Converts a sequence of sixteen-bit Unicode characters into a byte sequence.
 * `boolean canEncode(char c)`: Tells whether or not this encoder can encode the given character.
 * `boolean canEncode(CharSequence cs)`: Tells whether or not this encoder can encode the given character sequence.
 
-### **CodingErrorAction** (java.nio.charset.CodingErrorAction):&#x20;
+### **CodingErrorAction** (java.nio.charset.CodingErrorAction):
 
 Describes actions to be taken when encoding/decoding errors occur. Actions include `IGNORE`, `REPLACE`, and `REPORT`.
 
@@ -84,7 +84,7 @@ Describes actions to be taken when encoding/decoding errors occur. Actions inclu
 * `static CodingErrorAction REPLACE`: Action indicating that a coding error is to be handled by dropping the erroneous input and replacing it with the current replacement byte or character sequence.
 * `static CodingErrorAction REPORT`: Action indicating that a coding error is to be reported, either by returning a `CoderResult` object or by throwing a `CharacterCodingException`, depending upon the method implementing the coding process.
 
-### **StandardCharsets** (java.nio.charset.StandardCharsets):&#x20;
+### **StandardCharsets** (java.nio.charset.StandardCharsets):
 
 Defines constants for standard character sets such as UTF-8, UTF-16, ISO-8859-1, etc.
 
@@ -134,7 +134,7 @@ public class CharsetExample {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (203).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (425).png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### Handling Encoding or Decoding Errors
 
@@ -168,7 +168,7 @@ public class ErrorHandlingExample {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (204).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (426).png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### Listing Available Charsets
 
@@ -186,5 +186,4 @@ public class ListCharsets {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (205).png" alt=""><figcaption></figcaption></figure>
-
+<figure><img src="../../../../.gitbook/assets/image (427).png" alt=""><figcaption></figcaption></figure>

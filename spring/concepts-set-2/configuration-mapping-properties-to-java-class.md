@@ -2,8 +2,6 @@
 
 It is possible to map the data given in the spring application yaml/json/properties file with the java class directly. This process, known as mapping, allows to directly link the data in the configuration files to corresponding fields in Java classes. With this. it is easy the update the data directly in the properties file without need to build the application again.
 
-
-
 <mark style="background-color:purple;">**Example 1**</mark>**: Mapping payment purposes which are available in different languages.**
 
 Define the properties in **application.yaml** file.
@@ -43,9 +41,7 @@ public class PaymentPurposes {
 }
 ```
 
-
-
-<mark style="background-color:purple;">**Example 2**</mark>**:  Map the parent-child hierarchy property of transaction category.**
+<mark style="background-color:purple;">**Example 2**</mark>**: Map the parent-child hierarchy property of transaction category.**
 
 Define the properties in **application.yaml** file.
 
@@ -101,8 +97,6 @@ public class TransactionCategories {
 }
 ```
 
-
-
 <mark style="background-color:purple;">**Example 3**</mark>**: Map the key value pairs of message templates**
 
 Define the properties in **application.yaml** file.
@@ -133,8 +127,6 @@ public class MessagingTemplates {
     private Map<String, String> templates;
 }
 ```
-
-
 
 **Add Integration Tests to test above 3 examples.**
 
@@ -186,7 +178,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 }
 ```
 
-<figure><img src="../../.gitbook/assets/image (28).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (250).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 {% hint style="info" %}
 Make sure to include below dependencies and failsafe plugin to test
@@ -258,4 +250,3 @@ public class CardProperties {
 
 }
 ```
-

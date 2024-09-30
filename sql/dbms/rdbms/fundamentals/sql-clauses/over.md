@@ -25,37 +25,27 @@ FROM table_name;
 {% hint style="info" %}
 Keywords useful when using `RANGE`
 
-**INTERVAL**: Specifies a time interval. Used with date or timestamp columns to define the range in terms of days, months, years, etc.&#x20;
+**INTERVAL**: Specifies a time interval. Used with date or timestamp columns to define the range in terms of days, months, years, etc.
 
 RANGE BETWEEN INTERVAL '1' DAY PRECEDING AND CURRENT ROW
 
-
-
-**PRECEDING**: Indicates that the boundary of the frame is before the current row.&#x20;
+**PRECEDING**: Indicates that the boundary of the frame is before the current row.
 
 RANGE BETWEEN INTERVAL '1' DAY PRECEDING AND CURRENT ROW
 
-
-
-**FOLLOWING**: Indicates that the boundary of the frame is after the current row.&#x20;
+**FOLLOWING**: Indicates that the boundary of the frame is after the current row.
 
 RANGE BETWEEN CURRENT ROW AND INTERVAL '1' DAY FOLLOWING
 
-
-
-**CURRENT ROW**: Refers to the current row being processed.&#x20;
+**CURRENT ROW**: Refers to the current row being processed.
 
 RANGE BETWEEN INTERVAL '1' DAY PRECEDING AND CURRENT ROW
 
-
-
-**UNBOUNDED PRECEDING**: Specifies the start of the frame from the first row of the partition.&#x20;
+**UNBOUNDED PRECEDING**: Specifies the start of the frame from the first row of the partition.
 
 RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
 
-
-
-**UNBOUNDED FOLLOWING**: Specifies the end of the frame to the last row of the partition.&#x20;
+**UNBOUNDED FOLLOWING**: Specifies the end of the frame to the last row of the partition.
 
 RANGE BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING
 {% endhint %}
@@ -86,8 +76,6 @@ RANGE BETWEEN CURRENT ROW AND UNBOUNDED FOLLOWING
 {% hint style="info" %}
 All these window functions require the `OVER (...)` clause to define the window for the calculation.
 {% endhint %}
-
-
 
 ## Examples
 
@@ -143,7 +131,7 @@ FROM sales;
 
 Sample Input
 
-<figure><img src="../../../../../.gitbook/assets/image (160).png" alt="" width="489"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (382).png" alt="" width="489"><figcaption></figcaption></figure>
 
 We want to calculate the cumulative sales amount within the last 90 days for each row.
 
@@ -159,7 +147,7 @@ FROM
     sales;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (161).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (383).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Example with `ROWS BETWEEN`
 
@@ -225,6 +213,3 @@ FROM
 | 2           | 1          | 200           | 0.6667           |
 | 1           | 2          | 150           | 0.3750           |
 | 2           | 2          | 250           | 0.6250           |
-
-
-

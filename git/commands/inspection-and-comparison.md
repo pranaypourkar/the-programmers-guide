@@ -106,9 +106,7 @@ git log -p
 
 When running `git log`
 
-<figure><img src="../../.gitbook/assets/image (170).png" alt="" width="479"><figcaption></figcaption></figure>
-
-
+<figure><img src="../../.gitbook/assets/image (392).png" alt="" width="479"><figcaption></figcaption></figure>
 
 ## git show
 
@@ -198,7 +196,7 @@ git show 1a2b3c4d -- path/to/file.txt
 
 When running `git show <commit-hash>`
 
-<figure><img src="../../.gitbook/assets/image (171).png" alt="" width="453"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (393).png" alt="" width="453"><figcaption></figcaption></figure>
 
 ## git blame
 
@@ -243,10 +241,6 @@ git blame --show-name path/to/file
 1. **Annotates Each Line**: Displays each line of the file with information about the commit, author, and date of the last modification.
 2. **Helps Track Changes**: Identifies who made changes to specific lines and provides context for when and why the changes were made.
 
-{% hint style="info" %}
-
-{% endhint %}
-
 ### Common Use Cases
 
 ```
@@ -283,4 +277,4 @@ git blame -w README.md
 
 When running `git blame path/to/file`
 
-<figure><img src="../../.gitbook/assets/image (172).png" alt="" width="553"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (394).png" alt="" width="553"><figcaption></figcaption></figure>

@@ -39,9 +39,7 @@ public class Application {
 }
 ```
 
-
-
-* **@Cacheable:**&#x20;
+* **@Cacheable:**
 
 This annotation is used at the method level to indicate that the result of invoking a method can be cached. When this annotation is applied, Spring first checks whether the method has been called with the same arguments before. If it has, then the cached result is returned instead of invoking the method again. If annotation is parameterize with the name of the cache, the results would be stored with that name. The getName() internal call will first check the cache name before actually invoking the method and then caching the result.
 
@@ -63,7 +61,7 @@ public List<Product> retrieveAllProducts() {
 ```
 
 {% hint style="info" %}
-Note that in most cases, only one cache is declared, the annotation allows multiple names so that more than one cache can be used. In this case, each of the caches is checked before invoking the method. If at least one cache is hit, the associated value is returned.&#x20;
+Note that in most cases, only one cache is declared, the annotation allows multiple names so that more than one cache can be used. In this case, each of the caches is checked before invoking the method. If at least one cache is hit, the associated value is returned.
 
 ```java
 @Cacheable({"products", "allProducts"})
@@ -73,8 +71,6 @@ Note that in most cases, only one cache is declared, the annotation allows multi
 {% hint style="info" %}
 The cacheNames attribute is used to specify the name of the cache while value specifies the alias for the cacheNames. Both are tied to same object.
 {% endhint %}
-
-
 
 Since caches are essentially key-value stores, each invocation of a cached method needs to be translated into a suitable key for cache access. The default caching abstraction uses a simple `KeyGenerator` based on the following below algorithm. Spring internally uses `hashCode()` and `equals()` for key matching.
 
@@ -104,8 +100,6 @@ We can define a custom keyGenerator on the operation if needed.
 </strong></code></pre>
 {% endhint %}
 
-
-
 Conditional attributes can also be provided in the annotation with a SpEL expression that is evaluated to either true or false. If true, the method is cached else it behaves as if the method is not cached.
 
 ```java
@@ -114,8 +108,6 @@ public Product retrieveProductById(int id) {
     //...some logic...
 }
 ```
-
-
 
 Caching can be controlled based on the output of the method rather than the input via the unless parameter. Unlike `condition`, `unless` expressions are evaluated after the method has been invoked. Example below will never returned cached response as output contains matched "box" value.
 
@@ -132,8 +124,6 @@ public Product retrieveProductById(int id) {
 }
 ```
 
-
-
 The default cache resolution fits well for applications that work with a single CacheManager and have no complex cache resolution requirements. For applications that work with several cache managers, we need to set the cacheManager to use for each operation.
 
 <pre class="language-java"><code class="lang-java">@Cacheable(cacheNames="productById", cacheManager="anotherCacheManager") 
@@ -141,8 +131,6 @@ public Product retrieveProductById(int id) {
 <strong>    //...some logic...
 </strong>}
 </code></pre>
-
-
 
 **Synchronized Caching**
 
@@ -156,11 +144,9 @@ public Product retrieveProductById(int id) {
 </strong>}
 </code></pre>
 
-
-
 **Caching with** `CompletableFuture` **Return Type**
 
-For a method returning a CompletableFuture, the object produced by that future will be cached whenever it is complete, and the cache lookup for a cache hit will be retrieved via a CompletableFuture.&#x20;
+For a method returning a CompletableFuture, the object produced by that future will be cached whenever it is complete, and the cache lookup for a cache hit will be retrieved via a CompletableFuture.
 
 For example, when`retrieveProductById(int id)` method is called, Spring will execute the method. Once the `CompletableFuture<Product>` is completed (i.e., the product is retrieved), Spring caches the result under the key corresponding to the method's parameters (in this case, the `id`). If another request with the same `id` comes in while the `CompletableFuture` is still running, Spring will not block the thread waiting for the result. Instead, it will return the same `CompletableFuture`, and when the result is available, it will be automatically cached for future requests. Subsequent calls with the same `id` will return a completed `CompletableFuture<Product>` from the cache, avoiding the need to execute the method again.
 
@@ -170,8 +156,6 @@ public CompletableFuture<Product> retrieveProductById(int id) {
     //...some logic...
 }
 ```
-
-
 
 **Caching with** `Reactor Mono` **Return Type**
 
@@ -184,8 +168,6 @@ public Mono<Product> retrieveProductById(int id) {
 }
 ```
 
-
-
 **Caching with** `Reactor Flux` **Return Type**
 
 When a method returns a Reactor Flux, which emits multiple objects through a Reactive Streams publisher, those emitted objects will be gathered into a List and cached once the Flux completes. When there's a cache hit, the cached List value will be retrieved as a Flux. This Flux is backed by a CompletableFuture, enabling asynchronous retrieval of the cached List value, ensuring efficient handling of cached results.
@@ -197,13 +179,11 @@ public Flux<Product> retrieveProductById(int id) {
 }
 ```
 
-
-
-* **@CachePut:**&#x20;
+* **@CachePut:**
 
 This annotation is used at the method level to indicate that the result of invoking a method should be cached, regardless of whether the method has been called with the same arguments before. It is typically used for caching the result of an update operation.
 
-<figure><img src="../../../.gitbook/assets/image (5) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt="" width="503"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (227).png" alt="" width="503"><figcaption></figcaption></figure>
 
 Let's understand with an practical example.
 
@@ -217,7 +197,7 @@ public List<Product> retrieveAllProducts() {
 }
 ```
 
-**Scenario 2**:  With the use of `CachePut`, it always execute the update logic, ensuring data consistency even if updates happen outside this method. Also, it Automatically update the cache with the latest product list, including potential changes to the list. No need for manual cache invalidation, as any update triggers a cache refresh.
+**Scenario 2**: With the use of `CachePut`, it always execute the update logic, ensuring data consistency even if updates happen outside this method. Also, it Automatically update the cache with the latest product list, including potential changes to the list. No need for manual cache invalidation, as any update triggers a cache refresh.
 
 ```java
 @Cacheable("products")
@@ -235,8 +215,6 @@ public List<Product> updateAndCacheProducts(List<Product> updatedProducts) {
     // Return the updated list
 }
 ```
-
-
 
 * **@CacheEvict:**
 
@@ -259,8 +237,6 @@ public class CacheEvictionScheduler {
 All entries can be evicted rather than one entry based on the key by setting allEntries field to true.
 {% endhint %}
 
-
-
 * **@CacheConfig:**
 
 This annotation is used at the **class** level to provide a common cache configuration for all cache-related operations within that class. It allows to specify default cache names, key generators, and other settings.
@@ -277,8 +253,6 @@ public class ProductRepositoryImpl implements ProductRepository {
 }
 ```
 
-
-
 * **@Caching:**
 
 It is not allowed to use multiple annotations of same type on a given method. So this annotation can be used which allows multiple nested caching annotations on the same method.
@@ -294,6 +268,3 @@ public Product getProductByIdOrName(int id, String name) {
     // Return product
 }
 ```
-
-
-
