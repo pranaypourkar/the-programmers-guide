@@ -205,7 +205,144 @@ docker build -t ribbon-backend-service .
 
 Verify the generated docker image
 
-<figure><img src="../../../../.gitbook/assets/image.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (4).png" alt="" width="563"><figcaption></figcaption></figure>
 
 &#x20;
+
+Now, lets create a sample service <mark style="background-color:purple;">maven project</mark> say `sample-project` with an endpoint being called by above client API.
+
+Add the following dependencies in pom.xml file
+
+```xml
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
+        </dependency>
+```
+
+{% hint style="info" %}
+We may need to add spring-boot-maven-plugin to be able to generate jar file.
+
+```xml
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <configuration>
+        <mainClass>org.example.Application</mainClass>
+        <layout>JAR</layout>
+    </configuration>
+</plugin>
+```
+{% endhint %}
+
+Create a sample controller class with 1 endpoint
+
+```java
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+class SampleController {
+    @GetMapping("/api/hello-world")
+    public String sayHelloWorld() {
+        return "Hello world from " + System.getenv("SERVER_INSTANCE");
+    }
+}
+```
+
+{% hint style="info" %}
+We may notice the use of SERVER\_INSTANCE variable. We will be setting it the docker compose file as a environment variable since we will need to create multiple instance (more than 1) of this service to test the load balancing feature.
+{% endhint %}
+
+Create a main application file
+
+```java
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+```
+
+application.yaml file
+
+```yaml
+server:
+  port: 8080
+```
+
+Build the project to generate jar file (to be used later in docker compose file)
+
+<figure><img src="../../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+We will use the generated jar file directly in docker-compose instead of creating docker image for above service
+{% endhint %}
+
+
+
+Now, we have both the services ready. Let's create `docker-compose.yml` file
+
+{% hint style="info" %}
+We can keep this docker-compose file in root of sample-project since we need to provide relative path of jar file
+{% endhint %}
+
+```yaml
+version: '3'
+
+services:
+  backend1:
+    image: openjdk:17-jdk-slim
+    environment:
+      - SERVER_INSTANCE=Backend1
+    volumes:
+      - ./target/sample-project-1.0-SNAPSHOT.jar:/app/sample-project-1.0-SNAPSHOT.jar  # Attach the pre-built JAR file
+    working_dir: /app
+    command: ["java", "-jar", "sample-project-1.0-SNAPSHOT.jar"]  # Run the JAR file directly
+    ports:
+      - "8081:8080"
+
+  backend2:
+    image: openjdk:17-jdk-slim
+    environment:
+      - SERVER_INSTANCE=Backend2
+    volumes:
+      - ./target/sample-project-1.0-SNAPSHOT.jar:/app/sample-project-1.0-SNAPSHOT.jar  # Attach the pre-built JAR file
+    working_dir: /app
+    command: ["java", "-jar", "sample-project-1.0-SNAPSHOT.jar"]  # Run the JAR file directly
+    ports:
+      - "8082:8080"
+
+  backend:
+    image: ribbon-backend-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend1
+      - backend2
+
+networks:
+  shared-network:
+    driver: bridge
+```
+
+Run the docker compose file
+
+<figure><img src="../../../../.gitbook/assets/image (1).png" alt="" width="395"><figcaption></figcaption></figure>
+
+Now, hit the API [http://localhost:8080/call-backend](http://localhost:8080/call-backend) multiple times. We will notice the change of Server Instance value in the API response meaning the response was provided by the respective service instance.
+
+<figure><img src="../../../../.gitbook/assets/image (2).png" alt="" width="496"><figcaption></figcaption></figure>
+
+<figure><img src="../../../../.gitbook/assets/image (3).png" alt="" width="461"><figcaption></figcaption></figure>
 
