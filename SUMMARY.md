@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Hello & Welcome! Dive into Tech with Me](README.md)
+* [About](README.md)
 * [Api](api/README.md)
   * [Api Design](api/api-design/README.md)
     * [REST Api - TBD](api/api-design/rest-api-tbd/README.md)

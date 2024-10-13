@@ -19,9 +19,11 @@ layout:
     visible: false
 ---
 
-# Hello & Welcome! Dive into Tech with Me
+# About
 
-## Here's who I am & what I do
+## Hello & Welcome! Dive into Tech with Me
+
+### Here's who I am & what I do
 
 I am passionate about experimenting with new technologies, learning fresh concepts, and constantly challenging myself to grow. This blog is my space to document and share the knowledge I gain through self-learning and hands-on experience.
 
