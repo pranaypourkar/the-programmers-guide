@@ -2,7 +2,7 @@
 icon: user-robot
 cover: >-
   https://images.unsplash.com/photo-1642499429179-8fde64e1bc11?crop=entropy&cs=srgb&fm=jpg&ixid=M3wxOTcwMjR8MHwxfHNlYXJjaHw0fHxqYXZhfGVufDB8fHx8MTcyODgxMDQwMnww&ixlib=rb-4.0.3&q=85
-coverY: 198
+coverY: 242
 layout:
   cover:
     visible: true
@@ -27,7 +27,11 @@ I am passionate about experimenting with new technologies, learning fresh concep
 
 As I continue this journey, I’ll be writing about various coding and technology concepts that intrigue me. Through these posts, I aim to not only solidify my own understanding but also provide valuable insights for others who are on a similar path of exploration and growth. Let's learn, share, and grow together!
 
-<figure><img src=".gitbook/assets/about.png" alt="" width="353"><figcaption></figcaption></figure>
+<div data-full-width="false">
+
+<figure><img src=".gitbook/assets/about.png" alt=""><figcaption></figcaption></figure>
+
+</div>
 
 
 
