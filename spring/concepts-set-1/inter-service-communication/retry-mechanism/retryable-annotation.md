@@ -4,16 +4,16 @@
 
 Spring Retry is a module that provides declarative retry support in Spring applications. It allows methods to be automatically re-invoked when they throw exceptions. Spring Retry provides a flexible API for retry policies, recovery logic, and handling exceptions.
 
-_Spring Dependency to Add_
+_Spring Dependency to add_
 
 ```xml
  <dependency>
-  <groupId>org.springframework.retry</groupId>
-  <artifactId>spring-retry</artifactId>
+      <groupId>org.springframework.retry</groupId>
+      <artifactId>spring-retry</artifactId>
  </dependency>
  <dependency>
-  <groupId>org.springframework</groupId>
-  <artifactId>spring-aspects</artifactId>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aspects</artifactId>
  </dependency>
 ```
 
@@ -21,7 +21,7 @@ _Spring Dependency to Add_
 We need enable retry feature before we can use @Retryable
 
 ```java
-// EnableRetryannotaion will enable spring boot retry pattern and then 
+// EnableRetry annotaion will enable spring boot retry pattern and then 
 // only @Retryable annotation will work
 @SpringBootApplication
 @EnableRetry
