@@ -33,8 +33,6 @@ public class MainApplication {
 ```
 {% endhint %}
 
-
-
 ## **2. What is @Retryable?**
 
 `@Retryable` is a declarative annotation provided by Spring Retry that can be applied to any method in a Spring-managed bean to automatically retry that method when an exception occurs. The annotation can be customized with several attributes to define the retry behavior, including:
@@ -100,7 +98,7 @@ If all retry attempts fail, Spring allows us to define a recovery method using t
 
 ```java
 @Service
-public class ExternalService {
+public class SampleService {
 
     @Retryable(
         value = { RemoteServiceNotAvailableException.class }, 
@@ -123,10 +121,105 @@ public class ExternalService {
 
 `RetryTemplate` allows programmatic control over retry logic, making it suitable for complex applications where flexible, fine-grained retry handling is required as compared to the `@Retryable` annotation.
 
-```
+_RetryTemplateExample.java class_
+
+```java
+package org.example.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.retry.RetryPolicy;
+import org.springframework.retry.backoff.ExponentialBackOffPolicy;
+import org.springframework.retry.policy.ExceptionClassifierRetryPolicy;
+import org.springframework.retry.policy.NeverRetryPolicy;
+import org.springframework.retry.policy.SimpleRetryPolicy;
+import org.springframework.retry.support.RetryTemplate;
+import org.springframework.web.client.HttpClientErrorException;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+@Configuration
+public class RetryTemplateExample {
+
+    @Bean
+    public RetryTemplate createRetryTemplate() {
+        RetryTemplate retryTemplate = new RetryTemplate();
+
+        // Setting up Simple Retry Policy
+        // SimpleRetryPolicy retryPolicy = new SimpleRetryPolicy();
+        // retryPolicy.setMaxAttempts(3); // Max attempts for retries
+        // retryTemplate.setRetryPolicy(retryPolicy);
+
+        // Setting up ExceptionClassifierRetryPolicy Retry Policy
+        ExceptionClassifierRetryPolicy policy = new ExceptionClassifierRetryPolicy();
+        Map<Class<? extends Throwable>, RetryPolicy> policyMap = new HashMap<>();
+        policyMap.put(HttpClientErrorException.class, new SimpleRetryPolicy(3));
+        policyMap.put(IOException.class, new NeverRetryPolicy()); // No retry for IOException
+        policy.setPolicyMap(policyMap);
+        retryTemplate.setRetryPolicy(policy);
+
+        // Setting up Backoff Policy
+        ExponentialBackOffPolicy backOffPolicy = new ExponentialBackOffPolicy();
+        backOffPolicy.setInitialInterval(500); // Initial wait time (milliseconds)
+        backOffPolicy.setMultiplier(2); // Exponential factor
+        backOffPolicy.setMaxInterval(5000); // Max wait time between retries
+        retryTemplate.setBackOffPolicy(backOffPolicy);
+
+        return retryTemplate;
+    }
+}
 ```
 
+Usage of RetryTemplate in service class
 
+```java
+package org.example.service;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.retry.support.RetryTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+
+@RequiredArgsConstructor
+@Service
+public class SampleService {
+    private final RetryTemplate retryTemplate;
+
+    public void processOrder(String orderId) {
+        retryTemplate.execute(context -> {
+            System.out.println("Attempt: " + (context.getRetryCount() + 1));
+
+            // Simulated order processing
+            attemptOrderProcessing(orderId);
+
+            System.out.println("Order processed successfully.");
+            return null;
+        }, context -> {
+            // Recovery logic if retries are exhausted
+            System.out.println("Failed to process order after retries. Initiating recovery for order: " + orderId);
+            return null;
+        });
+    }
+
+    private void attemptOrderProcessing(String orderId) throws HttpClientErrorException {
+        // Simulate failure
+        throw new HttpClientErrorException(HttpStatus.SERVICE_UNAVAILABLE, "Temporary failure in processing order");
+    }
+}
+```
+
+Result Output
+
+```
+2024-11-05T12:37:33.148+05:30  INFO 8676 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+Attempt: 1
+Attempt: 2
+Attempt: 3
+Failed to process order after retries. Initiating recovery for order: 123456
+```
 
 ## **5. Example**
 
@@ -134,7 +227,7 @@ public class ExternalService {
 
 ```java
 @Service
-public class ExternalService {
+public class SampleService {
 
     // Retries occur when RemoteServiceNotAvailableException is thrown.
     // Maximum number of retry attempts is 3
