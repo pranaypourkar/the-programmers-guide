@@ -221,7 +221,149 @@ Attempt: 3
 Failed to process order after retries. Initiating recovery for order: 123456
 ```
 
-## **5. Example**
+{% hint style="info" %}
+We can add Retry Listeners which are useful for tracking the retry process, like logging attempts or handling specific actions on retries.
+{% endhint %}
+
+
+
+## 5. What is Retry Interceptor?
+
+Retry interceptors in Spring Retry allow's us to customize and extend the behavior of retry operations. They are part of the Spring Retry infrastructure and act as middleware, intercepting each retry attempt to execute custom logic before or after each attempt. This makes interceptors powerful tools for enhancing retries with features like monitoring, logging, or even dynamically altering retry behavior.
+
+* **Interception of Retry Attempts**:
+  * Interceptors capture each retry attempt and allow additional logic to be applied, such as logging retries, updating counters, or sending alerts.
+  * For example, we can log each retry attempt with details like the exception causing the retry, the retry count, and the method being retried.
+* **Customizing Retry Logic**:
+  * Interceptors provide hooks to adjust retry logic dynamically, such as modifying backoff settings or retry conditions on-the-fly based on custom logic.
+  * We can implement specific actions on each retry (e.g., throttling if the retry count exceeds a limit).
+* **Retry Listeners**:
+  * Spring Retry includes `RetryListener`, a specific type of interceptor for adding logic at different stages of retry attempts:
+    * **Before Retry**: Logic before the first retry attempt.
+    * **On Retry**: Logic on each retry attempt (e.g., logging each attempt).
+    * **On Recovery**: Logic after all retry attempts are exhausted (e.g., sending alerts).
+
+
+
+_CustomRetryListener.java class_
+
+```java
+package org.example.config;
+
+import org.springframework.retry.listener.MethodInvocationRetryListenerSupport;
+import org.springframework.retry.RetryContext;
+import org.springframework.retry.RetryCallback;
+import org.springframework.stereotype.Component;
+
+@Component
+public class CustomRetryListener extends MethodInvocationRetryListenerSupport {
+
+    @Override
+    public <T, E extends Throwable> void onError(
+            RetryContext context, RetryCallback<T, E> callback, Throwable throwable) {
+        System.out.println("Retry attempt: " + context.getRetryCount() + " due to: " + throwable.getMessage());
+    }
+
+    @Override
+    public <T, E extends Throwable> boolean open(RetryContext context, RetryCallback<T, E> callback) {
+        System.out.println("Starting retry operation for: " + context.getAttribute("context.name"));
+        return true;  // Allow retries
+    }
+
+    @Override
+    public <T, E extends Throwable> void close(RetryContext context, RetryCallback<T, E> callback, Throwable throwable) {
+        System.out.println("Retry operation completed.");
+    }
+}
+```
+
+RetryTemplateConfig.java class
+
+```java
+package org.example.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.retry.RetryListener;
+import org.springframework.retry.RetryPolicy;
+import org.springframework.retry.backoff.ExponentialBackOffPolicy;
+import org.springframework.retry.interceptor.RetryInterceptorBuilder;
+import org.springframework.retry.interceptor.RetryOperationsInterceptor;
+import org.springframework.retry.policy.ExceptionClassifierRetryPolicy;
+import org.springframework.retry.policy.NeverRetryPolicy;
+import org.springframework.retry.policy.SimpleRetryPolicy;
+import org.springframework.retry.support.RetryTemplate;
+import org.springframework.web.client.HttpClientErrorException;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+@Configuration
+public class RetryTemplateConfig {
+
+    @Bean
+    public RetryTemplate createRetryTemplate() {
+        RetryTemplate retryTemplate = new RetryTemplate();
+
+        // Setting up Simple Retry Policy
+        // SimpleRetryPolicy retryPolicy = new SimpleRetryPolicy();
+        //retryPolicy.setMaxAttempts(3); // Max attempts for retries
+        //retryTemplate.setRetryPolicy(retryPolicy);
+
+        // Setting up ExceptionClassifierRetryPolicy Retry Policy
+        ExceptionClassifierRetryPolicy policy = new ExceptionClassifierRetryPolicy();
+        Map<Class<? extends Throwable>, RetryPolicy> policyMap = new HashMap<>();
+        policyMap.put(HttpClientErrorException.class, new SimpleRetryPolicy(3));
+        policyMap.put(IOException.class, new NeverRetryPolicy()); // No retry for IOException
+        policy.setPolicyMap(policyMap);
+        retryTemplate.setRetryPolicy(policy);
+
+        // Setting up Backoff Policy
+        ExponentialBackOffPolicy backOffPolicy = new ExponentialBackOffPolicy();
+        backOffPolicy.setInitialInterval(500); // Initial wait time (milliseconds)
+        backOffPolicy.setMultiplier(2); // Exponential factor
+        backOffPolicy.setMaxInterval(5000); // Max wait time between retries
+        retryTemplate.setBackOffPolicy(backOffPolicy);
+
+        // Setting up listener
+        retryTemplate.setListeners(new RetryListener[]{new CustomRetryListener()});
+
+        return retryTemplate;
+    }
+
+    @Bean
+    public RetryOperationsInterceptor retryInterceptor() {
+        return RetryInterceptorBuilder.stateless()
+                .retryOperations(createRetryTemplate())
+                .build();
+    }
+}
+```
+
+
+
+
+
+
+
+```
+2024-11-05T13:20:25.566+05:30  INFO 7776 --- [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+Starting retry operation for: null
+Stateless attempt 1 for order: 123456
+Retry attempt: 1 due to: 503 Failed to process order!
+Stateless attempt 2 for order: 123456
+Retry attempt: 2 due to: 503 Failed to process order!
+Stateless attempt 3 for order: 123456
+Order processed successfully on attempt 3
+Retry operation completed.
+```
+
+
+
+
+
+## **6. Example**
 
 ### **Basic Usage of `@Retryable`**
 
