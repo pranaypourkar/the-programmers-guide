@@ -92,7 +92,7 @@ Without persistence, stateful retries will not resume where they left off after 
 `@Retryable(maxAttempts = 5, backoff = @Backoff(delay = 1000, multiplier = 2))`
 {% endhint %}
 
-## **3. What is @`Recover`?**
+## **3. What is @Recover?**
 
 If all retry attempts fail, Spring allows us to define a recovery method using the `@Recover` annotation. This method is invoked after all retries are exhausted, acting as a fallback mechanism.
 
@@ -117,7 +117,7 @@ public class SampleService {
 }
 ```
 
-## **4. What is** `RetryTemplate`?
+## **4. What is** RetryTemplate?
 
 `RetryTemplate` allows programmatic control over retry logic, making it suitable for complex applications where flexible, fine-grained retry handling is required as compared to the `@Retryable` annotation.
 
@@ -225,8 +225,6 @@ Failed to process order after retries. Initiating recovery for order: 123456
 We can add Retry Listeners which are useful for tracking the retry process, like logging attempts or handling specific actions on retries.
 {% endhint %}
 
-
-
 ## 5. What is Retry Interceptor?
 
 Retry interceptors in Spring Retry allow's us to customize and extend the behavior of retry operations. They are part of the Spring Retry infrastructure and act as middleware, intercepting each retry attempt to execute custom logic before or after each attempt. This makes interceptors powerful tools for enhancing retries with features like monitoring, logging, or even dynamically altering retry behavior.
@@ -242,8 +240,6 @@ Retry interceptors in Spring Retry allow's us to customize and extend the behavi
     * **Before Retry**: Logic before the first retry attempt.
     * **On Retry**: Logic on each retry attempt (e.g., logging each attempt).
     * **On Recovery**: Logic after all retry attempts are exhausted (e.g., sending alerts).
-
-
 
 _CustomRetryListener.java class_
 
@@ -277,7 +273,7 @@ public class CustomRetryListener extends MethodInvocationRetryListenerSupport {
 }
 ```
 
-RetryTemplateConfig.java class
+_RetryTemplateConfig.java class_
 
 ```java
 package org.example.config;
@@ -341,11 +337,42 @@ public class RetryTemplateConfig {
 }
 ```
 
+_SampleService.java class_
 
+```java
+package org.example.service;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.retry.annotation.Retryable;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
+@RequiredArgsConstructor
+@Service
+public class SampleService {
+    private int attempt = 0;
 
+    @Retryable(interceptor = "retryInterceptor")
+    public void processOrder(String orderId) throws HttpClientErrorException {
+        attempt++;
+        System.out.println("Stateless attempt " + attempt + " for order: " + orderId);
 
+        // Simulating failure
+        if (attempt < 3) {
+            // Simulate partial progress and throw exception
+            throw new HttpClientErrorException(HttpStatus.SERVICE_UNAVAILABLE, "Failed to process order!");
+        }
+
+        // Successful processing (only on the 3rd attempt)
+        System.out.println("Order processed successfully on attempt " + attempt);
+    }
+}
+```
+
+Hit the service class method via any controller class and observe the output.
+
+Result Output
 
 ```
 2024-11-05T13:20:25.566+05:30  INFO 7776 --- [nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
@@ -358,10 +385,6 @@ Stateless attempt 3 for order: 123456
 Order processed successfully on attempt 3
 Retry operation completed.
 ```
-
-
-
-
 
 ## **6. Example**
 
