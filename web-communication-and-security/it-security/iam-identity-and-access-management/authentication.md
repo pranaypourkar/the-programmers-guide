@@ -182,7 +182,7 @@ Multi-Factor Authentication (MFA) requires users to provide multiple pieces of e
 
 * Widely used in financial services, government agencies, and enterprise environments for enhanced security.
 
-### **6. Biometric Authentication**
+## **6. Biometric Authentication**
 
 Biometric authentication uses unique biological characteristics to verify a user’s identity.
 
@@ -233,7 +233,7 @@ API key-based authentication is used to authenticate applications accessing APIs
 
 * Common in SaaS applications, cloud services, and developer platforms where API access needs to be authenticated.
 
-## **10. Device-Based Authentication**
+## **8. Device-Based Authentication**
 
 Device-based authentication verifies users based on the identity of the device they are using.
 
