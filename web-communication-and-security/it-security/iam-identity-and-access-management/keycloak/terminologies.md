@@ -135,5 +135,47 @@ Let's understand some of the fields included in the token
 
 
 
+## Keycloak Identity Console Parameters
+
+### Access Token Lifespan
+
+* **Meaning**: This defines the lifetime of an **access token** issued by Keycloak. Access tokens are used to authenticate requests to a secured resource (e.g., an API).
+* **Impact**:
+  * A shorter lifespan enhances security because tokens expire quickly, reducing the risk of token theft.
+  * A longer lifespan reduces the need for users to re-authenticate frequently but increases the risk if the token is compromised.
+  * It's typically recommended to set this to a few minutes or hours depending on your application’s security requirements.
+
+### Client Session Idle
+
+* **Meaning**: This setting defines the maximum amount of time a **client session** can be idle (i.e., not performing any actions) before it is considered expired.
+* **Impact**:
+  * If the client (i.e., the application the user is interacting with) is inactive for this duration, the user will be logged out automatically.
+  * Helps in automatically terminating sessions that are abandoned, improving security and freeing up resources.
+  * If set to a long duration, users may remain logged in even if they are not actively using the application, potentially increasing the risk if the session is hijacked.
+
+### Client Session Max
+
+* **Meaning**: This defines the maximum duration a **client session** can last, regardless of activity.
+* **Impact**:
+  * A session will be forcibly expired once this time limit is reached, even if the user is still actively using the application.
+  * This is a hard limit that ensures sessions do not remain open indefinitely, which is important for security and resource management.
+  * Typically, this can be set to a few hours or a day depending on the needs of your application.
+
+### Client Offline Session Idle
+
+* **Meaning**: This parameter refers to the maximum amount of time a **client offline session** can be idle before it expires. Offline sessions are used for **offline access tokens** (tokens used to access resources without the user actively being present).
+* **Impact**:
+  * These tokens allow background processes or apps to continue interacting with resources on behalf of the user.
+  * A shorter idle period can limit the time during which offline access is allowed, forcing applications to re-authenticate when the session expires.
+  * A longer period allows smoother operations for background tasks that rely on offline tokens but increases the risk of unauthorized access if a session is compromised.
+
+### Client Offline Session Max
+
+* **Meaning**: This defines the **maximum lifetime** of an offline session, i.e., the duration for which an offline token remains valid.
+* **Impact**:
+  * Once the offline session reaches this limit, the user will need to re-authenticate to obtain a new offline token.
+  * Helps in controlling the long-term persistence of offline tokens, ensuring that they do not stay valid forever.
+  * If set too long, it could allow access to resources without re-authentication for a long period, increasing security risks.
+
 
 

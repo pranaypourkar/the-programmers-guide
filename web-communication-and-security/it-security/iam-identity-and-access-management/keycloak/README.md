@@ -40,7 +40,7 @@ Keycloak is an open-source Identity and Access Management (IAM) solution develop
 Keycloak’s architecture is designed to be modular, supporting both standalone and clustered deployments. Key components include:
 
 * **Keycloak Server**: The central server managing user identities, authentication, and authorization. It’s responsible for processing login requests, token generation, and user management.
-* **Realms**: A realm in Keycloak is an isolated group of applications and users. Each realm manages its own set of users, credentials, roles, and groups, allowing for isolation and security across different clients (e.g., development, production).
+* **Realms**: A realm in Keycloak is an isolated group of applications and users. Each realm manages its own set of users, credentials, roles, and groups, allowing for isolation and security across different clients (e.g., development, production, mobile-client, web-client).
 * **Clients**: A client is an entity that requests Keycloak to authenticate a user. Clients can be applications, services, or APIs that use Keycloak for authentication and authorization. Clients define settings for protocol support, role mappings, and authorization services.
 * **Identity Providers (IdPs)**: Keycloak can connect to external IdPs to allow users to authenticate using third-party services (like social logins) or integrate with enterprise identity solutions (LDAP, AD).
 * **User Federation**: This feature allows Keycloak to connect with external user storage systems (LDAP, AD), enabling organizations to sync and authenticate users from existing identity systems.
