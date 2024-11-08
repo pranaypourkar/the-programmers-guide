@@ -30,14 +30,25 @@ An ID token is specific to the OpenID Connect protocol, an authentication layer 
 
 If we need to map different attributes, such as an account ID, between two different applications for single sign-on (SSO) purposes, we can utilize the ID token in Keycloak. We can configure attribute mappings to include additional attributes in the ID token
 
-## Token Encoding
+## Token Encoding and Integrity
 
-All the above tokens (i.e. access, refresh and id token) are typically encoded using a specific algorithm to ensure their integrity and security during transmission and storage. In the context of Keycloak, the tokens are encoded as JSON Web Tokens (JWTs).
+Tokens (such as access, refresh, and ID tokens) are typically encoded and signed to ensure their integrity and security during both transmission and storage. In the context of Keycloak, these tokens are encoded as **JSON Web Tokens (JWTs)**.
 
-Keycloak supports various algorithms for token encoding and signing, including:
+JWTs are compact, URL-safe tokens that contain three parts: a **header**, a **payload**, and a **signature**. The **signature** is used to verify that the token has not been tampered with and to ensure that it originates from a trusted issuer, such as the Keycloak server.
 
-* **Symmetric Algorithms**: Keycloak supports symmetric algorithms like HMAC-SHA256 and HMAC-SHA512 for signing the tokens. Symmetric algorithms use a single shared secret key to both encrypt and decrypt data.
-* **Asymmetric Algorithms**: Keycloak also supports asymmetric algorithms like RSA and ECDSA for signing the tokens. These algorithms use a public-private key pair, where the Keycloak server holds the private key and the client application holds the public key. The public key is used for encryption, while the private key is used for decryption.
+#### Symmetric and Asymmetric Algorithms
+
+Keycloak supports multiple algorithms for signing JWTs, including both symmetric and asymmetric algorithms:
+
+* **Symmetric Algorithms**:
+  * Keycloak supports symmetric algorithms like **HMAC-SHA256** and **HMAC-SHA512** for signing the tokens. These algorithms use a **single shared secret key** to both **sign** the token and **verify** its authenticity. Both the Keycloak server and the client must have access to this shared secret key for verification.
+*   **Asymmetric Algorithms**:
+
+    * Keycloak also supports asymmetric algorithms like **RSA** and **ECDSA**. These algorithms use a **public-private key pair**:
+      * The **private key** is used to **sign** the token.
+      * The **public key** is used by the client or other services to **verify** the token's signature.
+
+    In the case of **RSA** (e.g., **RS256**), the **private key** signs the token, while the **public key** can be distributed to any party that needs to verify the token’s authenticity. The public key verifies that the token has not been altered and that it came from a trusted source.
 
 Some of the Symmetric and Asymmetric Algorithms are listed below. These algorithms represent a mix of symmetric (HMAC) and asymmetric (RSA, ECDSA) cryptographic operations. The choice of algorithm depends on factors such as security requirements, key management, and the capabilities of the client applications or systems that will validate the tokens.
 
@@ -56,7 +67,7 @@ Some of the Symmetric and Asymmetric Algorithms are listed below. These algorith
 5. ES384: ECDSA-SHA384 asymmetric signing algorithm
 6. ES512: ECDSA-SHA512 asymmetric signing algorithm
 
-The specific algorithm used for encoding and signing the tokens depends on the configuration of the Keycloak server and the chosen realm settings. We can configure the algorithm preferences in the Keycloak admin console under the realm settings and token settings.
+The specific algorithm used  depends on the configuration of the Keycloak server and the chosen realm settings. We can configure the algorithm preferences in the Keycloak admin console under the realm settings and token settings.
 
 <figure><img src="https://static.wixstatic.com/media/5fb94b_e3235696a78d471680d625b0b9ceee7e~mv2.png/v1/fill/w_1480,h_694,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/5fb94b_e3235696a78d471680d625b0b9ceee7e~mv2.png" alt=""><figcaption></figcaption></figure>
 
