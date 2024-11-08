@@ -1,14 +1,14 @@
-# IAM (Identity and Access Management) - TBU
+# IAM (Identity and Access Management)
 
-## About
+## 1. About
 
-Identity and Access Management (IAM) is a framework used for securely managing digital identities and controlling access to resources within a system, whether it’s a cloud, enterprise, or hybrid environment. In-depth knowledge of IAM includes understanding its core principles, components, technologies, best practices, and security implications.
+Identity and Access Management (IAM) is a framework used for securely managing digital identities and controlling access to resources within a system, whether it’s a cloud, enterprise, or hybrid environment.
 
-## 1. **Core Concepts and Principles**
+## 2. **Core Concepts and Principles**
 
 ### **Identity Management**&#x20;
 
-Establishes and maintains digital identities (users, devices, services). Identity management includes creation, updating, and deletion of identities as employees join, move within, or leave an organization.
+Establishes and maintains digital identities (users, devices, services). Identity management includes creation, updating, and deletion of identities as employees/users join, move within, or leave an organization.
 
 ### **Access Management**&#x20;
 
@@ -19,7 +19,7 @@ Controls what identities can do within a system through permissions, roles, and 
 * _Authentication_: Verifies that users are who they claim to be, using passwords, multi-factor authentication (MFA), biometrics, etc.
 * _Authorization_: Determines what authenticated users are allowed to do based on permissions.
 
-## 2. **IAM Components**
+## 3. **IAM Components**
 
 ### **User Identities**
 
@@ -43,7 +43,7 @@ Forms of authentication like passwords, access keys, certificates, or token-base
 * _Federation_: Extends identity management across multiple systems or organizations, often using standards like SAML or OAuth.
 * _SSO_: Allows users to log in once to gain access to multiple applications or systems, improving convenience and security.
 
-## 3. **IAM Technologies**
+## 4. **IAM Technologies**
 
 ### **Multi-Factor Authentication (MFA)**
 
@@ -62,7 +62,7 @@ An XML-based protocol for exchanging authentication and authorization data betwe
 
 Uses unique biological traits, such as fingerprints or facial recognition, to verify identity.
 
-## 4. **IAM in Cloud Environments**
+## 5. **IAM in Cloud Environments**
 
 ### **AWS IAM**
 
@@ -76,7 +76,7 @@ Azure's identity management solution for users and resources, integrating with o
 
 Offers identity and access control for Google Cloud resources, supporting roles, permissions, and condition-based access.
 
-## 5. **IAM Security Best Practices**
+## 6. **IAM Security Best Practices**
 
 * **Principle of Least Privilege**: Only grant the minimum necessary access for users to perform their roles, reducing potential attack surfaces.
 * **Implement Multi-Factor Authentication (MFA)**: Enforce MFA for sensitive operations or critical accounts, reducing the risk of unauthorized access from compromised credentials.
@@ -84,14 +84,14 @@ Offers identity and access control for Google Cloud resources, supporting roles,
 * **Separation of Duties (SoD)**: Ensure that no single individual has control over critical or sensitive tasks without oversight, minimizing fraud or unauthorized access risks.
 * **Audit and Logging**: Track and monitor all IAM activities, including login attempts, policy changes, and access granted/revoked. Implement automated logging and alerting on suspicious activities.
 
-## 6. **IAM Challenges**
+## 7. **IAM Challenges**
 
 * **Complexity in Large Environments**: Scaling IAM to support a large number of users, resources, and permissions can lead to management challenges and potential security gaps.
 * **Identity Lifecycle Management**: Managing user access across the employee lifecycle, including onboarding, role changes, and offboarding, requires efficient processes to avoid access gaps.
 * **Compliance**: IAM policies often need to align with regulatory requirements (e.g., GDPR, HIPAA), necessitating transparency and control over data access.
 * **Managing Privileged Access**: Privileged users have elevated permissions, posing a higher security risk. Proper monitoring, segregation, and additional authentication for privileged access are critical.
 
-## 7. **Trends in IAM**
+## 8. **Trends in IAM**
 
 * **Zero Trust**: IAM forms a core component of the Zero Trust model, which assumes no implicit trust and continuously verifies every request, whether internal or external.
 * **Passwordless Authentication**: Aiming to improve security and user convenience by eliminating passwords, instead using biometrics, tokens, or one-time passwords.
