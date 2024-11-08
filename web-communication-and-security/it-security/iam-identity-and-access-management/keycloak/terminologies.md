@@ -73,15 +73,28 @@ The specific algorithm used  depends on the configuration of the Keycloak server
 
 **Default Signature Algorithm** parameter means default algorithm used to sign tokens for the realm. For example RS256 is selected in below screenshot.&#x20;
 
-RS256 is a widely used algorithm for signing JSON Web Tokens (JWTs) in the context of the JSON Web Signature (JWS) specification. It is part of the RSA family of algorithms, where the number "256" represents the size of the RSA key used, which is 256 bits.
+#### Signature Algorithm: RS256
 
-In the JWT context, RS256 is responsible for signing the token, which ensures its integrity and authenticity. The process involves encoding the token's header and payload sections into a compact string format called the "Signing Input," and then applying an RSA digital signature using the private key corresponding to the RSA public key associated with the token issuer. This signature is appended to the token, forming the JWS. On the receiving side, the JWT can be validated by using the corresponding RSA public key to verify the signature. This ensures that the token has not been tampered with and originates from a trusted source
+**RS256** is a widely used algorithm for signing JWTs. The "256" in **RS256** refers to the use of **SHA-256** as the hashing function in conjunction with the RSA algorithm. The signing process using **RS256** ensures the integrity and authenticity of the JWT. Here's how it works:
 
-**Encoding of the token's content itself is not specific to the RS256 algorithm**. Encoding is performed to ensure that the token can be safely transmitted across different systems or mediums, but it is not directly related to the signing process performed by RS256. **By default, Keycloak encodes the JWTs using Base64 encoding for the token's header and payload sections.**
+1. The **header** and **payload** of the JWT are base64 URL-encoded.
+2. The **RSA private key** is used to apply a **digital signature** to the encoded header and payload, creating the **signature** part of the JWT.
+3. The resulting JWT consists of three parts: the encoded header, the encoded payload, and the signature.
+4. On the receiving side, the **RSA public key** is used to verify the digital signature. If the signature matches the expected result (using the public key), the JWT is considered valid and untampered with.
+
+#### Configuration in Keycloak
+
+The signing algorithm used for tokens in Keycloak can be configured through the **Keycloak Admin Console**. Under the **realm settings**, administrators can select the desired **signature algorithm** for the tokens in their realm. By default, Keycloak uses **RS256** for signing JWTs, but other algorithms (like **HS256** for HMAC, or **ES256** for ECDSA) can also be configured, depending on security requirements and client application capabilities.
 
 <figure><img src="https://static.wixstatic.com/media/5fb94b_8cb7adaa717449d1bdd0b11865c79e61~mv2.png/v1/fill/w_1480,h_640,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/5fb94b_8cb7adaa717449d1bdd0b11865c79e61~mv2.png" alt=""><figcaption></figcaption></figure>
 
-Public Key or Certificate is available in "**Keys**" Section.
+#### Base64 URL Encoding
+
+Although **RS256** is responsible for signing the JWT and ensuring its integrity, **Base64 URL encoding** is used to safely encode the JWT’s header and payload, ensuring that the token can be transmitted across different systems without issues. This encoding is not part of the signing process but is important for the secure and proper transmission of the JWT.
+
+* The header and payload of the JWT are **Base64 URL-encoded** to ensure that they can be safely transmitted over HTTP and included in URLs, without any special characters interfering with the transmission.
+
+#### Public Key or Certificate is available in "**Keys**" Section.
 
 1. **Public Key**: The public key is made available for download so that it can be used by client applications or other services to verify the authenticity and integrity of JWTs issued by Keycloak. When a JWT is signed using a private key, the corresponding public key is required to validate the signature. By providing the public key, Keycloak enables clients to verify the JWT signatures independently.
 2. **Certificate**: In some scenarios, it may be more convenient or necessary to use a certificate instead of directly using the public key. The certificate includes the public key and additional information, such as the issuer, validity period, and certificate authority (CA) that issued the certificate. Providing the certificate allows clients to easily retrieve the public key and other relevant information in a standardized format.
