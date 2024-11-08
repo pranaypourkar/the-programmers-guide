@@ -1,6 +1,27 @@
+---
+cover: ../../../../.gitbook/assets/keycloak.png
+coverY: 0
+layout:
+  cover:
+    visible: false
+    size: full
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+---
+
 # Keycloak
 
 ## 1. About
+
+<figure><img src="../../../../.gitbook/assets/keycloak.png" alt="" width="375"><figcaption></figcaption></figure>
 
 Keycloak is an open-source Identity and Access Management (IAM) solution developed by Red Hat, built to help secure modern applications and services. It provides robust features for user authentication, authorization, and Single Sign-On (SSO), making it suitable for applications requiring identity and access management. Keycloak supports a variety of protocols and standards, allowing for flexible integration with applications in diverse environments, such as cloud, on-premises, and hybrid setups.
 
