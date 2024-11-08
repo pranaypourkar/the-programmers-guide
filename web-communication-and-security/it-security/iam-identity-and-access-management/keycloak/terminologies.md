@@ -153,6 +153,12 @@ Let's understand some of the fields included in the token
   * Helps in automatically terminating sessions that are abandoned, improving security and freeing up resources.
   * If set to a long duration, users may remain logged in even if they are not actively using the application, potentially increasing the risk if the session is hijacked.
 
+{% hint style="info" %}
+`refresh token lifespan` will be equal to the smallest value among (`SSO Session Idle`, `Client Session Idle`, `SSO Session Max`, and `Client Session Max`).
+
+Ref: [https://stackoverflow.com/questions/52040265/how-to-specify-refresh-tokens-lifespan-in-keycloak](https://stackoverflow.com/questions/52040265/how-to-specify-refresh-tokens-lifespan-in-keycloak)
+{% endhint %}
+
 ### Client Session Max
 
 * **Meaning**: This defines the maximum duration a **client session** can last, regardless of activity.
