@@ -368,6 +368,7 @@
       * [Authentication](web-communication-and-security/it-security/iam-identity-and-access-management/authentication.md)
       * [Keycloak](web-communication-and-security/it-security/iam-identity-and-access-management/keycloak/README.md)
         * [Terminologies](web-communication-and-security/it-security/iam-identity-and-access-management/keycloak/terminologies.md)
+        * [Token Verification](web-communication-and-security/it-security/iam-identity-and-access-management/keycloak/token-verification.md)
   * [Server in Java](web-communication-and-security/server-in-java/README.md)
     * [Application Server](web-communication-and-security/server-in-java/application-server.md)
     * [Web Server](web-communication-and-security/server-in-java/page-1.md)
