@@ -79,24 +79,22 @@ public class Car {
 The `Car` class defines a blueprint for creating car objects. It hides the complexities of a real car's engine, wheels, etc., focusing on the functionalities users interact with (start, accelerate). Users can create `Car` objects and call these methods without needing to know the underlying mechanics.
 
 {% hint style="info" %}
-#### Example of Abstraction:
+**Example of Abstraction:**
 
 Consider the concept of a `Vehicle` in a transportation system. From a user's perspective, a `Vehicle` can be abstracted as follows:
 
 * **High-level Abstraction**: Users interact with a `Vehicle` by performing actions such as `drive`, `stop`, and `refuel`. They don't need to know the internal mechanisms of how these actions are implemented.
-* **Low-level Abstraction**: Internally, a `Vehicle` might consist of various components such as an engine, wheels, and fuel tank. Each component has its own functionality and interacts with other components to achieve the desired behavior of the `Vehicle`. However, users interact with the `Vehicle` at a higher level, without needing to understand the details of each componen
+* **Low-level Abstraction**: Internally, a `Vehicle` might consist of various components such as an engine, wheels, and fuel tank. Each component has its own functionality and interacts with other components to achieve the desired behavior of the `Vehicle`. However, users interact with the `Vehicle` at a higher level, without needing to understand the details of each component.
 {% endhint %}
-
-
 
 ## What is Abstract class?
 
 ### Description
 
-An abstract class in Java is a class that cannot be instantiated directly, meaning you cannot create objects of an abstract class using the `new` keyword. Instead, it serves as a blueprint for other classes and may contain both abstract and concrete methods.
+An abstract class in Java is a class that cannot be instantiated directly, meaning we cannot create objects of an abstract class using the `new` keyword. Instead, it serves as a blueprint for other classes and may contain both abstract and concrete methods.
 
 {% hint style="info" %}
-#### Rules for Abstract Classes:
+**Rules for Abstract Classes:**
 
 1. If a class contains at least one abstract method, it must be declared as abstract.
 2. Abstract methods cannot have a body (implementation) and end with a semicolon (;).
@@ -186,7 +184,7 @@ class Circle extends AbstractShape {
 }
 ```
 
-4. **Instantiation:** You cannot create objects directly from an abstract class using the `new` keyword. Subclasses, which are not abstract, can be instantiated.
+4. **Instantiation:** We cannot create objects directly from an abstract class using the `new` keyword. Subclasses, which are not abstract, can be instantiated.
 
 ```java
 // Abstract class
@@ -252,8 +250,6 @@ public class Main {
 }
 ```
 
-
-
 ### Other Details
 
 #### Abstract class in Java can contain inner abstract classes, inner concrete classes, and static methods within it.
@@ -301,4 +297,3 @@ public class Main {
     }
 }
 ```
-
