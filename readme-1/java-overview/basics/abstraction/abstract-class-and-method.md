@@ -291,6 +291,28 @@ class SavingsAccount extends Account {
 }
 ```
 
+Abstract classes can have protected constructors, a technique used to control instantiation and ensure subclasses inherit but cannot create instances directly outside their package.
+
+Here, the protected constructor in `BaseComponent` prevents instantiation from outside the class hierarchy, emphasizing that this class is intended solely for inheritance.
+
+```java
+abstract class BaseComponent {
+    protected BaseComponent() {
+        System.out.println("BaseComponent constructor");
+    }
+    public abstract void render();
+}
+
+class Button extends BaseComponent {
+    @Override
+    public void render() {
+        System.out.println("Rendering Button");
+    }
+}
+```
+
+Other Example
+
 ```java
 // Abstract class with fields
 abstract class Animal {
@@ -462,5 +484,207 @@ public class Main {
 }
 ```
 
+## **Abstract Classes and Dependency Injection**
 
+Abstract classes can serve as base types in dependency injection (DI) configurations in frameworks such as Spring. They can provide foundational, unchanging methods while enforcing specific functionalities in subclasses.
 
+```java
+public abstract class AbstractService {
+    public void logServiceCall() { System.out.println("Service Call Logged"); }
+    public abstract void executeService();
+}
+
+@Service
+public class UserService extends AbstractService {
+    @Override
+    public void executeService() { System.out.println("Executing user service"); }
+}
+```
+
+## **Abstract Classes in Design Patterns**
+
+Abstract classes are often foundational in design patterns, particularly in cases like the _Template Method_, _Factory Method_, and _Adapter Pattern_.
+
+### **Template Method Pattern**
+
+Defines the skeleton of an algorithm in an abstract class, allowing subclasses to override certain steps without altering the algorithm's structure.
+
+```java
+public abstract class DataParser {
+    // Template method defining the algorithm structure
+    public final void parseData() {
+        readData();
+        processData();
+        saveData();
+    }
+    protected abstract void readData();   // Steps to be customized
+    protected abstract void processData();
+    protected void saveData() {
+        System.out.println("Data saved.");
+    }
+}
+
+public class CSVDataParser extends DataParser {
+    @Override
+    protected void readData() { System.out.println("Reading CSV data."); }
+    @Override
+    protected void processData() { System.out.println("Processing CSV data."); }
+}
+
+public class JSONDataParser extends DataParser {
+    @Override
+    protected void readData() { System.out.println("Reading JSON data."); }
+    @Override
+    protected void processData() { System.out.println("Processing JSON data."); }
+}
+```
+
+### **Factory Method Pattern**
+
+In the **Factory Method Pattern**, an abstract class defines a method for creating an object, but allows subclasses to alter the type of object that will be created. This pattern is particularly useful for scenarios where the creation process of an object requires customization by subclasses.
+
+Let’s consider a scenario where we have different types of `Document` objects: `WordDocument` and `PDFDocument`. Each document type has its own way of preparing content.
+
+```java
+// Abstract Creator class with Factory Method
+public abstract class DocumentCreator {
+    // Factory method to be implemented by subclasses
+    protected abstract Document createDocument();
+
+    // Template method that uses the factory method
+    public void openDocument() {
+        Document doc = createDocument();
+        doc.prepareContent();
+        System.out.println("Document opened: " + doc.getType());
+    }
+}
+
+// Abstract Document class that represents the product
+public abstract class Document {
+    protected abstract void prepareContent();   // Step to be customized
+    protected abstract String getType();
+}
+
+// Concrete Creator for Word documents
+public class WordDocumentCreator extends DocumentCreator {
+    @Override
+    protected Document createDocument() {
+        return new WordDocument();
+    }
+}
+
+// Concrete Creator for PDF documents
+public class PDFDocumentCreator extends DocumentCreator {
+    @Override
+    protected Document createDocument() {
+        return new PDFDocument();
+    }
+}
+
+// Concrete Product: WordDocument
+public class WordDocument extends Document {
+    @Override
+    protected void prepareContent() {
+        System.out.println("Preparing Word document content.");
+    }
+
+    @Override
+    protected String getType() {
+        return "Word Document";
+    }
+}
+
+// Concrete Product: PDFDocument
+public class PDFDocument extends Document {
+    @Override
+    protected void prepareContent() {
+        System.out.println("Preparing PDF document content.");
+    }
+
+    @Override
+    protected String getType() {
+        return "PDF Document";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        DocumentCreator wordCreator = new WordDocumentCreator();
+        wordCreator.openDocument();
+        // Output: Preparing Word document content.
+        // Document opened: Word Document
+
+        DocumentCreator pdfCreator = new PDFDocumentCreator();
+        pdfCreator.openDocument();
+        // Output: Preparing PDF document content.
+        // Document opened: PDF Document
+    }
+}
+```
+
+### **Adapter Pattern**
+
+In the **Adapter Pattern**, an abstract class or interface defines a target interface that different adapters can implement to wrap incompatible classes. This pattern is often used when integrating with third-party libraries or legacy systems that have incompatible interfaces.
+
+Consider a scenario where we have an existing `Rectangle` class in a legacy system, but we want to use it in a new system that expects `Shape` objects.
+
+```java
+// Target Interface
+public abstract class Shape {
+    public abstract void draw();
+}
+
+// Legacy Rectangle class (incompatible with Shape interface)
+class Rectangle {
+    public void drawRectangle() {
+        System.out.println("Drawing a rectangle.");
+    }
+}
+
+// Adapter class for Rectangle, adapting it to the Shape interface
+public class RectangleAdapter extends Shape {
+    private final Rectangle rectangle;
+
+    public RectangleAdapter(Rectangle rectangle) {
+        this.rectangle = rectangle;
+    }
+
+    @Override
+    public void draw() {
+        rectangle.drawRectangle();  // Adapter delegates to Rectangle's method
+    }
+}
+
+// Legacy Circle class (incompatible with Shape interface)
+class Circle {
+    public void drawCircle() {
+        System.out.println("Drawing a circle.");
+    }
+}
+
+// Adapter class for Circle, adapting it to the Shape interface
+public class CircleAdapter extends Shape {
+    private final Circle circle;
+
+    public CircleAdapter(Circle circle) {
+        this.circle = circle;
+    }
+
+    @Override
+    public void draw() {
+        circle.drawCircle();  // Adapter delegates to Circle's method
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Adapting a Rectangle object to the Shape interface
+        Shape rectangleShape = new RectangleAdapter(new Rectangle());
+        rectangleShape.draw();  // Output: Drawing a rectangle.
+
+        // Adapting a Circle object to the Shape interface
+        Shape circleShape = new CircleAdapter(new Circle());
+        circleShape.draw();     // Output: Drawing a circle.
+    }
+}
+```
