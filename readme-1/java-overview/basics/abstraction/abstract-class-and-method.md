@@ -393,7 +393,7 @@ public class Main {
 }
 ```
 
-## Nested abstract classess
+## Nested Abstract Classess
 
 Abstract class in Java can contain inner abstract classes, inner concrete classes, and static methods within it.
 
@@ -688,3 +688,25 @@ public class Main {
     }
 }
 ```
+
+
+
+## Abstract Class with multiple inheritance
+
+**Abstract classes in Java do not support multiple inheritance**. In Java, a class (whether abstract or concrete) can extend only one superclass, which is a constraint to avoid complexities that can arise from multiple inheritance, such as the Diamond Problem.
+
+{% hint style="info" %}
+#### The Diamond Problem
+
+The Diamond Problem is a classic issue in languages that support multiple inheritance (such as C++). This problem occurs when two parent classes inherit from a common superclass, and a subclass then inherits from both of these parents. The ambiguity arises because the subclass has two paths to the superclass, which could lead to conflicts in inherited behavior or state.
+
+For example:
+
+* Imagine `ClassA` and `ClassB` each inherit from a common superclass, `ClassC`.
+* If `ClassD` then extends both `ClassA` and `ClassB`, there’s a risk of ambiguity as to which version of `ClassC`'s methods or fields `ClassD` should inherit.
+
+To avoid this complexity, Java allows each class (abstract or concrete) to extend only a single class
+{% endhint %}
+
+
+
