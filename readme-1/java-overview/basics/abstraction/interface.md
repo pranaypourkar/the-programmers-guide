@@ -46,5 +46,59 @@ Interfaces enable:
 * **Multiple Inheritance**: While Java doesn't allow multiple inheritance with classes, a class can implement multiple interfaces. This allows a class to inherit different behaviors from multiple sources.
 * **Loose Coupling**: Interfaces help in decoupling code. The client code doesn’t need to know the details of the class implementing the interface, only the interface itself.
 
+## **Abstract Methods**
 
+By default, all methods declared in an interface are abstract (i.e., they do not have a body). Any class implementing the interface must provide a concrete implementation of these methods.
+
+```java
+interface Animal {
+    void sound(); // abstract method
+}
+
+class Dog implements Animal {
+    @Override
+    public void sound() {
+        System.out.println("Bark");
+    }
+}
+```
+
+*   **Default Methods**: Introduced in Java 8, default methods allow interfaces to provide method implementations. This feature was introduced to ensure backward compatibility when new methods are added to interfaces.
+
+    ```java
+    javaCopy codeinterface Animal {
+        default void sleep() {
+            System.out.println("Sleeping");
+        }
+    }
+    ```
+*   **Static Methods**: Interfaces can define static methods that are independent of any instance. These methods are called using the interface name.
+
+    ```java
+    javaCopy codeinterface Animal {
+        static void showInfo() {
+            System.out.println("Animal Information");
+        }
+    }
+    ```
+*   **Constants**: All fields declared in an interface are implicitly `public`, `static`, and `final`. They are treated as constants.
+
+    ```java
+    javaCopy codeinterface Animal {
+        int MAX_AGE = 100; // constant
+    }
+    ```
+*   **Private Methods**: Since Java 9, interfaces can have private methods. These are used to share common code between default methods.
+
+    ```java
+    javaCopy codeinterface Animal {
+        private void printInfo() {
+            System.out.println("Animal Info");
+        }
+
+        default void show() {
+            printInfo();
+        }
+    }
+    ```
 
