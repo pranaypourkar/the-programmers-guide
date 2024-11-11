@@ -67,6 +67,14 @@ class Dog implements Animal {
 
 Introduced in Java 8, default methods allow interfaces to provide method implementations. This feature was introduced to ensure backward compatibility when new methods are added to interfaces.
 
+{% hint style="info" %}
+**How do default methods in interfaces work, and why were they introduced?**
+
+* **Mechanics of Default Methods**: Default methods are regular methods with a body in an interface, marked with the `default` keyword. They allow interfaces to provide a standard implementation for a method, which implementing classes can either use as-is or override.
+* **Purpose of Introduction**: Default methods were introduced in Java 8 to ensure backward compatibility, especially in cases like the Java Collections API. Adding new methods (e.g., `forEach`) to interfaces without breaking existing code was made possible by default methods.
+* **Avoiding Code Duplication**: Default methods also help avoid code duplication by allowing common functionality across multiple classes to be defined directly within the interface.
+{% endhint %}
+
 ```java
 interface Animal {
     default void sleep() {
@@ -127,6 +135,74 @@ public interface Animal {
 
 Interfaces can extend other interfaces. This means one interface can inherit the abstract methods of another interface. A class implementing the extended interface must implement all methods from both the parent and the child interfaces.
 
+{% hint style="info" %}
+**How would we handle method conflicts when a class implements multiple interfaces with the same method signature?**
+
+* If two interfaces define the same method signature without a default implementation, there’s no conflict; the implementing class must simply provide its own implementation of the method.
+
+```java
+interface InterfaceA {
+    void printMessage();
+}
+
+interface InterfaceB {
+    void printMessage();
+}
+
+class MyClass implements InterfaceA, InterfaceB {
+    @Override
+    public void printMessage() {
+        System.out.println("MyClass implementation of printMessage");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+        obj.printMessage(); // Output: MyClass implementation of printMessage
+    }
+}
+```
+
+* If both interfaces have a default implementation for the same method, the implementing class must override the method to resolve the conflict. This is done by explicitly calling the desired interface’s method using `InterfaceName.super.methodName()` syntax within the overridden method, allowing you to specify which default method to use.
+
+```java
+interface InterfaceA {
+    default void printMessage() {
+        System.out.println("InterfaceA default implementation");
+    }
+}
+
+interface InterfaceB {
+    default void printMessage() {
+        System.out.println("InterfaceB default implementation");
+    }
+}
+
+class MyClass implements InterfaceA, InterfaceB {
+    @Override
+    public void printMessage() {
+        // Resolving the conflict by calling the specific interface's default implementation
+        InterfaceA.super.printMessage();
+        InterfaceB.super.printMessage();
+        System.out.println("MyClass custom implementation");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+        obj.printMessage();
+        // InterfaceA default implementation
+        // InterfaceB default implementation
+        // MyClass custom implementation
+    }
+}
+```
+{% endhint %}
+
+
+
 ```java
 interface Animal {
     void sound();
@@ -181,7 +257,13 @@ interface Greeting {
 
 ## **Marker Interfaces**
 
-A **marker interface** is an interface that does not contain any methods or fields. Its purpose is purely to mark a class that it is associated with some specific behavior.
+A **marker interface** is an interface that does not contain any methods or fields. Its purpose is purely to mark a class that it is associated with some specific behavior. It is used to indicate that a class has some special property or should be treated in a specific way by the JVM or other frameworks.
+
+{% hint style="info" %}
+Can we replace Marker Interface with annotations?
+
+While annotations could theoretically replace marker interfaces, marker interfaces still offer a few benefits. They can be used in `instanceof` checks at runtime, which annotations cannot. Marker interfaces also signify intent at the design level, signaling that a class supports specific behavior. However, in cases where additional metadata is required, annotations can provide more flexibility.
+{% endhint %}
 
 *   **Example**: `Serializable`, `Cloneable`, and `Remote` are marker interfaces in Java.
 
@@ -440,3 +522,8 @@ public class Main {
 }
 ```
 
+## **How does the JVM handle interfaces internally, and how does it resolve method calls for default and static methods?**
+
+* **Interface Table (ITable)**: When a class implements an interface, the JVM creates an **interface table** (ITable) that links methods declared in the interface to the actual implementation in the class. This enables polymorphic behavior.
+* **Default Method Resolution**: When a default method is invoked, the JVM first checks if the class overrides the method. If not, it checks the ITable to resolve the default method in the interface. If multiple interfaces contain conflicting default methods, the JVM throws an error unless the implementing class resolves the conflict by overriding the method.
+* **Static Methods**: Static methods in interfaces are resolved based on the interface name, as they belong to the interface itself and cannot be called on instances of implementing classes. The JVM doesn’t look for static methods in the ITable; it simply invokes them directly on the interface.
