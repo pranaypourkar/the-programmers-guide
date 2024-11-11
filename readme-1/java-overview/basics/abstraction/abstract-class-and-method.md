@@ -135,106 +135,106 @@ Access Modifiers control the visibility and accessibility of classes, methods, a
 ### **`public` Modifier**
 
 * **Applicability**: Abstract classes and methods can use the `public` modifier to allow maximum visibility. For example, if an abstract method needs to be implemented across packages, it should be declared `public` in the abstract class.
-*   **Usage Example**:
 
-    ```java
-    public abstract class Shape {
-        public abstract void draw();  // Accessible from any subclass in any package
+```java
+public abstract class Shape {
+    public abstract void draw();  // Accessible from any subclass in any package
+}
+
+class Circle extends Shape {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a Circle");
     }
+}
+```
 
-    class Circle extends Shape {
-        @Override
-        public void draw() {
-            System.out.println("Drawing a Circle");
-        }
-    }
-    ```
-
-    The `draw` method is declared as `public` to make it accessible from any subclass of `Shape`.
+The `draw` method is declared as `public` to make it accessible from any subclass of `Shape`.
 
 ### **`protected` Modifier**
 
 * **Applicability**: `protected` methods in an abstract class can only be accessed within the same package or by subclasses in other packages. This is useful for methods that should only be available to subclasses but hidden from other classes.
-*   **Usage Example**:
 
-    ```java
-    abstract class Animal {
-        protected String name;
+```java
+abstract class Animal {
+    protected String name;
 
-        protected abstract void sound();  // Accessible only to subclasses
+    protected abstract void sound();  // Accessible only to subclasses
 
-        protected void sleep() {
-            System.out.println(name + " is sleeping.");
-        }
+    protected void sleep() {
+        System.out.println(name + " is sleeping.");
     }
+}
 
-    class Dog extends Animal {
-        @Override
-        protected void sound() {
-            System.out.println("Woof! Woof!");
-        }
+class Dog extends Animal {
+    @Override
+    protected void sound() {
+        System.out.println("Woof! Woof!");
     }
-    ```
+}
+```
 
-    Here, `sound` and `sleep` are `protected`, so they’re only accessible to `Animal`'s subclasses or other classes within the same package.
+Here, `sound` and `sleep` are `protected`, so they’re only accessible to `Animal`'s subclasses or other classes within the same package.
 
 ### **`default` (Package-Private) Modifier**
 
 * **Applicability**: The package-private (default) modifier restricts visibility to within the same package. In an abstract class, a method declared with no access modifier can only be accessed by classes within the same package.
-*   **Usage Example**:
 
-    ```java
-    abstract class PaymentProcessor {
-        abstract void process();  // Only accessible within the same package
+```java
+abstract class PaymentProcessor {
+    abstract void process();  // Only accessible within the same package
 
-        void validate() {  // package-private method
-            System.out.println("Validating payment...");
-        }
+    void validate() {  // package-private method
+        System.out.println("Validating payment...");
     }
+}
 
-    class CreditCardProcessor extends PaymentProcessor {
-        @Override
-        void process() {
-            System.out.println("Processing credit card payment.");
-        }
+class CreditCardProcessor extends PaymentProcessor {
+    @Override
+    void process() {
+        System.out.println("Processing credit card payment.");
     }
-    ```
+}
+```
 
-    Here, `process` and `validate` have package-private access. They’re only accessible to classes within the same package.
+Here, `process` and `validate` have package-private access. They’re only accessible to classes within the same package.
 
 ### **`private` Modifier**
 
 * **Applicability**: In Java, `private` is not allowed for methods declared in an abstract class because it would make them inaccessible to subclasses. However, `private` fields can be used in abstract classes and are accessible only within the class itself.
-*   **Usage Example**:
 
-    ```java
-    abstract class BankAccount {
-        private double balance;
+{% hint style="info" %}
+We can have private concrete methods. It can be used to share common code between concrete methods.
+{% endhint %}
 
-        public BankAccount(double balance) {
-            this.balance = balance;
-        }
+```java
+abstract class BankAccount {
+    private double balance;
 
-        public double getBalance() {
-            return balance;
-        }
-
-        public abstract void deposit(double amount);
+    public BankAccount(double balance) {
+        this.balance = balance;
     }
 
-    class SavingsAccount extends BankAccount {
-        public SavingsAccount(double balance) {
-            super(balance);
-        }
-
-        @Override
-        public void deposit(double amount) {
-            System.out.println("Depositing " + amount);
-        }
+    public double getBalance() {
+        return balance;
     }
-    ```
 
-    The `balance` field is declared `private`, so it’s encapsulated within `BankAccount`. However, subclasses like `SavingsAccount` can still interact with `balance` through the `getBalance` method, which is `public`.
+    public abstract void deposit(double amount);
+}
+
+class SavingsAccount extends BankAccount {
+    public SavingsAccount(double balance) {
+        super(balance);
+    }
+
+    @Override
+    public void deposit(double amount) {
+        System.out.println("Depositing " + amount);
+    }
+}
+```
+
+The `balance` field is declared `private`, so it’s encapsulated within `BankAccount`. However, subclasses like `SavingsAccount` can still interact with `balance` through the `getBalance` method, which is `public`.
 
 Compilation error if private methods are declared
 
@@ -689,8 +689,6 @@ public class Main {
 }
 ```
 
-
-
 ## Abstract Class with multiple inheritance
 
 **Abstract classes in Java do not support multiple inheritance**. In Java, a class (whether abstract or concrete) can extend only one superclass, which is a constraint to avoid complexities that can arise from multiple inheritance, such as the Diamond Problem.
@@ -707,6 +705,3 @@ For example:
 
 To avoid this complexity, Java allows each class (abstract or concrete) to extend only a single class
 {% endhint %}
-
-
-
