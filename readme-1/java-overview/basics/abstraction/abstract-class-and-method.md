@@ -253,15 +253,42 @@ public abstract class BankAccount {
 }
 ```
 
-### **Can Contain Fields**
+## **Constructors in Abstract Classes**
 
-Abstract classes can contain fields (variables), constructors, static methods, and instance methods, similar to regular classes.
+While abstract classes cannot be instantiated directly, they can have constructors. These constructors are primarily used to initialize fields or perform setup tasks that are common across all subclasses. When a subclass of an abstract class is instantiated, the constructor of the abstract class is called as part of the instantiation chain.
 
-{% hint style="success" %}
-Although abstract classes cannot be instantiated, they can contain constructors, which subclasses call as part of their instantiation process. This is useful for initializing fields common to all subclasses or performing setup tasks.
+This feature is essential because it allows abstract classes to set up necessary state or dependencies that subclasses rely on. Additionally, since subclasses must call the constructor of the abstract superclass, this approach provides consistency in initialization.
 
-Abstract classes can have fields (instance variables), unlike interfaces. This feature is valuable when we want to share common data across subclasses and need more complex state handling within an inheritance structure.
-{% endhint %}
+```java
+abstract class Account {
+    protected double balance;
+
+    // Constructor to initialize balance
+    public Account(double balance) {
+        this.balance = balance;
+        System.out.println("Account created with balance: " + balance);
+    }
+
+    // Abstract method to be implemented by subclasses
+    public abstract void withdraw(double amount);
+}
+
+class SavingsAccount extends Account {
+    public SavingsAccount(double balance) {
+        super(balance);  // Calls the constructor in the abstract superclass
+    }
+
+    @Override
+    public void withdraw(double amount) {
+        if (balance >= amount) {
+            balance -= amount;
+            System.out.println("Withdrew: " + amount + ", New balance: " + balance);
+        } else {
+            System.out.println("Insufficient funds.");
+        }
+    }
+}
+```
 
 ```java
 // Abstract class with fields
@@ -305,11 +332,57 @@ public class Main {
 }
 ```
 
+## **Static Methods in Abstract Classes**
 
+Static methods belong to the class itself rather than to any specific instance. In abstract classes, static methods can provide utility functions or helper methods relevant to the class as a whole. Because static methods do not depend on an instance, they’re often used to perform operations that do not require access to non-static fields of the class.
 
-### Other Details
+Since abstract classes can contain both static methods and abstract methods, this structure is more versatile than interfaces (which traditionally only contained abstract methods prior to Java 8).
 
-#### Abstract class in Java can contain inner abstract classes, inner concrete classes, and static methods within it.
+```java
+abstract class MathOperation {
+    // Static utility method
+    public static int add(int a, int b) {
+        return a + b;
+    }
+
+    // Abstract method for other operations
+    public abstract int operate(int a, int b);
+}
+
+class MultiplyOperation extends MathOperation {
+    @Override
+    public int operate(int a, int b) {
+        return a * b;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Using static method in the abstract class
+        int sum = MathOperation.add(5, 10);
+        System.out.println("Sum: " + sum);
+
+        // Using subclass to perform specific operation
+        MathOperation operation = new MultiplyOperation();
+        int product = operation.operate(5, 10);
+        System.out.println("Product: " + product);
+    }
+}
+```
+
+## Nested abstract classess
+
+Abstract class in Java can contain inner abstract classes, inner concrete classes, and static methods within it.
+
+An inner class is defined within the scope of an outer class. Java supports different types of inner classes, which can also be abstract or concrete:
+
+* **Non-static Inner Class (Instance Inner Class)**: Tied to an instance of the outer class. It has access to the outer class’s instance members.
+* **Static Inner Class**: Similar to a regular class but nested within an outer class. It doesn’t require an instance of the outer class to be instantiated and can only access static members of the outer class.
+
+**Types of Inner Classes**
+
+* **Abstract Inner Class**: Defines an abstract class within an outer class, requiring subclasses (either nested or external) to implement its methods.
+* **Concrete Inner Class**: Provides a fully implemented inner class that can operate within the context of the outer class.
 
 ```java
 abstract class OuterAbstract {
@@ -354,4 +427,39 @@ public class Main {
     }
 }
 ```
+
+```java
+class OuterClass {
+    private String message = "Hello from OuterClass";
+
+    // Abstract inner class
+    abstract class InnerAbstract {
+        public abstract void displayMessage();
+
+        // Non-abstract method in the abstract inner class
+        public void commonInnerMethod() {
+            System.out.println("This is a common method in an abstract inner class.");
+        }
+    }
+
+    // Concrete subclass of InnerAbstract within the same outer class
+    class InnerConcrete extends InnerAbstract {
+        @Override
+        public void displayMessage() {
+            System.out.println("Message from InnerConcrete: " + message);
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        OuterClass outer = new OuterClass();
+        OuterClass.InnerConcrete inner = outer.new InnerConcrete();
+        inner.displayMessage(); // Output: Message from InnerConcrete: Hello from OuterClass
+        inner.commonInnerMethod(); // Output: This is a common method in an abstract inner class.
+    }
+}
+```
+
+
 
