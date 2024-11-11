@@ -11,6 +11,7 @@ An abstract class in Java is a class that cannot be instantiated directly, meani
 2. Abstract methods cannot have a body (implementation) and end with a semicolon (;).
 3. Abstract classes cannot be instantiated directly with the `new` keyword.
 4. Subclasses of an abstract class must either provide implementations for all abstract methods or be declared abstract themselves.
+5. Subclasses are not required to override non-abstract methods but can choose to if they need to alter the default behavior provided in the abstract class. This enables polymorphic behavior while maintaining flexibility for subclasses.
 {% endhint %}
 
 {% hint style="warning" %}
