@@ -63,42 +63,130 @@ class Dog implements Animal {
 }
 ```
 
-*   **Default Methods**: Introduced in Java 8, default methods allow interfaces to provide method implementations. This feature was introduced to ensure backward compatibility when new methods are added to interfaces.
+## **Default Methods**
+
+Introduced in Java 8, default methods allow interfaces to provide method implementations. This feature was introduced to ensure backward compatibility when new methods are added to interfaces.
+
+```java
+interface Animal {
+    default void sleep() {
+        System.out.println("Sleeping");
+    }
+}
+```
+
+## **Static Methods**
+
+Interfaces can define static methods that are independent of any instance. These methods are called using the interface name.
+
+```java
+interface Animal {
+    static void showInfo() {
+        System.out.println("Animal Information");
+    }
+}
+```
+
+## **Constants**
+
+All fields declared in an interface are implicitly `public`, `static`, and `final`. They are treated as constants.
+
+```java
+interface Animal {
+    int MAX_AGE = 100; // constant
+}
+```
+
+## **Private Methods**
+
+Since Java 9, interfaces can have private methods. These are used to share common code between default methods.
+
+```java
+interface Animal {
+    private void printInfo() {
+        System.out.println("Animal Info");
+    }
+
+    default void show() {
+        printInfo();
+    }
+}
+```
+
+## **Access Modifiers**
+
+Interface methods are implicitly `public`. We cannot have non-public methods in an interface.
+
+```java
+public interface Animal {
+    void makeSound();  // Implicitly public
+}
+```
+
+## **Interface Inheritance**
+
+Interfaces can extend other interfaces. This means one interface can inherit the abstract methods of another interface. A class implementing the extended interface must implement all methods from both the parent and the child interfaces.
+
+```java
+interface Animal {
+    void sound();
+}
+
+interface Mammal extends Animal {
+    void walk();
+}
+
+class Dog implements Mammal {
+    @Override
+    public void sound() {
+        System.out.println("Bark");
+    }
+
+    @Override
+    public void walk() {
+        System.out.println("Walks on four legs");
+    }
+}
+```
+
+## **Functional Interfaces**
+
+* A **functional interface** is an interface that has exactly one abstract method. Functional interfaces are ideal for use with **lambda expressions** and **method references** in Java 8 and beyond.
+* The `@FunctionalInterface` annotation is used to indicate a functional interface, but it is optional. When annotation is provided, the compiler ensures that a functional interface contains only one abstract method.
+* Examples: `Runnable`, `Callable`, `Comparator`, and custom single-method interfaces.
+* **Lambda Expressions**: Since Java 8, lambdas are used to instantiate functional interfaces, which greatly simplifies code and improves readability.
+
+```java
+@FunctionalInterface
+interface Greeting {
+    void sayHello(String name);
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Greeting greeting = name -> System.out.println("Hello, " + name);
+        greeting.sayHello("Alice");
+    }
+}
+```
+
+```java
+// Compilation error - Multiple non-overriding abstract methods found in interface test. SomeMain. Greeting
+@FunctionalInterface
+interface Greeting {
+    void sayHello(String name);
+    String sayBye();
+}
+```
+
+## **Marker Interfaces**
+
+A **marker interface** is an interface that does not contain any methods or fields. Its purpose is purely to mark a class that it is associated with some specific behavior.
+
+*   **Example**: `Serializable`, `Cloneable`, and `Remote` are marker interfaces in Java.
 
     ```java
-    javaCopy codeinterface Animal {
-        default void sleep() {
-            System.out.println("Sleeping");
-        }
-    }
-    ```
-*   **Static Methods**: Interfaces can define static methods that are independent of any instance. These methods are called using the interface name.
-
-    ```java
-    javaCopy codeinterface Animal {
-        static void showInfo() {
-            System.out.println("Animal Information");
-        }
-    }
-    ```
-*   **Constants**: All fields declared in an interface are implicitly `public`, `static`, and `final`. They are treated as constants.
-
-    ```java
-    javaCopy codeinterface Animal {
-        int MAX_AGE = 100; // constant
-    }
-    ```
-*   **Private Methods**: Since Java 9, interfaces can have private methods. These are used to share common code between default methods.
-
-    ```java
-    javaCopy codeinterface Animal {
-        private void printInfo() {
-            System.out.println("Animal Info");
-        }
-
-        default void show() {
-            printInfo();
-        }
-    }
+    interface Serializable { }
+    class Person implements Serializable { }
     ```
 
