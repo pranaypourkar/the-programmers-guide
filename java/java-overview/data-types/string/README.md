@@ -4,8 +4,6 @@
 
 In Java, a String represents a sequence of characters. Unlike some other languages where strings might be mutable (changeable), strings in Java are **immutable**. This means that once a String object is created, its content cannot be modified. It is part of the `java.lang` package, which means it's automatically imported into every Java program.
 
-
-
 ## Characteristic
 
 ### **Immutable:**
@@ -27,7 +25,7 @@ String s2 = "Hello"; // String literal
 String s3 = s1; // same reference
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (80).png" alt="" width="551"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (302).png" alt="" width="551"><figcaption></figcaption></figure>
 
 Changing the value of String created above
 
@@ -47,7 +45,7 @@ System.out.println("s3 refers to " + s3); // s3 refers to Hello
 System.out.println("newS3 refers to " + newS3); // newS3 refers to Hello Test
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (81).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (303).png" alt="" width="563"><figcaption></figcaption></figure>
 
 String s1 is updated with a new value and that's why a new instance is created. Hence, s1 reference changes to that newly created instance "Java". String s2 and s3 remain unchanged as their references were not changed to a new instance created after performing concat() operation. "Hello World" remains unreferenced to any object and lost in the pool as s2.concat() operation is not assigned to any object. That's why there is a reference to its result. String newS3 refers to the instance of s3.concat() operation that is "Hello Test" as it is referenced to new object newS3.
 
@@ -114,8 +112,6 @@ Because strings are immutable, operations such as concatenation (`+` operator) o
 * Java strings are Unicode-based, which means they can represent characters from various writing systems and languages around the world.
 * Each character in a Java string is represented using a 16-bit Unicode code point.
 
-
-
 ## Methods available in String Class
 
 ### **Length Related:**
@@ -128,7 +124,7 @@ Because strings are immutable, operations such as concatenation (`+` operator) o
 * `int codePointAt(int index)`: Returns the Unicode code point at the specified index.
 * `int codePointBefore(int index)`: Returns the Unicode code point before the specified index.
 * `int codePointCount(int beginIndex, int endIndex)`: Returns the number of Unicode code points in the specified range of text.
-* `void getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin)`:  It is used to copy characters from a `String` into a destination character array. It allows to specify the range of characters to be copied and the destination array where the characters will be stored.
+* `void getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin)`: It is used to copy characters from a `String` into a destination character array. It allows to specify the range of characters to be copied and the destination array where the characters will be stored.
 
 ### **Searching:**
 

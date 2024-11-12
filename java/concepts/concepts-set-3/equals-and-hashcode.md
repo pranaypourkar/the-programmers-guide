@@ -233,3 +233,10 @@ class PersonTest {
 3. Avoid using transient or derived fields (fields that change frequently or aren’t part of the core identity of the object).
 4. Use IDE auto-generation or Lombok annotations to simplify correct implementation.
 5. Test `equals` and `hashCode` to confirm they fulfill their contracts.
+
+## Additional Info
+
+{% content-ref url="../set-4/comparison-and-ordering/object-equality-check.md" %}
+[object-equality-check.md](../set-4/comparison-and-ordering/object-equality-check.md)
+{% endcontent-ref %}
+

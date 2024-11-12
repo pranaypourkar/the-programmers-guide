@@ -2,8 +2,7 @@
 
 ## Theory:
 
-1 byte comprises of 8 bits and any integer or character can be represented using bits in computers, which we call its binary form(contains only 1 or 0) or in its base 2 form.\
-
+1 byte comprises of 8 bits and any integer or character can be represented using bits in computers, which we call its binary form(contains only 1 or 0) or in its base 2 form.\\
 
 **Example**:
 
@@ -50,11 +49,11 @@ There are three different ways the signed binary numbers can be represented.
 
 In sign-magnitude representation, the Most Significant bit of the number is a sign bit and the remaining bit represents the magnitude of the number in a true binary form. For example, if some signed number is represented in the 8-bit sign-magnitude form then MSB is a sign bit and the remaining 7 bits represent the magnitude of the number in a true binary form.
 
-<figure><img src="../../../../.gitbook/assets/image (55).png" alt="" width="254"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (277).png" alt="" width="254"><figcaption></figcaption></figure>
 
 Here is the representation of + 34 and -34 in a 8-bit sign-magnitude form.
 
-<figure><img src="../../../../.gitbook/assets/image (57).png" alt="" width="326"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (279).png" alt="" width="326"><figcaption></figcaption></figure>
 
 Since the magnitude of both numbers is the same, the first 7 bits in the representation are the same for both numbers. For +34, the MSB is 0, and for -34, the MSB or sign bit is 1.
 
@@ -69,17 +68,15 @@ In 1’s complement representation, the representation of the positive number is
 
 For example, if we want to represent -34 in 8-bit 1’s complement form, then first write the positive number (+34). And invert all 1s in that number by 0s and 0s by 1s in that number. The corresponding inverted number represents the -34 in 1’s complement form. It is also called 1s complement of the number +34.
 
-<figure><img src="../../../../.gitbook/assets/image (58).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (280).png" alt="" width="563"><figcaption></figcaption></figure>
 
-Using n-bits, the range of numbers that can be represented in 1’s complement form is from **– (2^(n-1) – 1) to (2^(n -1) – 1)**.&#x20;
-
-
+Using n-bits, the range of numbers that can be represented in 1’s complement form is from **– (2^(n-1) – 1) to (2^(n -1) – 1)**.
 
 **2’s Complement Representation**
 
 In 2’s complement representation also, the representation of the positive number is same as 1’s complement and sign-magnitude form.
 
-<figure><img src="../../../../.gitbook/assets/image (59).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (281).png" alt="" width="563"><figcaption></figcaption></figure>
 
 But the representation of the negative number is different. For example, if we want to represent -34 in 2’s complement form then
 
@@ -87,8 +84,6 @@ But the representation of the negative number is different. For example, if we w
 2. Find 1’s complement of +34
 3. Add ‘1’ to the 1’s complement number
 4. The resultant is 2’s complement representation of -34
-
-
 
 ## Bit manipulation in Java
 
@@ -124,28 +119,20 @@ Here are some common uses of Bitwise AND in programming:
   * Example: Clearing the lower 2 bits of a byte (`byte data = 25; data &= 0b11111100; // Clears the lower 2 bits`)
 * **Combining Bit Patterns:** We can combine specific bit patterns from two operands by performing AND with appropriate masks to isolate the desired bits and then OR them together.
 
-
-
 2. **Bitwise OR ( | )**: Performs a bit-by-bit OR operation. The resulting bit is 1 if at least one of the corresponding bits in the operands is 1.
 
 `int result = 5 | 3; // result = 7 (binary: 101 | 011 = 111)`
-
-
 
 3. **Bitwise XOR ( ^ )**: Performs a bit-by-bit XOR operation. The resulting bit is 1 if the corresponding bits in the operands are different.
 
 `int result = 5 ^ 3; // result = 6 (binary: 101 ^ 011 = 110)`
 
+4. **Bitwise NOT or COMPLEMENT ( \~ )**: Performs a one's complement operation on a single operand. Inverts all the bits (0 becomes 1 and vice versa).
 
-
-4. **Bitwise NOT or COMPLEMENT  ( \~ )**: Performs a one's complement operation on a single operand. Inverts all the bits (0 becomes 1 and vice versa).
-
-`int result = ~6; // result = -7`&#x20;
+`int result = ~6; // result = -7`
 
 {% hint style="info" %}
-In Java, integers are signed by default. This means the leftmost bit (most significant bit) represents the sign: 0 for positive and 1 for negative. Two's complement is a common way to represent signed integers in computers.&#x20;
-
-
+In Java, integers are signed by default. This means the leftmost bit (most significant bit) represents the sign: 0 for positive and 1 for negative. Two's complement is a common way to represent signed integers in computers.
 
 The value of 6 in binary is: **0000 0110**
 
@@ -188,7 +175,7 @@ All the bits in the original binary representation (00000000 00010100) are shift
 
 \-> Shifted Left: 11111111 11101000 (-80)
 
-All the bits in the original binary representation (11111111 11111100) are shifted two positions to the left.  The vacated bits on the right (two in this case) are filled with zeros, similar to the positive number case.
+All the bits in the original binary representation (11111111 11111100) are shifted two positions to the left. The vacated bits on the right (two in this case) are filled with zeros, similar to the positive number case.
 
 Even though the original numbers had different signs (positive and negative), the left shift operation treats them the same way.
 
@@ -219,10 +206,7 @@ All the bits in the original binary representation (00000000 00010100) are shift
 1. All the bits in the original binary representation (11111111 11111100) are shifted two positions to the right.
 2. To preserve the negative sign, the leftmost bit (1) is replicated to fill the vacated bits on the left (two in this case).
 3. The resulting binary representation (11111111 11111011) corresponds to -5 in decimal. Replicating the sign bit ensures the result remains negative after the shift.
-
-
-
-3. **Unsigned Right Shift (`>>>`):** Shifts the bits of the operand to the **right** by the specified number of positions. Zeros are filled in on the **left** side of the operand (unlike signed right shift which uses the sign bit). This operation treats the operand as an unsigned integer, so the sign bit is ignored. Effectively, it divides the number by 2 raised to the power of the shift amount (but performs a bitwise shift instead of a division).
+4. **Unsigned Right Shift (`>>>`):** Shifts the bits of the operand to the **right** by the specified number of positions. Zeros are filled in on the **left** side of the operand (unlike signed right shift which uses the sign bit). This operation treats the operand as an unsigned integer, so the sign bit is ignored. Effectively, it divides the number by 2 raised to the power of the shift amount (but performs a bitwise shift instead of a division).
 
 `int shiftedRight = 20 >>> 2; // 10100 >>> 2 Output: 5 (Binary: 0101)`
 
@@ -234,4 +218,3 @@ All the bits in the original binary representation (00000000 00010100) are shift
 * **Networking and Protocol Handling:** Bitwise algorithms are used in networking protocols for tasks like IP address manipulation, subnet masking, and packet parsing. For example, bitwise AND is used in subnet masking to determine the network address from an IP address and subnet mask.
 * **Low-Level System Programming:** Bitwise operations are essential in low-level system programming for tasks such as device control, memory management, and bit-level I/O operations. They are used to manipulate hardware registers, set/clear flags, and optimize code for performance.
 * **Error Detection and Correction:** Bitwise algorithms are employed in error detection and correction techniques, such as CRC (Cyclic Redundancy Check) and Hamming codes. These algorithms use bitwise XOR and other operations to detect and correct errors in transmitted data.
-

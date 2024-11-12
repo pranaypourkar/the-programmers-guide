@@ -4,7 +4,7 @@
 
 Java is a high-level, object-oriented programming (OOP) language developed by Sun Microsystems (now owned by Oracle Corporation) in 1995. It was designed to be platform-independent, secure, and easy to use. Java has since become one of the most popular programming languages in the world, widely used for developing web, mobile, desktop, and enterprise applications. Java is case sensitive.
 
-<figure><img src="../../.gitbook/assets/image (50).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (272).png" alt=""><figcaption></figcaption></figure>
 
 ### **Compilation Process**
 

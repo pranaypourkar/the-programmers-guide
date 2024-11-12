@@ -24,5 +24,4 @@ public static void main(String[] args) {
     }
 ```
 
-<figure><img src="../../.gitbook/assets/image (242).png" alt=""><figcaption></figcaption></figure>
-
+<figure><img src="../../.gitbook/assets/image (464).png" alt=""><figcaption></figcaption></figure>

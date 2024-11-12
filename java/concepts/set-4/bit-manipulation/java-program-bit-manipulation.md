@@ -20,14 +20,14 @@ public static void main(String[] args) {
 }
 ```
 
-The provided code snippet implements binary addition without using the built-in `+` operator.&#x20;
+The provided code snippet implements binary addition without using the built-in `+` operator.
 
 1. **Identifying Bits Set to 1:**
 
 * Bitwise AND compares the corresponding bits of `a` and `b`.
 * It returns 1 only if the bits in both positions of `a` and `b` are 1. Otherwise, it returns 0.
 
-2. &#x20;**Significance in Carry Calculation:**
+2. **Significance in Carry Calculation:**
 
 * In binary addition, a carry is generated when adding two bits that are both 1 (e.g., 1 + 1 = 10, where 1 is the carry bit).
 * The `carry = a & b;` line essentially identifies the positions where both `a` and `b` have bits set to 1. These positions will generate a carry bit during the addition.
@@ -38,7 +38,7 @@ Let's consider `a = 5 (binary: 101)` and `b = 3 (binary: 011)`.
 
 * `a & b = 001`. Here, only the least significant bit (LSB) position has 1s in both `a` and `b`, indicating a carry will be generated for this bit position.
 
-3. &#x20;**Using Carry for Addition:**
+3. **Using Carry for Addition:**
 
 * The subsequent line `a = a ^ b;` performs bitwise XOR (^) on `a` and `b`. XOR is 1 only when the corresponding bits are different.
 * This line effectively adds `a` and `b` **without considering the carry** for the current bit position. The carry will be addressed in the next iteration of the loop.
@@ -46,8 +46,6 @@ Let's consider `a = 5 (binary: 101)` and `b = 3 (binary: 011)`.
 4. **Carry bit is shifted left**
 
 These carry bits are then shifted left in the next line (`b = carry << 1;`) to be added in the subsequent bit positions (next bit position) of `a` and `b`.
-
-
 
 ### Swapping the 2 numbers
 
@@ -64,9 +62,7 @@ public static void main(String[] args) {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
-
-
+<figure><img src="../../../../.gitbook/assets/image (165).png" alt=""><figcaption></figcaption></figure>
 
 ### Convert Decimal to Binary Conversion
 
@@ -86,6 +82,3 @@ public static void main(String[] args) {
 ```
 
 By iterating through each bit position and checking its value using the right shift and bitwise AND operations, the code determines whether each bit in the binary representation of `n` is 0 or 1.
-
-
-

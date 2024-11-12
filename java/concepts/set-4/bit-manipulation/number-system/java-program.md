@@ -1,6 +1,6 @@
 # Java Program
 
-## Number System Conversion&#x20;
+## Number System Conversion
 
 ```java
 public class NumberSystemConverter {
@@ -73,5 +73,4 @@ public class NumberSystemConverter {
 }
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (240).png" alt="" width="391"><figcaption></figcaption></figure>
-
+<figure><img src="../../../../../.gitbook/assets/image (462).png" alt="" width="391"><figcaption></figcaption></figure>

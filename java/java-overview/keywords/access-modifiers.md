@@ -1,6 +1,8 @@
-# Access modifiers
+# Access Modifiers
 
-Access modifiers in Java are keywords used to specify the accessibility or visibility of classes, methods, variables, and constructors. They control how these elements can be accessed from other classes or packages. Java provides four types of access modifiers:
+## About
+
+Access modifiers in Java are keywords used to specify the accessibility or visibility of classes, methods, variables, and constructors. They control how these elements can be accessed from other classes or packages. Java provides four types of access modifiers.
 
 {% hint style="info" %}
 * Access modifiers can be applied to classes, methods, variables, and constructors.
@@ -8,9 +10,9 @@ Access modifiers in Java are keywords used to specify the accessibility or visib
 * Access modifiers provide control over the visibility of members, which helps in maintaining code integrity and security.
 {% endhint %}
 
+<table data-full-width="true"><thead><tr><th width="162">Modifier</th><th>Class-Level Visibility</th><th width="208">Field/Method-Level Visibility</th><th>Description</th></tr></thead><tbody><tr><td><code>public</code></td><td>Visible to all classes</td><td>Visible to all classes</td><td>Allows unrestricted access to the method or field from any other class. Useful for methods that need to be accessible across packages.</td></tr><tr><td><code>protected</code></td><td>Only visible to subclasses and classes in the same package</td><td>Visible to subclasses and classes in the same package</td><td>Provides visibility within the same package and to any subclass, regardless of the package. Helpful for methods that should only be accessible to subclasses.</td></tr><tr><td><code>default</code></td><td>Package-private: visible only to classes in the same package</td><td>Package-private: visible only to classes in the same package</td><td>Restricts visibility to the same package. Useful for methods or fields intended for internal use within a package structure.</td></tr><tr><td><code>private</code></td><td>Not applicable to top-level classes</td><td>Visible only within the same class</td><td>Only accessible within the class itself.</td></tr></tbody></table>
 
-
-## **Public**&#x20;
+## **Public**
 
 Accessible from anywhere, both within the same package and from other packages.
 
@@ -73,4 +75,3 @@ public class MyClass {
     }
 }
 ```
-

@@ -20,13 +20,11 @@ public class Application {
 }
 ```
 
-<figure><img src="../../.gitbook/assets/image (51).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (273).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 Among all the methods mentioned here, using the `Scanner` class is probably the most commonly used method for taking input from the user in Java, especially for beginner-level programming and simple console-based applications.
 {% endhint %}
-
-
 
 2. **Using `BufferedReader` Class:** The `BufferedReader` class, along with `InputStreamReader`, can be used to read input from the user. This method is useful when dealing with input streams. It's part of the `java.io` package.
 
@@ -48,9 +46,7 @@ public class Application {
 }
 ```
 
-<figure><img src="../../.gitbook/assets/image (52).png" alt=""><figcaption></figcaption></figure>
-
-
+<figure><img src="../../.gitbook/assets/image (274).png" alt=""><figcaption></figcaption></figure>
 
 3. **Using Command Line Arguments:** You can also pass input arguments directly when running the program from the command line. These arguments can be accessed through the `args` parameter in the `main` method.
 
@@ -68,9 +64,7 @@ public class Application {
 }
 ```
 
-<figure><img src="../../.gitbook/assets/image (53).png" alt=""><figcaption></figcaption></figure>
-
-
+<figure><img src="../../.gitbook/assets/image (275).png" alt=""><figcaption></figcaption></figure>
 
 4. **Using `Console` Class (Java 6 and later):** The `Console` class provides methods for reading input and writing output to the console. It is useful for simple console-based applications. It is a `java.io` package. Note that we need to execute the code via console.
 
@@ -92,7 +86,4 @@ public class Application {
 }
 ```
 
-<figure><img src="../../.gitbook/assets/image (54).png" alt=""><figcaption></figcaption></figure>
-
-
-
+<figure><img src="../../.gitbook/assets/image (276).png" alt=""><figcaption></figcaption></figure>
