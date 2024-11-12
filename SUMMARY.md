@@ -395,6 +395,7 @@
         * [Set 2 - Arrays](interview-guide/technical/java-interview-companion/java-practice-programs/set-2-arrays.md)
         * [Set 3 - Strings](interview-guide/technical/java-interview-companion/java-practice-programs/set-3-strings.md)
         * [Set 4 - Search](interview-guide/technical/java-interview-companion/java-practice-programs/set-4-search.md)
+        * [Set 5 - Streams and Collection](interview-guide/technical/java-interview-companion/java-practice-programs/set-5-streams-and-collection.md)
     * [SQL Interview Companion](interview-guide/technical/sql-interview-companion/README.md)
       * [SQL Practice Problems](interview-guide/technical/sql-interview-companion/sql-practice-problems/README.md)
         * [Set 1](interview-guide/technical/sql-interview-companion/sql-practice-problems/set-1.md)
