@@ -108,6 +108,7 @@
       * [Enum](readme-1/concepts/concepts-set-3/enum/README.md)
         * [Pre-Defined Enum](readme-1/concepts/concepts-set-3/enum/pre-defined-enum.md)
         * [Custom Enum](readme-1/concepts/concepts-set-3/enum/custom-enum.md)
+      * [Equals and HashCode](readme-1/concepts/concepts-set-3/equals-and-hashcode.md)
     * [Set 4](readme-1/concepts/set-4/README.md)
       * [Bit Manipulation](readme-1/concepts/set-4/bit-manipulation/README.md)
         * [Java Program - Bit Manipulation](readme-1/concepts/set-4/bit-manipulation/java-program-bit-manipulation.md)
