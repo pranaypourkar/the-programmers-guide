@@ -66,6 +66,28 @@ When overriding `equals`, we **must also override `hashCode`** to maintain consi
 * A good `hashCode` function should evenly distribute hash codes across the hash table to minimize collisions.
 * Use prime numbers in hash code calculations, such as `31`, to reduce hash collisions and improve distribution.
 
+{% hint style="info" %}
+**Auto-Generated `equals` and `hashCode`**
+
+Modern IDEs (like IntelliJ and Eclipse) can auto-generate `equals` and `hashCode` based on fields we select. This reduces the chance of errors and ensures a correct initial implementation.
+
+**Libraries (Lombok)**
+
+Lombok’s `@EqualsAndHashCode` annotation can automatically generate `equals` and `hashCode`, helping simplify our code.
+
+```java
+import lombok.EqualsAndHashCode;
+
+@EqualsAndHashCode
+public class Person {
+    private String name;
+    private int age;
+}
+```
+{% endhint %}
+
+
+
 Here’s a basic implementation using `name` and `age`:
 
 ```java
@@ -104,6 +126,17 @@ public int hashCode() {
 * If `equals` and `hashCode` are overridden in a subclass, you risk breaking symmetry if both subclass and superclass instances are compared.
 * Solution: If a class hierarchy uses `equals` and `hashCode`, consider marking `equals` as `final` or using delegation.
 {% endhint %}
+
+## **Custom Hashing Strategies**
+
+For advanced scenarios where default hash code algorithms don’t perform well, we can use custom hashing strategies or external libraries like Google Guava’s `Hashing` class, especially for complex objects.
+
+**Effective Use in Large Hash-Based Collections**
+
+To optimize performance in large collections:
+
+* Ensure a balanced distribution by selecting fields that offer a unique representation of the object.
+* Benchmark and analyze hash collisions if the collection is very large or performance-sensitive.
 
 ## Testing `equals` and `hashCode`
 
@@ -161,8 +194,6 @@ Pom dependency for test framework
 ```
 {% endhint %}
 
-
-
 ```java
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -187,5 +218,10 @@ class PersonTest {
 }
 ```
 
+## Best Practices
 
-
+1. Always override `hashCode` when we override `equals`.
+2. Use immutable fields in `equals` and `hashCode` whenever possible.
+3. Avoid using transient or derived fields (fields that change frequently or aren’t part of the core identity of the object).
+4. Use IDE auto-generation or Lombok annotations to simplify correct implementation.
+5. Test `equals` and `hashCode` to confirm they fulfill their contracts.
