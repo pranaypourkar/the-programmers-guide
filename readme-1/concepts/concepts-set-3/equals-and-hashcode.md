@@ -116,6 +116,14 @@ public int hashCode() {
   * **Collisions**: If two objects have the same `hashCode` but aren’t equal, they’re stored in the same bucket (collision), and `equals` checks help identify distinct objects within the bucket.
 
 {% hint style="info" %}
+**HashSet**: `HashSet` uses `hashCode` to place objects in buckets. When checking for duplicates, it first checks `hashCode` to locate the bucket, then uses `equals` to confirm object equality within the bucket.
+
+**HashMap**: In `HashMap`, the `hashCode` of the key is used to locate the correct bucket. Within the bucket, `equals` is used to find the exact key.
+{% endhint %}
+
+
+
+{% hint style="info" %}
 **Mutable Fields**
 
 * Using mutable fields in `equals` and `hashCode` is risky. If a field changes, the object’s `hashCode` will change, making it “disappear” from collections like `HashMap` or `HashSet`.

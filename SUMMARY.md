@@ -38,6 +38,7 @@
     * [Advanced Manipulations](git/commands/advanced-manipulations.md)
     * [Other Commands](git/commands/other-commands.md)
   * [Workflows](git/workflows.md)
+* [Java](java.md)
 * [Javaa](readme-1/README.md)
   * [Java Overview](readme-1/java-overview/README.md)
     * [Basics](readme-1/java-overview/basics/README.md)
