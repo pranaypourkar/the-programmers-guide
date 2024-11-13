@@ -12,9 +12,9 @@ description: Frequently Asked Question on Maven
 
 ## Can we use different name for POM.xml?
 
-&#x20;    Yes. We could mention file name using the -f option.
+Yes. We could mention file name using the -f option.
 
-&#x20;   **mvn -f** parent-pom.xml
+**mvn -f** parent-pom.xml
 
 ## What are the minimum requirements for a POM?
 
@@ -410,7 +410,7 @@ To add a new POM as a parent to our Maven project, we need to specify the parent
 
 The packaging for our project can be specified via the POM element **\<packaging>**.
 
-Some of the valid packaging values are **jar, war, ear and pom**. If no packaging value has been specified, it will default to **jar**.&#x20;
+Some of the valid packaging values are **jar, war, ear and pom**. If no packaging value has been specified, it will default to **jar**.
 
 ```
 <project ...>
@@ -651,14 +651,30 @@ Once the JAR is installed in your local Maven repository, you can add it as a de
 **System**: It indicates you have to provide the system path\
 **Import**: This indicates that the identified or specified POM should be replaced with the dependencies in that POM’s section
 
-## &#x20;List out the build phases in Maven?
+## List out the build phases in Maven?
 
 **Validate**: validate the project is correct and all necessary information is offered.\
-**Compile**:  compile the source code of the project.\
+**Compile**: compile the source code of the project.\
 **Test**: test the compiled source code employing an appropriate unit testing framework and these tests should not require the code deployed or packaged.\
 **Package**: take the compiled code and package it in its distributable format like a JAR.\
 **Integration-Test**: process and deploy the package if needed to run integration tests\
 **Verify**: run any tests to verify the package is still valid and meets quality requirements.\
 **Install**: install the package into the native repository, to be used as a dependency in alternative projects regionally.\
 **Deploy**: copies the final package to the remote repository for sharing with alternative projects and developers.
+
+## How to run a Spring Boot application directly from the command line without any packaging file (e.g. JAR file)?
+
+The `mvn spring-boot:run` command is used in Maven to run a Spring Boot application directly from the command line without the need to package it as a JAR file first. This is particularly useful for development, as it allows to quickly start up the application and see changes in real-time. We can pass additional properties or profiles as parameters.
+
+{% hint style="info" %}
+**`spring-boot-maven-plugin`** should be included in the `pom.xml` file of the Spring Boot project.
+{% endhint %}
+
+```git
+mvn spring-boot:run
+mvn spring-boot:run -Dspring-boot.run.profiles=dev
+mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8081"
+```
+
+
 
