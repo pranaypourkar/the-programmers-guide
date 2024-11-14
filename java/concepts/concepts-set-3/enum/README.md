@@ -109,7 +109,33 @@ In the above `DatabaseConnection` enum example, the purpose is to use an enum to
 * By exposing `getConnection()`, the enum ensures that there’s only ever one connection in use, avoiding the creation of multiple connections across the application.
 {% endhint %}
 
+## **Enums with Fields, Methods, and Constructors**
 
+* **Custom Fields and Methods**: Enums in Java are more than simple lists of constants. Each constant can hold specific fields, methods, and even implement interfaces, making enums highly flexible and allowing for behavior-based usage.
+*   **Example with Additional Fields and Methods**:
+
+    ```java
+    public enum LogLevel {
+        ERROR(3, "High"), WARNING(2, "Medium"), INFO(1, "Low");
+
+        private final int severity;
+        private final String level;
+
+        LogLevel(int severity, String level) {
+            this.severity = severity;
+            this.level = level;
+        }
+
+        public int getSeverity() {
+            return severity;
+        }
+
+        public String getLevel() {
+            return level;
+        }
+    }
+    ```
+* **Customizing Behavior per Constant**: Enums can override methods per constant, allowing for complex behaviors to be tied to individual enum values.
 
 ## Advantages of Using Enums
 
@@ -117,3 +143,8 @@ In the above `DatabaseConnection` enum example, the purpose is to use an enum to
 * **Code Readability**: Makes code more readable by using meaningful constant names.
 * **Consistent and Centralized**: The allowed values are defined in a single place.
 
+## **Enum Limitations**
+
+* **Lack of Subclassing**: Enums cannot be subclassed as they implicitly extend `java.lang.Enum`.
+* **Inability to Directly Extend Enums**: While enums cannot extend other classes, they can implement interfaces, allowing for some degree of abstraction and flexibility.
+* **Fixed Constants**: Enum constants are static and final by default, so they cannot be changed once defined. This is a benefit for immutability but limits flexibility when constants need to evolve over time.
