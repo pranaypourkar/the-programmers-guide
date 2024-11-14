@@ -104,7 +104,7 @@ INFO level description: Informational message
 * **`EnumMap.get(Object key)`**: Retrieves the value associated with the given key.
 * **`EnumMap.remove(Object key)`**: Removes the entry for the specified key.
 
-#### Comparison of `EnumSet` vs `EnumMap`:
+## Comparison of `EnumSet` vs `EnumMap`:
 
 <table data-header-hidden data-full-width="true"><thead><tr><th width="188"></th><th></th><th></th></tr></thead><tbody><tr><td>Feature</td><td><code>EnumSet</code></td><td><code>EnumMap</code></td></tr><tr><td><strong>Type</strong></td><td>A <code>Set</code> of enum values</td><td>A <code>Map</code> where keys are enum values</td></tr><tr><td><strong>Null Handling</strong></td><td>Does not allow <code>null</code> elements</td><td>Does not allow <code>null</code> keys, but allows <code>null</code> values</td></tr><tr><td><strong>Usage</strong></td><td>Used when you need a collection of enum values without duplicates</td><td>Used when you need to associate values with enum constants</td></tr><tr><td><strong>Efficiency</strong></td><td>More memory-efficient and faster than <code>HashSet</code></td><td>More memory-efficient and faster than <code>HashMap</code> for enums as keys</td></tr><tr><td><strong>Ordering</strong></td><td>Follows the natural order of enum constants</td><td>Follows the natural order of enum constants</td></tr></tbody></table>
 
