@@ -26,14 +26,12 @@ Every exception in Java is a subclass of the `Throwable` class. The two main sub
 
 **Non-recoverable Exception:**
 
-* An exception that usually indicates a more severe issue from which it's difficult or impossible to fully recover, often requiring the program to terminate abnormally**.**
+* An exception that usually indicates a more severe issue from which it's difficult or impossible to fully recover, often requiring the program to terminate abnormally\*\*.\*\*
 * These exceptions often point to critical errors or unexpected conditions that fundamentally prevent the program from continuing its intended operation.
 * Examples:
   * **Out of memory errors:** The program might not have enough memory to continue execution.
   * **Corrupted data:** The program might be unable to process data that is in an invalid or inconsistent state.
 {% endhint %}
-
-
 
 There are **different ways to handle exceptions**, depending on the requirements of the program and the nature of the exceptions being thrown. Here are some of the ways to handle.
 
@@ -71,7 +69,7 @@ try {
 }
 ```
 
-**Throwing Exceptions**: Exceptions can be thrown explicitly using the `throw` keyword.&#x20;
+**Throwing Exceptions**: Exceptions can be thrown explicitly using the `throw` keyword.
 
 ```java
 if (someCondition) {
@@ -101,8 +99,6 @@ try (ResourceType resource = new ResourceType()) {
 }
 ```
 
-
-
 **Best Practices in Exception Handling**
 
 * **Catch Specific Exceptions**: Catch only those exceptions that can be handled. Avoid catching broader exceptions like `Exception` if specific exceptions can be used.
@@ -114,29 +110,27 @@ try (ResourceType resource = new ResourceType()) {
 * **Encapsulate Exception Handling Logic**: Encapsulate exception handling logic into separate methods or classes to improve code readability and maintainability. This also helps in reusing exception handling logic across multiple parts of your application.
 * **Do not remove the original cause of the exception with custom exception:** One common mistake in exception handling is removing the original cause of the exception when wrapping it in a different exception type. For example, let's say you have a method that reads data from a file and encounters an `IOException`. Instead of propagating this exception or wrapping it in a custom business exception, you create a new exception without setting the original `IOException` as its cause. This effectively removes valuable information such as the error message and stack trace related to the original exception.
 
-<table data-full-width="true"><thead><tr><th align="center">Bad Practice</th><th align="center">Good Practice</th></tr></thead><tbody><tr><td align="center"><p></p><pre class="language-java"><code class="lang-java">public class BadPracticeExample {
-
-    public void readFile() {
-        try {
-            // Code that might throw an IOException
-            FileInputStream fileInputStream = new FileInputStream("example.txt");
-            // Read file contents
-        } catch (IOException e) {
-            // Wrapping the original exception in a new exception without setting the cause
-            throw new CustomBusinessException("Error reading file");
-        }
+<table data-full-width="true"><thead><tr><th align="center">Bad Practice</th><th align="center">Good Practice</th></tr></thead><tbody><tr><td align="center"><pre class="language-java"><code class="lang-java">public class BadPracticeExample {
+ public void readFile() {    
+    try {        
+        // Code that might throw an IOException        
+        FileInputStream fileInputStream = new FileInputStream("example.txt");        
+        // Read file contents    
+    } catch (IOException e) {        
+        // Wrapping the original exception in a new exception without setting the cause        
+        throw new CustomBusinessException("Error reading file");    
     }
+ }
 }
-</code></pre></td><td align="center"><p></p><pre class="language-java"><code class="lang-java">public class GoodPracticeExample {
-
-    public void readFile() throws CustomBusinessException {
-        try {
-            FileInputStream fileInputStream = new FileInputStream("example.txt");
-            // Read file contents
-        } catch (IOException e) {
-            // Wrapping the original exception in a new exception and setting it as the cause
-            throw new CustomBusinessException("Error reading file", e);
-        }
+</code></pre></td><td align="center"><pre class="language-java"><code class="lang-java">public class GoodPracticeExample {
+ public void readFile() throws CustomBusinessException {    
+  try {        
+    FileInputStream fileInputStream = new FileInputStream("example.txt");        
+    // Read file contents    
+  } catch (IOException e) {        
+    // Wrapping the original exception in a new exception and setting it as the cause        
+    throw new CustomBusinessException("Error reading file", e);    
     }
+ }
 }
 </code></pre></td></tr></tbody></table>
