@@ -51,3 +51,12 @@ In this example, `ProductType` stores a `code` and `description` for each consta
 ProductType type = ProductType.fromCode("prepaid-card");
 System.out.println(type.getDescription()); // Output: A prepaid card
 ```
+
+## Examples
+
+
+
+
+
+
+
