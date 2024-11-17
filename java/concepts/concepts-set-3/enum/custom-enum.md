@@ -244,14 +244,138 @@ public enum YesNoFlagType {
 
 ### **Multi-stage order processing system**
 
+**OrderState Enum**: The `OrderState` enum defines multiple states for an order, such as `RECEIVED`, `PROCESSING`, `SHIPPED`, `DELIVERED`, and `COMPLETED`. Each enum constant has a stage number (`int stage`), which allows us to track the order's progress. Every state has a behavior defined in the `handleOrder` method. This method is abstract in the enum and is overridden in each state to handle the order’s transition logic. `OrderState` is a **polymorphic enum**. The method `handleOrder` is defined for each state, allowing us to change the order's state and behavior dynamically. The enum constants (`RECEIVED`, `PROCESSING`, etc.) override the abstract method to define their specific behavior. `validTransitions` is an `EnumMap` used to store valid transitions between states. For instance, an order can only go from `RECEIVED` to `PROCESSING`, from `PROCESSING` to `SHIPPED`, etc. The `isTransitionValid` static method checks if a state transition is allowed based on the current and next states.
+
+_OrderState.java_
+
+```java
+package sample;
+
+import java.util.EnumMap;
+import java.util.EnumSet;
+
+public enum OrderState {
+    RECEIVED(1) {
+        @Override
+        public void handleOrder(Order order) {
+            System.out.println("Order " + order.getId() + " received.");
+            order.setState(PROCESSING);
+        }
+    },
+    PROCESSING(2) {
+        @Override
+        public void handleOrder(Order order) {
+            System.out.println("Processing order " + order.getId() + "...");
+            // Simulate some process time
+            order.setState(SHIPPED);
+        }
+    },
+    SHIPPED(3) {
+        @Override
+        public void handleOrder(Order order) {
+            System.out.println("Order " + order.getId() + " shipped.");
+            order.setState(DELIVERED);
+        }
+    },
+    DELIVERED(4) {
+        @Override
+        public void handleOrder(Order order) {
+            System.out.println("Order " + order.getId() + " delivered.");
+            order.setState(COMPLETED);
+        }
+    },
+    COMPLETED(5) {
+        @Override
+        public void handleOrder(Order order) {
+            System.out.println("Order " + order.getId() + " completed.");
+        }
+    };
+
+    private final int stage;
+
+    // Constructor to initialize the enum with an additional field
+    OrderState(int stage) {
+        this.stage = stage;
+    }
+
+    public int getStage() {
+        return stage;
+    }
+
+    // Abstract method that each state must implement
+    public abstract void handleOrder(Order order);
+
+    // Transition map to allow direct state transitions (for advanced use cases)
+    private static final EnumMap<OrderState, EnumSet<OrderState>> validTransitions = new EnumMap<>(
+        OrderState.class);
+
+    static {
+        validTransitions.put(RECEIVED, EnumSet.of(PROCESSING));
+        validTransitions.put(PROCESSING, EnumSet.of(SHIPPED));
+        validTransitions.put(SHIPPED, EnumSet.of(DELIVERED));
+        validTransitions.put(DELIVERED, EnumSet.of(COMPLETED));
+        validTransitions.put(COMPLETED, EnumSet.noneOf(OrderState.class));
+    }
+
+    public static boolean isTransitionValid(OrderState fromState, OrderState toState) {
+        return validTransitions.get(fromState).contains(toState);
+    }
+}
+```
+
+**Order Class**: The `Order` class holds an `OrderState` and provides a method (`setState`) to change the state. The `setState` method ensures that only valid state transitions are allowed using `isTransitionValid`. If a transition is invalid (e.g., trying to go backward in the state machine), it prints a message and does not update the state.
+
+_Order.java_
+
+```java
+package sample;
+
+import lombok.Getter;
+
+@Getter
+public class Order {
+    private final String id;
+    private OrderState state;
+
+    public Order(String id) {
+        this.id = id;
+        this.state = OrderState.RECEIVED; // Initially in 'RECEIVED' state
+    }
+
+    public void setState(OrderState state) {
+        if (OrderState.isTransitionValid(this.state, state)) {
+            this.state = state;
+            this.state.handleOrder(this);
+        } else {
+            System.out.println("Invalid state transition: " + this.state + " -> " + state);
+        }
+    }
+}
+```
+
 _OrderProcessingSystem.java_
 
+```java
+package sample;
+
+public class OrderProcessingSystem {
+
+    public static void main(String[] args) {
+        // Create an order with ID 12345
+        Order order = new Order("12345");
+
+        // Print the current state of the order
+        System.out.println("Initial Order State: " + order.getState());
+
+        // Simulate state transitions using the handleOrder logic
+        order.setState(OrderState.PROCESSING);  // Should transition to PROCESSING
+        order.setState(OrderState.SHIPPED);     // Should transition to SHIPPED
+        order.setState(OrderState.DELIVERED);   // Should transition to DELIVERED
+        order.setState(OrderState.COMPLETED);   // Should transition to COMPLETED
+
+        // Try invalid transition (e.g., from DELIVERED to PROCESSING)
+        order.setState(OrderState.PROCESSING);  // Invalid transition from DELIVERED to PROCESSING
+    }
+}
 ```
-```
-
-
-
-
-
-
 
