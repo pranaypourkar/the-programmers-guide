@@ -191,9 +191,129 @@ Request with Trace ID: `12345` and Span ID: `a1`
 ```
 {% endhint %}
 
+## Context Propagation Standards
 
+Context propagation is a critical aspect of distributed tracing, ensuring that trace identifiers (like **trace ID** and **span ID**) are transmitted between services as a request flows through a distributed system. Standards for context propagation define how this trace context is structured and passed between services, enabling interoperability across different tracing tools and platforms.
 
+### **1. W3C Trace Context**
 
+* **Overview**:
+  * A vendor-neutral standard for distributed tracing context propagation.
+  * Supported by major observability tools (OpenTelemetry, Jaeger, etc.).
+* **Headers Used**:
+  * `traceparent`: Encodes trace ID, parent span ID, sampling flags, and version.
+  * `tracestate`: Allows vendors to include additional metadata, enhancing traceparent.
+*   **Example**:
+
+    ```
+    traceparent: 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-01
+    tracestate: vendor1=opaqueValue,vendor2=opaqueValue
+    ```
+
+### **2. B3 Propagation**
+
+* **Overview**:
+  * Developed by the Zipkin team, it is one of the oldest and most widely used propagation standards.
+  * Encodes trace context in a set of HTTP headers.
+* **Headers Used**:
+  * `X-B3-TraceId`: The trace identifier.
+  * `X-B3-SpanId`: The span identifier.
+  * `X-B3-ParentSpanId`: The parent span ID (optional).
+  * `X-B3-Sampled`: Indicates whether the request is sampled (0 or 1).
+  * `X-B3-Flags`: Debug flag (optional).
+*   **Example**:
+
+    ```makefile
+    X-B3-TraceId: 463ac35c9f6413ad48485a3953bb6124
+    X-B3-SpanId: a2fb4a1d1a96d312
+    X-B3-ParentSpanId: 0020000000000001
+    X-B3-Sampled: 1
+    ```
+
+### **3. Jaeger Propagation**
+
+* **Overview**:
+  * A custom propagation format used by the Jaeger tracing system.
+  * Encodes trace context in a single HTTP header.
+* **Header Used**:
+  * `uber-trace-id`: Contains the trace ID, span ID, parent span ID, and sampling flags.
+*   **Example**:
+
+    ```makefile
+    uber-trace-id: 4bf92f3577b34da6a3ce929d0e0e4736:00f067aa0ba902b7:0000000000000000:01
+    ```
+
+### **4. Custom Context Propagation**
+
+* Some organizations implement their own context propagation standards tailored to their unique needs.
+* Typically involves encoding trace data in proprietary headers or metadata formats.
+
+## Tools used for Distributed Tracing
+
+### **Distributed Tracing Libraries**
+
+Libraries integrate tracing capabilities into applications by instrumenting code and propagating trace context.
+
+* **Spring Cloud Sleuth**:
+  * A Spring Boot-specific library that adds tracing to microservices.
+  * Generates trace and span IDs automatically.
+  * Integrates seamlessly with tools like Zipkin, Jaeger, and OpenTelemetry.
+* **OpenTelemetry**:
+  * A vendor-neutral observability framework.
+  * Supports distributed tracing, metrics, and logging.
+  * Works with multiple backends such as Jaeger, Zipkin, and Prometheus.
+* **Brave**:
+  * The tracing library used internally by Zipkin.
+  * Provides instrumentation for HTTP clients, servers, and messaging systems.
+
+### **Distributed Tracing Platforms**
+
+These platforms collect, store, and visualize traces.
+
+* **Zipkin**:
+  * Open-source tracing system designed for low latency.
+  * Displays a dependency graph and timelines of traces.
+  * Supports HTTP, Kafka, and RabbitMQ for collecting spans.
+* **Jaeger**:
+  * Open-source, originally developed by Uber.
+  * Offers advanced capabilities like root cause analysis, service dependency visualization, and context propagation debugging.
+  * Integrates with OpenTelemetry.
+* **AWS X-Ray**:
+  * A distributed tracing service from Amazon Web Services.
+  * Provides end-to-end request tracing for applications running on AWS.
+  * Supports integration with AWS Lambda, EC2, and ECS.
+* **Google Cloud Trace**:
+  * A managed service for distributed tracing in Google Cloud.
+  * Offers native integration with Google Cloud services like App Engine and Kubernetes.
+* **Elastic APM**:
+  * Part of the Elastic Stack (ELK).
+  * Provides distributed tracing, error tracking, and performance metrics.
+  * Integrates seamlessly with Elasticsearch and Kibana.
+
+### **Monitoring and Visualization Tools**
+
+Complement tracing platforms by providing dashboards and additional insights.
+
+* **Kibana**:
+  * A visualization tool that works with Elastic APM.
+  * Offers trace summaries and detailed views of request paths.
+* **Grafana Tempo**:
+  * Distributed tracing backend compatible with OpenTelemetry, Jaeger, and Zipkin.
+  * Integrated with Grafana for visualization.
+* **New Relic Distributed Tracing**:
+  * A commercial monitoring and tracing solution.
+  * Offers dashboards, alerts, and AI-powered root cause analysis.
+
+### **Log Aggregation with Tracing**
+
+Combining logs with trace context for better observability.
+
+* **Splunk Observability Cloud**:
+  * Offers tracing, logging, and monitoring in one platform.
+  * Provides AI-driven analytics and dashboards.
+* **Datadog APM**:
+  * Integrates tracing with logs and metrics.
+  * Supports real-time dashboards and anomaly detection.
 
 ## Benefits of Distributed Tracing
 
