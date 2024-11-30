@@ -58,6 +58,7 @@
         * [StringBuilder](java/java-overview/data-types/string/stringbuilder.md)
         * [StringBuffer](java/java-overview/data-types/string/stringbuffer.md)
         * [Multiline String](java/java-overview/data-types/string/multiline-string.md)
+      * [Array](java/java-overview/data-types/array.md)
     * [Java Virtual Machine (JVM)](java/java-overview/java-virtual-machine-jvm.md)
   * [Java Installation](java/java-installation-info.md)
   * [Java Features by Version](java/java-features-by-version/README.md)
