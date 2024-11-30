@@ -143,8 +143,8 @@ select empno,ename,job,mgr,hiredate,sal,comm,deptno,count(*) as cnt
 If the tables in question are equal, then no rows are returned. If the tables are different, the rows causing the difference are returned. As an easy first step when comparing tables, we can compare the cardinalities alone rather than including them with the data comparison.
 
 `select count(`_`) from emp`_\
-_`union`_\
-_`select count(`_`) from dept`
+&#xNAN;_`union`_\
+&#xNAN;_`select count(`_`) from dept`
 
 Because UNION will filter out duplicates, only one row will be returned if the tables’ cardinalities are the same. Because two rows are returned in this example, we know that the tables do not contain identical row sets
 {% endhint %}
