@@ -269,11 +269,225 @@ int[] immutableArray = Arrays.copyOf(originalArray, originalArray.length);
 
 Java arrays and generics don’t integrate quite well because arrays are **covariant** and generics are **invariant**. This mismatch introduces potential type-safety issues.
 
+### **What Is Allowed**
 
+1. &#x20;**Creating Generic Arrays with a Wildcard**
 
+We can create arrays of wildcards (`?`).
 
+```java
+List<?>[] listArray = new List<?>[10];  // Allowed
+```
 
+2. **Creating Generic Arrays with Raw Types**
 
+We can create arrays of raw types (though it is not recommended due to loss of type safety).
+
+```javascript
+List[] listArray = new List[10];  // Allowed
+```
+
+3. **Using Reflection to Create Generic Arrays**
+
+Reflection can bypass generic array restrictions.
+
+```java
+import java.lang.reflect.Array;
+
+public class GenericArray {
+    public static <T> T[] createArray(Class<T> clazz, int size) {
+        return (T[]) Array.newInstance(clazz, size);
+    }
+}
+```
+
+4. **Generic Arrays as Fields**
+
+We can declare a generic array field, but the actual instantiation must avoid direct generic array creation.
+
+```java
+class Example<T> {
+    private T[] elements;
+
+    public Example(Class<T> clazz, int size) {
+        elements = (T[]) Array.newInstance(clazz, size);  // Allowed
+    }
+}
+```
+
+5. **Using Arrays as Generic Collections**
+
+Although we cannot create a generic array directly, we can use collections like `List` or `ArrayList`.
+
+```java
+List<String> list = new ArrayList<>();  // Use this instead of a generic array
+```
+
+### **What Is Not Allowed**
+
+1. &#x20;**Direct Creation of Generic Arrays**
+
+We cannot directly create arrays with a generic type.
+
+```java
+T[] array = new T[10];  // Not Allowed
+```
+
+2. **Generic Arrays of Specific Parameterized Types**
+
+You cannot create an array of a specific generic type (e.g., `List<String>`).
+
+```java
+List<String>[] stringListArray = new List<String>[10];  // Not Allowed
+```
+
+3. **Mixing Arrays and Generics**
+
+You cannot mix arrays and generic types in assignments without warnings.
+
+```java
+List<Integer>[] arrayOfLists = (List<Integer>[]) new List[10];  // Allowed with warning
+```
+
+{% hint style="info" %}
+**Reason for Restrictions**
+
+* **Covariance of Arrays:** Arrays in Java are covariant, meaning `String[]` is a subtype of `Object[]`.
+
+```
+Object[] objArray = new String[10];
+objArray[0] = 10;  // Throws ArrayStoreException at runtime
+```
+
+* **Invariance of Generics:** Generics are invariant, so `List<String>` is not a subtype of `List<Object>`. This ensures type safety at compile time.
+* **Type Erasure:** Generic types are erased at runtime, leaving no information about the actual type parameter. This makes it impossible to enforce type safety for generic arrays.
+{% endhint %}
+
+## **Example**
+
+Arrays can be created for almost all primitive and reference data types.
+
+#### **Primitive Data Types**
+
+<table data-full-width="true"><thead><tr><th width="240">Data Type</th><th width="261">Description</th><th>Example Declaration</th></tr></thead><tbody><tr><td><code>byte</code></td><td>8-bit integer</td><td><code>byte[] byteArray = new byte[5];</code></td></tr><tr><td><code>short</code></td><td>16-bit integer</td><td><code>short[] shortArray = new short[5];</code></td></tr><tr><td><code>int</code></td><td>32-bit integer</td><td><code>int[] intArray = {1, 2, 3};</code></td></tr><tr><td><code>long</code></td><td>64-bit integer</td><td><code>long[] longArray = new long[5];</code></td></tr><tr><td><code>float</code></td><td>32-bit floating-point number</td><td><code>float[] floatArray = new float[5];</code></td></tr><tr><td><code>double</code></td><td>64-bit floating-point number</td><td><code>double[] doubleArray = new double[5];</code></td></tr><tr><td><code>char</code></td><td>16-bit Unicode character</td><td><code>char[] charArray = {'A', 'B'};</code></td></tr><tr><td><code>boolean</code></td><td>1-bit, can store <code>true</code> or <code>false</code> values</td><td><code>boolean[] boolArray = new boolean[5];</code></td></tr></tbody></table>
+
+#### **Reference Data Types**
+
+<table data-full-width="true"><thead><tr><th width="176">Data Type</th><th width="360">Description</th><th>Example Declaration</th></tr></thead><tbody><tr><td><code>String</code></td><td>Stores sequences of characters</td><td><code>String[] strArray = {"A", "B", "C"};</code></td></tr><tr><td><code>Object</code></td><td>Parent class of all Java classes</td><td><code>Object[] objArray = new Object[5];</code></td></tr><tr><td>Custom Class</td><td>Any user-defined class can be used as an array type</td><td><code>Student[] studentArray = new Student[5];</code></td></tr></tbody></table>
+
+#### **Generic Types**
+
+<table data-full-width="true"><thead><tr><th width="197">Data Type</th><th width="317">Description</th><th>Example Declaration</th></tr></thead><tbody><tr><td><code>List&#x3C;?></code></td><td>Array of wildcard lists (requires unchecked cast)</td><td><code>List&#x3C;?>[] listArray = new List&#x3C;?>[5];</code></td></tr><tr><td><code>Map&#x3C;?, ?></code></td><td>Array of maps</td><td><code>Map&#x3C;String, Integer>[] mapArray = new Map[5];</code></td></tr></tbody></table>
+
+```java
+public class ArrayExamples {
+    public static void main(String[] args) {
+        // Declaring and initializing a one-dimensional array
+        int[] numbers = {10, 20, 30, 40, 50};
+        System.out.println("1D Array: ");
+        for (int number : numbers) {
+            System.out.print(number + " ");
+        }
+        System.out.println();
+
+        // Declaring and initializing a two-dimensional array
+        int[][] matrix = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+        System.out.println("\n2D Array (Matrix): ");
+        for (int[] row : matrix) {
+            for (int col : row) {
+                System.out.print(col + " ");
+            }
+            System.out.println();
+        }
+
+        // Using arrays of strings
+        String[] fruits = {"Apple", "Banana", "Cherry"};
+        System.out.println("\nString Array: ");
+        for (String fruit : fruits) {
+            System.out.println(fruit);
+        }
+
+        // Accessing and modifying elements
+        numbers[2] = 35; // Modify the third element
+        System.out.println("\nModified Array: ");
+        for (int number : numbers) {
+            System.out.print(number + " ");
+        }
+
+        // Dynamic initialization of an array
+        double[] prices = new double[5]; // Create an array with a size of 5
+        prices[0] = 10.99;
+        prices[1] = 5.49;
+        prices[2] = 3.79;
+        prices[3] = 12.99;
+        prices[4] = 7.49;
+        System.out.println("\n\nPrices Array: ");
+        for (double price : prices) {
+            System.out.print(price + " ");
+        }
+
+        // Finding the length of an array
+        System.out.println("\n\nLength of Numbers Array: " + numbers.length);
+
+        // Copying arrays
+        int[] copiedNumbers = java.util.Arrays.copyOf(numbers, numbers.length);
+        System.out.println("\nCopied Array: ");
+        for (int num : copiedNumbers) {
+            System.out.print(num + " ");
+        }
+
+        // Using Arrays class utility methods
+        java.util.Arrays.sort(numbers); // Sort the array
+        System.out.println("\n\nSorted Array: ");
+        for (int number : numbers) {
+            System.out.print(number + " ");
+        }
+
+        // Multidimensional array with irregular (jagged) dimensions
+        int[][] jaggedArray = {
+            {1, 2},
+            {3, 4, 5},
+            {6}
+        };
+        System.out.println("\n\nJagged Array: ");
+        for (int[] row : jaggedArray) {
+            for (int col : row) {
+                System.out.print(col + " ");
+            }
+            System.out.println();
+        }
+
+        // Array of objects
+        Student[] students = new Student[3];
+        students[0] = new Student("Alice", 20);
+        students[1] = new Student("Bob", 22);
+        students[2] = new Student("Charlie", 19);
+        System.out.println("\nArray of Objects (Students): ");
+        for (Student student : students) {
+            System.out.println(student);
+        }
+    }
+}
+
+class Student {
+    String name;
+    int age;
+
+    Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{name='" + name + "', age=" + age + "}";
+    }
+}
+```
 
 ## **Best Practices**
 
