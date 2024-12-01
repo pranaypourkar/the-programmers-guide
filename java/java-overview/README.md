@@ -25,3 +25,51 @@ The JVM is a crucial component of the Java platform. It's responsible for execut
 5. **Garbage Collector**: Manages the memory used by Java objects. It automatically deallocates memory occupied by objects that are no longer in use, preventing memory leaks and optimizing memory usage.
 
 The JVM is available for different platforms (Windows, Linux, macOS, etc.), allowing Java programs to run on any system that has a compatible JVM installed.
+
+## **Java is a statically-typed language**
+
+In a statically-typed language like Java:
+
+* The **type of a variable is known at compile time**.
+* We must explicitly declare the data type of a variable, and the type is checked by the compiler.
+* Once a variable is declared with a specific type, it **cannot hold data of any other type** without explicit conversion (casting).
+
+### Characteristics of Statically-Typed Java
+
+1. **Variable Declaration:** Every variable must have a type specified during declaration.
+
+```java
+int age = 25;        // Valid: Type 'int' specified
+String name = "John"; // Valid: Type 'String' specified
+age = "Hello";       // Error: Type mismatch
+```
+
+2. **Compile-Time Type Checking:** The Java compiler ensures that operations on variables are type-safe during compilation.
+
+```java
+int x = 5.5;  // Compilation error: incompatible types
+```
+
+3. **Type Safety:** Java ensures that you don't accidentally assign the wrong type of data to a variable, reducing bugs and runtime errors.
+
+```java
+String str = "Hello";
+str = 123;  // Compilation error: 'int' cannot be assigned to a 'String'
+```
+
+4. **Method Signatures**\
+   Method arguments and return types must have explicit types.
+
+```java
+public int add(int a, int b) { // Arguments and return type must be declared
+    return a + b;
+}
+```
+
+### Advantages of Static Typing
+
+1. **Early Error Detection:** Errors are caught during compile-time rather than runtime, making the code safer.
+2. **Code Predictability:** Knowing the types makes the code easier to understand and predict.
+3. **Improved Performance:** Because types are known at compile time, the JVM can optimize performance better.
+4. **Enhanced Tooling Support:** IDEs can provide better autocomplete, refactoring tools, and error detection.
+
