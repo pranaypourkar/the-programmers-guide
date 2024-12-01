@@ -85,7 +85,7 @@
       * [Annotation](java/concepts/concepts-set-1/annotation/README.md)
         * [Custom Annotation](java/concepts/concepts-set-1/annotation/custom-annotation.md)
         * [Meta Annotation](java/concepts/concepts-set-1/annotation/meta-annotation.md)
-      * [Generics](java/concepts/concepts-set-1/generics/README.md)
+      * [Generics](java/concepts/concepts-set-1/generics.md)
         * [Covariance and Invariance](java/concepts/concepts-set-1/generics/covariance-and-invariance.md)
       * [Asynchronous Computation](java/concepts/concepts-set-1/asynchronous-computation/README.md)
         * [Parallelism and Concurrency](java/concepts/concepts-set-1/asynchronous-computation/parallelism-and-concurrency.md)

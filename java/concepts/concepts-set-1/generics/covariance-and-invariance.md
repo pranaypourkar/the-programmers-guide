@@ -12,15 +12,15 @@ Covariance allows a child type (`Subclass`) to be used where a parent type (`Sup
 
 In Java, arrays are covariant. This means an array of a subtype can be assigned to an array of its supertype.
 
-```
+```java
 String[] strings = {"one", "two"};
 Object[] objects = strings; // Allowed due to covariance
 ```
 
 **Potential Runtime Exceptions:** While covariance allows this assignment, it is unsafe:
 
-```
-Object[] objects = strings;
+```java
+Object[] objects = strings;ava
 objects[0] = 10; // ArrayStoreException at runtime
 ```
 
@@ -30,7 +30,7 @@ objects[0] = 10; // ArrayStoreException at runtime
 
 Generics in Java support covariance using **wildcards (`? extends T`)**.
 
-```
+```java
 List<? extends Number> numbers = new ArrayList<Integer>();
 ```
 
@@ -45,14 +45,14 @@ Invariance means that a type and its subtypes are **not interchangeable**. This 
 
 In Java, generic types are invariant. This means a `List<String>` is **not a subtype** of `List<Object>`, even though `String` is a subtype of `Object`.
 
-```
+```java
 List<String> strings = new ArrayList<>();
 List<Object> objects = strings; // Compilation error: incompatible types
 ```
 
 **Why?** If this were allowed, it would break type safety:
 
-```
+```java
 List<Object> objects = new ArrayList<String>();
 objects.add(10); // Violates the type safety of `String` elements.
 ```
