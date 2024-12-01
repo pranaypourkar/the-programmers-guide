@@ -267,7 +267,7 @@ int[] immutableArray = Arrays.copyOf(originalArray, originalArray.length);
 
 ## Arrays with Generics
 
-Java arrays and generics don’t integrate seamlessly because arrays are **covariant** and generics are **invariant**. This mismatch introduces potential type-safety issues.
+Java arrays and generics don’t integrate quite well because arrays are **covariant** and generics are **invariant**. This mismatch introduces potential type-safety issues.
 
 
 
