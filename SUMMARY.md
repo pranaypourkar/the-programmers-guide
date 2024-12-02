@@ -71,7 +71,7 @@
     * [Overview - TBU](java/java-internals-tbu/overview-tbu.md)
     * [Java Virtual Machine (JVM) - TBU](java/java-internals-tbu/java-virtual-machine-jvm.md)
     * [Memory Management - TBU](java/java-internals-tbu/memory-management-tbu.md)
-    * [Variables - TBU](java/java-internals-tbu/variables-tbu.md)
+    * [Variables](java/java-internals-tbu/variables.md)
     * [Classloading Mechanism - TBU](java/java-internals-tbu/classloading-mechanism-tbu.md)
     * [Execution Engine - TBU](java/java-internals-tbu/execution-engine-tbu.md)
     * [Threading and Synchronization - TBU](java/java-internals-tbu/threading-and-synchronization-tbu.md)
