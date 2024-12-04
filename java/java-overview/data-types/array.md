@@ -489,6 +489,84 @@ class Student {
 }
 ```
 
+## **Arrays Conversion to Streams**
+
+### Single-Dimensional Arrays
+
+Java provides `Arrays.stream` method and the `Stream.of` method to convert a single-dimensional array to a stream:
+
+1.  **Using `Arrays.stream`:**
+
+    ```java
+    int[] numbers = {1, 2, 3, 4, 5};
+    IntStream intStream = Arrays.stream(numbers);
+    ```
+2.  **Using `Stream.of`:**
+
+    ```java
+    String[] names = {"Alice", "Bob", "Charlie"};
+    Stream<String> nameStream = Stream.of(names);
+    ```
+
+**Examples**
+
+```java
+// Filter Even Numbers
+int[] numbers = {1, 2, 3, 4, 5};
+Arrays.stream(numbers)
+      .filter(num -> num % 2 == 0)
+      .forEach(System.out::println);
+
+// Find Maximum
+int[] numbers = {1, 2, 3, 4, 5};
+int max = Arrays.stream(numbers).max().orElseThrow();
+System.out.println(max);
+
+// Convert to List
+String[] names = {"Alice", "Bob", "Charlie"};
+List<String> nameList = Arrays.stream(names).collect(Collectors.toList());
+```
+
+### Multi-Dimensional Arrays
+
+Directly converting multi-dimensional arrays into streams isn't supported. However, we can flatten them into a single-dimensional structure or use nested streams.
+
+```java
+// Using Arrays.stream and flatMap
+int[][] matrix = {{1, 2}, {3, 4}, {5, 6}};
+IntStream flatStream = Arrays.stream(matrix)
+                             .flatMapToInt(Arrays::stream);
+flatStream.forEach(System.out::println);
+
+// For Object[][]
+String[][] data = {{"Alice", "Bob"}, {"Charlie", "David"}};
+Stream<String> flatStream = Arrays.stream(data)
+                                  .flatMap(Arrays::stream);
+flatStream.forEach(System.out::println);
+
+// Sum of All Elements
+int[][] matrix = {{1, 2}, {3, 4}, {5, 6}};
+int sum = Arrays.stream(matrix)
+                .flatMapToInt(Arrays::stream)
+                .sum();
+System.out.println(sum);
+
+// Find Distinct Elements
+int[][] matrix = {{1, 2, 3}, {3, 4, 5}, {5, 6, 7}};
+Arrays.stream(matrix)
+      .flatMapToInt(Arrays::stream)
+      .distinct()
+      .forEach(System.out::println);
+
+// Transform and Collect
+String[][] data = {{"apple", "banana"}, {"carrot", "date"}};
+List<String> upperCaseList = Arrays.stream(data)
+                                   .flatMap(Arrays::stream)
+                                   .map(String::toUpperCase)
+                                   .collect(Collectors.toList());
+System.out.println(upperCaseList);
+```
+
 ## **Best Practices**
 
 1. Always check the array length before accessing elements.
