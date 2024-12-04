@@ -531,6 +531,8 @@ List<String> nameList = Arrays.stream(names).collect(Collectors.toList());
 
 Directly converting multi-dimensional arrays into streams isn't supported. However, we can flatten them into a single-dimensional structure or use nested streams.
 
+**Examples**
+
 ```java
 // Using Arrays.stream and flatMap
 int[][] matrix = {{1, 2}, {3, 4}, {5, 6}};
