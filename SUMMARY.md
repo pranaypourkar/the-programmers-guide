@@ -59,6 +59,8 @@
         * [StringBuffer](java/java-overview/data-types/string/stringbuffer.md)
         * [Multiline String](java/java-overview/data-types/string/multiline-string.md)
       * [Array](java/java-overview/data-types/array.md)
+      * [List](java/java-overview/data-types/list/README.md)
+        * [ArrayList](java/java-overview/data-types/list/arraylist.md)
   * [Java Installation](java/java-installation-info.md)
   * [Java Features by Version](java/java-features-by-version/README.md)
     * [How New Java Features are Released ?](java/java-features-by-version/how-new-java-features-are-released.md)
