@@ -47,6 +47,8 @@ The performance of `ArrayList` operations depends on the dynamic resizing of the
 
 ## Examples
 
+### Basic Operation
+
 ```java
 import java.util.ArrayList;
 import java.util.Collections;
@@ -161,7 +163,57 @@ class Student {
 }
 ```
 
+### **Generic ArrayLists**
 
+```java
+ArrayList<Integer> intList = new ArrayList<>();
+intList.add(10);
+intList.add(20);
+int sum = intList.stream().mapToInt(Integer::intValue).sum();
+System.out.println("Sum: " + sum);
+```
 
+{% hint style="info" %}
+*   **Type Safety:**
 
+    ```java
+    ArrayList<Integer> intList = new ArrayList<>();
+    ```
 
+    * The `ArrayList` is declared with the generic type `<Integer>`.
+    * This ensures that only `Integer` objects can be added to `intList`, avoiding runtime `ClassCastException`.
+    * Generics enforce compile-time type checking.
+* **Stream API Compatibility:**
+  * The `intList.stream()` method returns a `Stream<Integer>` because the list is generic with `Integer` type.
+  * The stream operation `.mapToInt(Integer::intValue)` converts the `Stream<Integer>` into an `IntStream` for summation.
+  * This operation is efficient because it avoids boxing/unboxing operations during summation.
+* **Eliminating Casting:**
+  *   Without generics, we would need to cast objects manually when retrieving elements, which is error-prone:
+
+      ```java
+      ArrayList intList = new ArrayList();
+      intList.add(10);  // Adds Integer (auto-boxed)
+      int num = (Integer) intList.get(0);  // Manual casting required
+      ```
+{% endhint %}
+
+### **Custom Sorting with Comparators**
+
+```java
+ArrayList<Student> students = new ArrayList<>();
+students.add(new Student("John", 21));
+students.add(new Student("Emily", 22));
+students.sort((s1, s2) -> s1.getAge() - s2.getAge());
+System.out.println("Sorted by Age: " + students);
+```
+
+### **Using Streams**
+
+```java
+ArrayList<String> names = new ArrayList<>();
+names.add("Alice");
+names.add("Bob");
+names.add("Charlie");
+long count = names.stream().filter(name -> name.startsWith("A")).count();
+System.out.println("Names starting with A: " + count);
+```
