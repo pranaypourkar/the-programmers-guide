@@ -62,7 +62,7 @@
       * [List](java/java-overview/data-types/list/README.md)
         * [Array vs List](java/java-overview/data-types/list/array-vs-list.md)
         * [ArrayList](java/java-overview/data-types/list/arraylist.md)
-        * [Page 1](java/java-overview/data-types/list/page-1.md)
+        * [Vector](java/java-overview/data-types/list/vector.md)
   * [Java Installation](java/java-installation-info.md)
   * [Java Features by Version](java/java-features-by-version/README.md)
     * [How New Java Features are Released ?](java/java-features-by-version/how-new-java-features-are-released.md)
