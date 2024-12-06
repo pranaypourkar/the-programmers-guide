@@ -66,6 +66,7 @@
           * [Stack](java/java-overview/data-types/list/vector/stack/README.md)
             * [Example](java/java-overview/data-types/list/vector/stack/example.md)
       * [Queue](java/java-overview/data-types/queue.md)
+        * [ArrayDeque](java/java-overview/data-types/queue/arraydeque.md)
         * [PriorityQueue](java/java-overview/data-types/queue/priorityqueue.md)
       * [Deque (Double-Ended Queue)](java/java-overview/data-types/deque-double-ended-queue.md)
   * [Java Installation](java/java-installation-info.md)
