@@ -109,7 +109,7 @@ numberVector.add(20);
 System.out.println("Sum of vector: " + numberVector.stream().mapToInt(Integer::intValue).sum());
 ```
 
-### **Custom Objects in Vector:**&#x20;
+### **Custom Objects in Vector**
 
 Like `ArrayList`, We can store custom objects in `Vector`.
 
@@ -148,7 +148,13 @@ synchronized (threadSafeVector) {
 }
 ```
 
+## **Why Vector is Not Preferred in Modern Java ?**
 
+1. **Synchronization Overhead:** The synchronization in `Vector` can be costly in performance, especially when it’s not needed. For concurrent access, `CopyOnWriteArrayList` or other concurrent collections are preferred.
+2. **Better Alternatives:** `ArrayList` provides similar functionality without the overhead of synchronization and is generally faster.
+3. **Legacy Class:** `Vector` is part of the original Java versions, and while still supported, it has been superseded by newer, more efficient collections.
 
+## **When to Use Vector ?**
 
-
+* **Thread-Safe Operations:** If you need automatic synchronization, you can use `Vector`, but better alternatives exist like `CopyOnWriteArrayList` or `ArrayBlockingQueue`.
+* **Legacy Code:** In some cases, legacy systems might still use `Vector` and refactoring to a more modern collection like `ArrayList` may not be immediately feasible.
