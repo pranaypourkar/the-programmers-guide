@@ -32,7 +32,22 @@ List<Integer> numbers = new LinkedList<>();
 8. **Stream API Compatibility**: Efficient bulk operations like filtering and mapping.
 9. **Immutable List**: Use `List.of()` to create immutable lists.
 
-## **Implementations of `List`**
+## **Key Methods**
+
+* `add(E e)`: Adds an element.
+* `get(int index)`: Retrieves an element by index.
+* `set(int index, E element)`: Replaces the element at a specified position.
+* `remove(int index)` / `remove(Object o)`: Removes an element.
+* `size()`: Returns the number of elements.
+* `isEmpty()`: Checks if the list is empty.
+* `contains(Object o)`: Checks if the list contains a specified element.
+* `clear()`: Removes all elements.
+* `addAll(Collection<? extends E> c)`: Adds all elements of a collection.
+* `retainAll(Collection<?> c)`: Retains only elements present in the specified collection.
+* `subList(int fromIndex, int toIndex)`: Returns a portion of the list.
+* `toArray()`: Converts the list into an array.
+
+## **`List` Implementations**
 
 ### **1. ArrayList**
 

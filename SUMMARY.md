@@ -64,6 +64,7 @@
         * [ArrayList](java/java-overview/data-types/list/arraylist.md)
         * [Vector](java/java-overview/data-types/list/vector/README.md)
           * [Stack](java/java-overview/data-types/list/vector/stack.md)
+        * [Queue](java/java-overview/data-types/list/queue.md)
   * [Java Installation](java/java-installation-info.md)
   * [Java Features by Version](java/java-features-by-version/README.md)
     * [How New Java Features are Released ?](java/java-features-by-version/how-new-java-features-are-released.md)
