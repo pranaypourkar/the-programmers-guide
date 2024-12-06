@@ -23,6 +23,7 @@ The `Stack` class provides methods that operate on the stack in a LIFO manner, s
 * `push(E item)`: Adds an item to the top of the stack.
 * `pop()`: Removes and returns the item at the top of the stack. Throws `EmptyStackException` if the stack is empty.
 * `peek()`: Returns the item at the top of the stack without removing it. Throws `EmptyStackException` if the stack is empty.
+* `firstElement()`: Returns the item at the bottom of the stack without removing it. Throws `EmptyStackException` if the stack is empty.
 * `empty()`: Returns `true` if the stack is empty, otherwise `false`.
 * `search(Object o)`: Returns the 1-based position of the object in the stack, or -1 if not found.
 * `size()`: Returns the number of elements in the stack.
@@ -55,6 +56,9 @@ public class StackExample {
 
         // Peek the top element
         System.out.println("Top element (peek): " + stack.peek()); //Top element (peek): Date
+
+        // Peek the bottom element
+        System.out.println("Bottom element (firstElement): " + stack.firstElement()); //Bottom element (firstElement): Apple
 
         // Pop the top element
         System.out.println("Popped element: " + stack.pop()); //Popped element: Date
