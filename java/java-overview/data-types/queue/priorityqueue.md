@@ -110,7 +110,7 @@ class Task {
 }
 ```
 
-**Using PriorityQueue for Task Scheduling (Max-Heap):**
+### **Using PriorityQueue for Task Scheduling (Max-Heap)**
 
 ```java
 import java.util.*;
