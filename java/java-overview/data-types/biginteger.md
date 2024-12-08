@@ -139,6 +139,28 @@ System.out.println(hexNumber); // Prints 255
     ```
 * `BigInteger.probablePrime(int bitLength, Random rnd)`: Generates a probable prime.
 
+### **Primality of `BigInteger`**
+
+In mathematics, a **prime number** is a natural number greater than 1 that has no positive divisors other than 1 and itself. The **primality test** is used to determine whether a given number is prime or not. Since prime numbers play a crucial role in fields such as **cryptography**, **number theory**, and **computational mathematics**, **BigInteger** provides methods to check for primality efficiently, even for very large numbers.
+
+`BigInteger` class provides methods to test whether a given `BigInteger` is a probable prime number. The method used for this is based on probabilistic tests such as the **Miller-Rabin primality test**.
+
+**Method to Check Primality ->`isProbablePrime(int certainty)`**
+
+The primary method for checking the primality of a `BigInteger` is the `isProbablePrime()` method. It tests whether the number is prime, with a certain level of certainty, by using a **probabilistic algorithm**. The method returns a `boolean`value: `true` if the number is probably prime, or `false` if it is definitely not prime.
+
+```java
+BigInteger num = new BigInteger("123456789123456789");
+boolean isPrime = num.isProbablePrime(10);
+System.out.println("Is prime? " + isPrime);
+```
+
+* **`certainty` Parameter**:
+  * The `certainty` parameter is an integer that controls the **accuracy of the test**.
+  * A higher certainty value increases the number of rounds of testing, thus improving the accuracy of the result. For example, `certainty = 100` means the algorithm will make 100 rounds of testing.
+  * If `certainty` is set to a high value, the result is highly reliable (but not 100% guaranteed since this is a **probabilistic** test).
+  * The number of rounds needed to determine primality is usually logarithmic in the size of the number, so a higher `certainty` increases the time complexity but enhances accuracy.
+
 ## **Limitations of** `BigInteger`
 
 * No direct support for floating-point values. For arbitrary-precision decimal operations, `BigDecimal` should be used.
