@@ -6,6 +6,10 @@ A **PriorityQueue** is a queue in which each element is associated with a priori
 
 Unlike a regular queue, which operates in a FIFO (First In, First Out) order, the `PriorityQueue` provides an ordering of elements according to their priority, where the element with the highest priority is dequeued first. By default, it orders elements according to their natural ordering (via `Comparable`), but a custom comparator can also be provided for custom ordering.
 
+{% hint style="info" %}
+Elements of a priority queue may not be sorted. However, elements are always retrieved in sorted order.
+{% endhint %}
+
 ## **Features**
 
 1. **Unbounded:** `PriorityQueue` is typically unbounded, meaning it can grow dynamically as elements are added.
@@ -20,7 +24,7 @@ Unlike a regular queue, which operates in a FIFO (First In, First Out) order, th
 
 ## **Key Methods**
 
-<table data-header-hidden data-full-width="true"><thead><tr><th width="216"></th><th width="185"></th><th></th></tr></thead><tbody><tr><td><strong>Method Type</strong></td><td><strong>Method</strong></td><td><strong>Description</strong></td></tr><tr><td><strong>Add Operations</strong></td><td><code>add(E e)</code></td><td>Inserts the specified element into the priority queue.</td></tr><tr><td></td><td><code>offer(E e)</code></td><td>Inserts the specified element into the queue, returns <code>false</code> if full (rare).</td></tr><tr><td><strong>Remove Operations</strong></td><td><code>remove()</code></td><td>Removes a single instance of the specified element from the queue.</td></tr><tr><td></td><td><code>poll()</code></td><td>Retrieves and removes the highest priority element from the queue.</td></tr><tr><td><strong>Access Operations</strong></td><td><code>peek()</code></td><td>Retrieves the highest priority element without removing it.</td></tr><tr><td></td><td><code>element()</code></td><td>Retrieves the highest priority element without removing it. Throws exception if empty.</td></tr><tr><td><strong>Size and Clearing</strong></td><td><code>size()</code></td><td>Returns the number of elements in the priority queue.</td></tr><tr><td></td><td><code>clear()</code></td><td>Removes all elements from the priority queue.</td></tr><tr><td><strong>Iterators</strong></td><td><code>iterator()</code></td><td>Returns an iterator over the elements of the priority queue.</td></tr></tbody></table>
+<table data-header-hidden data-full-width="true"><thead><tr><th width="216"></th><th width="185"></th><th></th></tr></thead><tbody><tr><td><strong>Method Type</strong></td><td><strong>Method</strong></td><td><strong>Description</strong></td></tr><tr><td><strong>Add Operations</strong></td><td><code>add(E e)</code></td><td>Inserts the specified element into the priority queue.</td></tr><tr><td></td><td><code>offer(E e)</code></td><td>Inserts the specified element into the queue, returns <code>false</code> if full (rare).</td></tr><tr><td><strong>Remove Operations</strong></td><td><code>remove()</code></td><td>Removes a single instance of the specified element from the queue. This method differs from poll() only in that it throws an NoSuchElementException exception if this queue is empty.</td></tr><tr><td></td><td><code>poll()</code></td><td>Retrieves and removes the highest priority element from the queue. Or returns null if this queue is empty.</td></tr><tr><td><strong>Access Operations</strong></td><td><code>peek()</code></td><td>Retrieves the highest priority element without removing it.</td></tr><tr><td></td><td><code>element()</code></td><td>Retrieves the highest priority element without removing it. Throws exception if empty.</td></tr><tr><td><strong>Size and Clearing</strong></td><td><code>size()</code></td><td>Returns the number of elements in the priority queue.</td></tr><tr><td></td><td><code>clear()</code></td><td>Removes all elements from the priority queue.</td></tr><tr><td><strong>Iterators</strong></td><td><code>iterator()</code></td><td>Returns an iterator over the elements of the priority queue.</td></tr></tbody></table>
 
 ## **Big O Time Complexity for PriorityQueue Operations**
 
@@ -106,6 +110,41 @@ class Task {
 
     public int getPriority() {
         return priority;
+    }
+}
+```
+
+```java
+public class PriorityQueueExample {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int q = sc.nextInt();
+        PriorityQueue<Integer> queue = new PriorityQueue<>(new ReverseOrderComparator());
+
+        for (int i = 0; i < q; i++) {
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+
+            if (x == 1) {
+                queue.add(y);
+            } else if (x == 2) {
+                if (queue.isEmpty()) {
+                    System.out.println(-1);
+                } else {
+                    System.out.println(queue.peek());
+                }
+            } else if (x == 3) {
+                queue.poll();
+            }
+
+        }
+    }
+
+    static class ReverseOrderComparator implements Comparator<Integer> {
+        @Override
+        public int compare(Integer o1, Integer o2) {
+            return o2.compareTo(o1); // Reverse order
+        }
     }
 }
 ```

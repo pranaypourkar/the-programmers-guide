@@ -65,6 +65,7 @@
         * [Vector](java/java-overview/data-types/list/vector/README.md)
           * [Stack](java/java-overview/data-types/list/vector/stack/README.md)
             * [Example](java/java-overview/data-types/list/vector/stack/example.md)
+        * [LinkedList - TBU](java/java-overview/data-types/list/linkedlist-tbu.md)
       * [Queue](java/java-overview/data-types/queue.md)
         * [PriorityQueue](java/java-overview/data-types/queue/priorityqueue.md)
         * [Deque (Double-Ended Queue)](java/java-overview/data-types/queue/deque-double-ended-queue/README.md)
