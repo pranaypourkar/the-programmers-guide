@@ -1,4 +1,4 @@
-# Example
+# Problems
 
 ## Problem 1
 

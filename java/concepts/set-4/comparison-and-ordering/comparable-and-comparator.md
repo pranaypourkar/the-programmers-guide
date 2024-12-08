@@ -173,3 +173,27 @@ class AgeComparator implements Comparator<Person> {
 ## Comparable vs Comparator
 
 <table data-header-hidden data-full-width="true"><thead><tr><th width="181"></th><th></th><th></th></tr></thead><tbody><tr><td><strong>Feature</strong></td><td><strong>Comparable</strong></td><td><strong>Comparator</strong></td></tr><tr><td><strong>Interface</strong></td><td>Implemented by the class of objects being compared.</td><td>Standalone interface that can compare any objects.</td></tr><tr><td><strong>Method</strong></td><td><code>compareTo(Object obj)</code></td><td><code>compare(T o1, T o2)</code></td></tr><tr><td><strong>Purpose</strong></td><td>Defines natural ordering of objects within a class.</td><td>Defines custom sorting order for objects externally.</td></tr><tr><td><strong>Usage</strong></td><td>Objects of a class can be sorted automatically.</td><td>Objects can be sorted in multiple custom ways.</td></tr><tr><td><strong>Location</strong></td><td>Part of the object's class.</td><td>Independent of the object's class.</td></tr><tr><td><strong>Flexibility</strong></td><td>Limited to one way of sorting per class.</td><td>Multiple comparators can be defined for one class.</td></tr><tr><td><strong>Implementation</strong></td><td>Changes made within the object's class.</td><td>Implemented separately, often as inner classes.</td></tr><tr><td><strong>Sorting</strong></td><td>Used by Java collections for default sorting.</td><td>Used for custom sorting and ordering.</td></tr><tr><td><strong>Natural Order</strong></td><td>Natural ordering is inherent to the class.</td><td>No inherent natural ordering; flexible definitions.</td></tr><tr><td><strong>Example</strong></td><td>Sorting integers based on their natural order.</td><td>Sorting people by age, name, or other criteria.</td></tr></tbody></table>
+
+## How to decide ordeing (Ascending and Descending) ?
+
+When using `compareTo`, the way the objects are compared determines the order of sorting (ascending or descending). The key difference between `o1.compareTo(o2)` and `o2.compareTo(o1)` lies in the **direction of the comparison**.
+
+### **How `o1.compareTo(o2)` Works**
+
+* **`o1.compareTo(o2)`** means **"compare object `o1` with object `o2`."**
+* The result defines the relative order of `o1` compared to `o2`:
+  * Returns **negative** if `o1` is less than `o2`.
+  * Returns **positive** if `o1` is greater than `o2`.
+  * Returns **0** if `o1` and `o2` are equal.
+
+This is commonly used for **ascending order** sorting.
+
+### **How `o2.compareTo(o1)` Works**
+
+* **`o2.compareTo(o1)`** means **"compare object `o2` with object `o1`."**
+* The result defines the relative order of `o2` compared to `o1`:
+  * Returns **negative** if `o2` is less than `o1`.
+  * Returns **positive** if `o2` is greater than `o1`.
+  * Returns **0** if `o2` and `o1` are equal.
+
+This is commonly used for **descending order** sorting because it flips the direction of comparison.
