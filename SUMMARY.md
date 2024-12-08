@@ -70,6 +70,8 @@
         * [PriorityQueue](java/java-overview/data-types/queue/priorityqueue.md)
         * [Deque (Double-Ended Queue)](java/java-overview/data-types/queue/deque-double-ended-queue/README.md)
           * [ArrayDeque](java/java-overview/data-types/queue/deque-double-ended-queue/arraydeque.md)
+      * [BigInteger](java/java-overview/data-types/biginteger.md)
+      * [BigDecimal](java/java-overview/data-types/bigdecimal.md)
   * [Java Installation](java/java-installation-info.md)
   * [Java Features by Version](java/java-features-by-version/README.md)
     * [How New Java Features are Released ?](java/java-features-by-version/how-new-java-features-are-released.md)
