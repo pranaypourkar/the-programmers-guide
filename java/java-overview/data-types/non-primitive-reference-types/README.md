@@ -77,7 +77,7 @@ Java provides the **Collection Framework** for handling dynamic data structures.
     * Use Case: Handling collections with no duplicates.
 
     ```java
-    eSet<String> uniqueNames = new HashSet<>();
+    Set<String> uniqueNames = new HashSet<>();
     uniqueNames.add("John");
     uniqueNames.add("John"); // Duplicate ignored
     ```
