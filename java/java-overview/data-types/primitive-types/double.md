@@ -32,13 +32,7 @@
 
 ### **Wrapper Class Example (`Double`)**
 
-| **Method**                     | **Description**                                                |
-| ------------------------------ | -------------------------------------------------------------- |
-| `Double.valueOf(double d)`     | Returns a `Double` object for the given `double` value.        |
-| `Double.parseDouble(String s)` | Parses the string argument as a `double`.                      |
-| `Double.toString(double d)`    | Converts `double` to its `String` representation.              |
-| `Double.isNaN(double d)`       | Checks if the `double` value is `NaN`.                         |
-| `Double.isInfinite(double d)`  | Checks if the `double` value is positive or negative infinity. |
+<table data-header-hidden data-full-width="true"><thead><tr><th width="383"></th><th></th></tr></thead><tbody><tr><td><strong>Method</strong></td><td><strong>Description</strong></td></tr><tr><td><code>Double.valueOf(double d)</code></td><td>Returns a <code>Double</code> object for the given <code>double</code> value.</td></tr><tr><td><code>Double.parseDouble(String s)</code></td><td>Parses the string argument as a <code>double</code>.</td></tr><tr><td><code>Double.toString(double d)</code></td><td>Converts <code>double</code> to its <code>String</code> representation.</td></tr><tr><td><code>Double.isNaN(double d)</code></td><td>Checks if the <code>double</code> value is <code>NaN</code>.</td></tr><tr><td><code>Double.isInfinite(double d)</code></td><td>Checks if the <code>double</code> value is positive or negative infinity.</td></tr></tbody></table>
 
 ## **Common Mistakes**
 

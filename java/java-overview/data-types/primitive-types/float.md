@@ -30,6 +30,10 @@
 
 <table data-header-hidden data-full-width="true"><thead><tr><th width="221"></th><th width="294"></th><th></th></tr></thead><tbody><tr><td><strong>Conversion</strong></td><td><strong>Method</strong></td><td><strong>Example</strong></td></tr><tr><td><code>float</code> to <code>String</code></td><td><code>String.valueOf(float)</code></td><td><code>String.valueOf(12.34f)</code> → <code>"12.34"</code></td></tr><tr><td><code>String</code> to <code>float</code></td><td><code>Float.parseFloat(String)</code></td><td><code>Float.parseFloat("12.34")</code> → <code>12.34f</code></td></tr><tr><td><code>float</code> to <code>double</code></td><td>Implicit conversion</td><td><code>double result = 12.34f;</code></td></tr><tr><td><code>double</code> to <code>float</code></td><td>Explicit cast <code>(float)</code></td><td><code>(float) 12.34</code> → <code>12.34f</code></td></tr></tbody></table>
 
+### **Wrapper Class Example (`Float`)**
+
+<table data-header-hidden data-full-width="true"><thead><tr><th width="358"></th><th></th></tr></thead><tbody><tr><td><strong>Method</strong></td><td><strong>Description</strong></td></tr><tr><td><code>Float.valueOf(float f)</code></td><td>Returns a <code>Float</code> object for the given <code>float</code> value.</td></tr><tr><td><code>Float.parseFloat(String s)</code></td><td>Parses the string argument as a <code>float</code>.</td></tr><tr><td><code>Float.toString(float f)</code></td><td>Converts <code>float</code> to its <code>String</code> representation.</td></tr><tr><td><code>Float.isNaN(float f)</code></td><td>Checks if the <code>float</code> value is <code>NaN</code>.</td></tr><tr><td><code>Float.isInfinite(float f)</code></td><td>Checks if the <code>float</code> value is positive or negative infinity.</td></tr></tbody></table>
+
 ## **Common Mistakes**
 
 1.  **Loss of Precision:** Since `float` has only about 6-7 decimal digits of precision, rounding errors can occur in calculations that require higher precision. For example:
@@ -115,3 +119,19 @@ public class FloatStreamExample {
 }
 ```
 
+### **Wrapper Class Example**
+
+```java
+public class FloatWrapperExample {
+    public static void main(String[] args) {
+        String strValue = "12.34";
+        float parsedValue = Float.parseFloat(strValue); 
+        System.out.println("Parsed Value: " + parsedValue); // Parsed Value: 12.34
+
+        float minValue = Float.MIN_VALUE; 
+        float maxValue = Float.MAX_VALUE; 
+        System.out.println("Min Value: " + minValue); // Min Value: 1.4E-45
+        System.out.println("Max Value: " + maxValue); // Max Value: 3.4028235E38
+    }
+}
+```

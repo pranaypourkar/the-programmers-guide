@@ -44,6 +44,10 @@
 
 <table data-header-hidden data-full-width="true"><thead><tr><th width="189"></th><th width="256"></th><th></th></tr></thead><tbody><tr><td><strong>Conversion</strong></td><td><strong>Method</strong></td><td><strong>Example</strong></td></tr><tr><td><code>long</code> to <code>String</code></td><td><code>String.valueOf(long)</code></td><td><code>String.valueOf(123456L)</code> → <code>"123456"</code></td></tr><tr><td><code>String</code> to <code>long</code></td><td><code>Long.parseLong(String)</code></td><td><code>Long.parseLong("123456")</code> → <code>123456</code></td></tr><tr><td><code>long</code> to <code>int</code></td><td>Explicit cast <code>(int)</code></td><td><code>(int) 123456L</code> → <code>123456</code></td></tr><tr><td><code>int</code> to <code>long</code></td><td>Implicit conversion</td><td><code>long largeValue = 123456;</code></td></tr></tbody></table>
 
+### **Wrapper Class Example (`Long`)**
+
+<table data-header-hidden data-full-width="true"><thead><tr><th width="328"></th><th></th></tr></thead><tbody><tr><td><strong>Method</strong></td><td><strong>Description</strong></td></tr><tr><td><code>Long.valueOf(long l)</code></td><td>Returns a <code>Long</code> object for the given <code>long</code> value.</td></tr><tr><td><code>Long.parseLong(String s)</code></td><td>Parses the string argument as a <code>long</code>.</td></tr><tr><td><code>Long.toString(long l)</code></td><td>Converts <code>long</code> to its <code>String</code> representation.</td></tr><tr><td><code>Long.compare(long x, y)</code></td><td>Compares two <code>long</code> values.</td></tr><tr><td><code>Long.MIN_VALUE</code></td><td>Minimum value of <code>long</code> (-9,223,372,036,854,775,808).</td></tr><tr><td><code>Long.MAX_VALUE</code></td><td>Maximum value of <code>long</code> (9,223,372,036,854,775,807).</td></tr></tbody></table>
+
 ## **Common Mistakes**
 
 1.  **Integer Overflow:** If an operation exceeds the range of `long`, it can cause overflow:
@@ -152,6 +156,23 @@ public class LongCollectionExample {
     public static void main(String[] args) {
         List<Long> list = Arrays.asList(100L, 200L, 300L);
         list.forEach(System.out::println); // 100, 200, 300
+    }
+}
+```
+
+### **Wrapper Class Example**
+
+```java
+public class LongWrapperExample {
+    public static void main(String[] args) {
+        String strValue = "123456789";
+        long parsedValue = Long.parseLong(strValue); 
+        System.out.println("Parsed Value: " + parsedValue); // Parsed Value: 123456789
+
+        long minValue = Long.MIN_VALUE; 
+        long maxValue = Long.MAX_VALUE; 
+        System.out.println("Min Value: " + minValue); // Min Value: -9223372036854775808
+        System.out.println("Max Value: " + maxValue); // Max Value: 9223372036854775807
     }
 }
 ```
