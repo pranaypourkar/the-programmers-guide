@@ -40,6 +40,15 @@
 
 <table data-header-hidden data-full-width="true"><thead><tr><th width="241"></th><th width="349"></th><th></th></tr></thead><tbody><tr><td><strong>Conversion</strong></td><td><strong>Method</strong></td><td><strong>Example</strong></td></tr><tr><td><code>char</code> to <code>String</code></td><td><code>Character.toString(c)</code> or <code>String.valueOf(c)</code></td><td><code>String.valueOf('A')</code> → <code>"A"</code></td></tr><tr><td><code>String</code> to <code>char</code></td><td><code>string.charAt(index)</code></td><td><code>"Hello".charAt(0)</code> → <code>'H'</code></td></tr><tr><td><code>char</code> to <code>int</code></td><td><code>(int) c</code></td><td><code>(int) 'A'</code> → <code>65</code></td></tr><tr><td><code>int</code> to <code>char</code></td><td><code>(char) i</code></td><td><code>(char) 65</code> → <code>'A'</code></td></tr><tr><td>Upper/Lower Case Conversion</td><td><code>Character.toUpperCase(c)</code> / <code>toLowerCase(c)</code></td><td><code>Character.toLowerCase('A')</code> → <code>'a'</code></td></tr></tbody></table>
 
+## **Common Mistakes**
+
+1. **Using Strings Instead of `char`:**
+   * `'A'` (char) ≠ `"A"` (String).
+2. **Casting Beyond Valid Range:**
+   * Casting large integers to `char` can lead to unexpected results due to wrapping.
+3. **Treating `char` as Boolean:**
+   * Avoid using characters like `'Y'` or `'N'` as substitutes for `true`/`false`
+
 ## Examples
 
 ### Basic example
@@ -106,7 +115,38 @@ public class StringCharExample {
 }
 ```
 
+### **Using `char` with Streams**
 
+```java
+import java.util.stream.IntStream;
+
+public class CharStreamExample {
+    public static void main(String[] args) {
+        String text = "Hello World";
+        text.chars()
+            .mapToObj(c -> (char) c)
+            .forEach(System.out::println);
+    }
+}
+```
+
+### **Custom Character Validation**
+
+```java
+public class CharValidation {
+    public static void main(String[] args) {
+        char c = '9';
+
+        if (Character.isDigit(c)) {
+            System.out.println(c + " is a digit.");
+        } else if (Character.isLetter(c)) {
+            System.out.println(c + " is a letter.");
+        } else {
+            System.out.println(c + " is neither a digit nor a letter.");
+        }
+    }
+}
+```
 
 
 
