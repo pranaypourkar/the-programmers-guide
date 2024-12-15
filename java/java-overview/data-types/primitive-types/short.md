@@ -23,10 +23,7 @@
     ```
 5. **Usage in Streams:** Since Java Streams operate on `int`, `short` values must be converted or boxed to work with streams.
 6. **Interoperability:** Often used in file handling, network protocols, and legacy systems where compact data representation is required.
-
-## **Memory and Implementation Details**
-
-* **Memory Usage:** Requires **16 bits (2 bytes)** per value, stored in signed 2’s complement representation.
+7. **Memory Usage:** Requires **16 bits (2 bytes)** per value, stored in signed 2’s complement representation.
 
 ## **Operations with `short`**
 
@@ -37,6 +34,10 @@
 ### **Conversion Methods**
 
 <table data-header-hidden data-full-width="true"><thead><tr><th width="221"></th><th width="286"></th><th></th></tr></thead><tbody><tr><td><strong>Conversion</strong></td><td><strong>Method</strong></td><td><strong>Example</strong></td></tr><tr><td><code>short</code> to <code>String</code></td><td><code>String.valueOf(short)</code></td><td><code>String.valueOf(100)</code> → <code>"100"</code></td></tr><tr><td><code>String</code> to <code>short</code></td><td><code>Short.parseShort(String)</code></td><td><code>Short.parseShort("123")</code> → <code>123</code></td></tr><tr><td><code>short</code> to <code>int</code></td><td>Implicit conversion</td><td><code>int value = shortVar;</code></td></tr><tr><td><code>int</code> to <code>short</code></td><td>Explicit cast <code>(short)</code></td><td><code>(short) 50000</code> → Overflow behavior</td></tr><tr><td><code>short</code> to <code>double</code></td><td>Implicit conversion</td><td><code>double value = shortVar;</code></td></tr></tbody></table>
+
+### **Short Wrapper Class (`Short`)**
+
+<table data-header-hidden data-full-width="true"><thead><tr><th width="335"></th><th></th></tr></thead><tbody><tr><td><strong>Method</strong></td><td><strong>Description</strong></td></tr><tr><td><code>Short.valueOf(short s)</code></td><td>Returns a <code>Short</code> instance for the given <code>short</code> value.</td></tr><tr><td><code>Short.parseShort(String s)</code></td><td>Parses the string argument as a <code>short</code>.</td></tr><tr><td><code>Short.toString(short s)</code></td><td>Converts <code>short</code> to its <code>String</code> representation.</td></tr><tr><td><code>Short.compare(short x, y)</code></td><td>Compares two <code>short</code> values.</td></tr><tr><td><code>Short.MIN_VALUE</code></td><td>Minimum value of <code>short</code> (-32,768).</td></tr><tr><td><code>Short.MAX_VALUE</code></td><td>Maximum value of <code>short</code> (32,767).</td></tr></tbody></table>
 
 ## **Common Mistakes**
 
@@ -144,5 +145,22 @@ public class ShortArrayMemory {
 The number `1_000_000` is **1 million**, and the underscores (`_`) in numeric literals are a feature introduced in **Java 7** to improve readability of numbers.
 {% endhint %}
 
+### **Wrapper Class Example**
 
+```java
+public class ShortWrapperExample {
+    public static void main(String[] args) {
+        String strValue = "1234";
+        short parsedValue = Short.parseShort(strValue);
+
+        System.out.println("Parsed Value: " + parsedValue);
+
+        short minValue = Short.MIN_VALUE;
+        short maxValue = Short.MAX_VALUE;
+
+        System.out.println("Min Value: " + minValue);
+        System.out.println("Max Value: " + maxValue);
+    }
+}
+```
 

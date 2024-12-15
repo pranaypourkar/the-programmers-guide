@@ -20,11 +20,8 @@
 4. **Control Flow:** It is foundational for control flow constructs (`if`, `while`, `do-while`, `for`, etc.).
 5. **Immutable:** The value of a `boolean` variable cannot be altered directly; a new assignment is needed.
 6. **Logical Operations Support:** Works with logical operators like `&&`, `||`, and `!` for combining and negating conditions.
-
-## **Memory and Implementation Details**
-
-* **Memory Usage:** Though not standardized, the JVM typically allocates **1 byte** for a `boolean` variable (smallest addressable unit of memory).
-* **Boolean Arrays:** Boolean arrays may use **1 bit per value** internally (optimized by JVM), though this varies by implementation.
+7. **Memory Usage:** Though not standardized, the JVM typically allocates **1 byte** for a `boolean` variable (smallest addressable unit of memory).
+8. **Boolean Arrays:** Boolean arrays may use **1 bit per value** internally (optimized by JVM), though this varies by implementation.
 
 ## **Operations with `boolean`**
 
@@ -43,6 +40,20 @@
 | ------------ | ---------- | ----------- | ----------------------------------- |
 | `==`         | Equality   | `a == b`    | Compares two boolean values         |
 | `!=`         | Inequality | `a != b`    | Returns true if values are unequal. |
+
+### **Wrapper Class `Boolean`**
+
+The `Boolean` class in `java.lang` provides utilities for working with `boolean` values.
+
+**Key Features:**
+
+1. **Object Representation of `boolean`:** Allows usage in Collections (e.g., `List<Boolean>`).
+2. **Constants:**
+   * `Boolean.TRUE`: A constant holding the `true` value.
+   * `Boolean.FALSE`: A constant holding the `false` value.
+3. **Static Methods:**
+   * `Boolean.parseBoolean(String s)`: Parses a string as a boolean.
+   * `Boolean.valueOf(String s)`: Returns a `Boolean` instance representing the string value.
 
 ## Examples
 

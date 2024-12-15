@@ -26,11 +26,8 @@
     char d = (char) (c + 1); // 'B'
     ```
 6. **Control Characters:** Special characters like `'\n'` (newline), `'\t'` (tab), and `'\r'` (carriage return).
-
-## **Memory and Implementation Details**
-
-* **Memory Usage:** Fixed at **2 bytes** because it uses **UTF-16** encoding.
-* **Char Arrays:** Arrays of `char` are commonly used for string manipulation.
+7. **Memory Usage:** Fixed at **2 bytes** because it uses **UTF-16** encoding.
+8. **Char Arrays:** Arrays of `char` are commonly used for string manipulation.
 
 ## **Operations with `char`**
 
@@ -40,14 +37,27 @@
 
 <table data-header-hidden data-full-width="true"><thead><tr><th width="241"></th><th width="349"></th><th></th></tr></thead><tbody><tr><td><strong>Conversion</strong></td><td><strong>Method</strong></td><td><strong>Example</strong></td></tr><tr><td><code>char</code> to <code>String</code></td><td><code>Character.toString(c)</code> or <code>String.valueOf(c)</code></td><td><code>String.valueOf('A')</code> → <code>"A"</code></td></tr><tr><td><code>String</code> to <code>char</code></td><td><code>string.charAt(index)</code></td><td><code>"Hello".charAt(0)</code> → <code>'H'</code></td></tr><tr><td><code>char</code> to <code>int</code></td><td><code>(int) c</code></td><td><code>(int) 'A'</code> → <code>65</code></td></tr><tr><td><code>int</code> to <code>char</code></td><td><code>(char) i</code></td><td><code>(char) 65</code> → <code>'A'</code></td></tr><tr><td>Upper/Lower Case Conversion</td><td><code>Character.toUpperCase(c)</code> / <code>toLowerCase(c)</code></td><td><code>Character.toLowerCase('A')</code> → <code>'a'</code></td></tr></tbody></table>
 
+### **Wrapper Class `Character`**
+
+The `Character` class provides utilities for working with `char`.
+
+**Key Features:**
+
+1. **Constants:**
+   * `Character.MIN_VALUE`: `'\u0000'`.
+   * `Character.MAX_VALUE`: `'\uffff'`.
+2. **Static Methods:**
+   * `Character.isDigit(char c)`: Checks if the character is a digit.
+   * `Character.isLetter(char c)`: Checks if the character is a letter.
+   * `Character.isUpperCase(char c)`: Checks if it’s uppercase.
+   * `Character.isWhitespace(char c)`: Checks if it’s a whitespace character.
+
 ## **Common Mistakes**
 
 1. **Using Strings Instead of `char`:**
    * `'A'` (char) ≠ `"A"` (String).
-2. **Casting Beyond Valid Range:**
-   * Casting large integers to `char` can lead to unexpected results due to wrapping.
-3. **Treating `char` as Boolean:**
-   * Avoid using characters like `'Y'` or `'N'` as substitutes for `true`/`false`
+2. **Casting Beyond Valid Range:** Casting large integers to `char` can lead to unexpected results due to wrapping.
+3. **Treating `char` as Boolean:** Avoid using characters like `'Y'` or `'N'` as substitutes for `true`/`false`
 
 ## Examples
 
