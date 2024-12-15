@@ -57,7 +57,7 @@
       * [Primitive Types](java/java-overview/data-types/primitive-types/README.md)
         * [Number Types - TBU](java/java-overview/data-types/primitive-types/number-types-tbu.md)
         * [Character (char) - TBU](java/java-overview/data-types/primitive-types/character-char-tbu.md)
-        * [Boolean (true/false) - TBU](java/java-overview/data-types/primitive-types/boolean-true-false-tbu.md)
+        * [Boolean (true/false)](java/java-overview/data-types/primitive-types/boolean-true-false.md)
       * [Non-Primitive (Reference) Types](java/java-overview/data-types/non-primitive-reference-types/README.md)
         * [String](java/java-overview/data-types/non-primitive-reference-types/string/README.md)
           * [StringBuilder](java/java-overview/data-types/non-primitive-reference-types/string/stringbuilder.md)
