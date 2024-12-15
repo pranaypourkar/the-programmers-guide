@@ -1,4 +1,4 @@
-# Boolean (true/false)
+# boolean
 
 ## About
 
@@ -46,7 +46,7 @@
 
 ## Examples
 
-### Basic operation
+### Basic example
 
 ```java
 boolean isJavaFun = true;
