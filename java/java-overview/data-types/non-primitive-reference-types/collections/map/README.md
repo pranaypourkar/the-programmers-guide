@@ -4,9 +4,9 @@
 
 The `Map` interface in Java is part of the `java.util` package and represents a collection of key-value pairs. It provides an abstract data structure where each key is mapped to a specific value, enabling efficient data retrieval based on unique keys. Unlike a `Collection`, a `Map` does not allow duplicate keys, but it permits duplicate values.
 
-* **Introduced in Java 1.2**, the `Map` interface forms a core part of the Java Collections Framework.
+* Introduced in Java 1.2, the `Map` interface forms a core part of the Java Collections Framework.
 * It is widely used for tasks such as data indexing, lookups, caching, and configuration management.
-* Maps are unordered by default unless you use implementations like `LinkedHashMap` or `TreeMap`.
+* Maps are unordered by default unless we use implementations like `LinkedHashMap` or `TreeMap`.
 
 ## **Features**
 
