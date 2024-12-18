@@ -82,7 +82,7 @@
             * [PriorityQueue](java/java-overview/data-types/non-primitive-reference-types/collections/queue/priorityqueue.md)
             * [Deque (Double-Ended Queue)](java/java-overview/data-types/non-primitive-reference-types/collections/queue/deque-double-ended-queue/README.md)
               * [ArrayDeque](java/java-overview/data-types/non-primitive-reference-types/collections/queue/deque-double-ended-queue/arraydeque.md)
-          * [Map - TBU](java/java-overview/data-types/non-primitive-reference-types/collections/map-tbu.md)
+          * [Map](java/java-overview/data-types/non-primitive-reference-types/collections/map.md)
           * [Set - TBU](java/java-overview/data-types/non-primitive-reference-types/collections/set-tbu.md)
       * [Specialized Classes](java/java-overview/data-types/specialized-classes/README.md)
         * [BigInteger](java/java-overview/data-types/specialized-classes/biginteger.md)
