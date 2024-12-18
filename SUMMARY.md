@@ -77,7 +77,7 @@
             * [Vector](java/java-overview/data-types/non-primitive-reference-types/collections/list/vector/README.md)
               * [Stack](java/java-overview/data-types/non-primitive-reference-types/collections/list/vector/stack/README.md)
                 * [Problems](java/java-overview/data-types/non-primitive-reference-types/collections/list/vector/stack/problems.md)
-            * [LinkedList - TBU](java/java-overview/data-types/non-primitive-reference-types/collections/list/linkedlist-tbu.md)
+            * [LinkedList](java/java-overview/data-types/non-primitive-reference-types/collections/list/linkedlist.md)
           * [Queue](java/java-overview/data-types/non-primitive-reference-types/collections/queue/README.md)
             * [PriorityQueue](java/java-overview/data-types/non-primitive-reference-types/collections/queue/priorityqueue.md)
             * [Deque (Double-Ended Queue)](java/java-overview/data-types/non-primitive-reference-types/collections/queue/deque-double-ended-queue/README.md)
