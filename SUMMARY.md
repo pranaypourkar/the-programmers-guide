@@ -109,7 +109,7 @@
         * [Record](java/java-overview/data-types/others/record.md)
         * [Optional](java/java-overview/data-types/others/optional.md)
         * [System](java/java-overview/data-types/others/system.md)
-        * [Runtime - TBU](java/java-overview/data-types/others/runtime-tbu.md)
+        * [Runtime](java/java-overview/data-types/others/runtime.md)
         * [ProcessBuilder - TBU](java/java-overview/data-types/others/processbuilder-tbu.md)
         * [Thread and ThreadGroup - TBU](java/java-overview/data-types/others/thread-and-threadgroup-tbu.md)
         * [Class - TBU](java/java-overview/data-types/others/class-tbu.md)
