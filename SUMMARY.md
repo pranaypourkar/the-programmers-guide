@@ -90,7 +90,7 @@
             * [TreeMap](java/java-overview/data-types/non-primitive-reference-types/collections/map/treemap.md)
             * [EnumMap](java/java-overview/data-types/non-primitive-reference-types/collections/map/enummap.md)
           * [Set](java/java-overview/data-types/non-primitive-reference-types/collections/set/README.md)
-            * [HashSet - TBU](java/java-overview/data-types/non-primitive-reference-types/collections/set/hashset-tbu.md)
+            * [HashSet](java/java-overview/data-types/non-primitive-reference-types/collections/set/hashset.md)
             * [LinkedHashSet - TBU](java/java-overview/data-types/non-primitive-reference-types/collections/set/linkedhashset-tbu.md)
             * [TreeSet - TBU](java/java-overview/data-types/non-primitive-reference-types/collections/set/treeset-tbu.md)
             * [EnumSet - TBU](java/java-overview/data-types/non-primitive-reference-types/collections/set/enumset-tbu.md)
