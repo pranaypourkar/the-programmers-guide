@@ -108,7 +108,7 @@
           * [EnumSet and EnumMap](java/java-overview/data-types/others/enum/enumset-and-enummap.md)
         * [Record](java/java-overview/data-types/others/record.md)
         * [Optional](java/java-overview/data-types/others/optional.md)
-        * [System - TBU](java/java-overview/data-types/others/system-tbu.md)
+        * [System](java/java-overview/data-types/others/system.md)
         * [Runtime - TBU](java/java-overview/data-types/others/runtime-tbu.md)
         * [ProcessBuilder - TBU](java/java-overview/data-types/others/processbuilder-tbu.md)
         * [Thread and ThreadGroup - TBU](java/java-overview/data-types/others/thread-and-threadgroup-tbu.md)
