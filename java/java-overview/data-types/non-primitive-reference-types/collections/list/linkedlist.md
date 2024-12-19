@@ -1,4 +1,4 @@
-# LinkedList - TBU
+# LinkedList
 
 ## About
 
@@ -20,6 +20,34 @@ Since it implements the `Deque` interface, `LinkedList` can function as a **FIFO
 4. **Non-Synchronized**: Not thread-safe by default but can be synchronized using `Collections.synchronizedList`.
 5. **Allows Nulls**: Null elements are allowed as valid entries.
 6. **Iterators**: Provides fail-fast iterators that throw `ConcurrentModificationException` if the list is structurally modified while iterating.
+
+## **Internal Working**
+
+1. **Structure**: Each element (node) of a `LinkedList` contains three parts:
+   * **Data**: The actual value stored in the node.
+   * **Next**: A reference to the next node in the list.
+   * **Previous**: A reference to the previous node in the list.
+2.  **Node Class**: The `LinkedList` internally uses a static nested class `Node<E>` to represent each element in the list.
+
+    ```java
+    private static class Node<E> {
+        E item;
+        Node<E> next;
+        Node<E> prev;
+
+        Node(Node<E> prev, E element, Node<E> next) {
+            this.item = element;
+            this.next = next;
+            this.prev = prev;
+        }
+    }
+    ```
+3. **Head and Tail Pointers**:
+   * **Head**: Points to the first node.
+   * **Tail**: Points to the last node.
+4. **Traversal**:
+   * **Forward Traversal**: Starts from the head and moves through the `next` reference.
+   * **Backward Traversal**: Starts from the tail and moves through the `prev` reference.
 
 ## **Key Methods**
 
@@ -133,6 +161,3 @@ public class ArrayConversion {
     }
 }
 ```
-
-
-

@@ -83,7 +83,7 @@
             * [Deque (Double-Ended Queue)](java/java-overview/data-types/non-primitive-reference-types/collections/queue/deque-double-ended-queue/README.md)
               * [ArrayDeque](java/java-overview/data-types/non-primitive-reference-types/collections/queue/deque-double-ended-queue/arraydeque.md)
           * [Map](java/java-overview/data-types/non-primitive-reference-types/collections/map/README.md)
-            * [HashMap - TBU](java/java-overview/data-types/non-primitive-reference-types/collections/map/hashmap-tbu.md)
+            * [HashMap](java/java-overview/data-types/non-primitive-reference-types/collections/map/hashmap.md)
             * [Hashtable - TBU](java/java-overview/data-types/non-primitive-reference-types/collections/map/hashtable-tbu.md)
             * [ConcurrentHashMap - TBU](java/java-overview/data-types/non-primitive-reference-types/collections/map/concurrenthashmap-tbu.md)
             * [TreeMap - TBU](java/java-overview/data-types/non-primitive-reference-types/collections/map/treemap-tbu.md)
