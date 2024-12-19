@@ -85,7 +85,7 @@
           * [Map](java/java-overview/data-types/non-primitive-reference-types/collections/map/README.md)
             * [HashMap](java/java-overview/data-types/non-primitive-reference-types/collections/map/hashmap.md)
             * [Hashtable](java/java-overview/data-types/non-primitive-reference-types/collections/map/hashtable.md)
-            * [LinkedHashMap](java/java-overview/data-types/non-primitive-reference-types/collections/map/linkedhashmap.md)
+            * [LinkedHashMap](java/java-overview/data-types/non-primitive-reference-types/collections/map/linkedhashmap-tbu.md)
             * [ConcurrentHashMap - TBU](java/java-overview/data-types/non-primitive-reference-types/collections/map/concurrenthashmap-tbu.md)
             * [TreeMap - TBU](java/java-overview/data-types/non-primitive-reference-types/collections/map/treemap-tbu.md)
             * [EnumMap - TBU](java/java-overview/data-types/non-primitive-reference-types/collections/map/enummap-tbu.md)

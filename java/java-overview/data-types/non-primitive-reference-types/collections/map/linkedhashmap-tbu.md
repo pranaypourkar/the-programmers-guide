@@ -34,8 +34,7 @@ The **`LinkedHashMap`** combines the functionality of `HashMap` with a **doubly 
 
 ### **Components**
 
-* **Entry Class**:\
-  Each entry in `LinkedHashMap` is represented by an inner class `LinkedHashMap.Entry<K, V>`, which extends `HashMap.Node<K, V>`. It has two extra fields:
+* **Entry Class**: Each entry in `LinkedHashMap` is represented by an inner class `LinkedHashMap.Entry<K, V>`, which extends `HashMap.Node<K, V>`. It has two extra fields:
   * `before`: Points to the previous entry in the linked list.
   * `after`: Points to the next entry in the linked list.
 
