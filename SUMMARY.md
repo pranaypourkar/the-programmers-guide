@@ -119,7 +119,7 @@
           * [Exception](java/java-overview/data-types/others/throwable/exception/README.md)
             * [Custom Exception Handling](java/java-overview/data-types/others/throwable/exception/custom-exception-handling.md)
             * [Best Practice](java/java-overview/data-types/others/throwable/exception/best-practice.md)
-        * [StackTraceElement - TBU](java/java-overview/data-types/others/stacktraceelement-tbu.md)
+          * [StackTraceElement](java/java-overview/data-types/others/throwable/stacktraceelement.md)
         * [Logger - TBU](java/java-overview/data-types/others/logger-tbu.md)
         * [ResourceBundle - TBU](java/java-overview/data-types/others/resourcebundle-tbu.md)
   * [Java Installation](java/java-installation-info.md)
