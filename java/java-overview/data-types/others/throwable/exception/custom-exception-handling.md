@@ -4,11 +4,11 @@ description: Info about custom exception handling in Java.
 
 # Custom Exception Handling
 
-Custom exception handling in Java allows us to define our own exception types to handle specific error conditions in your applications.&#x20;
+Custom exception handling in Java allows us to define our own exception types to handle specific error conditions in your applications.
 
 **Best Practices**:
 
-* **Follow the general naming convention:** That is end the name of custom exception with “Exception”&#x20;
+* **Follow the general naming convention:** That is end the name of custom exception with “Exception”
 * **Provide Javadoc comments for the custom exception class:** It’s a general best practice to document all classes, fields, constructors, and methods of your API.
 * **Provide a constructor that sets the cause**: With this the original cause or important information is not lost.
 
@@ -17,8 +17,6 @@ To create a custom exception, define a new class that extends either `Exception`
 {% hint style="info" %}
 The decision to make a custom exception checked or unchecked depends on the nature of the exception and the context in which it will be used. If the exception represents a recoverable situation, better to make it a checked exception (i.e., extending Exception). If the exception indicates an unrecoverable error, better to take it as unchecked exception (i.e., extending RuntimeException).
 {% endhint %}
-
-
 
 **How to decide whether a custom exception in Java should extend** `RuntimeException` **or** `Exception`**?**
 
@@ -30,8 +28,8 @@ Extending `Exception`**:**
   * File opening failure (`FileNotFoundException`)
   * Network connection issues (`IOException`)
   * Parsing errors (`ParseException`)
-  * EntityNotFoundException**:** This exception likely indicates an error condition where an entity (data object) couldn't be found during normal program execution. It's essential to handle this exception to prevent the program from continuing with invalid data.
-  * TransactionNotFoundException**:** Similar to `EntityNotFoundException`, this exception suggests a situation where a transaction couldn't be located. Depending on the context, it might be crucial to handle this checked exception gracefully.
+  * EntityNotFoundException\*\*:\*\* This exception likely indicates an error condition where an entity (data object) couldn't be found during normal program execution. It's essential to handle this exception to prevent the program from continuing with invalid data.
+  * TransactionNotFoundException\*\*:\*\* Similar to `EntityNotFoundException`, this exception suggests a situation where a transaction couldn't be located. Depending on the context, it might be crucial to handle this checked exception gracefully.
   * IncorrectFileNameException: Exception, if filename not found as well as incorrect.
 
 Extending `RuntimeException`**:**
@@ -47,8 +45,6 @@ Extending `RuntimeException`**:**
   * CardDetailsNotFoundException: This exception might indicate a situation where card details are missing or invalid. If it's essential to process card details and their absence halts normal program flow, consider extending `Exception`. However, if it's an optional field and its absence doesn't cause major issues, extending `RuntimeException` might be suitable.
   * IncorrectFileExtensionException: Exception, if the file name doesn’t contain any extension.
   * JsonSerializationException: Exception raised during serialization.
-
-
 
 **Sample Examples**
 
