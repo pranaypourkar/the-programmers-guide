@@ -222,11 +222,11 @@ networks:
 
 Run the docker-compose file
 
-<figure><img src="../../../../.gitbook/assets/image (1).png" alt="" width="371"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt="" width="371"><figcaption></figcaption></figure>
 
 Call the API [http://localhost:90/api/hello-world](http://localhost:90/api/hello-world) multiple time to see load balancing effect
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1).png" alt="" width="553"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1).png" alt="" width="553"><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (2).png" alt="" width="455"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (2) (1).png" alt="" width="455"><figcaption></figcaption></figure>
 
