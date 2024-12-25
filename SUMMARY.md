@@ -197,6 +197,8 @@
   * [Tools](java/tools/README.md)
     * [IntelliJ IDEA](java/tools/intellij-idea/README.md)
       * [Shortcuts for MAC](java/tools/intellij-idea/shortcuts-for-mac.md)
+    * [Apache JMeter](java/tools/apache-jmeter/README.md)
+      * [Examples](java/tools/apache-jmeter/examples.md)
   * [Best Practices](java/best-practices/README.md)
     * [Artifact and BOM Versioning](java/best-practices/artifact-and-bom-versioning.md)
 * [Maven](maven/README.md)
