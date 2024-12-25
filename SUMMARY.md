@@ -193,6 +193,8 @@
   * [Core Packages](java/core-packages/README.md)
     * [java.lang](java/core-packages/java.lang/README.md)
       * [java.lang.System](java/core-packages/java.lang/java.lang.system.md)
+  * [Code Troubleshoot](java/code-troubleshoot.md)
+  * [Code Quality & Analysis - TBU](java/code-quality-and-analysis-tbu.md)
   * [Code Style](java/code-style.md)
   * [Tools](java/tools/README.md)
     * [IntelliJ IDEA](java/tools/intellij-idea/README.md)
