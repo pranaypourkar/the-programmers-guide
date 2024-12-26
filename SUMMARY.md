@@ -204,7 +204,7 @@
     * [Apache JMeter](java/tools/apache-jmeter/README.md)
       * [Examples](java/tools/apache-jmeter/examples.md)
     * [Thread Dump Capture](java/tools/thread-dump-capture/README.md)
-      * [jstack - TBU](java/tools/thread-dump-capture/jstack-tbu.md)
+      * [jstack](java/tools/thread-dump-capture/jstack.md)
       * [VisualVM - TBU](java/tools/thread-dump-capture/visualvm-tbu.md)
       * [jcmd - TBU](java/tools/thread-dump-capture/jcmd-tbu.md)
       * [JConsole - TBU](java/tools/thread-dump-capture/jconsole-tbu.md)
