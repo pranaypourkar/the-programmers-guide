@@ -195,6 +195,7 @@
       * [java.lang.System](java/core-packages/java.lang/java.lang.system.md)
   * [Code Troubleshoot](java/code-troubleshoot/README.md)
     * [Thread Dump](java/code-troubleshoot/thread-dump.md)
+    * [Heap Dump](java/code-troubleshoot/heap-dump.md)
   * [Code Quality & Analysis - TBU](java/code-quality-and-analysis-tbu.md)
   * [Code Style](java/code-style.md)
   * [Tools](java/tools/README.md)
