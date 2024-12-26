@@ -89,6 +89,7 @@
             * [ConcurrentHashMap](java/java-overview/data-types/non-primitive-reference-types/collections/map/concurrenthashmap.md)
             * [TreeMap](java/java-overview/data-types/non-primitive-reference-types/collections/map/treemap.md)
             * [EnumMap](java/java-overview/data-types/non-primitive-reference-types/collections/map/enummap.md)
+            * [WeakHashMap](java/java-overview/data-types/non-primitive-reference-types/collections/map/weakhashmap.md)
           * [Set](java/java-overview/data-types/non-primitive-reference-types/collections/set/README.md)
             * [HashSet](java/java-overview/data-types/non-primitive-reference-types/collections/set/hashset.md)
             * [LinkedHashSet](java/java-overview/data-types/non-primitive-reference-types/collections/set/linkedhashset.md)
