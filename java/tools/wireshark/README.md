@@ -8,6 +8,8 @@ Wireshark is an open-source, cross-platform network protocol analyzer that captu
 * **License**: GNU General Public License (GPL).
 * **Platforms**: Available for Windows, macOS, Linux, and Unix-like systems.
 
+<figure><img src="../../../.gitbook/assets/wireshark-1.png" alt=""><figcaption></figcaption></figure>
+
 ## Installation
 
 Refer to the official documentation for more details - [https://www.wireshark.org/docs/wsug\_html\_chunked/ChBuildInstallOSXInstall.html](https://www.wireshark.org/docs/wsug_html_chunked/ChBuildInstallOSXInstall.html)
