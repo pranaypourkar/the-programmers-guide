@@ -226,6 +226,7 @@
       * [Kill -3 Command - TBU](java/tools/heap-dump-capture/kill-3-command-tbu.md)
       * [jhat (Java Heap Analysis Tool) - TBU](java/tools/heap-dump-capture/jhat-java-heap-analysis-tool-tbu.md)
       * [JVM Options - TBU](java/tools/heap-dump-capture/jvm-options-tbu.md)
+    * [Wireshark](java/tools/wireshark.md)
   * [Best Practices](java/best-practices/README.md)
     * [Artifact and BOM Versioning](java/best-practices/artifact-and-bom-versioning.md)
 * [Maven](maven/README.md)
