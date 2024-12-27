@@ -20,4 +20,4 @@ public class Ascii {
 }
 ```
 
-<figure><img src="../../../../../../.gitbook/assets/image (50).png" alt="" width="500"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (61).png" alt="" width="500"><figcaption></figcaption></figure>

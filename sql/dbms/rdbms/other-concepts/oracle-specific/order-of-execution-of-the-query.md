@@ -42,7 +42,7 @@ Finally, the ORDER BY clause, if present, sorts the result set based on the spec
 SELECT LAST_NAME, FIRST_NAME FROM EMPLOYEE WHERE DEPARTMENT = 'IT';
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (137).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (148).png" alt=""><figcaption></figcaption></figure>
 
 ```
 SELECT LAST_NAME, FIRST_NAME
@@ -51,7 +51,7 @@ SELECT LAST_NAME, FIRST_NAME
 ORDER BY FIRST_NAME;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (138).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (149).png" alt=""><figcaption></figcaption></figure>
 
 ```
 SELECT DEPARTMENT, COUNT(*)
@@ -61,7 +61,7 @@ GROUP BY DEPARTMENT
 ORDER BY COUNT(*) DESC;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (139).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (150).png" alt=""><figcaption></figcaption></figure>
 
 ```
 SELECT DEPARTMENT
@@ -71,7 +71,7 @@ GROUP BY DEPARTMENT
   HAVING AVG(SALARY) > 80000;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (140).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (151).png" alt=""><figcaption></figcaption></figure>
 
 ```
 SELECT EMPLOYEE_ID, LAST_NAME
@@ -81,7 +81,7 @@ SELECT EMPLOYEE_ID, LAST_NAME
  WHERE BUDGET > 275000;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (141).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (152).png" alt=""><figcaption></figcaption></figure>
 
 ## Rownum execution order
 
@@ -103,14 +103,14 @@ SELECT rownum,EMPLOYEE_ID,FIRST_NAME,LAST_NAME FROM EMPLOYEES
 WHERE DEPARTMENT_ID = 50;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (134).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (145).png" alt=""><figcaption></figcaption></figure>
 
 ```
 SELECT rownum,EMPLOYEE_ID,FIRST_NAME,LAST_NAME FROM EMPLOYEES 
 WHERE DEPARTMENT_ID = 50 order by FIRST_NAME;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (135).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (146).png" alt=""><figcaption></figcaption></figure>
 
 ```
 SELECT rownum, EMPLOYEE_ID, LAST_NAME
@@ -120,4 +120,4 @@ SELECT rownum, EMPLOYEE_ID, LAST_NAME
  WHERE DEPARTMENTS.DEPARTMENT_ID > 50;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (136).png" alt="" width="524"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (147).png" alt="" width="524"><figcaption></figcaption></figure>

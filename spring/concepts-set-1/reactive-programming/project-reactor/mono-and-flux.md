@@ -55,7 +55,7 @@ monoName.subscribe(
 );
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (269).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (280).png" alt=""><figcaption></figcaption></figure>
 
 **Mono.empty()**: This method creates an empty Mono, meaning it emits no items and completes immediately after being subscribed to. It's useful when you need to represent a Mono that has no data to emit.
 
@@ -69,7 +69,7 @@ emptyMono.subscribe(
 );
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (270).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (281).png" alt=""><figcaption></figcaption></figure>
 
 **Mono.error()**: This method creates a Mono that emits an error signal immediately after being subscribed to. You provide an exception or error object as an argument, and the resulting Mono emits that error to any subscribers
 
@@ -84,7 +84,7 @@ errorMono.subscribe(
 );
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (271).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (282).png" alt=""><figcaption></figcaption></figure>
 
 #### **Transforming Other Data Sources**
 
@@ -101,7 +101,7 @@ monoName.subscribe(
 );
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (167).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (178).png" alt=""><figcaption></figcaption></figure>
 
 **Mono.fromSupplier()**
 
@@ -116,7 +116,7 @@ monoName2.subscribe(
 );
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (168).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (179).png" alt=""><figcaption></figcaption></figure>
 
 **Mono.create()**
 
@@ -149,7 +149,7 @@ asyncMono.subscribe(
 log.info("Waiting for async operation to complete...");
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (171).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (182).png" alt=""><figcaption></figcaption></figure>
 
 #### **Operators for Data Manipulation**
 
@@ -166,7 +166,7 @@ monoNameLength.subscribe(
 );
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (169).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (180).png" alt=""><figcaption></figcaption></figure>
 
 **filter() - Filtering Data**
 
@@ -181,7 +181,7 @@ evenNumberMono.subscribe(
 );
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (170).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (181).png" alt=""><figcaption></figcaption></figure>
 
 #### **Backpressure Handling**
 
@@ -222,7 +222,7 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (172).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (183).png" alt=""><figcaption></figcaption></figure>
 
 ## Flux
 

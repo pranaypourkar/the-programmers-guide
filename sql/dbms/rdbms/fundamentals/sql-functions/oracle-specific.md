@@ -638,7 +638,7 @@ CONNECT BY PRIOR EMPLOYEE_ID = MANAGER_ID;
 
 Sample Output
 
-<figure><img src="../../../../../.gitbook/assets/image (127).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (138).png" alt="" width="563"><figcaption></figcaption></figure>
 
 2. Create sequence or generate data
 
@@ -650,7 +650,7 @@ CONNECT BY LEVEL <= 5;
 
 Sample Output
 
-<figure><img src="../../../../../.gitbook/assets/image (128).png" alt="" width="452"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (139).png" alt="" width="452"><figcaption></figcaption></figure>
 
 ## Null Handling Functions
 
@@ -1234,7 +1234,7 @@ SELECT
 FROM DUAL;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (336).png" alt="" width="317"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (347).png" alt="" width="317"><figcaption></figcaption></figure>
 
 ### TO\_DATE
 
@@ -1311,7 +1311,7 @@ FROM
     DUAL;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (338).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (349).png" alt=""><figcaption></figcaption></figure>
 
 ### LAST\_DAY
 
@@ -1568,7 +1568,7 @@ GROUP BY ROLLUP (product_id, region_id);
 * Both are `1` when the row is the grand total.
 {% endhint %}
 
-<figure><img src="../../../../../.gitbook/assets/image (109).png" alt="" width="482"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (120).png" alt="" width="482"><figcaption></figcaption></figure>
 
 #### Example 2
 
@@ -1587,7 +1587,7 @@ FROM
 GROUP BY ROLLUP (product_id);
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (110).png" alt="" width="315"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (121).png" alt="" width="315"><figcaption></figcaption></figure>
 
 ### ROLLUP Function
 
@@ -1625,7 +1625,7 @@ FROM
 GROUP BY ROLLUP (product_id, region_id);
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (107).png" alt="" width="286"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (118).png" alt="" width="286"><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 * Rows where `region_id` is `NULL` are subtotals for each `product_id`.
@@ -1648,7 +1648,7 @@ FROM
 GROUP BY ROLLUP (product_id);
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (108).png" alt="" width="202"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (119).png" alt="" width="202"><figcaption></figcaption></figure>
 
 ### CUBE
 
@@ -1689,7 +1689,7 @@ GROUP BY CUBE (product_id, region_id);
 * The row where both `product_id` and `region_id` are `NULL` is the grand total.
 {% endhint %}
 
-<figure><img src="../../../../../.gitbook/assets/image (373).png" alt="" width="260"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (384).png" alt="" width="260"><figcaption></figcaption></figure>
 
 #### Example 2
 
@@ -1707,4 +1707,4 @@ FROM
 GROUP BY CUBE (product_id);
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (374).png" alt="" width="189"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (385).png" alt="" width="189"><figcaption></figcaption></figure>

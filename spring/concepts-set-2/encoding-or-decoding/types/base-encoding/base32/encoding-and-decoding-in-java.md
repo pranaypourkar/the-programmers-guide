@@ -38,7 +38,7 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../../../../.gitbook/assets/image (415).png" alt="" width="560"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (426).png" alt="" width="560"><figcaption></figcaption></figure>
 
 ## Decoding Example
 
@@ -60,4 +60,4 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../../../../.gitbook/assets/image (416).png" alt="" width="560"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (427).png" alt="" width="560"><figcaption></figcaption></figure>

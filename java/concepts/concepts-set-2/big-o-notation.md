@@ -39,7 +39,7 @@ An algorithm runs in logarithmic time if its runtime grows logarithmically with 
 
 All logarithmic functions with different bases can be represented as O(log(n)) in Big O notation.
 
-<figure><img src="../../../.gitbook/assets/image (454).png" alt="" width="518"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (465).png" alt="" width="518"><figcaption></figcaption></figure>
 
 Example: **Binary search**.
 
@@ -237,7 +237,7 @@ void recursiveLogarithmic(int n) {
 
 <figure><img src="../../../.gitbook/assets/4 (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (7).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (18).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Array Sorting Algorithms
 

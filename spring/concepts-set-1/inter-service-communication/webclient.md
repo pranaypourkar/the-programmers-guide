@@ -1,4 +1,4 @@
-# WebClient
+# 2. WebClient
 
 `WebClient` is a non-blocking, reactive HTTP client introduced in Spring 5 and is part of the Spring WebFlux module. Reactor is the foundation of WebClient’s functional and fluent API for making HTTP requests in Spring applications, especially in reactive, non-blocking scenarios. It's designed for modern, scalable applications that can handle high volumes of concurrent requests efficiently.
 
@@ -10,7 +10,7 @@
 4. **Customizable and Extensible**: `WebClient` provides various configuration options and allows customization of request and response handling through filters, interceptors, and other mechanisms.
 5. **Supports WebClient.Builder**: We can create a `WebClient` instance using `WebClient.Builder`, which allows for centralized configuration and reuse across multiple requests.
 6. **Codec Integration:** WebClient integrates with Spring's HTTP codecs for automatic marshalling and unmarshalling of request and response data formats (e.g., JSON, XML).
-7. The default _HttpClient_ used by _WebClient_ is the Netty implementation, so to see details like requests we need to change the _**reactor.netty.http.client**_\*\* logging level to **\_**DEBUG\*\*.\_
+7. The default _HttpClient_ used by _WebClient_ is the Netty implementation, so to see details like requests we need to change the _**reactor.netty.http.client**_\*\* logging level to **\_**&#x44;EBUG\*\*.\_
 
 ### Commonly used WebClient configuration
 
@@ -267,11 +267,11 @@ Build and run the application
 
 **Execute the service 1 API via Postman**
 
-<figure><img src="../../../.gitbook/assets/image (174).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (185).png" alt=""><figcaption></figcaption></figure>
 
 Monitor the logs (have a look at the threads executing the code)
 
-<figure><img src="../../../.gitbook/assets/image (176).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (187).png" alt=""><figcaption></figcaption></figure>
 
 #### Create an employee, Fetching all employees and handling error based on Http status.
 

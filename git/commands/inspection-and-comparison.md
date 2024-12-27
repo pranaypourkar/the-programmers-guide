@@ -106,7 +106,7 @@ git log -p
 
 When running `git log`
 
-<figure><img src="../../.gitbook/assets/image (392).png" alt="" width="479"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (403).png" alt="" width="479"><figcaption></figcaption></figure>
 
 ## git show
 
@@ -196,7 +196,7 @@ git show 1a2b3c4d -- path/to/file.txt
 
 When running `git show <commit-hash>`
 
-<figure><img src="../../.gitbook/assets/image (393).png" alt="" width="453"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (404).png" alt="" width="453"><figcaption></figcaption></figure>
 
 ## git blame
 
@@ -277,4 +277,4 @@ git blame -w README.md
 
 When running `git blame path/to/file`
 
-<figure><img src="../../.gitbook/assets/image (394).png" alt="" width="553"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (405).png" alt="" width="553"><figcaption></figcaption></figure>

@@ -21,7 +21,7 @@ Extended ASCII is a character encoding system that extends the original 7-bit AS
 
 <table><thead><tr><th width="138">ASCII Code</th><th>Binary</th><th>Character</th><th>Description</th></tr></thead><tbody><tr><td>128</td><td>10000000</td><td>€</td><td>Euro Sign</td></tr><tr><td>129</td><td>10000001</td><td>ƒ</td><td>Florin Sign</td></tr><tr><td>130</td><td>10000010</td><td>„</td><td>Double Low-9 Quote</td></tr><tr><td>...</td><td>...</td><td>...</td><td>...</td></tr><tr><td>255</td><td>11111111</td><td>ÿ</td><td>Small Y with Diaeresis</td></tr></tbody></table>
 
-<figure><img src="../../../../../../.gitbook/assets/image (418).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (429).png" alt=""><figcaption></figcaption></figure>
 
 ### **Windows-1252**
 
@@ -30,7 +30,7 @@ Extended ASCII is a character encoding system that extends the original 7-bit AS
 
 <table><thead><tr><th width="132">ASCII Code</th><th>Binary</th><th>Character</th><th>Description</th></tr></thead><tbody><tr><td>128</td><td>10000000</td><td>€</td><td>Euro Sign</td></tr><tr><td>129</td><td>10000001</td><td></td><td>Undefined</td></tr><tr><td>130</td><td>10000010</td><td>‚</td><td>Single Low-9 Quote</td></tr><tr><td>...</td><td>...</td><td>...</td><td>...</td></tr><tr><td>255</td><td>11111111</td><td>Ÿ</td><td>Capital Y with Diaeresis</td></tr></tbody></table>
 
-<figure><img src="../../../../../../.gitbook/assets/image (419).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (430).png" alt=""><figcaption></figcaption></figure>
 
 ### **IBM Code Pages**
 
@@ -39,7 +39,7 @@ Extended ASCII is a character encoding system that extends the original 7-bit AS
 
 <table><thead><tr><th width="153">ASCII Code</th><th>Binary</th><th>Character</th><th>Description</th></tr></thead><tbody><tr><td>128</td><td>10000000</td><td>Ç</td><td>Capital C with Cedilla</td></tr><tr><td>129</td><td>10000001</td><td>ü</td><td>Small U with Diaeresis</td></tr><tr><td>130</td><td>10000010</td><td>é</td><td>Small E with Acute</td></tr><tr><td>...</td><td>...</td><td>...</td><td>...</td></tr><tr><td>255</td><td>11111111</td><td>ÿ</td><td>Small Y with Diaeresis</td></tr></tbody></table>
 
-<figure><img src="../../../../../../.gitbook/assets/image (420).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (431).png" alt=""><figcaption></figcaption></figure>
 
 ## Advantages of Extended ASCII
 

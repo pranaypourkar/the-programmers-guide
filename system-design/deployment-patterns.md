@@ -10,7 +10,7 @@ Some common deployment patterns include:
 
 In this pattern, a new version of the software is gradually rolled out to a small subset of users or servers before being deployed to the entire infrastructure. This allows for early detection of issues and reduces the impact of bugs or performance problems.
 
-<figure><img src="../.gitbook/assets/image (282).png" alt="" width="296"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (293).png" alt="" width="296"><figcaption></figcaption></figure>
 
 ### **Blue-Green Deployment**
 

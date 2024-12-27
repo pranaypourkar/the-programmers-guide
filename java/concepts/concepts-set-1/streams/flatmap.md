@@ -52,7 +52,7 @@ List<Integer> result1 = new ArrayList<>();
                 .toList();
 </code></pre>
 
-<figure><img src="../../../../.gitbook/assets/image (220).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (231).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 **Example 2**: Lets say we have a list of sentences. Our task is to extract all unique words from sentences.
 
@@ -69,7 +69,7 @@ Set<String> result = sentences.stream()
  System.out.println(result); 
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (222).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (233).png" alt=""><figcaption></figcaption></figure>
 
 **Example 3**: Lets say we have a list of sentences. Our task is to extract all unique words from sentences and the associated length of the word in Map.
 
@@ -87,4 +87,4 @@ Map<String, Integer> result = sentences.stream()
 System.out.println(result);
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (223).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (234).png" alt=""><figcaption><p>Output</p></figcaption></figure>

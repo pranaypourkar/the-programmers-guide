@@ -49,11 +49,11 @@ There are three different ways the signed binary numbers can be represented.
 
 In sign-magnitude representation, the Most Significant bit of the number is a sign bit and the remaining bit represents the magnitude of the number in a true binary form. For example, if some signed number is represented in the 8-bit sign-magnitude form then MSB is a sign bit and the remaining 7 bits represent the magnitude of the number in a true binary form.
 
-<figure><img src="../../../../.gitbook/assets/image (277).png" alt="" width="254"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (288).png" alt="" width="254"><figcaption></figcaption></figure>
 
 Here is the representation of + 34 and -34 in a 8-bit sign-magnitude form.
 
-<figure><img src="../../../../.gitbook/assets/image (279).png" alt="" width="326"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (290).png" alt="" width="326"><figcaption></figcaption></figure>
 
 Since the magnitude of both numbers is the same, the first 7 bits in the representation are the same for both numbers. For +34, the MSB is 0, and for -34, the MSB or sign bit is 1.
 
@@ -68,7 +68,7 @@ In 1’s complement representation, the representation of the positive number is
 
 For example, if we want to represent -34 in 8-bit 1’s complement form, then first write the positive number (+34). And invert all 1s in that number by 0s and 0s by 1s in that number. The corresponding inverted number represents the -34 in 1’s complement form. It is also called 1s complement of the number +34.
 
-<figure><img src="../../../../.gitbook/assets/image (280).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (291).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Using n-bits, the range of numbers that can be represented in 1’s complement form is from **– (2^(n-1) – 1) to (2^(n -1) – 1)**.
 
@@ -76,7 +76,7 @@ Using n-bits, the range of numbers that can be represented in 1’s complement f
 
 In 2’s complement representation also, the representation of the positive number is same as 1’s complement and sign-magnitude form.
 
-<figure><img src="../../../../.gitbook/assets/image (281).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (292).png" alt="" width="563"><figcaption></figcaption></figure>
 
 But the representation of the negative number is different. For example, if we want to represent -34 in 2’s complement form then
 
@@ -163,17 +163,17 @@ Let's perform a left shift by 2 positions (<< 2) on two different numbers:
 
 **Positive Number:**
 
-\-> Original: 00000000 00010100 (20)
+-> Original: 00000000 00010100 (20)
 
-\-> Shifted Left: 00000000 00101000 (80)
+-> Shifted Left: 00000000 00101000 (80)
 
 All the bits in the original binary representation (00000000 00010100) are shifted two positions to the left. The vacated bits on the right (two in this case) are filled with zeros. The resulting binary representation (00000000 00101000) corresponds to 80 in decimal, which shows a simple multiplication by 4 (2 raised to the power of the shift amount, 2^2).
 
 **Negative Number:**
 
-\-> Original: 11111111 11111100 (-20)
+-> Original: 11111111 11111100 (-20)
 
-\-> Shifted Left: 11111111 11101000 (-80)
+-> Shifted Left: 11111111 11101000 (-80)
 
 All the bits in the original binary representation (11111111 11111100) are shifted two positions to the left. The vacated bits on the right (two in this case) are filled with zeros, similar to the positive number case.
 
@@ -189,17 +189,17 @@ Let's perform a signed right shift on two different numbers by 2 positions (>> 2
 
 **Positive Number:** 20 (Binary representation: 00000000 00010100)
 
-\-> Original: 00000000 00010100 (20)
+-> Original: 00000000 00010100 (20)
 
-\-> Shifted Right: 00000000 00000101 (5)
+-> Shifted Right: 00000000 00000101 (5)
 
 All the bits in the original binary representation (00000000 00010100) are shifted two positions to the right. The vacated bits on the left (two in this case) are filled with zeros because it's a positive number. The resulting binary representation (00000000 00000101) corresponds to 5 in decimal, which effectively divides the original number by 4 (2 raised to the power of the shift amount, 2^2).
 
 **Negative Number:** -20 (Binary representation: 11111111 11111100) - Remember, negative numbers are represented in two's complement in Java.
 
-\-> Original: 11111111 11101100 (-20)
+-> Original: 11111111 11101100 (-20)
 
-\-> Shifted Right: 11111111 11111011 (-5)
+-> Shifted Right: 11111111 11111011 (-5)
 
 **Explanation:**
 

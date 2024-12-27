@@ -67,7 +67,7 @@ With **spring-boot-starter-data-jpa** dependency added and the database configur
 
 Access the **mysql** database instance via mysql workbench and create the table manually which is to be used by the SchedulerLock.
 
-<figure><img src="../../.gitbook/assets/image (251).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (262).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 Note that table structure is created as per documentation given on the site -
@@ -209,6 +209,6 @@ spring:
 
 Run the application and verify the **logs** and **shedlock** table content.
 
-<figure><img src="../../.gitbook/assets/image (253).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (264).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (254).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (265).png" alt=""><figcaption></figcaption></figure>

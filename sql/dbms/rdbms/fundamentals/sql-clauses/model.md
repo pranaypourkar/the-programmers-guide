@@ -89,7 +89,7 @@ ORDER BY
 FETCH FIRST 10 ROWS ONLY
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (343).png" alt="" width="225"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (354).png" alt="" width="225"><figcaption></figcaption></figure>
 
 ### Addressing a specific cell
 
@@ -108,7 +108,7 @@ ORDER BY
 FETCH FIRST 10 ROWS ONLY;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (344).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (355).png" alt=""><figcaption></figcaption></figure>
 
 ### Addressing a range of cells (using a loop)
 
@@ -129,7 +129,7 @@ ORDER BY
 FETCH FIRST 10 ROWS ONLY;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (345).png" alt="" width="174"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (356).png" alt="" width="174"><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 Following query throws an error
@@ -173,7 +173,7 @@ ORDER BY
 FETCH FIRST 10 ROWS ONLY;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (346).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (357).png" alt=""><figcaption></figcaption></figure>
 
 ### Addressing a range of cells (using a list of values)
 
@@ -197,7 +197,7 @@ ORDER BY
 FETCH FIRST 10 ROWS ONLY;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (347).png" alt="" width="170"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (358).png" alt="" width="170"><figcaption></figcaption></figure>
 
 ### Addressing a range of cells (using a subquery)
 
@@ -226,7 +226,7 @@ ORDER BY
 FETCH FIRST 10 ROWS ONLY;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (348).png" alt="" width="164"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (359).png" alt="" width="164"><figcaption></figcaption></figure>
 
 ### The pseudo keyword ANY
 
@@ -246,7 +246,7 @@ ORDER BY
 FETCH FIRST 10 ROWS ONLY;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (349).png" alt="" width="171"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (360).png" alt="" width="171"><figcaption></figcaption></figure>
 
 ### Addressing cells relative to the current cell
 
@@ -268,7 +268,7 @@ ORDER BY
 FETCH FIRST 10 ROWS ONLY;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (351).png" alt="" width="161"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (362).png" alt="" width="161"><figcaption></figcaption></figure>
 
 ### Generating data
 
@@ -285,7 +285,7 @@ MODEL
     ]= 0 );
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (350).png" alt="" width="103"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (361).png" alt="" width="103"><figcaption></figcaption></figure>
 
 ### Row returning behaviour
 
@@ -302,4 +302,4 @@ MODEL RETURN UPDATED ROWS
     ]= 0 );
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (352).png" alt="" width="116"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (363).png" alt="" width="116"><figcaption></figcaption></figure>

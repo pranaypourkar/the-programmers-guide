@@ -111,7 +111,7 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (273).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (284).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 Among all the methods mentioned here, using the `Scanner` class is probably the most commonly used method for taking input from the user in Java, especially for beginner-level programming and simple console-based applications.
@@ -189,7 +189,7 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (274).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (285).png" alt=""><figcaption></figcaption></figure>
 
 ```java
 // Reading a File Line by Line
@@ -279,7 +279,7 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (275).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (286).png" alt=""><figcaption></figcaption></figure>
 
 ## **Using `Console` Class (Java 6 and later)**
 
@@ -303,7 +303,7 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (276).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (287).png" alt=""><figcaption></figcaption></figure>
 
 ## Which one to use?
 

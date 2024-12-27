@@ -16,7 +16,7 @@ Number systems are methods for representing numbers in a consistent manner. They
 
 * The number 345 in decimal can be expressed as:
 
-<figure><img src="../../../../../.gitbook/assets/image (17).png" alt="" width="266"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (28).png" alt="" width="266"><figcaption></figcaption></figure>
 
 ### **Usage:**
 
@@ -24,7 +24,7 @@ Number systems are methods for representing numbers in a consistent manner. They
 
 ### Conversion:
 
-<figure><img src="../../../../../.gitbook/assets/image (21).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (32).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Binary Number System (Base 2)
 
@@ -38,7 +38,7 @@ Number systems are methods for representing numbers in a consistent manner. They
 
 * The binary number 1011 can be expressed as
 
-<figure><img src="../../../../../.gitbook/assets/image (18).png" alt="" width="461"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (29).png" alt="" width="461"><figcaption></figcaption></figure>
 
 ### **Usage:**
 
@@ -47,7 +47,7 @@ Number systems are methods for representing numbers in a consistent manner. They
 
 ### Conversion:
 
-<figure><img src="../../../../../.gitbook/assets/image (25).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (36).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Octal Number System (Base 8)
 
@@ -61,7 +61,7 @@ Number systems are methods for representing numbers in a consistent manner. They
 
 * The octal number 345 can be expressed as:
 
-<figure><img src="../../../../../.gitbook/assets/image (19).png" alt="" width="400"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (30).png" alt="" width="400"><figcaption></figcaption></figure>
 
 ### **Usage:**
 
@@ -70,7 +70,7 @@ Number systems are methods for representing numbers in a consistent manner. They
 
 ### Conversion:
 
-<figure><img src="../../../../../.gitbook/assets/image (23).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (34).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Hexadecimal Number System (Base 16)
 
@@ -84,7 +84,7 @@ Number systems are methods for representing numbers in a consistent manner. They
 
 * The hexadecimal number 1A3 can be expressed as:
 
-<figure><img src="../../../../../.gitbook/assets/image (20).png" alt="" width="458"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (31).png" alt="" width="458"><figcaption></figcaption></figure>
 
 ### **Usage:**
 
@@ -93,4 +93,4 @@ Number systems are methods for representing numbers in a consistent manner. They
 
 ### Conversion:
 
-<figure><img src="../../../../../.gitbook/assets/image (24).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (35).png" alt="" width="563"><figcaption></figcaption></figure>

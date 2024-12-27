@@ -58,7 +58,7 @@ These characters include punctuation, digits, uppercase and lowercase letters.
 | ...        | ...      | ...       | ...              |
 | 126        | 01111110 | \~        | Tilde            |
 
-<figure><img src="../../../../../../.gitbook/assets/image (417).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (428).png" alt=""><figcaption></figcaption></figure>
 
 ## Usage of ASCII
 

@@ -91,7 +91,7 @@ Image streams and their associated tags provide abstractions for referencing con
 
 ## OCP Architecture
 
-Reference: [https://redhat-scholars.github.io/openshift-starter-guides/rhs-openshift-starter-guides/4.7/\_images/common-environment-ocp-architecture.png](https://redhat-scholars.github.io/openshift-starter-guides/rhs-openshift-starter-guides/4.7/\_images/common-environment-ocp-architecture.png)
+Reference: [https://redhat-scholars.github.io/openshift-starter-guides/rhs-openshift-starter-guides/4.7/\_images/common-environment-ocp-architecture.png](https://redhat-scholars.github.io/openshift-starter-guides/rhs-openshift-starter-guides/4.7/_images/common-environment-ocp-architecture.png)
 
 <figure><img src="../../.gitbook/assets/common-environment-ocp-architecture-1.png" alt=""><figcaption></figcaption></figure>
 
@@ -139,24 +139,16 @@ This layer provides external access to cluster applications from any device. The
 
 ## Components of OpenShift
 
-<div>
-
-<figure><img src="../../.gitbook/assets/test1.jpg" alt=""><figcaption></figcaption></figure>
-
- 
-
-<figure><img src="../../.gitbook/assets/test2.jpg" alt=""><figcaption></figcaption></figure>
-
-</div>
+<div><figure><img src="../../.gitbook/assets/test1.jpg" alt=""><figcaption></figcaption></figure> <figure><img src="../../.gitbook/assets/test2.jpg" alt=""><figcaption></figcaption></figure></div>
 
 One of the key components of OpenShift architecture is to manage containerized infrastructure in Kubernetes. Kubernetes is responsible for Deployment and Management of infrastructure. In any Kubernetes cluster, we can have more than one master and multiple nodes, which ensures there is no point of failure in the setup.
 
 {% hint style="info" %}
 The openshift environment consists of the following systems:
 
-\-> Master node(s)\
-\-> Worker or "application" nodes\
-\-> Dynamic Provisioned Storage
+-> Master node(s)\
+-> Worker or "application" nodes\
+-> Dynamic Provisioned Storage
 
 OpenShift container platform is available in two package levels.
 
@@ -169,7 +161,7 @@ There are **three ways** to interact with OpenShift: the command line, the web i
 
 ### Kubernetes Components
 
-<figure><img src="../../.gitbook/assets/image (473).png" alt="" width="308"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (484).png" alt="" width="308"><figcaption></figcaption></figure>
 
 #### Kubernetes Master Machine Components
 
@@ -250,7 +242,7 @@ If we want our own, private container registry, OpenShift Container Platform its
 
 #### Diagram
 
-\-> Process of building and pushing an image
+-> Process of building and pushing an image
 
 <figure><img src="../../.gitbook/assets/img6.png" alt=""><figcaption></figcaption></figure>
 

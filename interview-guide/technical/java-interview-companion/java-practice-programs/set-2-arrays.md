@@ -4,7 +4,7 @@
 
 ### Sum of Array Elements
 
-<figure><img src="../../../../.gitbook/assets/image (296).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (307).png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### Method 1: Using iteration
 
@@ -65,7 +65,7 @@ static int arraySum(int[] arr, int index){
 
 ### Largest element in an array
 
-<figure><img src="../../../../.gitbook/assets/image (160).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (171).png" alt=""><figcaption></figcaption></figure>
 
 #### Method 1: Using iteration
 
@@ -149,7 +149,7 @@ max = Collections.max(list);
 
 ### Array Rotation
 
-<figure><img src="../../../../.gitbook/assets/image (158).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (169).png" alt=""><figcaption></figcaption></figure>
 
 #### Method 1: Using additional array
 
@@ -337,7 +337,7 @@ public class Application {
 
 ### Remove all occurrences of an element from Array
 
-<figure><img src="../../../../.gitbook/assets/image (152).png" alt="" width="530"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (163).png" alt="" width="530"><figcaption></figcaption></figure>
 
 #### Method 1: Using iteration
 

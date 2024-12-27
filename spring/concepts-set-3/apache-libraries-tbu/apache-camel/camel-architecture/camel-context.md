@@ -4,7 +4,7 @@
 
 Camel Context is the heart of Apache Camel. It acts as the runtime environment where routes are defined and executed, managing the entire lifecycle of the integration processes. Essentially, CamelContext is the container for all the key componets such as routes, components, endpoints, and processors.
 
-<figure><img src="../../../../../.gitbook/assets/image (528).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (539).png" alt="" width="375"><figcaption></figcaption></figure>
 
 ## Key Responsibilities of CamelContext
 

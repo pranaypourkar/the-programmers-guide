@@ -91,7 +91,7 @@ public class EncodingExample {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (432).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (443).png" alt=""><figcaption></figcaption></figure>
 
 ### Handling BASE Encoding in Java
 
@@ -116,7 +116,7 @@ public class Base64Example {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (430).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (441).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Decoding
 
@@ -156,7 +156,7 @@ public class DecodingExample {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (434).png" alt="" width="272"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (445).png" alt="" width="272"><figcaption></figcaption></figure>
 
 ## Common Text Encodings
 

@@ -83,7 +83,7 @@ git rebase origin/main
 
 When running `git fetch`
 
-<figure><img src="../../.gitbook/assets/image (388).png" alt="" width="429"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (399).png" alt="" width="429"><figcaption></figcaption></figure>
 
 ### Fetch vs. Pull
 
@@ -95,7 +95,7 @@ When running `git fetch`
 
 `git pull`
 
-<figure><img src="../../.gitbook/assets/image (389).png" alt="" width="458"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (400).png" alt="" width="458"><figcaption></figcaption></figure>
 
 ## git pull
 
@@ -162,7 +162,7 @@ git pull origin main
 
 When running `git pull`
 
-<figure><img src="../../.gitbook/assets/image (390).png" alt="" width="426"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (401).png" alt="" width="426"><figcaption></figcaption></figure>
 
 ## git push
 
@@ -270,4 +270,4 @@ git push origin main
 
 When running `git push`
 
-<figure><img src="../../.gitbook/assets/image (391).png" alt="" width="535"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (402).png" alt="" width="535"><figcaption></figcaption></figure>

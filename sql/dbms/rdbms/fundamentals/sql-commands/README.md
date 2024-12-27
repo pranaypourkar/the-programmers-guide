@@ -4,7 +4,7 @@ SQL (Structured Query Language) is a powerful language for interacting with rela
 
 SQL commands are grouped into different categories based on their functionality:
 
-<figure><img src="../../../../../.gitbook/assets/image (146).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (157).png" alt=""><figcaption></figcaption></figure>
 
 ### **Data Definition Language (DDL):**
 

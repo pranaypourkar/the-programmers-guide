@@ -107,9 +107,9 @@ public class PaymentApi {
 
 Run and execute the API and verify the log response.
 
-<figure><img src="../../../.gitbook/assets/image (214).png" alt="" width="563"><figcaption><p>Postman</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (225).png" alt="" width="563"><figcaption><p>Postman</p></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (213).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (224).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 > Passing argNames in the Before Advice annotation.
 >

@@ -34,7 +34,7 @@ Entity-Relationship (ER) Diagrams use a specific set of symbols and notations to
 
 Following are the main components and its symbols in ER Diagrams:
 
-<figure><img src="../../../../.gitbook/assets/image (145).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (156).png" alt=""><figcaption></figcaption></figure>
 
 ### **Entity**:
 
@@ -78,11 +78,11 @@ Shown as an <mark style="background-color:purple;">oval or ellipse</mark> connec
 
 Depicted by a <mark style="background-color:blue;">diamond</mark> shape connecting two entities. Represents the association or connection between different entities. There are three main types of relationships denoted differently:
 
-\-> **One-to-One (1:1)**: A line is drawn connecting the two diamonds, representing a single instance in one entity relates to a single instance in another entity.
+-> **One-to-One (1:1)**: A line is drawn connecting the two diamonds, representing a single instance in one entity relates to a single instance in another entity.
 
-\-> **One-to-Many (1:N)**: An arrow points from the "one" entity (crow's foot notation) or a line connects the diamond to the "many" entity (older notation), indicating a single instance in the "one" entity relates to multiple instances in the "many" entity.
+-> **One-to-Many (1:N)**: An arrow points from the "one" entity (crow's foot notation) or a line connects the diamond to the "many" entity (older notation), indicating a single instance in the "one" entity relates to multiple instances in the "many" entity.
 
-\-> **Many-to-Many (N:M)**: A separate associative entity (another rectangle) is created between the two entities, typically containing a primary key and foreign keys referencing the related entities. This is used to represent many-to-many relationships because relational databases inherently struggle with this type of relationship.
+-> **Many-to-Many (N:M)**: A separate associative entity (another rectangle) is created between the two entities, typically containing a primary key and foreign keys referencing the related entities. This is used to represent many-to-many relationships because relational databases inherently struggle with this type of relationship.
 
 <figure><img src="../../../../.gitbook/assets/ERD-Notation (1).PNG" alt=""><figcaption></figcaption></figure>
 
@@ -95,7 +95,7 @@ Depicted by a <mark style="background-color:blue;">diamond</mark> shape connecti
 
 It refers to the number of occurrences of an entity in a relationship. It describes how many instances of one entity relate to how many instances of another entity.
 
-<figure><img src="../../../../.gitbook/assets/image (314).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (325).png" alt=""><figcaption></figcaption></figure>
 
 Here are the different types of cardinal relationships:
 
@@ -105,7 +105,7 @@ Here are the different types of cardinal relationships:
 
 ## How to Create an Entity Relationship Diagram (ERD)
 
-<figure><img src="../../../../.gitbook/assets/image (315).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (326).png" alt=""><figcaption></figcaption></figure>
 
 ### **1. Entity Identification:**
 

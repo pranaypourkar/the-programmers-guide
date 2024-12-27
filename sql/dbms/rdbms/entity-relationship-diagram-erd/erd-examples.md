@@ -15,7 +15,7 @@ We have a university where a Student enrolls in courses. A Student must be assig
 * Student is assigned a course
 * Professor teaches a course
 
-<figure><img src="../../../../.gitbook/assets/image (142).png" alt="" width="476"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (153).png" alt="" width="476"><figcaption></figcaption></figure>
 
 ### Step 3: Cardinality Identification
 
@@ -23,7 +23,7 @@ We have a university where a Student enrolls in courses. A Student must be assig
 * A course can be enrolled by multiple students
 * A professor can deliver only one course
 
-<figure><img src="../../../../.gitbook/assets/image (143).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (154).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Step 4: Identify Attributes
 
@@ -31,7 +31,7 @@ We have a university where a Student enrolls in courses. A Student must be assig
 * Course: CourseID, CourseName
 * Professor: EmployeeId, ProfessorName, EmployeeAge
 
-<figure><img src="../../../../.gitbook/assets/image (144).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (155).png" alt="" width="563"><figcaption></figcaption></figure>
 
 {% hint style="success" %}
 Note the underlined primary key attribute
@@ -39,7 +39,7 @@ Note the underlined primary key attribute
 
 ### Step 5: Create ERD Diagram
 
-<figure><img src="../../../../.gitbook/assets/image (316).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (327).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## MySQL Sample ERD Diagrams
 

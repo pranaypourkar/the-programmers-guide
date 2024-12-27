@@ -73,4 +73,4 @@ public class NumberSystemConverter {
 }
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (462).png" alt="" width="391"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (473).png" alt="" width="391"><figcaption></figcaption></figure>

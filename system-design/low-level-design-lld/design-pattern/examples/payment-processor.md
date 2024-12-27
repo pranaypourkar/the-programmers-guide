@@ -87,7 +87,7 @@ public class InternalTransferProcessor implements PaymentProcessor{
 
 * And others
 
-<figure><img src="../../../../.gitbook/assets/image (216).png" alt="" width="255"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (227).png" alt="" width="255"><figcaption></figcaption></figure>
 
 Now, in the service class, inject all the processor implementation and fetch and trigger appropriate processor logic based on Transaction/Payment Type.
 
@@ -133,6 +133,6 @@ public class PaymentApi {
 
 Run the application and call the endpoint.
 
-<figure><img src="../../../../.gitbook/assets/image (217).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (228).png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (218).png" alt=""><figcaption><p>Log Output</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (229).png" alt=""><figcaption><p>Log Output</p></figcaption></figure>

@@ -205,7 +205,7 @@ docker build -t ribbon-backend-service .
 
 Verify the generated docker image
 
-<figure><img src="../../../../.gitbook/assets/image (4).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (10).png" alt="" width="563"><figcaption></figcaption></figure>
 
 &#x20;
 
@@ -283,7 +283,7 @@ server:
 
 Build the project to generate jar file (to be used later in docker compose file)
 
-<figure><img src="../../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 We will use the generated jar file directly in docker-compose instead of creating docker image for above service
@@ -338,11 +338,11 @@ networks:
 
 Run the docker compose file
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1).png" alt="" width="395"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (7).png" alt="" width="395"><figcaption></figcaption></figure>
 
 Now, hit the API [http://localhost:8080/call-backend](http://localhost:8080/call-backend) multiple times. We will notice the change of Server Instance value in the API response meaning the response was provided by the respective service instance.
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1) (1).png" alt="" width="496"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (8).png" alt="" width="496"><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (3) (1).png" alt="" width="461"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (9).png" alt="" width="461"><figcaption></figcaption></figure>
 

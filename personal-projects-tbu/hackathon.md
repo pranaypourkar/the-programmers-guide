@@ -6,8 +6,8 @@
 
 While applying for sick leave, a employee has to follow long list of activties instead of resting
 
-<figure><img src="../.gitbook/assets/image (29).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (40).png" alt="" width="375"><figcaption></figcaption></figure>
 
 ### Solution
 
-<figure><img src="../.gitbook/assets/image (28).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (39).png" alt=""><figcaption></figcaption></figure>

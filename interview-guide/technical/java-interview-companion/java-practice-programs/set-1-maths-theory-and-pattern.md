@@ -58,7 +58,7 @@ There are many approaches.
 
 ### **Using Arrays**
 
-<figure><img src="../../../../.gitbook/assets/image (166).png" alt="" width="188"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (177).png" alt="" width="188"><figcaption></figcaption></figure>
 
 ```java
 public static void decimalToBinary(int n) 
@@ -277,7 +277,7 @@ public static void main(String[] args) {
 
 ## Factorial of a number
 
-<figure><img src="../../../../.gitbook/assets/image (164).png" alt="" width="211"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (175).png" alt="" width="211"><figcaption></figcaption></figure>
 
 ### Small number
 
@@ -370,14 +370,14 @@ static String findFactorialOfLargeNumber(int a) {
 
 ## Print Pascal Triangle
 
-<figure><img src="../../../../.gitbook/assets/image (288).png" alt="" width="231"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (299).png" alt="" width="231"><figcaption></figcaption></figure>
 
 ### Using nCr formula
 
 * In this approach, we directly calculate the combinations using the formula $$𝑛!/(𝑟!*(𝑛−𝑟))$$.
 * Each entry in Pascal's Triangle corresponds to a specific combination $$𝑛𝐶𝑟nCr$$, where $$𝑛n$$ is the row number and $$𝑟r$$ is the position within the row.
 
-<figure><img src="../../../../.gitbook/assets/image (289).png" alt=""><figcaption><p>Theory</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (300).png" alt=""><figcaption><p>Theory</p></figcaption></figure>
 
 ```java
 package src.main.java;
@@ -412,7 +412,7 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (290).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (301).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 **Time complexity**: O(2n) due to recursive method
 
@@ -420,11 +420,11 @@ public class Application {
 
 ### Using Binomial Coefficient
 
-<figure><img src="../../../../.gitbook/assets/image (292).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (303).png" alt=""><figcaption></figcaption></figure>
 
 #### Method 1:
 
-<figure><img src="../../../../.gitbook/assets/image (293).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (304).png" alt=""><figcaption></figcaption></figure>
 
 <pre class="language-java"><code class="lang-java"><strong>    // Function to calculate binomial coefficient C(n, k)
 </strong>    public static int binomialCoefficient(int n, int k) {
@@ -490,7 +490,7 @@ public static void printPascal(int k)
 
 ## Print fibonacci series
 
-<figure><img src="../../../../.gitbook/assets/image (161).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (172).png" alt=""><figcaption></figcaption></figure>
 
 ### Using Iterative Method
 
@@ -524,7 +524,7 @@ public static void printFibonacci(int n) {
 
 ## Print number triangle
 
-<figure><img src="../../../../.gitbook/assets/image (294).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (305).png" alt=""><figcaption></figcaption></figure>
 
 <pre class="language-java"><code class="lang-java"><strong>        int n = 4;
 </strong>
@@ -553,11 +553,11 @@ public static void printFibonacci(int n) {
         }
 </code></pre>
 
-<figure><img src="../../../../.gitbook/assets/image (295).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (306).png" alt=""><figcaption></figcaption></figure>
 
 ## Find Transpose of Matrix
 
-<figure><img src="../../../../.gitbook/assets/image (299).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (310).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Square Matrix
 
@@ -616,11 +616,11 @@ for (int row=0;row<arr.length;row++){
         }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (300).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (311).png" alt=""><figcaption></figcaption></figure>
 
 ## GCD or HCF of two numbers
 
-<figure><img src="../../../../.gitbook/assets/image (153).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (164).png" alt=""><figcaption></figcaption></figure>
 
 ### Using Iteration
 
@@ -642,7 +642,7 @@ int gcd(int a, int b) {
 
 ### Using Euclidean algorithm for GCD of two numbers (Involves Recursion)
 
-<figure><img src="../../../../.gitbook/assets/image (154).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (165).png" alt=""><figcaption></figcaption></figure>
 
 ```java
     // Recursive function to return gcd of a and b
@@ -670,7 +670,7 @@ int gcd(int a, int b) {
 
 ### **Optimization** Euclidean algorithm **by checking divisibility**
 
-<figure><img src="../../../../.gitbook/assets/image (155).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (166).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ```java
 int gcd(int a, int b)
@@ -764,7 +764,7 @@ For example, LCM of 15 and 20 is 60, and LCM of 5 and 7 is 35.
 
 ### Using GCD of 2 numbers and Formula
 
-<figure><img src="../../../../.gitbook/assets/image (157).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (168).png" alt=""><figcaption></figcaption></figure>
 
 ```java
 int gcd(int a, int b) 

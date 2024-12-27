@@ -8,7 +8,7 @@ It is a part of the Spring Framework's utility package. It provides static metho
 
 Create 2 sample files (for e.g. _**SampleXmlResponse.xml**_ and _**SampleJsonResponse.json**_) inside _**mocks**_ folder.
 
-<figure><img src="../../../../.gitbook/assets/image (203).png" alt="" width="260"><figcaption><p>Folder Structure</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (214).png" alt="" width="260"><figcaption><p>Folder Structure</p></figcaption></figure>
 
 | SampleJsonResponse.json                                            | SampleXmlResponse.xml |
 | ------------------------------------------------------------------ | --------------------- |
@@ -74,4 +74,4 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (204).png" alt="" width="563"><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (215).png" alt="" width="563"><figcaption><p>Output</p></figcaption></figure>

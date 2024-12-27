@@ -173,15 +173,7 @@ It is the process of linking aspect with other application types or objects to c
 
 **Sample Diagram of AOP process**
 
-<div>
-
-<figure><img src="../../../.gitbook/assets/image (228).png" alt="" width="422"><figcaption></figcaption></figure>
-
- 
-
-<figure><img src="../../../.gitbook/assets/image (215).png" alt="" width="445"><figcaption></figcaption></figure>
-
-</div>
+<div><figure><img src="../../../.gitbook/assets/image (239).png" alt="" width="422"><figcaption></figcaption></figure> <figure><img src="../../../.gitbook/assets/image (226).png" alt="" width="445"><figcaption></figcaption></figure></div>
 
 > * **Application**: Application containing the business logic.
 > * **Target Object**: Object containing the business logic methods.
