@@ -58,7 +58,7 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (195).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (195).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 ## `java.util.Calendar`
 
@@ -118,7 +118,7 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (196).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (196).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 ## java.sql.Timestamp
 
@@ -264,7 +264,7 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (197).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (197).png" alt=""><figcaption></figcaption></figure>
 
 ### **java.time.**<mark style="background-color:yellow;">**LocalTime**</mark>
 
@@ -336,7 +336,7 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (198).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (198).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 ### **java.time.**<mark style="background-color:yellow;">**LocalDateTime**</mark>
 
@@ -402,7 +402,7 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (202).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (202).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 {% hint style="info" %}
 **Supported patterns in `DateTimeFormatter.ofPattern(...)`:**
@@ -443,7 +443,7 @@ for (String pattern : patterns) {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (194).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (194).png" alt=""><figcaption></figcaption></figure>
 
 ### **java.time.**<mark style="background-color:yellow;">**ZonedDateTime**</mark>
 
@@ -478,7 +478,7 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../.gitbook/assets/image (237).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (237).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 {% hint style="info" %}
 "T" serves as a separator between the date and time components according to the ISO 8601 standard format for representing date and time.
