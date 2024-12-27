@@ -17,15 +17,34 @@ Kubernetes uses these probes to:
 
 Probes are configured at the container level and help Kubernetes perform **self-healing** actions, ensuring higher availability and reliability of applications.
 
+Refer to the official documentation for more details - [https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/)
+
 ## **Types of Probes**
 
 ### **1. Liveness Probe**
 
-* **Purpose**: Checks whether the container is still running and has not encountered an unrecoverable error.
+* **Purpose**: Checks whether the container is still running and has not encountered an unrecoverable error.&#x20;
+
+For a Liveness Probe we usually,&#x20;
+
+1. Expose an endpoint from our app
+2. The endpoint always replies with a success response
+3. Consume the endpoint from the Liveness probe
+
 * **Action**: If the liveness probe fails, Kubernetes restarts the container to recover from failures like deadlocks or crashes.
 * **Common Use Cases**:
   * Detecting **deadlocks**, where the application is running but stuck.
   * Restarting containers that hang without terminating (e.g., a service that crashes but doesn’t exit).
+
+{% hint style="warning" %}
+Consider a scenario where our application is processing or stuck in an infinite loop and there's no way to exit or ask for help. When the process is consuming 100% CPU, it won't have time to reply to the others (i.e. readiness probe checks fails), and it will be eventually removed from the service from accepting traffic.
+
+However, the Pod is still registered as an active replica for the current Deployment. And if we don't have a Liveness probe, it stays _Running_ but detached from the service. So, pod is not only serving any requests, but it is also consuming resources.
+{% endhint %}
+
+{% hint style="success" %}
+The Liveness probe should only be used as a recovery mechanism in case the process is not responsive.
+{% endhint %}
 
 **Example:**
 
@@ -50,6 +69,10 @@ In this example, Kubernetes performs an HTTP GET request to `/healthz` on port 8
   * Ensuring the application is initialized and connected to necessary resources (e.g., databases).
   * Preventing the routing of traffic before the application is fully ready.
 
+{% hint style="warning" %}
+If readiness probe is not set, the kubelet will assume that the app is ready to receive traffic as soon as the container starts. If the container takes 5 minutes to start, all the requests to it will fail for those 5 minutes.
+{% endhint %}
+
 **Example:**
 
 ```yaml
@@ -64,6 +87,50 @@ readinessProbe:
 ```
 
 In this example, Kubernetes runs a command (`cat /tmp/healthy`). If the file doesn't exist, the container is marked as "not ready," and it is removed from the load balancer.
+
+#### Readiness Probe's Independence
+
+* **Independent of Services**: The readiness probe is independent in the sense that Kubernetes will check the container's internal health status based on the configured probe parameters (like HTTP response, TCP check, or command execution).
+* **External Dependencies**: The probe itself does **not** check if external dependencies (like databases or APIs) are available. If the container depends on other services (such as a database or an external API), the readiness probe will not be able to automatically detect the unavailability of those services unless we explicitly program the readiness check to verify those services.
+
+#### **How to Handle External Dependencies with Readiness Probes**
+
+While the readiness probe is independent of external services by default, you can configure it to **include checks for external services** by making the probe check an endpoint in your application that verifies these dependencies.
+
+For example:
+
+* **Database Migrations**: If your application requires database migrations to be completed before it is ready, you can write an application-level check in your code that verifies if migrations are complete. You could then make the readiness probe call an endpoint that performs this check (e.g., `/healthz/db`).
+* **External APIs/Third-party services**: If your application relies on external services (like APIs or third-party services), the readiness probe can also check whether those services are reachable by your application. This could be done by adding a health check endpoint that checks the status of external services before returning a success response to Kubernetes.
+
+#### Example of Readiness Probe with External Dependency Check:
+
+Suppose our application needs a database to be available and ready for operation. We could have an endpoint `/readiness` in your application that checks both the application state and the availability of the database.
+
+Here's an example:
+
+```yaml
+readinessProbe:
+  httpGet:
+    path: /readiness
+    port: 8080
+  initialDelaySeconds: 60
+  periodSeconds: 30
+  timeoutSeconds: 5
+  failureThreshold: 3
+```
+
+In our application code, the `/readiness` endpoint might look like:
+
+```java
+@GetMapping("/readiness")
+public ResponseEntity<String> checkReadiness() {
+    if (databaseIsReady() && externalServiceIsAvailable()) {
+        return ResponseEntity.ok("Ready");
+    } else {
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("Not Ready");
+    }
+}
+```
 
 ### **3. Startup Probe**
 
@@ -152,7 +219,7 @@ Here are the key configuration parameters for probes:
 * Prevent **premature failure** of liveness probes during the startup phase, especially for applications that require considerable time to initialize.
 * Use for **large-scale applications** that might involve waiting for external dependencies or lengthy initialization routines.
 
-**Best Practices:**
+## **Best Practices:**
 
 1. **Liveness Probe**:
    * Should be quick and lightweight to avoid overloading the system.
@@ -164,7 +231,9 @@ Here are the key configuration parameters for probes:
    * Set a reasonable failure threshold to account for application startup delays.
    * Don’t use the startup probe for ongoing health monitoring once the application is fully started.
 
-
+{% hint style="info" %}
+Refer to this link for more best practices- [https://github.com/learnk8s/kubernetes-production-best-practices/tree/master](https://github.com/learnk8s/kubernetes-production-best-practices/tree/master)&#x20;
+{% endhint %}
 
 ## **How Probes Improve Application Lifecycle Management**
 
