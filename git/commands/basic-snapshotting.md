@@ -52,7 +52,7 @@ git status -b
 
 Here’s an example of what `git status` might display
 
-<figure><img src="../../.gitbook/assets/image (90).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (79).png" alt=""><figcaption></figcaption></figure>
 
 Or
 
@@ -177,19 +177,19 @@ git diff <branch1> <branch2>
 git diff
 ```
 
-<figure><img src="../../.gitbook/assets/image (91).png" alt="" width="539"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (80).png" alt="" width="539"><figcaption></figcaption></figure>
 
 ```
 git diff <filename>
 ```
 
-<figure><img src="../../.gitbook/assets/image (92).png" alt="" width="539"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (81).png" alt="" width="539"><figcaption></figcaption></figure>
 
 ```
 git diff --stat
 ```
 
-<figure><img src="../../.gitbook/assets/image (93).png" alt="" width="467"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (82).png" alt="" width="467"><figcaption></figcaption></figure>
 
 ## git add
 
@@ -274,7 +274,7 @@ git restore --staged filename.txt
 
 When running `git status` after staging changes with `git add`
 
-<figure><img src="../../.gitbook/assets/image (94).png" alt="" width="538"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (83).png" alt="" width="538"><figcaption></figcaption></figure>
 
 ## git rm
 
@@ -362,7 +362,7 @@ git commit -m "Remove filename.txt"
 
 When running `git status` after using `git rm`
 
-<figure><img src="../../.gitbook/assets/image (396).png" alt="" width="461"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (385).png" alt="" width="461"><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/1.png" alt="" width="563"><figcaption></figcaption></figure>
 
@@ -457,4 +457,4 @@ git commit -a -m "Update modified files"
 
 When running `git commit -m "Initial commit"`
 
-<figure><img src="../../.gitbook/assets/image (89).png" alt="" width="395"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (78).png" alt="" width="395"><figcaption></figcaption></figure>

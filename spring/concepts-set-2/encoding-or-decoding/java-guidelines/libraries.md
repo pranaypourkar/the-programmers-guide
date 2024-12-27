@@ -134,7 +134,7 @@ public class CharsetExample {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (436).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (425).png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### Handling Encoding or Decoding Errors
 
@@ -168,7 +168,7 @@ public class ErrorHandlingExample {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (437).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (426).png" alt="" width="563"><figcaption></figcaption></figure>
 
 #### Listing Available Charsets
 
@@ -186,4 +186,4 @@ public class ListCharsets {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (438).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (427).png" alt=""><figcaption></figcaption></figure>

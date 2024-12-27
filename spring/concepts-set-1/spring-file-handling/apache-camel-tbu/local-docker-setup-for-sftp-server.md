@@ -6,7 +6,7 @@ Docker installation is completed in the system. In the below example, [colima](h
 
 ## Step 1: Start the colima with `colima start`
 
-<figure><img src="../../../../.gitbook/assets/image (520).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (509).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Step 2: Configure docker in Intellij
 
@@ -14,7 +14,7 @@ Install the Docker plugin in Intellij - [https://plugins.jetbrains.com/plugin/77
 
 Configure the Docker plugin
 
-<figure><img src="../../../../.gitbook/assets/image (522).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (511).png" alt="" width="563"><figcaption></figcaption></figure>
 
 To find the TCP socket - Engine API URL for colima, run `docker context ls` command. Sample value is given below.
 
@@ -22,15 +22,15 @@ To find the TCP socket - Engine API URL for colima, run `docker context ls` comm
 unix:///Users/pranayp/.colima/aarch64/docker.sock
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (524).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (513).png" alt=""><figcaption></figcaption></figure>
 
 Configure the Docker executable and Compose executable
 
-<figure><img src="../../../../.gitbook/assets/image (526).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (515).png" alt="" width="563"><figcaption></figcaption></figure>
 
 To find Docker executable and Docker Compose executable, run the below command
 
-<figure><img src="../../../../.gitbook/assets/image (527).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (516).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Step 3: Prepare the docker-compose file
 
@@ -62,11 +62,11 @@ networks:
 
 Since, we are attaching a volume of local `sftp_test_data` folder, create a folder and add some test files there.
 
-<figure><img src="../../../../.gitbook/assets/image (528).png" alt="" width="537"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (517).png" alt="" width="537"><figcaption></figcaption></figure>
 
 ## Step 4: Run the docker-compose file
 
-<figure><img src="../../../../.gitbook/assets/image (529).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (518).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Step 5: Connect the sftp server via any tools
 
@@ -76,7 +76,7 @@ Here, we will use FileZilla Client. Download and Install the FileZilla client fr
 
 Open the FileZilla Client
 
-<figure><img src="../../../../.gitbook/assets/image (530).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (519).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Add below details as we configure in docker-compose file
 
@@ -87,12 +87,12 @@ Password: pass
 Port: 9922
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (531).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (520).png" alt="" width="563"><figcaption></figcaption></figure>
 
 Click on Quickconnect and click on OK
 
-<figure><img src="../../../../.gitbook/assets/image (532).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (521).png" alt=""><figcaption></figcaption></figure>
 
 Remote site details should be visible now
 
-<figure><img src="../../../../.gitbook/assets/image (533).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (522).png" alt=""><figcaption></figcaption></figure>

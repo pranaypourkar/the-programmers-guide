@@ -4,7 +4,7 @@
 
 We want to return data stored in more than one table, conceptually stacking one result set atop the other. The tables do not necessarily have a common key, but their columns do have the same data types. For example
 
-<figure><img src="../../../../.gitbook/assets/image (328).png" alt="" width="199"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (317).png" alt="" width="199"><figcaption></figcaption></figure>
 
 ```
 select ename as ename_and_dname, deptno from emp where deptno = 10
@@ -172,7 +172,7 @@ We want to perform an aggregation, but the query involves multiple tables. For e
 
 Sample table EMP\_BONUS contains the following data:
 
-<figure><img src="../../../../.gitbook/assets/image (143).png" alt="" width="493"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (132).png" alt="" width="493"><figcaption></figcaption></figure>
 
 ```
 -- Solution 1
@@ -214,7 +214,7 @@ We have to be careful when computing aggregates across joins. Typically when dup
 
 Same scenario as above but not all employees in department 10 have been given bonuses.
 
-<figure><img src="../../../../.gitbook/assets/image (144).png" alt="" width="256"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (133).png" alt="" width="256"><figcaption></figcaption></figure>
 
 <pre><code>-- Solution 1
 select deptno,

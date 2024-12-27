@@ -20,15 +20,15 @@ Alias is a unique identifier for an entry in a keystore.
 
 ### keytool -genseckey
 
-<figure><img src="../../../../../../../.gitbook/assets/image (44).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../../.gitbook/assets/image (33).png" alt="" width="375"><figcaption></figcaption></figure>
 
 ### keytool -genkeypair and -changealias
 
-<div><figure><img src="../../../../../../../.gitbook/assets/image (45).png" alt="" width="375"><figcaption></figcaption></figure> <figure><img src="../../../../../../../.gitbook/assets/image (46).png" alt="" width="375"><figcaption></figcaption></figure></div>
+<div><figure><img src="../../../../../../../.gitbook/assets/image (34).png" alt="" width="375"><figcaption></figcaption></figure> <figure><img src="../../../../../../../.gitbook/assets/image (35).png" alt="" width="375"><figcaption></figcaption></figure></div>
 
 ### keytool -keypasswd and -importkeystore
 
-<div><figure><img src="../../../../../../../.gitbook/assets/image (47).png" alt="" width="375"><figcaption></figcaption></figure> <figure><img src="../../../../../../../.gitbook/assets/image (48).png" alt="" width="375"><figcaption></figcaption></figure></div>
+<div><figure><img src="../../../../../../../.gitbook/assets/image (36).png" alt="" width="375"><figcaption></figcaption></figure> <figure><img src="../../../../../../../.gitbook/assets/image (37).png" alt="" width="375"><figcaption></figcaption></figure></div>
 
 ## Key
 

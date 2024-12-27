@@ -30,7 +30,7 @@ For example, a user at a web browser visits a company website:
 
 Ref: [https://www.service-architecture.com/articles/application-servers/application-server-definition.html#](https://www.service-architecture.com/articles/application-servers/application-server-definition.html)
 
-<figure><img src="../../.gitbook/assets/image (466).png" alt="" width="423"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (455).png" alt="" width="423"><figcaption></figcaption></figure>
 
 ### 1. **Client Tier**
 

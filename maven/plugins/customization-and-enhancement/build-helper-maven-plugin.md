@@ -18,7 +18,7 @@ Visit the official documentation for more details - [https://www.mojohaus.org/bu
 
 **Example 1**: Adding source and test directories to the build path.
 
-<figure><img src="../../../.gitbook/assets/image (204).png" alt="" width="330"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (193).png" alt="" width="330"><figcaption></figcaption></figure>
 
 ```xml
 <plugin>
@@ -108,4 +108,4 @@ Visit the official documentation for more details - [https://www.mojohaus.org/bu
 
 > Run `mvn clean compile` or click on load maven changes button in Intellij in pom.xml file to reflect the changes.
 >
-> <img src="../../../.gitbook/assets/image (258).png" alt="" data-size="original">
+> <img src="../../../.gitbook/assets/image (247).png" alt="" data-size="original">

@@ -58,7 +58,7 @@ public class EncodingDecodingFiles {
 }
 </code></pre>
 
-<figure><img src="../../../../.gitbook/assets/image (60).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (49).png" alt=""><figcaption></figcaption></figure>
 
 ## **Writing a string content to a file with specified encoding**
 
@@ -120,27 +120,27 @@ ISO-8859-1 does not support characters like Cyrillic, Greek, Chinese, or Emoji. 
 Similar to ISO-8859-1, Windows-1252 has limited support for non-Western characters
 {% endhint %}
 
-<figure><img src="../../../../.gitbook/assets/image (58).png" alt="" width="350"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (47).png" alt="" width="350"><figcaption></figcaption></figure>
 
 {% file src="../../../../.gitbook/assets/example-ISO-8859-1.txt" %}
 
-<figure><img src="../../../../.gitbook/assets/image (53).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (42).png" alt="" width="375"><figcaption></figcaption></figure>
 
 {% file src="../../../../.gitbook/assets/example-UTF8.txt" %}
 
-<figure><img src="../../../../.gitbook/assets/image (57).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (46).png" alt="" width="375"><figcaption></figcaption></figure>
 
 {% file src="../../../../.gitbook/assets/example-UTF16.txt" %}
 
-<figure><img src="../../../../.gitbook/assets/image (55).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (44).png" alt="" width="375"><figcaption></figcaption></figure>
 
 {% file src="../../../../.gitbook/assets/example-Windows-1252.txt" %}
 
-<figure><img src="../../../../.gitbook/assets/image (56).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (45).png" alt="" width="375"><figcaption></figcaption></figure>
 
 {% file src="../../../../.gitbook/assets/example-ASCII.txt" %}
 
-<figure><img src="../../../../.gitbook/assets/image (59).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (48).png" alt="" width="375"><figcaption></figcaption></figure>
 
 ## Reading the above saved file in respective character set
 
@@ -200,7 +200,7 @@ public class EncodingDecodingFiles {
 }
 ```
 
-<div><figure><img src="../../../../.gitbook/assets/image (433).png" alt="" width="375"><figcaption></figcaption></figure> <figure><img src="../../../../.gitbook/assets/image (435).png" alt="" width="375"><figcaption></figcaption></figure></div>
+<div><figure><img src="../../../../.gitbook/assets/image (422).png" alt="" width="375"><figcaption></figcaption></figure> <figure><img src="../../../../.gitbook/assets/image (424).png" alt="" width="375"><figcaption></figcaption></figure></div>
 
 ## Internationalization and Localization
 
@@ -224,4 +224,4 @@ public class InternationalizationExample {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (444).png" alt="" width="272"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (433).png" alt="" width="272"><figcaption></figcaption></figure>

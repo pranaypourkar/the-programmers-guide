@@ -183,7 +183,7 @@ public Flux<Product> retrieveProductById(int id) {
 
 This annotation is used at the method level to indicate that the result of invoking a method should be cached, regardless of whether the method has been called with the same arguments before. It is typically used for caching the result of an update operation.
 
-<figure><img src="../../../.gitbook/assets/image (238).png" alt="" width="503"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (227).png" alt="" width="503"><figcaption></figcaption></figure>
 
 Let's understand with an practical example.
 

@@ -17,7 +17,7 @@ from emp
 where deptno = 10
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (344).png" alt="" width="461"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (333).png" alt="" width="461"><figcaption></figcaption></figure>
 
 ## Determining the Number of Days Between Two Dates
 
@@ -65,7 +65,7 @@ WHERE calendar_date BETWEEN TO_DATE('2024-05-28', 'YYYY-MM-DD') AND TO_DATE('202
 Output of\
 SELECT TO\_DATE(level - 1 + TO\_CHAR(TO\_DATE('2024-05-28', 'YYYY-MM-DD'), 'YYYYDDD'), 'YYYYDDD') AS calendar\_date FROM DUAL CONNECT BY LEVEL <= TRUNC(TO\_DATE('2024-05-31', 'YYYY-MM-DD')) - TRUNC(TO\_DATE('2024-05-28', 'YYYY-MM-DD')) + 1
 
-<img src="../../../../.gitbook/assets/image (345).png" alt="" data-size="original">
+<img src="../../../../.gitbook/assets/image (334).png" alt="" data-size="original">
 {% endhint %}
 
 ## Determining the Number of Months or Years Between Two Dates
@@ -135,7 +135,7 @@ GROUP BY
             'DAY')
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (348).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (337).png" alt=""><figcaption></figcaption></figure>
 
 ## Determining the Date Difference Between the Current Record and the Next Record
 

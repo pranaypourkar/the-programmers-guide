@@ -62,7 +62,7 @@ public static void main(String[] args) {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (176).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (165).png" alt=""><figcaption></figcaption></figure>
 
 ### Convert Decimal to Binary Conversion
 

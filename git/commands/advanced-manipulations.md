@@ -197,7 +197,7 @@ And then to prune the reflog:
 </strong></code></pre>
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/image (71).png" alt="" width="473"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (60).png" alt="" width="473"><figcaption></figcaption></figure>
 
 ### Common Use Cases
 
@@ -371,7 +371,7 @@ Summary
 
 If there are conflicts when cherry-picking, we will see something like this
 
-<figure><img src="../../.gitbook/assets/image (72).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (61).png" alt="" width="375"><figcaption></figcaption></figure>
 
 ```
 -----Steps to resolve conflicts------

@@ -128,7 +128,7 @@ SELECT
   CONNECT BY LEVEL <= TRUNC(TO_DATE('2024-05-31', 'YYYY-MM-DD')) - TRUNC(TO_DATE('2024-05-28', 'YYYY-MM-DD')) + 1
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (346).png" alt="" width="131"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (335).png" alt="" width="131"><figcaption></figcaption></figure>
 
 ### Display each employee along with their root manager
 

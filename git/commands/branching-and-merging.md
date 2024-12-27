@@ -106,7 +106,7 @@ git branch -d feature-branch
 
 When running `git branch`
 
-<figure><img src="../../.gitbook/assets/image (397).png" alt="" width="227"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (386).png" alt="" width="227"><figcaption></figcaption></figure>
 
 ## git checkout
 
@@ -229,11 +229,11 @@ git status
 
 When running `git checkout branch-name`
 
-<figure><img src="../../.gitbook/assets/image (84).png" alt="" width="311"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (73).png" alt="" width="311"><figcaption></figcaption></figure>
 
 When creating and switching to a new branch with `git checkout -b new-branch`
 
-<figure><img src="../../.gitbook/assets/image (85).png" alt="" width="302"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (74).png" alt="" width="302"><figcaption></figcaption></figure>
 
 ## git merge
 
@@ -320,11 +320,11 @@ git merge feature-branch
 
 When running `git merge feature-branch`
 
-<figure><img src="../../.gitbook/assets/image (86).png" alt="" width="251"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (75).png" alt="" width="251"><figcaption></figcaption></figure>
 
 If a merge commit is created (for a three-way merge)
 
-<figure><img src="../../.gitbook/assets/image (88).png" alt="" width="327"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (77).png" alt="" width="327"><figcaption></figcaption></figure>
 
 ### Merge Conflicts
 
@@ -518,11 +518,11 @@ git switch main
 
 When running `git switch branch-name`
 
-<figure><img src="../../.gitbook/assets/image (80).png" alt="" width="279"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (69).png" alt="" width="279"><figcaption></figcaption></figure>
 
 When creating and switching to a new branch with `git switch -c new-branch`
 
-<figure><img src="../../.gitbook/assets/image (81).png" alt="" width="281"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (70).png" alt="" width="281"><figcaption></figcaption></figure>
 
 ## **git restore**
 
@@ -707,11 +707,11 @@ git rebase --continue
 
 When running `git rebase main`
 
-<figure><img src="../../.gitbook/assets/image (82).png" alt="" width="494"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (71).png" alt="" width="494"><figcaption></figcaption></figure>
 
 If a conflict occurs, Git will provide instructions.
 
-<figure><img src="../../.gitbook/assets/image (83).png" alt="" width="534"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (72).png" alt="" width="534"><figcaption></figcaption></figure>
 
 ### Rebase vs Merge
 
@@ -780,4 +780,4 @@ git push origin :refs/tags/v1.1.0
 
 Viewing Tag Information with `git show v1.0.0`
 
-<figure><img src="../../.gitbook/assets/image (70).png" alt="" width="505"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (59).png" alt="" width="505"><figcaption></figcaption></figure>

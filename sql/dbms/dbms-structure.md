@@ -9,7 +9,7 @@ The structure of a Database Management System (DBMS) can be referred to in two w
 
 Database Management System (DBMS) is software that allows access to data stored in a database and provides an easy and effective method of defining, storing, manipulating, protecting the data.
 
-<figure><img src="../../.gitbook/assets/image (320).png" alt="" width="459"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (309).png" alt="" width="459"><figcaption></figcaption></figure>
 
 The database system is divided into three components: Query Processor, Storage Manager, and Disk Storage.
 
@@ -50,7 +50,7 @@ It contains the following components –
 
 This is a conceptual framework that describes data organization at different levels within a DBMS:
 
-<figure><img src="../../.gitbook/assets/image (322).png" alt="" width="367"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (311).png" alt="" width="367"><figcaption></figcaption></figure>
 
 * **Internal Schema (Physical Schema):** The lowest level, defines how data is physically stored and accessed by the DBMS. It is responsible for storing and retrieving data from the storage devices, such as hard drives or solid-state drives. It deals with low-level implementation details such as data compression, indexing, and storage allocation.
 * **Conceptual Schema (Logical Schema):** Represents the logical structure of the data as seen by database administrators and application developers. It focuses on data entities (tables), attributes (columns), and the relationships between them. This schema provides a blueprint for the database's logical organization.

@@ -178,7 +178,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 }
 ```
 
-<figure><img src="../../.gitbook/assets/image (261).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (250).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 {% hint style="info" %}
 Make sure to include below dependencies and failsafe plugin to test

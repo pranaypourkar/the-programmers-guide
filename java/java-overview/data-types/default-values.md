@@ -12,7 +12,7 @@ In Java, different types of variables have different default values when they ar
 3. **Local Variables**
    * Local variables must be explicitly initialized before they are used. They do not have default values. **Compilation** error will occur if not initialized and tried to use.
 
-<figure><img src="../../../.gitbook/assets/image (312).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (301).png" alt="" width="563"><figcaption></figcaption></figure>
 
 4. **Static and Instance Variables**
 

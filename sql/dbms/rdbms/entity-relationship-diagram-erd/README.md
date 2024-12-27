@@ -34,7 +34,7 @@ Entity-Relationship (ER) Diagrams use a specific set of symbols and notations to
 
 Following are the main components and its symbols in ER Diagrams:
 
-<figure><img src="../../../../.gitbook/assets/image (156).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (145).png" alt=""><figcaption></figcaption></figure>
 
 ### **Entity**:
 
@@ -95,7 +95,7 @@ Depicted by a <mark style="background-color:blue;">diamond</mark> shape connecti
 
 It refers to the number of occurrences of an entity in a relationship. It describes how many instances of one entity relate to how many instances of another entity.
 
-<figure><img src="../../../../.gitbook/assets/image (325).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (314).png" alt=""><figcaption></figcaption></figure>
 
 Here are the different types of cardinal relationships:
 
@@ -105,7 +105,7 @@ Here are the different types of cardinal relationships:
 
 ## How to Create an Entity Relationship Diagram (ERD)
 
-<figure><img src="../../../../.gitbook/assets/image (326).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (315).png" alt=""><figcaption></figcaption></figure>
 
 ### **1. Entity Identification:**
 

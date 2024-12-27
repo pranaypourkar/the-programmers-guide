@@ -45,7 +45,7 @@ However, if we want more advanced functionalities like custom test listeners or 
 
 ## Package `org.junit` Details
 
-<figure><img src="../../../../.gitbook/assets/image (418).png" alt="" width="290"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (407).png" alt="" width="290"><figcaption></figcaption></figure>
 
 ## Annotations in `org.junit`
 
@@ -181,7 +181,7 @@ The `Assert` class in JUnit 4 provides a collection of static methods to perform
 
 This package contains built-in runners that JUnit uses to execute tests.
 
-<figure><img src="../../../../.gitbook/assets/image (419).png" alt="" width="224"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (408).png" alt="" width="224"><figcaption></figcaption></figure>
 
 * **Classes**:
   * `BlockJUnit4ClassRunner`: The default JUnit 4 test runner.
@@ -193,7 +193,7 @@ This package contains built-in runners that JUnit uses to execute tests.
 
 This package provides additional matchers for use in assertions.
 
-<figure><img src="../../../../.gitbook/assets/image (420).png" alt="" width="209"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (409).png" alt="" width="209"><figcaption></figcaption></figure>
 
 * **Classes**:
   * `JUnitMatchers`: Contains additional matchers (generic) that can be used with `assertThat` to create more readable and flexible assertions.
@@ -202,7 +202,7 @@ This package provides additional matchers for use in assertions.
 
 This package contains classes related to running tests and getting results.
 
-<figure><img src="../../../../.gitbook/assets/image (421).png" alt="" width="227"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (410).png" alt="" width="227"><figcaption></figcaption></figure>
 
 * **Classes**:
   * `JUnitCore`: A facade for running tests.
@@ -216,7 +216,7 @@ This package contains classes related to running tests and getting results.
 
 This package contains classes for validating test classes.
 
-<figure><img src="../../../../.gitbook/assets/image (422).png" alt="" width="231"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (411).png" alt="" width="231"><figcaption></figcaption></figure>
 
 * **Classes**:
   * `AnnotationValidator`: An interface for validating custom annotations.
@@ -228,7 +228,7 @@ This package contains classes for validating test classes.
 
 This package contains classes for creating and using rules, which can modify the behavior of tests.
 
-<figure><img src="../../../../.gitbook/assets/image (423).png" alt="" width="287"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (412).png" alt="" width="287"><figcaption></figcaption></figure>
 
 * **Classes**:
   * `ExternalResource`: A base class for rules that set up and tear down external resources.

@@ -32,7 +32,7 @@ public class EncodingDecodingFiles {
 ```
 
 \
-![](<../../../../.gitbook/assets/image (51).png>)
+![](<../../../../.gitbook/assets/image (40).png>)
 {% endhint %}
 
 ### How They Work Together

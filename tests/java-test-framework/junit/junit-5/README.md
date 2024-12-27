@@ -128,19 +128,19 @@ If we do not specify the Surefire Plugin in`pom.xml`, Maven will use the default
 org.junit.jupiter.api
 ```
 
-<div align="left"><figure><img src="../../../../.gitbook/assets/image (67).png" alt="" width="322"><figcaption></figcaption></figure> <figure><img src="../../../../.gitbook/assets/image (68).png" alt="" width="268"><figcaption></figcaption></figure></div>
+<div align="left"><figure><img src="../../../../.gitbook/assets/image (56).png" alt="" width="322"><figcaption></figcaption></figure> <figure><img src="../../../../.gitbook/assets/image (57).png" alt="" width="268"><figcaption></figcaption></figure></div>
 
 ```
 org.junit.jupiter.engine
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (69).png" alt="" width="239"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (58).png" alt="" width="239"><figcaption></figcaption></figure>
 
 ```
 org.junit.jupiter.api.condition
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (424).png" alt="" width="301"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (413).png" alt="" width="301"><figcaption></figcaption></figure>
 
 ## Annotations
 

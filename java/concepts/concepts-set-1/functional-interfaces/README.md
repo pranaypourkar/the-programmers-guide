@@ -41,7 +41,7 @@ public class Application {
 
 Execute the program
 
-<figure><img src="../../../../.gitbook/assets/image (43).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (32).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Functional Interface vs Normal Interface
 

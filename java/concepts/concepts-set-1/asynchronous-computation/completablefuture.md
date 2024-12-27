@@ -165,7 +165,7 @@ public class MainApplication {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (267).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (256).png" alt=""><figcaption></figcaption></figure>
 
 2. Multiple asynchronous operations using **`supplyAsync`.**
 
@@ -209,7 +209,7 @@ public class MainApplication {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (268).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (257).png" alt=""><figcaption></figcaption></figure>
 
 3. Creating a single CompletableFuture using **`runAsync`.**
 
@@ -228,7 +228,7 @@ log.info("Continuing with main process");
 completableFuture.get();
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (271).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (260).png" alt=""><figcaption></figcaption></figure>
 
 4. Example using **`thenApply`.**
 
@@ -245,7 +245,7 @@ log.info("Continuing with main process");
 log.info(futureResult.get());
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (272).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (261).png" alt=""><figcaption></figcaption></figure>
 
 5. Example using **`thenAccept`**.
 
@@ -262,7 +262,7 @@ CompletableFuture<Void> futureResult = completableFuture.thenAccept(result -> lo
 futureResult.get();
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (273).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (262).png" alt=""><figcaption></figcaption></figure>
 
 6. Example using **`thenCombine`**.
 
@@ -277,7 +277,7 @@ CompletableFuture<String> futureResult = completableFuture1
 log.info(futureResult.get()); // Prints "Hello World"
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (274).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (263).png" alt=""><figcaption></figcaption></figure>
 
 7. Example using **`thenCompose`** .
 
@@ -291,7 +291,7 @@ CompletableFuture<String> futureResult = completableFuture1
 log.info(futureResult.get()); // Prints "Hello World"
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (275).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (264).png" alt=""><figcaption></figcaption></figure>
 
 8. Example using **`orTimeout`** and **`exceptionallyAsync`**
 
@@ -327,7 +327,7 @@ public class MainApplication {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (195).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (184).png" alt=""><figcaption></figcaption></figure>
 
 9. Example using **`exceptionally`**.
 
@@ -349,7 +349,7 @@ static String getSomeDataFromExternalService() {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (196).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (185).png" alt=""><figcaption></figcaption></figure>
 
 10. Example using **`orTimeout`**.
 
@@ -370,7 +370,7 @@ try {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (197).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (186).png" alt=""><figcaption></figcaption></figure>
 
 11. Example using **`completeOnTimeout`**.
 
@@ -391,7 +391,7 @@ try {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (198).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (187).png" alt=""><figcaption></figcaption></figure>
 
 12. Example using **`handle`**.
 
@@ -412,7 +412,7 @@ CompletableFuture<Integer> completableFuture = CompletableFuture.supplyAsync(() 
 log.info("Result: {}", completableFuture.get()); // Prints "Result: 0" because of the exception
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (199).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (188).png" alt=""><figcaption></figcaption></figure>
 
 13. Example using **`allOf`**`.`
 
@@ -428,7 +428,7 @@ allFutures.get(); // Waits for all futures to complete
 log.info("All futures completed successfully");
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (200).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (189).png" alt=""><figcaption></figcaption></figure>
 
 14. Example using **`anyOf`**`.`
 
@@ -456,7 +456,7 @@ CompletableFuture<Object> anyFuture = CompletableFuture.anyOf(future1, future2);
 log.info("First future completed: {}", anyFuture.get()); // Waits for any future to complete
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (201).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (190).png" alt=""><figcaption></figcaption></figure>
 
 15. Example using **`cancel`**.
 
@@ -485,7 +485,7 @@ if (!cancelled) {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (202).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (191).png" alt=""><figcaption></figcaption></figure>
 
 16. Example using **`get`** and **`join`**.
 
@@ -511,7 +511,7 @@ try {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (276).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (265).png" alt=""><figcaption></figcaption></figure>
 
 ### Use Cases:
 
@@ -556,4 +556,4 @@ public class MainApplication {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (269).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (258).png" alt=""><figcaption></figcaption></figure>

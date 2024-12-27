@@ -4,7 +4,7 @@
 
 In a Java microservices architecture, load balancing plays a crucial role in maintaining the availability, scalability, and reliability of services. Microservices are typically deployed across distributed environments like cloud platforms, containers, or multiple servers, and they often need to handle fluctuating traffic loads while providing fast, reliable responses. Load balancing ensures that incoming requests are distributed efficiently across multiple service instances, preventing any one instance from being overwhelmed.
 
-<figure><img src="../../../../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## **Why Load Balancing is important in Java Microservices?**
 
@@ -21,7 +21,7 @@ Client-Side Load Balancing, Server-Side Load Balancing, and Service Mesh-Based L
 
 In **client-side load balancing**, the logic for distributing traffic resides on the client itself. Instead of forwarding requests to a centralized load balancer, the client maintains a list of available service instances and makes the decision on which instance to send the request. This approach is common in microservices architectures where the client needs direct control over service discovery and request distribution.
 
-<figure><img src="../../../../.gitbook/assets/image (541).png" alt="" width="432"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (530).png" alt="" width="432"><figcaption></figcaption></figure>
 
 **Key Features:**
 
@@ -50,7 +50,7 @@ In **client-side load balancing**, the logic for distributing traffic resides on
 
 In **server-side load balancing**, an intermediary load balancer (external to the client) is responsible for distributing incoming requests across available service instances. Clients are unaware of the underlying distribution logic, they simply send requests to a single endpoint, and the load balancer decides which service instance to forward the request to.
 
-<figure><img src="../../../../.gitbook/assets/image (542).png" alt="" width="554"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (531).png" alt="" width="554"><figcaption></figcaption></figure>
 
 **Key Features:**
 
@@ -80,7 +80,7 @@ In **server-side load balancing**, an intermediary load balancer (external to th
 
 **Service Mesh-based load balancing** is an advanced pattern where load balancing is handled at the **data plane** level, typically by **sidecar proxies** that are deployed alongside each microservice. A service mesh manages communication between microservices and abstracts away the complexity of load balancing, service discovery, security, and observability.
 
-<figure><img src="../../../../.gitbook/assets/image (543).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (532).png" alt="" width="563"><figcaption></figcaption></figure>
 
 **Key Features:**
 

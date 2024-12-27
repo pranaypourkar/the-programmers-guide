@@ -131,7 +131,7 @@ FROM sales;
 
 Sample Input
 
-<figure><img src="../../../../../.gitbook/assets/image (393).png" alt="" width="489"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (382).png" alt="" width="489"><figcaption></figcaption></figure>
 
 We want to calculate the cumulative sales amount within the last 90 days for each row.
 
@@ -147,7 +147,7 @@ FROM
     sales;
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (394).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (383).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Example with `ROWS BETWEEN`
 

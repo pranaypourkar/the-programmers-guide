@@ -12,7 +12,7 @@ The Spring Bean Lifecycle refers to the well-defined stages a bean goes through 
 
 ## Stages
 
-<figure><img src="../../../.gitbook/assets/image (318).png" alt="" width="563"><figcaption><p>Reference - <a href="https://bootcamptoprod.com/spring-bean-life-cycle-explained/">https://bootcamptoprod.com/spring-bean-life-cycle-explained/</a></p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (307).png" alt="" width="563"><figcaption><p>Reference - <a href="https://bootcamptoprod.com/spring-bean-life-cycle-explained/">https://bootcamptoprod.com/spring-bean-life-cycle-explained/</a></p></figcaption></figure>
 
 ### 1. Bean Instantiation:
 
@@ -224,7 +224,7 @@ Not all stages are mandatory. For instance, a bean might not require custom init
 
 ### Structure
 
-<figure><img src="../../../.gitbook/assets/image (317).png" alt="" width="357"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (306).png" alt="" width="357"><figcaption></figcaption></figure>
 
 ### pom.xml dependency
 
@@ -411,7 +411,7 @@ public class Application {
 
 ### Run the application and verify the output
 
-<figure><img src="../../../.gitbook/assets/image (316).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (305).png" alt=""><figcaption></figcaption></figure>
 
 ## FAQs
 

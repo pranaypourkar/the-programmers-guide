@@ -25,7 +25,7 @@ String s2 = "Hello"; // String literal
 String s3 = s1; // same reference
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (313).png" alt="" width="551"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (302).png" alt="" width="551"><figcaption></figcaption></figure>
 
 Changing the value of String created above
 
@@ -45,7 +45,7 @@ System.out.println("s3 refers to " + s3); // s3 refers to Hello
 System.out.println("newS3 refers to " + newS3); // newS3 refers to Hello Test
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (314).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (303).png" alt="" width="563"><figcaption></figcaption></figure>
 
 String s1 is updated with a new value and that's why a new instance is created. Hence, s1 reference changes to that newly created instance "Java". String s2 and s3 remain unchanged as their references were not changed to a new instance created after performing concat() operation. "Hello World" remains unreferenced to any object and lost in the pool as s2.concat() operation is not assigned to any object. That's why there is a reference to its result. String newS3 refers to the instance of s3.concat() operation that is "Hello Test" as it is referenced to new object newS3.
 
