@@ -6,7 +6,7 @@ description: >-
 
 # Date and Time
 
-### `java.util.Date`
+## `java.util.Date`
 
 **Description:** It is used to represent a specific point in time, including both date and time information. It has been around since the early days of Java, but it has limitations and potential issues.
 
@@ -60,7 +60,7 @@ public class Application {
 
 <figure><img src="../../../.gitbook/assets/image (195).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
-### `java.util.Calendar`
+## `java.util.Calendar`
 
 **Description:** It is an abstract class that provides functionalities for working with dates and times. Since it is abstract, it cannot be directly created as a `Calendar` object using a constructor. Instead, use the static method `Calendar.getInstance()` to get an instance based on the current time, default locale, and time zone. It is mutable and able to modify the date and time represented by a `Calendar` object by setting its field values.
 
@@ -120,7 +120,7 @@ public class Application {
 
 <figure><img src="../../../.gitbook/assets/image (196).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
-### java.sql.Timestamp
+## java.sql.Timestamp
 
 In Java, `java.sql.Timestamp` is a class that represents a timestamp with nanosecond precision, specifically designed for use with JDBC (Java Database Connectivity). It essentially acts as a wrapper around the `java.util.Date` class, providing additional functionality for handling timestamps in a database context. It stores a timestamp value as milliseconds since the epoch (January 1, 1970, 00:00:00 UTC) with nanosecond precision.
 
@@ -166,7 +166,7 @@ log.info("Formatted string: {}", formattedString);
 // Output - Formatted string: 2023-03-09 09:10:00.000
 ```
 
-### `java.time` (Java 8 and later)
+## `java.time` (Java 8 and later)
 
 **Description:** The `java.time` API, introduced in Java 8, provides a modern and improved set of classes for working with dates, times, and timezones. It addresses the limitations and complexities of the older `java.util.Date` and `java.util.Calendar` classes, offering improved design, thread-safety, and timezone handling.
 
@@ -185,7 +185,7 @@ It includes:
 
 **Classes:**
 
-* **java.time.**<mark style="background-color:yellow;">**LocalDate**</mark>
+### **java.time.**<mark style="background-color:yellow;">**LocalDate**</mark>
 
 The `LocalDate` class in the `java.time` API represents a date without time and timezone information. It's an immutable class, meaning its state cannot be changed after creation. It represents a date in the ISO-8601 calendar system.
 
@@ -266,7 +266,7 @@ public class Application {
 
 <figure><img src="../../../.gitbook/assets/image (197).png" alt=""><figcaption></figcaption></figure>
 
-* j**ava.time.**<mark style="background-color:yellow;">**LocalTime**</mark>
+### **java.time.**<mark style="background-color:yellow;">**LocalTime**</mark>
 
 The `LocalTime` class in the `java.time` API represents a time without a date or timezone information. It's an immutable class, meaning its state cannot be changed after creation. It represents a time in the 24-hour format (e.g., 10:15:30).
 
@@ -338,7 +338,7 @@ public class Application {
 
 <figure><img src="../../../.gitbook/assets/image (198).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
-* j**ava.time.**<mark style="background-color:yellow;">**LocalDateTime**</mark>
+### **java.time.**<mark style="background-color:yellow;">**LocalDateTime**</mark>
 
 The `java.time.LocalDateTime` class in Java combines the functionalities of `LocalDate` and `LocalTime` classes, representing both date and time information without timezone data. It's also an immutable class, ensuring thread-safety and simplifying reasoning about your code. Represents a date and time without timezone information (e.g., 2024-03-07T21:51:24)
 
@@ -445,7 +445,7 @@ for (String pattern : patterns) {
 
 <figure><img src="../../../.gitbook/assets/image (194).png" alt=""><figcaption></figcaption></figure>
 
-* **java.time.**<mark style="background-color:yellow;">**ZonedDateTime**</mark>
+### **java.time.**<mark style="background-color:yellow;">**ZonedDateTime**</mark>
 
 `ZonedDateTime` is a class introduced in Java 8 that represents a date and time with a time zone offset. It combines the functionalities of `LocalDateTime` (date and time without zone) and `ZoneId` (identifier for a time zone). Unlike `LocalDateTime`, `ZonedDateTime` is aware of the time zone context, making it useful for scenarios where time zone information is crucial. It stores date, time, and time zone information in a single object.
 
@@ -549,7 +549,7 @@ log.info("Current datetime is {}, Formatted datetime is {}", currentDateTime, fo
 // Current datetime is 2024-03-09T16:41:52.947410700+05:30[Asia/Calcutta], Formatted datetime is 03/09/2024 04:41:52                
 ```
 
-* **java.time.**<mark style="background-color:yellow;">**OffsetDateTime**</mark>
+### **java.time.**<mark style="background-color:yellow;">**OffsetDateTime**</mark>
 
 `OffsetDateTime` is a class introduced in Java 8 that represents a date and time with an offset from UTC (Coordinated Universal Time). It stores all date and time fields, including the offset from UTC, with a precision of nanoseconds. It stores date, time, and offset from UTC in a single object.
 
@@ -653,7 +653,7 @@ log.info("Formatted DateTime (with offset): {}", formattedDateTime);
 // Output - Formatted DateTime (with offset): 2024-03-09 18:15:10 +0530
 ```
 
-* **java.time.**<mark style="background-color:yellow;">**instant**</mark>
+### **java.time.**<mark style="background-color:yellow;">**instant**</mark>
 
 It is a class introduced in Java 8 that represents a specific point in time on the timeline. Unlike `LocalDateTime` or `ZonedDateTime`, it doesn't carry any information about the time zone or date. Instead, it represents an instant in terms of the number of milliseconds that have elapsed since a specific reference point, known as the epoch (January 1, 1970, 00:00:00 UTC)
 
@@ -685,7 +685,7 @@ log.info("ZonedDateTime (Los Angeles): {}", zonedDateTime);
 // Output - ZonedDateTime (Los Angeles): 2024-03-09T05:05:53.661203500-08:00[America/Los_Angeles]
 ```
 
-* **java.time.**<mark style="background-color:yellow;">**duration**</mark>
+### **java.time.**<mark style="background-color:yellow;">**duration**</mark>
 
 In Java's `java.time` API, the `Duration` class represents a duration of time. It focuses on measuring time intervals without referencing a specific point in time or time zone. It stores a duration as a combination of seconds and nanoseconds.
 
@@ -740,7 +740,7 @@ log.info("Remaining duration: {}", remaining);
 // Output - Remaining duration: PT55M
 ```
 
-* **java.time.**<mark style="background-color:yellow;">**period**</mark>
+### **java.time.**<mark style="background-color:yellow;">**period**</mark>
 
 In the `java.time` library, `java.time.Period` represents a quantity or amount of time expressed in terms of years, months, and days. Unlike `Duration` which focuses on seconds and nanoseconds, `Period` deals with date-based durations. It stores a period as a combination of years, months, and days.
 
