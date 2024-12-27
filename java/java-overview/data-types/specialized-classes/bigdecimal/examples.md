@@ -1,6 +1,6 @@
-# Problems
+# Examples
 
-## Problem 1
+## Example 1
 
 Given an array, **arr**, of **n** real number strings. Task is to sort them in descending order. Note that each number must be printed in the exact same format as it is given in input, meaning that .1 is printed as .1, and 0.1 is printed as 0.1. If two numbers represent numerically equivalent values (e.g. .1 is equivalent to 0.1), then they must be listed in the same order as they were received in the input).
 
