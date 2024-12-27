@@ -219,7 +219,7 @@ Here are the key configuration parameters for probes:
 * Prevent **premature failure** of liveness probes during the startup phase, especially for applications that require considerable time to initialize.
 * Use for **large-scale applications** that might involve waiting for external dependencies or lengthy initialization routines.
 
-## **Best Practices:**
+## **Best Practices**
 
 1. **Liveness Probe**:
    * Should be quick and lightweight to avoid overloading the system.
@@ -250,3 +250,37 @@ Kubernetes probes play a vital role in ensuring **reliability** and **availabili
 4. **Monitoring and Debugging**:
    * Probes provide insights into container health and can be used to debug issues, especially when a container fails to start or hangs in an unhealthy state.
    * By fine-tuning probes, you can better handle applications with varying initialization times or external dependencies.
+
+## Example
+
+Using Actuator endpoints for health, readiness and startup check.
+
+```yaml
+  startupProbe:
+    enabled: true
+    port: "http"
+    initialDelaySeconds: 120
+    failureThreshold: 6
+    periodSeconds: 30
+    timeoutSeconds: 5
+    path: /actuator/health/liveness
+  livenessProbe:
+    enabled: true
+    port: "http"
+    initialDelaySeconds: 120
+    failureThreshold: 6
+    periodSeconds: 30
+    timeoutSeconds: 5
+    path: /actuator/health/liveness
+  readinessProbe:
+    enabled: true
+    port: "http"
+    initialDelaySeconds: 120
+    failureThreshold: 6
+    periodSeconds: 30
+    timeoutSeconds: 5
+    path: /actuator/health/readiness
+```
+
+<div><figure><img src="../../../.gitbook/assets/kubernetes-probe-2.png" alt=""><figcaption></figcaption></figure> <figure><img src="../../../.gitbook/assets/kubernetes-probe-1.png" alt=""><figcaption></figcaption></figure></div>
+
