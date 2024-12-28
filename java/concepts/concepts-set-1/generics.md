@@ -116,7 +116,7 @@ To completely disable unchecked warnings, use the -Xlint:-unchecked flag. The @S
 
 Similar to generic classes, these methods have type parameters in their signature, enabling them to operate on different data types. For instance, a swap(T a, T b) method can swap elements of any type.
 
-* **How to Declare:** Generic classes are blueprints/templates for creating objects with a specific data type. They declare one or more type parameters within angle brackets `< >` in the class declaration.
+* **How to Declare:** Similar to generic classes, generic method define the behavior of objects using type parameters. They declare one or more type parameters within angle brackets `< >` in the method declaration.
 
 ```java
 public static <T> void swap(T a, T b) {
