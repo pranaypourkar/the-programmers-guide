@@ -122,7 +122,7 @@ intList.sort(Collections.reverseOrder());
 ```
 {% endhint %}
 
-### Custom Object
+### Custom Object - Using Comparator
 
 Consider a Person class below as a custom object
 
@@ -175,6 +175,115 @@ people.forEach(p -> System.out.println(p.getName() + " - " + p.getAge()));
 ```
 
 <figure><img src="../../../../.gitbook/assets/image (472).png" alt="" width="131"><figcaption></figcaption></figure>
+
+### Custom Object - Using Comparable interface
+
+Create a Java class `Pair` that represents a pair of integers and provides functionality to sort a collection of its objects based on a custom-defined order.
+
+{% hint style="info" %}
+**Requirements:**
+
+1. **Attributes:**
+   * The `Pair` class should have two integer attributes: `first` and `second`.
+2. **Constructor:**
+   * Implement a parameterized constructor that accepts two integers `a` and `b`.
+   * Initialize the `first` attribute with `a` and the `second` attribute with `b`.
+3. **Custom Sorting Logic:**
+   * The class should implement the `Comparable` interface.
+   * Define the sorting order using the `compareTo` method as follows:
+     * Sort by the `second` attribute in **descending order**.
+     * If the `second` attributes are equal, sort by the `first` attribute in **descending order**.
+4.  **Example:**\
+    Given an array or list of `Pair` objects, the custom sorting should work as follows:
+
+    **Input:**
+
+    ```makefile
+    Pairs: (3, 4), (1, 4), (5, 2), (2, 2), (3, 3)
+    ```
+
+    **Sorted Output:**
+
+    ```makefile
+    Pairs: (3, 4), (1, 4), (3, 3), (5, 2), (2, 2)
+    ```
+{% endhint %}
+
+```java
+class Pair implements Comparable<Pair> {
+    private int first;
+    private int second;
+
+    // Parameterized constructor
+    public Pair(int a, int b) {
+        this.first = a;
+        this.second = b;
+    }
+
+    // Getters for first and second
+    public int getFirst() {
+        return first;
+    }
+
+    public int getSecond() {
+        return second;
+    }
+
+    // Override compareTo to define the custom sorting logic
+    @Override
+    public int compareTo(Pair other) {
+        // First compare by second in descending order
+        if (this.second != other.second) {
+            return Integer.compare(other.second, this.second);
+        }
+        // If second is the same, compare by first in descending order
+        return Integer.compare(other.first, this.first);
+    }
+
+    @Override
+    public String toString() {
+        return "(" + first + ", " + second + ")";
+    }
+
+    // Main method
+    public static void main(String[] args) {
+        // Create a list of Pair objects
+        List<Pair> pairs = new ArrayList<>();
+        pairs.add(new Pair(3, 4));
+        pairs.add(new Pair(1, 4));
+        pairs.add(new Pair(5, 2));
+        pairs.add(new Pair(2, 2));
+        pairs.add(new Pair(3, 3));
+
+        // Sort the pairs using the Comparable interface
+        Collections.sort(pairs);
+
+        // Print the sorted list
+        for (Pair pair : pairs) {
+            System.out.println(pair);
+        }
+    }
+}
+```
+
+### Custom Object - Using Lambda expression in Method
+
+```java
+    // Method to provide the custom comparator
+    public static Comparator<Pair> getCustomComparator() {
+        return (p1, p2) -> {
+            // Compare by second in descending order
+            if (p1.getSecond() != p2.getSecond()) {
+                return Integer.compare(p2.getSecond(), p1.getSecond());
+            }
+            // If second is the same, compare by first in descending order
+            return Integer.compare(p2.getFirst(), p1.getFirst());
+        };
+    }
+    
+    // We can use like below in the above example
+    pairs.sort(Pair.getCustomComparator());
+```
 
 ## Sets
 

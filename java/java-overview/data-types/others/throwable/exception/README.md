@@ -4,12 +4,19 @@ description: Overview on the Exception Handling and best practices.
 
 # Exception
 
+## About
+
 An exception is an event that disrupts the normal flow of a program's instructions during execution. When an exceptional scenario occurs within a method, the method creates an exception object and hands it off to the runtime system. The runtime system then searches for an exception handler i.e., a block of code that can handle that particular type of exception.
 
-**There are two main types of exceptions in Java:**
+## Two main types of Exceptions
 
-1. **Checked Exceptions (Recoverable)**: These are exceptions that are checked at compile time. This means that the compiler ensures that your code handles these exceptions either by catching them with a try-catch block or by declaring that the method throws the exception using the `throws` keyword. Examples of checked exceptions include `IOException`, `SQLException`, etc.
-2. **Unchecked Exceptions (Potentially Unrecoverable)**: Also known as runtime exceptions, these exceptions are not checked at compile time. They occur during the execution of the program and typically indicate programming errors or exceptional conditions that a coder can reasonably expect might occur. Examples of unchecked exceptions include `NullPointerException`, `ArrayIndexOutOfBoundsException`, etc.
+### **1. Checked Exceptions (Recoverable)**
+
+These are exceptions that are checked at compile time. This means that the compiler ensures that our code handles these exceptions either by catching them with a try-catch block or by declaring that the method throws the exception using the `throws` keyword. Examples of checked exceptions include `IOException`, `SQLException`, etc.
+
+### **2. Unchecked Exceptions (Potentially Unrecoverable)**
+
+Also known as runtime exceptions, these exceptions are not checked at compile time. They occur during the execution of the program and typically indicate programming errors or exceptional conditions that a coder can reasonably expect might occur. Examples of unchecked exceptions include `NullPointerException`, `ArrayIndexOutOfBoundsException`, etc.
 
 {% hint style="info" %}
 Every exception in Java is a subclass of the `Throwable` class. The two main subclasses of `Throwable` are `Exception` and `Error`. Checked exceptions are subclasses of `Exception`, while unchecked exceptions are subclasses of `RuntimeException`, which itself is a subclass of `Exception`.
@@ -26,16 +33,20 @@ Every exception in Java is a subclass of the `Throwable` class. The two main sub
 
 **Non-recoverable Exception:**
 
-* An exception that usually indicates a more severe issue from which it's difficult or impossible to fully recover, often requiring the program to terminate abnormally\*\*.\*\*
+* An exception that usually indicates a more severe issue from which it's difficult or impossible to fully recover, often requiring the program to terminate abnormally.
 * These exceptions often point to critical errors or unexpected conditions that fundamentally prevent the program from continuing its intended operation.
 * Examples:
   * **Out of memory errors:** The program might not have enough memory to continue execution.
   * **Corrupted data:** The program might be unable to process data that is in an invalid or inconsistent state.
 {% endhint %}
 
-There are **different ways to handle exceptions**, depending on the requirements of the program and the nature of the exceptions being thrown. Here are some of the ways to handle.
+## **Different ways to handle Exception**
 
-**Using try-catch Block**: try-catch block can be used to catch exceptions and handle them gracefully. Inside the try block, place the code that might throw an exception, and inside the catch block, specify the type of exception that needs to be handled and provide the code to handle it.
+There are **different ways to handle exceptions**, depending on the requirements of the program and the nature of the exceptions being thrown.
+
+### **1. Using try-catch Block**
+
+try-catch block can be used to catch exceptions and handle them gracefully. Inside the try block, place the code that might throw an exception, and inside the catch block, specify the type of exception that needs to be handled and provide the code to handle it.
 
 ```java
 try {
@@ -45,7 +56,9 @@ try {
 }
 ```
 
-**Using Multiple catch Blocks**: Multiple catch blocks can be used to handle different types of exceptions separately.
+### **2. Using Multiple catch Blocks**
+
+Multiple catch blocks can be used to handle different types of exceptions separately.
 
 ```java
 try {
@@ -59,7 +72,9 @@ try {
 }
 ```
 
-**Using a Single catch Block for Multiple Exceptions**: Multiple exceptions can be catched using a single catch block separated by a pipe (|) symbol.
+### **3. Using a Single catch Block for Multiple Exceptions**
+
+Multiple exceptions can be catched using a single catch block separated by a pipe (|) symbol.
 
 ```java
 try {
@@ -69,7 +84,9 @@ try {
 }
 ```
 
-**Throwing Exceptions**: Exceptions can be thrown explicitly using the `throw` keyword.
+### **4. Throw Exceptions**
+
+Exceptions can be thrown explicitly using the `throw` keyword.
 
 ```java
 if (someCondition) {
@@ -77,7 +94,9 @@ if (someCondition) {
 }
 ```
 
-**Using finally Block**: Finally block can be used to execute code regardless of whether an exception is thrown or not. This block is useful for releasing resources or performing cleanup operations.
+### **5. Using finally Block**
+
+Finally block can be used to execute code regardless of whether an exception is thrown or not. This block is useful for releasing resources or performing cleanup operations.
 
 ```java
 try {
@@ -89,7 +108,9 @@ try {
 }
 ```
 
-**Using try-with-resources**: This is a special form of try statement that declares one or more resources to be used within the block. The resources are automatically closed at the end of the block, even if an exception occurs.
+### **6. Using try-with-resources**
+
+This is a special form of try statement that declares one or more resources to be used within the block. The resources are automatically closed at the end of the block, even if an exception occurs.
 
 ```java
 try (ResourceType resource = new ResourceType()) {
@@ -99,7 +120,7 @@ try (ResourceType resource = new ResourceType()) {
 }
 ```
 
-**Best Practices in Exception Handling**
+## **Best Practices in Exception Handling**
 
 * **Catch Specific Exceptions**: Catch only those exceptions that can be handled. Avoid catching broader exceptions like `Exception` if specific exceptions can be used.
 * **Handle Exceptions Appropriately**: Handle exceptions at an appropriate level of abstraction. This means catching exceptions where it can be handled effectively without cluttering the code with unnecessary try-catch blocks.
