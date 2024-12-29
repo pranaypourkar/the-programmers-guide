@@ -1,8 +1,8 @@
-# Bit Manipulation
+# Bit Manipulation - TBU
 
-## Theory:
+## Theory
 
-1 byte comprises of 8 bits and any integer or character can be represented using bits in computers, which we call its binary form(contains only 1 or 0) or in its base 2 form.\\
+1 byte comprises of 8 bits and any integer or character can be represented using bits in computers, which we call its binary form(contains only 1 or 0) or in its base 2 form.
 
 **Example**:
 
@@ -91,7 +91,7 @@ Bit manipulation in Java refers to the process of working with individual bits w
 
 <mark style="background-color:yellow;">Java, like many other programming languages and systems, uses a system called two's complement to represent signed numerical values in bits.</mark>
 
-## **Bitwise Operators:**
+## **Bitwise Operators**
 
 Java provides several bitwise operators that perform operations on corresponding bits of two integers.
 
@@ -101,13 +101,13 @@ These operators include:
 
 `int result = 5 & 3; // result = 1 (binary: 101 & 011 = 001)`
 
-**Significance:**
+**Significance**
 
-* **Filtering:** AND operation acts as a filter to identify bits that are set to 1 in both operands. It allows you to select specific bits based on a pattern.
+* **Filtering:** AND operation acts as a filter to identify bits that are set to 1 in both operands. It allows us to select specific bits based on a pattern.
 * **Checking Conditions:** We can use AND to check if certain conditions are met by examining specific bit positions.
-* **Data Masking:** By using AND with a specific mask (a binary number with specific bits set to 0 or 1), you can isolate or clear certain bits in a data value.
+* **Data Masking:** By using AND with a specific mask (a binary number with specific bits set to 0 or 1), we can isolate or clear certain bits in a data value.
 
-**Applications:**
+**Applications**
 
 Here are some common uses of Bitwise AND in programming:
 

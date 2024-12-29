@@ -199,7 +199,7 @@
       * [Date Time Formatter](java/concepts/concepts-set-3/date-time-formatter.md)
       * [Equals and HashCode](java/concepts/concepts-set-3/equals-and-hashcode.md)
     * [Set 4](java/concepts/set-4/README.md)
-      * [Bit Manipulation](java/concepts/set-4/bit-manipulation/README.md)
+      * [Bit Manipulation - TBU](java/concepts/set-4/bit-manipulation/README.md)
         * [Java Program - Bit Manipulation](java/concepts/set-4/bit-manipulation/java-program-bit-manipulation.md)
         * [Truth Tables](java/concepts/set-4/bit-manipulation/truth-tables.md)
         * [Number System](java/concepts/set-4/bit-manipulation/number-system/README.md)
