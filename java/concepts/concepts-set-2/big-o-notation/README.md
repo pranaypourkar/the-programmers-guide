@@ -15,9 +15,9 @@ Both time and space complexity are often expressed using Big O notation, which d
 The general order of growth rates is:
 
 O(1) < O(log⁡n) < O(n) < O(nlog⁡n) < O(n^k) \<O(n^log⁡n) \<O(k^n) \<O(n!) \<O(n^n)
+
+Constant → Logarithmic → Linear → Linearithmic → Polynomial → Super-Polynomial → Exponential → Factorial.
 {% endhint %}
-
-
 
 {% hint style="info" %}
 When we say **"algorithm X is asymptotically more efficient than algorithm Y"**, we are comparing the growth rates of their time or space complexity as the size of the input (N) becomes very large (approaches infinity). **The growth rate of X's runtime (or space usage) is smaller than Y's runtime (or space usage) as N→∞.** So X will always be a better choice for large inputs.
