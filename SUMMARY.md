@@ -1,6 +1,11 @@
 # Table of contents
 
 * [About](README.md)
+* [Algorithm - TBU](algorithm/README.md)
+  * [Searching](algorithm/set-2-searching.md)
+  * [Sorting](algorithm/set-3-sorting.md)
+  * [Miscellaneous](algorithm/set-1-miscellaneous.md)
+  * [Maths Concept - TBU](algorithm/maths-concept-tbu.md)
 * [Api](api/README.md)
   * [Api Design](api/api-design/README.md)
     * [REST Api - TBD](api/api-design/rest-api-tbd/README.md)
@@ -163,10 +168,6 @@
     * [Threading and Synchronization - TBU](java/java-internals-tbu/threading-and-synchronization-tbu.md)
     * [Exception Handling - TBU](java/java-internals-tbu/exception-handling-tbu.md)
     * [Java Security - TBU](java/java-internals-tbu/java-security-tbu.md)
-  * [Algorithm](java/algorithm/README.md)
-    * [Set 1 - Miscellaneous](java/algorithm/set-1-miscellaneous.md)
-    * [Set 2 - Searching](java/algorithm/set-2-searching.md)
-    * [Set 3 - Sorting](java/algorithm/set-3-sorting.md)
   * [Concepts](java/concepts/README.md)
     * [Set 1](java/concepts/concepts-set-1/README.md)
       * [Streams](java/concepts/concepts-set-1/streams/README.md)

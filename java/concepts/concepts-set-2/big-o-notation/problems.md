@@ -96,6 +96,47 @@ For each iteration of the outer loop, the number of iterations of the inner loop
 This is a geometric series with the first term N and a common ratio of 1 /2 . The sum of this series is N\*( 1)/(1− 1/2) ​ i.e. 2N.
 {% endhint %}
 
+```java
+int i, j, k = 0;
+for (i = n / 2; i <= n; i++) {            // Outer loop
+    for (j = 2; j <= n; j = j * 2) {      // Inner loop
+        k = k + n / 2;                    // Body
+    }
+}
+//Time O(Nlog(N)), Space O(1)
+```
+
+{% hint style="info" %}
+**Outer Loop**
+
+The outer loop runs with the variable `i`, starting at n/2 and going up to n.\
+Thus, the number of iterations of the outer loop is:
+
+Number of iterations of outer loop=n−n/2+1=n/2+1
+
+This is approximately O(n) since the dominant term is n/2, which scales linearly with n.
+
+**Inner Loop**
+
+The inner loop runs with the variable `j`, starting at 2 and doubling its value in each iteration (j=j∗2).\
+Thus, the values of `j` are: 2,4,8,16,…,n
+
+The number of iterations in the inner loop is determined by how many times j can be doubled before it exceeds n. This is equivalent to the number of times n can be divided by 2, which is:
+
+Number of iterations of inner loop=log⁡(n)
+
+Thus, the inner loop runs **O(log⁡n)** times.
+
+**Total Iterations**
+
+To calculate the total number of iterations of the inner loop across all iterations of the outer loop:
+
+* The outer loop runs O(n/2) ≈ O(n) times.
+* For each iteration of the outer loop, the inner loop runs O(logn) times.
+
+Thus, the total number of iterations is: O(n)⋅O(log⁡n)=O(nlog⁡n)
+{% endhint %}
+
 
 
 ## While loop
@@ -112,4 +153,36 @@ while (i > 0) {
 ```
 
 
+
+## Complex Problems
+
+This is Euclidean algorithm which repeatedly replaces the pair (n, m) with (m , n mod  m)  until m=0. The result is the greatest common divisor (GCD) of n and m .
+
+```java
+int gcd(int n, int m) {
+    if (n % m == 0) return m;         // Base case
+    if (n < m) swap(n, m);           // Ensure n >= m
+    while (m > 0) {                  // Loop until m becomes 0
+        n = n % m;                   // Compute remainder
+        swap(n, m);                  // Swap n and m
+    }
+    return n;                        // Return the GCD
+}
+//Time O(log(N)), Space O(1)
+```
+
+{% hint style="success" %}
+#### **Worst-Case Example**
+
+The worst-case input for the Euclidean algorithm occurs when the two numbers are consecutive Fibonacci numbers, because the remainder reduction is minimal in each step. For example:
+
+* For n=Fk+1​ and m=Fk​ (where Fk​ is the k-th Fibonacci number), the algorithm performs k steps.
+* Since Fibonacci numbers grow exponentially (Fk≈ϕk, where ϕ is the golden ratio), the number of steps is proportional to logN.
+
+Eg: 8 and 13.
+
+(13 % 8) = 5 which is the previous fibonacci number of 8.
+
+Same way : (8 % 5) = 3 , (5 % 3) = 2 , (3 % 2) = 1 , (2 % 1) = 0.
+{% endhint %}
 
