@@ -154,7 +154,7 @@ while (i > 0) {
 
 
 
-## Complex Problems
+## Miscellaneous Problems
 
 ### GCD with Euclidean algorithm
 
@@ -188,7 +188,7 @@ Eg: 8 and 13.
 Same way : (8 % 5) = 3 , (5 % 3) = 2 , (3 % 2) = 1 , (2 % 1) = 0.
 {% endhint %}
 
-### For loops
+### Different For loops
 
 ```
 Consider the following for loops:
@@ -232,6 +232,64 @@ This is more efficient than both A and B because the growth rate is logarithmic,
 * **Loop Analysis**:
   * The loop starts at i=n and divides i by 2 (i/=2) until i>−1.
   * The value of i follows the sequence: n,n/2,n/4,…n. The loop runs while i>−1. Loop will not end since i will stuck at 0.
+{% endhint %}
+
+### Check the boundness
+
+```java
+Which is not bounded by O(n^2)?
+1. (10^10) * n + 12099
+2. n^1.95
+3. n^3 / (sqrt(n))
+4. (2^30) * n
+
+-> 3
+```
+
+Check the growth rate
+
+```
+Order in increasing order of complexity of functions f1, f2, f3 and f4:
+f1(n) = 2^n
+f2(n) = n^(3/2)
+f3(n) = nLogn
+f4(n) = n^(Logn)
+-> f3, f2, f4, f1
+```
+
+{% hint style="success" %}
+
+
+**1. f1(n)=2^n (Exponential Growth)**
+
+* This function grows exponentially.
+* Exponential functions grow faster than polynomial or logarithmic functions.
+* For large nn, 2n becomes extremely large.
+* **Time Complexity**: Exponential
+
+***
+
+**2. f2(n)=n^3/2 (Polynomial Growth)**
+
+* This is a polynomial function where the exponent is 3/2 (greater than 1 but less than 2).
+* Polynomial functions grow slower than exponential functions but faster than logarithmic or linearithmic functions for large n.
+* **Time Complexity**: Polynomial (O(n3/2).
+
+***
+
+**3. f3(n)=nlog⁡n (Linearithmic Growth)**
+
+* This is a linearithmic function (a combination of linear and logarithmic growth).
+* It grows faster than logarithmic functions but slower than any polynomial function with nk where k>1
+* **Time Complexity**: Linearithmic (O(nlog⁡n).
+
+***
+
+**4. f4(n)=n^log⁡n (Super-Polynomial Growth)**
+
+* The function n^log⁡n grows faster than any polynomial function because the exponent itself is log⁡n, which increases with n.
+* It is slower than exponential functions like 2^n but faster than standard polynomials.
+* **Time Complexity**: Super-Polynomial (O(n^log⁡n).
 {% endhint %}
 
 

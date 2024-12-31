@@ -11,6 +11,14 @@ Both time and space complexity are often expressed using Big O notation, which d
 
 <figure><img src="../../../../.gitbook/assets/2.png" alt="" width="563"><figcaption></figcaption></figure>
 
+{% hint style="success" %}
+The general order of growth rates is:
+
+O(1) < O(log⁡n) < O(n) < O(nlog⁡n) < O(n^k) \<O(n^log⁡n) \<O(k^n) \<O(n!) \<O(n^n)
+{% endhint %}
+
+
+
 {% hint style="info" %}
 When we say **"algorithm X is asymptotically more efficient than algorithm Y"**, we are comparing the growth rates of their time or space complexity as the size of the input (N) becomes very large (approaches infinity). **The growth rate of X's runtime (or space usage) is smaller than Y's runtime (or space usage) as N→∞.** So X will always be a better choice for large inputs.
 {% endhint %}
@@ -125,7 +133,7 @@ For an array of size n, the total time to sort the array is the number of levels
 * **Total Time Complexity**: nlog⁡n
 {% endhint %}
 
-### Quadratic Time - O(n²)
+### Polynomial (Quadratic Time) - O(n²)
 
 An algorithm runs in quadratic time if its runtime grows proportionally to the square of the input size.
 
@@ -146,7 +154,7 @@ void bubbleSort(int[] arr) {
 }
 ```
 
-### Cubic Time - O(n³)
+### Polynomial (Cubic Time) - O(n³)
 
 An algorithm runs in cubic time if its runtime grows proportionally to the cube of the input size. Example: Certain dynamic programming algorithms.
 
@@ -161,6 +169,10 @@ void exampleCubic(int n) {
     } // O(n³)
 }
 ```
+
+### **Super-Polynomial Growth (O(n^log⁡n)**
+
+It is between polynomial and exponential growth. Examples include algorithms involving combinatorics or recursion trees. Significant growth—slower than exponential but faster than any polynomial.
 
 ### Exponential Time - O(2ⁿ)
 
