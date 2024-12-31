@@ -9,7 +9,13 @@ In computer science, complexity is a measure of the resources required for an al
 
 Both time and space complexity are often expressed using Big O notation, which describes the upper bound of an algorithm's growth rate.
 
-<figure><img src="../../../.gitbook/assets/2.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/2.png" alt="" width="563"><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+When we say **"algorithm X is asymptotically more efficient than algorithm Y"**, we are comparing the growth rates of their time or space complexity as the size of the input (N) becomes very large (approaches infinity). **The growth rate of X's runtime (or space usage) is smaller than Y's runtime (or space usage) as N→∞.** So X will always be a better choice for large inputs.
+{% endhint %}
+
+
 
 ### Comparing Different Complexities
 
@@ -39,7 +45,7 @@ An algorithm runs in logarithmic time if its runtime grows logarithmically with 
 
 All logarithmic functions with different bases can be represented as O(log(n)) in Big O notation.
 
-<figure><img src="../../../.gitbook/assets/image (454).png" alt="" width="518"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (454).png" alt="" width="518"><figcaption></figcaption></figure>
 
 Example: **Binary search**.
 
@@ -231,14 +237,14 @@ void recursiveLogarithmic(int n) {
 
 ### Searching Algorithms
 
-<figure><img src="../../../.gitbook/assets/3 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/3 (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Data Structure Operations
 
-<figure><img src="../../../.gitbook/assets/4 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/4 (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (7).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (7).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Array Sorting Algorithms
 
-<figure><img src="../../../.gitbook/assets/5 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/5 (1).png" alt=""><figcaption></figcaption></figure>
