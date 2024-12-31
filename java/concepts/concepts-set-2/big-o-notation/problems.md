@@ -156,6 +156,8 @@ while (i > 0) {
 
 ## Complex Problems
 
+### GCD with Euclidean algorithm
+
 This is Euclidean algorithm which repeatedly replaces the pair (n, m) with (m , n mod  m)  until m=0. The result is the greatest common divisor (GCD) of n and m .
 
 ```java
@@ -185,4 +187,52 @@ Eg: 8 and 13.
 
 Same way : (8 % 5) = 3 , (5 % 3) = 2 , (3 % 2) = 1 , (2 % 1) = 0.
 {% endhint %}
+
+### For loops
+
+```
+Consider the following for loops:
+  A) for(i = 0; i < n; i++)
+  B) for(i = 0; i < n; i += 2)
+  C) for(i = 1; i < n; i *= 2)
+  D) for(i = n; i > -1; i /= 2)
+If n is the size of input(positive), which function is the most efficient?
+-> C
+```
+
+{% hint style="info" %}
+#### **A) for (i = 0; i < n; i++)**
+
+* **Loop Analysis**:
+  * The loop starts at i=0 and increments by 1 (i++) until i\<n.
+  * The number of iterations is directly proportional to nn.
+* **Time Complexity**: O(n)
+
+**B) for (i = 0; i < n; i += 2)**
+
+* **Loop Analysis**:
+  * The loop starts at i=0 and increments by 2 (i+=2) until i\<n.
+  * Since the increment step is 2, the number of iterations will be approximately half the size of n. Number of iterations=⌈n/2⌉
+* **Time Complexity**: O(n)
+
+Although the number of iterations is halved compared to Case A, the time complexity remains O(n) because constants are ignored in Big-O notation.
+
+#### _C) for (i = 1; i < n; i = 2)_
+
+* **Loop Analysis**:
+  * The loop starts at i=1 and multiplies by 2 (i∗=2) until i\<n.
+  * The value of i follows the sequence: 1,2,4,8,… The loop runs while i\<n.
+  * The number of iterations corresponds to the number of times ii can be doubled before it exceeds nn:Number of iterations=⌊log⁡2(n)⌋
+* **Time Complexity**: O(log⁡n)
+
+This is more efficient than both A and B because the growth rate is logarithmic, much smaller than linear.
+
+#### **D) for (i = n; i > -1; i /= 2)**
+
+* **Loop Analysis**:
+  * The loop starts at i=n and divides i by 2 (i/=2) until i>−1.
+  * The value of i follows the sequence: n,n/2,n/4,…n. The loop runs while i>−1. Loop will not end since i will stuck at 0.
+{% endhint %}
+
+
 
