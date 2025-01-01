@@ -137,8 +137,6 @@ To calculate the total number of iterations of the inner loop across all iterati
 Thus, the total number of iterations is: O(n)⋅O(log⁡n)=O(nlog⁡n)
 {% endhint %}
 
-
-
 ## While loop
 
 ### Simple while loop
@@ -151,6 +149,65 @@ while (i > 0) {
 }
 //Time O(log(N)), Space O(1)
 ```
+
+## Recursion
+
+### Divide and Conquer Method
+
+```java
+int search(vector<int> &V, int k, int start, int end) {
+    if (start > end) return 0;
+    int mid = (start + end) / 2;
+    if (V[mid] < k) return search(V, k, mid + 1, end);
+    if (V[mid] > k) return search(V, k, start, mid - 1);
+    return search(V, k, start, mid - 1) + 1 + search(V, k, mid + 1, end);
+}
+// Time Complexity O(N), Space Complexity O(N)
+```
+
+The function searches for the occurrences of the element `k` in a sorted vector `V` using a recursive approach.
+
+1. **Base Case**: If the `start` index exceeds the `end` index, it returns 0 (no match found).
+2. **Divide and Conquer**:
+   * If V\[mid]\<k, search the right half of the array (mid+1 to end).
+   * If V\[mid]>k, search the left half of the array (start to mid−1).
+3. **When V\[mid]==k**:
+   * Count this occurrence of k (+1) and recursively search both the left and right halves to count all other occurrences.
+
+{% hint style="success" %}
+#### **Time Complexity Analysis**
+
+The function involves **binary search** combined with **multiple recursive calls when V\[mid]==k**. Let's analyze:
+
+**Best Case**
+
+* If k is not present in the array, the function acts like a standard binary search:
+  * At each step, it halves the search space.
+  * The recursion depth is O(log⁡N).
+* In this case, the time complexity is: O(log⁡N)
+
+**Worst Case**
+
+* When all elements in the array are equal to kk:
+  * For every element, the function recursively explores **both halves of the array**.
+  * This results in a **full binary tree of recursive calls**.
+  * The total number of recursive calls is O(N), since all elements are visited once.
+
+Thus, in the **worst case**, the time complexity is: O(N)
+
+#### **Space Complexity Analysis**
+
+The space complexity is determined by the **recursive call stack**. In the worst case, the depth of recursion is:
+
+1. O(log⁡N) if the array is halved at each step (binary search behavior).
+2. O(N) if all elements are equal to kk (linear recursion due to overlapping searches).
+
+Thus, the space complexity is: O(N)
+
+in the worst case and O(log⁡N) in the best case.
+{% endhint %}
+
+
 
 
 
