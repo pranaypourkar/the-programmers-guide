@@ -207,6 +207,85 @@ Thus, the space complexity is: O(N)
 in the worst case and O(log⁡N) in the best case.
 {% endhint %}
 
+### Minimum Path
+
+The function `findMinPath` computes the minimum path sum from the top-left corner (0,0) to the bottom-right corner (R−1,C−1) of a matrix `V` by recursively exploring the possible paths. At every cell, the function can move:
+
+* **Down** (r+1,c)
+* **Right** (r,c+1)
+
+The function returns the minimum sum of the path.
+
+```java
+int findMinimumPath(vector<vector<int> > &V, int r, int c) {
+  int R = V.size();
+  int C = V[0].size();
+  if (r >= R || c >= C) return 100000000; // Infinity
+  if (r == R - 1 && c == C - 1) return 0;
+  return V[r][c] + min(findMinimumPath(V, r + 1, c), findMinimumPath(V, r, c + 1));
+}
+// Time Complexity O(2^(R+C)), Space Complexity O(R+C)
+```
+
+{% hint style="success" %}
+#### **Time Complexity Analysis**
+
+**Recursive Calls**
+
+At every cell (r,c), the function makes two recursive calls:
+
+1. `findMinimumPath(V, r + 1, c)` — explores the path moving **down**.
+2. `findMinimumPath(V, r, c + 1)` — explores the path moving **right**.
+
+If the matrix has R rows and C columns, the function explores all possible paths from the top-left to the bottom-right corner. In the worst case, the total number of recursive calls is exponential: T(R,C)=2^(R+C−2)
+
+This is because, for a path of length R+C−2 (the total number of moves i.e. R−1 **downward moves** to go from row 0 to row R−1 and C−1 **rightward moves** to go from column 0 to column C−1), there are 2^(R+C−2) combinations of recursive calls.
+
+**Exponential Growth**
+
+The time complexity of the function is: O(2(R+C))
+
+
+
+#### **Space Complexity Analysis**
+
+**Recursive Call Stack**
+
+The space complexity is determined by the **maximum depth of the recursion**. Since the function makes recursive calls in two directions (down and right), the depth of the recursion is bounded by the longest path in the matrix, which is R+C−2
+
+Thus, the space complexity is: O(R+C)
+{% endhint %}
+
+### Minimum Path with Dynamic Programming (DP)
+
+The above implementation recomputes the results for overlapping subproblems, which makes it inefficient. To improve the time complexity, we can use Dynamic Programming (DP) with memoization or tabulation.
+
+```java
+int findMinPath(vector<vector<int>> &V, int r, int c, vector<vector<int>> &dp) {
+  int R = V.size();
+  int C = V[0].size();
+  if (r >= R || c >= C) return 100000000; // Infinity
+  if (r == R - 1 && c == C - 1) return 0;
+  if (dp[r][c] != -1) return dp[r][c]; // Use memoized result
+  return dp[r][c] = V[r][c] + min(findMinPath(V, r + 1, c, dp), findMinPath(V, r, c + 1, dp));
+}
+// Time Complexity O(RxC), Space Complexity O(RxC+R+C)
+```
+
+{% hint style="success" %}
+**Time Complexity with Memoization**
+
+With memoization, each cell in the matrix is computed at most once. The time complexity becomes:
+
+O(R×C)
+
+**Space Complexity with Memoization**
+
+The space complexity with memoization includes the storage for the DP table (O(R×C)) and the recursive call stack (O(R+C)):
+
+O(R×C+R+C)
+{% endhint %}
+
 
 
 
@@ -347,6 +426,41 @@ f4(n) = n^(Logn)
 * The function n^log⁡n grows faster than any polynomial function because the exponent itself is log⁡n, which increases with n.
 * It is slower than exponential functions like 2^n but faster than standard polynomials.
 * **Time Complexity**: Super-Polynomial (O(n^log⁡n).
+{% endhint %}
+
+### For and While loop
+
+```java
+int j = 0;
+for(int i = 0; i < n; ++i) {
+  while(j < n && arr[i] < arr[j]) {
+    j++;
+  }
+}
+//Time O(N), Space O(1)
+```
+
+{% hint style="success" %}
+#### **Outer Loop**
+
+* The `for` loop iterates from `i = 0` to `i = n - 1`, so it runs nn times.
+
+#### **Inner `while` Loop**
+
+* The `while` loop increments `j` until one of the conditions (`j < n` or `arr[i] < arr[j]`) is false.
+* The key observation here is that **`j` does not reset** to 0 for each iteration of the outer `for` loop. Instead, `j` keeps its value from the previous iteration.
+* This means `j` only moves forward and never goes backward.
+
+#### **Number of Iterations**
+
+* `j` starts at 0 and can increment at most nn times (from 0 to n−1) across all iterations of the outer loop. This is because `j` is shared across all iterations of the `for` loop and is incremented only in the `while` loop.
+
+#### **Time Complexity**
+
+* The **outer loop** runs nn times.
+* The **inner loop** (the `while` loop) moves `j` forward at most nn times in total across all iterations of the outer loop.
+
+Thus, the total number of operations performed by both loops is **O(n)**.
 {% endhint %}
 
 
