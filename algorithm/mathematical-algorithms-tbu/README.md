@@ -26,25 +26,25 @@ Mean is a measure of central tendency that provides an average value for a datas
 
 The Arithmetic Mean (AM) is the sum of all numbers in a dataset divided by the count of numbers. It represents the average value of the dataset.
 
-<figure><img src="../.gitbook/assets/maths-algo-01.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/maths-algo-01.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### **Geometric Mean**
 
 The Geometric Mean (GM) is the nth root of the product of all numbers in a dataset. It is often used for datasets involving growth rates or proportional changes.
 
-<figure><img src="../.gitbook/assets/maths-algo-02.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/maths-algo-02.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### **Harmonic Mean (HM)**
 
 It is the reciprocal of the average of the reciprocals of the values, used in rates like speed or efficiency.
 
-<figure><img src="../.gitbook/assets/maths-algo-03.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/maths-algo-03.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### **Weighted Mean**
 
 The average where each value has a specific weight or importance.
 
-<figure><img src="../.gitbook/assets/maths-algo-04.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/maths-algo-04.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Series
 
@@ -63,25 +63,25 @@ A series is the sum of the terms of a sequence. A sequence is a list of numbers 
 
 The sum of terms in an arithmetic sequence, where the difference between consecutive terms is constant (d).
 
-<figure><img src="../.gitbook/assets/maths-algo-05.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/maths-algo-05.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### **Geometric Series**
 
 The sum of terms in a geometric sequence, where each term is obtained by multiplying the previous term by a fixed ratio r.
 
-<figure><img src="../.gitbook/assets/maths-algo-06.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/maths-algo-06.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### **Harmonic Series**
 
 A series where each term is the reciprocal of a positive integer.
 
-<figure><img src="../.gitbook/assets/maths-algo-07.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/maths-algo-07.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### **Fibonacci Series**
 
 A sequence where each term is the sum of the two preceding terms, starting with 0 and 1.
 
-<figure><img src="../.gitbook/assets/maths-algo-08.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/maths-algo-08.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Prime Number
 
@@ -120,14 +120,14 @@ None divide 37, so 37 is prime.
 
 ### **3. Sieve of Eratosthenes**
 
-A highly efficient algorithm to find all prime numbers up to a given number nn.
+A highly efficient algorithm to find all prime numbers up to a given number n.
 
 **Steps:**
 
 1. Create a list of integers from 2 to n.
 2. Start with the first prime number (2). Mark all multiples of 2 as non-prime.
 3. Move to the next unmarked number and mark all its multiples as non-prime.
-4. Repeat until the square of the current number exceeds nn.
+4. Repeat until the square of the current number exceeds n.
 5. The remaining unmarked numbers are primes.
 
 **Example:** (for n=10)
@@ -148,6 +148,11 @@ If this condition fails for any a, n is not prime.
 **Example:** (for n=7)
 
 Let a=2:\
-2^(7−1) mod  7 = 2^6 mod  7 = 64 mod  7 = 127\
+2^(7−1) mod  7 i.e. 2^6 mod  7 i.e. 64 mod  7 = 127\
 The result is 1, so n=7 is prime.
 
+
+
+
+
+### Binomial Coefficient, Combination Permutation, matrix ,lc ,gcd formula.
