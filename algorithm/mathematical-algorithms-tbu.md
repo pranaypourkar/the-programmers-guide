@@ -9,6 +9,17 @@
 0 is not a positive integer, but it is a non-negative integer.
 {% endhint %}
 
+{% hint style="info" %}
+If a <= b, it logically means b >= a.
+
+This is because the relationship <= (less than or equal to) and >=  (greater than or equal to) are equivalent but reversed. So:
+
+* a <= b implies that a is either **less than** or **equal to** b.
+* b >= a implies that b is either **greater than** or **equal to** a.
+{% endhint %}
+
+
+
 ## **Mean**
 
 Mean is a measure of central tendency that provides an average value for a dataset. It helps summarize the data by giving a single representative value.
