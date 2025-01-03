@@ -22,25 +22,25 @@ This is because the relationship <= (less than or equal to) and >=  (greater tha
 
 Mean is a measure of central tendency that provides an average value for a dataset. It helps summarize the data by giving a single representative value.
 
-### **Arithmetic Mean**
+### **1. Arithmetic Mean**
 
 The Arithmetic Mean (AM) is the sum of all numbers in a dataset divided by the count of numbers. It represents the average value of the dataset.
 
 <figure><img src="../../.gitbook/assets/maths-algo-01.png" alt="" width="563"><figcaption></figcaption></figure>
 
-### **Geometric Mean**
+### **2. Geometric Mean**
 
 The Geometric Mean (GM) is the nth root of the product of all numbers in a dataset. It is often used for datasets involving growth rates or proportional changes.
 
 <figure><img src="../../.gitbook/assets/maths-algo-02.png" alt="" width="563"><figcaption></figcaption></figure>
 
-### **Harmonic Mean (HM)**
+### **3. Harmonic Mean (HM)**
 
 It is the reciprocal of the average of the reciprocals of the values, used in rates like speed or efficiency.
 
 <figure><img src="../../.gitbook/assets/maths-algo-03.png" alt="" width="563"><figcaption></figcaption></figure>
 
-### **Weighted Mean**
+### **4. Weighted Mean**
 
 The average where each value has a specific weight or importance.
 
@@ -50,7 +50,7 @@ The average where each value has a specific weight or importance.
 
 A series is the sum of the terms of a sequence. A sequence is a list of numbers arranged in a specific order, while a series is formed by adding these numbers together.&#x20;
 
-### **Types of Series**
+#### **Types of Series**
 
 1. **Finite Series:**\
    A series with a limited number of terms.\
@@ -59,25 +59,25 @@ A series is the sum of the terms of a sequence. A sequence is a list of numbers 
    A series with an unlimited number of terms.\
    For the sequence 1,1/2,1/3,1/4,… the infinite series is: 1+1/2+1/3+1/4+…
 
-### **Arithmetic Series**&#x20;
+### **1. Arithmetic Series**&#x20;
 
 The sum of terms in an arithmetic sequence, where the difference between consecutive terms is constant (d).
 
 <figure><img src="../../.gitbook/assets/maths-algo-05.png" alt="" width="563"><figcaption></figcaption></figure>
 
-### **Geometric Series**
+### **2. Geometric Series**
 
 The sum of terms in a geometric sequence, where each term is obtained by multiplying the previous term by a fixed ratio r.
 
 <figure><img src="../../.gitbook/assets/maths-algo-06.png" alt="" width="563"><figcaption></figcaption></figure>
 
-### **Harmonic Series**
+### **3. Harmonic Series**
 
 A series where each term is the reciprocal of a positive integer.
 
 <figure><img src="../../.gitbook/assets/maths-algo-07.png" alt="" width="563"><figcaption></figcaption></figure>
 
-### **Fibonacci Series**
+### **4. Fibonacci Series**
 
 A sequence where each term is the sum of the two preceding terms, starting with 0 and 1.
 
@@ -199,4 +199,184 @@ LCM = 2^2\*3^2=36.
 
 <figure><img src="../../.gitbook/assets/maths-algo-09 (1).png" alt="" width="225"><figcaption></figcaption></figure>
 
-### Binomial Coefficient, Combination Permutation, matrix ,lc ,gcd formula.
+## Palindrome
+
+A **palindrome** is a sequence (number, string, or other data) that reads the same backward as forward. Examples include words like "radar" and "level," numbers like 121, and sentences like "A man, a plan, a canal, Panama!" (ignoring spaces, punctuation, and capitalization).
+
+#### **Types of Palindromes**
+
+1. **String Palindrome**\
+   A word or sentence that reads the same forward and backward.\
+   Examples:
+   * Word: "madam"
+   * Sentence: "Able was I, I saw Elba."
+2. **Number Palindrome**\
+   A numeric value that remains the same when its digits are reversed.\
+   Examples: 121, 1331, 12321.
+
+### 1. Reverse Check
+
+Reverse the input and compare with original
+
+**Steps:**
+
+1. **Input the Data:** Accept the input sequence (string or number) to be checked.
+2. **Normalize the Input (if applicable):**
+   * If it’s a string, convert it to a uniform case (e.g., lowercase).
+   * Remove any non-alphanumeric characters (like spaces, punctuation, etc.).
+3. **Reverse the Sequence:** Create a reversed version of the input sequence.
+4. **Compare the Original with the Reversed:**
+   * If the original sequence is the same as the reversed sequence, it is a palindrome.
+   * Otherwise, it is not a palindrome.
+5. **Return the Result:** Output whether the input is a palindrome or not.
+
+## Anagram
+
+An **anagram** is a word or phrase formed by rearranging the letters of another, using all the original letters exactly once.\
+For example:
+
+* "listen" and "silent" are anagrams.
+* "triangle" and "integral" are anagrams.
+
+### **1. Sorting Approach**
+
+* Sort both strings alphabetically and compare.
+* **Pros:** Simple to implement and understand.
+* **Cons:** Sorting has O(nlog⁡n) time complexity.
+
+### **2. Frequency Count Using Arrays**
+
+* Use an array of size 26 (for English alphabets) to store character counts.
+* Traverse both strings to update counts and check if all counts are zero.
+* **Pros:** Linear time complexity (O(n)) and space-efficient.
+* **Cons:** Limited to alphabets or ASCII-based characters.
+
+### **3. Hash Map for Character Count:**
+
+* Use a hash map to store character counts from one string and validate with the second string.
+* **Pros:** Works for strings with special characters, symbols, or Unicode.
+* **Cons:** Hash map overhead increases space usage.
+
+### **4. Bit Manipulation (For Alphabets Only):**
+
+* Use a bit vector to represent character counts (e.g., a 26-bit integer for the alphabet).
+* Increment/decrement counts using XOR operations for each character.
+* Check if the result is zero.
+* **Pros:** Highly optimized for specific use cases.
+* **Cons:** Limited to small character sets.
+
+### **5. Character Removal (In-Place):**
+
+* For each character in the first string, find and remove it from the second string.
+* If the second string becomes empty and no unmatched characters remain, they are anagrams.
+* **Pros:** Simple for small strings.
+* **Cons:** Inefficient for larger strings (O(n^2)).
+
+## **Combination**
+
+A combination is a way of selecting items from a group, **where the order does not matter**.\
+For example, selecting 2 fruits from {Apple, Banana, Cherry} gives the combinations: {Apple, Banana}, {Apple, Cherry}, {Banana, Cherry}.
+
+**Formula:** The number of combinations of r items from a set of n items is given by:
+
+<figure><img src="../../.gitbook/assets/maths-algo-10.png" alt="" width="259"><figcaption></figcaption></figure>
+
+Where n! (n factorial) is the product of all positive integers from 1 to n:\
+n!=n⋅(n−1)⋅(n−2)⋅⋯⋅1
+
+**Example:** Find the number of ways to select 2 items from a group of 4 items: {A, B, C, D}.
+
+<figure><img src="../../.gitbook/assets/maths-algo-11 (1).png" alt="" width="296"><figcaption></figcaption></figure>
+
+Combinations: {A, B}, {A, C}, {A, D}, {B, C}, {B, D}, {C, D}.
+
+### **1. Formula Method**
+
+Use the formula for combinations
+
+**Steps:**
+
+1. Compute the factorial of n, r, and n−r.
+2. Substitute the values into the formula.
+3. Simplify the result.
+
+### **2. Using Pascal’s Triangle**
+
+Pascal's Triangle provides a visual representation of combinations. Each entry in the triangle represents C(n,r).
+
+<figure><img src="../../.gitbook/assets/image (288).png" alt="" width="231"><figcaption></figcaption></figure>
+
+**Steps:**
+
+1. Construct Pascal’s Triangle row by row.
+2. The r-th entry in the n-th row gives C(n,r).
+
+**Example:** To find C(5,2), go to the 5th row (starting from 0), and pick the 2nd element:\
+**Result: C(5,2)=10**.
+
+### **3. Iterative Method (Optimized)**
+
+Instead of calculating factorials, the combination formula can be simplified iteratively:
+
+<figure><img src="../../.gitbook/assets/maths-algo-14.png" alt="" width="301"><figcaption></figcaption></figure>
+
+**Steps:**
+
+1. Start multiplying n down to (n−r+1).
+2. Divide the result by r!.
+
+**Example:** Find C(5,2):\
+Numerator: 5⋅4=20\
+Denominator: 2!=2\
+C(5,2)=20/2=10\
+**Result: 10**.
+
+### **4. Using Recursion**
+
+The combination formula can be represented recursively as:
+
+<figure><img src="../../.gitbook/assets/maths-algo-15.png" alt="" width="563"><figcaption></figcaption></figure>
+
+**Steps:**
+
+1. Break down the problem into smaller subproblems using recursion.
+2. Use the base cases for termination.
+
+**Example:** Find C(5,2)C(5,2):
+
+C(5,2)=C(4,1)+C(4,2)
+
+C(4,1)=4,  C(4,2)=6
+
+**Result: C(5,2)=4+6=10**
+
+### **6. Using Binomial Theorem**
+
+Combinations are directly linked to the coefficients in the Binomial Expansion:
+
+<figure><img src="../../.gitbook/assets/maths-algo-16.png" alt="" width="456"><figcaption></figcaption></figure>
+
+We can find the binomial coefficients directly from the combination formula.
+
+**Example:** Expand (x+y)^5:\
+Coefficients: C(5,0), C(5,1), C(5,2), C(5,3), C(5,4), C(5,5)\
+C(5,2)=10C(5,2)=10.\
+**Result: 10**.
+
+## **Permutation**
+
+A permutation is a way of arranging items, **where the order matters**.\
+For example, arranging 2 fruits from {Apple, Banana, Cherry} gives the permutations:\
+(Apple, Banana), (Banana, Apple), (Apple, Cherry), (Cherry, Apple), (Banana, Cherry), (Cherry, Banana).
+
+**Formula:** The number of permutations of rr items from a set of n items is given by:
+
+<figure><img src="../../.gitbook/assets/maths-algo-12.png" alt="" width="296"><figcaption></figcaption></figure>
+
+**Example:** Find the number of ways to arrange 2 items from a group of 4 items: {A, B, C, D}.
+
+<figure><img src="../../.gitbook/assets/maths-algo-13.png" alt="" width="296"><figcaption></figcaption></figure>
+
+Permutations: (A, B), (A, C), (A, D), (B, A), (B, C), (B, D), (C, A), (C, B), (C, D), (D, A), (D, B), (D, C).
+
+### Binomial Coefficient, Combination Permutation, matrix ,formula.
