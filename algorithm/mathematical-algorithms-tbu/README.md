@@ -151,6 +151,17 @@ Let a=2:\
 2^(7−1) mod  7 i.e. 2^6 mod  7 i.e. 64 mod  7 = 127\
 The result is 1, so n=7 is prime.
 
+## Prime Factors of a Number
+
+Prime factors of a number are the prime numbers that divide the number exactly (without leaving a remainder). For example, The prime factors of 30 are 2, 3, and 5 because: 30 = 2 \* 3 \* 5&#x20;
+
+#### **Steps to Find Prime Factors**
+
+1. Start with the smallest prime number 2.
+2. Divide the number by 2 as long as it is divisible.
+3. Move to the next prime number (e.g., 3,5,7 etc.) and repeat.
+4. Stop when the number becomes 1.
+
 ## GCD **(Greatest Common Divisor)**
 
 The GCD (or HCF - Highest Common Factor) of two or more integers is the largest positive integer that divides each of the numbers without leaving a remainder. For example, the GCD of 12 and 18 is 6 because 6 is the largest number that divides both 12 and 18.
