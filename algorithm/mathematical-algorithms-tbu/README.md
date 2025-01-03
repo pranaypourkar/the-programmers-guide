@@ -151,8 +151,41 @@ Let a=2:\
 2^(7−1) mod  7 i.e. 2^6 mod  7 i.e. 64 mod  7 = 127\
 The result is 1, so n=7 is prime.
 
+## GCD **(Greatest Common Divisor)**
 
+The GCD (or HCF - Highest Common Factor) of two or more integers is the largest positive integer that divides each of the numbers without leaving a remainder. For example, the GCD of 12 and 18 is 6 because 6 is the largest number that divides both 12 and 18.
 
+### **1. Using Prime Factorization**
 
+GCD is the product of all common prime factors with the lowest powers.
+
+Example: 12=2^2\*3^1 ,  18=2^1⋅3^2\
+Common factors: 2^1⋅3^1=6.\
+So, GCD(12, 18) = 6.
+
+### **2. Using Euclidean Algorithm**
+
+GCD(a,b) = GCD(b,a _mod_  b) until b=0.
+
+Example: a=56, b=98
+
+* Step 1: 98 _mod_  56 = 42.
+* Step 2: 56 _mod_  42 = 14.
+* Step 3: 42 _mod_  14 = 0.\
+  GCD = 14.
+
+## **LCM (Least Common Multiple)**
+
+The LCM of two or more integers is the smallest positive integer that is divisible by each of the numbers. For example, the LCM of 12 and 18 is 36 because 36 is the smallest number that is divisible by both 12 and 18.
+
+### **1. Using Prime Factorization**
+
+LCM is the product of all prime factors with the highest powers.\
+Example: 12=2^2\*3^1, 18=2^1⋅3^2.\
+LCM = 2^2\*3^2=36.
+
+### **2. Relation Between GCD and LCM**
+
+<figure><img src="../../.gitbook/assets/maths-algo-09 (1).png" alt="" width="225"><figcaption></figcaption></figure>
 
 ### Binomial Coefficient, Combination Permutation, matrix ,lc ,gcd formula.
