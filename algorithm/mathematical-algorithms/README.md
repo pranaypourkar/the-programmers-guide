@@ -1,4 +1,4 @@
-# Mathematical Algorithms - TBU
+# Mathematical Algorithms
 
 ## **Positive & Non-Negative Integer**
 
@@ -379,4 +379,4 @@ For example, arranging 2 fruits from {Apple, Banana, Cherry} gives the permutati
 
 Permutations: (A, B), (A, C), (A, D), (B, A), (B, C), (B, D), (C, A), (C, B), (C, D), (D, A), (D, B), (D, C).
 
-### Binomial Coefficient, Combination Permutation, matrix ,formula.
+### , matrix ,formula.
