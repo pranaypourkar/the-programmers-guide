@@ -151,6 +151,19 @@ Let a=2:\
 2^(7−1) mod  7 i.e. 2^6 mod  7 i.e. 64 mod  7 = 127\
 The result is 1, so n=7 is prime.
 
+## All Factors of a Number
+
+Factors of a number are integers that divide the number exactly (without leaving a remainder). Unlike prime factors, these include all divisors, both prime and non-prime.
+
+For example, the factors of 12 are 1,2,3,4,6, and 12.
+
+#### **Steps to Find All Factors of a Number**
+
+1. Start with 1 (since 1 is a factor of every number).
+2. Check all integers up to the square root of the number:
+   * If i divides n, then both i and n/i​ are factors.
+3. Stop when we reach the square root of the number.
+
 ## Prime Factors of a Number
 
 Prime factors of a number are the prime numbers that divide the number exactly (without leaving a remainder). For example, The prime factors of 30 are 2, 3, and 5 because: 30 = 2 \* 3 \* 5&#x20;
@@ -379,4 +392,171 @@ For example, arranging 2 fruits from {Apple, Banana, Cherry} gives the permutati
 
 Permutations: (A, B), (A, C), (A, D), (B, A), (B, C), (B, D), (C, A), (C, B), (C, D), (D, A), (D, B), (D, C).
 
-### , matrix ,formula.
+## Matrix
+
+### About
+
+A matrix is a rectangular arrangement of numbers, symbols, or expressions in rows and columns. Matrices are widely used in mathematics, computer science, and engineering for representing data, solving equations, and performing linear transformations.
+
+### **Matrix Representation**
+
+A matrix is typically denoted by a capital letter, and its elements are represented as aij​, where:
+
+* i: Row index (1-based or 0-based).
+* j: Column index (1-based or 0-based).
+
+Example of a 3×3 matrix:
+
+<figure><img src="../../.gitbook/assets/maths-algo-17.png" alt="" width="152"><figcaption></figcaption></figure>
+
+### **Types of Matrices**
+
+<figure><img src="../../.gitbook/assets/maths-algo-18 (4).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/maths-algo-19 (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/maths-algo-20.png" alt=""><figcaption></figcaption></figure>
+
+### Matrix Operations
+
+#### **1. Matrix Addition**
+
+Add two matrices by summing their corresponding elements. The matrices must have the same dimensions.
+
+**Steps**
+
+1. Check if the dimensions of both matrices are the same.
+2. Initialize a new matrix to store the result.
+3. Loop through each row.
+   * For each row, loop through each column.
+   * Add the corresponding elements from the two matrices and store them in the result matrix.
+4. Return the result matrix.
+
+#### **2. Matrix Subtraction**
+
+Subtract one matrix from another by subtracting their corresponding elements. The matrices must have the same dimensions.
+
+**Steps**
+
+1. Check if the dimensions of both matrices are the same.
+2. Initialize a new matrix to store the result.
+3. Loop through each row.
+   * For each row, loop through each column.
+   * Subtract the corresponding elements of the second matrix from the first and store them in the result matrix.
+4. Return the result matrix.
+
+#### **3. Matrix Multiplication**
+
+Multiply two matrices. The number of columns in the first matrix must equal the number of rows in the second matrix. The result matrix will have dimensions rows(A)×columns(B)rows(A)×columns(B).
+
+**Steps**
+
+1. Check if the number of columns in the first matrix equals the number of rows in the second matrix.
+2. Initialize a result matrix with dimensions rows(A)×columns(B)rows(A)×columns(B) and fill it with zeros.
+3. Loop through each row of the first matrix.
+   * For each row, loop through each column of the second matrix.
+   * Calculate the dot product of the current row from the first matrix and the current column from the second matrix.
+   * Store the result in the corresponding position in the result matrix.
+4. Return the result matrix.
+
+#### **4. Matrix Transpose**
+
+Flip a matrix over its diagonal, converting rows into columns and columns into rows.
+
+**Steps**
+
+1. Initialize a result matrix with dimensions columns(A)×rows(A)columns(A)×rows(A).
+2. Loop through each row.
+   * For each row, loop through each column.
+   * Set result\[j]\[i]=A\[i]\[j]result\[j]\[i]=A\[i]\[j], where ii is the row index and jj is the column index.
+3. Return the transposed matrix.
+
+#### **5. Scalar Multiplication**
+
+Multiply every element of a matrix by a scalar value.
+
+**Steps**
+
+1. Initialize a result matrix with the same dimensions as the input matrix.
+2. Loop through each row.
+   * For each row, loop through each column.
+   * Multiply the current element by the scalar and store it in the result matrix.
+3. Return the result matrix.
+
+#### **6. Matrix Trace**
+
+The trace of a matrix is the sum of its diagonal elements. Only applicable to square matrices.
+
+**Steps**
+
+1. Ensure the matrix is square.
+2. Initialize a variable trace=0.
+3. Loop through the diagonal elements (where row index equals column index).
+   * Add the element to tracetrace.
+4. Return the trace.
+
+## **Swapping Two Numbers**
+
+Swapping two numbers is a basic operation in programming.
+
+**Different Ways to Achieve it**
+
+### **1. Using a Temporary Variable**
+
+**Steps**
+
+1. Declare a temporary variable.
+2. Assign the value of the first number to the temporary variable.
+3. Assign the value of the second number to the first number.
+4. Assign the value of the temporary variable to the second number.
+
+### 2. **Without Using a Temporary Variable (Arithmetic Method)**
+
+**Steps (Using Addition and Subtraction)**
+
+1. Add the two numbers: a=a+b.
+2. Subtract the second number from the sum: b=a−b.
+3. Subtract the new second number from the sum: a=a−b.
+
+**Steps (Using Multiplication and Division)**
+
+1. Multiply the two numbers: a=a×b (ensure b≠0).
+2. Divide the product by the second number: b=a/b.
+3. Divide the new second number by the first number: a=a/b.
+
+### **3. Using Bitwise XOR**
+
+**Steps**
+
+1. Perform XOR operation on the two numbers: a=a⊕ba=a⊕b.
+2. Perform XOR operation again with the second number: b=a⊕bb=a⊕b.
+3. Perform XOR operation again with the first number: a=a⊕ba=a⊕b.
+
+**Example**
+
+Let a=5 (01010101 in binary), b=10 (10101010 in binary):
+
+* a=a⊕b=1111 (15 in decimal),
+* b=a⊕b=0101 (5 in decimal),
+* a=a⊕b=1010 (10 in decimal).
+
+### **4. Using Stack**
+
+**Steps**
+
+1. Push both numbers onto a stack.
+2. Pop the numbers in reverse order.
+
+**Example:**
+
+Stack operations:
+
+* Push a=5, b=10 onto the stack.
+* Pop b, then a in reverse order.
+
+### **5. Using Deque (Double-Ended Queue)**
+
+**Steps:**
+
+1. Insert both numbers into a deque.
+2. Pop elements from the opposite ends to swap.

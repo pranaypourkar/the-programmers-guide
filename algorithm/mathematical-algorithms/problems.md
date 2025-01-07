@@ -828,3 +828,24 @@ int findLCM(int a, int b)
 
 **Time Complexity:** O(min(a,b))\
 **Auxiliary Space:** O(1)
+
+## Find All Factors of a Number
+
+```java
+public static List<Integer> getAllFactors(int number) {
+        List<Integer> factors = new ArrayList<>();
+        for (int i = 1; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                factors.add(i); // Add the smaller factor
+                if (i != number / i) {
+                    factors.add(number / i); // Add the larger factor
+                }
+            }
+        }
+        factors.sort(Integer::compareTo); // Sort factors in ascending order
+        return factors;
+    }
+```
+
+
+
