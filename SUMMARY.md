@@ -136,7 +136,7 @@
         * [Properties](java/java-overview/data-types/specialized-classes/properties.md)
         * [Regex (Pattern and Matcher)](java/java-overview/data-types/specialized-classes/regex-pattern-and-matcher.md)
           * [Examples](java/java-overview/data-types/specialized-classes/regex-pattern-and-matcher/examples.md)
-        * [Atomic Classes - TBU](java/java-overview/data-types/specialized-classes/atomic-classes-tbu.md)
+        * [Atomic Classes](java/java-overview/data-types/specialized-classes/atomic-classes.md)
         * [Random - TBU](java/java-overview/data-types/specialized-classes/random-tbu.md)
         * [Format](java/java-overview/data-types/specialized-classes/format/README.md)
           * [NumberFormat - TBU](java/java-overview/data-types/specialized-classes/format/numberformat-tbu.md)
