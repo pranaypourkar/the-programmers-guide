@@ -83,6 +83,50 @@ A sequence where each term is the sum of the two preceding terms, starting with 
 
 <figure><img src="../../.gitbook/assets/maths-algo-08.png" alt="" width="563"><figcaption></figcaption></figure>
 
+Various algorithms to solve the Fibonacci series:
+
+#### **1. Recursive Approach**
+
+**Algorithm**:
+
+1. Define a function `fib(n)`:
+   * Base case: If `n == 0`, return 0; if `n == 1`, return 1.
+   * Recursive case: Return `fib(n - 1) + fib(n - 2)`.
+2. Call `fib(n)` for the desired `n`.
+
+#### **2. Iterative Approach**
+
+**Algorithm**:
+
+1. Initialize two variables: `a = 0` and `b = 1`.
+2. For `i` from 2 to `n`:
+   * Compute `next = a + b`.
+   * Update `a = b` and `b = next`.
+3. Return `b` for the nth Fibonacci number.
+
+#### **3. Dynamic Programming (Memoization)**
+
+**Algorithm**:
+
+1. Create a cache (e.g., an array) of size `n + 1` initialized with -1.
+2. Define a function `fib(n)`:
+   * Base case: If `n == 0`, return 0; if `n == 1`, return 1.
+   * If the result is already in the cache, return it.
+   * Otherwise, compute `fib(n - 1) + fib(n - 2)` and store the result in the cache.
+3. Call `fib(n)` for the desired `n`.
+
+#### **4. Dynamic Programming (Tabulation)**
+
+**Algorithm**:
+
+1. Create an array `dp` of size `n + 1`.
+2. Set `dp[0] = 0` and `dp[1] = 1`.
+3. For `i` from 2 to `n`:
+   * Compute `dp[i] = dp[i - 1] + dp[i - 2]`.
+4. Return `dp[n]`.
+
+
+
 ## Prime Number
 
 A prime number is a natural number greater than 1 that has no positive divisors other than **1** and **itself**. For example, 2, 3, 5, 7, 11, and 13 are prime numbers. The number 1 is not a prime number, and composite numbers are those that have divisors other than 1 and itself (e.g., 4, 6, 8, etc.).
@@ -560,3 +604,98 @@ Stack operations:
 
 1. Insert both numbers into a deque.
 2. Pop elements from the opposite ends to swap.
+
+## **Factorial**
+
+The factorial of a non-negative integer nn, denoted as n!, is the product of all positive integers less than or equal to n: n!=n×(n−1)×(n−2)×…×1\
+For n=0, 0!=1 (by definition).
+
+#### **Different Algorithms to Calculate Factorial**
+
+### **1. Recursive Approach**
+
+**Steps**:
+
+1. Define a function `factorial(n)`.
+2. Base case: If n==0, return 1.
+3. Recursive case: Return n×factorial(n−1).
+
+**Complexity**:
+
+* Time: O(n)
+* Space: O(n) (due to recursion stack).
+
+### **2. Iterative Approach**
+
+**Steps**:
+
+1. Initialize `result = 1`.
+2. Loop from 1 to n, multiplying `result` by the current number.
+3. Return `result`.
+
+**Complexity**:
+
+* Time: O(n)
+* Space: O(1)
+
+### **3. Dynamic Programming with Memoization**
+
+**Steps**:
+
+1. Create an array `factorialCache` to store previously computed factorials.
+2. If nn's factorial is in the cache, return it.
+3. Otherwise, compute n!=n×factorial(n−1) and store it in the cache.
+
+**Complexity**:
+
+* Time: O(n)
+* Space: O(n)
+
+### **4. Using Iterative Tabulation**
+
+**Steps**:
+
+1. Create an array `dp` of size n+1.
+2. Set `dp[0] = 1`.
+3. For ii from 1 to n, compute `dp[i] = i \times dp[i-1]`.
+4. Return `dp[n]`.
+
+**Complexity**:
+
+* Time: O(n)
+* Space: O(n).
+
+### **5. Using Streams (Functional Style)**
+
+**Steps**:
+
+1. Use a stream to generate numbers from 1 to n.
+2. Use the `reduce` method to calculate the product of the numbers.
+
+**Complexity**:
+
+* Time: O(n)
+* Space: Depends on the implementation.
+
+```java
+int n = 5; 
+// For small number
+int factorial = IntStream.rangeClosed(1, n).reduce(1, (a, b) -> a * b);
+// For big number
+BigInteger factorial = IntStream.rangeClosed(1, n).mapToObj(BigInteger::valueOf).reduce(BigInteger.ONE, BigInteger::multiply);
+```
+
+### **6. Using a BigInteger for Large Numbers**
+
+For large n, the factorial grows very quickly and exceeds the range of primitive types like `long`.
+
+1. Use Java's `BigInteger` class for precise computation of large factorials.
+2. Multiply numbers iteratively using `BigInteger.multiply()`.
+
+### **7. Using Libraries**
+
+* **Apache Commons Math**: Use `CombinatoricsUtils.factorial(int n)` for efficient computation.
+* **Google Guava**: Use `BigIntegerMath.factorial(int n)` for large numbers.
+
+
+
