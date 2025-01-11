@@ -33,7 +33,7 @@ Internally, `BitSet` uses a long array to store bits, which allows it to be memo
 
 ## **Declaration & Functions**
 
-### **Declaration:**
+### **Declaration**
 
 To use a `BitSet`, simply import it and create an instance:
 
@@ -47,7 +47,7 @@ BitSet bitSet = new BitSet();
 BitSet bitSetWithSize = new BitSet(64);
 ```
 
-### **Key Methods and Functions:**
+### **Key Methods and Functions**
 
 1.  **Setting and Clearing Bits:**
 
@@ -92,5 +92,65 @@ BitSet bitSetWithSize = new BitSet(64);
     bitSet.flip(int fromIndex, int toIndex); // Toggles all bits in a range
     ```
 
+## **Usage**
 
+### **1. Flags and Binary Representations:**
+
+* `BitSet` is often used to represent flags or enable/disable states in an application.
+
+```java
+BitSet flags = new BitSet();
+flags.set(0); // Enable first flag
+flags.set(2); // Enable third flag
+System.out.println(flags); // Prints: {0, 2}
+```
+
+### **2. Efficient Membership Testing:**
+
+* It can be used to represent sets and perform operations like intersection and union.
+
+```java
+BitSet set1 = new BitSet();
+BitSet set2 = new BitSet();
+set1.set(1);
+set1.set(2);
+set2.set(2);
+set2.set(3);
+set1.and(set2);
+System.out.println(set1); // Prints: {2}
+```
+
+### **3. Data Compression:**
+
+* To store large numbers of Boolean values in minimal memory.
+
+### **4. Prime Number Generation (Sieve of Eratosthenes):**
+
+* `BitSet` is used to efficiently implement algorithms for generating prime numbers.
+
+```java
+int n = 50;
+BitSet primes = new BitSet(n);
+primes.set(0, n + 1);
+primes.clear(0);
+primes.clear(1);
+for (int i = 2; i * i <= n; i++) {
+    if (primes.get(i)) {
+        for (int j = i * i; j <= n; j += i) {
+            primes.clear(j);
+        }
+    }
+}
+System.out.println(primes); // Prints: {2, 3, 5, 7, 11, ...}
+```
+
+### **5. Stream-Based Processing:**
+
+* Using `BitSet` in conjunction with streams for advanced data processing.
+
+```java
+bitSet.stream()
+      .mapToObj(i -> "Bit: " + i)
+      .forEach(System.out::println);
+```
 

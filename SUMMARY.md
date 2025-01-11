@@ -127,7 +127,7 @@
         * [BitSet](java/java-overview/data-types/specialized-classes/bitset.md)
         * [Date and Time](java/java-overview/data-types/specialized-classes/date-and-time/README.md)
           * [Examples](java/java-overview/data-types/specialized-classes/date-and-time/examples.md)
-        * [Optional - TBU](java/java-overview/data-types/specialized-classes/optional-tbu.md)
+        * [Optional](java/java-overview/data-types/specialized-classes/optional.md)
         * [Math - TBU](java/java-overview/data-types/specialized-classes/math-tbu.md)
         * [UUID - TBU](java/java-overview/data-types/specialized-classes/uuid-tbu.md)
         * [Scanner - TBU](java/java-overview/data-types/specialized-classes/scanner-tbu.md)
