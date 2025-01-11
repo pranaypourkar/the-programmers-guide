@@ -153,6 +153,10 @@ public class AtomicStampedExample {
 }
 ```
 
+{% hint style="info" %}
+The **ABA problem** is a common issue in multithreaded programming and specifically in **lock-free algorithms**. It occurs when a thread reads a shared variable's value (e.g., `A`), performs some operations assuming the value hasn't changed, but during that time, another thread changes the value to something else (e.g., `B`) and then back to `A`. This makes it appear as though the value hasn't changed, but in reality, an intermediate state occurred that the first thread is unaware of.
+{% endhint %}
+
 ## **Applications and Real-World Usage**
 
 1. **Counters and Metrics:** Use `AtomicInteger` or `AtomicLong` for thread-safe counters in web servers, logging systems, and monitoring tools.
