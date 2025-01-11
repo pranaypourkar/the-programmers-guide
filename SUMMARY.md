@@ -128,7 +128,7 @@
         * [Date and Time](java/java-overview/data-types/specialized-classes/date-and-time/README.md)
           * [Examples](java/java-overview/data-types/specialized-classes/date-and-time/examples.md)
         * [Optional](java/java-overview/data-types/specialized-classes/optional.md)
-        * [Math - TBU](java/java-overview/data-types/specialized-classes/math-tbu.md)
+        * [Math](java/java-overview/data-types/specialized-classes/math.md)
         * [UUID - TBU](java/java-overview/data-types/specialized-classes/uuid-tbu.md)
         * [Scanner - TBU](java/java-overview/data-types/specialized-classes/scanner-tbu.md)
         * [Formatter](java/java-overview/data-types/specialized-classes/formatter-tbu.md)
