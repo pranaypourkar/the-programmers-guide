@@ -124,7 +124,7 @@
         * [BigInteger](java/java-overview/data-types/specialized-classes/biginteger.md)
         * [BigDecimal](java/java-overview/data-types/specialized-classes/bigdecimal/README.md)
           * [Examples](java/java-overview/data-types/specialized-classes/bigdecimal/problems.md)
-        * [BitSet - TBU](java/java-overview/data-types/specialized-classes/bitset-tbu.md)
+        * [BitSet](java/java-overview/data-types/specialized-classes/bitset.md)
         * [Date and Time](java/java-overview/data-types/specialized-classes/date-and-time/README.md)
           * [Examples](java/java-overview/data-types/specialized-classes/date-and-time/examples.md)
         * [Optional - TBU](java/java-overview/data-types/specialized-classes/optional-tbu.md)
