@@ -457,6 +457,7 @@
           * [Rownum vs Rowid](sql/dbms/rdbms/other-concepts/oracle-specific/rownum-vs-rowid.md)
           * [Order of Execution of the query](sql/dbms/rdbms/other-concepts/oracle-specific/order-of-execution-of-the-query.md)
           * [Tablespace](sql/dbms/rdbms/other-concepts/oracle-specific/tablespace.md)
+          * [Partition](sql/dbms/rdbms/other-concepts/oracle-specific/partition.md)
     * [DBMS Architecture](sql/dbms/dbms-architecture.md)
     * [DBMS Structure](sql/dbms/dbms-structure.md)
   * [Best Practice](sql/best-practice.md)
