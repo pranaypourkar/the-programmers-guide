@@ -8,6 +8,7 @@
   * [Mathematical Algorithms](algorithm/mathematical-algorithms/README.md)
     * [Problems - Set 1](algorithm/mathematical-algorithms/problems-set-1.md)
     * [Problems - Set 2](algorithm/mathematical-algorithms/problems-set-2.md)
+  * [Array Algorithms](algorithm/array-algorithms.md)
   * [Bit Manipulation - TBU](algorithm/bit-manipulation/README.md)
     * [Java Program - Bit Manipulation](algorithm/bit-manipulation/java-program-bit-manipulation.md)
     * [Truth Tables](algorithm/bit-manipulation/truth-tables.md)
