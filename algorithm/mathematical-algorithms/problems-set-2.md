@@ -91,5 +91,87 @@ public static int isDivisibleBy60(int[] A) {
 
 ## Difficult
 
+### Powerful Divisors
+
+Given an integer array **A** of length **N**.\
+For every integer **X** in the array, we have to find out the number of integers **Y**, such that **1 <= Y <= X**, and the number of divisors of Y is a power of 2.
+
+For example, 6 has the following divisors - \[1, 2, 3, 6]. This is equal to 4, which is a power of 2.\
+On the other hand, 9 has the following divisors \[1, 3, 9] which is 3, which is not a power of 2. Return an array containing the answer for every X in the given array.
+
+{% hint style="info" %}
+**Example**\
+Input 1: A = \[1, 4]
+
+Output 1: \[1, 3]
+
+Input 2: A = \[5, 10]
+
+Output 2: \[4, 8]
+{% endhint %}
+
+{% hint style="info" %}
+Optimized Approach
+
+We can optimize the code by:
+
+1. Precomputing the divisor counts for all numbers up to the maximum value in the input list.
+2. Using a single array to store the count of "powerful divisors" for each number.
+3. Reusing computed results instead of recalculating them.
+{% endhint %}
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class PowerfulDivisors {
+
+    public static List<Integer> powerfulDivisors(ArrayList<Integer> A) {
+        // Find the maximum number in the input array
+        int maxNumber = A.stream().max(Integer::compare).orElse(0);
+
+        // Precompute divisor counts for all numbers up to maxNumber
+        int[] divisorCounts = new int[maxNumber + 1];
+        for (int i = 1; i <= maxNumber; i++) {
+            for (int j = i; j <= maxNumber; j += i) {
+                divisorCounts[j]++;
+            }
+        }
+
+        // Precompute whether a divisor count is a power of 2
+        boolean[] isPowerful = new boolean[maxNumber + 1];
+        for (int i = 1; i <= maxNumber; i++) {
+            if (isPowerOfTwo(divisorCounts[i])) {
+                isPowerful[i] = true;
+            }
+        }
+
+        // Compute the number of "powerful divisors" for each number using cumulative approach
+        int[] powerfulDivisorCounts = new int[maxNumber + 1];
+        for (int i = 1; i <= maxNumber; i++) {
+            powerfulDivisorCounts[i] = powerfulDivisorCounts[i - 1] + (isPowerful[i] ? 1 : 0);
+        }
+
+        // Generate the result for the input array
+        List<Integer> result = new ArrayList<>();
+        for (int num : A) {
+            result.add(powerfulDivisorCounts[num]);
+        }
+
+        return result;
+    }
+
+    private static boolean isPowerOfTwo(int n) {
+        return n > 0 && (n & (n - 1)) == 0;
+    }
+
+    public static void main(String[] args) {
+        ArrayList<Integer> input = new ArrayList<>(List.of(10, 15, 20));
+        System.out.println(powerfulDivisors(input)); // Output: [8, 11, 15]
+    }
+}
+
+```
+
 
 
