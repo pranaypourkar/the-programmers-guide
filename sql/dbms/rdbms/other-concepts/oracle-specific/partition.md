@@ -41,9 +41,11 @@ CREATE TABLE sales (
 )
 PARTITION BY RANGE (sale_date) (
     PARTITION p_jan2025 VALUES LESS THAN (TO_DATE('2025-02-01', 'YYYY-MM-DD')),
-    PARTITION p_feb2025 VALUES LESS THAN (TO_DATE('2025-03-01', 'YYYY-MM-DD')),
-    PARTITION p_mar2025 VALUES LESS THAN (TO_DATE('2025-04-01', 'YYYY-MM-DD'))
+    PARTITION p_feb2025 VALUES LESS THAN (TO_DATE('2025-03-01', 'YYYY-MM-DD'))
 );
+
+ALTER TABLE sales
+ADD PARTITION p_mar2025 VALUES LESS THAN (TO_DATE('2025-04-01', 'YYYY-MM-DD'));
 ```
 
 ### **2. List Partitioning**
@@ -60,9 +62,11 @@ CREATE TABLE customer_data (
 PARTITION BY LIST (region) (
     PARTITION p_north VALUES ('NORTH'),
     PARTITION p_south VALUES ('SOUTH'),
-    PARTITION p_east VALUES ('EAST'),
     PARTITION p_west VALUES ('WEST')
 );
+
+ALTER TABLE customer_data
+ADD PARTITION p_east VALUES ('EAST');
 ```
 
 ### **3. Hash Partitioning**
@@ -77,6 +81,9 @@ CREATE TABLE employees (
     name VARCHAR2(100)
 )
 PARTITION BY HASH (department_id) PARTITIONS 4;
+
+// We cannot simply add a new partition, but can split existing partitions to increase the total number
+ALTER TABLE employees SPLIT PARTITION FOR (1);
 ```
 
 {% hint style="info" %}
@@ -121,6 +128,9 @@ SUBPARTITION BY LIST (region) (
         SUBPARTITION sp_west VALUES ('WEST')
     )
 );
+
+ALTER TABLE orders
+ADD SUBPARTITION sp_east_jan2025 VALUES ('EAST');
 ```
 
 ### **5. Interval Partitioning**
@@ -198,6 +208,9 @@ CREATE TABLE order_items (
     FOREIGN KEY (order_id) REFERENCES orders(order_id)
 )
 PARTITION BY REFERENCE (orders);
+
+ALTER TABLE orders
+ADD PARTITION p_april VALUES LESS THAN (TO_DATE('2025-05-01', 'YYYY-MM-DD'));
 ```
 
 {% hint style="info" %}
@@ -287,9 +300,7 @@ WHERE record_date >= TRUNC(SYSDATE, 'MM') -- Start of the current month
   AND record_date < ADD_MONTHS(TRUNC(SYSDATE, 'MM'), 1); -- Start of the next month
 ```
 
-
-
-## Partition Management
+## Partition Maintenance
 
 ### Check the partitions in the database
 
@@ -299,27 +310,276 @@ FROM user_tab_partitions
 WHERE table_name = 'MY_PARTITIONED_TABLE';
 ```
 
-_Partition Creation_
+### Dropping a partition
 
-_Since the DBA is manually creating new partitions each month, it's important that:_
+When we drop a partition from a partitioned table, only the partition and its data are removed. The tablespace in which the partition was stored remains intact and can still hold other data, objects, or partitions.
 
-* _The partition for the current month exists before your service tries to insert records with dates corresponding to that partition._
-* _If the partition is missing, Oracle will throw an error (e.g., `ORA-14400: inserted partition key does not map to any partition`)._
-
-
-
-## Performance Suggestions
-
-* **Indexing**: If querying across multiple partitions, consider creating global or local indexes on frequently used columns to optimize performance.
-* **Explain Plan**: Use `EXPLAIN PLAN` to check whether your query benefits from partition pruning:
+**Example:** Suppose we have a table with range partitions, and each partition is stored in a different tablespace
 
 ```sql
-EXPLAIN PLAN FOR
-SELECT *
-FROM my_partitioned_table
-WHERE record_date = TO_DATE('2025-01-15', 'YYYY-MM-DD');
+CREATE TABLE sales (
+    sale_id NUMBER,
+    sale_date DATE
+)
+PARTITION BY RANGE (sale_date) (
+    PARTITION p_2024 VALUES LESS THAN (TO_DATE('2025-01-01', 'YYYY-MM-DD')) 
+    TABLESPACE ts_2024,
+    PARTITION p_2025 VALUES LESS THAN (TO_DATE('2026-01-01', 'YYYY-MM-DD')) 
+    TABLESPACE ts_2025
+);
+```
 
-SELECT * FROM table(DBMS_XPLAN.DISPLAY);
+If we drop the `p_2024` partition:
+
+```sql
+ALTER TABLE sales DROP PARTITION p_2024;
+```
+
+* The data and metadata associated with the `p_2024` partition will be removed.&#x20;
+* The tablespace `ts_2024` will **not** be dropped. It remains available for use by other objects or partitions.
+* Once a partition is dropped, the data in that partition is permanently deleted, and reusing the same tablespace does not bring the data back. If we later attach the same tablespace to a new partition, it is treated as a new and empty storage area. The data previously stored in the dropped partition is not retained or restored.
+
+{% hint style="info" %}
+**Manual Cleanup**: If we want to completely remove the tablespace (and it's no longer needed for other objects), you can drop the tablespace manually:
+
+```sql
+DROP TABLESPACE ts_2024 INCLUDING CONTENTS AND DATAFILES;
+```
+{% endhint %}
+
+### **Partition Must Exist for the Data**
+
+If the DBA is manually creating new partitions each month, it's important that:
+
+* The partition for the current month exists before our service tries to insert records with dates corresponding to that partition.
+* If the partition is missing, Oracle will throw an error (e.g., `ORA-14400: inserted partition key does not map to any partition`).
+
+## How Tablespaces Work with Partitions?
+
+When we create partitions in a table, we can specify a **tablespace** for each partition. This allows us to distribute the data for different partitions across multiple tablespaces and physical storage devices.
+
+{% hint style="success" %}
+A **tablespace** is a logical storage unit in an Oracle database. It is used to organize and manage the physical storage of data. Tablespaces group together related database objects, such as tables, indexes, and partitions, and map them to one or more physical files called **datafiles**.
+
+1. A tablespace can contain multiple datafiles, and each datafile is a physical file on the disk.
+2. A database can have multiple tablespaces to separate and organize data logically.
+3. Tablespaces make it easier to manage storage, control disk space usage, and optimize performance.
+{% endhint %}
+
+{% hint style="info" %}
+When we create a table with a custom tablespace and then create partitions with a different tablespace, the behavior is as follows:
+
+1. The **table-level tablespace** acts as the **default tablespace** for all partitions if no explicit tablespace is provided for the partitions.
+2. If we explicitly specify a different tablespace for a partition, that partition will be stored in the specified tablespace, overriding the table-level default.
+{% endhint %}
+
+### **Specifying Tablespaces for Partitions**
+
+When creating a partitioned table, we can assign each partition to a specific tablespace using the `TABLESPACE` clause.
+
+#### **Example: Range Partitioning with Tablespaces**
+
+```sql
+CREATE TABLE sales (
+    sale_id NUMBER,
+    sale_date DATE,
+    amount NUMBER
+)
+PARTITION BY RANGE (sale_date) (
+    PARTITION p_jan2025 VALUES LESS THAN (TO_DATE('2025-02-01', 'YYYY-MM-DD')) TABLESPACE ts_january,
+    PARTITION p_feb2025 VALUES LESS THAN (TO_DATE('2025-03-01', 'YYYY-MM-DD')) TABLESPACE ts_february,
+    PARTITION p_mar2025 VALUES LESS THAN (TO_DATE('2025-04-01', 'YYYY-MM-DD')) TABLESPACE ts_march
+);
+```
+
+Here:
+
+* Partition `p_jan2025` is stored in tablespace `ts_january`.
+* Partition `p_feb2025` is stored in tablespace `ts_february`.
+* Partition `p_mar2025` is stored in tablespace `ts_march`.
+
+#### **Example: Hash Partitioning with Tablespaces**
+
+For hash-partitioned tables, we can distribute partitions across multiple tablespaces:
+
+```sql
+CREATE TABLE employees (
+    emp_id NUMBER,
+    department_id NUMBER,
+    name VARCHAR2(100)
+)
+PARTITION BY HASH (department_id) PARTITIONS 4
+STORE IN (ts_part1, ts_part2, ts_part3, ts_part4);
+```
+
+Here:
+
+* The hash partitions are automatically distributed across the tablespaces `ts_part1`, `ts_part2`, `ts_part3`, and `ts_part4`.
+
+#### **Example: Composite Partitioning with Tablespaces**
+
+For composite partitioning (e.g., range and list), we can specify tablespaces for subpartitions:
+
+```sql
+CREATE TABLE orders (
+    order_id NUMBER,
+    sale_date DATE,
+    region VARCHAR2(50)
+)
+PARTITION BY RANGE (sale_date)
+SUBPARTITION BY LIST (region) (
+    PARTITION p_2025 VALUES LESS THAN (TO_DATE('2026-01-01', 'YYYY-MM-DD')) (
+        SUBPARTITION sp_north TABLESPACE ts_north,
+        SUBPARTITION sp_south TABLESPACE ts_south
+    ),
+    PARTITION p_2026 VALUES LESS THAN (TO_DATE('2027-01-01', 'YYYY-MM-DD')) (
+        SUBPARTITION sp_east TABLESPACE ts_east,
+        SUBPARTITION sp_west TABLESPACE ts_west
+    )
+);
+```
+
+### **Managing Tablespaces for Partitions**
+
+* **Checking Partition Tablespaces**: To see which tablespace a partition is stored in:
+
+```sql
+SELECT partition_name, tablespace_name
+FROM user_tab_partitions
+WHERE table_name = 'SALES';
+```
+
+* **Moving Partitions to a New Tablespace**: We can move a partition to a different tablespace using `ALTER TABLE`.
+
+```sql
+ALTER TABLE sales
+MOVE PARTITION p_jan2025 TABLESPACE ts_new_january;
+```
+
+* **Dropping a Tablespace**: If a tablespace is no longer needed, ensure it does not contain any partitions before dropping it:
+
+```sql
+DROP TABLESPACE ts_february INCLUDING CONTENTS AND DATAFILES;
+```
+
+* **Resizing Tablespace**: If a tablespace is running out of space, we can add more datafiles or resize existing ones:
+
+```sql
+ALTER DATABASE DATAFILE '/path/to/datafile.dbf' RESIZE 1G;
+```
+
+### **Benefits of Using Tablespaces with Partitions:**
+
+1. **Data Distribution**: Store different partitions on different disks for better I/O performance.
+2. **Storage Management**: Allocate specific storage resources for partitions with high data growth.
+3. **Backup and Recovery**: Manage backups at the tablespace level for specific partitions.
+4. **Performance Optimization**: Reduce contention and improve query performance by isolating partitions
+
+## Best practices to follow for partitions
+
+Partitioning in Oracle databases is a powerful feature that improves performance, manageability, and scalability.
+
+### **1. Design Partitions Based on Access Patterns**
+
+* **Understand Query Patterns**: Partition the table using the column most frequently used in filters or joins (e.g., `sale_date` for time-based queries).
+* **Avoid Over-Partitioning**: Keep the number of partitions manageable. Too many partitions can lead to overhead in metadata management.
+
+**Example:**
+
+For a sales table, if most queries are time-based (e.g., monthly sales), use **Range Partitioning** on the `sale_date` column.
+
+```sql
+PARTITION BY RANGE (sale_date)
+```
+
+### **2. Choose the Right Partitioning Strategy**
+
+Select the appropriate partitioning type based on your data and requirements:
+
+* **Range Partitioning**: For sequential data, such as dates.
+* **List Partitioning**: For specific categories, such as regions or product types.
+* **Hash Partitioning**: To distribute data evenly when values are unpredictable (e.g., customer IDs).
+* **Composite Partitioning**: Combine strategies (e.g., range and hash) for better granularity.
+
+### **3. Partition Key Selection**
+
+* Use a **highly selective column** (a column with diverse values) as the partition key.
+* Avoid frequently updated columns as partition keys to minimize maintenance overhead.
+* Ensure the partition key aligns with your business logic (e.g., partitions by region for regional sales data).
+
+### **4. Use Tablespaces Effectively**
+
+* **Distribute Partitions Across Tablespaces**: Spread partitions across different tablespaces for better I/O performance.
+* **Separate Hot and Cold Data**: Use faster storage for current (hot) partitions and slower storage for historical (cold) partitions.
+
+**Example:**
+
+```sql
+PARTITION BY RANGE (sale_date) (
+    PARTITION p_2025 TABLESPACE ts_fast_storage,
+    PARTITION p_2024 TABLESPACE ts_slow_storage
+);
+```
+
+### **5. Manage Partition Growth**
+
+* Plan for future data growth by pre-creating partitions or using **interval partitioning**.
+* For example, automatically create monthly partitions:
+
+```sql
+PARTITION BY RANGE (sale_date)
+INTERVAL (NUMTOYMINTERVAL(1, 'MONTH'))
+```
+
+### **6. Partition Pruning**
+
+Ensure queries benefit from **partition pruning** by including the partition key in WHERE clauses. This avoids scanning unnecessary partitions.
+
+**Example:**
+
+Good Query (Uses Partition Pruning):
+
+```sql
+SELECT * FROM sales WHERE sale_date >= TO_DATE('2025-01-01', 'YYYY-MM-DD');
+```
+
+Bad Query (No Partition Pruning):
+
+```sql
+SELECT * FROM sales WHERE TO_CHAR(sale_date, 'YYYY-MM') = '2025-01';
+```
+
+### **7. Use Global and Local Indexes Appropriately**
+
+* **Local Indexes**: Partitioned indexes align with table partitions and improve partition-specific queries.
+* **Global Indexes**: Use for queries spanning multiple partitions but require additional maintenance.
+
+### **8. Partition Maintenance**
+
+* **Add/Drop Partitions**: Manage historical or new data by adding or dropping partitions as needed.
+
+```sql
+ALTER TABLE sales ADD PARTITION p_2026 VALUES LESS THAN (TO_DATE('2027-01-01', 'YYYY-MM-DD'));
+ALTER TABLE sales DROP PARTITION p_2023;
+```
+
+* **Merge Small Partitions**: Consolidate small partitions to reduce metadata overhead.
+
+```sql
+ALTER TABLE sales MERGE PARTITIONS p_2023, p_2024 INTO PARTITION p_2023_2024;
+```
+
+### **9. Monitor Partition Usage**
+
+* Use `DBA_TAB_PARTITIONS` and `DBA_TAB_SUBPARTITIONS` views to monitor partition sizes and data distribution.
+* Regularly check tablespace usage and adjust tablespaces if necessary.
+
+### **10. Drop Unused Partitions**
+
+Remove partitions with outdated or unnecessary data to reclaim storage space:
+
+```sql
+ALTER TABLE sales DROP PARTITION p_2015;
 ```
 
 ## **Benefits of Partitioning**
