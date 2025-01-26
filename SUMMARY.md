@@ -21,6 +21,7 @@
   * [Dynamic Programming](algorithm/dynamic-programming.md)
   * [Greedy Algorithms - TBU](algorithm/greedy-algorithms-tbu.md)
   * [Backtracking - TBU](algorithm/backtracking-tbu.md)
+  * [Parallel Programming](algorithm/parallel-programming.md)
   * [Miscellaneous](algorithm/set-1-miscellaneous/README.md)
     * [Problems - Set 1](algorithm/set-1-miscellaneous/problems-set-1.md)
 * [Api](api/README.md)
