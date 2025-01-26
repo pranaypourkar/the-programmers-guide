@@ -18,7 +18,7 @@
   * [Sorting](algorithm/set-3-sorting.md)
   * [String Algorithms - TBU](algorithm/string-algorithms-tbu.md)
   * [Graph Algorithms - TBU](algorithm/graph-algorithms-tbu.md)
-  * [Dynamic Programming - TBU](algorithm/dynamic-programming-tbu.md)
+  * [Dynamic Programming](algorithm/dynamic-programming.md)
   * [Greedy Algorithms - TBU](algorithm/greedy-algorithms-tbu.md)
   * [Backtracking - TBU](algorithm/backtracking-tbu.md)
   * [Miscellaneous](algorithm/set-1-miscellaneous/README.md)
