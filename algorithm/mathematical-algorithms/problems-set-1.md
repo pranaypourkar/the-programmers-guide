@@ -1,4 +1,4 @@
-# Problems
+# Problems - Set 1
 
 ## **Prime Number**
 
@@ -359,6 +359,18 @@ The above solutions cause overflow for large numbers.
 
 A factorial of 100 has 158 digits and it is not possible to store these many digits even if we use **long int.**
 {% endhint %}
+
+#### Using Stream
+
+```java
+public static long factorialUsingStreams(int n) {
+    return LongStream.rangeClosed(1, n)
+                     .reduce(1, (a, b) -> a * b);
+}
+```
+
+**Time Complexity**: O(n)\
+**Auxiliary Space**: O(1)
 
 ### Large number
 
