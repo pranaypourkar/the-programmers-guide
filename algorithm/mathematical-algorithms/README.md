@@ -699,3 +699,35 @@ For large n, the factorial grows very quickly and exceeds the range of primitive
 
 
 
+## Subsequence
+
+A **subsequence** is a derived sequence that can be obtained from another sequence by deleting **zero or more elements** without changing the order of the remaining elements.
+
+1. **Order is Preserved**: The relative order of elements in the subsequence must be the same as in the original sequence.
+2. **Not Contiguous**: The elements in a subsequence do not need to be contiguous in the original sequence.
+
+#### Examples of Subsequences
+
+1. **String Example**:
+   * Original Sequence: `ABCDE`
+   * Possible Subsequences:
+     * `A`, `AB`, `ACE`, `BCD`, `ABCDE`, `ACD`, `DE`, etc.
+   * Non-Subsequences:
+     * `BA`, `ED`, `ECA` (because order is not preserved).
+2. **Array Example**:
+   * Original Sequence: `[1, 2, 3, 4]`
+   * Possible Subsequences:
+     * `[1, 3]`, `[2, 4]`, `[1, 2, 4]`, `[1, 2, 3, 4]`, `[]` (empty sequence).
+
+The total number of **subsequences** for a sequence of length n is: 2^n
+
+{% hint style="success" %}
+1. For each element in the sequence, there are **two choices**:
+   * Include the element in the subsequence.
+   * Exclude the element from the subsequence.
+2. Since there are n elements and each has two choices, the total number of subsequences is: 2×2×2…(n times)=2^n
+3. This includes the **empty subsequence ("")** and the **sequence itself**.
+{% endhint %}
+
+
+
