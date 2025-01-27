@@ -106,6 +106,13 @@ public class LCSRecursive {
 }
 ```
 
+### **Time Complexity**
+
+* **Recursive**: O(2^max(m,n)), exponential due to overlapping subproblems. m and n are the lengths of the strings.
+*   **Tabulation**: O(m×n): Two nested loops iterate through the strings.&#x20;
+
+    **Space Complexity**: O(m×n): DP table size.
+
 ## 2. Knapsack Problem (**0/1)**
 
 Given `n` items, each with a weight w\[i] and a value v\[i], and a knapsack with a maximum capacity W, determine the maximum value that can be achieved by selecting a subset of items, such that the total weight does not exceed W. You can either include an item (1) or exclude it (0).
@@ -214,25 +221,257 @@ public class KnapsackTabulation {
 }
 ```
 
+### **Time Complexity**
 
+* **Recursive**: O(2^n), exponential due to overlapping subproblems.
+* **Tabulation**: O(n×capacity).
 
 
 
 ## 3. Longest Palindromic Subsequence
 
+Given a string s, find the length of its longest palindromic subsequence. A subsequence is a sequence derived from another sequence by deleting some or no elements without changing the order of the remaining elements.
 
+#### **Example**
+
+**Input**:\
+String s="bbbab"
+
+**Output**:\
+Longest Palindromic Subsequence Length = **4**\
+Explanation: The LPS is "bbbb".
+
+### **Recursive Approach**
+
+1. **Key Idea**:
+   * If the first and last characters match:
+     * The result is 2+LPS(s,l+1,r−1) (include both characters and find LPS for the inner substring).
+   * Otherwise:
+     * Take the maximum of:
+       * Excluding the first character: LPS(s,l+1,r).
+       * Excluding the last character: LPS(s,l,r−1).
+2. **Base Case**:
+   * If l>r: Return 0 (invalid substring).
+   * If l==r: Return 1 (a single character is a palindrome).
+
+```java
+public class LongestPalindromicSubsequenceRecursive {
+    public int lps(String s) {
+        return lpsHelper(s, 0, s.length() - 1);
+    }
+
+    private int lpsHelper(String s, int l, int r) {
+        // Base case: If pointers cross
+        if (l > r) {
+            return 0;
+        }
+
+        // Base case: Single character
+        if (l == r) {
+            return 1;
+        }
+
+        // If characters match
+        if (s.charAt(l) == s.charAt(r)) {
+            return 2 + lpsHelper(s, l + 1, r - 1);
+        }
+
+        // Otherwise, take the maximum excluding one of the characters
+        return Math.max(lpsHelper(s, l + 1, r), lpsHelper(s, l, r - 1));
+    }
+
+    public static void main(String[] args) {
+        LongestPalindromicSubsequenceRecursive solution = new LongestPalindromicSubsequenceRecursive();
+        String s = "bbbab";
+        System.out.println("Longest Palindromic Subsequence Length: " + solution.lps(s)); // Output: 4
+    }
+}
+```
+
+### **Tabulation Method (Bottom-Up DP)**
+
+1. **DP Table Definition**:
+   * Let dp\[i]\[j] represent the length of the LPS in the substring s\[i....j].
+   * Initialize dp\[i]\[i]=1 (single-character palindromes).
+2. **Transition**:
+   * If s\[i]==s\[j]:\
+     dp\[i]\[j]=2+dp\[i+1]\[j−1]
+   * Otherwise:\
+     dp\[i]\[j]=max⁡(dp\[i+1]\[j],dp\[i]\[j−1])
+3. **Result**:
+   * dp\[0]\[n−1] contains the length of the LPS for the entire string.
+
+```java
+public class LongestPalindromicSubsequenceTabulation {
+    public int lps(String s) {
+        int n = s.length();
+        int[][] dp = new int[n][n];
+
+        // Base case: Single-character palindromes
+        for (int i = 0; i < n; i++) {
+            dp[i][i] = 1;
+        }
+
+        // Build the DP table
+        for (int length = 2; length <= n; length++) { // Length of the substring
+            for (int i = 0; i <= n - length; i++) {
+                int j = i + length - 1; // Endpoint of the substring
+                if (s.charAt(i) == s.charAt(j)) {
+                    dp[i][j] = 2 + dp[i + 1][j - 1];
+                } else {
+                    dp[i][j] = Math.max(dp[i + 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+
+        return dp[0][n - 1];
+    }
+
+    public static void main(String[] args) {
+        LongestPalindromicSubsequenceTabulation solution = new LongestPalindromicSubsequenceTabulation();
+        String s = "bbbab";
+        System.out.println("Longest Palindromic Subsequence Length: " + solution.lps(s)); // Output: 4
+    }
+}
+```
+
+### **Time Complexity**
+
+* **Recursive**: O(2^n), exponential due to overlapping subproblems.
+* **Tabulation**: O(n^2), for the nested loops.
 
 
 
 ## 4. Coin Change Problem
 
+Given a set of coin denominations coins\[] and a target amount target, determine the minimum number of coins required to make up the target amount. If it is not possible to make the amount, return -1.
+
+#### **Example**
+
+**Input**:\
+Coins = \[1,2,5]\
+Target = 11
+
+**Output**:\
+Minimum Coins Required = **3**\
+Explanation:\
+The combination of coins is 5,5,1 or 1,1,1,2,2,2,2 (minimum is 3 coins).
+
+### **Recursive Approach**
+
+1. **Key Idea**:
+   * For each coin in coins\[], reduce the target amount by the coin's value and recursively solve for the remaining amount.
+   * If the target becomes zero, the minimum number of coins required is zero for that base case.
+   * If the target becomes negative, it means this path is invalid.
+2. **Recursive Formula**:
+   * For target: minCoins(target)=min⁡(minCoins(target−coins\[i]))+1
+3. **Base Case**:
+   * target=0: Return 0 (no coins needed).
+   * target<0: Return ∞ (invalid case).
+
+```java
+import java.util.Arrays;
+
+public class CoinChangeRecursive {
+    public int coinChange(int[] coins, int target) {
+        int result = helper(coins, target);
+        return result == Integer.MAX_VALUE ? -1 : result;
+    }
+
+    private int helper(int[] coins, int target) {
+        // Base case: Exact match
+        if (target == 0) {
+            return 0;
+        }
+
+        // Base case: No solution
+        if (target < 0) {
+            return Integer.MAX_VALUE;
+        }
+
+        // Recursive case
+        int minCoins = Integer.MAX_VALUE;
+        for (int coin : coins) {
+            int res = helper(coins, target - coin);
+            if (res != Integer.MAX_VALUE) {
+                minCoins = Math.min(minCoins, res + 1);
+            }
+        }
+        return minCoins;
+    }
+
+    public static void main(String[] args) {
+        CoinChangeRecursive solution = new CoinChangeRecursive();
+        int[] coins = {1, 2, 5};
+        int target = 11;
+        System.out.println("Minimum Coins Required: " + solution.coinChange(coins, target)); // Output: 3
+    }
+}
+```
+
+### **Tabulation Method (Bottom-Up DP)**
+
+1. **DP Table Definition**:
+   * Let dp\[i] represent the minimum number of coins required to make up the amount i.
+   * Initialize dp\[0]=0 (0 coins needed for amount 0).
+2. **Transition**:
+   * For each coin in coins\[]:
+     * Update dp\[i] as: dp\[i]=min⁡(dp\[i],dp\[i−coin]+1)
+3. **Result**:
+   * If dp\[target] is ∞, return -1 (not possible).
+   * Otherwise, return dp\[target].
+
+```java
+import java.util.Arrays;
+
+public class CoinChangeTabulation {
+    public int coinChange(int[] coins, int target) {
+        int[] dp = new int[target + 1];
+        Arrays.fill(dp, Integer.MAX_VALUE);
+        dp[0] = 0; // Base case: 0 coins for amount 0
+
+        // Build the DP table
+        for (int coin : coins) {
+            for (int i = coin; i <= target; i++) {
+                if (dp[i - coin] != Integer.MAX_VALUE) {
+                    dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+                }
+            }
+        }
+
+        return dp[target] == Integer.MAX_VALUE ? -1 : dp[target];
+    }
+
+    public static void main(String[] args) {
+        CoinChangeTabulation solution = new CoinChangeTabulation();
+        int[] coins = {1, 2, 5};
+        int target = 11;
+        System.out.println("Minimum Coins Required: " + solution.coinChange(coins, target)); // Output: 3
+    }
+}
+```
+
+### **Time and Space Complexity**
+
+1. **Recursive Approach**:
+   * Time Complexity: O(coins^n), where n is the target amount.
+   * Space Complexity: O(n), for the recursion stack.
+2. **Tabulation**:
+   * Time Complexity: O(coins×target), as we iterate through coins and the target.
+   * Space Complexity: O(target), for the DP array.
+
+## 5. Unique Paths
+
+You are given a m×n grid. You are standing at the top-left corner of the grid (cell (0,0), and you want to reach the bottom-right corner (cell (m−1,n−1)). You can only move either **right** or **down** at any point.\
+Find the total number of unique paths to reach the destination.
 
 
-## 5. Partition Equal Subset Sum
 
-## 6. Unique Paths
+## 6. Minimum Path Sum
 
-## 7. Minimum Path Sum
 
-## 8. Subset Sum Problem
+
+## 7. Subset Sum Problem
+
+
 
