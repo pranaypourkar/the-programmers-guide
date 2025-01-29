@@ -78,7 +78,7 @@ java -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9010 -XX
 
 <table data-header-hidden data-full-width="true"><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td><strong>Best Practice</strong></td><td><strong>Kubernetes Configuration</strong></td><td><strong>Explanation</strong></td></tr><tr><td><strong>Set restart policy to <code>Always</code></strong></td><td><code>yaml restartPolicy: Always</code></td><td>Ensures the pod restarts if JVM crashes.</td></tr><tr><td><strong>Use <code>livenessProbe</code> to detect JVM failures</strong></td><td><code>yaml livenessProbe: httpGet: path: /actuator/health port: 8080 initialDelaySeconds: 10 periodSeconds: 5</code></td><td>Restarts JVM if it becomes unresponsive.</td></tr><tr><td><strong>Use <code>readinessProbe</code> to prevent traffic to unhealthy pods</strong></td><td><code>yaml readinessProbe: httpGet: path: /actuator/health port: 8080 initialDelaySeconds: 5 periodSeconds: 5</code></td><td>Ensures pods receive traffic <strong>only when fully ready</strong>.</td></tr></tbody></table>
 
-## **Sample Kubernetes Pod Spec:**
+## **Sample Kubernetes Pod Spec**
 
 ```yaml
 apiVersion: v1
