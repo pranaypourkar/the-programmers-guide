@@ -60,7 +60,25 @@ java -XX:+UseG1GC -Xlog:gc:/var/logs/gc.log -jar app.jar
 
 <table data-header-hidden data-full-width="true"><thead><tr><th width="349"></th><th></th><th></th></tr></thead><tbody><tr><td><strong>Best Practice</strong></td><td><strong>Kubernetes YAML Example</strong></td><td><strong>Explanation</strong></td></tr><tr><td><strong>Set appropriate memory requests &#x26; limits</strong></td><td><code>yaml resources: requests: memory: "1Gi" limits: memory: "2Gi"</code></td><td>Ensures JVM doesn’t allocate more memory than the pod allows.</td></tr><tr><td><strong>Set CPU limits for predictable performance</strong></td><td><code>yaml resources: requests: cpu: "500m" limits: cpu: "1"</code></td><td>Prevents excessive CPU usage and throttling.</td></tr></tbody></table>
 
-**Example Kubernetes Pod Spec:**
+## **Monitoring & Observability Best Practices**
+
+**Why?** Monitoring JVM inside Kubernetes helps detect performance bottlenecks, memory leaks, and CPU issues.
+
+<table data-header-hidden data-full-width="true"><thead><tr><th width="273"></th><th></th><th></th></tr></thead><tbody><tr><td><strong>Best Practice</strong></td><td><strong>Tool/Option</strong></td><td><strong>Explanation</strong></td></tr><tr><td><strong>Enable JMX for real-time monitoring</strong></td><td><code>-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9010</code></td><td>Allows Prometheus/Grafana to collect JVM metrics.</td></tr><tr><td><strong>Use Prometheus with Micrometer for JVM metrics</strong></td><td><code>io.micrometer:micrometer-registry-prometheus</code></td><td>Exposes JVM <strong>heap, GC, and thread metrics</strong> for Kubernetes dashboards.</td></tr><tr><td><strong>Enable GC logs for analysis</strong></td><td><code>-Xlog:gc:/var/logs/gc.log</code></td><td>Useful for debugging memory issues.</td></tr></tbody></table>
+
+**Example JMX-enabled Kubernetes JVM:**
+
+```shell
+java -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9010 -XX:+UseG1GC -Xlog:gc:/var/logs/gc.log -jar app.jar
+```
+
+## **Auto-Restart & Resilience Best Practices**
+
+**Why?** If a JVM crashes or runs out of memory, Kubernetes should automatically restart the pod.
+
+<table data-header-hidden data-full-width="true"><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td><strong>Best Practice</strong></td><td><strong>Kubernetes Configuration</strong></td><td><strong>Explanation</strong></td></tr><tr><td><strong>Set restart policy to <code>Always</code></strong></td><td><code>yaml restartPolicy: Always</code></td><td>Ensures the pod restarts if JVM crashes.</td></tr><tr><td><strong>Use <code>livenessProbe</code> to detect JVM failures</strong></td><td><code>yaml livenessProbe: httpGet: path: /actuator/health port: 8080 initialDelaySeconds: 10 periodSeconds: 5</code></td><td>Restarts JVM if it becomes unresponsive.</td></tr><tr><td><strong>Use <code>readinessProbe</code> to prevent traffic to unhealthy pods</strong></td><td><code>yaml readinessProbe: httpGet: path: /actuator/health port: 8080 initialDelaySeconds: 5 periodSeconds: 5</code></td><td>Ensures pods receive traffic <strong>only when fully ready</strong>.</td></tr></tbody></table>
+
+## **Sample Kubernetes Pod Spec:**
 
 ```yaml
 apiVersion: v1
@@ -83,23 +101,17 @@ spec:
         value: "-XX:MaxRAMPercentage=75.0 -XX:+UseG1GC -XX:+ExitOnOutOfMemoryError"
 ```
 
-## **Monitoring & Observability Best Practices**
+Our pod has:
 
-**Why?** Monitoring JVM inside Kubernetes helps detect performance bottlenecks, memory leaks, and CPU issues.
+* **Memory Request**: `1Gi` (Minimum guaranteed memory)
+* **Memory Limit**: `2Gi` (Maximum memory allowed)
+* **JVM Option**: `-XX:MaxRAMPercentage=75.0` (JVM will use **75% of available memory**)
 
-<table data-header-hidden data-full-width="true"><thead><tr><th width="273"></th><th></th><th></th></tr></thead><tbody><tr><td><strong>Best Practice</strong></td><td><strong>Tool/Option</strong></td><td><strong>Explanation</strong></td></tr><tr><td><strong>Enable JMX for real-time monitoring</strong></td><td><code>-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9010</code></td><td>Allows Prometheus/Grafana to collect JVM metrics.</td></tr><tr><td><strong>Use Prometheus with Micrometer for JVM metrics</strong></td><td><code>io.micrometer:micrometer-registry-prometheus</code></td><td>Exposes JVM <strong>heap, GC, and thread metrics</strong> for Kubernetes dashboards.</td></tr><tr><td><strong>Enable GC logs for analysis</strong></td><td><code>-Xlog:gc:/var/logs/gc.log</code></td><td>Useful for debugging memory issues.</td></tr></tbody></table>
+<table data-header-hidden data-full-width="true"><thead><tr><th width="189"></th><th></th><th></th></tr></thead><tbody><tr><td><strong>Stage</strong></td><td><strong>Kubernetes Perspective</strong></td><td><strong>JVM Perspective</strong></td></tr><tr><td><strong>Pod Scheduling</strong></td><td>Kubernetes ensures the node has at least <code>1Gi</code> RAM available.</td><td>JVM is not aware of <code>requests</code>, only <code>limits</code>.</td></tr><tr><td><strong>Memory Allocation</strong></td><td>Pod starts with memory between <code>1Gi</code> and <code>2Gi</code>, based on availability.</td><td>JVM calculates max heap as <code>75% of available RAM</code>.</td></tr><tr><td><strong>Heap Calculation</strong></td><td>Pod cannot exceed <code>2Gi</code>. If exceeded, <strong>pod is killed (OOMKilled)</strong>.</td><td>JVM takes <strong>75% of 2Gi</strong>, so <strong>JVM heap max = 1.5Gi</strong>. Remaining <strong>0.5GiB</strong> is used by <strong>JVM metaspace, thread stacks, GC, etc.</strong></td></tr></tbody></table>
 
-**Example JMX-enabled Kubernetes JVM:**
 
-```shell
-java -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9010 -XX:+UseG1GC -Xlog:gc:/var/logs/gc.log -jar app.jar
-```
 
-## **Auto-Restart & Resilience Best Practices**
 
-**Why?** If a JVM crashes or runs out of memory, Kubernetes should automatically restart the pod.
-
-<table data-header-hidden data-full-width="true"><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td><strong>Best Practice</strong></td><td><strong>Kubernetes Configuration</strong></td><td><strong>Explanation</strong></td></tr><tr><td><strong>Set restart policy to <code>Always</code></strong></td><td><code>yaml restartPolicy: Always</code></td><td>Ensures the pod restarts if JVM crashes.</td></tr><tr><td><strong>Use <code>livenessProbe</code> to detect JVM failures</strong></td><td><code>yaml livenessProbe: httpGet: path: /actuator/health port: 8080 initialDelaySeconds: 10 periodSeconds: 5</code></td><td>Restarts JVM if it becomes unresponsive.</td></tr><tr><td><strong>Use <code>readinessProbe</code> to prevent traffic to unhealthy pods</strong></td><td><code>yaml readinessProbe: httpGet: path: /actuator/health port: 8080 initialDelaySeconds: 5 periodSeconds: 5</code></td><td>Ensures pods receive traffic <strong>only when fully ready</strong>.</td></tr></tbody></table>
 
 
 
