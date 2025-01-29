@@ -4,6 +4,8 @@
 
 **ArchUnit** is a popular Java library designed to help developers enforce architectural constraints in their codebase. It allows teams to validate architecture rules and prevent the introduction of unwanted dependencies or code patterns. This is especially useful for maintaining consistency, reducing technical debt, and ensuring the system adheres to predefined architectural principles.
 
+Refer to the official documentation for more details - [https://github.com/TNG/ArchUnit/tree/main](https://github.com/TNG/ArchUnit/tree/main)
+
 ## **Key Features of ArchUnit**
 
 1. **Architecture Rules Validation**:
