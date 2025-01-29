@@ -42,6 +42,8 @@
     * [Kubernetes - TBU](application-containerisation-tbu/container-orchestration-tbu/kubernetes-tbu/README.md)
       * [Probes](application-containerisation-tbu/container-orchestration-tbu/kubernetes-tbu/probes.md)
   * [Cloud Platforms and Container Services - TBU](application-containerisation-tbu/cloud-platforms-and-container-services-tbu.md)
+  * [Best Practices](application-containerisation-tbu/best-practices/README.md)
+    * [Running JVM in Kubernetes/OpenShift Pods](application-containerisation-tbu/best-practices/running-jvm-in-kubernetes-openshift-pods.md)
 * [Cloud Computing](cloud-computing/README.md)
   * [Cloud Fundamentals](cloud-computing/cloud-fundamentals/README.md)
     * [Cloud Terminology](cloud-computing/cloud-fundamentals/cloud-terminology.md)
