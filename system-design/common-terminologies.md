@@ -23,3 +23,24 @@ The **downstream system** is the system that **receives** data from another syst
 * **Downstream systems** often act on the received data, either by storing, further processing, or integrating it into another workflow.
 
 Example: System B might be a reporting service that takes the transaction data from System A and creates reports or generates analytics based on that data. In this case, System B is the downstream system.
+
+## Orchestration vs. Choreography
+
+* **Description**:
+  * **Orchestration**: A central orchestrator service controls and coordinates the flow of events between services, ensuring that each service performs its part of the workflow.
+  * **Choreography**: In this approach, services independently decide when and how to act based on the events they receive, without a central controller.
+* **How it works**:
+  * In **orchestration**, the orchestrator issues commands to services, directing them on what to do next.
+  * In **choreography**, services listen for events and decide what actions to take independently.
+* **Example**:
+  * Orchestration: A payment processing system where the workflow is controlled by a central service that calls payment, inventory, and shipping services.
+  * Choreography: A system where each service listens for and reacts to events like `order-placed`, `payment-received`, and `shipment-dispatched`.
+  * **Example technologies**: Camunda (Orchestration), Event Sourcing (Choreography).
+
+**Advantages**:
+
+* **Orchestration**: Central control for complex workflows.
+* **Choreography**: Greater flexibility and less dependence on a central controller.
+
+
+
