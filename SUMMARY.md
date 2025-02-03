@@ -195,6 +195,7 @@
     * [Set 1](java/concepts/concepts-set-1/README.md)
       * [Streams](java/concepts/concepts-set-1/streams/README.md)
         * [flatmap](java/concepts/concepts-set-1/streams/flatmap.md)
+        * [Problems](java/concepts/concepts-set-1/streams/problems.md)
       * [Functional Interfaces](java/concepts/concepts-set-1/functional-interfaces/README.md)
         * [Standard Built-In Interfaces](java/concepts/concepts-set-1/functional-interfaces/standard-built-in-interfaces.md)
         * [Custom Interfaces](java/concepts/concepts-set-1/functional-interfaces/custom-interfaces.md)

@@ -1,8 +1,6 @@
----
-description: Overview of flatMap along with real world examples.
----
-
 # flatmap
+
+## About
 
 In Java streams, `flatMap` is an intermediate operation, meaning it returns a new stream without modifying the original, and combines two actions:
 
@@ -17,6 +15,8 @@ The term "flatMap" originates from functional programming languages, particularl
 1. **Map**: The `map` operation applies a function to each element of a collection, resulting in a new collection where each element is the result of applying the function to the corresponding element of the original collection.
 2. **Flat**: The "flat" part comes from the idea of "flattening" nested structures. When you have a nested collection (like a list of lists), "flattening" means converting it into a single, non-nested collection.
 {% endhint %}
+
+## **Examples**
 
 **Example 1:** We have a list of list of integers. Our task in to return a list of integers having numbers divisible by 2.
 
