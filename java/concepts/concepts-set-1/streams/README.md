@@ -931,5 +931,323 @@ true
 */
 ```
 
+## **Parallel Streams in Java**
 
+Parallel Streams in Java allow for **concurrent processing** of data by utilizing multiple CPU cores. This enables faster execution for large datasets by dividing the workload across threads in the **Fork/Join framework**.
 
+### **1. What are Parallel Streams?**
+
+A **parallel stream** processes elements **simultaneously** in multiple threads rather than sequentially. It **splits** the data into **smaller chunks** and processes them in parallel using Java's **ForkJoinPool**.
+
+#### **How to Create a Parallel Stream?**
+
+```java
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+
+// Creating a parallel stream. Elements are processed on different threads instead of one.
+numbers.parallelStream()
+    .forEach(n -> System.out.println(n + " " + Thread.currentThread().getName()));
+
+/*
+Output (order may vary):
+1 ForkJoinPool.commonPool-worker-1
+2 ForkJoinPool.commonPool-worker-2
+3 main
+4 ForkJoinPool.commonPool-worker-3
+5 ForkJoinPool.commonPool-worker-4
+*/
+```
+
+### **2. When to Use Parallel Streams?**
+
+Parallel streams are **useful** when:\
+**Large datasets** → Parallelism benefits large collections.\
+**Independent tasks** → Operations should not depend on each other.\
+**CPU-intensive tasks** → Parallel execution benefits **complex computations**.\
+**Multi-core processors** → Takes advantage of **multi-threading**.
+
+#### **Example: Using Parallel Stream for Sum Calculation**
+
+```java
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+
+// Uses reduce() in parallel for summing elements.
+int sum = numbers.parallelStream()
+    .reduce(0, Integer::sum);
+
+System.out.println(sum); // Output: 15
+```
+
+### **3. Performance Considerations for Parallel Execution**
+
+While parallel streams **improve performance**, they have **overhead costs**. Consider:
+
+#### **When Parallel Streams are Beneficial:**
+
+✔ **CPU-bound operations** → Complex computations (e.g., matrix multiplication).\
+✔ **Large collections** → Overhead is negligible when processing thousands of elements.\
+✔ **Stateless operations** → Operations do not modify shared data.
+
+#### **When NOT to Use Parallel Streams:**
+
+✖ **Small datasets** → Thread management overhead outweighs benefits.\
+✖ **I/O-bound tasks** → Parallel execution does not speed up database or network calls.\
+✖ **Mutable shared state** → Can cause race conditions and inconsistent results.
+
+#### **Example: Incorrect Use of Parallel Streams (Race Condition)**
+
+<pre class="language-java"><code class="lang-java"><strong>// Problem: ArrayList is not thread-safe, so concurrent modifications may cause data corruption.
+</strong><strong>List&#x3C;Integer> numbers = List.of(1, 2, 3, 4, 5);
+</strong>
+List&#x3C;Integer> results = new ArrayList&#x3C;>();
+
+numbers.parallelStream().forEach(n -> results.add(n * 2));
+
+System.out.println(results); // Output may be inconsistent (due to race conditions)
+</code></pre>
+
+```java
+// Fix: Use ConcurrentLinkedQueue Instead
+ConcurrentLinkedQueue<Integer> results = new ConcurrentLinkedQueue<>();
+
+numbers.parallelStream().forEach(n -> results.add(n * 2));
+
+System.out.println(results);
+```
+
+## **Primitive Streams (IntStream, LongStream, DoubleStream)**
+
+Java provides specialized **primitive streams** (`IntStream`, `LongStream`, `DoubleStream`) to efficiently process numerical data without the overhead of boxing/unboxing found in `Stream<Integer>`, `Stream<Long>`, and `Stream<Double>`.
+
+### **1. Why Use Primitive Streams?**
+
+Using `Stream<Integer>` creates unnecessary **autoboxing** (conversion from `int` to `Integer`), which **impacts performance**.
+
+```java
+Stream<Integer> numberStream = Stream.of(1, 2, 3, 4, 5);
+int sum = numberStream.mapToInt(Integer::intValue).sum();  // Converts to IntStream
+```
+
+Instead of using `Stream<Integer>`, we can directly use `IntStream.` `IntStream` avoids `Integer` objects, reducing memory usage.
+
+```java
+IntStream numberStream = IntStream.of(1, 2, 3, 4, 5);
+int sum = numberStream.sum();  // More efficient
+```
+
+### **2. Creating and Processing Primitive Streams**
+
+#### **2.1 Creating Primitive Streams**
+
+Primitive streams can be created from **arrays, ranges, or generators**.
+
+**(a) From Arrays**
+
+```java
+int[] numbers = {1, 2, 3, 4, 5};
+IntStream streamFromArray = Arrays.stream(numbers);
+```
+
+**(b) Using `IntStream.of()` and `range()`**
+
+```java
+IntStream stream = IntStream.of(1, 2, 3, 4, 5);  // From values
+IntStream rangeStream = IntStream.range(1, 6);   // 1 to 5 (excludes 6)
+IntStream rangeClosedStream = IntStream.rangeClosed(1, 5); // 1 to 5 (inclusive)
+```
+
+**(c) Using `generate()` and `iterate()`**
+
+```java
+IntStream randomInts = IntStream.generate(() -> new Random().nextInt(100)).limit(5);
+IntStream evenNumbers = IntStream.iterate(2, n -> n + 2).limit(5);
+```
+
+🔹 **`generate()`** generates infinite values (hence `limit(5)`).\
+🔹 **`iterate()`** applies a function (`n -> n + 2`) to generate values.
+
+### **3. Specialized Operations for Numeric Streams**
+
+Primitive streams provide specialized **numeric operations** that are **not available in normal `Stream<T>`**.
+
+#### **3.1 Summing Elements (`sum()`)**
+
+```java
+// More efficient than reduce(0, Integer::sum)
+int total = IntStream.of(1, 2, 3, 4, 5).sum();
+System.out.println(total); // Output: 15
+```
+
+#### **3.2 Finding Min and Max (`min()`, `max()`)**
+
+```java
+OptionalInt min = IntStream.of(3, 1, 4, 5, 2).min();
+OptionalInt max = IntStream.of(3, 1, 4, 5, 2).max();
+System.out.println(min.getAsInt() + ", " + max.getAsInt()); // Output: 1, 5
+```
+
+#### **3.3 Finding the Average (`average()`)**
+
+```java
+OptionalDouble avg = IntStream.of(1, 2, 3, 4, 5).average();
+System.out.println(avg.getAsDouble()); // Output: 3.0
+```
+
+#### **3.4 Collecting Statistics (`summaryStatistics()`)**
+
+```java
+// Provides count, sum, min, max, and average in one call.
+IntSummaryStatistics stats = IntStream.of(1, 2, 3, 4, 5).summaryStatistics();
+System.out.println(stats);
+/*
+Output:
+IntSummaryStatistics{count=5, sum=15, min=1, average=3.000000, max=5}
+*/
+```
+
+#### **3.5 Boxing Back to `Stream<Integer>` (`boxed()`)**
+
+The `boxed()` method is used to **convert a primitive stream** (`IntStream`, `LongStream`, or `DoubleStream`) **into a stream of wrapper objects** (`Stream<Integer>`, `Stream<Long>`, `Stream<Double>`). Primitive streams (`IntStream`, `LongStream`, `DoubleStream`) provide **specialized operations** like `sum()`, `min()`, `average()`, and `summaryStatistics()`, but they **cannot be used with collectors like `Collectors.toList()`** because collectors expect **a Stream of objects (`Stream<T>`)**.
+
+<pre class="language-java"><code class="lang-java"><strong>// Converts IntStream → Stream&#x3C;Integer>.
+</strong><strong>Stream&#x3C;Integer> boxedStream = IntStream.range(1, 5).boxed();
+</strong>boxedStream.forEach(System.out::println); // Output: 1 2 3 4
+</code></pre>
+
+## **Working with `Collectors` (Collectors Utility Class)**
+
+The `Collectors` class in Java **(java.util.stream.Collectors)** provides a set of predefined collectors that can be used to accumulate elements from a stream into various data structures such as **List, Set, Map, or even summary statistics**. It is widely used with the `collect()` terminal operation.
+
+### **1. Collecting to `List`, `Set`, and `Map`**
+
+#### **Collecting Stream Elements into a `List`**
+
+The `Collectors.toList()` method collects elements into a `List<>`.
+
+```java
+List<String> names = Stream.of("Alice", "Bob", "Charlie")
+                           .collect(Collectors.toList());
+System.out.println(names);
+/*
+Output:
+[Alice, Bob, Charlie]
+*/
+```
+
+#### **Collecting Stream Elements into a `Set`**
+
+The `Collectors.toSet()` method collects elements into a `Set<>`, which **removes duplicates** and does **not guarantee order**.
+
+```java
+Set<String> uniqueNames = Stream.of("Alice", "Bob", "Charlie", "Alice")
+                                .collect(Collectors.toSet());
+System.out.println(uniqueNames);
+/*
+Output (Order may vary):
+[Alice, Bob, Charlie]
+*/
+```
+
+#### **Collecting Stream Elements into a `Map`**
+
+The `Collectors.toMap()` method collects elements into a `Map<>` with **a key-value mapping function**.
+
+```java
+Map<Integer, String> nameMap = Stream.of("Alice", "Bob", "Charlie")
+                                     .collect(Collectors.toMap(String::length, name -> name));
+System.out.println(nameMap);
+/*
+Output (may vary):
+{3=Bob, 5=Alice, 7=Charlie}
+*/
+```
+
+**Key = String length, Value = String itself**\
+If duplicate keys exist, it throws an exception unless a **merge function** is provided.
+
+```java
+// Use a merge function to handle duplicate keys.
+Map<Integer, String> nameMap = Stream.of("Alice", "Bob", "Charlie", "David")
+    .collect(Collectors.toMap(String::length, name -> name, (existing, replacement) -> existing));
+System.out.println(nameMap);
+/*
+Output (may vary):
+{3=Bob, 5=Alice, 7=Charlie}
+*/
+```
+
+### **2. Grouping and Partitioning Data**
+
+#### **Grouping Elements using `groupingBy()`**
+
+The `Collectors.groupingBy()` method groups elements by a classifier function.
+
+```java
+Map<Integer, List<String>> groupedByLength = Stream.of("Alice", "Bob", "Charlie")
+    .collect(Collectors.groupingBy(String::length));
+System.out.println(groupedByLength);
+/*
+Output:
+{3=[Bob], 5=[Alice], 7=[Charlie]}
+*/
+```
+
+Groups names based on **length**.\
+Returns a `Map<Integer, List<String>>` where the key is the length and the value is a list of names.
+
+#### **Partitioning Elements using `partitioningBy()`**
+
+The `Collectors.partitioningBy()` method divides elements into two groups (true/false) based on a predicate. It is used when data needs to be divided into two categories.
+
+```java
+Map<Boolean, List<Integer>> partitioned = Stream.of(10, 15, 20, 25, 30)
+    .collect(Collectors.partitioningBy(n -> n % 2 == 0));
+System.out.println(partitioned);
+/*
+Output:
+{false=[15, 25], true=[10, 20, 30]}
+*/
+```
+
+Two partitions:
+
+* `true` → Even numbers
+* `false` → Odd numbers
+
+### **3. Summarizing Data with `Collectors`**
+
+#### **Summing Elements using `summingInt()`**
+
+```java
+int total = Stream.of(5, 10, 15, 20)
+                  .collect(Collectors.summingInt(n -> n));
+System.out.println(total);
+/*
+Output:
+50
+*/
+```
+
+#### **Calculating Average using `averagingInt()`**
+
+```java
+double avg = Stream.of(5, 10, 15, 20)
+                   .collect(Collectors.averagingInt(n -> n));
+System.out.println(avg);
+/*
+Output:
+12.5
+*/
+```
+
+#### **Getting Summary Statistics using `summarizingInt()`**
+
+```java
+IntSummaryStatistics stats = Stream.of(5, 10, 15, 20)
+    .collect(Collectors.summarizingInt(n -> n));
+System.out.println(stats);
+/*
+Output:
+IntSummaryStatistics{count=4, sum=50, min=5, average=12.500000, max=20}
+*/
+```
