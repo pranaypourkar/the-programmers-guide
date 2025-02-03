@@ -308,11 +308,628 @@ Stream<Integer> stream2 = numbers.stream().filter(n -> n % 2 == 0);
 Stream<Integer> stream3 = numbers.stream().sorted();
 ```
 
+## **Stream Operations Overview**
+
+Java Streams API consists of **Intermediate** and **Terminal** operations that work together to process data efficiently. Understanding these operations and the **Stream Pipeline** is essential for writing clean, functional, and performant code.
+
+### **1. What Are Intermediate and Terminal Operations?**
+
+Stream operations are categorized into two types:
+
+1. **Intermediate Operations** – Transform a stream and return a new Stream. They are **lazy** (executed only when a terminal operation is called).
+2. **Terminal Operations** – Consume the stream and **produce a result** (such as a collection, count, or boolean value). Terminal operations **trigger** execution of intermediate operations.
+
+#### **Intermediate Operations (Lazy and Return a Stream)**
+
+These operations **do not process elements immediately**; instead, they build up a pipeline and execute only when a **terminal operation** is encountered.
+
+<table data-header-hidden data-full-width="true"><thead><tr><th></th><th></th></tr></thead><tbody><tr><td><strong>Method</strong></td><td><strong>Description</strong></td></tr><tr><td><code>filter(Predicate&#x3C;T>)</code></td><td>Filters elements based on a condition.</td></tr><tr><td><code>map(Function&#x3C;T, R>)</code></td><td>Transforms each element in the stream.</td></tr><tr><td><code>flatMap(Function&#x3C;T, Stream&#x3C;R>>)</code></td><td>Flattens multiple nested streams into a single stream.</td></tr><tr><td><code>distinct()</code></td><td>Removes duplicate elements.</td></tr><tr><td><code>sorted(Comparator&#x3C;T>)</code></td><td>Sorts elements in natural or custom order.</td></tr><tr><td><code>peek(Consumer&#x3C;T>)</code></td><td>Debugging tool; applies an action to each element.</td></tr><tr><td><code>limit(n)</code></td><td>Limits the number of elements in the stream.</td></tr><tr><td><code>skip(n)</code></td><td>Skips the first <code>n</code> elements.</td></tr></tbody></table>
+
+#### **Terminal Operations (Trigger Execution and Produce a Result)**
+
+Once a terminal operation is called, the stream pipeline is **executed in one pass** and cannot be reused.
+
+<table data-header-hidden data-full-width="true"><thead><tr><th width="377"></th><th></th></tr></thead><tbody><tr><td><strong>Method</strong></td><td><strong>Description</strong></td></tr><tr><td><code>forEach(Consumer&#x3C;T>)</code></td><td>Iterates over each element.</td></tr><tr><td><code>collect(Collector&#x3C;T, A, R>)</code></td><td>Converts stream elements into a collection (List, Set, Map).</td></tr><tr><td><code>count()</code></td><td>Returns the total number of elements.</td></tr><tr><td><code>reduce(BinaryOperator&#x3C;T>)</code></td><td>Aggregates elements into a single result (sum, max, etc.).</td></tr><tr><td><code>min(Comparator&#x3C;T>)</code></td><td>Finds the minimum element.</td></tr><tr><td><code>max(Comparator&#x3C;T>)</code></td><td>Finds the maximum element.</td></tr><tr><td><code>anyMatch(Predicate&#x3C;T>)</code></td><td>Checks if <strong>at least one</strong> element matches the condition.</td></tr><tr><td><code>allMatch(Predicate&#x3C;T>)</code></td><td>Checks if <strong>all</strong> elements match the condition.</td></tr><tr><td><code>noneMatch(Predicate&#x3C;T>)</code></td><td>Checks if <strong>no elements</strong> match the condition.</td></tr><tr><td><code>toArray()</code></td><td>Converts a stream into an array.</td></tr></tbody></table>
+
+### **2. Understanding the Stream Pipeline**
+
+A **Stream Pipeline** consists of **three stages**:
+
+#### **1. Data Source**
+
+A stream is created from a data source like a **Collection, Array, or I/O Channel**.
+
+```java
+List<String> names = List.of("Alice", "Bob", "Charlie", "David");
+Stream<String> stream = names.stream();
+```
+
+#### **2. Intermediate Operations (Lazy)**
+
+Intermediate operations **transform** the data but do **not execute immediately**.
+
+```java
+Stream<String> filteredStream = stream.filter(name -> name.startsWith("A"));
+Stream<String> mappedStream = filteredStream.map(String::toUpperCase);
+```
+
+{% hint style="success" %}
+**No execution happens yet because Streams are lazy**
+{% endhint %}
+
+#### **3. Terminal Operation (Triggers Execution)**
+
+Once a terminal operation is called, the pipeline is **executed in a single pass**.
+
+```java
+List<String> result = mappedStream.collect(Collectors.toList());
+System.out.println(result);
+```
+
+**Now execution happens!** The output will be:
+
+```
+[Alice]
+```
+
+#### &#x20;**Complete Stream Pipeline Example**
+
+```java
+List<String> names = List.of("Alice", "Bob", "Charlie", "David");
+
+List<String> result = names.stream()
+                           .filter(name -> name.startsWith("A"))   // Intermediate
+                           .map(String::toUpperCase)               // Intermediate
+                           .sorted()                               // Intermediate
+                           .collect(Collectors.toList());         // Terminal
+
+System.out.println(result);  // Output: [ALICE]
+```
+
+#### **Pipeline Execution Order (Optimization)**
+
+Streams process data **in one pass**, applying operations **only to elements that reach the terminal operation.**
+
+```java
+// Example
+List<String> names = List.of("Alice", "Bob", "Charlie", "David");
+names.stream()
+     .filter(name -> {
+         System.out.println("Filtering: " + name);
+         return name.startsWith("A");
+     })
+     .map(name -> {
+         System.out.println("Mapping: " + name);
+         return name.toUpperCase();
+     })
+     .collect(Collectors.toList());
+ // Notice that only "Alice" reaches map(). The rest are skipped after filter().
+ // Output
+```
+
+```
+Filtering: Alice
+Mapping: Alice
+Filtering: Bob
+Filtering: Charlie
+Filtering: David
+```
+
+## **Creating Streams in Java**
+
+Java provides multiple ways to create streams from different data sources, such as **Collections, Arrays, and Generators**.
+
+### **1. Creating Streams from Collections**
+
+Java Collections (like `List`, `Set`) have a built-in `stream()` method that allows easy stream creation.
+
+<pre class="language-java"><code class="lang-java">// Example: Creating a Stream from a List
+List&#x3C;String> names = List.of("Alice", "Bob", "Charlie", "David");
+Stream&#x3C;String> nameStream = names.stream();
+nameStream.forEach(System.out::println);
+
+// Output
+<strong>// Alice  
+</strong>// Bob  
+// Charlie  
+// David 
+</code></pre>
+
+#### **Parallel Stream from a Collection**
+
+If we want to process elements **in parallel**, use `parallelStream()`. **Parallel streams are useful for large datasets** but can have overhead for small ones.
+
+```java
+Stream<String> parallelStream = names.parallelStream();
+```
+
+### **2. Creating Streams from Arrays**
+
+We can create a stream from an array using `Arrays.stream()` or `Stream.of()`.
+
+```java
+// Example: Creating a Stream from an Array
+String[] colors = {"Red", "Green", "Blue"};
+Stream<String> colorStream = Arrays.stream(colors);
+colorStream.forEach(System.out::println);
+
+// Red  
+// Green  
+// Blue 
+```
+
+#### **Stream from a Primitive Array**
+
+Use `IntStream`, `LongStream`, or `DoubleStream` for primitives:
+
+```java
+int[] numbers = {1, 2, 3, 4, 5};
+IntStream intStream = Arrays.stream(numbers);
+intStream.forEach(System.out::print);
+// 12345
+```
+
+### **3. Using `Stream.of()`, `Stream.generate()`, and `Stream.iterate()`**
+
+#### **`Stream.of()` – Creating Streams from Values**
+
+The `Stream.of()` method can be used to create a stream from multiple values.
+
+```java
+Stream<String> stream = Stream.of("Java", "Python", "C++");
+stream.forEach(System.out::println);
+// Java  
+// Python  
+// C++
+```
+
+#### **`Stream.generate()` – Infinite Stream with Supplier**
+
+`Stream.generate()` produces an **infinite stream** using a `Supplier<T>`.
+
+<pre class="language-java"><code class="lang-java"><strong>// limit(n) is necessary to prevent infinite execution.
+</strong><strong>Stream&#x3C;Double> randomStream = Stream.generate(Math::random).limit(5);
+</strong>randomStream.forEach(System.out::println);
+
+// Output: (Random values each time)
+// 0.78965  
+// 0.23451  
+// 0.98732  
+// 0.45678  
+// 0.12345 
+</code></pre>
+
+#### **`Stream.iterate()` – Infinite Stream with Iteration**
+
+`Stream.iterate()` generates an **infinite stream** using a function and an initial value.
+
+```java
+Stream<Integer> evenNumbers = Stream.iterate(2, n -> n + 2).limit(5);
+evenNumbers.forEach(System.out::println);
+
+// 2  
+// 4  
+// 6  
+// 8  
+// 10  
+```
+
+🔹 **Java 9+ introduced a predicate-based `Stream.iterate()`**
+
+```java
+Stream.iterate(2, n -> n < 20, n -> n * 2).forEach(System.out::println);
+// 2  
+// 4  
+// 8  
+// 16  
+```
+
+## **Intermediate Operations in Java Streams**
+
+Intermediate operations **transform** a stream and return another **stream**. They are **lazy**—executing only when a terminal operation is called.
+
+### **1. Filtering with `filter()`**
+
+Used to **retain** elements that satisfy a condition.
+
+```java
+List<Integer> numbers = List.of(10, 15, 20, 25, 30);
+Stream<Integer> filteredStream = numbers.stream().filter(n -> n > 15);
+filteredStream.forEach(System.out::println);
+
+/*
+Output:
+20
+25
+30
+*/
+```
+
+### **2. Transforming with `map()`**
+
+Used to **transform** each element in a stream.
+
+```java
+List<String> names = List.of("john", "jane", "doe");
+Stream<String> upperCaseNames = names.stream().map(String::toUpperCase);
+upperCaseNames.forEach(System.out::println);
+
+/*
+Output:
+JOHN
+JANE
+DOE
+*/
+```
+
+### **3. Flattening with `flatMap()`**
+
+Used when elements themselves contain **collections**—it flattens them into a single stream.
+
+```java
+List<List<String>> listOfLists = List.of(
+    List.of("A", "B"),
+    List.of("C", "D")
+);
+Stream<String> flattenedStream = listOfLists.stream().flatMap(List::stream);
+flattenedStream.forEach(System.out::println);
+
+/*
+Output:
+A
+B
+C
+D
+*/
+```
+
+### **4. Removing Duplicates with `distinct()`**
+
+Removes **duplicate** elements based on `.equals()`.
+
+```java
+List<Integer> nums = List.of(1, 2, 2, 3, 3, 4, 5, 5);
+Stream<Integer> uniqueStream = nums.stream().distinct();
+uniqueStream.forEach(System.out::print);
+
+/*
+Output:
+12345
+*/
+```
+
+### **5. Sorting Elements with `sorted()`**
+
+Sorts elements **naturally** or using a **custom comparator**.
+
+```java
+List<String> words = List.of("banana", "apple", "cherry");
+Stream<String> sortedStream = words.stream().sorted();
+sortedStream.forEach(System.out::println);
+
+/*
+Output:
+apple
+banana
+cherry
+*/
+```
+
+#### **Custom Sorting**
+
+```java
+Stream<String> reverseSortedStream = words.stream().sorted(Comparator.reverseOrder());
+reverseSortedStream.forEach(System.out::println);
+
+/*
+Output:
+cherry
+banana
+apple
+*/
+```
+
+### **6. Debugging with `peek()`**
+
+Useful for **debugging**—allows inspecting elements **without modifying them**.
+
+```java
+List<Integer> values = List.of(1, 2, 3, 4);
+Stream<Integer> debugStream = values.stream()
+    .peek(n -> System.out.println("Before filter: " + n))
+    .filter(n -> n % 2 == 0)
+    .peek(n -> System.out.println("After filter: " + n));
+
+debugStream.forEach(System.out::println);
+
+/*
+Output:
+Before filter: 1
+Before filter: 2
+After filter: 2
+2
+Before filter: 3
+Before filter: 4
+After filter: 4
+4
+*/
+```
+
+## **Terminal Operations in Java Streams**
+
+Terminal operations **consume** the stream and **produce a result** (e.g., a collection, a value, or a side effect). After a terminal operation, the stream **cannot be reused**.
+
+### **1. Iterating with `forEach()`**
+
+Executes an action for each element in the stream.
+
+{% hint style="success" %}
+**Note:** Avoid using `forEach()` for modifying elements since streams are immutable.
+{% endhint %}
+
+```java
+List<String> names = List.of("Alice", "Bob", "Charlie");
+names.stream().forEach(System.out::println);
+
+/*
+Output:
+Alice
+Bob
+Charlie
+*/
+```
+
+### **2. Collecting with `collect()`**
+
+Converts the stream into a **collection** (List, Set, Map) or another structure.
+
+```java
+List<String> names = List.of("Alice", "Bob", "Charlie");
+List<String> upperCaseNames = names.stream()
+    .map(String::toUpperCase)
+    .collect(Collectors.toList());
+System.out.println(upperCaseNames);
+/*
+Output:
+[ALICE, BOB, CHARLIE]
+*/
+
+Set<String> uniqueNames = names.stream().collect(Collectors.toSet());
+System.out.println(uniqueNames);
+/*
+Output:
+[Alice, Bob, Charlie]
+(Order may vary since Set does not guarantee order)
+*/
+
+Set<String> sortedNames = names.stream()
+    .collect(Collectors.toCollection(TreeSet::new));
+System.out.println(sortedNames);
+/*
+Output:
+[Alice, Bob, Charlie]
+(Natural sorting applied)
+*/
+
+Map<String, Integer> nameLengthMap = names.stream()
+    .collect(Collectors.toMap(name -> name, String::length));
+System.out.println(nameLengthMap);
+/*
+Output:
+{Alice=5, Bob=3, Charlie=7}
+*/
+
+// If duplicate keys exist, we must provide a merge function to handle collisions.
+List<String> words = List.of("apple", "banana", "apple", "orange");
+Map<String, Integer> wordCount = words.stream()
+    .collect(Collectors.toMap(
+        word -> word,  // Key: Word itself
+        word -> 1,  // Value: Initial count
+        Integer::sum // Merge function: Sum duplicate values
+    ));
+System.out.println(wordCount);
+/*
+Output:
+{apple=2, banana=1, orange=1}
+*/
+```
+
+#### **Grouping elements**
+
+The `Collectors.groupingBy()` method **groups elements** of a stream based on a classifier function and returns a `Map<K, List<T>>`, where:
+
+* **K** → The grouping key (e.g., length of a string).
+* **List\<T>** → The list of elements sharing the same key.
+
+{% hint style="info" %}
+**Basic Syntax**
+
+`Collectors.groupingBy(classifier)`
+
+**classifier** → A function that determines the grouping key.
 
 
 
+**Syntax with Downstream Collector**
 
+`Collectors.groupingBy(classifier, downstreamCollector)`
 
+**downstreamCollector** → Used for further operations like counting, mapping, or reducing.
+
+\
+**Syntax with Custom Map Type**
+
+`Collectors.groupingBy(classifier, mapFactory, downstreamCollector)`
+
+**mapFactory** → Specifies the type of `Map<K, List<T>>` (e.g., `TreeMap` instead of `HashMap`).
+{% endhint %}
+
+```java
+Map<Integer, List<String>> groupedByLength = names.stream()
+    .collect(Collectors.groupingBy(String::length));
+System.out.println(groupedByLength);
+/*
+Output:
+{3=[Bob], 5=[Alice], 7=[Charlie]}
+*/
+
+List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+Map<String, List<Integer>> groupedByEvenOdd = numbers.stream()
+    .collect(Collectors.groupingBy(n -> n % 2 == 0 ? "Even" : "Odd"));
+System.out.println(groupedByEvenOdd);
+/*
+Output:
+{Odd=[1, 3, 5], Even=[2, 4, 6]}
+*/
+
+// If we want to count how many elements fall into each group
+Map<Integer, Long> lengthCounts = names.stream()
+    .collect(Collectors.groupingBy(String::length, Collectors.counting()));
+System.out.println(lengthCounts);
+/*
+Output:
+{3=1, 5=1, 7=1}
+*/
+```
+
+### **3. Counting with `count()`**
+
+Counts the number of elements in a stream.
+
+```java
+List<Integer> numbers = List.of(10, 20, 30, 40);
+long count = numbers.stream().count();
+System.out.println(count);
+/*
+Output:
+4
+*/
+```
+
+### **4. Finding Min/Max with `min()` and `max()`**
+
+Finds the **smallest** or **largest** element based on a comparator.
+
+```java
+List<Integer> numbers = List.of(10, 20, 30, 40);
+Optional<Integer> minValue = numbers.stream().min(Integer::compareTo);
+Optional<Integer> maxValue = numbers.stream().max(Integer::compareTo);
+
+System.out.println("Min: " + minValue.orElse(-1));
+System.out.println("Max: " + maxValue.orElse(-1));
+
+/*
+Output:
+Min: 10
+Max: 40
+*/
+```
+
+### **5. Reducing with `reduce()`**
+
+It is used to **combine elements** of a stream into a single result. It performs **reduction** using an **accumulator function**, optionally with an **identity value** and/or a **combiner function**.
+
+{% hint style="info" %}
+**Syntax of `reduce()`**
+
+#### **1. Without Identity (Returns `Optional<T>`)**
+
+```java
+Optional<T> reduce(BinaryOperator<T> accumulator)
+```
+
+* **Used when no default value is needed.**
+* Returns an **`Optional<T>`** because the stream could be empty.
+
+***
+
+#### **2. With Identity (Returns `T`)**
+
+```java
+T reduce(T identity, BinaryOperator<T> accumulator)
+```
+
+* **Identity** → A default value used when the stream is empty.
+* **Accumulator** → A function to combine elements.
+
+***
+
+#### **3. With Identity and Combiner (For Parallel Streams)**
+
+```java
+<U> U reduce(U identity, BiFunction<U, ? super T, U> accumulator, BinaryOperator<U> combiner)
+```
+
+* **Accumulator** → Processes each element.
+* **Combiner** → Merges results (used in parallel streams).
+{% endhint %}
+
+#### **Sum of all elements**
+
+```java
+List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+int sum = numbers.stream().reduce(0, Integer::sum);
+System.out.println(sum);
+
+/*
+Output:
+15
+*/
+```
+
+#### **Concatenating Strings**
+
+```java
+List<String> words = List.of("Java", "Streams", "Example");
+String sentence = words.stream().reduce("", (a, b) -> a + " " + b);
+System.out.println(sentence.trim());
+
+/*
+Output:
+Java Streams Example
+*/
+```
+
+### **6. Matching Elements with `anyMatch()`, `allMatch()`, `noneMatch()`**
+
+Used to **test conditions** on elements.
+
+#### **`anyMatch()` – At least one element matches**
+
+```java
+List<String> names = List.of("Alice", "Bob", "Charlie");
+boolean hasShortName = names.stream().anyMatch(name -> name.length() == 3);
+System.out.println(hasShortName);
+
+/*
+Output:
+true
+*/
+```
+
+#### **`allMatch()` – All elements match**
+
+```java
+boolean allStartWithA = names.stream().allMatch(name -> name.startsWith("A"));
+System.out.println(allStartWithA);
+
+/*
+Output:
+false
+*/
+```
+
+#### **`noneMatch()` – No elements match**
+
+```java
+boolean noneStartWithZ = names.stream().noneMatch(name -> name.startsWith("Z"));
+System.out.println(noneStartWithZ);
+
+/*
+Output:
+true
+*/
+```
 
 
 
