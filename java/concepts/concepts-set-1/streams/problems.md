@@ -6,61 +6,92 @@
 
 Given a `List<String>`, convert all elements to uppercase.
 
-
+```java
+List<String> strList = List.of("Apple", "banana", "Orange", "Avocado");
+List<String> strListUpperCase = strList.stream().map(String::toUpperCase).toList();
+```
 
 ### **Filter Even Numbers**
 
 Given a `List<Integer>`, filter out only even numbers.
 
-
+```java
+List<Integer> intList = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+List<Integer> intListEven = intList.stream().filter(n -> n % 2 == 0).toList();
+```
 
 ### **Count Strings Starting with ‘A’**&#x20;
 
 Given a `List<String>`, count how many strings start with ‘A’.
 
-
+<pre class="language-java"><code class="lang-java">List&#x3C;String> strList = List.of("Apple", "banana", "Orange", "Avocado");
+<strong>long strListStartsWithA = strList.stream().filter(str -> str.startsWith("A")).count();
+</strong></code></pre>
 
 ### **Find Maximum Number**
 
 Find the maximum number in a `List<Integer>`.
 
-
+```java
+List<Integer> numbers = Arrays.asList(3, 5, 7, 2, 8, 1);
+Optional<Integer> max = numbers.stream().max(Integer::compare);
+max.ifPresent(System.out::println);
+```
 
 ### **Find Minimum Number**
 
 Find the minimum number in a `List<Integer>`.
 
-
+```java
+List<Integer> numbers = Arrays.asList(3, 5, 7, 2, 8, 1);
+Optional<Integer> min = numbers.stream().min(Integer::compare);
+min.ifPresent(System.out::println);
+```
 
 ### **Calculate Sum**
 
 Find the sum of all elements in a `List<Integer>`.
 
-
+```java
+List<Integer> numbers = Arrays.asList(3, 5, 7, 2, 8, 1);
+int sum = numbers.stream().mapToInt(Integer::intValue).sum();
+```
 
 ### **Check if All Elements are Positive**
 
 Verify if all numbers in a `List<Integer>` are positive.
 
-
+```java
+List<Integer> numbers = Arrays.asList(3, 5, 7, 2, 8, 1);
+boolean allPositive = numbers.stream() .allMatch(n -> n > 0);
+boolean isAllPositive = intList.stream().noneMatch(n -> n < 0);
+```
 
 ### **Concatenate List of Strings**
 
 Join all strings in a `List<String>` using a comma.
 
-
+```java
+List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+String concatenated = names.stream().collect(Collectors.joining(", "));
+```
 
 ### **Sort a List**
 
 Given a `List<Integer>`, sort it in ascending and descending order.
 
-
+<pre class="language-java"><code class="lang-java">List&#x3C;Integer> intList = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+<strong>List&#x3C;Integer> sortedList = intList.stream().sorted().toList();
+</strong></code></pre>
 
 ### **Remove Duplicates from List**
 
 Remove duplicates from a `List<String>`.
 
-
+```java
+List<String> strList = List.of("Apple", "banana", "Orange", "Avocado");
+List<String> distinctString = strList.stream().distinct().toList();
+```
 
 ## **Intermediate Problems**
 
