@@ -111,23 +111,23 @@ Looking ahead, I aspire to further my expertise in cross-platform development an
 
 <summary>Backend Engineer Role</summary>
 
-**Describe the project you're currently working on.**&#x20;
+**Describe the project you're currently working on.**
 
 "I’m currently working on a project to revamp our e-commerce platform’s order processing system to improve scalability and performance."
 
-**Your role and responsibilities in the project.**&#x20;
+**Your role and responsibilities in the project.**
 
 "As a Backend Engineer, I’m leading the backend development team. My responsibilities include designing the system architecture, implementing new features, and ensuring the code quality through code reviews and mentoring junior developers."
 
-**Technologies and methodologies used.**&#x20;
+**Technologies and methodologies used.**
 
 "We're using a microservices architecture with Spring Boot and Java for the backend. We employ Docker and Kubernetes for containerization and orchestration, and we use PostgreSQL for the database. For continuous integration and deployment, we rely on Jenkins and GitHub Actions. We follow Agile methodologies with two-week sprints and regular stand-ups to ensure efficient project management."
 
-**Challenges faced and how you overcame them.**&#x20;
+**Challenges faced and how you overcame them.**
 
 "One of the major challenges we faced was handling the increased load during peak shopping seasons. Our previous monolithic architecture couldn't scale efficiently. To overcome this, we migrated to a microservices architecture, which allowed us to scale individual components independently. We also implemented caching strategies and optimized database queries to improve performance. Collaborating closely with the DevOps team was crucial in fine-tuning the deployment pipeline and ensuring seamless rollouts."
 
-**The impact or results of the project.**&#x20;
+**The impact or results of the project.**
 
 "As a result of these efforts, we achieved a 40% reduction in order processing time and a significant improvement in system reliability and scalability. Customer satisfaction has increased, as evidenced by positive feedback and a reduction in support tickets related to order issues. This project has also positioned our platform to handle future growth more effectively.
 
@@ -137,23 +137,23 @@ Looking ahead, I aspire to further my expertise in cross-platform development an
 
 <summary>Frontend Engineer Role</summary>
 
-**Describe the project you're currently working on.**&#x20;
+**Describe the project you're currently working on.**
 
 "I’m currently working on redesigning our SaaS product’s dashboard to enhance user experience and performance."
 
-**Your role and responsibilities in the project.**&#x20;
+**Your role and responsibilities in the project.**
 
 "As a Senior Frontend Engineer, I’m responsible for leading the frontend team in designing and implementing new UI components, ensuring they are responsive and accessible. I also coordinate with UX/UI designers to align our work with user needs and business goals."
 
-**Technologies and methodologies used.**&#x20;
+**Technologies and methodologies used.**
 
 "We're using React and Redux for the frontend, with TypeScript for type safety. We utilize CSS-in-JS for styling and Jest for unit testing. We also follow Agile methodologies with regular sprint reviews and retrospectives to keep the project on track."
 
-**Challenges faced and how you overcame them.**&#x20;
+**Challenges faced and how you overcame them.**
 
 "A significant challenge we faced was optimizing the performance of the dashboard, which handles large datasets. To overcome this, we implemented virtualized lists to efficiently render large data sets, and we optimized the state management to reduce unnecessary re-renders. We also conducted extensive user testing to identify and fix performance bottlenecks."
 
-**The impact or results of the project.**&#x20;
+**The impact or results of the project.**
 
 "These improvements resulted in a more responsive and user-friendly dashboard, with a 50% reduction in load times. User engagement has increased, as reflected in positive user feedback and higher usage metrics. This project has greatly enhanced the overall user experience and satisfaction."
 
@@ -163,23 +163,23 @@ Looking ahead, I aspire to further my expertise in cross-platform development an
 
 <summary>Mobile Engineer Role</summary>
 
-**Describe the project you're currently working on.**&#x20;
+**Describe the project you're currently working on.**
 
 "I’m currently working on developing a new feature for our mobile banking app that allows users to manage their investments directly from their phones."
 
-**Your role and responsibilities in the project.**&#x20;
+**Your role and responsibilities in the project.**
 
 "As a Mobile Engineer, I’m leading the development of this feature for both iOS and Android platforms. My responsibilities include designing the feature, implementing the UI and backend integration, and ensuring the app’s performance and security."
 
-**Technologies and methodologies used.**&#x20;
+**Technologies and methodologies used.**
 
 "We're using Swift for iOS development and Kotlin for Android development. For backend integration, we use RESTful APIs. We also employ MVVM architecture and use CI/CD pipelines for automated testing and deployment. Our team follows Agile methodologies with daily stand-ups and bi-weekly sprint reviews."
 
-**Challenges faced and how you overcame them.**&#x20;
+**Challenges faced and how you overcame them.**
 
 "One of the challenges was ensuring data security and compliance with financial regulations. We overcame this by implementing end-to-end encryption and conducting thorough security audits. Another challenge was achieving a consistent user experience across both platforms. We addressed this by using shared components and ensuring close collaboration between the iOS and Android teams."
 
-**The impact or results of the project.**&#x20;
+**The impact or results of the project.**
 
 "The new investment management feature has been well-received, with a 30% increase in user engagement within the first month of launch. User feedback has been positive, highlighting the intuitive design and seamless functionality. This feature has added significant value to our app, enhancing its competitive edge in the market."
 
@@ -187,10 +187,10 @@ Looking ahead, I aspire to further my expertise in cross-platform development an
 
 ### Followup Question
 
-* Which tools were used in the project and why?&#x20;
-* Why you made this technical choices. (proactive vs reactive)&#x20;
-* If you could change one technical thing about your current project, what would it be?&#x20;
-* Which tasks you did not like carrying out in the project.&#x20;
+* Which tools were used in the project and why?
+* Why you made this technical choices. (proactive vs reactive)
+* If you could change one technical thing about your current project, what would it be?
+* Which tasks you did not like carrying out in the project.
 * How did you keep the scope & timeline in mind while delivering the project?
 
 ## **"Tell us about the Project You’re Most Proud Of"**
@@ -253,8 +253,6 @@ Looking ahead, I aspire to further my expertise in cross-platform development an
 
 </details>
 
-
-
 ## "Do you have any questions for us"
 
 It is common for interviewers to give you a chance to ask questions at the end of the interview. Asking thoughtful questions not only shows your interest in the role and the company but also helps you determine if the company is the right fit for you.
@@ -297,4 +295,24 @@ It is common for interviewers to give you a chance to ask questions at the end o
 * What are the next steps in the interview process?
 * Is there anything else you need from me to help make your decision?
 * Do you have any reservations about my fit for the role that I could address?
+
+## "Why do you want to work for \[Company Name]?"
+
+<details>
+
+<summary>Sample Answer 1</summary>
+
+I've always been passionate about technology and have long admired how \[Company Name] builds products that are both innovative and widely impactful. Recently, I've been using \[Company's Product] and have been really impressed with its \[specific feature or quality]. It’s inspiring to see how \[Company Name] continuously pushes the boundaries of technology, and I would love the opportunity to contribute to that mission
+
+</details>
+
+<details>
+
+<summary>Sample Answer 2</summary>
+
+What excites me about \[Company Name] is its commitment to cutting-edge technology and solving real-world problems at scale. The way \[Company] tackles challenges in \[industry, e.g., AI, cloud, security] aligns with my interest in \[specific domain]. I’m eager to work in an environment where I can grow alongside some of the best minds in the industry.
+
+</details>
+
+
 
