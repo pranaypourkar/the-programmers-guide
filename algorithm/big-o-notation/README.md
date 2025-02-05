@@ -213,7 +213,9 @@ void bubbleSort(int[] arr) {
 
 ### Polynomial (Cubic Time) - O(n³)
 
-An algorithm runs in cubic time if its runtime grows proportionally to the cube of the input size. Example: Certain dynamic programming algorithms.
+An algorithm runs in cubic time if its runtime grows proportionally to the cube of the input size.
+
+Example: **Certain dynamic programming algorithms.**
 
 ```java
 void exampleCubic(int n) {
@@ -231,27 +233,19 @@ void exampleCubic(int n) {
 
 It is between polynomial and exponential growth. Examples include algorithms involving combinatorics or recursion trees. Significant growth—slower than exponential but faster than any polynomial.
 
-#### **Example: Sorting with Comparison Networks (Bose-Nelson Sorting)**
-
-One real-world example of O(n^log⁡n)complexity is **Bose-Nelson Sorting Networks -** a parallel sorting algorithm that constructs an optimal sorting network.
-
-Here’s an example of a recursive algorithm with **O(n^log n)** complexity:
-
 ```java
 public class SuperPolynomialExample {
     public static void main(String[] args) {
-        int n = 4;  // Change n to see growth
-        int result = superPolynomial(n);
-        System.out.println("Result: " + result);
+        int n = 10; // Input size
+        superPolynomialAlgorithm(n);
     }
 
-    static int superPolynomial(int n) {
-        if (n <= 1) return 1;
-        int total = 0;
-        for (int i = 0; i < n; i++) {
-            total += superPolynomial(n / 2);
+    public static void superPolynomialAlgorithm(int n) {
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= Math.pow(i, Math.log(n)); j++) {
+                System.out.println("i: " + i + ", j: " + j);
+            }
         }
-        return total + n;
     }
 }
 ```
