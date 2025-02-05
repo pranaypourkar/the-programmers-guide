@@ -9,7 +9,7 @@ In computer science, complexity is a measure of the resources required for an al
 
 Both time and space complexity are often expressed using Big O notation, which describes the upper bound of an algorithm's growth rate.
 
-<figure><img src="../../../../.gitbook/assets/2.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/2.png" alt="" width="563"><figcaption></figcaption></figure>
 
 {% hint style="success" %}
 The general order of growth rates is:
@@ -53,7 +53,7 @@ An algorithm runs in logarithmic time if its runtime grows logarithmically with 
 
 All logarithmic functions with different bases can be represented as O(log(n)) in Big O notation.
 
-<figure><img src="../../../../.gitbook/assets/image (454).png" alt="" width="518"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (454).png" alt="" width="518"><figcaption></figcaption></figure>
 
 Example: **Binary search**.
 
@@ -109,18 +109,62 @@ An algorithm runs in linearithmic time if its runtime grows in proportion to nlo
 Example: **Efficient sorting algorithms like Merge Sort and Quick Sort.**
 
 ```java
-void mergeSort(int[] arr, int left, int right) {
-    if (left < right) {
-        int mid = (left + right) / 2;
-        mergeSort(arr, left, mid);
-        mergeSort(arr, mid + 1, right);
-        merge(arr, left, mid, right);
+ void mergeSort(int[] arr, int left, int right) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            mergeSort(arr, left, mid);
+            mergeSort(arr, mid + 1, right);
+            merge(arr, left, mid, right);
+        }
     }
-}
 
-void merge(int[] arr, int left, int mid, int right) {
-    // Merging logic
-} // O(n log n)
+    void merge(int[] arr, int left, int mid, int right) {
+        int n1 = mid - left + 1;
+        int n2 = right - mid;
+
+        int[] leftArr = new int[n1];
+        int[] rightArr = new int[n2];
+
+        // Copy data to temp arrays
+        System.arraycopy(arr, left, leftArr, 0, n1);
+        System.arraycopy(arr, mid + 1, rightArr, 0, n2);
+
+        int i = 0, j = 0, k = left;
+
+        // Merge the temporary arrays back into arr
+        while (i < n1 && j < n2) {
+            if (leftArr[i] <= rightArr[j]) {
+                arr[k] = leftArr[i];
+                i++;
+            } else {
+                arr[k] = rightArr[j];
+                j++;
+            }
+            k++;
+        }
+
+        // Copy remaining elements of leftArr[]
+        while (i < n1) {
+            arr[k] = leftArr[i];
+            i++;
+            k++;
+        }
+
+        // Copy remaining elements of rightArr[]
+        while (j < n2) {
+            arr[k] = rightArr[j];
+            j++;
+            k++;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {12, 11, 13, 5, 6, 7};
+        MergeSortExample sorter = new MergeSortExample();
+        System.out.println("Original array: " + Arrays.toString(arr));
+        sorter.mergeSort(arr, 0, arr.length - 1);
+        System.out.println("Sorted array: " + Arrays.toString(arr));
+    }
 ```
 
 {% hint style="info" %}
@@ -132,6 +176,19 @@ For an array of size n, the total time to sort the array is the number of levels
 * **Processing Each Level**: n
 * **Total Time Complexity**: nlog⁡n
 {% endhint %}
+
+{% hint style="success" %}
+<pre class="language-java"><code class="lang-java"><strong>arraycopy(sourceArray, sourceStartIndex, destinationArray, destinationStartIndex, length);
+</strong></code></pre>
+
+* `sourceArray` → The array to copy from.
+* `sourceStartIndex` → The starting index in the source array.
+* `destinationArray` → The array to copy into.
+* `destinationStartIndex` → The starting index in the destination array.
+* `length` → The number of elements to copy.
+{% endhint %}
+
+
 
 ### Polynomial (Quadratic Time) - O(n²)
 
@@ -173,6 +230,31 @@ void exampleCubic(int n) {
 ### **Super-Polynomial Growth (O(n^log⁡n)**
 
 It is between polynomial and exponential growth. Examples include algorithms involving combinatorics or recursion trees. Significant growth—slower than exponential but faster than any polynomial.
+
+#### **Example: Sorting with Comparison Networks (Bose-Nelson Sorting)**
+
+One real-world example of O(n^log⁡n)complexity is **Bose-Nelson Sorting Networks -** a parallel sorting algorithm that constructs an optimal sorting network.
+
+Here’s an example of a recursive algorithm with **O(n^log n)** complexity:
+
+```java
+public class SuperPolynomialExample {
+    public static void main(String[] args) {
+        int n = 4;  // Change n to see growth
+        int result = superPolynomial(n);
+        System.out.println("Result: " + result);
+    }
+
+    static int superPolynomial(int n) {
+        if (n <= 1) return 1;
+        int total = 0;
+        for (int i = 0; i < n; i++) {
+            total += superPolynomial(n / 2);
+        }
+        return total + n;
+    }
+}
+```
 
 ### Exponential Time - O(2ⁿ)
 
@@ -249,14 +331,14 @@ void recursiveLogarithmic(int n) {
 
 ### Searching Algorithms
 
-<figure><img src="../../../../.gitbook/assets/3 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/3 (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Data Structure Operations
 
-<figure><img src="../../../../.gitbook/assets/4 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/4 (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (7).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (7).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Array Sorting Algorithms
 
-<figure><img src="../../../../.gitbook/assets/5 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/5 (1).png" alt=""><figcaption></figcaption></figure>
