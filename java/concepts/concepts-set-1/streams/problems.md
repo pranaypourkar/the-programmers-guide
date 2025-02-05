@@ -80,9 +80,14 @@ String concatenated = names.stream().collect(Collectors.joining(", "));
 
 Given a `List<Integer>`, sort it in ascending and descending order.
 
-<pre class="language-java"><code class="lang-java">List&#x3C;Integer> intList = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-<strong>List&#x3C;Integer> sortedList = intList.stream().sorted().toList();
-</strong></code></pre>
+```java
+List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+// Sort list in ascending order
+List<Integer> sortedAscending = numbers.stream().sorted().collect(Collectors.toList());
+
+// Sort list in descending order
+List<Integer> sortedDescending = numbers.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+```
 
 ### **Remove Duplicates from List**
 
@@ -98,6 +103,15 @@ List<String> distinctString = strList.stream().distinct().toList();
 ### **Find Second Highest Number**
 
 Find the second-highest number in a `List<Integer>`.
+
+```java
+List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+Optional<Integer> secondHighest = numbers.stream()
+                                         .distinct()
+                                         .sorted(Comparator.reverseOrder())
+                                         .skip(1)
+                                         .findFirst();
+```
 
 
 

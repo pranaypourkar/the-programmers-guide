@@ -23,8 +23,6 @@ int number = stringToInt.apply(numberString);
 // Value of number will be 10
 ```
 
-
-
 ### **Predicate\<T>**
 
 * **Description:** This interface represents a function that takes one argument of type `T` and returns a boolean value (true or false).
@@ -44,8 +42,6 @@ numbers.stream()
 // Result output: 2 4
 ```
 
-
-
 ### **Consumer\<T>**
 
 * **Description:** This interface represents a function that takes one argument of type `T` but doesn't return a value (void).
@@ -61,8 +57,6 @@ Consumer<String> printString = str -> System.out.println(str);
 printString.accept("Hello, world!"); 
 // Result output: Hello, world!
 ```
-
-
 
 ### **Supplier\<T>**
 
@@ -80,10 +74,6 @@ double randomNumber = randomDouble.get();
 System.out.println(randomNumber); 
 // Result output: a random double between 0.0 and 1.0
 ```
-
-
-
-
 
 {% hint style="info" %}
 BiFunction, BiConsumer and BiPredicate follow a similar structure as their single-argument counterparts but operate on two arguments.
@@ -107,8 +97,6 @@ double area = calculateArea.apply(rectangleWidth, rectangleHeight);
 // Result area will be 50.0
 ```
 
-
-
 ### **BiConsumer\<T, U>**
 
 * **Description:** Represents a function that takes two arguments of type `T` and `U` but **doesn't** return a value (void).
@@ -127,8 +115,6 @@ int personAge = 35;
 printPersonInfo.accept(personName, personAge); 
 // Result output will be John, 35
 ```
-
-
 
 ### **BiPredicate\<T, U>**
 
@@ -149,13 +135,31 @@ boolean areEqual = isEqualLength.test(strA, strB);
 // Result output will be true
 ```
 
-
-
-
-
 {% hint style="info" %}
 IntFunction\<R>, LongFunction\<R>, DoubleFunction\<R> (and their BiFunction counterparts) focus on working with primitive data types as inputs and returning a value of any type.
 {% endhint %}
+
+### **BinaryOperator\<T>**
+
+* **Description:** Represents an operation upon two operands of the same type, producing a result of the same type. It is a specialization of `BiFunction<T, T, T>`, where the two arguments and the result are of the same type.
+* **Abstract method:** `T apply(T t1, T t2)`
+* **Common Use Cases:**
+  * Performing arithmetic operations on two values of the same type (e.g., sum, max, min).
+  * Reducing or combining elements in a collection (e.g., finding the maximum value in a list).
+  * Used in `Stream.reduce()` to combine elements using an associative function.
+* **Example:**
+
+```java
+// Using BinaryOperator to find the maximum of two numbers
+BinaryOperator<Integer> maxOperator = (a, b) -> a > b ? a : b;
+int result = maxOperator.apply(10, 20);
+System.out.println(result); // Output: 20
+
+// Using BinaryOperator in reduce() to find the maximum number in a list
+List<Integer> numbers = Arrays.asList(3, 7, 2, 9, 5);
+Optional<Integer> max = numbers.stream().reduce(BinaryOperator.maxBy(Integer::compare));
+max.ifPresent(System.out::println); // Output: 9
+```
 
 ### IntFunction\<R>, LongFunction\<R>, DoubleFunction\<R>
 
@@ -177,8 +181,6 @@ String stringNumber = intToString.apply(number);
 // Result output will be "123"
 ```
 
-
-
 ### BiFunction\<int, U, R>, BiFunction\<long, U, R>, BiFunction\<double, U, R>
 
 * `BiFunction<int, U, R>`: Takes two arguments, an `int` and one of any type (`U`), and returns a value of type `R`.
@@ -197,8 +199,6 @@ int anotherAge = 25;
 String formattedInfo = formatNameAge.apply(anotherAge, "Charlie");
 // Result output will be "Name: Charlie, Age: 25"
 ```
-
-
 
 ### **ToIntFunction\<T>, ToLongFunction\<T>, ToDoubleFunction\<T> and BiFunction counterparts**
 
@@ -232,6 +232,3 @@ String anotherName = "Bob";
 int sum = nameAndAgeSum.applyAsInt(anotherName, 30); 
 // Result output will be 33 (length + age)
 ```
-
-
-
