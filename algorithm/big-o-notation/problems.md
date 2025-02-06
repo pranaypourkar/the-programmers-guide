@@ -137,6 +137,37 @@ To calculate the total number of iterations of the inner loop across all iterati
 Thus, the total number of iterations is: O(n)⋅O(log⁡n)=O(nlog⁡n)
 {% endhint %}
 
+```java
+void printPairs(int[] array) {
+    for (int i= 0; i < array.length; i++) {
+        for (int j = 0; j < array.length; j++) {
+            System.out.println(array[i] + "," + array[j]);
+        }
+    }
+}
+//Time O(N^2), Space O(1)
+```
+
+{% hint style="success" %}
+The first time through j runs for N-1 steps. The second time, it's N-2 steps. Then N-3 steps. And so on. Therefore, the number of steps total is: (N-1) + (N-2) + (N-3) + ... + 2 + 1
+
+\= 1 + 2 + 3 + ... + N-1 = sum of 1 through N-1
+{% endhint %}
+
+```java
+void printUnorderedPairs(int[] arrayA, int[] arrayB) {
+    for (int i= 0; i < arrayA.length; i++) {
+        for (int j = 0; j < arrayB.length; j++) {
+            for (int k = 0; k < 100000; k++) {
+                System.out.println(arrayA[i] + "," + arrayB[j]);
+            }
+        }
+    }
+}
+// 100,000 units of work is still constant, so the runtime is 0(a b).
+//Time O(ab), Space O(1)
+```
+
 ## While loop
 
 ### Simple while loop
@@ -286,9 +317,25 @@ The space complexity with memoization includes the storage for the DP table (O(R
 O(R×C+R+C)
 {% endhint %}
 
+### Exponential Growth
 
+```java
+int f(int n) {
+    if (n <= 1) {
+        return 1;
+    }
+    return f(n - 1) + f(n - 1);
+}
+// Time Complexity O(2^n), Space Complexity O(n)
+```
 
+{% hint style="info" %}
+There will be 2^0 + 2^1 + 2^2 + 2^3 + 2^4 + . . + 2^N (which is 2^(N+1) - 1) nodes.
 
+![](../../.gitbook/assets/bigO-1.png)\
+\
+Although we have 0(2^N) nodes in the tree total, only O(N) exist at any given time. Therefore, we would only need to have O(N) memory available.
+{% endhint %}
 
 ## Miscellaneous Problems
 
@@ -463,5 +510,18 @@ for(int i = 0; i < n; ++i) {
 Thus, the total number of operations performed by both loops is **O(n)**.
 {% endhint %}
 
+### Which of the following are equivalent to O(N)?&#x20;
 
+O(N + P), where P < X \
+0(2N)\
+O(N + log N)\
+O(N + M)
+
+All but the last one are equivalent to O(N) because there is no established relationship between N and M, so we have to keep both variables in there.
+
+### String Array Sorting
+
+Suppose we had an algorithm that took in an array of strings, sorted each string, and then sorted the full array. What would the runtime be?
+
+Sorting each string is O(N log N) and we have to do this for each string, so that's O(N\*N log N). We also have to sort this array, so that's an additional O(N log N) work.Therefore,the total runtime isO(N^2x log N + N xlog N),which isjust0(N^2x log N).
 
