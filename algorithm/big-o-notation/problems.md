@@ -168,6 +168,20 @@ void printUnorderedPairs(int[] arrayA, int[] arrayB) {
 //Time O(ab), Space O(1)
 ```
 
+### Check if Prime number
+
+```java
+boolean isPrime(int n) {
+    for (int x = 2; x * x <= n; x++) {
+        if (n % X == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+//Time O(sqrt(n)), Space O(1)
+```
+
 ## While loop
 
 ### Simple while loop
@@ -336,6 +350,68 @@ There will be 2^0 + 2^1 + 2^2 + 2^3 + 2^4 + . . + 2^N (which is 2^(N+1) - 1) nod
 \
 Although we have 0(2^N) nodes in the tree total, only O(N) exist at any given time. Therefore, we would only need to have O(N) memory available.
 {% endhint %}
+
+### Sum of all values of Balanced Binary Search Tree
+
+The function performs a **recursive in-order traversal** of a binary tree:
+
+* It visits each node **once** (`O(N)` time complexity).
+* Uses **recursive calls** to traverse the left and right subtrees.
+
+```java
+int sum(Node node) {
+    if (node == null) {
+        return 0;
+    }
+    return sum(node.left) + node.value + sum(node.right);
+}
+// Time Complexity O(N), Space Complexity = O(log N) , N is the number of nodes.
+```
+
+{% hint style="success" %}
+The tree is a balanced binary search tree. Therefore, if there are N total nodes, then depth is roughly log N.&#x20;
+
+2^logN = N
+{% endhint %}
+
+### Factorial of a number
+
+```java
+int factorial(int n) {
+    if (n < 0) {
+        return -1;
+    } else if (n
+        return 1;
+    } else {
+        return n * factorial(n - 1);
+    }
+}
+//Time O(N), Space O(N)
+```
+
+### Permutations of a string
+
+```java
+void permutation(String str) {
+    permutation(str, "");
+}
+
+void permutation(String str, String prefix) {
+    if (str.length() == 0) {
+        System.out.println(prefix);
+    } else {
+
+        for (int i= 0; i < str.length(); i++) {
+            String rem = str.substring(0, i) + str.substring(i + 1);
+            permutation(rem, prefix + str.charAt(i));
+        }
+    }
+}
+```
+
+
+
+
 
 ## Miscellaneous Problems
 
@@ -523,5 +599,9 @@ All but the last one are equivalent to O(N) because there is no established rela
 
 Suppose we had an algorithm that took in an array of strings, sorted each string, and then sorted the full array. What would the runtime be?
 
-Sorting each string is O(N log N) and we have to do this for each string, so that's O(N\*N log N). We also have to sort this array, so that's an additional O(N log N) work.Therefore,the total runtime isO(N^2x log N + N xlog N),which isjust0(N^2x log N).
+Let s be the length of the longest string. Let a be the length of the array.&#x20;
+
+Sorting each string is 0( s log s). We have to do this for every string (and there are a strings), so that's 0( a\* s log s). Now we have to sort all the strings. There are a strings, so we'll may be inclined to say that this takes O ( a log a) time. We should also take into account that we need to compare the strings. Each string comparison takes O(s) time. There are O(a log a) comparisons, therefore this will take 0( a\*s log a) time.
+
+Then runtime will be 0( a\* s ( log a + log s)).
 
