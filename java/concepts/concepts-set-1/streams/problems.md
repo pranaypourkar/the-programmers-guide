@@ -119,43 +119,93 @@ Optional<Integer> secondHighest = numbers.stream()
 
 Group a `List<String>` based on string length.
 
-
+```java
+List<String> strList = List.of("Apple", "Banana", "Kiwi", "Orange", "tomato");
+Map<Integer, List<String>> map = strList.stream().collect(Collectors.groupingBy(String::length));
+// {4=[Kiwi], 5=[Apple], 6=[Banana, Orange, tomato]}
+```
 
 ### **Partition List into Even and Odd**
 
 Partition a `List<Integer>` into even and odd numbers.
 
-
+```java
+List<Integer> intList = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+Map<Boolean, List<Integer>> map = intList.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0));
+// {false=[1, 3, 5, 7, 9], true=[2, 4, 6, 8, 10]}
+```
 
 ### **Find First Non-Repeating Character**
 
 Find the first non-repeating character in a `String`.
 
+```java
+String str = "swiss";
 
+Optional<Character> firstNonRepeating = str.chars()
+            .mapToObj(c -> (char) c)
+            .collect(Collectors.groupingBy(c -> c, LinkedHashMap::new, Collectors.counting()))
+            .entrySet().stream()
+            .filter(entry -> entry.getValue() == 1)
+            .map(Map.Entry::getKey)
+            .findFirst();
+
+System.out.println(firstNonRepeating.orElse(null));
+```
 
 ### **Convert List of Strings to Map**
 
 Convert a `List<String>` into a `Map<String, Integer>` where the key is the string and the value is its length.
 
-
+```java
+List<String> strList = List.of("Apple", "Banana", "Kiwi", "Orange", "tomato");
+Map<String, Integer> map = strList.stream().collect(Collectors.toMap(str->str, String::length));
+// {Apple=5, Kiwi=4, tomato=6, Orange=6, Banana=6}   
+```
 
 ### **Find the Most Frequent Element**
 
 Find the most frequently occurring element in a `List<Integer>`.
 
+```java
+List<Integer> numbers = Arrays.asList(1, 3, 2, 3, 4, 1, 3, 2, 1, 1, 4, 1);
 
+Optional<Integer> mostFrequent = numbers.stream()
+            .collect(Collectors.groupingBy(n -> n, Collectors.counting())) // Count occurrences
+            .entrySet().stream()
+            .max(Map.Entry.comparingByValue()) // Find entry with max count
+            .map(Map.Entry::getKey);
+
+System.out.println(mostFrequent.orElse(null)); // 1
+```
 
 ### **Find the First Three Elements**
 
 Get the first three elements from a `List<Integer>`.
 
+```java
+List<Integer> numbers = Arrays.asList(10, 20, 30, 40, 50);
 
+List<Integer> firstThree = numbers.stream()
+            .limit(3) // Take the first 3 elements
+            .collect(Collectors.toList());
+
+System.out.println(firstThree); // [10, 20, 30]
+```
 
 ### **Find All Palindromes**
 
 Find all palindrome words in a `List<String>`.
 
+```java
+List<String> words = Arrays.asList("madam", "apple", "racecar", "banana", "level", "hello");
 
+List<String> palindromes = words.stream()
+            .filter(word -> word.equalsIgnoreCase(new StringBuilder(word).reverse().toString())) // Check for palindrome
+            .collect(Collectors.toList());
+
+System.out.println(palindromes);
+```
 
 ### **Sort Employees by Salary**
 

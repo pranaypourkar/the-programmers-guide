@@ -1183,6 +1183,13 @@ Output (may vary):
 The `Collectors.groupingBy()` method groups elements by a classifier function.
 
 ```java
+Collectors.groupingBy(Function<? super T, ? extends K> classifier)
+Collectors.groupingBy(Function<? super T, ? extends K> classifier, Collector<? super T, A, D> downstream)
+Collectors.groupingBy(Function<? super T, ? extends K> classifier, Supplier<Map<K, List<T>>> mapFactory, Collector<? super T, A, D> downstream)
+```
+
+```java
+// Basic Grouping
 Map<Integer, List<String>> groupedByLength = Stream.of("Alice", "Bob", "Charlie")
     .collect(Collectors.groupingBy(String::length));
 System.out.println(groupedByLength);
@@ -1190,6 +1197,26 @@ System.out.println(groupedByLength);
 Output:
 {3=[Bob], 5=[Alice], 7=[Charlie]}
 */
+
+// Grouping with Downstream Collector
+List<String> words = Arrays.asList("apple", "bat", "banana", "cat", "dog", "elephant");
+Map<Integer, Set<String>> groupedByLength = words.stream()
+    .collect(Collectors.groupingBy(String::length, Collectors.toSet()));
+// {3=[bat, cat, dog], 5=[apple], 6=[banana], 8=[elephant]}
+
+// Grouping and Counting Elements
+Map<Integer, Long> groupedByLengthCount = words.stream()
+    .collect(Collectors.groupingBy(String::length, Collectors.counting()));
+// {3=3, 5=1, 6=1, 8=1}    
+
+// Grouping with Custom Map (LinkedHashMap) to maintain insertion order and counts occurrences
+Map<Integer, LinkedHashMap<String, Long>> groupedWithCount = words.stream()
+    .collect(Collectors.groupingBy(
+        String::length, 
+        LinkedHashMap::new, 
+        Collectors.mapping(word -> word, Collectors.toMap(w -> w, w -> 1L, Long::sum, LinkedHashMap::new))
+    ));
+// {5={apple=1}, 3={bat=1, cat=1, dog=1}, 6={banana=1}, 8={elephant=1}}
 ```
 
 Groups names based on **length**.\
