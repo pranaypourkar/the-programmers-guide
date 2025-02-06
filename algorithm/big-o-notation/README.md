@@ -23,13 +23,40 @@ Constant → Logarithmic → Linear → Linearithmic → Polynomial → Super-Po
 When we say **"algorithm X is asymptotically more efficient than algorithm Y"**, we are comparing the growth rates of their time or space complexity as the size of the input (N) becomes very large (approaches infinity). **The growth rate of X's runtime (or space usage) is smaller than Y's runtime (or space usage) as N→∞.** So X will always be a better choice for large inputs.
 {% endhint %}
 
-
-
 ### Comparing Different Complexities
 
 The following table compares the growth of various time complexities with different input sizes n:
 
 <table data-header-hidden data-full-width="true"><thead><tr><th width="139"></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>n</td><td>O(1)</td><td>O(log n)</td><td>O(n)</td><td>O(n log n)</td><td>O(n²)</td><td>O(n³)</td><td>O(2ⁿ)</td></tr><tr><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>2</td></tr><tr><td>10</td><td>1</td><td>1</td><td>10</td><td>10</td><td>100</td><td>1000</td><td>1024</td></tr><tr><td>100</td><td>1</td><td>2</td><td>100</td><td>200</td><td>10,000</td><td>1,000,000</td><td>1.27e30</td></tr><tr><td>1,000</td><td>1</td><td>3</td><td>1,000</td><td>3,000</td><td>1,000,000</td><td>1.0e9</td><td>1.07e301</td></tr><tr><td>10,000</td><td>1</td><td>4</td><td>10,000</td><td>40,000</td><td>1.0e8</td><td>1.0e12</td><td>-</td></tr><tr><td>100,000</td><td>1</td><td>5</td><td>100,000</td><td>500,000</td><td>1.0e10</td><td>1.0e15</td><td>-</td></tr><tr><td>1,000,000</td><td>1</td><td>6</td><td>1,000,000</td><td>6,000,000</td><td>1.0e12</td><td>1.0e18</td><td>-</td></tr></tbody></table>
+
+{% hint style="success" %}
+#### **Amortized Time Complexity**
+
+Amortized time complexity refers to the **average time per operation** over a **sequence of operations**, rather than analyzing the worst case for each individual operation.
+
+It helps when an expensive operation happens **occasionally**, but most operations are **cheap**. Instead of considering the worst-case for each operation, we spread the cost across multiple operations to get a more realistic average cost.
+
+#### **Example: Dynamic Array Doubling (ArrayList in Java)**
+
+**Scenario**
+
+* Suppose we use a **dynamic array** (like `ArrayList` in Java).
+* If an array is full, we **double its size** (e.g., from 4 to 8 elements).
+* Copying elements to a new array seems expensive, but it happens **infrequently**.
+
+**Operation Complexity**\
+Insert (when space is available) - O(1)\
+Insert (when resizing) - O(n) (copying `n` elements)\
+\
+**Amortized Analysis**
+
+* Let’s analyze `n` insertions.
+* Every `i`-th resizing operation takes `O(i)`, but it occurs rarely.
+* Total cost across `n` operations is **O(n)**.
+* Amortized cost per operation = **O(1)**.
+
+Thus, while a single **resize** is **O(n)**, the **amortized time** per insertion remains **O(1)**.
+{% endhint %}
 
 ## Time Complexity
 
