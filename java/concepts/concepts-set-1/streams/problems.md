@@ -113,8 +113,6 @@ Optional<Integer> secondHighest = numbers.stream()
                                          .findFirst();
 ```
 
-
-
 ### **Group Strings by Length**
 
 Group a `List<String>` based on string length.
@@ -211,13 +209,66 @@ System.out.println(palindromes);
 
 Given a `List<Employee>`, sort employees by salary in descending order.
 
+```java
+import java.util.*;
+import java.util.stream.Collectors;
 
+class Employee {
+    private String name;
+    private double salary;
+
+    public Employee(String name, double salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    @Override
+    public String toString() {
+        return name + " - $" + salary;
+    }
+}
+
+public class SortEmployees {
+    public static void main(String[] args) {
+        List<Employee> employees = Arrays.asList(
+            new Employee("Alice", 75000),
+            new Employee("Bob", 50000),
+            new Employee("Charlie", 90000),
+            new Employee("David", 60000)
+        );
+
+        List<Employee> sortedEmployees = employees.stream()
+            .sorted(Comparator.comparingDouble(Employee::getSalary).reversed()) // Sort by salary (descending)
+            .collect(Collectors.toList());
+
+        sortedEmployees.forEach(System.out::println);
+    }
+}
+// Charlie - $90000.0
+// Alice - $75000.0
+// David - $60000.0
+// Bob - $50000.0
+```
 
 ### **Convert List of Strings to a Single String**
 
 Convert a `List<String>` into a single space-separated `String`.
 
+```java
+List<String> words = Arrays.asList("Hello", "world", "Java", "Streams");
 
+String result = words.stream()
+        .collect(Collectors.joining(" ")); // Join with space
+// Hello world Java Streams
+```
 
 ## **Advanced Problems**
 
@@ -225,13 +276,55 @@ Convert a `List<String>` into a single space-separated `String`.
 
 Find the longest word in a `List<String>`.
 
+```java
+List<String> words = Arrays.asList("apple", "banana", "strawberry", "kiwi", "pineapple");
 
+Optional<String> longestWord = words.stream()
+            .max((s1, s2) -> Integer.compare(s1.length(), s2.length())); // Compare by length
+
+longestWord.ifPresent(System.out::println); // strawberry
+
+String longestWord2 = words.stream()
+    .max(Comparator.comparingInt(String::length))
+    .orElse(null);
+```
 
 ### **Find the Average Salary of Employees**
 
 Given a `List<Employee>`, calculate the average salary.
 
+```java
+class Employee {
+    private String name;
+    private double salary;
 
+    public Employee(String name, double salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+}
+
+public class AverageSalary {
+    public static void main(String[] args) {
+        List<Employee> employees = Arrays.asList(
+            new Employee("Alice", 50000),
+            new Employee("Bob", 60000),
+            new Employee("Charlie", 70000)
+        );
+
+        OptionalDouble avgSalary = employees.stream()
+            .mapToDouble(Employee::getSalary) // Convert Employee to salary
+            .average(); // Calculate average
+
+        System.out.println(avgSalary.isPresent() ? avgSalary.getAsDouble() : "No employees found");
+        // 60000.0
+    }
+}
+```
 
 ### **Group Employees by Department**
 
