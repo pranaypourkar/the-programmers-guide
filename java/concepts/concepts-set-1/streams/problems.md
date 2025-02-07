@@ -330,19 +330,138 @@ public class AverageSalary {
 
 Group employees into a `Map<String, List<Employee>>` based on department.
 
+```java
+import java.util.*;
+import java.util.stream.Collectors;
 
+class Employee {
+    private String name;
+    private int departmentId;
+
+    public Employee(String name, int departmentId) {
+        this.name = name;
+        this.departmentId = departmentId;
+    }
+
+    public int getDepartmentId() {
+        return departmentId;
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+}
+
+public class GroupByDepartment {
+    public static void main(String[] args) {
+        List<Employee> employees = Arrays.asList(
+            new Employee("Alice", 1),
+            new Employee("Bob", 2),
+            new Employee("Charlie", 1),
+            new Employee("David", 3),
+            new Employee("Eve", 2)
+        );
+
+        // Group employees by department ID
+        Map<Integer, List<Employee>> employeesByDept = employees.stream()
+            .collect(Collectors.groupingBy(Employee::getDepartmentId));
+
+        // Print the grouped result
+        employeesByDept.forEach((dept, empList) -> 
+            System.out.println("Department " + dept + ": " + empList));
+    }
+}
+// Department 1: [Alice, Charlie]
+// Department 2: [Bob, Eve]
+// Department 3: [David]
+```
 
 ### **Find the Oldest Employee in Each Department**
 
 Find the oldest employee in each department.
 
+```java
+import java.util.*;
+import java.util.stream.Collectors;
 
+class Employee {
+    private String name;
+    private int departmentId;
+    private int age;
+
+    public Employee(String name, int departmentId, int age) {
+        this.name = name;
+        this.departmentId = departmentId;
+        this.age = age;
+    }
+
+    public int getDepartmentId() {
+        return departmentId;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (Age: " + age + ")";
+    }
+}
+
+public class OldestEmployeeInDepartment {
+    public static void main(String[] args) {
+        List<Employee> employees = Arrays.asList(
+            new Employee("Alice", 1, 45),
+            new Employee("Bob", 2, 30),
+            new Employee("Charlie", 1, 50),
+            new Employee("David", 3, 40),
+            new Employee("Eve", 2, 35)
+        );
+
+        // Find the oldest employee in each department
+        Map<Integer, Optional<Employee>> oldestByDept = employees.stream()
+            .collect(Collectors.groupingBy(
+                Employee::getDepartmentId, 
+                Collectors.maxBy(Comparator.comparingInt(Employee::getAge))
+            ));
+
+        // Print the result
+        oldestByDept.forEach((dept, emp) -> 
+            System.out.println("Department " + dept + ": " + emp.orElse(null)));
+    }
+}
+/*
+Department 1: Charlie (Age: 50)
+Department 2: Eve (Age: 35)
+Department 3: David (Age: 40)
+*/
+```
 
 ### **Find Duplicate Elements in a List**
 
 Find all duplicate elements in a `List<Integer>`.
 
+```java
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 2, 6, 3, 7, 8, 1, 9, 10, 6);
 
+Set<Integer> seen = new HashSet<>();
+List<Integer> duplicates = numbers.stream()
+    .filter(n -> !seen.add(n)) // If add() returns false, it's a duplicate
+    .distinct() // Ensure each duplicate appears only once in the result
+    .collect(Collectors.toList());
+
+System.out.println(duplicates); // [1, 2, 3, 6]
+
+// Approach 2 without set
+List<Integer> duplicates = numbers.stream()
+    .collect(Collectors.groupingBy(n -> n, Collectors.counting())) // Count occurrences of each number
+    .entrySet().stream() // Convert the map to a stream
+    .filter(entry -> entry.getValue() > 1) // Keep only elements with count > 1 (duplicates)
+    .map(Map.Entry::getKey) // Extract the keys (the duplicate numbers)
+    .toList(); // Collect as a List
+```
 
 ### **Convert a List of Employees into a Map**
 
@@ -354,7 +473,11 @@ Convert `List<Employee>` into `Map<Integer, String>` where key is `employeeId` a
 
 Find the youngest employee in the company.
 
-
+```java
+Employee youngestEmployee = employees.stream()
+    .min(Comparator.comparingInt(Employee::getAge)) // Find the employee with the minimum age
+    .orElse(null); // Return null if the list is empty
+```
 
 ### **Find the Longest and Shortest Words in a Sentence**
 
@@ -372,7 +495,15 @@ Compute the average age of employees per department.
 
 Given a `String`, count occurrences of each character.
 
+```java
+String input = "banana";
 
+Map<Character, Long> charCount = input.chars() // Convert String to IntStream of characters
+    .mapToObj(c -> (char) c) // Convert int to Character
+    .collect(Collectors.groupingBy(Function.identity(), Collectors.counting())); // Group and count occurrences
+
+System.out.println(charCount); // {a=3, b=1, n=2}
+```
 
 ### **Flatten a List of Lists**
 
