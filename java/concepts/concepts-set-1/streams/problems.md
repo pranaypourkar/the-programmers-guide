@@ -467,7 +467,12 @@ List<Integer> duplicates = numbers.stream()
 
 Convert `List<Employee>` into `Map<Integer, String>` where key is `employeeId` and value is `employeeName`.
 
+```java
+Map<Integer, String> employeeMap = employees.stream()
+    .collect(Collectors.toMap(Employee::getId, Employee::getName));
 
+System.out.println(employeeMap); // {101=Alice, 102=Bob, 103=Charlie}
+```
 
 ### **Find the Youngest Employee**
 
@@ -483,13 +488,32 @@ Employee youngestEmployee = employees.stream()
 
 Given a sentence, find the longest and shortest words.
 
+```java
+String sentence = "Java Streams are powerful and concise";
 
+String max = Arrays.stream(sentence.split(" "))
+    .max(Comparator.comparingInt(String::length))
+    .get();
+
+String min = Arrays.stream(sentence.split(" "))
+    .min(Comparator.comparingInt(String::length))
+    .get();
+
+System.out.println("Longest Word: " + max); //Longest Word: powerful
+System.out.println("Shortest Word: " + min); //Shortest Word: are
+```
 
 ### **Find the Average Age of Employees by Department**
 
 Compute the average age of employees per department.
 
-
+```java
+Map<Integer, Double> avgAgePerDepartment = employees.stream()
+    .collect(Collectors.groupingBy(
+        Employee::getDepartmentId, 
+        Collectors.averagingInt(Employee::getAge)
+    ));
+```
 
 ### **Count the Occurrences of Each Character in a String**
 
@@ -509,31 +533,85 @@ System.out.println(charCount); // {a=3, b=1, n=2}
 
 Convert `List<List<Integer>>` into a flat `List<Integer>`.
 
+```java
+List<Integer> flatList = nestedList.stream()
+    .flatMap(List::stream)
+    .toList();
 
+System.out.println(flatList);
+```
 
 ### **Find Top 3 Highest Salaries**
 
 Find the top 3 highest salaries from `List<Employee>`.
 
-
+```java
+List<Employee> topSalaries = employees.stream()
+    .sorted(Comparator.comparingDouble(Employee::getSalary).reversed()) // Sort by salary in descending order
+    .limit(3) // Get top 3
+    .toList();
+```
 
 ### **Convert a List of Objects to JSON String**
 
 Convert `List<Employee>` into a JSON-like `String`.
 
+```java
+class Employee {
+    private final String name;
+    private final double salary;
 
+    public Employee(String name, double salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
+    public String toJson() {
+        return String.format("{\"name\":\"%s\", \"salary\":%.2f}", name, salary);
+    }
+}
+
+public class EmployeeJsonConverter {
+    public static void main(String[] args) {
+        List<Employee> employees = List.of(
+            new Employee("Alice", 50000),
+            new Employee("Bob", 60000),
+            new Employee("Charlie", 70000)
+        );
+
+        String json = employees.stream()
+            .map(Employee::toJson)
+            .collect(Collectors.joining(", ", "[", "]"));
+
+        System.out.println(json);
+        // [{"name":"Alice", "salary":50000.00}, {"name":"Bob", "salary":60000.00}, {"name":"Charlie", "salary":70000.00}]
+    }
+}
+```
 
 ### **Find All Employees Older Than 30 and Sort by Salary**
 
 Find employees older than 30 and sort them by salary.
 
-
+```java
+List<Employee> filteredEmployees = employees.stream()
+    .filter(emp -> emp.getAge() > 30) // Filter employees older than 30
+    .sorted(Comparator.comparingDouble(Employee::getSalary)) // Sort by salary in ascending order
+    .toList();
+```
 
 ### **Find the Median Salary**
 
 Compute the median salary from `List<Employee>`.
 
-
+```java
+OptionalDouble median = employees.stream()
+    .mapToDouble(Employee::getSalary)
+    .sorted()
+    .skip((employees.size() - 1) / 2) // Skip first half for odd/even cases
+    .limit(2 - employees.size() % 2) // Take 1 element if odd, 2 if even
+    .average(); // Compute median
+```
 
 ### **Sort a List of Employees by Multiple Criteria**
 
