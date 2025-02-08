@@ -182,6 +182,55 @@ boolean isPrime(int n) {
 //Time O(sqrt(n)), Space O(1)
 ```
 
+### Calculate Square root
+
+```java
+int sqrt(int n) {
+    for (int guess = 1; guess * guess <= n; guess++) {
+        if (guess * guess == n) {
+            return guess;
+        }
+    }
+    return -1;
+}
+//Time O(sqrt(n)), Space O(1)
+```
+
+### Array Copy
+
+```java
+int[] copyArray(int[] array) {
+    int[] copy= new int[0];
+    for (int value : array) {
+        copy= appendToNew(copy, value);
+    }
+    return copy;
+}
+
+int[] appendToNew(int[] array, int value) {
+    // copy all elements over to new array
+    int[] bigger= new int[array.length + 1];
+    for (int i= 0; i < array.length; i++) {
+        bigger[i] = array[i];
+    }
+
+    // add new element
+    bigger[bigger.length - 1]
+    return bigger;
+}
+
+// Time O(n^2), Space O(n^2)
+```
+
+{% hint style="success" %}
+For each element `i`, a new array of size `i+1` is created.\
+Thus, the total space used for all arrays is:
+
+1+2+3+⋯+N=N\*(N+1)/2
+
+This is O(N²) space complexity.
+{% endhint %}
+
 ## While loop
 
 ### Simple while loop
@@ -193,6 +242,33 @@ while (i > 0) {
     i /= 2;
 }
 //Time O(log(N)), Space O(1)
+```
+
+```java
+int div(int a, int b) {
+    int count = 0;
+    int sum = b· ,
+    while (sum <= a) {
+        sum += b;
+        count++;
+    }
+    return count;
+}
+//Time O(a/b), Space O(1)
+```
+
+### Sum of Digits
+
+```java
+int sumDigits(int n) {
+    int sum = 0;
+    while (n > 0) {
+        sum += n % 10;
+        n /= 10;
+    }
+    return sum;
+}
+//Time O(logn), Space O(1)
 ```
 
 ## Recursion
@@ -447,7 +523,7 @@ Thus, **each function call does O(n) work** due to substring creation and concat
 * **Overall complexity:** O(n^2\*n!)
 {% endhint %}
 
-Fibonacci Number
+### Fibonacci Number
 
 ```java
 int fib(int n) {
@@ -484,7 +560,7 @@ int fib(int n) {
 So, **space complexity = O(n) (due to recursion depth).**
 {% endhint %}
 
-## All Fibonacci numbers from 0 to n with recursion
+### All Fibonacci numbers from 0 to n with recursion
 
 ```java
 void allFib(int n) {
@@ -516,7 +592,7 @@ fib(n) -> 2^n steps&#x20;
 Therefore, the total amount of work is: 2^1 + 2^2 + 2^3 + 2^4 + , , , + 2^n
 {% endhint %}
 
-## All Fibonacci from 0 to n numbers with memoization
+### All Fibonacci from 0 to n numbers with memoization
 
 ```java
 void allFib(int n) {
@@ -575,7 +651,7 @@ Thus, **final time complexity = O(n).**
 Thus, **final space complexity = O(n).**
 {% endhint %}
 
-Powers of 2 from 1
+### Powers of 2 from 1
 
 ```java
 int powers0f2(int n) {
@@ -615,7 +691,44 @@ int powers0f2(int n) {
 **Total = O(1) + O(logn) = O(logn)**
 {% endhint %}
 
+### Compute a^b with recursion
 
+```java
+int power(int a, int b) {
+    if (b < 0) {
+        return 0;
+    } else if (b == 0) {
+        return 1;
+    } else {
+        return a * power(a, b - 1);
+    }
+}
+//Time O(b), Space O(b)
+```
+
+### Square root of a number by guessing
+
+```java
+int sqrt(int n) {
+    return sqrt_helper(n, 1, n);
+}
+int sqrt_helper(int n, int min, int max) {
+    if (max < min) return -1;
+    int guess = (min + max) I 2·,
+    if (guess *guess == n) {
+        return guess;
+    } else if (guess * guess < n) {
+        return sqrt_helper(n, guess + 1, max);
+    } else { II too high
+        return sqrt_helper(n, min, guess - l);
+    }
+}
+//Time O(logn), Space O(logn)
+```
+
+{% hint style="success" %}
+This is doing binary search to find square root
+{% endhint %}
 
 ## Miscellaneous Problems
 
@@ -809,3 +922,17 @@ Sorting each string is 0( s log s). We have to do this for every string (and the
 
 Then runtime will be 0( a\* s ( log a + log s)).
 
+### Intersection (the number of elements in common) of two arrays
+
+<pre class="language-java"><code class="lang-java">int intersection(int[] a, int[] b) {
+<strong>    mergesort(b);
+</strong>    int intersect = 0;
+    for (int x : a) {
+        if (binarySearch(b, x) >= 0) {
+            intersect++;
+        }
+    }
+    return intersect;
+}
+//Time O(blogb + alogb), Space O(b) (as b is being sorted using mergesort)
+</code></pre>

@@ -3,6 +3,7 @@
 * [About](README.md)
 * [Algorithm](algorithm/README.md)
   * [Big O Notation](algorithm/big-o-notation/README.md)
+    * [Tree](algorithm/big-o-notation/tree.md)
     * [Problems](algorithm/big-o-notation/problems.md)
   * [Basic Notes](algorithm/basic-notes.md)
   * [Mathematical Algorithms](algorithm/mathematical-algorithms/README.md)
