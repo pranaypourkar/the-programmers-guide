@@ -391,8 +391,7 @@ int factorial(int n) {
 
 ### Permutations of a string
 
-```java
-void permutation(String str) {
+<pre class="language-java" data-line-numbers><code class="lang-java">void permutation(String str) {
     permutation(str, "");
 }
 
@@ -400,16 +399,221 @@ void permutation(String str, String prefix) {
     if (str.length() == 0) {
         System.out.println(prefix);
     } else {
+<strong>        for (int i= 0; i &#x3C; str.length(); i++) {
+</strong><strong>            String rem = str.substring(0, i) + str.substring(i + 1);
+</strong><strong>            permutation(rem, prefix + str.charAt(i));
+</strong><strong>        }
+</strong><strong>    }
+</strong><strong>}
+</strong><strong>//Time O(N^2*N!), Space O(N)
+</strong></code></pre>
 
-        for (int i= 0; i < str.length(); i++) {
-            String rem = str.substring(0, i) + str.substring(i + 1);
-            permutation(rem, prefix + str.charAt(i));
-        }
-    }
+{% hint style="success" %}
+#### **Time Complexity**
+
+#### **Step 1: Counting Base Case Calls**
+
+* The base case occurs when `str.length() == 0`, meaning we've used all characters and formed a complete permutation.
+* Each unique permutation is a leaf node in the recursion tree.
+* Since there are `n!` permutations of an `n`-character string, the base case is reached `n!` times.
+
+#### **Step 2: Counting Total Function Calls**
+
+* We need to count all calls, not just the base cases.
+* Consider how the recursion unfolds:
+  * The first call has `n` branches (one for each starting character).
+  * Each of those branches has `n-1` further branches (one for each remaining character), and so on.
+  * This forms a recursive tree where each node makes `n - depth` recursive calls.
+  * The total number of nodes in the tree (calls to `permutation()`) is approximately n × n!.
+
+#### **Step 3: Work Done per Function Call**
+
+Each function call performs:
+
+1. **Printing the permutation (Base Case Only)**
+   * Involves printing a string of length `n`, which takes **O(n)** time.
+2. **Generating `rem` (Line 10)**
+   * Constructing `rem` involves substring operations, which take **O(n)** time.
+   * Since we create a new string in each call, this contributes to the overall complexity.
+3. **Recursive Call (Line 11)**
+   * Simply a function call, which is O(1) itself but triggers further recursive work.
+
+Thus, **each function call does O(n) work** due to substring creation and concatenation.
+
+#### **Final Complexity Analysis**
+
+* **Total number of calls:** ≈ `n × n!`
+* **Work per call:** `O(n)`
+* **Overall complexity:** O(n^2\*n!)
+{% endhint %}
+
+Fibonacci Number
+
+```java
+int fib(int n) {
+    if (n <= 0) return 0;
+    else if (n == 1) return 1;
+    return fib(n - 1) + fib(n - 2);
 }
+//Time O(2^N), Space O(N)
 ```
 
+{% hint style="success" %}
+#### **Time Complexity O(branches^depth)**
 
+#### **Step 1: Identifying Branches and Depth**
+
+* Each call to `fib(n)` makes **two recursive calls**:
+  * `fib(n - 1)`
+  * `fib(n - 2)`
+* This means the recursion tree **branches** into **2** subproblems at each level → **branches = 2**.
+* The **depth** of the recursion tree is `n`, because we reduce `n` by 1 or 2 in each step.&#x20;
+
+#### **Step 2: Complexity Using Recursion Tree Growth**
+
+* The recursion grows exponentially, with each level roughly doubling the number of calls.
+* The total number of calls is proportional to **O(2ⁿ)**.
+
+
+
+#### **Space Complexity**
+
+* **Recursive call stack depth is at most `O(n)`.**
+* Each recursive call adds a new frame until we reach the base case (`n = 0` or `n = 1`).
+
+So, **space complexity = O(n) (due to recursion depth).**
+{% endhint %}
+
+## All Fibonacci numbers from 0 to n with recursion
+
+```java
+void allFib(int n) {
+    for (int i= 0; i < n; i++) {
+        System.out.println(i + ": "+ fib(i));
+    }
+}
+
+int fib(int n) {
+    if (n <= 0) return 0;
+    else if (n == 1) return 1;
+    return fib(n - 1) + fib(n - 2);
+}
+
+//Time O(2^N), Space O(N)
+```
+
+{% hint style="success" %}
+fib(1) -> 2^1 steps&#x20;
+
+fib(2) -> 2^2 steps&#x20;
+
+fib(3) -> 2^3 steps&#x20;
+
+....
+
+fib(n) -> 2^n steps&#x20;
+
+Therefore, the total amount of work is: 2^1 + 2^2 + 2^3 + 2^4 + , , , + 2^n
+{% endhint %}
+
+## All Fibonacci from 0 to n numbers with memoization
+
+```java
+void allFib(int n) {
+    int[] memo = new int[n + 1];
+    for (int i= 0; i < n; i++) {
+        System.out.println(i + ": "+ fib(i, memo));
+    }
+}
+
+int fib(int n, int[] memo) {
+    if (n <= 0) return 0;
+    else if (n == 1) return 1;
+    else if (memo[n] > 0) return memo[n];
+
+    memo[n] = fib(n - 1, memo)+ fib(n - 2, memo);
+    return memo[n];
+}
+//Time O(N), Space O(N)
+```
+
+{% hint style="success" %}
+#### **Time Complexity**
+
+**Step 1: Time Complexity of `fib(n, memo)`**
+
+* In a naive recursive Fibonacci, `fib(n)` makes **O(2ⁿ) calls** due to repeated work.
+* With **memoization**, each Fibonacci number is computed **only once**.
+* The function still makes **O(n) recursive calls** in total, since each number is computed once and stored.
+* Thus, **`fib(n, memo)` runs in O(n) time**.
+
+**Step 2: Time Complexity of `allFib(n)`**
+
+* It calls `fib(i, memo)` for each `i` from `0` to `n-1`.
+* Since memoization prevents redundant calculations, `fib(i, memo)` runs in **O(1)** for already computed values.
+* The first call computes Fibonacci numbers in **O(n)** total.
+* All subsequent calls just fetch values from `memo` in **O(1)** time.
+* Overall, **O(n) + O(n) = O(n).**
+
+Thus, **final time complexity = O(n).**
+
+
+
+#### **Space Complexity**
+
+**Step 1: Space Complexity of `memo` Array**
+
+* The `memo` array stores **n+1** Fibonacci values.
+* This contributes **O(n) space**.
+
+**Step 2: Space Complexity of Recursion Stack**
+
+* Since `fib(n, memo)` is recursive, it uses the call stack.
+* The maximum recursion depth is **O(n)** (for the deepest recursive call).
+* However, memoization avoids redundant calls, so at most **O(n)** calls are on the stack.
+
+Thus, **final space complexity = O(n).**
+{% endhint %}
+
+Powers of 2 from 1
+
+```java
+int powers0f2(int n) {
+    if (n < 1) {
+        return 0;
+    } else if (n == 1) {
+        System.out.println(l);
+        return 1;
+    } else {
+        int prev = powers0f2(n / 2);
+        int curr = prev * 2;
+        System.out.println(curr);
+        return curr;
+    }
+}
+//Time O(logN), Space O(logN)
+```
+
+{% hint style="success" %}
+#### **Space Complexity Analysis**
+
+**1. Understanding the Recursion**
+
+* The function repeatedly **divides `n` by 2** in each recursive call until `n < 1`.
+* This means the recursion **depth** is **O(log n)** (since `n` is halved in each step).
+
+**2. Space Used by the Call Stack**
+
+* Each recursive call adds a **new frame** to the call stack.
+* Since the recursion depth is **O(log n)**, the **maximum stack size** is also **O(log n)**.
+
+**3. No Extra Data Structures**
+
+* Apart from the call stack, no extra space (like arrays or hash tables) is used.
+* The function **only uses a few integer variables (`prev`, `curr`, `n`)**, which are **O(1) space**
+
+**Total = O(1) + O(logn) = O(logn)**
+{% endhint %}
 
 
 

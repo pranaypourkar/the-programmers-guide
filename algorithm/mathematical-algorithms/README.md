@@ -426,7 +426,7 @@ A permutation is a way of arranging items, **where the order matters**.\
 For example, arranging 2 fruits from {Apple, Banana, Cherry} gives the permutations:\
 (Apple, Banana), (Banana, Apple), (Apple, Cherry), (Cherry, Apple), (Banana, Cherry), (Cherry, Banana).
 
-**Formula:** The number of permutations of rr items from a set of n items is given by:
+**Formula:** The number of permutations of r items from a set of n items is given by:
 
 <figure><img src="../../.gitbook/assets/maths-algo-12.png" alt="" width="296"><figcaption></figcaption></figure>
 
@@ -435,6 +435,63 @@ For example, arranging 2 fruits from {Apple, Banana, Cherry} gives the permutati
 <figure><img src="../../.gitbook/assets/maths-algo-13.png" alt="" width="296"><figcaption></figcaption></figure>
 
 Permutations: (A, B), (A, C), (A, D), (B, A), (B, C), (B, D), (C, A), (C, B), (C, D), (D, A), (D, B), (D, C).
+
+### **Recursive approach to find all permutations**
+
+#### **Step 1: Define the Base Case**
+
+* If the input string is empty (`""`), print the accumulated prefix (which is a complete permutation).
+* This serves as the stopping condition for recursion.
+
+#### **Step 2: Iterate Over Each Character**
+
+* Loop through each character in the given string.
+* For each character:
+  * **Select it** as the current prefix.
+  * **Remove it** from the remaining characters to form a new substring.
+
+#### **Step 3: Recursive Call**
+
+* Recursively call the function with:
+  * The **remaining substring** (excluding the selected character).
+  * The **updated prefix** (including the selected character).
+
+#### **Step 4: Repeat Until Base Case is Met**
+
+* Continue selecting characters and reducing the input string until it's empty.
+* At that point, print the accumulated prefix as a valid permutation.
+
+```java
+// Method to start the permutation process
+void permutation(String str) {
+    permutation(str, ""); // Call the recursive function with an empty prefix
+}
+
+// Recursive helper method to generate permutations
+void permutation(String str, String prefix) {
+    // Base case: When the input string is empty, print the generated permutation
+    if (str.length() == 0) {
+        System.out.println(prefix); // Print the permutation
+    } else {
+        // Iterate through each character in the string
+        for (int i = 0; i < str.length(); i++) {
+            // Exclude the current character at index 'i' and form the remaining string
+            String rem = str.substring(0, i) + str.substring(i + 1);
+            // Recursive call with the remaining string and updated prefix
+            permutation(rem, prefix + str.charAt(i));
+        }
+    }
+}
+
+/* For permutation("abc"), the output will be:
+abc
+acb
+bac
+bca
+cab
+cba
+*/
+```
 
 ## Matrix
 
