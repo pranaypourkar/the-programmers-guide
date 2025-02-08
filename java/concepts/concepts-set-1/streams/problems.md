@@ -617,87 +617,315 @@ OptionalDouble median = employees.stream()
 
 Sort `List<Employee>` first by department, then by salary.
 
+```java
+import java.util.*;
+import java.util.stream.Collectors;
 
+class Employee {
+    String name;
+    String department;
+    double salary;
+
+    public Employee(String name, String department, double salary) {
+        this.name = name;
+        this.department = department;
+        this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (" + department + ", $" + salary + ")";
+    }
+}
+
+public class EmployeeSorting {
+    public static void main(String[] args) {
+        List<Employee> employees = List.of(
+                new Employee("Alice", "HR", 60000),
+                new Employee("Bob", "IT", 75000),
+                new Employee("Charlie", "IT", 72000),
+                new Employee("David", "HR", 55000),
+                new Employee("Eve", "Finance", 90000),
+                new Employee("Frank", "Finance", 85000)
+        );
+
+        // Sorting using streams
+        List<Employee> sortedEmployees = employees.stream()
+                .sorted(Comparator.comparing(Employee::department)
+                        .thenComparing(Employee::salary))
+                .collect(Collectors.toList());
+
+        // Print sorted employees
+        sortedEmployees.forEach(System.out::println);
+        // Output:
+        // Frank (Finance, $85000.0)
+        // Eve (Finance, $90000.0)
+        // David (HR, $55000.0)
+        // Alice (HR, $60000.0)
+        // Charlie (IT, $72000.0)
+        // Bob (IT, $75000.0)
+    }
+}
+```
 
 ### **Find the First N Prime Numbers**
 
 Generate the first `N` prime numbers using `Stream.iterate()`.
 
+```java
+import java.util.List;
+import java.util.stream.Stream;
 
+public class PrimeNumbersUsingStream {
+    public static void main(String[] args) {
+        int N = 10; // Change N to get more primes
+
+        List<Integer> primes = Stream.iterate(2, i -> i + 1)  // Start from 2, increment by 1
+                .filter(PrimeNumbersUsingStream::isPrime)      // Keep only prime numbers
+                .limit(N)                                      // Take the first N primes
+                .toList();                                     // Collect to a List (Java 16+)
+
+        System.out.println("First " + N + " prime numbers: " + primes);
+        // Output: First 10 prime numbers: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+    }
+
+    // Method to check if a number is prime
+    private static boolean isPrime(int num) {
+        if (num < 2) return false;
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) return false;
+        }
+        return true;
+    }
+}
+```
 
 ### **Calculate Factorial Using Streams**
 
 Compute factorial of `n` using `reduce()`.
 
+```java
+int n = 5; // Change this value to compute factorial of a different number
 
+int factorial = IntStream.rangeClosed(1, n) // Generates numbers from 1 to n
+    .reduce(1, (a, b) -> a * b);        // Multiplies all elements
 
-### **Find Employees with the Longest Name**
-
-Find all employees who have the longest name.
-
-
+System.out.println("Factorial of " + n + " is: " + factorial);
+// Output: Factorial of 5 is: 120
+```
 
 ### **Check if a String is an Anagram of Another String**
 
 Verify if two given strings are anagrams.
 
+```java
+import java.util.stream.Collectors;
 
+public class AnagramChecker {
+    public static void main(String[] args) {
+        String str1 = "listen";
+        String str2 = "silent";
+
+        boolean isAnagram = areAnagrams(str1, str2);
+
+        System.out.println(str1 + " and " + str2 + " are anagrams: " + isAnagram);
+        // Output: listen and silent are anagrams: true
+    }
+
+    public static boolean areAnagrams(String str1, String str2) {
+        if (str1.length() != str2.length()) return false; // Different lengths can't be anagrams
+
+        return str1.chars().sorted()
+                .mapToObj(c -> String.valueOf((char) c))
+                .collect(Collectors.joining())
+                .equals(
+                    str2.chars().sorted()
+                        .mapToObj(c -> String.valueOf((char) c))
+                        .collect(Collectors.joining())
+                );
+    }
+}
+```
 
 ### **Find the Kth Largest Element in a List**
 
 Find the `K`th largest number in a `List<Integer>`.
 
+```java
+List<Integer> numbers = List.of(10, 5, 8, 20, 15, 3, 25);
+int K = 3; // Change K to find a different Kth largest element
 
+int kthLargest = numbers.stream()
+                .sorted(Comparator.reverseOrder()) // Sort in descending order
+                .skip(K - 1)                       // Skip (K-1) elements
+                .findFirst()                       // Get the Kth element
+                .orElseThrow(() -> new IllegalArgumentException("K is out of range"));
+```
 
 ### **Generate a Fibonacci Series Using Streams**
 
 Generate Fibonacci numbers using `Stream.iterate()`.
 
+```java
+int n = 10; // Generate first N Fibonacci numbers
 
+Stream.iterate(new long[]{0, 1}, fib -> new long[]{fib[1], fib[0] + fib[1]}) // Generate pairs
+  .limit(n) // Limit to first N numbers
+  .map(fib -> fib[0]) // Extract first element from pair
+  .forEach(System.out::println);
+
+// Output: 0 1 1 2 3 5 8 13 21 34
+```
 
 ### **Find the Most Expensive Product in Each Category**
 
 Given a `List<Product>`, find the most expensive product in each category.
 
+```java
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
+class Product {
+    String name;
+    String category;
+    double price;
 
-### **Find Employees with More Than One Role**
+    public Product(String name, String category, double price) {
+        this.name = name;
+        this.category = category;
+        this.price = price;
+    }
 
-Given `List<Employee>`, find employees who have multiple roles.
+    @Override
+    public String toString() {
+        return name + " ($" + price + ")";
+    }
+}
 
+public class MostExpensiveProduct {
+    public static void main(String[] args) {
+        List<Product> products = List.of(
+                new Product("Laptop", "Electronics", 1200),
+                new Product("Smartphone", "Electronics", 900),
+                new Product("TV", "Electronics", 1500),
+                new Product("Blender", "Appliances", 300),
+                new Product("Vacuum Cleaner", "Appliances", 400),
+                new Product("Shampoo", "Personal Care", 15),
+                new Product("Perfume", "Personal Care", 60)
+        );
 
+        Map<String, Product> mostExpensiveByCategory = products.stream()
+                .collect(Collectors.toMap(
+                        Product::category,                  // Group by category
+                        Function.identity(),                // Keep the product
+                        (p1, p2) -> p1.price > p2.price ? p1 : p2 // Keep the most expensive
+                ));
+
+        System.out.println("Most Expensive Product in Each Category: " + mostExpensiveByCategory);
+        // Output: {Electronics=TV ($1500.0), Appliances=Vacuum Cleaner ($400.0), Personal Care=Perfume ($60.0)}
+    }
+}
+```
 
 ### **Find Most Common Words in a Paragraph**
 
 Given a `String paragraph`, count occurrences of each word and sort by frequency.
 
+```java
+String paragraph = "Java is great and Java is powerful. Java is fun and powerful.";
 
+List<Map.Entry<String, Long>> sortedWordCount = Arrays.stream(paragraph.toLowerCase().split("\\W+"))
+  .collect(Collectors.groupingBy(word -> word, Collectors.counting())) // Count occurrences
+  .entrySet().stream()
+  .sorted(Map.Entry.<String, Long>comparingByValue(Comparator.reverseOrder())) // Sort by frequency
+  .toList(); // Collect as a list
+
+System.out.println("Word frequencies sorted by count: " + sortedWordCount);
+// Output: Word frequencies sorted by count: [java=3, is=3, powerful=2, and=2, great=1, fun=1]
+```
 
 ### **Merge Two Sorted Lists into One Sorted List**
 
 Merge two sorted lists into a single sorted list.
 
+```java
+List<Integer> list1 = List.of(1, 3, 5, 7, 9);
+List<Integer> list2 = List.of(2, 4, 6, 8, 10);
 
+List<Integer> mergedSortedList = Stream.concat(list1.stream(), list2.stream()) // Merge two lists
+  .sorted() // Sort the merged stream
+  .collect(Collectors.toList()); // Collect to a list
+
+System.out.println("Merged Sorted List: " + mergedSortedList);
+// Output: Merged Sorted List: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+```
 
 ### **Check if a Sentence is a Pangram**
 
 Verify if a sentence contains every letter of the alphabet at least once.
 
+```java
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
+public class PangramChecker {
+    public static void main(String[] args) {
+        String sentence = "The quick brown fox jumps over the lazy dog";
+
+        boolean isPangram = sentence.toLowerCase()
+                .chars() // Convert to IntStream of characters
+                .filter(Character::isLetter) // Keep only letters
+                .mapToObj(c -> (char) c) // Convert int to Character
+                .collect(Collectors.toSet()) // Collect unique letters
+                .size() == 26; // Check if all 26 letters are present
+
+        System.out.println("Is Pangram? " + isPangram);
+        // Output: Is Pangram? true
+    }
+}
+```
 
 ### **Find the Sum of All Even-Indexed Elements in a List**
 
-Sum all even-indexed elements.
+Sum all even-indexed elements in a list.
 
-
-
-### **Find the Nth Root of a Number Using Streams**
-
-Compute the `N`th root of a number using `Stream.iterate()`.
-
-
+```java
+int sum = IntStream.range(0, numbers.size())  // Generate indices from 0 to size-1
+                .filter(i -> i % 2 == 0)             // Keep only even indices
+                .map(numbers::get)                   // Get the elements at those indices
+                .sum();                              // Sum them up
+```
 
 ### **Simulate a Voting System Using Streams**
 
 Given a list of votes, count occurrences of each candidate and determine the winner.
 
+```java
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+public class ElectionWinner {
+    public static void main(String[] args) {
+        List<String> votes = List.of("Alice", "Bob", "Alice", "Charlie", "Bob", "Alice", "Bob", "Bob");
+
+        // Count occurrences of each candidate
+        Map<String, Long> voteCount = votes.stream()
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+        // Determine the winner (candidate with max votes)
+        String winner = voteCount.entrySet().stream()
+                .max(Map.Entry.comparingByValue()) // Get the entry with the highest count
+                .map(Map.Entry::getKey)           // Extract the candidate's name
+                .orElse("No votes");
+
+        System.out.println("Vote counts: " + voteCount);
+        // Output: Vote counts: {Alice=3, Bob=4, Charlie=1}
+
+        System.out.println("Winner: " + winner);
+        // Output: Winner: Bob
+    }
+}
+```
