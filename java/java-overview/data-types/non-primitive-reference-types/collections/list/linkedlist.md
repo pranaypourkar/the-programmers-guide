@@ -27,18 +27,20 @@ Since it implements the `Deque` interface, `LinkedList` can function as a **FIFO
    * **Data**: The actual value stored in the node.
    * **Next**: A reference to the next node in the list.
    * **Previous**: A reference to the previous node in the list.
-2.  **Node Class**: The `LinkedList` internally uses a static nested class `Node<E>` to represent each element in the list.
+2.  **Node Class**: The `LinkedList` internally uses a static nested class `Node<E>` to represent each element in the list. A static nested class is a class declared inside another class with the `static` modifier. Unlike inner classes, a static nested class does not require an instance of the enclosing class to be instantiated.
 
     ```java
-    private static class Node<E> {
-        E item;
-        Node<E> next;
-        Node<E> prev;
+    public class LinkedList<E> {
+        private static class Node<E> {
+            E item;
+            Node<E> next;
+            Node<E> prev;
 
-        Node(Node<E> prev, E element, Node<E> next) {
-            this.item = element;
-            this.next = next;
-            this.prev = prev;
+            Node(Node<E> prev, E element, Node<E> next) {
+                this.item = element;
+                this.next = next;
+                this.prev = prev;
+            }
         }
     }
     ```
