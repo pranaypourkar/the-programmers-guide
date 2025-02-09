@@ -20,41 +20,93 @@
 
 ## Internal Working
 
-The internal mechanism of `HashMap` revolves around **hashing**, which maps keys to bucket indices for efficient data storage and retrieval.
+Java's HashMap works on the principle of hashing and uses an array of linked lists (buckets) to store key-value pairs. When a key is inserted, its hash code is computed and mapped to an index in the internal array. If multiple keys hash to the same index (collision), entries are stored in a linked list (Java 7) or balanced tree (TreeNode) if collisions exceed a threshold (Java 8+). get() and put() operations ideally run in O(1) time but degrade to O(log n) in worst cases. Resizing occurs when the load factor (default 0.75) is exceeded, doubling the bucket array size and rehashing entries.
+
+<div align="center"><figure><img src="../../../../../../.gitbook/assets/hashmap-internal-working.png" alt="" width="375"><figcaption></figcaption></figure></div>
 
 ### **Data Structure**
 
-* Internally, `HashMap` uses an **array of `Node<K, V>` objects** (or `Entry<K, V>` in earlier versions of Java).
-* Each node is a linked list node (or tree node in Java 8+).
+Internally, `HashMap` maintains an **array of buckets**, where each bucket is either:
+
+* A **Linked List** (for low collisions).
+* A **Red-Black Tree** (when many keys collide, improving worst-case performance).
+
+The **array index** for storing elements is determined using the **hash function**.
 
 ```java
-static class Node<K, V> implements Map.Entry<K, V> {
-    final int hash;    // Hash code of the key
-    final K key;       // Key
-    V value;           // Value
-    Node<K, V> next;   // Pointer to the next node in the bucket (for collisions)
+// Internal structure of HashMap
+transient Node<K,V>[] table;
+```
+
+Each bucket is an instance of **Node\<K, V>**, defined as:
+
+```java
+static class Node<K,V> implements Map.Entry<K,V> {
+    final int hash;   // Precomputed hash value of the key
+    final K key;      // Key
+    V value;          // Associated value
+    Node<K,V> next;   // Next node in the linked list (for collisions)
 }
 ```
 
 ### **Hashing**
 
-* When a key-value pair is inserted, the key’s `hashCode()` method generates an integer hash code.
-*   The hash code is then compressed into a bucket index using this formula:
+When a key-value pair is inserted, the key’s `hashCode()` method generates an integer **hash code**.\
+The hash code is then compressed into a **bucket index** using this formula:
 
-    ```java
-    index = (hash & 0x7FFFFFFF) % capacity
-    ```
+index=hash & (capacity−1)
 
-    * `hash` is the hash code of the key.
-    * `capacity` is the size of the internal array (default: 16).
-    * The bitwise AND operation with `0x7FFFFFFF` (a mask) ensures that the hash code is converted into a **non-negative value**.
-    * `0x7FFFFFFF` is the maximum positive value for a 32-bit signed integer (`2³¹ - 1` in decimal).&#x20;
-    * The result effectively removes the sign bit of the hash code, making it non-negative
+* `hash` is the computed hash of the key (after applying `hashCode()` and additional processing).
+* `capacity` is the size of the internal bucket array (default: `16`).
+* Bitwise AND (`&`) with (`capacity - 1`) ensures fast index computation while distributing entries evenly across the array.
+* This approach works efficiently because HashMap always maintains capacity as a power of 2, ensuring that `capacity - 1` is a bitmask (all 1s in binary).
+* Instead of using modulo (`%`) i.e. % capacity, which involves division (expensive), `HashMap` uses the faster bitwise AND (`&`) operation.
+* This is based on the property that: `x % 2^n = x & (2^n−1)`.Thus, for power-of-2 capacities, `hash & (capacity - 1)` is functionally equivalent to `hash % capacity`, but much faster.
+*   Why `capacity - 1`?
+
+    Java always keeps `capacity` as a power of 2 (e.g., 16, 32, 64, etc.).\
+    When you subtract `1` from a power of 2, you get a bitmask with all bits set to `1`.
+
+<table data-header-hidden><thead><tr><th width="132"></th><th width="176"></th><th width="156"></th><th></th></tr></thead><tbody><tr><td>Capacity (<code>2^n</code>)</td><td>Binary (<code>capacity</code>)</td><td><code>capacity - 1</code></td><td>Binary (<code>capacity - 1</code>)</td></tr><tr><td>8 (<code>2^3</code>)</td><td><code>0000 1000</code> (8)</td><td>7</td><td><code>0000 0111</code> (7)</td></tr><tr><td>16 (<code>2^4</code>)</td><td><code>0001 0000</code> (16)</td><td>15</td><td><code>0000 1111</code> (15)</td></tr><tr><td>32 (<code>2^5</code>)</td><td><code>0010 0000</code> (32)</td><td>31</td><td><code>0001 1111</code> (31)</td></tr></tbody></table>
+
+* Since `capacity - 1` has all lower bits set to 1, performing bitwise AND (`&`) with `hash` extracts only the lower bits.
+* This is equivalent to `hash % capacity` but much faster because division (`%`) is slow compared to bitwise operations.
+
+{% hint style="info" %}
+#### **Example: HashMap Index Calculation**
+
+Let's say we have a **key** with `hashCode = 10`, and the `HashMap` has a **capacity of 8\`**.
+
+**Step 1: Compute Index Using Bitwise AND**
+
+```java
+int hash = 10;             // Example hash code (1010 in binary)
+int capacity = 8;          // Power of 2
+int index = hash & (capacity - 1);  // Equivalent to hash % capacity
+
+System.out.println("Bucket Index: " + index);
+```
+
+**Step 2: Binary Breakdown**
+
+```
+hashCode  =  10  =  1010 (binary)
+capacity  =   8  =  1000 (binary)
+capacity-1 =  7  =  0111 (binary)
+----------------------------------
+Bitwise AND: 1010  (10)
+           & 0111  ( 7)
+           ----------------
+             0010  ( 2)
+```
+
+**Result: The bucket index is `2`**
+{% endhint %}
 
 ### **Buckets**
 
 * Each bucket in the array stores a linked list or a balanced binary tree (Java 8+).
-* If two keys hash to the same index, they are stored in the same bucket, forming a **collision chain**.
+* If two keys hash to the same index, they are stored in the same bucket, forming a **collision chain**. Note that two different keys could have the same hash code, as there may be an infinite number of keys and a finite number of integers.
 
 ### **Collision Handling**
 
@@ -115,12 +167,10 @@ static class Node<K, V> implements Map.Entry<K, V> {
 
 ## **Big-O for Operations**
 
-| **Operation**              | **Average Case** | **Worst Case** |
-| -------------------------- | ---------------- | -------------- |
-| **Get/Put (No Collision)** | O(1)             | O(n)           |
-| **Remove**                 | O(1)             | O(n)           |
-| **Contains Key/Value**     | O(1)             | O(n)           |
-| **Iteration**              | O(n)             | O(n)           |
+* **Java 7 & Before** → Worst case O(n) due to linked list collisions.
+* **Java 8+ (Tree Buckets)** → Worst case **O(log n)** (not O(n) anymore) when many collisions happen.
+
+<table data-header-hidden><thead><tr><th></th><th width="142"></th><th></th></tr></thead><tbody><tr><td><strong>Operation</strong></td><td><strong>Average Case</strong></td><td><strong>Worst Case (Java 8+)</strong></td></tr><tr><td><strong>Get/Put (No Collision)</strong></td><td><strong>O(1)</strong></td><td><strong>O(log n)</strong> (with tree-based bucket)</td></tr><tr><td><strong>Remove</strong></td><td><strong>O(1)</strong></td><td><strong>O(log n)</strong></td></tr><tr><td><strong>Contains Key/Value</strong></td><td><strong>O(1)</strong></td><td><strong>O(log n)</strong></td></tr><tr><td><strong>Iteration</strong></td><td><strong>O(n)</strong></td><td><strong>O(n)</strong></td></tr></tbody></table>
 
 ## **Limitations**
 
