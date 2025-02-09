@@ -61,6 +61,42 @@ List<String> list = IntStream.rangeClosed(1, A)
     .collect(Collectors.toList());
 ```
 
+### Store and calculate mathematical expression
+
+Write a function to add one simple mathematical expressions which are of the form Ax^a + Bx^b + . . . (where the coefficients and exponents can be any positive or negative real number). Store the input values into a proper data structure.
+
+#### Method 1: Bad Implementation
+
+```java
+// Store the expression as a single array of doubles, where the kth element
+// corresponds to the coefficient of the x^k term in the expression.
+// It does not support expressions with negative or non-integer exponents.
+int[] sum(double[] expr1) {
+    ...
+}
+
+// Store the expression as a set of two arrays, c oefficients and exponents
+sum(double[] coeffsl, double[] expon1) {
+    ...
+}
+```
+
+#### Method 2: Better Implementation
+
+```java
+// Design data structure for the expression
+class ExprTerm {
+    double coefficient;
+    double exponent;
+}
+
+ExprTerm[] sum(ExprTerm[] exprl) {
+    ...    
+}
+```
+
+
+
 
 
 
