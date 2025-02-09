@@ -23,7 +23,7 @@ A **Tree** is a **hierarchical data structure** that consists of nodes connected
 ### **Example**
 
 ```asciidoc
-                            (Root) A
+                             (Root) A
                           /            \
                 (Parent) B                C (Parent)
                 /      \                   /   \  
@@ -106,28 +106,207 @@ This helps in structuring teams and workflow.
 
 
 
+## **Types of Trees in Data Structures**
 
+### **1. General Tree**
 
-## Types of Trees
+* A tree where **each node can have any number of children**.
+* Used in hierarchical structures like **file systems, organization charts, etc.**
+* **Height**: Maximum depth of the tree.
+* **Breadth**: Maximum number of nodes at any level.
 
-* **General Trees**
-* **Binary Trees**
-  * Full Binary Tree
-  * Complete Binary Tree
-  * Perfect Binary Tree
-  * Balanced Binary Tree
-  * Degenerate Tree
-* **Binary Search Tree (BST)**
-* **AVL Tree** (Self-Balancing BST)
-* **Red-Black Tree**
-* **B-Trees and B+ Trees**
-* **Trie (Prefix Tree)**
-* **Segment Tree**
-* **Fenwick Tree (Binary Indexed Tree - BIT)**
-* **Heap (Min Heap, Max Heap)**
-* **Suffix Tree**
+### **2. Binary Tree**
 
+* Each node has **at most two children**: **left** and **right**.
+* Types of binary trees include:
+  * **Full Binary Tree**
+  * **Complete Binary Tree**
+  * **Perfect Binary Tree**
+  * **Balanced Binary Tree**
+  * **Degenerate Tree**
+* **Height**: At most **O(n)** for an unbalanced tree, **O(log n)** for balanced trees.
+* **Depth**: Varies depending on the structure.
 
+#### **2.1. Full Binary Tree**
+
+* A binary tree where **every node has either 0 or 2 children** (no nodes with only one child).
+* **Height**: h=O(log⁡n)
+* **Breadth**: Maximum at the last level.
+
+```plaintext
+         A
+       /   \
+      B     C
+     / \   / \
+    D   E F   G
+```
+
+#### **2.2. Complete Binary Tree**
+
+* A binary tree where **all levels except the last are completely filled**, and nodes in the last level are as **left as possible**.
+* Example: **Heap data structures** follow this rule.
+* **Height**: O(log⁡n)
+* **Breadth**: Maximum at last level 2^(h−1)
+
+```plaintext
+         A
+       /   \
+      B     C
+     / \   /
+    D   E F  
+```
+
+#### **2.3. Perfect Binary Tree**
+
+* A binary tree where **all levels are fully filled**.
+* Number of nodes at depth d is **2^d**.
+* **Height**: h=log⁡(n+1)−1 (log with base 2)
+* **Breadth**: 2^(h−1) (maximum nodes at last level).
+
+```plaintext
+         A
+       /   \
+      B     C
+     / \   / \
+    D   E F   G
+```
+
+#### **2.4. Balanced Binary Tree**
+
+* A binary tree where the height of **left and right subtrees differs by at most 1**.
+* Example: **AVL Tree, Red-Black Tree**.
+* **Height**: O(log⁡n).
+* **Breadth**: Maximum at last level.
+
+```plaintext
+         A
+       /   \
+      B     C
+     / \   / \
+    D   E F   G
+```
+
+#### **2.5. Degenerate (Skewed Tree)**
+
+* A **linked list-like structure**, where each node has only one child.
+* **Height**: O(n)(worst case).
+* **Breadth**: Always **1**.
+
+```plaintext
+    A
+     \
+      B
+       \
+        C
+         \
+          D
+```
+
+### **3. Binary Search Tree (BST)**
+
+* A **sorted binary tree** where:
+  * Left subtree **< root**.
+  * Right subtree **> root**.
+* Used for **efficient searching**.
+* **Height**: O(log⁡n) (balanced), O(n) (worst case).
+
+```plaintext
+        8
+       /  \
+      3    10
+     / \     \
+    1   6     14
+       / \    /
+      4   7  13
+```
+
+### **4. AVL Tree (Self-Balancing BST)**
+
+* A **BST with a balance factor** (height difference of left and right subtree is **at most 1**).
+* **Height**: O(log⁡n).
+* Used for **fast lookups**.
+
+```plaintext
+        8
+       /  \
+      4    12
+     / \   /  \
+    2   6 10  14
+```
+
+### **5. Red-Black Tree**
+
+* A **self-balancing BST** with the following rules:
+  * Nodes are either **Red** or **Black**.
+  * **Root is always black**.
+  * **Red nodes cannot be consecutive**.
+  * **All paths from root to leaves have the same number of black nodes**.
+* **Height**: O(log⁡n)
+
+### **6. B-Trees & B+ Trees**
+
+* **B-Tree**: A **self-balancing multi-way tree** (used in databases).
+* **B+ Tree**: Variation of B-tree where **all values are stored in leaf nodes** (used in file systems).
+* **Height**: O(log⁡n)
+
+### **7. Trie (Prefix Tree)**
+
+* A tree where **each path represents a prefix of a word**.
+* Used in **autocomplete, spell-checkers**.
+* **Height**: O(m)where m is the length of the longest word.
+
+```plaintext
+         (root)
+         /  |  \
+        a   b   c
+       / \   \
+      p   r   t
+     /     \
+    p       e
+```
+
+(Stores "apple", "ape", "bat", "cat")
+
+### **8. Segment Tree**
+
+* A tree used for **range queries and updates** (sum, min, max).
+* **Height**: O(log⁡n).
+* Example: **Finding the sum of elements in an array from index 2 to 5**.
+
+### **9. Fenwick Tree (Binary Indexed Tree - BIT)**
+
+* A **more space-efficient version of a segment tree**.
+* Used for **fast prefix sum calculations**.
+* **Height**: O(log⁡n)
+
+### **10. Heap (Min Heap, Max Heap)**
+
+* A **complete binary tree** where:
+  * **Min-Heap**: Parent ≤ Children.
+  * **Max-Heap**: Parent ≥ Children.
+* Used in **priority queues**.
+* **Height**: O(log⁡n).
+* **Breadth**: 2^(h−1).
+
+```plaintext
+         1
+       /   \
+      3     5
+     / \   / \
+    7   9 11  13
+```
+
+(Min-Heap example)
+
+### **11. Suffix Tree**
+
+* A compressed **Trie** used for **string matching**.
+* **Height**: O(m).
+* Used in **bioinformatics, search engines**.
+
+## **Comparisons of Tree Types**
+
+<table data-full-width="true"><thead><tr><th>Tree Type</th><th width="235">Structure</th><th>Height</th><th>Breadth</th><th>Use Case</th></tr></thead><tbody><tr><td>General Tree</td><td>Any number of children</td><td>O(n)</td><td>O(n)</td><td>Hierarchical data</td></tr><tr><td>Binary Tree</td><td>At most 2 children</td><td>O(n)</td><td>O(n)</td><td>Basic tree structure</td></tr><tr><td>BST</td><td>Sorted Binary Tree</td><td>O(log n)</td><td>O(log n)</td><td>Searching</td></tr><tr><td>AVL Tree</td><td>Self-balancing BST</td><td>O(log n)</td><td>O(log n)</td><td>Fast lookups</td></tr><tr><td>Red-Black Tree</td><td>Self-balancing BST</td><td>O(log n)</td><td>O(log n)</td><td>Efficient insertions</td></tr><tr><td>Trie</td><td>Prefix-based</td><td>O(m)</td><td>O(n)</td><td>Autocomplete, dictionaries</td></tr><tr><td>Segment Tree</td><td>Interval-based</td><td>O(log n)</td><td>O(log n)</td><td>Range queries</td></tr><tr><td>Heap</td><td>Complete Binary Tree</td><td>O(log n)</td><td>O(2^h)</td><td>Priority Queues</td></tr></tbody></table>
 
 
 
