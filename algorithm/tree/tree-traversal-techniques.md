@@ -21,7 +21,7 @@ Depth First Search (DFS) is a fundamental tree and graph traversal algorithm tha
 * Uses **backtracking** to revisit previous nodes when it reaches a dead-end.
 * Often implemented using **recursion** or a **stack**.
 * **Time Complexity**: O(V+E) where **V** is the number of vertices (nodes) and **E** is the number of edges.
-* **Space Complexity**: O(h) for recursive DFS (where hhh is the height of the tree), or O(V) in the worst case when storing all nodes.
+* **Space Complexity**: O(h) for recursive DFS (where h is the height of the tree), or O(V) in the worst case when storing all nodes.
 
 #### **DFS Traversal Order**
 
@@ -69,14 +69,14 @@ Inorder traversal processes the nodes of a tree by **visiting the left subtree f
 
 * Visits **nodes in sorted order for a Binary Search Tree (BST)**.
 * **Used for in-order processing of hierarchical data**.
-* **Time Complexity**: O(n), where nnn is the number of nodes.
+* **Time Complexity**: O(n), where n is the number of nodes.
 * **Space Complexity**: O(h) (recursive stack space).
 
 #### **Example Use Cases**
 
-* **Extracting sorted elements from a BST**.
-* **Solving mathematical expressions**, where operands appear in natural order.
-* **Reconstructing a BST from sorted data**.
+* Extracting sorted elements from a BST.
+* Solving mathematical expressions, where operands appear in natural order.
+* Reconstructing a BST from sorted data.
 
 ### **1.3 Postorder Traversal**
 
@@ -97,9 +97,9 @@ Postorder traversal is a method where the **left subtree is processed first**, f
 
 #### **Example Use Cases**
 
-* **Deleting a tree** in a bottom-up manner.
-* **Postfix Notation (Reverse Polish Notation) evaluation** in expression trees.
-* **Dependency resolution** (e.g., in build systems like Make).
+* Deleting a tree in a bottom-up manner.
+* Postfix Notation (Reverse Polish Notation) evaluation in expression trees.
+* Dependency resolution (e.g., in build systems like Make).
 
 ## **2. Breadth First Search (BFS) or Level Order Traversal**
 

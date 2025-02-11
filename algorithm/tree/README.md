@@ -63,7 +63,7 @@ The maximum number of nodes at any level is 7 (at level 3).
 Breadth of this tree = 7.
 ```
 
-### **Real-World Examples of Trees**
+### **Examples of Trees**
 
 Trees are widely used in real-world applications due to their hierarchical nature. Here are some practical examples:
 
@@ -104,7 +104,201 @@ CEO
 
 This helps in structuring teams and workflow.
 
+## Tree Height, Depth & Breadth
 
+### **1. Height of a Tree**
+
+The **height of a tree** is defined as the **length of the longest path from the root node to a leaf node**. It represents the maximum number of edges from the root to any leaf.
+
+* **Root node height** = The height of the entire tree.
+* **Leaf node height** = Always `0`, as there are no children below it.
+
+#### **How to Calculate the Height of a Tree?**
+
+1. Start at the **root node**.
+2. Recursively find the **height of all child subtrees**.
+3. The height of the tree is `1 + max(height of all child subtrees)`.
+4. If the tree has no nodes, the height is **-1** (for edge-based height) or **0** (for node-based height).
+
+**Example:**
+
+```
+       A
+      / \
+     B   C
+    /   / \
+   D   E   F
+  /
+ G
+```
+
+* `G` is a **leaf node** → Height = `0`
+* `D` has one child `G` → Height = `1`
+* `B` has one child `D` → Height = `2`
+* `E` and `F` are **leaves** → Height = `0`
+* `C` has two children `E` and `F` → Height = `1`
+* `A` (root) has two children `B` (Height `2`) and `C` (Height `1`) → **Height = `3`**
+
+Thus, **Height of Tree = 3**.
+
+### **2. Depth of a Node**
+
+The **depth of a node** is the number of edges from the root to that node.
+
+* **Root node depth** = Always `0`.
+* **Child node depth** = `1 + depth of its parent`.
+
+#### **How to Calculate the Depth of a Node?**
+
+1. Start at the **root node (depth = 0)**.
+2. Move down the tree, increasing depth by **1** at each level.
+3. The depth of a node is the **number of edges from the root to that node**.
+
+**Example:**
+
+```
+mathematicaCopyEdit       A (Depth 0)
+      / \
+     B   C  (Depth 1)
+    /   / \
+   D   E   F  (Depth 2)
+  /
+ G  (Depth 3)
+```
+
+* **Depth(A) = 0** (root node)
+* **Depth(B) = 1**, **Depth(C) = 1** (children of A)
+* **Depth(D) = 2**, **Depth(E) = 2**, **Depth(F) = 2** (children of B and C)
+* **Depth(G) = 3** (child of D)
+
+{% hint style="success" %}
+#### **Edge-Based vs. Node-Based Height**
+
+* **Edge-Based Height**: The number of **edges** in the longest path to a leaf (common in CS).
+* **Node-Based Height**: The number of **nodes** in the longest path (sometimes used in theoretical problems).
+
+For a tree with a **single node**,
+
+* **Edge-Based Height** = `-1`
+* **Node-Based Height** = `0`
+{% endhint %}
+
+### **3. Breadth of a Tree**
+
+The **breadth of a tree** is the **maximum number of nodes at any level**.
+
+For example:
+
+```
+       A
+      / \
+     B   C
+    /   / \
+   D   E   F
+  /
+ G
+```
+
+* Level 0: `A` → 1 node
+* Level 1: `B, C` → 2 nodes
+* Level 2: `D, E, F` → 3 nodes (**maximum**)
+* Level 3: `G` → 1 node
+
+**Breadth of this tree = 3** (since level 2 has the most nodes).
+
+## Balanced and Unbalanced Tree
+
+### **1. What is a Balanced Tree?**
+
+A **Balanced Tree** is a tree in which the height difference between the left and right subtrees of any node is **at most 1**. This ensures that the tree remains efficient for operations like searching, inserting, and deleting.
+
+**Characteristics of a Balanced Tree:**
+
+* The difference in height (Balance Factor) between the left and right subtrees of every node is **at most 1**.
+* Searching, inserting, and deleting operations run in **O(log N)** time.
+* Prevents the tree from becoming too deep and inefficient.
+
+**Examples of Balanced Trees:**
+
+* **AVL Tree:** Self-balancing binary search tree where balance factor is maintained between `-1` and `1`.
+* **Red-Black Tree:** A balanced binary search tree used in many libraries (e.g., TreeMap in Java).
+* **B-Trees & B+ Trees:** Used in databases for indexing.
+* **Heap (Min Heap / Max Heap):** Ensures a balanced structure to maintain efficient extraction of min/max.
+* The height difference between left and right subtrees for every node is **≤1**.
+* **Height = log(N)** → Searching is efficient.
+
+**Example of a Balanced Tree**
+
+```
+        10
+       /  \
+      5    15
+     / \   /  \
+    2   7 12  18
+   / \     \
+  1   3     13
+```
+
+**Balance Factor Calculation**
+
+All nodes have balance factors between `-1` and `1`, so this tree is balanced.
+
+<table data-header-hidden data-full-width="true"><thead><tr><th width="175"></th><th></th><th></th><th></th></tr></thead><tbody><tr><td><strong>Node</strong></td><td><strong>Left Subtree Height</strong></td><td><strong>Right Subtree Height</strong></td><td><strong>Balance Factor (Left - Right)</strong></td></tr><tr><td>10</td><td>3</td><td>3</td><td>0</td></tr><tr><td>5</td><td>2</td><td>2</td><td>0</td></tr><tr><td>15</td><td>1</td><td>2</td><td>-1</td></tr><tr><td>2</td><td>1</td><td>1</td><td>0</td></tr><tr><td>7</td><td>0</td><td>1</td><td>-1</td></tr><tr><td>12</td><td>0</td><td>1</td><td>-1</td></tr><tr><td>18</td><td>0</td><td>0</td><td>0</td></tr></tbody></table>
+
+### **2. What is an Unbalanced Tree?**
+
+An **Unbalanced Tree** is a tree in which the height difference between the left and right subtrees is greater than 1, leading to inefficiencies in operations.
+
+**Characteristics of an Unbalanced Tree:**
+
+* The height of one subtree is much greater than the other.
+* Searching, inserting, and deleting operations can take **O(N)** time instead of **O(log N)**.
+* The tree resembles a **linked list** in extreme cases (degenerate tree).
+* The height of the tree is **N** instead of **log(N)**.
+* Searching for `4` requires **O(N)** operations instead of **O(log N)**.
+
+**Examples of Unbalanced Trees:**
+
+* **Skewed Binary Tree:** All nodes are aligned to one side.
+* **Degenerate Tree:** Every node has only one child, forming a linked list.
+
+**Example of an Unbalanced Tree (Right-Skewed):**
+
+```
+       1
+        \
+         2
+          \
+           3
+            \
+             4
+```
+
+#### **Example of an Unbalanced Tree (Without Being Skewed)**
+
+```
+        10
+       /  \
+      5    15
+     / \      \
+    2   7      18
+   /            \
+  1              20
+```
+
+**Balance Factor Calculation**
+
+* **Node 15 has a balance factor of `-2`**, making the tree **unbalanced**.
+* Although the left subtree of 10 is balanced, the right subtree is **too deep**.
+* Searching for **20** would take longer than expected.
+
+<table data-header-hidden data-full-width="true"><thead><tr><th width="135"></th><th></th><th></th><th></th></tr></thead><tbody><tr><td><strong>Node</strong></td><td><strong>Left Subtree Height</strong></td><td><strong>Right Subtree Height</strong></td><td><strong>Balance Factor (Left - Right)</strong></td></tr><tr><td>10</td><td>2</td><td>3</td><td><strong>-1</strong> (Balanced)</td></tr><tr><td>5</td><td>2</td><td>1</td><td><strong>1</strong> (Balanced)</td></tr><tr><td>15</td><td>0</td><td>2</td><td><strong>-2</strong> (Unbalanced) <strong>X</strong></td></tr><tr><td>2</td><td>1</td><td>0</td><td><strong>1</strong> (Balanced)</td></tr><tr><td>7</td><td>0</td><td>0</td><td><strong>0</strong> (Balanced)</td></tr><tr><td>18</td><td>0</td><td>1</td><td><strong>-1</strong> (Balanced)</td></tr><tr><td>1</td><td>0</td><td>0</td><td><strong>0</strong> (Balanced)</td></tr><tr><td>20</td><td>0</td><td>0</td><td><strong>0</strong> (Balanced)</td></tr></tbody></table>
+
+### **3. Why Should a Tree Be Balanced?**
+
+* **Ensures Fast Operations**: A balanced tree guarantees that operations like searching, inserting, and deleting run in **O(log N)** time.
+* **Prevents Performance Degradation**: An unbalanced tree degenerates into a linked list, leading to inefficient operations.
+* **Used in Many Real-World Applications**: Databases (B-Trees), Memory Management (Heap), and File Systems (Trie) rely on balanced trees.
 
 ## **Types of Trees in Data Structures**
 
