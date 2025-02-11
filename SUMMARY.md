@@ -13,6 +13,8 @@
     * [Custom Tree](algorithm/data-structure-implementation/custom-tree/README.md)
       * [Binary Tree Implementation](algorithm/data-structure-implementation/custom-tree/binary-tree-implementation.md)
       * [Binary Search Tree Implementation](algorithm/data-structure-implementation/custom-tree/binary-search-tree-implementation.md)
+      * [Min Heap Implementation](algorithm/data-structure-implementation/custom-tree/min-heap-implementation.md)
+      * [Max Heap Implementation](algorithm/data-structure-implementation/custom-tree/max-heap-implementation.md)
   * [Mathematical Algorithms](algorithm/mathematical-algorithms/README.md)
     * [Problems - Set 1](algorithm/mathematical-algorithms/problems-set-1.md)
     * [Problems - Set 2](algorithm/mathematical-algorithms/problems-set-2.md)

@@ -41,6 +41,16 @@ Preorder traversal is a method of visiting the nodes of a tree where the **root 
 2. Recursively traverse the **left subtree**.
 3. Recursively traverse the **right subtree**.
 
+```java
+private void preorderRec(TreeNode root) {
+        if (root != null) {
+            System.out.print(root.data + " ");
+            preorderRec(root.left);
+            preorderRec(root.right);
+        }
+}
+```
+
 #### **Characteristics**
 
 * **Starts at the root** and processes it before its children.
@@ -57,13 +67,23 @@ Preorder traversal is a method of visiting the nodes of a tree where the **root 
 
 ### **1.2 Inorder Traversal**
 
-Inorder traversal processes the nodes of a tree by **visiting the left subtree first**, then the **root**, and finally the **right subtree**.
+Inorder traversal processes the nodes of a tree by **visiting the left subtree first**, then the **root**, and finally the **right subtree**. (Ascending order)
 
 #### **Traversal Order**
 
 1. Recursively traverse the **left subtree**.
 2. Visit the **root** node.
 3. Recursively traverse the **right subtree**.
+
+```java
+private void inorderRec(TreeNode root) {
+        if (root != null) {
+            inorderRec(root.left);
+            System.out.print(root.data + " ");
+            inorderRec(root.right);
+        }
+}
+```
 
 #### **Characteristics**
 
@@ -87,6 +107,16 @@ Postorder traversal is a method where the **left subtree is processed first**, f
 1. Recursively traverse the **left subtree**.
 2. Recursively traverse the **right subtree**.
 3. Visit the **root** node.
+
+```java
+private void postorderRec(TreeNode root) {
+        if (root != null) {
+            postorderRec(root.left);
+            postorderRec(root.right);
+            System.out.print(root.data + " ");
+        }
+}
+```
 
 #### **Characteristics**
 

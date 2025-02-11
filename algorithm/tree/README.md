@@ -398,21 +398,71 @@ An **Unbalanced Tree** is a tree in which the height difference between the left
 
 ### **3. Binary Search Tree (BST)**
 
-* A **sorted binary tree** where:
-  * Left subtree **< root**.
-  * Right subtree **> root**.
-* Used for **efficient searching**.
-* **Height**: O(log⁡n) (balanced), O(n) (worst case).
+A **Binary Search Tree (BST)** is a **binary tree** in which:
 
-```plaintext
-        8
-       /  \
-      3    10
-     / \     \
-    1   6     14
-       / \    /
-      4   7  13
+* Each node has at most two children (left and right).
+* The left subtree contains only nodes with values smaller than the parent node.
+* The right subtree contains only nodes with values greater than the parent node.
+* The left and right subtrees must also be BSTs.
+* Used for **efficient searching**.
+* Height: O(log⁡n) (balanced), O(n) (worst case).
+
+#### **Example of a BST**
+
 ```
+        10
+       /  \
+      5    15
+     / \   /  \
+    2   7 12  20
+```
+
+**BST Property Holds:**
+
+* Left subtree of `10` → `{5, 2, 7}` (All values < 10)&#x20;
+* Right subtree of `10` → `{15, 12, 20}` (All values > 10)&#x20;
+* This rule applies to all nodes recursively.
+
+A Non-Binary Search Tree is any tree that does not follow the BST property. It can be:
+
+1. A Binary Tree that does not maintain BST ordering.
+2. A tree that is not even binary (i.e., nodes have more than two children).
+
+**Example of a Non-Binary Search Tree (Binary but not BST)**
+
+```
+        10
+       /  \
+      5    15
+     / \   /  \
+    12  2 7   20
+```
+
+**Not a BST because:**
+
+* The left subtree of `5` contains `12`, but `12 > 5`
+* The right subtree of `15` contains `7`, but `7 < 15`
+
+This is **not a BST**, even though it is a **binary tree**.
+
+**Example of a Non-Binary Search Tree (Non-Binary)**
+
+A **General Tree** where each node can have **more than two children**:
+
+```
+        A
+       /|\
+      B C D
+     / \   \
+    E   F   G
+```
+
+**Not a BST because:**
+
+* **More than two children per node**&#x20;
+* **No strict left < parent < right rule**
+
+This is an **n-ary tree** and does not qualify as a BST.
 
 ### **4. AVL Tree (Self-Balancing BST)**
 
@@ -475,22 +525,78 @@ An **Unbalanced Tree** is a tree in which the height difference between the left
 
 ### **10. Heap (Min Heap, Max Heap)**
 
-* A **complete binary tree** where:
-  * **Min-Heap**: Parent ≤ Children.
-  * **Max-Heap**: Parent ≥ Children.
-* Used in **priority queues**.
-* **Height**: O(log⁡n).
-* **Breadth**: 2^(h−1).
+A **Heap** is a specialized tree-based **data structure** that satisfies the **Heap Property**. It is commonly used for **priority queues, scheduling algorithms, and efficient sorting techniques (Heap Sort).**
 
-```plaintext
-         1
+#### **1. What is a Heap?**
+
+A **Heap** is a **complete binary tree** (every level is fully filled except possibly the last level, which is filled from left to right) that satisfies one of the following properties:
+
+1. **Min Heap Property** → The **parent node is always smaller** than its children.
+2. **Max Heap Property** → The **parent node is always greater** than its children.
+
+#### **2. Min Heap**
+
+A **Min Heap** is a binary tree where:
+
+* The **root node is the smallest element** in the tree.
+* Every parent node has a **value smaller than or equal to its children**.
+* The **smallest element** is always at the root.
+
+**Example of a Min Heap**
+
+```
+         2
        /   \
-      3     5
+      5     7
      / \   / \
-    7   9 11  13
+    10  15 17 25
 ```
 
-(Min-Heap example)
+**Min Heap Property Holds:**
+
+* `2 < 5`, `2 < 7` (Root is smallest)
+* `5 < 10`, `5 < 15`, `7 < 17`, `7 < 25`
+
+**Operations in Min Heap**
+
+| **Operation**                       | **Time Complexity**      |
+| ----------------------------------- | ------------------------ |
+| **Insertion**                       | `O(log N)`               |
+| **Deletion (extract min)**          | `O(log N)`               |
+| **Heapify (convert array to heap)** | `O(N)`                   |
+| **Find Min**                        | `O(1)` (always the root) |
+
+#### **3. Max Heap**
+
+A **Max Heap** is a binary tree where:
+
+* The **root node is the largest element** in the tree.
+* Every parent node has a **value greater than or equal to its children**.
+* The **largest element** is always at the root.
+
+**Example of a Max Heap**
+
+```
+         25
+       /    \
+      17     10
+     /  \   /  \
+    7   5  2   15
+```
+
+&#x20;**Max Heap Property Holds:**
+
+* `25 > 17`, `25 > 10` (Root is largest)
+* `17 > 7`, `17 > 5`, `10 > 2`, `10 > 15`
+
+**Operations in Max Heap**
+
+| **Operation**                       | **Time Complexity**      |
+| ----------------------------------- | ------------------------ |
+| **Insertion**                       | `O(log N)`               |
+| **Deletion (extract max)**          | `O(log N)`               |
+| **Heapify (convert array to heap)** | `O(N)`                   |
+| **Find Max**                        | `O(1)` (always the root) |
 
 ### **11. Suffix Tree**
 
