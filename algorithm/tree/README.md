@@ -2,7 +2,7 @@
 
 ## About Tree Data Structure
 
-A **Tree** is a non-linear data structure used to represent hierarchical relationships between elements. It consists of **nodes** connected by **edges**, with one node designated as the **root**. Unlike arrays, stacks, or linked lists, which store data sequentially, trees are structured to allow for efficient searching, insertion, and deletion operations.
+A **Tree** is a non-linear data structure used to represent hierarchical relationships between elements. It consists of **nodes** connectedT by **edges**, with one node designated as the **root**. Unlike arrays, stacks, or linked lists, which store data sequentially, trees are structured to allow for efficient searching, insertion, and deletion operations.
 
 Trees are fundamental in various computing applications, including databases, networking, artificial intelligence, and file systems. They provide fast lookups, efficient sorting mechanisms, and optimized memory usage for hierarchical data storage.
 
@@ -495,21 +495,41 @@ This is an **n-ary tree** and does not qualify as a BST.
 
 ### **7. Trie (Prefix Tree)**
 
-* A tree where **each path represents a prefix of a word**.
-* Used in **autocomplete, spell-checkers**.
-* **Height**: O(m)where m is the length of the longest word.
+A **Trie** (pronounced "try") is a **tree-based data structure** used to store strings efficiently for fast retrieval. It is also called a **prefix tree** because all common prefixes are shared among words.
 
-```plaintext
-         (root)
-         /  |  \
-        a   b   c
-       / \   \
-      p   r   t
-     /     \
-    p       e
+**Features of a Trie:**
+
+* Each node represents a character in a string.
+* The root node represents an empty string.
+* Each path from the root to a leaf forms a word.
+* Efficient for **prefix-based searching, autocomplete, and dictionary implementations**.
+
+**Structure of a Trie**
+
+A Trie consists of:
+
+1. **Nodes** – Each node contains:
+   * A **character**
+   * A **list of child nodes (pointers to next characters)**
+   * A **flag to mark the end of a word**
+2. **Edges** – Represent connections between characters.
+
+#### **Example of a Trie storing "car", "cat", "bat", and "bar":**
+
+```
+        (root)
+       /     \
+      b       c
+     / \      |
+    a   a     a
+   /     \    |
+  r       t   r
+              |
+              t  
 ```
 
-(Stores "apple", "ape", "bat", "cat")
+**Words Stored:** `"car"`, `"cat"`, `"bat"`, `"bar"`\
+**Common Prefixes are Shared:** `"ca"` is shared between `"car"` and `"cat"`.
 
 ### **8. Segment Tree**
 
