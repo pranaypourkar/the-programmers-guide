@@ -1,41 +1,51 @@
-# Basics
+# OOP Principles
 
-## **Terminology**
+## About
 
-**Java Programming Language**: Java is a high-level, object-oriented programming language developed by Sun Microsystems (now owned by Oracle). It is platform-independent, meaning Java code can run on any platform that has a Java Virtual Machine (JVM). Java is designed to be simple, robust, secure, and portable.
+Object-Oriented Programming (OOP) is a programming paradigm that organizes code into objects, which are instances of classes.&#x20;
 
-**Object-Oriented Programming (OOP)**: Java is primarily an object-oriented programming language. OOP emphasizes the concept of objects, which are instances of classes. Objects have both state (attributes) and behavior (methods). Key principles of OOP include encapsulation, inheritance, and polymorphism.
+## Java follows four key OOP principles
 
-**Object**: An object is an instance of a class. It combines data (attributes) and behavior (methods) related to a particular entity.
+### **1. Encapsulation** 🔒
 
-**Data/Attributes/Fields**: These are the properties or characteristics of an object. They represent the state of the object.
+* Encapsulation is the practice of **hiding internal details** of a class and exposing only necessary functionality.
+* Achieved using **private fields** and **public methods (getters/setters)**.
+* Ensures **data integrity** and prevents **direct modification** of variables.
 
-**Behavior/Methods/Functions**: These are actions that an object can perform. Methods define how an object interacts with other objects or its environment. They can modify the object's state, perform calculations, or trigger other actions.
+### **2. Inheritance** 🔄
 
-**Class:** A class is a blueprint for creating objects. It defines the attributes and behaviors that objects of the class will have.
+* Inheritance allows a class (**child/subclass**) to acquire properties and behaviors from another class (**parent/superclass**).
+* Promotes **code reusability** and **hierarchical relationships**.
+* Java uses the `extends` keyword to implement inheritance.
 
-**Variable:** Variables are containers for storing data values.
+### **3. Polymorphism** 🎭
 
-**Inheritance**: Inheritance is a mechanism where a new class (subclass) inherits properties and behavior from an existing class (superclass). Subclasses can extend the functionality of their superclass and override methods.
+* Polymorphism allows objects to take **multiple forms**, enabling flexibility and dynamic behavior.
+* Two types:
+  * **Method Overloading** (Compile-time polymorphism) – Same method name, different parameters.
+  * **Method Overriding** (Runtime polymorphism) – Child class provides a specific implementation of a parent class method.
 
-**Polymorphism**: Polymorphism allows objects of different classes to be treated as objects of a common superclass. It enables methods to behave differently based on the object they are called on.
+### **4. Abstraction** 🎨
 
-**Encapsulation**: Encapsulation is the bundling of data and methods that operate on the data within a single unit (class). It helps to hide the internal state of an object and restrict access to it.
+* Abstraction simplifies complex systems by showing only **essential features** and hiding unnecessary details.
+* Achieved using **abstract classes** (`abstract` keyword) and **interfaces**.
+* Improves **modularity** and reduces **code complexity**.
 
-**Packages**: Packages are namespaces that organize classes and interfaces into logical groups.
+## **Importance of OOP Concepts**
 
-**Access Modifiers:** Access modifiers (`public`, `private`, `protected`, default) control the visibility and accessibility of classes, variables, and methods.
+OOP is crucial in software development because it:
 
-**Exception Handling**: Java provides exception handling mechanisms (`try`, `catch`, `finally`) to deal with runtime errors and exceptional situations.
+* **Enhances Code Reusability** – Inheritance enables sharing of code, reducing duplication.
+* **Improves Maintainability** – Encapsulation helps in keeping code modular and well-organized.
+* **Supports Scalability** – OOP makes it easier to expand applications without breaking existing code.
+* **Encourages Code Reusability** – Objects and classes allow efficient code sharing across projects.
+* **Enhances Security** – Data hiding through encapsulation prevents unauthorized modifications.
 
-**Garbage Collection**: Java's garbage collector automatically manages memory by reclaiming unused objects, freeing developers from managing memory explicitly.
+{% hint style="danger" %}
+#### **Common misconception about OOP is that it is only for large projects**&#x20;
 
-**Java Standard Library (Java API)**: Java comes with a rich set of pre-built classes and interfaces in its Standard Library (Java API), providing ready-to-use functionality for common tasks.
+Even small projects benefit from code organization and reusability.
+{% endhint %}
 
-**Java Development Kit (JDK)**: JDK is a software development kit used to develop Java applications. It includes the Java Runtime Environment (JRE), compiler, debugger, and other tools.
 
-**Integrated Development Environments (IDEs)**: IDEs like Eclipse, IntelliJ IDEA, and NetBeans provide tools and features to streamline Java development, including code editing, debugging, and project management.
 
-**Subclass** : A subclass is also known as a derived class or a child class. A subclass is a class that inherits attributes and behaviors (fields and methods) from another class called its superclass or parent class. The subclass can extend the functionality of its superclass by adding new methods and fields or by overriding existing methods. It can also have its own unique methods and fields.
-
-\
