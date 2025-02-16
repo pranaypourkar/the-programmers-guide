@@ -236,7 +236,7 @@ class PersonTest {
 
 ## Additional Info
 
-{% content-ref url="../set-4/comparison-and-ordering/object-equality-check.md" %}
-[object-equality-check.md](../set-4/comparison-and-ordering/object-equality-check.md)
+{% content-ref url="../../../concepts/set-4/comparison-and-ordering/object-equality-check.md" %}
+[object-equality-check.md](../../../concepts/set-4/comparison-and-ordering/object-equality-check.md)
 {% endcontent-ref %}
 

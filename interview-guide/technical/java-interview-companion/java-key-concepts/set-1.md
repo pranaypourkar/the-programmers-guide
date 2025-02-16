@@ -16,113 +16,12 @@ So, when we run a Java program from the command line, we can pass arguments to i
 java SomeClassName arg1 arg2 arg3
 ```
 
-
-
 ### Rules for variable names in Java:
 
 * Variable names must begin with a letter (a-z or A-Z), an underscore (\_), or a currency character ($ or €).
 * First character of a variable name cannot be a digit. It can start with currency or underscore also.
 * Variable names are case-sensitive, meaning `myVariable` and `MyVariable` are considered different variables.
 * Variable names cannot be a Java keyword or reserved word, such as `int`, `class`, `public`, etc
-
-
-
-### Shallow Copy vs Deep Copy
-
-**Shallow Copy**
-
-* Shallow copy creates a new object and then copies the reference of the original object into it. In other words, it duplicates the reference, not the underlying data.
-* So, any changes made to the copied object will reflect in the original object and vice versa because they both refer to the same underlying data.
-* Shallow copy is relatively simple and fast, but it can lead to unexpected behavior if you're not careful about how changes propagate across objects.
-
-**Deep Copy**
-
-* Deep copy, on the other hand, creates a new object and then, recursively, copies each field of the original object into the new object.
-* This means that changes made to the copied object won't affect the original object, and vice versa, because they refer to different sets of data.
-* Deep copying can be more complex and computationally expensive, especially for complex objects with nested structures or references to other objects.
-
-**Example 1**
-
-```java
-class Person {
-    String name;
-    int age;
-    
-    public Person(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Person original = new Person("Alice", 30);
-
-        // Shallow copy
-        Person shallowCopy = original;
-        shallowCopy.age = 25; // Changes reflected in both objects
-        System.out.println(original.age); // Output: 25
-
-        // Deep copy
-        Person deepCopy = new Person(original.name, original.age);
-        deepCopy.age = 35; // Changes not reflected in original
-        System.out.println(original.age); // Output: 25
-        System.out.println(deepCopy.age); // Output: 35
-    }
-}
-```
-
-Changes made to the shallow copy (`shallowCopy`) affect the original object (`original`) because they both refer to the same object in memory. However, changes made to the deep copy (`deepCopy`) do not affect the original object because they are separate instances with their own memory space.
-
-**Example 2**
-
-```java
-class Document implements Cloneable {
-    private String content;
-    private List<String> styles;
-
-    public Document(String content, List<String> styles) {
-        this.content = content;
-        this.styles = styles;
-    }
-
-    // Getter methods for content and styles
-
-    @Override
-    public Document clone() throws CloneNotSupportedException {
-        List<String> clonedStyles = new ArrayList<>(this.styles);
-        return new Document(this.content, clonedStyles);
-    }
-}
-```
-
-In this method, a new `ArrayList` (`clonedStyles`) is created, and the elements from the original `styles` list are copied into it. This process of creating a new list and copying elements ensures that the `styles` list of the cloned `Document` object refers to a different memory location than the `styles` list of the original `Document` object. Therefore, changes made to the `styles` list of one `Document` object will not affect the `styles` list of the other `Document` object.
-
-**Example 3**
-
-```java
-public class Orc implements Cloneable { // Implements Cloneable (optional)
-  private String name;
-  private int health;
-  private Weapon weapon; // Reference to a Weapon object
-
-  public Orc(String name, int health, Weapon weapon) {
-    this.name = name;
-    this.health = health;
-    this.weapon = weapon;
-  }
-
-  @Override
-  public Object clone() throws CloneNotSupportedException {
-    Orc clone = new Orc(name, health, weapon); // Shallow copy
-    return clone;
-  }
-}
-```
-
-Here, the `clone()` method creates a new `Orc` object (`clone`) using the constructor with parameters `name`, `health`, and `weapon`. However, since no special handling is done for the `weapon` field, it's simply copied by reference. This means the `weapon` field of the cloned `Orc` object will reference the same `Weapon` object as the original `Orc` object. Therefore, any changes made to the `Weapon` object through the cloned `Orc` object will affect the original `Orc` object, and vice versa. This behavior indicates that it's a shallow copy
-
-
 
 ### Java Interfaces and abstract classes
 
@@ -165,7 +64,7 @@ public class String implements Comparable<String> {
 
 #### Example of Abstract Class
 
-Creating an abstract class `Shape` to represent common behavior and characteristics of all different  shapes. It provides common functionality like `printDetails()`
+Creating an abstract class `Shape` to represent common behavior and characteristics of all different shapes. It provides common functionality like `printDetails()`
 
 <pre class="language-java"><code class="lang-java"><strong>// Shape abstract class
 </strong><strong>public abstract class Shape {
@@ -231,8 +130,6 @@ public abstract class AbstractPaymentGateway implements PaymentProcessor {
 }
 </code></pre>
 
-
-
 ### When is the object created with new keyword
 
 In Java, the object is created with the `new` keyword during **runtime**.
@@ -243,8 +140,6 @@ The `new` keyword plays a crucial role in the object creation process:
 2. **Constructor Call:** It invokes the constructor of the class specified after `new`. The constructor is responsible for initializing the object's state by assigning values to its fields.
 
 Therefore, the `new` keyword initiates object creation and memory allocation at runtime, not during compilation. This allows for dynamic object creation based on your program's needs.
-
-
 
 ### Statically Typed (like Java) and Dynamically Typed Languages
 
@@ -259,8 +154,6 @@ Therefore, the `new` keyword initiates object creation and memory allocation at 
 * **Type inferred at runtime:** The data type of a variable is determined by the value assigned to it at runtime, not by explicit declaration.
 * **Runtime type checking:** Type checking happens during program execution, not before. This offers more flexibility but can lead to runtime errors if incorrect types are used.
 * **Weaker type safety:** Variables can hold different data types throughout the program, potentially causing issues if not handled carefully.
-
-
 
 ### `final` keyword on field, method and class
 
@@ -323,8 +216,6 @@ Consider using `final` when:
 * We have a class that serves a utility purpose and doesn't need subclasses.
 
 By understanding the meaning of `final` with fields, methods, and classes, we can effectively control mutability, inheritance, and code structure in Java programs.
-
-
 
 ### `transient` keyword in java
 
@@ -401,6 +292,3 @@ public class Application {
     }
 }
 ```
-
-
-
