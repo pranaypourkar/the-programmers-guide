@@ -68,13 +68,11 @@ public class Main {
         calc.printResult(sum);
     }
 }
-```
 
-**Output:**
-
-```
+/* Output:
 Welcome to Calculator!
 Result: 15
+*/
 ```
 
 ## **Types of Methods in Java**
@@ -99,8 +97,8 @@ class MathUtil {
     static int square(int x) { return x * x; }
 }
 
-//Usage:
-int result = MathUtil.square(4);
+// Usage:
+// int result = MathUtil.square(4);
 ```
 
 ### **3. Abstract Methods**
@@ -187,14 +185,12 @@ public class Main {
         System.out.println("Cars have " + Car.wheels + " wheels.");
     }
 }
-```
 
-**Output:**
-
-```
+/* Output:
 Toyota is moving at 60 km/h.
 Honda is moving at 50 km/h.
 Cars have 4 wheels.
+*/
 ```
 
 ## **Types of Fields in Java**

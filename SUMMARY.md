@@ -99,7 +99,6 @@
       * [Methods & Fields](java/java-overview/oop-basics/methods-and-fields.md)
       * [Constructors](java/java-overview/oop-basics/constructors.md)
       * [Access Modifiers](java/java-overview/oop-basics/access-modifiers.md)
-      * [Package](java/java-overview/oop-basics/package.md)
     * [OOP Principles](java/java-overview/basics/README.md)
       * [Encapsulation](java/java-overview/basics/encapsulation.md)
       * [Inheritance](java/java-overview/basics/inheritance.md)
