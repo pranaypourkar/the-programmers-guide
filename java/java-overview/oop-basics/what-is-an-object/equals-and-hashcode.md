@@ -2,10 +2,7 @@
 
 ## `equals` Method
 
-### **Purpose**
-
-* The `equals` method is used to check for logical equality between two objects, not reference equality.
-* By default, `equals` in the `Object` class checks if two references point to the same memory address (`this == obj`).
+The `equals` method is used to check for logical equality between two objects, not reference equality. By default, `equals` in the `Object` class checks if two references point to the same memory address (`this == obj`).
 
 ### **Overriding `equals`**
 
@@ -49,10 +46,7 @@ public class Person {
 
 ## `hashCode` Method
 
-### **Purpose**
-
-* The `hashCode` method returns an integer hash code that represents the object’s address in memory (default behavior) or a calculated value based on its fields.
-* Hash-based collections like `HashMap` and `HashSet` rely on `hashCode` for quickly locating and storing objects.
+The `hashCode` method returns an integer hash code that represents the object’s address in memory (default behavior) or a calculated value based on its fields. Hash-based collections like `HashMap` and `HashSet` rely on `hashCode` for quickly locating and storing objects.
 
 ### **`hashCode` Contract**
 
