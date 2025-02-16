@@ -59,3 +59,15 @@ public class Main {
 ```java
 Car car3 = car1;  // Now both car1 and car3 point to the same object
 ```
+
+## When is the object created with new keyword
+
+In Java, the object is created with the `new` keyword during **runtime**.
+
+The `new` keyword plays a crucial role in the object creation process:
+
+1. **Memory Allocation:** It triggers the allocation of memory for the new object on the heap. The heap is a special area of memory dedicated to storing objects in Java.
+2. **Constructor Call:** It invokes the constructor of the class specified after `new`. The constructor is responsible for initializing the object's state by assigning values to its fields.
+
+Therefore, the `new` keyword initiates object creation and memory allocation at runtime, not during compilation. This allows for dynamic object creation based on your program's needs.
+

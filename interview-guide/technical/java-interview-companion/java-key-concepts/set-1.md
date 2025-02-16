@@ -16,13 +16,6 @@ So, when we run a Java program from the command line, we can pass arguments to i
 java SomeClassName arg1 arg2 arg3
 ```
 
-### Rules for variable names in Java:
-
-* Variable names must begin with a letter (a-z or A-Z), an underscore (\_), or a currency character ($ or €).
-* First character of a variable name cannot be a digit. It can start with currency or underscore also.
-* Variable names are case-sensitive, meaning `myVariable` and `MyVariable` are considered different variables.
-* Variable names cannot be a Java keyword or reserved word, such as `int`, `class`, `public`, etc
-
 ### Java Interfaces and abstract classes
 
 Interfaces and abstract classes are both tools for achieving abstraction in Java, but they serve different purposes.
@@ -129,17 +122,6 @@ public abstract class AbstractPaymentGateway implements PaymentProcessor {
   public abstract boolean processPayment(double amount);
 }
 </code></pre>
-
-### When is the object created with new keyword
-
-In Java, the object is created with the `new` keyword during **runtime**.
-
-The `new` keyword plays a crucial role in the object creation process:
-
-1. **Memory Allocation:** It triggers the allocation of memory for the new object on the heap. The heap is a special area of memory dedicated to storing objects in Java.
-2. **Constructor Call:** It invokes the constructor of the class specified after `new`. The constructor is responsible for initializing the object's state by assigning values to its fields.
-
-Therefore, the `new` keyword initiates object creation and memory allocation at runtime, not during compilation. This allows for dynamic object creation based on your program's needs.
 
 ### Statically Typed (like Java) and Dynamically Typed Languages
 

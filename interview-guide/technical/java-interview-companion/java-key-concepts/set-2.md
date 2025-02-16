@@ -18,181 +18,6 @@
 
 Java uses Just In Time compiler to enable high performance. It is used to convert the instructions into bytecodes.
 
-## **What do you mean by Constructor?**
-
-**Constructors can be explained in detail with enlisted points:**
-
-* When a new object is created in a program a constructor gets invoked corresponding to the class.
-* The constructor is a method which has the same name as the class name.
-* If a user doesn’t create a constructor implicitly a default constructor will be created.
-* The constructor can be overloaded.
-* If the user created a constructor with a parameter then he should create another constructor explicitly without a parameter.
-
-## **What is meant by the Local variable and the Instance variable?**
-
-**Local variables** are defined in the method and scope of the variables that exist inside the method itself.
-
-**Instance variable** is defined inside the class and outside the method and the scope of the variables exists throughout the class.
-
-## **What is a Class?**
-
-All Java codes are defined in a Class. It has variables and methods.
-
-**Variables** are attributes which define the state of a class.
-
-**Methods** is a place where the exact business logic has to be done. It contains a set of statements (or) instructions to satisfy the particular requirement.
-
-## **What is an Object?**
-
-In Java, an object is an instance of a class that encapsulates data and behavior. It is a fundamental building block of object-oriented programming (OOP) in Java. An object has state (fields or attributes) and behavior (methods).
-
-An object in Java is a runtime entity that represents an instance of a class. It contains:
-
-* **State**: Represented by fields (also known as attributes or properties) that store data.
-* **Behavior**: Represented by methods that operate on the object's state and perform actions.
-
-## Different ways to create Object?
-
-There are several ways to create objects in Java:
-
-### **1. Using the `new` Keyword**:&#x20;
-
-The most common way to create an object is by using the `new` keyword, which allocates memory for the object and invokes its constructor.
-
-```java
-// Using the new keyword
-MyClass obj = new MyClass();
-```
-
-### **2. Using Reflection:**
-
-Java provides the reflection API to create objects dynamically at runtime.
-
-```java
-try {
-    Class<?> clazz = Class.forName("MyClass");
-    MyClass obj = (MyClass) clazz.getDeclaredConstructor().newInstance();
-} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-    e.printStackTrace();
-}
-```
-
-### **3. Using the `clone()` Method**:&#x20;
-
-The `clone()` method is used to create a copy of an existing object. The class must implement the `Cloneable` interface and override the `clone()` method.
-
-```java
-class MyClass implements Cloneable {
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
-}
-
-MyClass obj1 = new MyClass();
-try {
-    MyClass obj2 = (MyClass) obj1.clone();
-} catch (CloneNotSupportedException e) {
-    e.printStackTrace();
-}
-```
-
-### **4. Using Deserialization**
-
-Objects can be created by deserializing a previously serialized object. This requires implementing the `Serializable` interface.
-
-```java
-// Serializing an object
-try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("object.dat"))) {
-    MyClass obj = new MyClass();
-    out.writeObject(obj);
-} catch (IOException e) {
-    e.printStackTrace();
-}
-
-// Deserializing an object
-try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("object.dat"))) {
-    MyClass obj = (MyClass) in.readObject();
-} catch (IOException | ClassNotFoundException e) {
-    e.printStackTrace();
-}
-```
-
-### **5. Using Factory Methods**:&#x20;
-
-Factory methods are static methods that return instances of a class. These methods can encapsulate the creation logic.
-
-```java
-class MyClass {
-    // Factory method
-    public static MyClass createInstance() {
-        return new MyClass();
-    }
-}
-
-MyClass obj = MyClass.createInstance();
-```
-
-### **6. Using Singleton Pattern:**
-
-The singleton pattern ensures that only one instance of a class is created and provides a global point of access to it.
-
-```java
-class Singleton {
-    private static Singleton instance;
-
-    private Singleton() {
-        // private constructor
-    }
-
-    public static Singleton getInstance() {
-        if (instance == null) {
-            instance = new Singleton();
-        }
-        return instance;
-    }
-}
-
-Singleton obj = Singleton.getInstance();
-```
-
-### **7. Using Builder Pattern**
-
-The builder pattern is a creational pattern that provides a flexible way to construct complex objects.
-
-```java
-class MyClass {
-    private final String field1;
-    private final int field2;
-
-    private MyClass(Builder builder) {
-        this.field1 = builder.field1;
-        this.field2 = builder.field2;
-    }
-
-    public static class Builder {
-        private String field1;
-        private int field2;
-
-        public Builder setField1(String field1) {
-            this.field1 = field1;
-            return this;
-        }
-
-        public Builder setField2(int field2) {
-            this.field2 = field2;
-            return this;
-        }
-
-        public MyClass build() {
-            return new MyClass(this);
-        }
-    }
-}
-
-MyClass obj = new MyClass.Builder().setField1("value").setField2(10).build();
-```
-
 ## **What is Inheritance?**
 
 Inheritance means one class can extend to another class. So that the codes can be reused from one class to another class. The existing class is known as the Super class whereas the derived class is known as a sub class.
@@ -243,28 +68,7 @@ For encapsulation, we need to make all the instance variables private and create
 
 ## **What is Polymorphism?**
 
-Polymorphism means many forms.  Polymorphism is applicable for **overriding** and not for **overloading**.
-
-## **What is meant by Method Overriding?**
-
-**Method overriding happens if the sub-class method satisfies the below conditions with the Super-class method:**\
-
-
-* Method name should be the same
-* The argument should be the same
-* Return type should also be the same
-
-The key benefit of overriding is that the Sub-class can provide some specific information about that sub-class type than the super-class.
-
-## **What is meant by Overloading?**
-
-Method overloading happens for different classes or within the same class.
-
-**For method overloading, sub-class method should satisfy the below conditions with the Super-class method (or) methods in the same class itself:**
-
-* Same method name
-* Different argument types
-* There may be different return types
+Polymorphism means many forms. Polymorphism is applicable for **overriding** and not for **overloading**.
 
 ## **What is meant by Interface?**
 
@@ -447,35 +251,6 @@ public class Main {
 
 <table data-full-width="true"><thead><tr><th width="183">Feature</th><th>Array</th><th>ArrayList</th></tr></thead><tbody><tr><td><strong>Definition</strong></td><td>A fixed-size data structure that holds elements of the same type.</td><td>A resizable array implementation of the List interface.</td></tr><tr><td><strong>Size</strong></td><td>Fixed size, determined at the time of creation.</td><td>Dynamic size, can grow or shrink as needed.</td></tr><tr><td><strong>Performance</strong></td><td>Faster for indexed access and manipulation due to fixed size.</td><td>Slower for indexed access compared to arrays due to resizing and potential overhead.</td></tr><tr><td><strong>Flexibility</strong></td><td>Less flexible; size cannot be changed after creation.</td><td>More flexible; can change size dynamically.</td></tr><tr><td><strong>Initialization</strong></td><td><code>int[] arr = new int[10];</code></td><td><code>ArrayList&#x3C;Integer> list = new ArrayList&#x3C;>();</code></td></tr><tr><td><strong>Element Type</strong></td><td>Can hold primitive types or objects.</td><td>Can only hold objects (wrapper classes for primitives).</td></tr><tr><td><strong>Memory Management</strong></td><td>Continuous memory allocation.</td><td>Non-continuous memory allocation; uses an internal array that grows as needed.</td></tr><tr><td><strong>Methods Available</strong></td><td>Limited to basic operations (e.g., length, clone).</td><td>Extensive methods from the List interface (e.g., add, remove, get, size, contains).</td></tr><tr><td><strong>Iteration</strong></td><td>Requires loop constructs like for, while.</td><td>Supports enhanced for-loop and iterator.</td></tr><tr><td><strong>Type Safety</strong></td><td>Type-safe with primitive types and objects.</td><td>Type-safe with generics; can enforce type constraints.</td></tr><tr><td><strong>Null Values</strong></td><td>Can hold null values.</td><td>Can hold null values.</td></tr><tr><td><strong>Use Case</strong></td><td>Best for fixed-size collections where performance is critical.</td><td>Best for dynamic collections where the size may change frequently.</td></tr><tr><td><strong>Example</strong></td><td><code>int[] numbers = {1, 2, 3, 4, 5};</code></td><td><code>ArrayList&#x3C;Integer> numbers = new ArrayList&#x3C;>(Arrays.asList(1, 2, 3, 4, 5));</code></td></tr><tr><td><strong>Multidimensional</strong></td><td>Supports multidimensional arrays (e.g., <code>int[][] matrix</code>).</td><td>Supports only single-dimensional ArrayLists; multidimensional behavior achieved with nested ArrayLists.</td></tr><tr><td><strong>Capacity Management</strong></td><td>No concept of capacity; fixed size.</td><td>Initial capacity can be specified; grows automatically when capacity is exceeded.</td></tr><tr><td><strong>Primitive Handling</strong></td><td>Directly stores primitive types.</td><td>Requires boxing/unboxing for primitive types (e.g., <code>int</code> to <code>Integer</code>).</td></tr></tbody></table>
 
-## **Difference between String, String Builder, and String Buffer**
-
-<table data-full-width="true"><thead><tr><th width="178">Feature</th><th>String</th><th>StringBuilder</th><th>StringBuffer</th></tr></thead><tbody><tr><td><strong>Mutability</strong></td><td>Immutable</td><td>Mutable</td><td>Mutable</td></tr><tr><td><strong>Thread Safety</strong></td><td>Thread-safe (because it's immutable)</td><td>Not thread-safe</td><td>Thread-safe</td></tr><tr><td><strong>Storage</strong></td><td>String variables are stored in a “constant string pool”</td><td>String values are stored in a stack. If the values are changed then the new value replaces the older value.</td><td>Same as StringBuilder</td></tr><tr><td><strong>Performance</strong></td><td>Slower in operations involving multiple string modifications</td><td>Faster for single-threaded operations involving multiple string modifications</td><td>Slower than <code>StringBuilder</code> due to synchronization overhead</td></tr><tr><td><strong>Usage</strong></td><td>Used when the string value will not change or change infrequently</td><td>Used when the string value will change frequently and thread safety is not a concern</td><td>Used when the string value will change frequently and thread safety is a concern</td></tr><tr><td><strong>Methods Available</strong></td><td>Limited to standard string operations (e.g., length, charAt, substring)</td><td>Extensive methods for modifying strings (e.g., append, insert, delete, reverse)</td><td>Similar to <code>StringBuilder</code> with synchronized methods for thread safety</td></tr><tr><td><strong>Thread Synchronization</strong></td><td>Not applicable</td><td>Not synchronized</td><td>Synchronized methods</td></tr><tr><td><strong>Memory Allocation</strong></td><td>Fixed and cannot be changed after creation</td><td>Can grow dynamically</td><td>Can grow dynamically</td></tr><tr><td><strong>String Pool</strong></td><td>Supports string pool</td><td>Does not support string pool</td><td>Does not support string pool</td></tr><tr><td><strong>Performance in Concatenation</strong></td><td>Poor performance in concatenation (each concatenation creates a new object)</td><td>Better performance for concatenation (modifies the existing object)</td><td>Better performance for concatenation (modifies the existing object, but slower than <code>StringBuilder</code>)</td></tr><tr><td><strong>Example Initialization</strong></td><td><code>String str = "Hello";</code></td><td><code>StringBuilder sb = new StringBuilder("Hello");</code></td><td><code>StringBuffer sb = new StringBuffer("Hello");</code></td></tr><tr><td><strong>Usage Scenario</strong></td><td>Best for read-only or rarely modified strings</td><td>Best for frequently modified strings in single-threaded contexts</td><td>Best for frequently modified strings in multi-threaded contexts</td></tr><tr><td><strong>Example Operations</strong></td><td><code>str.concat(" World");</code></td><td><code>sb.append(" World");</code></td><td><code>sb.append(" World");</code></td></tr></tbody></table>
-
-```java
-// String
-String str = "Hello";
-str = str.concat(" World"); // Creates a new string "Hello World"
-System.out.println(str);    // Output: Hello World
-
-// StringBuilder
-StringBuilder sb = new StringBuilder("Hello");
-sb.append(" World"); // Modifies the existing StringBuilder object
-System.out.println(sb.toString()); // Output: Hello World
-
-// StringBuffer
-StringBuffer sb = new StringBuffer("Hello");
-sb.append(" World"); // Modifies the existing StringBuffer object
-System.out.println(sb.toString()); // Output: Hello World 
-```
-
-## **Explain about Public and Private access specifiers**
-
-Public members are visible in the same package as well as the outside package that is for other packages. Private members are visible in the same class only and not for the other classes in the same package as well as classes in the outside packages.
-
-## **Difference between Default and Protected access specifiers.**
-
-Methods and variables declared in a class without any access specifiers are called default. Default members in a Class are visible to the other classes which are inside the package and invisible to the classes which are outside the package. Protected member is not visible to all classes in the package of the subclass, only to the subclass itself.
-
 ## **Difference between HashMap and HashTable**
 
 <table data-full-width="true"><thead><tr><th width="211">Feature</th><th>HashMap</th><th>Hashtable</th></tr></thead><tbody><tr><td><strong>Thread Safety</strong></td><td>Not thread-safe</td><td>Thread-safe</td></tr><tr><td><strong>Synchronization</strong></td><td>No methods are synchronized</td><td>All methods are synchronized</td></tr><tr><td><strong>Performance</strong></td><td>Faster due to lack of synchronization</td><td>Slower due to synchronization overhead</td></tr><tr><td><strong>Null Keys and Values</strong></td><td>Allows one null key and multiple null values</td><td>Does not allow null keys or null values</td></tr><tr><td><strong>Legacy</strong></td><td>Part of the Java Collections Framework</td><td>Legacy class (exists since JDK 1.0)</td></tr><tr><td><strong>Iteration Order</strong></td><td>Does not guarantee any specific order</td><td>Does not guarantee any specific order</td></tr><tr><td><strong>Initial Capacity and Load Factor</strong></td><td>Default initial capacity of 16 and load factor of 0.75</td><td>Initial capacity is 11 and load factor is 0.75</td></tr><tr><td><strong>Fail-Fast Iterator</strong></td><td>Yes, throws <code>ConcurrentModificationException</code> if the map is modified while iterating</td><td>Yes, but the behavior is undefined</td></tr><tr><td><strong>Use Case</strong></td><td>Best for non-threaded applications</td><td>Best for legacy applications requiring thread safety</td></tr><tr><td><strong>Example Initialization</strong></td><td><code>HashMap&#x3C;String, Integer> map = new HashMap&#x3C;>();</code></td><td><code>Hashtable&#x3C;String, Integer> table = new Hashtable&#x3C;>();</code></td></tr><tr><td><mark style="background-color:yellow;"><strong>Synchronization Control</strong></mark></td><td>Can be synchronized externally using <code>Collections.synchronizedMap(new HashMap&#x3C;>());</code></td><td>Internally synchronized, cannot be made non-synchronized</td></tr></tbody></table>
@@ -541,8 +316,6 @@ The `java.util.Collections` class consists of static methods that operate on or 
   * `unmodifiableCollection(Collection<? extends T> c)`: Returns an unmodifiable view of the specified collection.
   * `unmodifiableList(List<? extends T> list)`: Returns an unmodifiable view of the specified list.
   * `unmodifiableMap(Map<? extends K,? extends V> m)`: Returns an unmodifiable view of the specified map.
-
-
 
 ## **Explain the different lists available in the collection?**
 
@@ -1326,8 +1099,6 @@ public class WaitNotifyExample {
 
 <table data-header-hidden data-full-width="true"><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td><mark style="background-color:red;">Aspect</mark></td><td><mark style="background-color:yellow;"><code>Runnable</code> Interface</mark></td><td><mark style="background-color:green;">Extending <code>Thread</code> Class</mark></td></tr><tr><td><strong>Inheritance</strong></td><td>Does not require extending a specific class</td><td>Requires extending the <code>Thread</code> class</td></tr><tr><td><strong>Flexibility</strong></td><td>Allows the class to extend another class if needed</td><td>Limits the class to only extending <code>Thread</code></td></tr><tr><td><strong>Code Reuse</strong></td><td>Promotes better code organization and reusability</td><td>Limited reuse because the class extends <code>Thread</code>directly</td></tr><tr><td><strong>Separation of Concerns</strong></td><td>Separates thread logic from the thread object itself</td><td>Combines thread logic with the thread object</td></tr><tr><td><strong>Multiple Inheritance</strong></td><td>Allows implementing multiple interfaces</td><td>Does not support multiple inheritance</td></tr><tr><td><strong>Thread Pooling</strong></td><td>Better suited for use with thread pools and executors</td><td>Less flexible with thread pools and executors</td></tr><tr><td><strong>Concurrency</strong></td><td>Encourages better synchronization practices</td><td>Requires careful handling of thread synchronization</td></tr><tr><td><strong>Common Practice</strong></td><td>Preferred approach in modern Java programming</td><td>Older style, still used in certain scenarios</td></tr></tbody></table>
 
-
-
 ### **Difference between start() and run() method of thread class**
 
 <table data-header-hidden data-full-width="true"><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td><mark style="background-color:red;">Aspect</mark></td><td><mark style="background-color:yellow;"><code>start()</code> Method</mark></td><td><mark style="background-color:green;"><code>run()</code> Method</mark></td></tr><tr><td><strong>Invocation</strong></td><td>Invoked to start the execution of a new thread</td><td>Contains the actual code to be executed by the thread</td></tr><tr><td><strong>Execution Context</strong></td><td>Executes in a new thread context</td><td>Executes in the current thread context</td></tr><tr><td><strong>Method Signature</strong></td><td><code>public void start()</code></td><td><code>public void run()</code></td></tr><tr><td><strong>Concurrency</strong></td><td>Initiates thread creation and scheduling</td><td>Does not create a new thread; runs in current thread</td></tr><tr><td><strong>Thread Lifecycle</strong></td><td>Starts the thread lifecycle (NEW -> RUNNABLE)</td><td>No effect on thread lifecycle</td></tr><tr><td><strong>Overriding</strong></td><td>Should not be overridden</td><td>Should be overridden to define thread's task</td></tr><tr><td><strong>Calling Sequence</strong></td><td>Called once per thread instance</td><td>Called when <code>start()</code> method is invoked</td></tr><tr><td><strong>Execution Control</strong></td><td>Returns immediately after starting the thread</td><td>Blocks until <code>run()</code> method completes</td></tr><tr><td><strong>Use Case</strong></td><td>Use to initiate concurrent execution</td><td>Contains the task to be executed by the thread</td></tr><tr><td><strong>Example</strong></td><td><code>thread.start();</code></td><td><code>public void run() { /* task implementation */ }</code></td></tr></tbody></table>
@@ -1439,83 +1210,6 @@ In the example above:
 * The `increment()` method is synchronized to ensure that only one thread can execute it at a time, preventing race conditions when modifying `count`.
 * The `decrement()` method is not synchronized, which could lead to data corruption if accessed concurrently by multiple threads without proper synchronization.
 
-## What is **Serialization** and **Deserialization?**
-
-**Serialization** and **Deserialization** are processes in Java (and in other programming languages) that involve converting an object into a stream of bytes to store its state persistently or to transmit it over a network, and then reconstructing the object from that stream.
-
-{% hint style="info" %}
-Whenever an object is Serialized, the object is stamped with a version ID number for the object class. This ID is called the SerialVersionUID. This is used during deserialization to verify that the sender and receiver that are compatible with the Serialization.
-{% endhint %}
-
-#### Serialization:
-
-* **Definition**: Serialization is the process of converting an object into a byte stream so that it can be stored in a file, sent over a network, or persisted in a database.
-* **Purpose**:
-  * **Persistence**: Save the state of an object for later retrieval.
-  * **Communication**: Transmit objects between applications or across a network.
-* **Mechanism**:
-  * In Java, the `Serializable` interface marks a class as serializable. It is a marker interface without any methods.
-  * Objects of a serializable class can be converted into a stream of bytes using `ObjectOutputStream`.
-  * Variables that are marked as transient will not be a part of the serialization. So we can skip the serialization for the variables in the file by using a transient keyword.
-*   **Example**:
-
-    ```java
-    import java.io.*;
-
-    public class SerializationExample {
-        public static void main(String[] args) {
-            // Creating an object of class Student
-            Student student = new Student("John Doe", 25, "Computer Science");
-
-            // Serialization
-            try {
-                FileOutputStream fileOut = new FileOutputStream("student.ser");
-                ObjectOutputStream out = new ObjectOutputStream(fileOut);
-                out.writeObject(student);
-                out.close();
-                fileOut.close();
-                System.out.println("Object serialized successfully.");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-    ```
-
-#### Deserialization:
-
-* **Definition**: Deserialization is the process of reconstructing an object from a serialized byte stream.
-* **Purpose**:
-  * Restore the state of an object previously serialized.
-  * Receive and reconstruct objects transmitted over a network or read from storage.
-* **Mechanism**:
-  * In Java, use `ObjectInputStream` to read the serialized byte stream and reconstruct the object.
-  * The class of the deserialized object must have the same serialVersionUID as when it was serialized to ensure compatibility.
-*   **Example**:
-
-    ```java
-    import java.io.*;
-
-    public class DeserializationExample {
-        public static void main(String[] args) {
-            // Deserialization
-            try {
-                FileInputStream fileIn = new FileInputStream("student.ser");
-                ObjectInputStream in = new ObjectInputStream(fileIn);
-                Student student = (Student) in.readObject();
-                in.close();
-                fileIn.close();
-                System.out.println("Object deserialized successfully.");
-                System.out.println("Name: " + student.getName());
-                System.out.println("Age: " + student.getAge());
-                System.out.println("Major: " + student.getMajor());
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-    ```
-
 ## What is Volatile Variable and its purpose?
 
 In Java, a **volatile variable** is a type of variable that ensures visibility and atomicity guarantees when accessed or modified by multiple threads. Its primary purpose is to provide a consistent view of the variable's value across all threads, without the need for synchronization mechanisms like locks or `synchronized` blocks.
@@ -1558,4 +1252,3 @@ In this example:
 
 * The `flag` variable is declared as `volatile` to ensure that changes made to `flag` in one thread are immediately visible to other threads.
 * The `doWork()` method continuously checks the `flag` variable's value without the need for explicit synchronization, relying on the visibility guarantee provided by `volatile`
-

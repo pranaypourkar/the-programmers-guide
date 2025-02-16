@@ -137,6 +137,14 @@ class SharedResource {
 
 A **field** in Java (also called an instance variable or attribute) is a variable **declared inside a class**. It represents the **state** or **properties** of an object.
 
+{% hint style="success" %}
+## Local variable and Instance variable
+
+**Local variables** are defined in the method and scope of the variables that exist inside the method itself.
+
+**Instance variable** is defined inside the class and outside the method and the scope of the variables exists throughout the class.
+{% endhint %}
+
 ## **Characteristics of a Field**
 
 1. **Stores Object Data**
