@@ -91,7 +91,7 @@
 * [Java](java/README.md)
   * [Java Overview](java/java-overview/README.md)
     * [OOP Basics](java/java-overview/oop-basics/README.md)
-      * [What is a Class?](java/java-overview/oop-basics/what-is-a-class/README.md)
+      * [What is a Class?](java/java-overview/oop-basics/what-is-a-class.md)
         * [Types of Classes](java/java-overview/oop-basics/what-is-a-class/types-of-classes.md)
       * [What is an Object?](java/java-overview/oop-basics/what-is-an-object/README.md)
         * [Equals and HashCode](java/java-overview/oop-basics/what-is-an-object/equals-and-hashcode.md)

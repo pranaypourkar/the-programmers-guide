@@ -64,3 +64,4 @@ public class Main {
 
 * The **class definition** itself is stored in **method area (Metaspace in Java 8+)**.
 * When an **object** is created, memory is allocated in the **heap**, and the reference variable (like `person1`) is stored in the **stack**.
+
