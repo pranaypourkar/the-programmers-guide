@@ -26,4 +26,100 @@ An **Adjacency Matrix** is a **2D array (V × V matrix)** where **V is the numbe
 Consider the following undirected graph:
 
 ```
+    (A) --1-- (B)
+     |       / |
+     4    3    | 
+     | /       |
+    (C) --2-- (D)
 ```
+
+|   | A | B | C | D |
+| - | - | - | - | - |
+| A | 0 | 1 | 4 | 0 |
+| B | 1 | 0 | 3 | 1 |
+| C | 4 | 3 | 0 | 2 |
+| D | 0 | 1 | 2 | 0 |
+
+## **Adjacency List Representation**
+
+An **Adjacency List** represents a graph as an **array of linked lists (or lists in general)**. Each **vertex** has a list of all the **adjacent vertices** (neighbors).
+
+### **Structure**
+
+For the same undirected graph:
+
+```
+    (A) --1-- (B)
+     |       / |
+     4    3    | 
+     | /       |
+    (C) --2-- (D)
+```
+
+The adjacency list would look like:
+
+```
+A → [(B,1), (C,4)]
+B → [(A,1), (C,3), (D,1)]
+C → [(A,4), (B,3), (D,2)]
+D → [(B,1), (C,2)]
+```
+
+For a **directed graph**, the edges point in **one direction only**.
+
+```
+    A → B
+    A → C
+    B → C
+    C → D
+```
+
+Adjacency List Representation
+
+```
+A → [B, C]
+B → [C]
+C → [D]
+D → []
+```
+
+## **Edge List Representation**
+
+An **Edge List** is a **list of all edges**, where each edge is represented as a **pair (or triplet for weighted graphs)**.
+
+### **Structure**
+
+For the same undirected graph:
+
+```
+    (A) --1-- (B)
+     |       / |
+     4    3    | 
+     | /       |
+    (C) --2-- (D)
+```
+
+The edge list would look like:
+
+| Edge | Start | End | Weight |
+| ---- | ----- | --- | ------ |
+| 1    | A     | B   | 1      |
+| 2    | A     | C   | 4      |
+| 3    | B     | C   | 3      |
+| 4    | B     | D   | 1      |
+| 5    | C     | D   | 2      |
+
+## **Choosing the Right Implementation**
+
+1. **Use Adjacency Matrix when**
+   * The graph is **dense** (i.e., E≈V^2).
+   * Fast edge lookup is required O(1).
+   * The graph doesn't change frequently.
+2. **Use Adjacency List when**
+   * The graph is **sparse** (i.e., E≪ V^2E).
+   * Space efficiency is a concern.
+   * Need to iterate over neighbors frequently.
+3. **Use Edge List when**
+   * The graph changes dynamically (adding/removing edges frequently).
+   * Need a **compact** edge representation.
+   * Algorithms like **Kruskal’s Algorithm** (which sorts edges) are required.
