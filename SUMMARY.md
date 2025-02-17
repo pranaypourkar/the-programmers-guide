@@ -16,6 +16,8 @@
       * [Min Heap Implementation](algorithm/data-structure-implementation/custom-tree/min-heap-implementation.md)
       * [Max Heap Implementation](algorithm/data-structure-implementation/custom-tree/max-heap-implementation.md)
       * [Trie Implementation](algorithm/data-structure-implementation/custom-tree/trie-implementation.md)
+    * [Custom Graph](algorithm/data-structure-implementation/custom-graph/README.md)
+      * [Page 1](algorithm/data-structure-implementation/custom-graph/page-1.md)
   * [Mathematical Algorithms](algorithm/mathematical-algorithms/README.md)
     * [Problems - Set 1](algorithm/mathematical-algorithms/problems-set-1.md)
     * [Problems - Set 2](algorithm/mathematical-algorithms/problems-set-2.md)
