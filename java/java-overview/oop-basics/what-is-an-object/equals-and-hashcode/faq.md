@@ -82,7 +82,7 @@ public class Main {
         Employee e1 = new Employee(1);
         Employee e2 = new Employee(1);
 
-        System.out.println(e1.hashCode() == e2.hashCode()); // Output: true ✅
+        System.out.println(e1.hashCode() == e2.hashCode()); // Output: true
         System.out.println(e1.equals(e2)); // Output: false ❌
     }
 }
@@ -130,7 +130,7 @@ public class Main {
         Person p1 = new Person("Alice");
         Person p2 = new Person("Bob");
 
-        System.out.println(p1.hashCode() == p2.hashCode()); // Output: true ✅ (same hashcode)
+        System.out.println(p1.hashCode() == p2.hashCode()); // Output: true (same hashcode)
         System.out.println(p1.equals(p2)); // Output: false ❌ (different objects)
     }
 }
@@ -182,7 +182,7 @@ public class Main {
         Car c1 = new Car("Toyota");
         Car c2 = new Car("Toyota");
 
-        System.out.println(c1.equals(c2)); // Output: true ✅ (same model)
+        System.out.println(c1.equals(c2)); // Output: true (same model)
         System.out.println(c1.hashCode() == c2.hashCode()); // ❌ May be false (wrong implementation)
     }
 }

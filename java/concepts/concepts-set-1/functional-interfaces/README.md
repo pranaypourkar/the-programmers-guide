@@ -11,6 +11,27 @@ description: Details about functional interfaces in Java.
 * Functional interface is usually marked with `@FunctionalInterface` annotation. While optional, this annotation helps the compiler verify that the interface adheres to the "single abstract method" rule.
 * Java's `java.util.function` package provides several built-in functional interfaces.
 
+{% hint style="danger" %}
+If we annotate an interface with **`@FunctionalInterface`** but declare **more than one abstract method**, the compiler will throw an **error**.
+
+#### **Example of Incorrect Usage**
+
+```java
+@FunctionalInterface
+interface InvalidFunctionalInterface {
+    void method1();
+    void method2(); // ERROR: More than one abstract method
+}
+```
+
+#### **Compiler Error**
+
+```
+InvalidFunctionalInterface is not a functional interface
+multiple non-overriding abstract methods found in interface InvalidFunctionalInterface
+```
+{% endhint %}
+
 ## **Sample Example**
 
 Create a custom functional interface and add sample logic in the main application to use the newly created interface

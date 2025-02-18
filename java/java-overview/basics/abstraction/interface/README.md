@@ -225,53 +225,6 @@ class Dog implements Mammal {
 }
 ```
 
-## **Functional Interfaces**
-
-* A **functional interface** is an interface that has exactly one abstract method. Functional interfaces are ideal for use with **lambda expressions** and **method references** in Java 8 and beyond.
-* The `@FunctionalInterface` annotation is used to indicate a functional interface, but it is optional. When annotation is provided, the compiler ensures that a functional interface contains only one abstract method.
-* Examples: `Runnable`, `Callable`, `Comparator`, and custom single-method interfaces.
-* **Lambda Expressions**: Since Java 8, lambdas are used to instantiate functional interfaces, which greatly simplifies code and improves readability.
-
-```java
-@FunctionalInterface
-interface Greeting {
-    void sayHello(String name);
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Greeting greeting = name -> System.out.println("Hello, " + name);
-        greeting.sayHello("Alice");
-    }
-}
-```
-
-```java
-// Compilation error - Multiple non-overriding abstract methods found in interface test. SomeMain. Greeting
-@FunctionalInterface
-interface Greeting {
-    void sayHello(String name);
-    String sayBye();
-}
-```
-
-## **Marker Interfaces**
-
-A **marker interface** is an interface that does not contain any methods or fields. Its purpose is purely to mark a class that it is associated with some specific behavior. It is used to indicate that a class has some special property or should be treated in a specific way by the JVM or other frameworks.
-
-{% hint style="info" %}
-Can we replace Marker Interface with annotations?
-
-While annotations could theoretically replace marker interfaces, marker interfaces still offer a few benefits. They can be used in `instanceof` checks at runtime, which annotations cannot. Marker interfaces also signify intent at the design level, signaling that a class supports specific behavior. However, in cases where additional metadata is required, annotations can provide more flexibility.
-{% endhint %}
-
-*   **Example**: `Serializable`, `Cloneable`, and `Remote` are marker interfaces in Java.
-
-    ```java
-    interface Serializable { }
-    class Person implements Serializable { }
-    ```
-
 ## **Interface in Design Patterns**
 
 Interface are often foundational in design patterns, particularly in cases like the _Strategy Pattern_, _Observer Pattern_, and _Decorator Pattern_.
