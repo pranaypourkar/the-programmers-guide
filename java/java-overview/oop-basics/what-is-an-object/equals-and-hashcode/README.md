@@ -55,7 +55,7 @@ When overriding `equals`, we **must also override `hashCode`** to maintain consi
 * **If two objects are equal according to `equals`, they must return the same `hashCode`.**
 * **If two objects are not equal, their `hashCode` can be the same or different.**
 
-**Implementing `hashCode`**
+### **Implementing `hashCode`**
 
 * A good `hashCode` function should evenly distribute hash codes across the hash table to minimize collisions.
 * Use prime numbers in hash code calculations, such as `31`, to reduce hash collisions and improve distribution.
@@ -80,8 +80,6 @@ public class Person {
 ```
 {% endhint %}
 
-
-
 Here’s a basic implementation using `name` and `age`:
 
 ```java
@@ -103,6 +101,17 @@ public int hashCode() {
 }
 ```
 
+### **Custom Hashing Strategies**
+
+For advanced scenarios where default hash code algorithms don’t perform well, we can use custom hashing strategies or external libraries like Google Guava’s `Hashing` class, especially for complex objects.
+
+**Effective Use in Large Hash-Based Collections**
+
+To optimize performance in large collections:
+
+* Ensure a balanced distribution by selecting fields that offer a unique representation of the object.
+* Benchmark and analyze hash collisions if the collection is very large or performance-sensitive.
+
 ## Using `equals` and `hashCode` in Collections
 
 * **Hash-based Collections**: Collections like `HashMap`, `HashSet`, and `Hashtable` use `hashCode` for efficient storage and retrieval.
@@ -115,30 +124,17 @@ public int hashCode() {
 **HashMap**: In `HashMap`, the `hashCode` of the key is used to locate the correct bucket. Within the bucket, `equals` is used to find the exact key.
 {% endhint %}
 
-
-
 {% hint style="info" %}
 **Mutable Fields**
 
 * Using mutable fields in `equals` and `hashCode` is risky. If a field changes, the object’s `hashCode` will change, making it “disappear” from collections like `HashMap` or `HashSet`.
-* Solution: Use immutable fields in your `equals` and `hashCode` implementations. If this isn’t possible, avoid modifying fields while the object is in a hash-based collection.
+* Solution: Use immutable fields in our `equals` and `hashCode` implementations. If this isn’t possible, avoid modifying fields while the object is in a hash-based collection.
 
 **Consistency in Subclasses**
 
-* If `equals` and `hashCode` are overridden in a subclass, you risk breaking symmetry if both subclass and superclass instances are compared.
+* If `equals` and `hashCode` are overridden in a subclass, we risk breaking symmetry if both subclass and superclass instances are compared.
 * Solution: If a class hierarchy uses `equals` and `hashCode`, consider marking `equals` as `final` or using delegation.
 {% endhint %}
-
-## **Custom Hashing Strategies**
-
-For advanced scenarios where default hash code algorithms don’t perform well, we can use custom hashing strategies or external libraries like Google Guava’s `Hashing` class, especially for complex objects.
-
-**Effective Use in Large Hash-Based Collections**
-
-To optimize performance in large collections:
-
-* Ensure a balanced distribution by selecting fields that offer a unique representation of the object.
-* Benchmark and analyze hash collisions if the collection is very large or performance-sensitive.
 
 ## Testing `equals` and `hashCode`
 
@@ -220,6 +216,148 @@ class PersonTest {
 }
 ```
 
+## `equals` and `hashCode` in inheritance
+
+When dealing with **`equals()` and `hashCode()` in inheritance**, we must ensure:
+
+1. **Consistency** – If two objects are equal, their hash codes must be the same.
+2. **Symmetry** – If `child.equals(parent)`, then `parent.equals(child)` should also be true.
+3. **Liskov Substitution Principle (LSP)** – A subclass object should behave correctly when treated as a superclass object.
+
+**Example 1: `equals()` and `hashCode()` with inheritance (Correct Approach)**
+
+```java
+import java.util.Objects;
+
+class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Person person = (Person) obj;
+        return age == person.age && Objects.equals(name, person.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
+    }
+}
+
+class Employee extends Person {
+    private String department;
+
+    public Employee(String name, int age, String department) {
+        super(name, age);
+        this.department = department;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) return false;
+        if (obj instanceof Employee employee) {
+            return Objects.equals(department, employee.department);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), department);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person p1 = new Person("John", 30);
+        Person p2 = new Person("John", 30);
+        Employee e1 = new Employee("John", 30, "IT");
+        Employee e2 = new Employee("John", 30, "IT");
+
+        System.out.println(p1.equals(p2)); // true 
+        System.out.println(e1.equals(e2)); // true 
+        System.out.println(p1.equals(e1)); // false (Different classes)
+        System.out.println(e1.hashCode() == e2.hashCode()); // true (Consistent hashCode)
+    }
+}
+```
+
+* `Person` overrides `equals()` and `hashCode()` correctly.
+* `Employee` first **calls `super.equals()`**, ensuring it correctly compares inherited fields.
+* `hashCode()` in `Employee` **includes `super.hashCode()`**, ensuring consistency.
+
+**Example 2: Using `instanceof` for Flexible Inheritance**
+
+If we want a **flexible `equals()`** that allows comparing a subclass with a superclass, we can modify it like this:
+
+```java
+class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Person person)) return false;
+        return age == person.age && Objects.equals(name, person.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
+    }
+}
+
+class Employee extends Person {
+    private String department;
+
+    public Employee(String name, int age, String department) {
+        super(name, age);
+        this.department = department;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!super.equals(obj)) return false;
+        if (obj instanceof Employee employee) {
+            return Objects.equals(department, employee.department);
+        }
+        return true; // Allow `Person.equals(Employee)`
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), department);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person p1 = new Person("John", 30);
+        Employee e1 = new Employee("John", 30, "IT");
+
+        System.out.println(p1.equals(e1)); // true (Allowed by instanceof)
+        System.out.println(e1.equals(p1)); // true (Still symmetric)
+    }
+}
+```
+
+* Using `instanceof` instead of `getClass()` makes `equals()` **flexible**.
+* `Person` objects can be considered **equal to `Employee` objects** if their fields match.
+
 ## Best Practices
 
 1. Always override `hashCode` when we override `equals`.
@@ -230,7 +368,7 @@ class PersonTest {
 
 ## Additional Info
 
-{% content-ref url="../../../concepts/set-4/comparison-and-ordering/object-equality-check.md" %}
-[object-equality-check.md](../../../concepts/set-4/comparison-and-ordering/object-equality-check.md)
+{% content-ref url="../../../../concepts/set-4/comparison-and-ordering/object-equality-check.md" %}
+[object-equality-check.md](../../../../concepts/set-4/comparison-and-ordering/object-equality-check.md)
 {% endcontent-ref %}
 
