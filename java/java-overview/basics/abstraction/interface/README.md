@@ -123,12 +123,70 @@ interface Animal {
 
 ## **Access Modifiers**
 
-Interface methods are implicitly `public`. We cannot have non-public methods in an interface.
+All methods in an interface are implicitly `public` and `abstract` (unless they are `default` or `static`). Private methods were introduced in Java 9 for use inside the interface only. Protected and default (package-private) methods are not allowed in interfaces and will cause compilation error.
 
 ```java
-public interface Animal {
-    void makeSound();  // Implicitly public
+interface MyInterface {
+
+    // Implicitly public and abstract
+    void abstractMethod();
+
+    // Public method (explicitly mentioned)
+    public void publicMethod();
+
+    // Default method (Introduced in Java 8)
+    default void defaultMethod() {
+        System.out.println("Default Method: Allowed in interface since Java 8");
+        privateMethod(); // Private methods can be called inside interface
+    }
+
+    // Static method (Introduced in Java 8)
+    static void staticMethod() {
+        System.out.println("Static Method: Allowed in interface since Java 8");
+    }
+
+    // Private method (Introduced in Java 9) - Used for internal logic
+    private void privateMethod() {
+        System.out.println("Private Method: Only callable inside interface");
+    }
+
+    // ❌ Not Allowed: Protected and Default (Package-Private) methods
+    // protected void protectedMethod();  // Compilation Error
+    // void packagePrivateMethod();       // Compilation Error
 }
+
+// Implementing class
+class MyClass implements MyInterface {
+
+    @Override
+    public void abstractMethod() {
+        System.out.println("Overriding abstractMethod");
+    }
+
+    @Override
+    public void publicMethod() {
+        System.out.println("Overriding publicMethod");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+
+        obj.abstractMethod();  // Works
+        obj.publicMethod();    // Works
+        obj.defaultMethod();   // Works
+
+        // Static method call (only via interface name)
+        MyInterface.staticMethod();
+
+        // ❌ Private methods cannot be called outside interface
+        // obj.privateMethod(); // Compilation Error
+
+        // ❌ Protected and default (package-private) methods are not allowed
+    }
+}
+
 ```
 
 ## **Interface Inheritance**
@@ -138,7 +196,7 @@ Interfaces can extend other interfaces. This means one interface can inherit the
 {% hint style="info" %}
 **How would we handle method conflicts when a class implements multiple interfaces with the same method signature?**
 
-* If two interfaces define the same method signature without a default implementation, there’s no conflict; the implementing class must simply provide its own implementation of the method.
+If two interfaces define the same method signature without a default implementation, there’s no conflict; the implementing class must simply provide its own implementation of the method.
 
 ```java
 interface InterfaceA {
@@ -164,7 +222,7 @@ public class Main {
 }
 ```
 
-* If both interfaces have a default implementation for the same method, the implementing class must override the method to resolve the conflict. This is done by explicitly calling the desired interface’s method using `InterfaceName.super.methodName()` syntax within the overridden method, allowing you to specify which default method to use.
+If both interfaces have a default implementation for the same method, the implementing class must override the method to resolve the conflict. This is done by explicitly calling the desired interface’s method using `InterfaceName.super.methodName()` syntax within the overridden method, allowing you to specify which default method to use.
 
 ```java
 interface InterfaceA {
@@ -221,6 +279,164 @@ class Dog implements Mammal {
     @Override
     public void walk() {
         System.out.println("Walks on four legs");
+    }
+}
+```
+
+## **Nested Interface**
+
+A **nested interface** is an interface declared inside another interface or class. It is useful when we want to logically group interfaces together or restrict their scope to a particular enclosing class. They must be implemented by another class just like a normal interface.
+
+### **Types of Nested Interfaces**
+
+#### **1. Interface inside another Interface**
+
+When an interface is declared inside another interface, it is implicitly public and static. The nested interface can be accessed using OuterInterface.InnerInterface.
+
+```java
+// Outer Interface
+interface OuterInterface {
+
+    // Abstract method in OuterInterface
+    void outerMethod();
+
+    // Nested Interface (implicitly public and static)
+    interface InnerInterface {
+        void innerMethod();
+    }
+}
+
+// Implementing OuterInterface
+class OuterClass implements OuterInterface {
+
+    @Override
+    public void outerMethod() {
+        System.out.println("Implemented outerMethod from OuterInterface");
+    }
+}
+
+// Implementing InnerInterface
+class InnerClass implements OuterInterface.InnerInterface {
+
+    @Override
+    public void innerMethod() {
+        System.out.println("Implemented innerMethod from InnerInterface");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Implementing OuterInterface
+        OuterInterface outerObj = new OuterClass();
+        outerObj.outerMethod();
+
+        // Implementing InnerInterface
+        OuterInterface.InnerInterface innerObj = new InnerClass();
+        innerObj.innerMethod();
+        
+        /* Output:
+        Implemented outerMethod from OuterInterface
+        Implemented innerMethod from InnerInterface
+        */
+    }
+}
+```
+
+#### **2. Interface inside a Class**
+
+When an interface is declared inside a **class**, it can have **any access modifier** (`public`, `private`, `protected`, or default). It is used when the interface should only be used within that class.
+
+{% hint style="success" %}
+* `public interface PublicInner` - Can be accessed and implemented from anywhere.
+* `protected interface ProtectedInner` - Can be accessed and implemented within the same package or subclasses.
+* `interface DefaultInner` _(Package-Private) -_ Can be accessed and implemented only within the same package.
+* `private interface PrivateInner` - Cannot be directly implemented outside `OuterClass`, so it's accessed through a method that returns an anonymous class.
+{% endhint %}
+
+```java
+// Outer class
+class OuterClass {
+
+    // Public Nested Interface
+    public interface PublicInner {
+        void publicMethod();
+    }
+
+    // Protected Nested Interface
+    protected interface ProtectedInner {
+        void protectedMethod();
+    }
+
+    // Default (Package-Private) Nested Interface
+    interface DefaultInner {
+        void defaultMethod();
+    }
+
+    // Private Nested Interface
+    private interface PrivateInner {
+        void privateMethod();
+    }
+
+    // Method to return an instance of PrivateInner using an anonymous class
+    public PrivateInner getPrivateInner() {
+        return new PrivateInner() {
+            @Override
+            public void privateMethod() {
+                System.out.println("Implemented privateMethod() from PrivateInner");
+            }
+        };
+    }
+}
+
+// Implementing the Public Nested Interface
+class PublicClass implements OuterClass.PublicInner {
+    @Override
+    public void publicMethod() {
+        System.out.println("Implemented publicMethod() from PublicInner");
+    }
+}
+
+// Implementing the Protected Nested Interface
+class ProtectedClass implements OuterClass.ProtectedInner {
+    @Override
+    public void protectedMethod() {
+        System.out.println("Implemented protectedMethod() from ProtectedInner");
+    }
+}
+
+// Implementing the Default (Package-Private) Nested Interface
+class DefaultClass implements OuterClass.DefaultInner {
+    @Override
+    public void defaultMethod() {
+        System.out.println("Implemented defaultMethod() from DefaultInner");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Public Nested Interface
+        OuterClass.PublicInner publicObj = new PublicClass();
+        publicObj.publicMethod();
+
+        // Protected Nested Interface
+        OuterClass.ProtectedInner protectedObj = new ProtectedClass();
+        protectedObj.protectedMethod();
+
+        // Default Nested Interface
+        OuterClass.DefaultInner defaultObj = new DefaultClass();
+        defaultObj.defaultMethod();
+
+        // Accessing Private Nested Interface via OuterClass method
+        OuterClass outer = new OuterClass();
+        OuterClass.PrivateInner privateObj = outer.getPrivateInner();
+        privateObj.privateMethod();
+        
+        /* Output:
+        Implemented publicMethod() from PublicInner
+        Implemented protectedMethod() from ProtectedInner
+        Implemented defaultMethod() from DefaultInner
+        Implemented privateMethod() from PrivateInner
+        */
     }
 }
 ```

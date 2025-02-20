@@ -15,13 +15,9 @@ An abstract class in Java is a class that cannot be instantiated directly, meani
 {% endhint %}
 
 {% hint style="warning" %}
-Thread is not a abstract class.
-
-Opposite of Abstract class is concrete class.
-
-Abstract class supports multilevel inheritance.
-
-Interface is also used to achieve abstraction.
+* Thread is not a abstract class.
+* Opposite of Abstract class is concrete class.
+* Abstract class supports multilevel inheritance. Note that Java **does not support multiple inheritance** with classes, but it **supports multilevel inheritance**.
 {% endhint %}
 
 {% hint style="success" %}
@@ -319,6 +315,15 @@ While abstract classes cannot be instantiated directly, they can have constructo
 
 This feature is essential because it allows abstract classes to set up necessary state or dependencies that subclasses rely on. Additionally, since subclasses must call the constructor of the abstract superclass, this approach provides consistency in initialization.
 
+{% hint style="info" %}
+**Constructors in abstract classes** can have **all four access modifiers**: `public`, `protected`, `default` , `private` . However, abstract classes cannot be instantiated directly, so their constructors are used only by subclasses.
+
+* The `public` constructor is accessible everywhere, allowing subclasses to call it.
+* The `protected` constructor can be accessed by subclasses even if they are in different packages.
+* The `default` constructor is accessible only within the same package.
+* A `private` constructor in an abstract class makes it impossible for any subclass to instantiate it. It can be used to prevent subclassing while still allowing static methods or singleton-like behavior.
+{% endhint %}
+
 ```java
 abstract class Account {
     protected double balance;
@@ -373,43 +378,96 @@ class Button extends BaseComponent {
 Other Example
 
 ```java
-// Abstract class with fields
+// Abstract class with multiple constructors
 abstract class Animal {
-    private String name;
 
-    // Constructor
-    public Animal(String name) {
-        this.name = name;
+    // Public Constructor
+    public Animal() {
+        System.out.println("Public Constructor: Animal Created");
     }
 
-    // Getter method for name
-    public String getName() {
-        return name;
+    // Protected Constructor
+    protected Animal(String name) {
+        System.out.println("Protected Constructor: Animal Name - " + name);
     }
 
-    // Abstract method
-    public abstract void makeSound();
+    // Default (package-private) Constructor
+    Animal(int age) {
+        System.out.println("Default Constructor: Animal Age - " + age);
+    }
+
+    // Private Constructor (Cannot be accessed by subclasses)
+    private Animal(boolean isWild) {
+        System.out.println("Private Constructor: Animal Wild - " + isWild);
+    }
 }
 
-// Concrete subclass
+// Subclass extending Animal
 class Dog extends Animal {
-    // Constructor
-    public Dog(String name) {
-        super(name);
+
+    // Calls the public constructor
+    public Dog() {
+        super(); // Calls Animal()
+        System.out.println("Dog Constructor: Dog Created");
     }
 
-    // Implementation of abstract method
-    @Override
-    public void makeSound() {
-        System.out.println(getName() + " barks!");
+    // Calls the protected constructor
+    public Dog(String name) {
+        super(name); // Calls Animal(String)
+        System.out.println("Dog Constructor: Dog Named " + name);
+    }
+
+    // Calls the default constructor
+    public Dog(int age) {
+        super(age); // Calls Animal(int)
+        System.out.println("Dog Constructor: Dog Age " + age);
     }
 }
 
-// Main class
+// Another level of inheritance (Multilevel)
+class Puppy extends Dog {
+
+    public Puppy() {
+        super("Tommy"); // Calls Dog(String) -> Animal(String)
+        System.out.println("Puppy Constructor: Puppy Created");
+    }
+}
+
 public class Main {
     public static void main(String[] args) {
-        Animal dog = new Dog("Buddy");
-        dog.makeSound(); // Output: Buddy barks!
+        System.out.println("---- Creating Dog with public constructor ----");
+        Dog dog1 = new Dog(); 
+
+        System.out.println("\n---- Creating Dog with protected constructor ----");
+        Dog dog2 = new Dog("Buddy");
+
+        System.out.println("\n---- Creating Dog with default constructor ----");
+        Dog dog3 = new Dog(5);
+
+        System.out.println("\n---- Creating Puppy (Multilevel Inheritance) ----");
+        Puppy puppy = new Puppy();
+
+        // ❌ Uncommenting the below line will cause a compilation error because the private constructor is not accessible
+        // Animal animal = new Animal(true);
+        
+        /* Output:
+        ---- Creating Dog with public constructor ----
+        Public Constructor: Animal Created
+        Dog Constructor: Dog Created
+        
+        ---- Creating Dog with protected constructor ----
+        Protected Constructor: Animal Name - Buddy
+        Dog Constructor: Dog Named Buddy
+        
+        ---- Creating Dog with default constructor ----
+        Default Constructor: Animal Age - 5
+        Dog Constructor: Dog Age 5
+        
+        ---- Creating Puppy (Multilevel Inheritance) ----
+        Protected Constructor: Animal Name - Tommy
+        Dog Constructor: Dog Named Tommy
+        Puppy Constructor: Puppy Created
+        */
     }
 }
 ```
@@ -452,7 +510,7 @@ public class Main {
 }
 ```
 
-## Nested Abstract Classess
+## Nested Abstract Class
 
 Abstract class in Java can contain inner abstract classes, inner concrete classes, and static methods within it.
 
