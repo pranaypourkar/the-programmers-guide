@@ -47,7 +47,7 @@ public abstract class Shape {
 
 ### **Abstract Methods**
 
-Abstract methods are method declarations that **don't have a body** (implementation). They are declared using the `abstract` keyword before the method return type. Subclasses that inherit from the abstract class **must provide implementations** for all inherited abstract methods. Abstract methods define the functionality that subclasses must adhere to, promoting a common interface within the class hierarchy.
+Abstract methods are method declarations that **don't have a body** (implementation). They are declared using the `abstract` keyword before the method return type. Subclasses that inherit/extends from the abstract class **must provide implementations** for all inherited abstract methods. Abstract methods define the functionality that subclasses must adhere to, promoting a common interface within the class hierarchy.
 
 ```java
 // Abstract class with abstract method
@@ -79,7 +79,7 @@ Abstract classes can also have concrete methods (methods with a body) that provi
 ```java
 // Abstract class with both abstract and concrete methods
 abstract class AbstractShape {
-    // Abstract method without implementation
+    // Abstract method without implementation (must be implemented by subclasses)
     public abstract double area();
 
     // Concrete method with implementation
@@ -100,6 +100,25 @@ class Circle extends AbstractShape {
     @Override
     public double area() {
         return Math.PI * radius * radius;
+    }
+
+    // Overriding concrete method from AbstractShape
+    @Override
+    public void display() {
+        System.out.println("This is a circle with radius: " + radius);
+    }
+}
+
+// Main class to test
+public class Main {
+    public static void main(String[] args) {
+        AbstractShape shape = new Circle(5.0);
+
+        // Calls overridden method from Circle
+        shape.display();  
+        
+        // Calls implemented abstract method
+        System.out.println("Area: " + shape.area());  
     }
 }
 ```
@@ -132,125 +151,165 @@ public class Main {
 
 Access Modifiers control the visibility and accessibility of classes, methods, and fields. Abstract classes leverage access modifiers to encapsulate certain methods or fields, making them accessible only to specific parts of the program. This capability is useful in complex hierarchies where we want to limit access to certain parts of the abstract class.
 
-### **`public` Modifier**
+### **1. `public` Modifier**
 
-* **Applicability**: Abstract classes and methods can use the `public` modifier to allow maximum visibility. For example, if an abstract method needs to be implemented across packages, it should be declared `public` in the abstract class.
+Abstract classes and methods can use the `public` modifier to allow maximum visibility. For example, if an abstract method needs to be implemented across packages, it should be declared `public` in the abstract class.
 
-```java
-public abstract class Shape {
-    public abstract void draw();  // Accessible from any subclass in any package
-}
+### **2. `protected` Modifier**
 
-class Circle extends Shape {
-    @Override
-    public void draw() {
-        System.out.println("Drawing a Circle");
-    }
-}
-```
+`protected` methods in an abstract class can only be accessed within the same package or by subclasses in other packages. This is useful for methods that should only be available to subclasses but hidden from other classes.
 
-The `draw` method is declared as `public` to make it accessible from any subclass of `Shape`.
+### **3. `default` (Package-Private) Modifier**
 
-### **`protected` Modifier**
+The package-private (default) modifier restricts visibility to within the same package. In an abstract class, a method declared with no access modifier can only be accessed by classes within the same package.
 
-* **Applicability**: `protected` methods in an abstract class can only be accessed within the same package or by subclasses in other packages. This is useful for methods that should only be available to subclasses but hidden from other classes.
+### **4. `private` Modifier**
 
-```java
-abstract class Animal {
-    protected String name;
-
-    protected abstract void sound();  // Accessible only to subclasses
-
-    protected void sleep() {
-        System.out.println(name + " is sleeping.");
-    }
-}
-
-class Dog extends Animal {
-    @Override
-    protected void sound() {
-        System.out.println("Woof! Woof!");
-    }
-}
-```
-
-Here, `sound` and `sleep` are `protected`, so they’re only accessible to `Animal`'s subclasses or other classes within the same package.
-
-### **`default` (Package-Private) Modifier**
-
-* **Applicability**: The package-private (default) modifier restricts visibility to within the same package. In an abstract class, a method declared with no access modifier can only be accessed by classes within the same package.
-
-```java
-abstract class PaymentProcessor {
-    abstract void process();  // Only accessible within the same package
-
-    void validate() {  // package-private method
-        System.out.println("Validating payment...");
-    }
-}
-
-class CreditCardProcessor extends PaymentProcessor {
-    @Override
-    void process() {
-        System.out.println("Processing credit card payment.");
-    }
-}
-```
-
-Here, `process` and `validate` have package-private access. They’re only accessible to classes within the same package.
-
-### **`private` Modifier**
-
-* **Applicability**: In Java, `private` is not allowed for methods declared in an abstract class because it would make them inaccessible to subclasses. However, `private` fields can be used in abstract classes and are accessible only within the class itself.
+In Java, `private` is not allowed for methods declared in an abstract class because it would make them inaccessible to subclasses. However, `private` fields can be used in abstract classes and are accessible only within the class itself.
 
 {% hint style="info" %}
 We can have private concrete methods. It can be used to share common code between concrete methods.
 {% endhint %}
 
+### Example
+
+**AbstractShape class**
+
 ```java
-abstract class BankAccount {
-    private double balance;
+// Abstract class with public, protected, private, and default members
+abstract class AbstractShape {
+    private String shapeName = "Shape"; // Private variable (accessible only within this class)
+    protected String type = "Generic";  // Protected variable (accessible in subclasses)
+    double size = 0.0;                  // Default (package-private) variable
+    public String somePublic = "Public Variable"; // Public variable
 
-    public BankAccount(double balance) {
-        this.balance = balance;
+    // Public constructor
+    public AbstractShape() {
+        System.out.println("AbstractShape Constructor Called");
     }
 
-    public double getBalance() {
-        return balance;
+    // Abstract method (must be implemented by subclasses)
+    public abstract double area();
+
+    // Concrete method (can be overridden)
+    public void display() {
+        System.out.println("This is a " + shapeName);
     }
 
-    public abstract void deposit(double amount);
-}
-
-class SavingsAccount extends BankAccount {
-    public SavingsAccount(double balance) {
-        super(balance);
+    // Private method (not inherited by subclasses)
+    private void privateMethod() {
+        System.out.println("Private method in AbstractShape");
     }
 
-    @Override
-    public void deposit(double amount) {
-        System.out.println("Depositing " + amount);
+    // Protected method (can be accessed in subclasses)
+    protected void protectedMethod() {
+        System.out.println("Protected method in AbstractShape");
+    }
+
+    // Default method (accessible within the same package)
+    void defaultMethod() {
+        System.out.println("Default method in AbstractShape");
     }
 }
 ```
 
-The `balance` field is declared `private`, so it’s encapsulated within `BankAccount`. However, subclasses like `SavingsAccount` can still interact with `balance` through the `getBalance` method, which is `public`.
-
-Compilation error if private methods are declared
+**Circle Class**
 
 ```java
-import lombok.Getter;
+// Concrete subclass extending AbstractShape
+class Circle extends AbstractShape {
+    private double radius;  // Private variable
 
-@Getter
-public abstract class BankAccount {
-    private double balance;
-
-    protected BankAccount(double balance) {
-        this.balance = balance;
+    // Public constructor
+    public Circle(double radius) {
+        this.radius = radius;
+        this.type = "Circle"; // Accessing protected variable from AbstractShape
     }
 
-    // Compilation error - Illegal combination of modifiers 'abstract' and 'private'
-    private abstract void deposit(double amount);
+    // Implementing the abstract method
+    @Override
+    public double area() {
+        return Math.PI * radius * radius;
+    }
+
+    // Overriding a concrete method
+    @Override
+    public void display() {
+        System.out.println("This is a " + type + " with radius: " + radius);
+    }
+
+    // Overriding a protected method
+    @Override
+    protected void protectedMethod() {
+        System.out.println("Protected method overridden in Circle");
+    }
+
+    // Overriding a default method
+    @Override
+    void defaultMethod() {
+        System.out.println("Default method overridden in Circle");
+    }
+}
+```
+
+**Square class**
+
+```java
+// Another subclass to demonstrate inheritance
+class Square extends AbstractShape {
+    private double side;
+
+    public Square(double side) {
+        this.side = side;
+        this.type = "Square";
+    }
+
+    @Override
+    public double area() {
+        return side * side;
+    }
+
+    @Override
+    public void display() {
+        System.out.println("This is a " + type + " with side length: " + side);
+    }
+}
+```
+
+**Main Class**
+
+```java
+// Main class to test
+public class Main {
+    public static void main(String[] args) {
+        AbstractShape circle = new Circle(5.0);
+        AbstractShape square = new Square(4.0);
+
+        // Accessing public methods
+        circle.display();  
+        square.display();
+
+        // Calling overridden method
+        System.out.println("Circle Area: " + circle.area());
+        System.out.println("Square Area: " + square.area());
+
+        // Accessing protected and default methods (only within the package)
+        if (circle instanceof Circle) {
+            ((Circle) circle).protectedMethod();
+            ((Circle) circle).defaultMethod();
+        }
+        
+        /* Output:
+        AbstractShape Constructor Called
+        AbstractShape Constructor Called
+        This is a Circle with radius: 5.0
+        This is a Square with side length: 4.0
+        Circle Area: 78.53981633974483
+        Square Area: 16.0
+        Protected method overridden in Circle
+        Default method overridden in Circle
+        */
+    }
 }
 ```
 
