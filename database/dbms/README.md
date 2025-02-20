@@ -1,4 +1,4 @@
-# What is a DBMS?
+# DBMS
 
 ## About
 
@@ -11,7 +11,7 @@ Database management system is a software which is used to manage the database an
 * **Data Retrieval:** Retrieve the data from the database which can be used by applications for various purposes.
 * **User Administration:** Registering and monitoring users, maintain data integrity, enforcing data security, dealing with concurrency control, monitoring performance and recovering information corrupted by unexpected failure.
 
-## **Key Features of DBMS**
+## **Features of DBMS**
 
 * **Data Modeling:** A DBMS offers tools to define the structure and relationships between different data elements. This ensures data organization and reduces redundancy.
 * **Data Storage and Retrieval:** The DBMS is responsible for storing data efficiently and providing functionalities to search, filter, and retrieve data based on specific criteria.
