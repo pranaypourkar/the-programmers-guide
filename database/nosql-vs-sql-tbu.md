@@ -1,2 +1,0 @@
-# NoSQL vs SQL - TBU
-

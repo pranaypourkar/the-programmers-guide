@@ -1,6 +1,6 @@
 # Bean Scope
 
-## Description
+## About
 
 In Spring, bean scopes define the lifecycle and visibility of beans within the Spring application context. Each scope serves different purposes and is suitable for different scenarios. Choosing the appropriate scope for a bean depends on factors such as concurrency requirements, statefulness, and the intended lifecycle of the bean in the application.
 
@@ -25,7 +25,7 @@ public class DatabaseConnectionPool {
 }
 ```
 
-### **Prototype Scope**:&#x20;
+### **Prototype Scope**:
 
 * **Definition**: A new instance of the bean is created every time it is requested from the Spring IoC container.
 * **Lifecycle**: Each client requesting the bean receives a new, independent instance.
@@ -43,12 +43,12 @@ public class RequestSpecificLogger {
 }
 ```
 
-### **Request Scope**:&#x20;
+### **Request Scope**:
 
 * **Definition**: A new instance of the bean is created for each HTTP request in a web application.
 * **Lifecycle**: The bean instance is bound to the lifecycle of an HTTP request, and a new instance is created for each request.
 * **Usage**: Suitable for beans that need to be scoped to the lifecycle of an HTTP request, such as request-specific controllers or service classes.
-* **Declaration**: Use the `@Scope("request")` annotation or specify the scope attribute as "request" in XML configuration.&#x20;
+* **Declaration**: Use the `@Scope("request")` annotation or specify the scope attribute as "request" in XML configuration.
 * **Example**: User Authentication Context
 * **Use Case**: We have a request-scoped bean representing the authentication context of a user. Each HTTP request to the REST API requires authentication, and the authentication context bean stores information about the authenticated user, such as their username and roles. This ensures that authentication information is scoped to each individual request and does not interfere with other concurrent requests.
 
@@ -79,7 +79,7 @@ public class UserSessionData {
 }
 ```
 
-### **Application Scope (Singleton per Servlet Context)**:&#x20;
+### **Application Scope (Singleton per Servlet Context)**:
 
 * **Definition**: A single instance of the bean is created per servlet context (web application).
 * **Lifecycle**: The bean instance is shared across the entire application, regardless of the number of servlets or users.
@@ -97,7 +97,7 @@ public class ApplicationConfigurationSettings {
 }
 ```
 
-### **Custom Scopes**:&#x20;
+### **Custom Scopes**:
 
 Spring allows defining custom scopes by implementing the `Scope` interface and registering the scope with the Spring IoC container. This allows for flexibility in defining custom bean lifecycle semantics tailored to specific application requirements.
 
@@ -148,10 +148,3 @@ public class CustomScopeConfiguration {
     }
 }
 ```
-
-
-
-
-
-
-

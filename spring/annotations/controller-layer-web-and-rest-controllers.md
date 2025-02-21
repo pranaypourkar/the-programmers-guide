@@ -100,7 +100,7 @@ public String createUser(@RequestBody String user) {
 }
 ```
 
-🔹 `@RequestBody` is used to extract JSON request payload.
+`@RequestBody` is used to extract JSON request payload.
 
 ### **`@PutMapping`**
 
