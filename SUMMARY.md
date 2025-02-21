@@ -61,7 +61,7 @@
   * [API Specification](api/api-specification/README.md)
     * [OpenAPI - TBD](api/api-specification/openapi-tbd.md)
   * [API Design Principles - TBU](api/api-design-principles-tbu/README.md)
-    * [RESTful API Principles - TBU](api/api-design-principles-tbu/restful-api-principles-tbu.md)
+    * [RESTful API Principles](api/api-design-principles-tbu/restful-api-principles.md)
     * [Rate Limiting & Pagination - TBU](api/api-design-principles-tbu/rate-limiting-and-pagination-tbu.md)
     * [Idempotency & Statelessness - TBU](api/api-design-principles-tbu/idempotency-and-statelessness-tbu.md)
   * [API Security & Authentication - TBU](api/api-security-and-authentication-tbu/README.md)
