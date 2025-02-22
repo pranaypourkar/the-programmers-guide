@@ -1,3 +1,3 @@
-# Other Concepts
+# Design Enhancements
 
-Some of the other concepts related to System Design are given here. Delve into the subpages to get more details.
+Some of the concepts related to the enhancement of System Design are given here. Delve into the subpages to get more details.

@@ -131,6 +131,12 @@ Various algorithms to solve the Fibonacci series:
 
 A prime number is a natural number greater than 1 that has no positive divisors other than **1** and **itself**. For example, 2, 3, 5, 7, 11, and 13 are prime numbers. The number 1 is not a prime number, and composite numbers are those that have divisors other than 1 and itself (e.g., 4, 6, 8, etc.).
 
+{% hint style="success" %}
+Every positive integer can be decomposed into a product of primes.
+
+84 = 2^2 x 3^1 x 5^0 x 7^1 x 11^0 x 13^0 x 17^0 ....
+{% endhint %}
+
 ### **1. Basic Division Method**
 
 Check if a number n is divisible by any number from 2 to n−1. If it is not divisible by any of them, it is a prime number.

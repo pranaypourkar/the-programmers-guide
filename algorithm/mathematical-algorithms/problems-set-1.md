@@ -45,6 +45,36 @@ public class SieveOfEratosthenes {
 }
 ```
 
+#### **Time Complexity Analysis**
+
+The algorithm consists of three main parts:
+
+**Step 1: Initializing the Boolean Array**
+
+* We initialize an array of size `n + 1` and set all values to `true`.
+* This requires a **single loop** that runs **O(n)** times.
+
+**Step 2: Marking Non-Prime Numbers**
+
+* We iterate from `p = 2` to `√n`. If `p` is prime, we mark all multiples of `p` starting from `p²` as non-prime.
+* The number of times a number is marked **reduces significantly** for higher values of `p`.
+* **Time Complexity:** **O(n log log n)**
+
+**Step 3: Collecting Prime Numbers**
+
+* We loop through the `isPrime` array and add numbers that are still `true` to the result list.
+* This runs in **O(n)** time
+
+**Space Complexity Analysis**
+
+1. **Boolean `isPrime` array:**
+   * Takes **O(n)** space.
+2. **ArrayList `primes` storing prime numbers:**
+   * The number of primes up to `n` is approximately **O(n / log n)**.
+   * **Space Complexity:** **O(n / log n)**.
+
+**Overall Space Complexity:** O(n)
+
 ## Program to Swap Two Numbers
 
 Approaches based on time and space complexity
