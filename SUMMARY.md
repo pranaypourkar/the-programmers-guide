@@ -20,6 +20,7 @@
       * [Adjacency List](algorithm/data-structure-implementation/custom-graph/adjacency-list.md)
       * [Adjacency Matrix](algorithm/data-structure-implementation/custom-graph/adjacency-matrix.md)
       * [Edge List](algorithm/data-structure-implementation/custom-graph/edge-list.md)
+      * [Bidirectional Search](algorithm/data-structure-implementation/custom-graph/bidirectional-search.md)
   * [Mathematical Algorithms](algorithm/mathematical-algorithms/README.md)
     * [Problems - Set 1](algorithm/mathematical-algorithms/problems-set-1.md)
     * [Problems - Set 2](algorithm/mathematical-algorithms/problems-set-2.md)
