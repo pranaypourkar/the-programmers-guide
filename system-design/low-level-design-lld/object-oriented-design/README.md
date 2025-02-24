@@ -244,8 +244,8 @@ UML (Unified Modeling Language) diagrams help visualize OOD.
 * **Use Case Diagram** → Defines user interactions.
 * **Component Diagram** → Illustrates system components.
 
-{% content-ref url="../../diagrams.md" %}
-[diagrams.md](../../diagrams.md)
+{% content-ref url="../../diagrams/" %}
+[diagrams](../../diagrams/)
 {% endcontent-ref %}
 
 
