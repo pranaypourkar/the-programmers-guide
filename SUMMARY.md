@@ -614,7 +614,7 @@
         * [ActiveMQ - TBU](system-design/high-level-design-hld/event-driven-architecture/technologies-and-frameworks-tbu/activemq-tbu.md)
         * [Kafka - TBU](system-design/high-level-design-hld/event-driven-architecture/technologies-and-frameworks-tbu/kafka-tbu.md)
   * [Deployment Patterns](system-design/deployment-patterns.md)
-  * [Diagrams](system-design/diagrams/README.md)
+  * [Diagrams](system-design/diagrams.md)
     * [Architecture Diagrams](system-design/diagrams/architecture-diagrams/README.md)
       * [Examples](system-design/diagrams/architecture-diagrams/examples.md)
     * [UML Diagrams - TBU](system-design/diagrams/uml-diagrams-tbu.md)
