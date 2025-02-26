@@ -9,13 +9,38 @@ Dynamic Programming (DP) is a powerful technique in computer science and mathema
 * **Optimal Substructure**: A problem exhibits optimal substructure if the optimal solution to the problem can be constructed from the optimal solutions of its subproblems.
 * **Overlapping Subproblems**: The problem can be broken down into subproblems that are solved multiple times during recursion.
 
-## **Steps to Solve a DP Problem**
+## **Approaches to Solve DP**
 
-1. **Characterize the problem**: Identify if it has overlapping subproblems and optimal substructure.
-2. **Define the state (DP table)**: Decide what each state represents in the problem.
-3. **Formulate the recurrence relation**: Write a formula to compute the solution of a state using solutions of smaller states.
-4. **Base cases**: Define the initial values of the DP table.
-5. **Implement**: Use recursion with memoization or iterative bottom-up (tabulation).
+There are two main approaches to implementing DP:
+
+1. **Top-Down Approach (Memoization)**
+2. **Bottom-Up Approach (Tabulation)**
+
+### **Top-Down Approach (Memoization)**
+
+* Solves the problem **recursively** and stores results of subproblems in a **lookup table (memoization)** to avoid redundant calculations.
+* **Breaks the problem down first**, then builds up solutions.
+* Uses **recursion + caching** to store previously computed values.
+
+#### **Steps:**
+
+1. Start solving from the **main problem**.
+2. Break it into **subproblems** recursively.
+3. Store the result of each subproblem in a **cache (array/map)**.
+4. Before computing a subproblem, check if it's already solved (memoization).
+
+### **Bottom-Up Approach (Tabulation)**
+
+* Solves the problem **iteratively** by solving smaller subproblems first and building up to the final solution.
+* Uses **loops** instead of recursion.
+* Stores intermediate results in a **table (array or list)**.
+
+#### **Steps:**
+
+1. Identify the **smallest subproblems** and solve them first.
+2. Use their results to build solutions for **larger subproblems**.
+3. Store all computed values in a **table (array or map)**.
+4. Return the final solution after computing all subproblems.
 
 ## Techniques in Dynamic Programming
 
