@@ -48,7 +48,7 @@
   * [Dynamic Programming](algorithm/dynamic-programming/README.md)
     * [Problems - Set 1](algorithm/dynamic-programming/problems-set-1.md)
   * [Greedy Programming- TBU](algorithm/greedy-programming-tbu.md)
-  * [Backtracking - TBU](algorithm/backtracking-tbu.md)
+  * [Recursion](algorithm/recursion.md)
   * [Parallel Programming](algorithm/parallel-programming.md)
   * [Miscellaneous](algorithm/set-1-miscellaneous/README.md)
     * [Problems - Set 1](algorithm/set-1-miscellaneous/problems-set-1.md)
