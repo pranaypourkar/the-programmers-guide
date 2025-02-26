@@ -70,6 +70,10 @@ PlantUML requires Java (JDK 8 or higher) to run. It can be used in different way
 
 PlantUML supports almost all major UML diagram types:
 
+{% hint style="danger" %}
+Refer to the official diagram for more details on the supported type - [https://plantuml.com/](https://plantuml.com/)
+{% endhint %}
+
 <table data-header-hidden data-full-width="true"><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td><strong>Diagram Type</strong></td><td><strong>Description</strong></td><td><strong>Example Syntax</strong></td></tr><tr><td><strong>Class Diagram</strong></td><td>Represents classes and their relationships</td><td><code>class User { +name: String }</code></td></tr><tr><td><strong>Sequence Diagram</strong></td><td>Shows interaction between objects over time</td><td><code>Alice -> Bob: Hello</code></td></tr><tr><td><strong>Use Case Diagram</strong></td><td>Represents system functionalities and user interactions</td><td><code>User -> (Login)</code></td></tr><tr><td><strong>Activity Diagram</strong></td><td>Models workflows and decision-making</td><td><code>start --> if (Condition?) then</code></td></tr><tr><td><strong>State Diagram</strong></td><td>Shows state transitions in a system</td><td><code>[*] --> Active</code></td></tr><tr><td><strong>Component Diagram</strong></td><td>Represents system components and dependencies</td><td><code>component Database</code></td></tr><tr><td><strong>Deployment Diagram</strong></td><td>Shows hardware and software deployment</td><td><code>node Server { component App }</code></td></tr><tr><td><strong>Object Diagram</strong></td><td>Represents instances of classes at runtime</td><td><code>object user1: User</code></td></tr></tbody></table>
 
 
