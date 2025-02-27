@@ -1,2 +1,0 @@
-# ACID Properties
-
