@@ -619,6 +619,7 @@
       * [Vertical Scaling (Scaling Up)](system-design/high-level-design-hld/scaling/vertical-scaling-scaling-up.md)
       * [Horizontal Scaling (Scaling Out)](system-design/high-level-design-hld/scaling/horizontal-scaling-scaling-out.md)
       * [Auto-Scaling](system-design/high-level-design-hld/scaling/auto-scaling.md)
+      * [Database Scaling via Sharding](system-design/high-level-design-hld/scaling/database-scaling-via-sharding.md)
   * [Performance - TBU](system-design/performance-tbu/README.md)
     * [Response Time Optimization - TBU](system-design/performance-tbu/response-time-optimization-tbu.md)
     * [JVM Performance Tuning - TBU](system-design/performance-tbu/jvm-performance-tuning-tbu.md)
