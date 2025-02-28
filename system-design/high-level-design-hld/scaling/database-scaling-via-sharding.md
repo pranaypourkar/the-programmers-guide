@@ -13,6 +13,10 @@ Database scaling refers to methods used to **handle increased loads** on a datab
 
 Database sharding is a technique used to **split a large database into smaller, independent databases** (called shards) to distribute the workload efficiently. Each shard contains a **subset of the total data** and operates independently, reducing contention and improving performance.
 
+{% hint style="info" %}
+Sharding means splitting the data across multiple machines while ensuring we have a way to figure out which data is on which machine.
+{% endhint %}
+
 **Example**: A user database for a social media platform might be sharded based on **user ID ranges**, where:
 
 * Users **1-1M** → Stored in **Shard 1**
