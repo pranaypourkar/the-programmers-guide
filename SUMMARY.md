@@ -626,7 +626,7 @@
       * [Scenario](system-design/high-level-design-hld/networking-metrics/scenario.md)
     * [System Characteristics](system-design/high-level-design-hld/system-characteristics.md)
     * [Workload Types](system-design/high-level-design-hld/workload-types.md)
-    * [Resilience & Failure Handling - TBU](system-design/high-level-design-hld/resilience-and-failure-handling-tbu.md)
+    * [Resilience & Failure Handling](system-design/high-level-design-hld/resilience-and-failure-handling.md)
   * [Performance - TBU](system-design/performance-tbu/README.md)
     * [Response Time Optimization - TBU](system-design/performance-tbu/response-time-optimization-tbu.md)
     * [JVM Performance Tuning - TBU](system-design/performance-tbu/jvm-performance-tuning-tbu.md)

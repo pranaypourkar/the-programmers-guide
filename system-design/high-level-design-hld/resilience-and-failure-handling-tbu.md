@@ -1,2 +1,0 @@
-# Resilience & Failure Handling - TBU
-
