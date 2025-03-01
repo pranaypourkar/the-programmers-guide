@@ -6,7 +6,7 @@ Event Driven Architecture (EDA) is a software architectural pattern where the fl
 
 In EDA, components communicate with each other primarily through events, rather than through direct function calls or requests. This allows for a decoupled, flexible, and scalable system.&#x20;
 
-<figure><img src="../../../.gitbook/assets/eda (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/eda (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Key Components
 
@@ -45,7 +45,7 @@ In event-driven architecture (EDA), message patterns are the ways in which messa
 * Allows for multiple consumers to listen to the same event.
 * Scalable, as new consumers can be added without affecting the publisher.
 
-<figure><img src="../../../.gitbook/assets/eda-msg-pattern-1 (1).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/eda-msg-pattern-1 (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### 2. **Point-to-Point (Queue-Based) Pattern**
 
@@ -61,7 +61,7 @@ In event-driven architecture (EDA), message patterns are the ways in which messa
 * Ensures that each message is processed only once.
 * Useful for load balancing, where multiple consumers share the same queue.
 
-<figure><img src="../../../.gitbook/assets/eda-msg-pattern-2.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/eda-msg-pattern-2.png" alt="" width="375"><figcaption></figcaption></figure>
 
 ### 3. **Request-Reply Pattern**
 
@@ -77,7 +77,7 @@ In event-driven architecture (EDA), message patterns are the ways in which messa
 * Provides a clear request-response cycle.
 * Suitable for situations where a reply is necessary for continuing a workflow.
 
-<figure><img src="../../../.gitbook/assets/eda-msg-pattern-3.png" alt="" width="326"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/eda-msg-pattern-3.png" alt="" width="326"><figcaption></figcaption></figure>
 
 ### 4. **Event Sourcing Pattern**
 
@@ -95,7 +95,7 @@ In event-driven architecture (EDA), message patterns are the ways in which messa
 * Ability to rebuild state by replaying events, useful for debugging and recovering from failures.
 * Scalable and flexible, as changes can be processed independently.
 
-<figure><img src="../../../.gitbook/assets/eda-msg-pattern-4.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/eda-msg-pattern-4.png" alt="" width="375"><figcaption></figcaption></figure>
 
 ## Benefits of Event-Driven Architecture
 

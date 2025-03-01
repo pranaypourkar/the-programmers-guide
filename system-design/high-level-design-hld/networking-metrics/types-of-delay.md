@@ -586,10 +586,3 @@ The time taken by routers, switches, or end devices to **process** an incoming p
 
 
 
-## **Example**
-
-### Web Page Load Time
-
-Assume a web page request travels **4000 km** via fiber optic cable, passing through **3 routers**, with a **1 MB** page size on a **100 Mbps** connection.
-
-<table><thead><tr><th width="462">Delay Type</th><th>Value</th></tr></thead><tbody><tr><td>Transmission Delay</td><td><strong>80 ms</strong></td></tr><tr><td>Propagation Delay</td><td><strong>20 ms</strong></td></tr><tr><td>Processing Delay</td><td><strong>5 ms × 3 routers = 15 ms</strong></td></tr><tr><td>Queuing Delay</td><td><strong>10 ms</strong></td></tr><tr><td><strong>Total Latency</strong></td><td><strong>125 ms</strong></td></tr></tbody></table>
