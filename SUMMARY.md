@@ -624,7 +624,7 @@
     * [Networking Metrics](system-design/high-level-design-hld/networking-metrics/README.md)
       * [Types of Delay](system-design/high-level-design-hld/networking-metrics/types-of-delay.md)
       * [Scenario](system-design/high-level-design-hld/networking-metrics/scenario.md)
-    * [System Characteristics - TBU](system-design/high-level-design-hld/system-characteristics-tbu.md)
+    * [System Characteristics](system-design/high-level-design-hld/system-characteristics.md)
     * [Workload Types - TBU](system-design/high-level-design-hld/workload-types-tbu.md)
     * [Resilience & Failure Handling - TBU](system-design/high-level-design-hld/resilience-and-failure-handling-tbu.md)
   * [Performance - TBU](system-design/performance-tbu/README.md)
