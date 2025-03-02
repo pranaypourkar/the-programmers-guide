@@ -157,7 +157,7 @@ NATURAL JOIN table2;
 ```
 
 {% hint style="info" %}
-#### Equijoin
+**Equijoin**
 
 An equijoin is any join in which the joining condition uses the equality operator (`=`) to match rows between the tables. It can be used with different types of joins, such as inner joins, outer joins, and self joins.
 {% endhint %}
@@ -175,11 +175,25 @@ FROM table1
 JOIN table2 USING (column_name1, column_name2, ...)
 ```
 
-
-
 ```
 SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
 FROM Orders
 JOIN Customers USING (CustomerID);
 ```
 {% endhint %}
+
+## Implicit and Explicit Joins
+
+Two statements below are equivalent, and it's a matter of personal preference which one to choose. For consistency, we can stick to the explicit join.
+
+```sql
+// Explicit Join
+SELECT CourseName, TeacherName
+FROM Courses INNER JOIN Teachers
+ON Courses.TeacherID = Teachers.TeacherID
+
+// Implicit Join
+SELECT CourseName, TeacherName
+FROM Courses, Teachers
+WHERE Courses.TeacherID = Teachers.TeacherID
+```
