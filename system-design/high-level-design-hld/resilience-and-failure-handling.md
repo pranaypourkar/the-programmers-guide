@@ -97,3 +97,17 @@ To enhance resilience, modern system architectures use various design patterns.
 
 * Runs services in multiple regions to **survive regional failures**.
 * Example: AWS services using **Route 53 global traffic routing**.
+
+## **Netflix Resilience Engineering**
+
+Netflix is known for its highly resilient system design. Some of its resilience strategies include:
+
+1. **Chaos Engineering**
+   * Uses **Chaos Monkey** to randomly terminate instances to test resilience.
+   * Helps identify weaknesses before real failures occur.
+2. **Circuit Breakers & Bulkheads**
+   * Uses **Hystrix** to handle failures in microservices.
+   * Prevents cascading failures across the system.
+3. **Auto Recovery & Self-Healing**
+   * Services automatically restart on failure.
+   * Uses **Eureka Service Discovery** for failover handling.
