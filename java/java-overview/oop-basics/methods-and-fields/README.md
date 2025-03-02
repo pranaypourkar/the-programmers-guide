@@ -9,7 +9,8 @@ A **method** in Java is a block of code that performs a specific task. Methods d
 1. **Encapsulates Behaviour**
    * A method contains reusable logic that can be called multiple times.
 2. **Has a Signature**&#x20;
-   * A method's signature includes **return type, name, parameters, and access modifiers**.
+   * In Java, a method signature consists ONLY of the method name and parameter list (type, order, and number of parameters).
+   * Return type and access modifiers are NOT part of the method signature.
    *   Example:
 
        ```java
@@ -36,6 +37,19 @@ A **method** in Java is a block of code that performs a specific task. Methods d
        ```
 5. **Access Modifiers**&#x20;
    * Determines method visibility (`public`, `private`, `protected`, or package-private).
+
+{% hint style="info" %}
+**Why is Return Type NOT Part of the Method Signature?**
+
+Java does not allow method overloading based **only** on return type.
+
+```java
+int getValue() { return 10; }
+double getValue() { return 10.5; }  // Compilation error (Same signature: `getValue()`)
+```
+{% endhint %}
+
+
 
 ### **Example of Methods in Java**
 

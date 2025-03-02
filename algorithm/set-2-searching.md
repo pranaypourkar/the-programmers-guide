@@ -1,4 +1,4 @@
-# Set 2 - Searching - TBU
+# Searching
 
 ## 1. **Linear Search**
 
@@ -42,7 +42,7 @@ public class LinearSearch {
 }
 ```
 
-#### 2. **Binary Search**
+## 2. **Binary Search**
 
 **Description:** Binary search is used on a sorted array. It works by repeatedly dividing the search interval in half. If the value of the search key is less than the item in the middle of the interval, narrow the interval to the lower half. Otherwise, narrow it to the upper half.
 
@@ -302,8 +302,6 @@ class ExponentialSearch {
     }
 }
 ```
-
-
 
 ## Comparison table
 

@@ -305,3 +305,81 @@ Student s2 = new Student("Alice");
 Student s3 = new Student("Bob", 20);  
 ```
 
+## Can we have Destructors in Java?
+
+Java **does not have destructors** like C++, but it provides **finalization mechanisms** for resource cleanup.
+
+### **Why No Destructors in Java?**
+
+1. **Garbage Collection Handles Memory Cleanup:**
+   * In Java, objects are automatically **garbage collected** when they are no longer referenced.
+   * Unlike C++, where destructors explicitly free memory, Java depends on the **JVM's garbage collector**.
+2. **No Explicit Object Destruction:**
+   * In C++, destructors (`~ClassName()`) are used for **manual cleanup** of allocated memory and resources.
+   * In Java, there is **no direct equivalent** because objects are deallocated by the **JVM's garbage collector**, making explicit destruction unnecessary.
+
+### **Alternatives to Destructors in Java**
+
+#### **1. `finalize()` (Deprecated)**
+
+* Java provided a `finalize()` method in `Object` class as a cleanup mechanism, but it was **unreliable** and has been **deprecated** in Java 9.
+* Called **before garbage collection**, but **not guaranteed** to execute immediately or at all.
+
+```java
+class Example {
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("Finalize method called");
+    }
+}
+```
+
+**Why Avoid `finalize()`?**
+
+* Unpredictable execution (depends on garbage collection timing).
+* Causes performance overhead.
+* Might not run before program exit.
+
+#### **2. `try-with-resources` (Preferred Approach)**
+
+For managing resources like files, database connections, sockets, etc., Java provides the **try-with-resources** mechanism. Classes that implement `AutoCloseable` or `Closeable` can be **automatically closed** when the block exits.
+
+```java
+try (FileReader reader = new FileReader("file.txt")) {
+    // Read file
+} catch (IOException e) {
+    e.printStackTrace();
+} 
+// FileReader automatically closed here
+```
+
+#### **3. Explicit `close()` Method**
+
+For manual cleanup, define a `close()` method and call it explicitly.
+
+```java
+class Resource implements AutoCloseable {
+    void useResource() {
+        System.out.println("Using resource...");
+    }
+
+    @Override
+    public void close() {
+        System.out.println("Resource closed.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        try (Resource res = new Resource()) {
+            res.useResource();
+        } 
+        // Resource gets closed automatically here
+    }
+}
+```
+
+Recommended for managing non-memory resources like files, sockets, database connections.
+
+
+

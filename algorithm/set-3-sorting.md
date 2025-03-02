@@ -1,4 +1,4 @@
-# Set 3 - Sorting
+# Sorting
 
 ## 1. **Bubble Sort**
 
@@ -269,6 +269,8 @@ public class MergeSort {
         System.arraycopy(arr, mid + 1, rightArray, 0, n2);
 
         // Merge the temporary arrays
+        /* Iterate through helper array. Compare the left and right half, copying back
+        the smaller element from the two halves into the original array. */
         int i = 0, j = 0, k = left;
         while (i < n1 && j < n2) {
             if (leftArray[i] <= rightArray[j]) {
@@ -315,7 +317,7 @@ public class MergeSort {
 
 * Best Case: O(nlog⁡n)
 * Average Case: O(nlog⁡n)
-* Worst Case: O(n^2) (rare, can be mitigated with good pivot selection strategies like randomized or median-of-three)
+* Worst Case: O(n^2) (rare, can be mitigated with good pivot selection strategies like randomized or median-of-three). If we repeatedly partition the array (and its sub-arrays) around an element, the array will eventually become sorted. However, as the partitioned element is not guaranteed to be the median (or anywhere near the median), our sorting could be very slow. This is the reason for the 0( n^2) worst case runtime.
 
 **Space Complexity:** O(log⁡n) (in-place)
 
@@ -496,11 +498,11 @@ public class HeapSort {
 
 **Time Complexity:**
 
-* Best Case: O(nk)O(nk)
-* Average Case: O(nk)O(nk)
-* Worst Case: O(nk)O(nk)
+* Best Case: O(nk)
+* Average Case: O(nk)
+* Worst Case: O(nk)
 
-**Space Complexity:** O(n+k)O(n+k)
+**Space Complexity:** O(n+k)
 
 **Use Cases:**
 

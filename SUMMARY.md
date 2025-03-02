@@ -206,6 +206,7 @@
         * [Serialization & Deserialization](java/java-overview/oop-basics/what-is-an-object/serialization-and-deserialization.md)
       * [Methods & Fields](java/java-overview/oop-basics/methods-and-fields/README.md)
         * [Method Overriding & Overloading](java/java-overview/oop-basics/methods-and-fields/method-overriding-and-overloading.md)
+        * [Method Signature & Header](java/java-overview/oop-basics/methods-and-fields/method-signature-and-header.md)
       * [Constructors](java/java-overview/oop-basics/constructors.md)
       * [Access Modifiers](java/java-overview/oop-basics/access-modifiers.md)
     * [OOP Principles](java/java-overview/basics/README.md)
