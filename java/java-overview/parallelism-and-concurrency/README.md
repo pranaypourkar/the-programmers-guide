@@ -10,7 +10,7 @@ OS has two main concepts:
 * **Process**: A process is a task (program) running over a operative system. An operative system can have multiple process running at the same time.
 * **Thread**: A thread is a subtask running over a process (program). A process can have multiple threads running at the same time.
 
-<img src="../../../../.gitbook/assets/image (507).png" alt="" data-size="original">
+<img src="../../../.gitbook/assets/image (507).png" alt="" data-size="original">
 {% endhint %}
 
 {% hint style="info" %}
@@ -38,7 +38,7 @@ An application can be said to be parallel but not concurrent, means it can proce
 
 Concurrency refers to the ability of a system to handle multiple tasks at the same time. It doesn't necessarily mean these tasks are executed simultaneously. Instead, concurrency is about managing the execution of tasks in a way that they appear to run in parallel, even if they are executed on a single processor core. Concurrency creates a illusion of parallelism, however actually the chunks of a task aren’t parallelly processed. Concurrency is when the execution of multiple tasks can overlap.
 
-<figure><img src="../../../../.gitbook/assets/image (5).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (5).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### **Key Characteristics**
 
@@ -74,7 +74,7 @@ Concurrency refers to the ability of a system to handle multiple tasks at the sa
 
 Parallelism involves executing multiple tasks simultaneously. It requires multiple processors or cores, where each core executes a separate task at the same time.
 
-<figure><img src="../../../../.gitbook/assets/image (6).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### **Key Characteristics:**
 
@@ -141,4 +141,4 @@ public class Main3 {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (508).png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (508).png" alt="" width="375"><figcaption></figcaption></figure>
