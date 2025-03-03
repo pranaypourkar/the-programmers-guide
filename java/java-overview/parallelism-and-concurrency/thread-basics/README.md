@@ -1,7 +1,3 @@
----
-hidden: true
----
-
 # Thread Basics
 
 A **thread** is the smallest unit of execution in a program. In Java, every program runs on at least one thread, known as the **main thread**.
