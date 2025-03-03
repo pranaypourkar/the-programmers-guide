@@ -1,6 +1,6 @@
 # ExecutorService Usage
 
-The `ExecutorService` in Java is a higher-level replacement for managing threads and tasks, providing a framework for concurrent task execution. It abstracts away the complexities of creating and managing threads directly. There are a several  ways to delegate tasks for execution to an `ExecutorService.`
+The `ExecutorService` in Java is a higher-level replacement for managing threads and tasks, providing a framework for concurrent task execution. It abstracts away the complexities of creating and managing threads directly. There are a several ways to delegate tasks for execution to an `ExecutorService.`
 
 ## Creating an `ExecutorService`
 
@@ -44,7 +44,7 @@ executorService.shutdown();
 
 ### **`submit(Runnable command)`**:
 
-* The Java `ExecutorService` `submit(Runnable)` method also takes a `Runnable` implementation, but returns a `Future` object. This `Future` object can be used to check if the `Runnable` has finished executing.&#x20;
+* The Java `ExecutorService` `submit(Runnable)` method also takes a `Runnable` implementation, but returns a `Future` object. This `Future` object can be used to check if the `Runnable` has finished executing.
 
 Example:
 
@@ -58,11 +58,9 @@ Future future = executorService.submit(new Runnable() {
 future.get();  //returns null if the task has finished correctly.
 ```
 
-
-
 ### **`submit(Callable<T> task)`**:
 
-* Submits a `Callable` task for execution and returns a `Future` representing the task’s result.&#x20;
+* Submits a `Callable` task for execution and returns a `Future` representing the task’s result.
 
 Example:
 
@@ -176,7 +174,7 @@ executorService.shutdown();
 
 ### `cancel()`
 
-We can cancel a task (`Runnable` or `Callable`) submitted to a Java `ExecutorService` by calling the `cancel()` method on the `Future` returned when the task is submitted. Cancelling the task is only possible if the task has not yet started executing.&#x20;
+We can cancel a task (`Runnable` or `Callable`) submitted to a Java `ExecutorService` by calling the `cancel()` method on the `Future` returned when the task is submitted. Cancelling the task is only possible if the task has not yet started executing.
 
 ```java
 future.cancel();
@@ -209,65 +207,3 @@ if (fixedThreadPool.isTerminated()) {
     System.out.println("All tasks completed");
 }
 ```
-
-## Others Details
-
-### Runnable vs Callable
-
-In Java, both `Runnable` and `Callable` interfaces are used to represent tasks that are intended to be executed by another thread, typically within the context of an `ExecutorService`
-
-#### **1. Runnable Interface**
-
-* **Definition**: The `Runnable` interface is a functional interface that represents a task that can be run by a thread. It contains a single abstract method `run()` that does not return any result and cannot throw checked exceptions.
-*   **Signature**:
-
-    ```java
-    @FunctionalInterface
-    public interface Runnable {
-        void run();
-    }
-    ```
-* **Characteristics**:
-  * **No Return Value**: The `run()` method does not return any value. It is suitable for tasks that perform an action but do not need to return a result.
-  * **No Checked Exceptions**: The `run()` method cannot throw checked exceptions, only runtime exceptions are allowed.
-  * **Common Usage**: Typically used for tasks where the result is not required, such as background tasks or side effects like logging.
-*   **Example**:
-
-    ```java
-    Runnable task = () -> System.out.println("Task is running");
-    Thread thread = new Thread(task);
-    thread.start();
-    ```
-
-#### **2. Callable Interface**
-
-* **Definition**: The `Callable` interface is a functional interface that represents a task that returns a result and may throw a checked exception. It contains a single abstract method `call()`.
-*   **Signature**:
-
-    ```java
-    @FunctionalInterface
-    public interface Callable<V> {
-        V call() throws Exception;
-    }
-    ```
-* **Characteristics**:
-  * **Return Value**: The `call()` method returns a result of type `V`. This makes `Callable` more powerful when you need to return a result after the task's execution.
-  * **Checked Exceptions**: The `call()` method can throw checked exceptions, making it more flexible for tasks that might encounter errors during execution.
-  * **Common Usage**: Used when you need to perform a task that returns a result, such as computing a value, processing data, or any operation where the outcome needs to be captured.
-*   **Example**:
-
-    ```java
-    Callable<Integer> task = () -> {
-        return 42;
-    };
-    ExecutorService executor = Executors.newFixedThreadPool(1);
-    Future<Integer> future = executor.submit(task);
-    Integer result = future.get(); // Returns 42
-    ```
-
-
-
-<table data-full-width="true"><thead><tr><th width="211">Aspect</th><th>Runnable</th><th>Callable</th></tr></thead><tbody><tr><td><strong>Return Type</strong></td><td><code>void</code></td><td>Generic type <code>V</code></td></tr><tr><td><strong>Method</strong></td><td><code>run()</code></td><td><code>call()</code></td></tr><tr><td><strong>Checked Exceptions</strong></td><td>Cannot throw checked exceptions</td><td>Can throw checked exceptions</td></tr><tr><td><strong>Use Case</strong></td><td>Tasks that don't require a result</td><td>Tasks that need to return a result</td></tr><tr><td><strong>Integration with ExecutorService</strong></td><td>Submitted using <code>execute(Runnable)</code> or <code>submit(Runnable)</code></td><td>Submitted using <code>submit(Callable&#x3C;V>)</code></td></tr></tbody></table>
-
-
-
