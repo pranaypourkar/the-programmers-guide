@@ -225,6 +225,8 @@
         * [Creating Threads](java/java-overview/parallelism-and-concurrency/thread-basics/creating-threads.md)
         * [Thread Lifecycle & States](java/java-overview/parallelism-and-concurrency/thread-basics/thread-lifecycle-and-states.md)
         * [Runnable & Callable](java/java-overview/parallelism-and-concurrency/thread-basics/runnable-and-callable.md)
+        * [Types of Threads](java/java-overview/parallelism-and-concurrency/thread-basics/types-of-threads.md)
+        * [Thread Priority](java/java-overview/parallelism-and-concurrency/thread-basics/thread-priority.md)
       * [Identify Thread Concurrency or Parallelism](java/java-overview/parallelism-and-concurrency/identify-thread-concurrency-or-parallelism.md)
     * [Keywords](java/java-overview/keywords/README.md)
       * [this](java/java-overview/keywords/this.md)
