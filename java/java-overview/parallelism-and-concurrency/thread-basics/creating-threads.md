@@ -274,6 +274,8 @@ public class VirtualThreadExample {
 
 After creating a new thread, the **main thread** continues to execute **concurrently** (parallelly) with the newly created thread.
 
+### Example
+
 ```java
 public class MyThread extends Thread {
 
@@ -291,5 +293,86 @@ public class MyThread extends Thread {
 }
 ```
 
+```java
+public class MainThreadExample {
 
+    public static void main(String[] args) {
+        MyThread thread = new MyThread();
+        thread.start(); // New thread starts
 
+        // Main thread continues to execute in parallel
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Main Thread: " + i);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        
+        /* Output - The output order may vary due to thread scheduling
+        Child Thread: 1
+        Main Thread: 1
+        Main Thread: 2
+        Child Thread: 2
+        Main Thread: 3
+        Child Thread: 3
+        Main Thread: 4
+        Child Thread: 4
+        Main Thread: 5
+        Child Thread: 5 
+        */
+    }
+}
+```
+
+### **How it Works?**
+
+1. The **main thread** starts execution from `main()`.
+2. It creates a **new thread** (`MyThread`) and starts it using `start()`.
+3. The **new thread** (`run()`) runs **independently** while the **main thread** continues executing its own tasks.
+4. **Both threads execute concurrently**, and the **CPU switches** between them using the **scheduler**.
+
+### **Concurrency vs. Parallelism**
+
+1. **Concurrency**:
+   * Multiple threads/tasks **overlap** in execution but may **not execute at the exact same instant**.
+   * The **CPU switches** between threads rapidly, giving the illusion of simultaneous execution.
+   * Occurs in **single-core** or **multi-core** systems.
+2. **Parallelism**:
+   * Multiple threads/tasks **execute at the exact same time** on **different CPU cores**.
+   * Requires a **multi-core processor** to truly run tasks simultaneously.
+
+### **Why "Both threads execute concurrently" and not "parallelly"?**
+
+* In Java, when we create a new thread, it **does not guarantee** that it will run **on a separate core**.
+* Java threads are managed by the **JVM and the OS scheduler**, which may **time-share** them on a single CPU.
+* If we have a **single-core CPU**, the threads can only run **concurrently** by switching back and forth.
+* If we have a **multi-core CPU**, the threads **may** run truly in parallel, but this depends on OS scheduling.
+
+### **Example of Concurrency vs. Parallelism**
+
+**1. Concurrent Execution (Single-Core CPU)**
+
+```
+Time  | Thread-1 | Thread-2
+--------------------------------
+T1    | Running  | -
+T2    | -        | Running
+T3    | Running  | -
+T4    | -        | Running
+```
+
+_(Threads switch rapidly, but only one runs at a time.)_
+
+**2. Parallel Execution (Multi-Core CPU)**
+
+```
+Time  | Thread-1 | Thread-2
+--------------------------------
+T1    | Running  | Running
+T2    | Running  | Running
+T3    | Running  | Running
+```
+
+_(Both threads run simultaneously on different CPU cores.)_
