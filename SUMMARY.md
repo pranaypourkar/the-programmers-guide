@@ -387,6 +387,7 @@
   * [Core Packages](java/core-packages/README.md)
     * [java.lang](java/core-packages/java.lang/README.md)
       * [java.lang.System](java/core-packages/java.lang/java.lang.system.md)
+      * [java.lang.Thread](java/core-packages/java.lang/java.lang.thread.md)
   * [Code Troubleshoot](java/code-troubleshoot/README.md)
     * [Thread Dump](java/code-troubleshoot/thread-dump.md)
     * [Heap Dump](java/code-troubleshoot/heap-dump.md)
