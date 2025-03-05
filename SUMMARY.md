@@ -230,6 +230,7 @@
         * [Thread Resource Sharing](java/java-overview/parallelism-and-concurrency/thread-basics/thread-resource-sharing.md)
         * [Thread Synchronization](java/java-overview/parallelism-and-concurrency/thread-basics/thread-synchronization/README.md)
           * [Why is Synchronization Needed?](java/java-overview/parallelism-and-concurrency/thread-basics/thread-synchronization/why-is-synchronization-needed.md)
+        * [Thread Starvation](java/java-overview/parallelism-and-concurrency/thread-basics/thread-starvation.md)
       * [Identify Thread Concurrency or Parallelism](java/java-overview/parallelism-and-concurrency/identify-thread-concurrency-or-parallelism.md)
     * [Keywords](java/java-overview/keywords/README.md)
       * [this](java/java-overview/keywords/this.md)
