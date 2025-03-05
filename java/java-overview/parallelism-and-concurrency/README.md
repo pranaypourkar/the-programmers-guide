@@ -2,7 +2,7 @@
 
 ## About
 
-Parallelism and Concurrency are both important concepts in asynchronous computation, but they are distinct and address different aspects of task execution.
+Parallelism and Concurrency are both important concepts, but they are distinct and address different aspects of task execution.
 
 {% hint style="info" %}
 OS has two main concepts:
