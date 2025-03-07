@@ -1,4 +1,8 @@
-# Java Internals - TBU
+---
+hidden: true
+---
+
+# Java Internals
 
 * **Overview**
   * Brief introduction to the inner workings of Java.
