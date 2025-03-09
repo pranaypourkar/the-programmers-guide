@@ -218,9 +218,54 @@ public class StackExample {
 * **Automatic deallocation** when a method **completes execution**.
 * No need for **Garbage Collection**.
 
+### **Common Stack Memory Issues**
 
+#### **1. `StackOverflowError` (Infinite Recursion)**
+
+If the **stack limit is exceeded**, JVM throws a **`StackOverflowError`**. This happens with **deep recursion** or **excessive method calls**.
+
+**Example: StackOverflowError (Infinite Recursion)**
+
+```java
+public class StackOverflowExample {
+    public static void recursiveMethod() {
+        recursiveMethod(); // No termination condition
+    }
+
+    public static void main(String[] args) {
+        recursiveMethod();
+    }
+}
+```
+
+#### **2. Large Local Variables & Deep Recursion**
+
+* Large **arrays or deep recursion** can consume stack memory quickly.
+* Use **iterative approaches instead of recursion**.
+
+**Example: Large Local Variable Consuming Stack**
+
+```java
+public class LargeStackUsage {
+    public static void largeMethod() {
+        int[] largeArray = new int[100000]; // Large allocation
+    }
+
+    public static void main(String[] args) {
+        largeMethod();
+    }
+}
+```
 
 ### Metaspace (Class Metadata)
+
+Metaspace is a **memory area in JVM** introduced in **Java 8** that replaces **PermGen (Permanent Generation)**. It stores **class metadata**, including class definitions, method information, and static variables.
+
+### **Why Metaspace Replaced PermGen?**
+
+* **No fixed size** → Grows dynamically using native memory.
+* **Eliminates `OutOfMemoryError: PermGen space`**.
+* **Improves performance** with better garbage collection for class metadata.
 
 
 
