@@ -361,6 +361,7 @@
     * [Java Versions](java/java-features-by-version/java-versions/README.md)
       * [Scoped Values](java/java-features-by-version/java-versions/scoped-values.md)
       * [Unnamed Variables & Patterns](java/java-features-by-version/java-versions/unnamed-variables-and-patterns.md)
+      * [Java 8](java/java-features-by-version/java-versions/java-8.md)
     * [Java Distributions](java/java-features-by-version/java-distributions.md)
     * [FAQ](java/java-features-by-version/faq.md)
   * [Java Internals](java/java-internals/README.md)
