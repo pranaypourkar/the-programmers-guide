@@ -40,7 +40,9 @@ Spring Boot is built on top of Spring Framework and simplifies configuration.
 
 ## **How to Check the Spring & Spring Boot Versions?**
 
-### **Check in `pom.xml` (Maven)**
+### **1. Checking Spring Boot Version in `pom.xml` (Maven)**
+
+The Spring Boot version is specified in the `parent` section:
 
 ```xml
 <parent>
@@ -50,15 +52,41 @@ Spring Boot is built on top of Spring Framework and simplifies configuration.
 </parent>
 ```
 
-Run:
+Since Spring Boot manages Spring Framework dependencies, this version determines which Spring Framework version is used.
+
+### **2. Checking the Spring Framework Version**
+
+#### **Method 1: Use `mvn dependency:tree` (Maven)**
+
+Run the following command in your project directory:
 
 ```sh
-mvn dependency:tree | grep spring
+mvn dependency:tree | grep spring-core
 ```
 
-### **Check via Spring Boot Actuator**
+This will output something like:
 
-If we have the **Spring Boot Actuator** dependency:
+```
+[INFO] org.springframework:spring-core:jar:6.0.11:compile
+```
+
+Here, **Spring Framework version is `6.0.11`**.
+
+#### **Method 2: Check in `dependencyManagement`**
+
+If we're **not using** `spring-boot-starter-parent`, Spring Framework version may be declared manually:
+
+```xml
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-core</artifactId>
+    <version>5.3.30</version>  <!-- Spring Framework Version -->
+</dependency>
+```
+
+#### **Method 3: Check at Runtime via Spring Boot Actuator**
+
+If we have Spring Boot Actuator enabled:
 
 ```xml
 <dependency>
@@ -67,11 +95,26 @@ If we have the **Spring Boot Actuator** dependency:
 </dependency>
 ```
 
-Then, visit:
+Then visit below url.
 
 ```
 http://localhost:8080/actuator/info
 ```
 
+This will display Spring Boot and Spring Framework versions.
 
+### **3. Checking in `META-INF/MANIFEST.MF`**
 
+If running a **Spring Boot JAR**, check:
+
+```sh
+unzip -p myapp.jar META-INF/MANIFEST.MF | grep Spring
+```
+
+or inside the JAR under:
+
+```
+BOOT-INF/lib/spring-core-*.jar
+```
+
+This file name contains the **Spring Framework version**.
