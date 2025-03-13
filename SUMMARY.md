@@ -506,6 +506,7 @@
   * [FAQs](maven/faqs/README.md)
     * [Fixing Maven SSL Issues: Unable to Find Valid Certification Path](maven/faqs/fixing-maven-ssl-issues-unable-to-find-valid-certification-path.md)
 * [Spring](spring/README.md)
+  * [Versioning](spring/versioning.md)
   * [Spring Overview](spring/spring-overview/README.md)
     * [Spring Core](spring/spring-overview/spring-core/README.md)
       * [Dependency Injection (DI)](spring/spring-overview/spring-core/dependency-injection-di.md)
