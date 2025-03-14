@@ -8,7 +8,7 @@ In Spring, bean scopes define the lifecycle and visibility of beans within the S
 
 ### **Singleton Scope**:
 
-* <mark style="background-color:green;">**Default Scope**</mark><mark style="background-color:green;">:</mark> If no scope is specified, beans are by default singleton scoped.
+* **Default Scope**: If no scope is specified, beans are by default singleton scoped.
 * **Definition**: Only one instance of the bean is created per Spring IoC container, and this single instance is shared by all clients requesting the bean.
 * **Lifecycle**: The bean instance is created when the container is initialized and remains in memory until the container is destroyed.
 * **Usage**: Suitable for stateless beans or beans that can be safely shared across multiple clients without risking concurrency issues.

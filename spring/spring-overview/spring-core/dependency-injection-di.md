@@ -36,6 +36,10 @@ public class UserService {
 
 In this example, `UserService` class has a dependency on `UserRepository`. The `UserRepository` dependency is injected into the `UserService` class through its constructor. Constructor Injection promotes immutability and ensures that all required dependencies are provided at the time of object creation.
 
+{% hint style="success" %}
+Always prefer Constructor Injection for better testability, maintainability, and reliability.
+{% endhint %}
+
 ### **2. Setter Injection**
 
 Dependencies are provided to the dependent object through setter methods. This allows for more flexibility as dependencies can be changed at runtime.
@@ -76,8 +80,257 @@ public class UserService {
 
 In this example, `UserService` class uses Field Injection to inject the `UserRepository` dependency directly into the `userRepository` field. The `@Autowired` annotation instructs the Spring IoC container to inject the dependency into the field. While convenient, Field Injection is generally discouraged due to following reasons.
 
-* **Decreased Testability**: Field Injection makes it difficult to write unit tests, as dependencies are directly injected into fields without explicit setters, making it challenging to mock dependencies for testing.
-* **Encapsulation Issues**: Field Injection exposes internal dependencies directly as public fields, violating the principle of encapsulation and making it harder to enforce class contracts.
-* **Implicit Dependencies**: Field Injection hides dependencies from the class's interface, making it less clear and explicit which dependencies are required for the class to function properly.
-* **Tighter Coupling**: Field Injection creates tighter coupling between classes, as dependencies are directly accessed through fields, making it harder to swap implementations or change dependencies without modifying the class itself.
-* **Runtime Errors**: Field Injection can lead to NullPointerExceptions at runtime if dependencies are not properly initialized, as there is no guarantee that dependencies will be injected before they are accessed.
+{% hint style="danger" %}
+Field Injection (`@Autowired` on private fields) is widely discouraged in Spring applications due to multiple design and maintainability issues.
+{% endhint %}
+
+## Why Field Injection is discouraged in Spring applications ?
+
+Field Injection (`@Autowired` on private fields) is widely discouraged in Spring applications due to multiple design and maintainability issues.
+
+### **1. Decreased Testability**
+
+**How does Field Injection make testing harder?**
+
+* With **Field Injection**, dependencies are injected directly into private fields, making it impossible to manually set mocks in unit tests.
+* Since there are no constructors or setter methods available, the only way to inject mocks is through **reflection**, which adds unnecessary complexity.
+
+**Example: Why is this a problem?**
+
+```java
+public class UserService {
+    @Autowired
+    private UserRepository userRepository;
+
+    public void registerUser(User user) {
+        userRepository.save(user);
+    }
+}
+```
+
+In a unit test, if we try to mock `UserRepository` using Mockito:
+
+```java
+@ExtendWith(MockitoExtension.class)
+class UserServiceTest {
+    
+    @Mock
+    private UserRepository userRepository;
+    
+    @InjectMocks
+    private UserService userService;  // Won't work correctly due to Field Injection
+
+    @Test
+    void testRegisterUser() {
+        User user = new User("John");
+        userService.registerUser(user); // NullPointerException may occur
+
+        verify(userRepository).save(user);
+    }
+}
+```
+
+**Why does it fail?**
+
+* `@InjectMocks` **only works for Constructor or Setter Injection**.
+* Since `userRepository` is `private` and lacks a setter or constructor, it remains **uninitialized**, leading to **NullPointerException**.
+
+**How to fix it?**&#x20;
+
+Use **Constructor Injection** instead
+
+```java
+public class UserService {
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public void registerUser(User user) {
+        userRepository.save(user);
+    }
+}
+```
+
+Now, the test will work correctly:
+
+```java
+@ExtendWith(MockitoExtension.class)
+class UserServiceTest {
+
+    @Mock
+    private UserRepository userRepository;
+
+    @InjectMocks
+    private UserService userService;  // Works correctly now
+
+    @Test
+    void testRegisterUser() {
+        User user = new User("John");
+        userService.registerUser(user);
+
+        verify(userRepository).save(user);
+    }
+}
+```
+
+### **2. Encapsulation Issues**
+
+**How does Field Injection violate encapsulation?**
+
+* In **Object-Oriented Programming (OOP)**, encapsulation means **hiding internal implementation details** and exposing only necessary functionality.
+* Field Injection **exposes dependencies as class-level fields**, breaking encapsulation principles.
+* Even though fields are marked as `private`, Spring **still modifies them via reflection**, bypassing standard OOP practices.
+
+**Example:**
+
+```java
+public class UserService {
+    @Autowired
+    private UserRepository userRepository;
+}
+```
+
+This class **depends on Spring to inject `userRepository`**, making it **tightly coupled** to the framework.
+
+**How to fix it?**
+
+With **Constructor Injection**, dependencies remain **immutable** and are enforced at object creation:
+
+```java
+public class UserService {
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+}
+```
+
+Now, `userRepository` **cannot be modified** after object creation, improving encapsulation.
+
+### **3. Implicit Dependencies**
+
+**How does Field Injection hide dependencies?**
+
+* Dependencies injected via `@Autowired` **are not visible in the class's public API**.
+* It’s unclear **which dependencies the class needs**, making it harder to maintain and use.
+
+**Example:**
+
+```java
+public class UserService {
+    @Autowired
+    private UserRepository userRepository;
+}
+```
+
+A developer looking at this class cannot tell what dependencies are required without inspecting the field or checking the application context.
+
+**How to fix it?**
+
+Using Constructor Injection makes dependencies **explicit**:
+
+```java
+public class UserService {
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+}
+```
+
+Now, anyone reading this class knows exactly what it depends on, improving code clarity.
+
+## **4. Tighter Coupling**
+
+**How does Field Injection increase coupling?**
+
+* `@Autowired` makes dependencies **hardcoded into the class**, making them **difficult to replace** or **swap with alternative implementations**.
+* This goes against the **Dependency Inversion Principle (DIP)**, where high-level modules should not depend on low-level implementations.
+
+**Example:**
+
+```java
+public class UserService {
+    @Autowired
+    private UserRepository userRepository;
+}
+```
+
+* `UserService` depends directly on `UserRepository`, making it hard to switch to another implementation (e.g., `MockUserRepository` for testing).
+* If we later introduce a caching layer (`CachedUserRepository`), we must modify the class.
+
+**How to fix it?**
+
+Using **Constructor Injection with Interfaces** allows easy swapping:
+
+```java
+public class UserService {
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+}
+```
+
+* Now, `UserRepository` can be replaced **without modifying `UserService`**.
+* A different implementation (e.g., `CachedUserRepository`) can be injected instead.
+
+### **5. Runtime Errors (NullPointerException)**
+
+**How does Field Injection cause runtime errors?**
+
+* If dependencies are not correctly initialized by Spring, accessing them results in **NullPointerException**.
+* This problem occurs especially in **unit tests**, **manual object creation**, or **misconfigured Spring Beans**.
+
+**Example of a failing case:**
+
+```java
+public class UserService {
+    @Autowired
+    private UserRepository userRepository;
+
+    public void registerUser(User user) {
+        userRepository.save(user);  // May throw NullPointerException if not injected
+    }
+}
+```
+
+If this class is instantiated **manually** (outside Spring context):
+
+```java
+UserService userService = new UserService();
+userService.registerUser(new User("Alice"));  // Throws NullPointerException
+```
+
+The `userRepository` field is **never initialized**, causing **NullPointerException**.
+
+**How to fix it?**
+
+With Constructor Injection, the dependency **must be provided**:
+
+```java
+public class UserService {
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+}
+```
+
+Now, manual instantiation **requires a valid dependency**, avoiding runtime errors:
+
+```java
+UserRepository repo = new InMemoryUserRepository();
+UserService userService = new UserService(repo);  // Works correctly
+```
+

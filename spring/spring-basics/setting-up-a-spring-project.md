@@ -129,7 +129,7 @@ myapp/
 │   │   │   ├── controller/             # Controllers (handling HTTP requests)
 │   │   │   ├── service/                # Business logic
 │   │   │   ├── repository/             # Data access layer
-│   │   │   ├── model/                   # Data models
+│   │   │   ├── model/                  # Data models
 │   │   ├── resources/
 │   │   │   ├── application.properties  # Configuration file
 │   │   │   ├── static/                 # Static files (HTML, CSS, JS)
@@ -147,7 +147,7 @@ myapp/
 
 <table data-full-width="true"><thead><tr><th width="357">Folder/File</th><th>Description</th></tr></thead><tbody><tr><td><strong><code>MyAppApplication.java</code></strong></td><td>Main class annotated with <code>@SpringBootApplication</code>. Starts the Spring application.</td></tr><tr><td><strong><code>controller/</code></strong></td><td>Contains REST controllers (<code>@RestController</code>) that handle HTTP requests.</td></tr><tr><td><strong><code>service/</code></strong></td><td>Business logic layer (<code>@Service</code>).</td></tr><tr><td><strong><code>repository/</code></strong></td><td>Data access layer (<code>@Repository</code>). Works with databases via Spring Data JPA.</td></tr><tr><td><strong><code>model/</code></strong></td><td>Contains entity classes (<code>@Entity</code>) for database interactions.</td></tr><tr><td><strong><code>resources/application.properties</code></strong></td><td>Configuration file for database connections, server settings, etc.</td></tr><tr><td><strong><code>resources/templates/</code></strong></td><td>Used for template engines like <strong>Thymeleaf</strong> or <strong>Freemarker</strong>.</td></tr><tr><td><strong><code>test/java/</code></strong></td><td>Contains JUnit test cases for unit and integration testing.</td></tr></tbody></table>
 
-### **Running the Spring Boot Application**
+## **Running the Spring Boot Application**
 
 Once the project is set up, run it using:
 
