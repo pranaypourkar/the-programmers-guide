@@ -1,6 +1,0 @@
----
-hidden: true
----
-
-# BeanFactory & ApplicationContext
-
