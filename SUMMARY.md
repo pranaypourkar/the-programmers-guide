@@ -522,6 +522,7 @@
       * [Lazy & Eager Initialization](spring/spring-overview/spring-beans/lazy-and-eager-initialization/README.md)
         * [Use Case of Lazy Initialization](spring/spring-overview/spring-beans/lazy-and-eager-initialization/use-case-of-lazy-initialization.md)
       * [BeanFactory](spring/spring-overview/spring-beans/beanfactory.md)
+      * [ApplicationContext](spring/spring-overview/spring-beans/applicationcontext.md)
     * [Spring Profiles](spring/spring-overview/profiles.md)
     * [Spring Annotations](spring/spring-overview/annotations/README.md)
       * [Spring Boot Specific](spring/spring-overview/annotations/spring-boot-specific.md)
