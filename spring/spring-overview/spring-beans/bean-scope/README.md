@@ -6,7 +6,7 @@ In Spring, bean scopes define the lifecycle and visibility of beans within the S
 
 ## Different bean scopes in the Spring Framework
 
-### **Singleton Scope**:
+### **Singleton Scope**
 
 * **Default Scope**: If no scope is specified, beans are by default singleton scoped.
 * **Definition**: Only one instance of the bean is created per Spring IoC container, and this single instance is shared by all clients requesting the bean.
@@ -25,7 +25,7 @@ public class DatabaseConnectionPool {
 }
 ```
 
-### **Prototype Scope**:
+### **Prototype Scope**
 
 * **Definition**: A new instance of the bean is created every time it is requested from the Spring IoC container.
 * **Lifecycle**: Each client requesting the bean receives a new, independent instance.
@@ -43,7 +43,7 @@ public class RequestSpecificLogger {
 }
 ```
 
-### **Request Scope**:
+### **Request Scope**
 
 * **Definition**: A new instance of the bean is created for each HTTP request in a web application.
 * **Lifecycle**: The bean instance is bound to the lifecycle of an HTTP request, and a new instance is created for each request.
@@ -61,7 +61,7 @@ public class UserAuthenticationContext {
 }
 ```
 
-### **Session Scope**:
+### **Session Scope**
 
 * **Definition**: A new instance of the bean is created for each HTTP session in a web application.
 * **Lifecycle**: The bean instance is bound to the lifecycle of an HTTP session, and a new instance is created for each session.
@@ -79,7 +79,7 @@ public class UserSessionData {
 }
 ```
 
-### **Application Scope (Singleton per Servlet Context)**:
+### **Application Scope (Singleton per Servlet Context)**
 
 * **Definition**: A single instance of the bean is created per servlet context (web application).
 * **Lifecycle**: The bean instance is shared across the entire application, regardless of the number of servlets or users.
@@ -97,7 +97,7 @@ public class ApplicationConfigurationSettings {
 }
 ```
 
-### **Custom Scopes**:
+### **Custom Scopes**
 
 Spring allows defining custom scopes by implementing the `Scope` interface and registering the scope with the Spring IoC container. This allows for flexibility in defining custom bean lifecycle semantics tailored to specific application requirements.
 
