@@ -36,5 +36,55 @@ public class SecurityConfig {
 }
 ```
 
+## Authentication Configuration
+
+### **Basic Authentication**
+
+### Form-Based Authentication
+
+### JWT Authentication (Using Custom Filter)
+
+### OAuth2 Login (Social Logins)
+
+
+
+## Authorization Rules
+
+### Role-Based Access Control
+
+### Method-Level Security
+
+
+
+## **Session Management**
+
+### **Stateless Session (For REST APIs)**
+
+### Preventing Session Fixation Attacks
+
+
+
+## **CSRF Protection**
+
+### **Disabling CSRF for APIs**
+
+### Enabling CSRF for Web Applications
+
+
+
+## **CORS Configuration**
+
+### **Global CORS Policy**
+
+### Security Headers
+
+
+
+## **Custom Security Filters**
+
+### **Adding a Custom Filter**
+
+
+
 
 
