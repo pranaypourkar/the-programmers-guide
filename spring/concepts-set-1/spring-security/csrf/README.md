@@ -8,18 +8,30 @@ Cross-Site Request Forgery (CSRF) is a web security vulnerability that tricks an
 If a user is logged into a website, their browser automatically includes authentication tokens (cookies, session IDs, etc.) in requests made to that site. CSRF attacks leverage this by tricking users into making unintended requests, such as changing passwords, transferring money, or modifying settings.
 {% endhint %}
 
+{% hint style="success" %}
+CSRF and XSRF refer to the same security attack.
+
+* **CSRF (Cross-Site Request Forgery)** → Commonly used term.
+* **XSRF (Cross-Site Request Forgery)** → Some security experts and frameworks use this alternative name.
+
+Why Two Names?
+
+* **"Cross-Site" → "X-Site"** abbreviation resulted in **XSRF**.
+* Some web frameworks, such as **Angular**, use **XSRF-TOKEN** as a CSRF protection mechanism.
+{% endhint %}
+
 ## How CSRF Works? (Attack Flow)
 
 A typical CSRF attack follows these steps:
 
 1. **User Authentication**
    * A user logs into a web application (e.g., banking website).
-   * The application issues an authentication cookie stored in the browser.
+   * The application issues an authentication session (usually via cookies). The browser stores authentication details (like session cookies, JWT, or OAuth tokens)
 2. **User Visits a Malicious Site**
    * The user unknowingly visits an attacker-controlled site or clicks a malicious link.
    * The attacker’s site contains an HTML form or script that sends a request to the victim's application using the authenticated session.
 3. **Execution of Unauthorized Action**
-   * The victim's browser automatically includes authentication cookies in the request.
+   * The victim's browser automatically includes authentication session in the request.
    * The web application processes the request, assuming it was made by the legitimate user.
 
 Example of a malicious form triggering a CSRF attack:
@@ -37,6 +49,76 @@ If the victim is logged in, this request could transfer money without their know
 ### **CSRF vs XSS (Cross-Site Scripting)**
 
 <table data-full-width="true"><thead><tr><th width="269">Feature</th><th width="293">CSRF</th><th>XSS</th></tr></thead><tbody><tr><td><strong>Target</strong></td><td>Exploits authenticated users</td><td>Exploits the application itself</td></tr><tr><td><strong>Attack Method</strong></td><td>Forces user actions without consent</td><td>Injects malicious scripts into web pages</td></tr><tr><td><strong>Requires User Authentication?</strong></td><td>Yes</td><td>No</td></tr><tr><td><strong>Mitigation</strong></td><td>CSRF tokens, SameSite cookies</td><td>Input validation, Content Security Policy (CSP)</td></tr></tbody></table>
+
+## Do Browsers Automatically Cascade Session-Related Data?
+
+Yes, browsers automatically include certain session-related data with requests based on security policies and authentication mechanisms. However, not all session-related data is automatically cascaded.
+
+### **What Session-Related Data Does the Browser Automatically Include?**
+
+<table data-header-hidden data-full-width="true"><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td><strong>Type of Authentication</strong></td><td><strong>Automatically Sent by Browser?</strong></td><td><strong>Reason</strong></td></tr><tr><td><strong>Session Cookies</strong></td><td>Yes</td><td>Cookies are automatically attached to requests based on domain and path rules.</td></tr><tr><td><strong>Basic Authentication (Authorization Header: <code>Basic username:password</code>)</strong></td><td>Yes (if cached)</td><td>Some browsers remember credentials and resend them.</td></tr><tr><td><strong>Bearer Tokens (JWT in Authorization Header)</strong></td><td>No</td><td>Browsers do NOT automatically attach JWT tokens.</td></tr><tr><td><strong>API Keys in Headers</strong></td><td>No</td><td>API Keys must be explicitly added by the client.</td></tr></tbody></table>
+
+### **When Does a Browser Automatically Include Session Data?**
+
+1.  **Cookies (Session-Based Authentication)**
+
+    * Browsers automatically send cookies with every request to the same domain and matching path.
+    * Example: If a user logs into `example.com`, the session cookie is **automatically sent** with every subsequent request to `example.com/api/*`.
+
+    **Example: Cookie Auto-Sent by Browser**
+
+    ```http
+    GET /dashboard
+    Host: example.com
+    Cookie: JSESSIONID=abc123xyz
+    ```
+
+    * The browser **automatically includes `JSESSIONID`**, making it vulnerable to CSRF if not protected.
+2. **Basic Authentication (If Cached by the Browser)**
+   * If a site uses **Basic Authentication**, some browsers cache the credentials and **resend them** automatically.
+   *   Example:
+
+       ```http
+       Authorization: Basic dXNlcjpwYXNzd29yZA==
+       ```
+   * However, this behavior depends on browser settings and may not always happen.
+
+### **Does the Browser Automatically Include JWT Tokens?**
+
+No, browsers do NOT automatically attach JWT tokens to requests.
+
+1. JWTs are stored manually (in `localStorage`, `sessionStorage`, or cookies).
+2. Unlike cookies, JWTs are not automatically sent unless explicitly added to the `Authorization` header.
+3. JWT-based authentication requires the client (JavaScript) to attach the token manually in API requests.
+
+**Example: Client Manually Sends JWT in Headers**
+
+```javascript
+fetch('https://api.example.com/protected', {
+    method: 'GET',
+    headers: {
+        'Authorization': 'Bearer YOUR_JWT_TOKEN'
+    }
+});
+```
+
+{% hint style="success" %}
+Since JWTs are explicitly added, CSRF protection is NOT required.
+{% endhint %}
+
+### **What If a JWT Is Stored in Cookies?**
+
+If we store the JWT in a cookie with the `HttpOnly` and `Secure` flags, the browser will send it automatically like a session cookie.
+
+**Example: Storing JWT in a Cookie**
+
+```http
+Set-Cookie: access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...; HttpOnly; Secure; SameSite=Strict
+```
+
+{% hint style="success" %}
+If the JWT is stored in a cookie, CSRF protection is needed because the browser will automatically send it with requests/
+{% endhint %}
 
 ## **CSRF Attack Scenarios**
 
@@ -165,9 +247,42 @@ Cross-Site Request Forgery (CSRF) is a critical web security vulnerability that 
 
 A **CSRF token** is a randomly generated unique token that the server generates and associates with a user session. Every sensitive request (e.g., form submission, API call) must include this token. The server validates the token before processing the request.
 
+#### **How CSRF Tokens Work?**
+
+1. **Server generates a CSRF token** for each user session.
+2. The token is **embedded in all forms and AJAX requests**.
+3. On submission, the **server validates the CSRF token** before processing the request.
+4. If the token is **missing or invalid**, the request is rejected.
+
 #### **Implementation Steps**
 
-1. **Generate a CSRF Token**
+1.  Default CSRF Configuration (No Need to Manually Enable)
+
+    Spring Security enables CSRF protection by default. Any state-changing HTTP requests (POST, PUT, DELETE) require a valid CSRF token.
+
+
+
+    ```java
+    @Configuration
+    @EnableWebSecurity
+    public class SecurityConfig {
+
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+            http
+                .authorizeHttpRequests(auth -> auth
+                    .requestMatchers("/public/**").permitAll()
+                    .anyRequest().authenticated()
+                )
+                .csrf(Customizer.withDefaults()) // CSRF protection enabled (default)
+                .formLogin(Customizer.withDefaults()) // Enables login
+                .logout(Customizer.withDefaults()); // Enables logout
+
+            return http.build();
+        }
+    }
+    ```
+2. **Generate a CSRF Token**
    * When a user logs in or starts a session, the server generates a unique CSRF token and stores it in the session.
    *   Example in Java (Spring Security):
 
@@ -180,7 +295,7 @@ A **CSRF token** is a randomly generated unique token that the server generates 
            return "form";
        }
        ```
-2. **Embed the CSRF Token in Requests**
+3. **Embed the CSRF Token in Requests**
    *   In HTML forms:
 
        ```html
@@ -198,7 +313,7 @@ A **CSRF token** is a randomly generated unique token that the server generates 
            body: JSON.stringify({ to: 'attacker', amount: 5000 })
        });
        ```
-3. **Verify CSRF Token on the Server**
+4. **Verify CSRF Token on the Server**
    * When a request is received, the server checks whether the provided token matches the token stored in the session.
    *   Example in Java (Spring Security):
 

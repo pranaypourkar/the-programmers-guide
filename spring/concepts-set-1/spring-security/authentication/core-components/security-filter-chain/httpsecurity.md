@@ -586,37 +586,448 @@ public class UserController {
 }
 ```
 
-
-
 ## **Session Management**
 
-### **Stateless Session (For REST APIs)**
+Session management controls how user sessions are created, maintained, and invalidated in a Spring Security-based application. It is crucial for:
+
+* Security (Preventing session hijacking, session fixation)
+* Performance (Reducing server memory usage)
+* Scalability (Especially for REST APIs where stateless authentication is preferred)
+
+### **Configuring Session Management in Spring Security**
+
+Spring Security allows configuring session management using `sessionManagement()` in the `HttpSecurity` configuration.
+
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .sessionManagement(session -> session
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Session strategy
+                .maximumSessions(1) // Restrict to 1 active session per user
+                .maxSessionsPreventsLogin(true) // Prevent new login if session exists
+            )
+            .formLogin(Customizer.withDefaults()) // Enable login
+            .logout(Customizer.withDefaults()); // Enable logout
+
+        return http.build();
+    }
+}
+```
+
+### Stateless Session (For REST APIs)
+
+REST APIs should be **stateless** to ensure scalability and avoid session-based authentication overhead.
+
+#### **Why Stateless Sessions for REST APIs?**
+
+* **Improves scalability** (No need to store session data in memory)
+* **Better performance** (Avoids extra lookups for session validation)
+* **Ideal for microservices** (No need for session replication across nodes)
+
+#### **How to Implement Stateless Sessions in Spring Security?**
+
+Use `SessionCreationPolicy.STATELESS` to disable session management.
+
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .sessionManagement(session -> session
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Disable sessions
+            )
+            .csrf(csrf -> csrf.disable()) // Disable CSRF for REST APIs
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/api/public/**").permitAll() // Public APIs
+                .anyRequest().authenticated()
+            )
+            .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class); // Add JWT filter
+
+        return http.build();
+    }
+}
+```
+
+* **`sessionCreationPolicy(SessionCreationPolicy.STATELESS)`** → Prevents the creation of a session.
+* **No `HttpSession` is stored or used** → Every request must include authentication (e.g., JWT token).
+* **Disables CSRF (`csrf.disable()`)** → CSRF protection is not needed in stateless APIs.
+* **Custom JWT Filter** (`JwtAuthenticationFilter`) → Extracts user authentication from JWT in each request.
+
+#### **Example: Custom JWT Authentication Filter**
+
+```java
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
+        String token = request.getHeader("Authorization");
+
+        if (token != null && token.startsWith("Bearer ")) {
+            token = token.substring(7); // Extract token after "Bearer "
+
+            // Validate token and get user details
+            Authentication auth = TokenProvider.getAuthentication(token);
+            SecurityContextHolder.getContext().setAuthentication(auth);
+        }
+
+        filterChain.doFilter(request, response); // Continue filter chain
+    }
+}
+```
+
+* Extracts the **JWT token** from the request header.
+* Validates the token and retrieves user details.
+* Sets the user authentication in `SecurityContextHolder`.
 
 ### Preventing Session Fixation Attacks
 
+A **session fixation attack** occurs when an attacker tricks a user into using a known **session ID**, allowing them to hijack the session after login.
 
+#### **How to Prevent Session Fixation?**
+
+Spring Security provides built-in protection using `sessionFixation()`.
+
+```java
+@Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+        .sessionManagement(session -> session
+            .sessionFixation().newSession() // Prevents session fixation
+        )
+        .formLogin(Customizer.withDefaults());
+
+    return http.build();
+}
+```
+
+#### **Session Fixation Strategies in Spring Security**
+
+<table data-header-hidden><thead><tr><th width="265"></th><th></th></tr></thead><tbody><tr><td><strong>Strategy</strong></td><td><strong>Description</strong></td></tr><tr><td><code>migrateSession()</code> (Default)</td><td>Creates a new session ID but retains session attributes.</td></tr><tr><td><code>newSession()</code></td><td>Creates a completely new session, discarding previous session attributes.</td></tr><tr><td><code>none()</code></td><td>No protection against session fixation (not recommended).</td></tr></tbody></table>
+
+#### **Example: Custom Login Handler to Invalidate Old Sessions**
+
+```java
+@Component
+public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+    @Override
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+                                        Authentication authentication) throws IOException, ServletException {
+        HttpSession session = request.getSession(false); // Get existing session
+        if (session != null) {
+            session.invalidate(); // Invalidate old session
+        }
+        request.getSession(true); // Create new session
+        response.sendRedirect("/home");
+    }
+}
+```
+
+* **Invalidates old sessions** after successful login.
+* **Prevents session fixation attacks** by creating a new session.
+
+## **Managing Concurrent Sessions**
+
+Spring Security allows limiting the number of concurrent sessions per user.
+
+```java
+@Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+        .sessionManagement(session -> session
+            .maximumSessions(1) // Only one active session per user
+            .maxSessionsPreventsLogin(true) // Prevents new login if a session already exists
+        )
+        .formLogin(Customizer.withDefaults());
+
+    return http.build();
+}
+```
+
+#### **Explanation**
+
+* **`maximumSessions(1)`** → Restricts users to a single active session.
+* **`maxSessionsPreventsLogin(true)`** → Prevents a new login if the user is already logged in elsewhere.
 
 ## **CSRF Protection**
 
+Cross-Site Request Forgery (CSRF) is a web security vulnerability that allows an attacker to execute unauthorized actions on behalf of an authenticated user. Spring Security provides **built-in CSRF protection**, which is enabled by default for web applications. However, for stateless APIs, it is typically disabled.
+
+{% hint style="success" %}
+CSRF attacks occur when:
+
+* A user is **authenticated** in a web application.
+* The user visits a **malicious site** that sends a request to the application.
+* The request **executes an action** on behalf of the authenticated user **without their knowledge**.
+{% endhint %}
+
+
+
 ### **Disabling CSRF for APIs**
+
+Since REST APIs are typically stateless, CSRF protection is not needed. API clients (e.g., mobile apps, Postman) do not rely on browser cookies, which makes CSRF attacks irrelevant.
+
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .csrf(csrf -> csrf.disable()) // Disable CSRF for APIs
+            .sessionManagement(session -> session
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            )
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/api/public/**").permitAll()
+                .anyRequest().authenticated()
+            )
+            .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class); // Add JWT filter
+
+        return http.build();
+    }
+}
+```
+
+{% hint style="success" %}
+**Why Disable CSRF for APIs?**
+
+* REST APIs **do not use cookies** for authentication.
+* **Tokens (JWT, OAuth2)** are used instead of session-based authentication.
+* **CSRF attacks require authentication via cookies**, which is not applicable for APIs.
+{% endhint %}
 
 ### Enabling CSRF for Web Applications
 
+For web applications using session-based authentication (cookies), CSRF protection should remain enabled.
 
+```java
+@Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+        .csrf(csrf -> csrf
+            .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // Store CSRF token in a cookie
+        )
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/public/**").permitAll()
+            .anyRequest().authenticated()
+        )
+        .formLogin(Customizer.withDefaults());
 
-## **CORS Configuration**
+    return http.build();
+}
+```
 
-### **Global CORS Policy**
+* **`csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())`** → Stores the CSRF token in a cookie, making it accessible to JavaScript for AJAX requests.
+* **`withHttpOnlyFalse()`** → Allows JavaScript to read the token for AJAX calls.
+
+#### **How the CSRF Token Works Here?**
+
+* Spring Security sends a **CSRF token in a cookie (`XSRF-TOKEN`)**.
+* The frontend **must send the token in the `X-CSRF-TOKEN` header** in AJAX requests.
+
+#### **Example: Fetching the CSRF Token in JavaScript**
+
+```javascript
+fetch('/transfer', {
+    method: 'POST',
+    headers: {
+        'X-CSRF-TOKEN': getCookie('XSRF-TOKEN') // Retrieve CSRF token from cookie
+    },
+    body: JSON.stringify({ amount: 1000 })
+});
+```
+
+## **CORS**
+
+CORS is a **security mechanism** implemented by browsers to **restrict cross-origin HTTP requests**. It prevents unauthorized websites from making requests to your backend services.
+
+**Same-Origin Policy (SOP)**: By default, **browsers block requests** if the origin (protocol, domain, and port) is different from the requested resource.
+
+**CORS Policy**: CORS allows web applications to **bypass SOP** and make cross-origin requests by defining allowed origins, methods, headers, etc.
+
+Spring provides multiple ways to configure CORS:
+
+* Using `WebMvcConfigurer` (Global CORS Policy)
+* Using `HttpSecurity` (Security-Specific CORS Configuration)
+* Configuring it for specific controllers
+
+### CORS Configuration
+
+Spring Security adds an additional layer of security that might override global CORS settings. We need to explicitly enable it in `HttpSecurity`.
+
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Enable CORS
+            .csrf(csrf -> csrf.disable())  // Disable CSRF for APIs
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/api/public/**").permitAll()
+                .anyRequest().authenticated()
+            );
+
+        return http.build();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedOrigins(List.of("http://frontend.com"));  // Define allowed origins
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));  // Allowed methods
+        config.setAllowedHeaders(List.of("*"));  // Allow all headers
+        config.setAllowCredentials(true);  // Allow credentials
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
+    }
+}
+```
+
+* This configures CORS inside Spring Security, ensuring security rules don’t block valid requests.
+* Uses **`CorsConfigurationSource`** to define allowed origins, methods, and headers.
 
 ### Security Headers
 
+Apart from CORS, Spring Security also enforces security headers to protect against various web vulnerabilities.
 
+#### **Default Security Headers Added by Spring Security**
+
+Spring Security adds the following headers automatically:
+
+| **Header**                        | **Purpose**                           |
+| --------------------------------- | ------------------------------------- |
+| `X-Frame-Options: DENY`           | Prevents Clickjacking attacks.        |
+| `X-Content-Type-Options: nosniff` | Prevents MIME type sniffing.          |
+| `Strict-Transport-Security`       | Forces HTTPS connections.             |
+| `X-XSS-Protection: 1; mode=block` | Protects against XSS attacks.         |
+| `Content-Security-Policy`         | Prevents inline JavaScript execution. |
+
+#### **Customizing Security Headers**
+
+If we need **custom headers**, we can configure them using `HttpSecurity.headers()`.
+
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .headers(headers -> headers
+                .contentSecurityPolicy("default-src 'self'")  // Prevents loading scripts from other domains
+                .frameOptions(frame -> frame.sameOrigin())  // Allows iframes only from the same origin
+                .xssProtection(xss -> xss.block(true))  // Enables XSS protection
+            )
+            .authorizeHttpRequests(auth -> auth
+                .anyRequest().authenticated()
+            );
+
+        return http.build();
+    }
+}
+```
+
+* `contentSecurityPolicy("default-src 'self'")` → Restricts resources to the same domain.
+* `frameOptions(frame -> frame.sameOrigin())` → Allows embedding only from the same domain.
+* `xssProtection(xss -> xss.block(true))` → Enables XSS blocking.
+
+#### **Disabling Security Headers (Not Recommended)**
+
+We might need to disable certain headers in some cases, e.g., when using custom security mechanisms.
+
+```java
+@Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+        .headers(headers -> headers
+            .frameOptions(HeadersConfigurer.FrameOptionsConfig::disable)  // Disable Clickjacking protection
+            .xssProtection(XssProtectionConfig::disable)  // Disable XSS protection (Not recommended)
+        );
+
+    return http.build();
+}
+```
 
 ## **Custom Security Filters**
 
+A **security filter** in Spring Security is a component that **intercepts HTTP requests and applies security logic** before passing them to the application.
+
+* Spring Security uses a **filter chain** to process authentication, authorization, and other security concerns.
+* Filters allow us to **modify request/response handling** at different stages.
+
+Custom filters are needed when:
+
+* Adding custom authentication mechanisms (e.g., API key authentication).
+* Logging request details for security auditing.
+* Implementing rate limiting for APIs.
+* Validating JWT tokens in a custom way.
+* Modifying headers before passing requests to controllers.
+
 ### **Adding a Custom Filter**
 
+#### **Example: Logging All Incoming Requests**
 
+Let’s create a filter that **logs request details** before passing them to controllers.
 
+```java
+@Component
+public class RequestLoggingFilter extends OncePerRequestFilter {
 
+    @Override
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain) throws ServletException, IOException {
+        String requestUrl = request.getRequestURI();
+        String method = request.getMethod();
 
+        System.out.println("Incoming Request: " + method + " " + requestUrl);
+
+        // Continue the filter chain
+        filterChain.doFilter(request, response);
+    }
+}
+```
+
+* **`OncePerRequestFilter`** ensures the filter runs **once per request**.
+* **Logs request details** (`method` and `URI`).
+* **Passes control** to the next filter (`filterChain.doFilter(...)`).
+
+#### **Registering the Filter in Spring Security**
+
+We need to **add the filter** to the Spring Security filter chain.
+
+```java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, RequestLoggingFilter requestLoggingFilter) throws Exception {
+        http
+            .addFilterBefore(requestLoggingFilter, UsernamePasswordAuthenticationFilter.class) // Add filter before authentication
+            .authorizeHttpRequests(auth -> auth
+                .anyRequest().authenticated()
+            );
+
+        return http.build();
+    }
+}
+```
+
+* `addFilterBefore(requestLoggingFilter, UsernamePasswordAuthenticationFilter.class)` → **Runs the custom filter before authentication**.
