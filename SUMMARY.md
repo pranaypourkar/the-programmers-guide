@@ -567,7 +567,7 @@
           * [AuthenticationProvider](spring/concepts-set-1/spring-security/authentication/core-components/authenticationprovider.md)
           * [UserDetailsService](spring/concepts-set-1/spring-security/authentication/core-components/userdetailsservice/README.md)
             * [UserDetails](spring/concepts-set-1/spring-security/authentication/core-components/userdetailsservice/userdetails.md)
-          * [PasswordEncoder](spring/concepts-set-1/spring-security/authentication/core-components/passwordencoder.md)
+            * [PasswordEncoder](spring/concepts-set-1/spring-security/authentication/core-components/userdetailsservice/passwordencoder.md)
           * [SecurityContext](spring/concepts-set-1/spring-security/authentication/page-1.md)
           * [SecurityContextHolder](spring/concepts-set-1/spring-security/authentication/core-components/securitycontextholder.md)
           * [GrantedAuthority](spring/concepts-set-1/spring-security/authentication/core-components/grantedauthority.md)
