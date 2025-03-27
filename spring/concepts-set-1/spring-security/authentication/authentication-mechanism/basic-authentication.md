@@ -158,6 +158,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 ### **When NOT to Use Basic Authentication**:
 
 * **Public-Facing APIs**: Since credentials are sent with every request, it is **insecure for public APIs** unless combined with HTTPS and additional security layers.
-* **Scalable Authentication Needs**: If your application needs **session management, OAuth2, or token-based authentication**, Basic Authentication is not ideal.
+* **Scalable Authentication Needs**: If our application needs **session management, OAuth2, or token-based authentication**, Basic Authentication is not ideal.
 * **Single Sign-On (SSO) and Federated Authentication**: For enterprise applications requiring SSO, **OAuth2, OpenID Connect, or SAML** are preferred.
 
