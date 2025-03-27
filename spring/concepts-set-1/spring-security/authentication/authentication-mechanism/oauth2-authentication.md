@@ -136,8 +136,6 @@ OAuth2 provides different grant types (authorization flows) to handle different 
 * Allows login on **devices with no keyboard or browser**.
 * Secure since login happens on a **trusted device**.
 
-
-
 ## **OAuth2 Tokens**
 
 ### **Access Token**
@@ -268,7 +266,65 @@ public class SecurityConfig {
 }
 ```
 
+## **OAuth2 vs OpenID Connect (OIDC)**
 
+OAuth2 and OpenID Connect (OIDC) are **both authentication and authorization protocols**, but they serve different purposes.
 
+<table data-header-hidden data-full-width="true"><thead><tr><th width="215"></th><th></th><th></th></tr></thead><tbody><tr><td>Feature</td><td><strong>OAuth2</strong></td><td><strong>OpenID Connect (OIDC)</strong></td></tr><tr><td><strong>Purpose</strong></td><td>Authorization (Who can access what?)</td><td>Authentication + Authorization (Who are you?)</td></tr><tr><td><strong>Primary Use</strong></td><td>API security (Granting access to resources)</td><td>User authentication (Logging in users)</td></tr><tr><td><strong>Token Type</strong></td><td>Access Token (for resource access)</td><td>ID Token (for authentication) + Access Token</td></tr><tr><td><strong>Standardized User Info?</strong></td><td>No built-in user identity</td><td>Yes, provides user identity claims</td></tr><tr><td><strong>Used For</strong></td><td>Securing APIs, allowing third-party apps access (e.g., GitHub OAuth login)</td><td>Single Sign-On (SSO), federated login, mobile/web app authentication</td></tr><tr><td><strong>Token Format</strong></td><td>JWT or opaque token</td><td>Always JWT for ID Token</td></tr><tr><td><strong>Identity Provider (IdP)</strong></td><td>Not required (only authorization server needed)</td><td>Requires an Identity Provider (IdP)</td></tr></tbody></table>
 
+### **OAuth2: When to Use?**
+
+**Best for API Authorization**
+
+* If we need to grant **third-party applications access to your APIs** securely.
+* Example: **Google Drive API access via OAuth2** (Allowing a third-party app to read your Google Drive files).
+
+**Secure Resource Access Without Exposing User Credentials**
+
+* Users grant permission to apps without sharing their **username & password**.
+* Example: Logging into **Spotify with your Google account** without giving your Google password.
+
+**Fine-Grained Access Control**
+
+* We can define **scopes** (e.g., “read-only” or “read-write” access).
+* Example: GitHub lets apps request only "read repo" instead of full account access.
+
+**Not Ideal for User Authentication**
+
+* OAuth2 alone **doesn’t verify the user’s identity**.
+* Third-party apps can misuse OAuth tokens for login (**OAuth2 abuse problem**).
+
+### **OpenID Connect (OIDC): When to Use?**
+
+**Best for User Authentication (Login Systems & SSO)**
+
+* If we need **user authentication with identity claims** (e.g., name, email).
+* Example: **"Login with Google" or "Login with Facebook"** uses OIDC.
+
+**Mobile & Web App Authentication**
+
+* Modern apps use OIDC for **user login workflows**.
+* Example: **Amazon Cognito** uses OIDC for authentication.
+
+**Single Sign-On (SSO)**
+
+* If you need **federated login across multiple apps**.
+* Example: **Logging into Slack using your Google account**.
+
+**Not Ideal for API-Only Authorization**
+
+* OIDC is **overkill for securing APIs** without login needs.
+* Use **OAuth2 with scopes** if no user authentication is needed.
+
+### **OAuth2 + OIDC: When to Use Both?**
+
+Many systems **combine OAuth2 & OpenID Connect** to get **both authentication & authorization**.\
+Example:
+
+1. **OIDC authenticates the user** (Who are you?)
+2. **OAuth2 provides API access** (What can you access?)
+
+**Example Use Case:**
+
+* Logging into **Google Drive (OIDC)** → Then accessing **Google Drive API (OAuth2)**.
 
