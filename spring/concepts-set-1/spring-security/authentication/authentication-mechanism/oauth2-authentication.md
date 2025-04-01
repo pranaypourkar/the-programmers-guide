@@ -6,7 +6,7 @@ OAuth2 (Open Authorization 2.0) is an **industry-standard authorization protocol
 
 OAuth2 is primarily an **authorization framework**, but it can be extended to handle authentication using **OpenID Connect (OIDC)**.
 
-## **How OAuth2 Authentication Works (Simplified Flow)**
+## **How OAuth2 Authentication Works ?**
 
 1. **User Requests Access**
    * The user attempts to log in to an application using OAuth2 (e.g., "Login with Google").
@@ -20,6 +20,15 @@ OAuth2 is primarily an **authorization framework**, but it can be extended to ha
    * The application exchanges the authorization code for an **access token** from the OAuth2 provider.
 6. **Application Uses Token**
    * The application includes the **access token** in API requests to access user data.
+
+{% hint style="success" %}
+The typical work flow for OAuth 2.0 requests
+
+* When a user tries to access a feature in our application that requires them to be logged into a Google or YouTube account, our application triggers the OAuth 2.0 authorization process.
+* Our application redirects the user to Google's authorization server, specifying the scope of access it requires. This scope defines the actions our application can perform—such as retrieving, inserting, updating, or deleting resources—on behalf of the authenticated user.
+* If the user grants permission, Google provides a token to our application. Depending on the application type, it either validates the token or exchanges it for another type.
+* For instance, a server-side web application exchanges the received token for both an access token and a refresh token. The access token allows the application to make authorized requests on the user’s behalf, while the refresh token enables it to obtain a new access token when the current one expires.
+{% endhint %}
 
 ## **OAuth2 Roles**
 
