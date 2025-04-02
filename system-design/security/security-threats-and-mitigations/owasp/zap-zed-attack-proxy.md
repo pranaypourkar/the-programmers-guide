@@ -1,2 +1,0 @@
-# ZAP (Zed Attack Proxy)
-

@@ -760,7 +760,6 @@
         * [Top 10 Security Threats](system-design/security/security-threats-and-mitigations/owasp/top-10-security-threats.md)
         * [Application Security Verification Standard](system-design/security/security-threats-and-mitigations/owasp/application-security-verification-standard.md)
         * [Software Assurance Maturity Model](system-design/security/security-threats-and-mitigations/owasp/software-assurance-maturity-model.md)
-        * [ZAP (Zed Attack Proxy)](system-design/security/security-threats-and-mitigations/owasp/zap-zed-attack-proxy.md)
         * [Dependency Check](system-design/security/security-threats-and-mitigations/owasp/dependency-check.md)
         * [CSRFGuard](system-design/security/security-threats-and-mitigations/owasp/csrfguard.md)
         * [Cheat Sheets](system-design/security/security-threats-and-mitigations/owasp/cheat-sheets.md)
