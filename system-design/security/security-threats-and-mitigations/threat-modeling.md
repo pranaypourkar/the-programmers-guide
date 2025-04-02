@@ -4,7 +4,7 @@
 
 Threat modeling is a structured approach to identifying, analyzing, and mitigating potential security threats in a system before they can be exploited. It helps organizations proactively assess risks and design secure systems by evaluating possible attack vectors, weaknesses, and mitigation strategies.
 
-## **Why is Threat Modeling Important?**
+## Why is Threat Modeling Important?
 
 1. **Early Identification of Security Risks** – Helps detect vulnerabilities in the design phase before they become costly to fix.
 2. **Improves Security Posture** – Strengthens system defenses by anticipating and addressing threats in advance.
@@ -12,7 +12,7 @@ Threat modeling is a structured approach to identifying, analyzing, and mitigati
 4. **Reduces Attack Surface** – Minimizes the number of potential entry points attackers could exploit.
 5. **Enhances Risk Management** – Provides insights into the likelihood and impact of security threats.
 
-## **Steps in Threat Modeling**
+## Steps in Threat Modeling
 
 ### **1. Define the Scope & Objectives**
 
@@ -49,7 +49,7 @@ Threat modeling is a structured approach to identifying, analyzing, and mitigati
 * Use **automated security tools** to simulate attacks.
 * Continuously update the threat model as the system evolves.
 
-## **Common Threat Modeling Frameworks**
+## Common Threat Modeling Frameworks
 
 ### **1. STRIDE Model (Developed by Microsoft)**
 
@@ -69,14 +69,14 @@ A framework focused on risk-based security assessment and access control threats
 
 Designed for DevOps environments, emphasizing automation and scalability.
 
-## **Tools for Threat Modeling**
+## Tools for Threat Modeling
 
 * **Microsoft Threat Modeling Tool** – Automates STRIDE-based threat modeling.
 * **OWASP Threat Dragon** – Open-source tool for visualizing threats.
 * **IriusRisk** – A collaborative platform for risk analysis.
 * **ThreatModeler** – Enterprise-grade automation for large-scale security teams.
 
-## **Best Practices for Effective Threat Modeling**
+## Best Practices for Effective Threat Modeling
 
 1. **Integrate Early in Development** – Apply threat modeling during the design phase rather than after deployment.
 2. **Use Automation Where Possible** – Leverage security tools to detect and track threats efficiently.
