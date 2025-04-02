@@ -756,7 +756,7 @@
       * [Least Privilege Principle](system-design/security/principles/least-privilege-principle.md)
       * [Defense in Depth](system-design/security/principles/defense-in-depth.md)
     * [Security Threats & Mitigations](system-design/security/security-threats-and-mitigations/README.md)
-      * [OWASP](system-design/security/security-threats-and-mitigations/owasp/README.md)
+      * [OWASP](system-design/security/security-threats-and-mitigations/owasp.md)
         * [Security Flaws](system-design/security/security-threats-and-mitigations/owasp/security-flaws.md)
         * [ASVS](system-design/security/security-threats-and-mitigations/owasp/asvs.md)
         * [SAMM](system-design/security/security-threats-and-mitigations/owasp/samm.md)
