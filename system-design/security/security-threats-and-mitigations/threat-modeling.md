@@ -49,3 +49,37 @@ Threat modeling is a structured approach to identifying, analyzing, and mitigati
 * Use **automated security tools** to simulate attacks.
 * Continuously update the threat model as the system evolves.
 
+## **Common Threat Modeling Frameworks**
+
+### **1. STRIDE Model (Developed by Microsoft)**
+
+STRIDE is a widely used threat categorization framework
+
+<table data-full-width="true"><thead><tr><th width="217">Threat Category</th><th>Description</th><th>Example Attack</th></tr></thead><tbody><tr><td><strong>S</strong>poofing</td><td>Pretending to be another user/system</td><td>Identity theft, phishing</td></tr><tr><td><strong>T</strong>ampering</td><td>Altering data to manipulate outcomes</td><td>Data modification in transit</td></tr><tr><td><strong>R</strong>epudiation</td><td>Performing actions without accountability</td><td>Deleting logs to erase evidence</td></tr><tr><td><strong>I</strong>nformation Disclosure</td><td>Unauthorized access to sensitive data</td><td>Data leakage, API exposure</td></tr><tr><td><strong>D</strong>enial of Service (DoS)</td><td>Disrupting system availability</td><td>Overloading a web server</td></tr><tr><td><strong>E</strong>levation of Privilege</td><td>Gaining unauthorized access rights</td><td>Privilege escalation exploit</td></tr></tbody></table>
+
+### **2. PASTA (Process for Attack Simulation and Threat Analysis)**
+
+A risk-centric methodology for identifying and mitigating threats, typically used in enterprise systems.
+
+### **3. Trike**
+
+A framework focused on risk-based security assessment and access control threats.
+
+### **4. VAST (Visual, Agile, and Simple Threat Modeling)**
+
+Designed for DevOps environments, emphasizing automation and scalability.
+
+## **Tools for Threat Modeling**
+
+* **Microsoft Threat Modeling Tool** – Automates STRIDE-based threat modeling.
+* **OWASP Threat Dragon** – Open-source tool for visualizing threats.
+* **IriusRisk** – A collaborative platform for risk analysis.
+* **ThreatModeler** – Enterprise-grade automation for large-scale security teams.
+
+## **Best Practices for Effective Threat Modeling**
+
+1. **Integrate Early in Development** – Apply threat modeling during the design phase rather than after deployment.
+2. **Use Automation Where Possible** – Leverage security tools to detect and track threats efficiently.
+3. **Involve Cross-Functional Teams** – Include developers, security teams, architects, and business stakeholders.
+4. **Continuously Update Threat Models** – Regularly revise models to account for system updates and new threats.
+5. **Map Threats to Security Controls** – Ensure every identified threat has a corresponding mitigation strategy.
