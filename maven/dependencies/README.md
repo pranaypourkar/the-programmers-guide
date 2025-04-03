@@ -2,27 +2,22 @@
 description: >-
   An overview of various dependencies used commonly across various  projects in
   the form of categories.
+hidden: true
 ---
 
 # Dependencies
 
-
-
 ### Server
-
-
 
 ### Database
 
-
-
 #### H2
 
-* H2 Database offers both in-memory and file-based database options. Integrating H2 database into Maven project involves two main scenarios i.e. using it for persistence in application or for integration testing**.** Dependency scope as test ensures the dependency is only available during tests and not included in the final packaged application.&#x20;
+* H2 Database offers both in-memory and file-based database options. Integrating H2 database into Maven project involves two main scenarios i.e. using it for persistence in application or for integration testing\*\*.\*\* Dependency scope as test ensures the dependency is only available during tests and not included in the final packaged application.
 
 <details>
 
-<summary>H2 Database Dependency </summary>
+<summary>H2 Database Dependency</summary>
 
 ```
 <dependency>
@@ -59,7 +54,7 @@ Oracle JDBC driver for Java allows Java applications to connect to Oracle databa
 
 <details>
 
-<summary>Oracle Database Driver Dependency </summary>
+<summary>Oracle Database Driver Dependency</summary>
 
 ```
 <dependency>
@@ -90,7 +85,7 @@ Mysql JDBC driver for Java allows Java applications to connect to Mysql database
 
 <details>
 
-<summary>Mysql Database Driver Dependency </summary>
+<summary>Mysql Database Driver Dependency</summary>
 
 ```
 <dependency>
@@ -115,11 +110,7 @@ spring:
 
 ### Open API Specification
 
-
-
 ### Tests
-
-
 
 ### Utility
 
@@ -143,4 +134,3 @@ Lombok is a Java library that helps reduce boilerplate code by providing annotat
 ```
 
 </details>
-
