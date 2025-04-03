@@ -7,4 +7,3 @@ hidden: true
 
 # Plugins
 
-<figure><img src="../../.gitbook/assets/image (245).png" alt=""><figcaption></figcaption></figure>
