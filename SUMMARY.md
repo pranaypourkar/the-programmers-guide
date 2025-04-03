@@ -496,6 +496,7 @@
     * [Dependency Exclusions & Overrides](maven/dependency-management/dependency-exclusions-and-overrides.md)
     * [Transitive Dependency](maven/dependency-management/transitive-dependency.md)
     * [Optional Dependency](maven/dependency-management/optional-dependency.md)
+    * [Bill of Materials (BOM)](maven/dependency-management/bill-of-materials-bom.md)
   * [Dependency Resolution & Optimization](maven/dependency-resolution-and-optimization/README.md)
     * [Dependency Conflict Resolution](maven/dependency-resolution-and-optimization/dependency-conflict-resolution.md)
     * [Dependency Tree & Analysis](maven/dependency-resolution-and-optimization/dependency-tree-and-analysis.md)
