@@ -339,13 +339,336 @@ The `maven-war-plugin` is used to package **web applications** into a **WAR (Web
 
 <table data-full-width="true"><thead><tr><th width="215.390625">Configuration</th><th>Description</th><th>Default</th></tr></thead><tbody><tr><td><code>failOnMissingWebXml</code></td><td>Whether to fail if <code>web.xml</code> is missing</td><td><code>true</code></td></tr><tr><td><code>warName</code></td><td>Name of the WAR file</td><td><code>project.artifactId-version.war</code></td></tr><tr><td><code>outputDirectory</code></td><td>Where to place the WAR file</td><td><code>target/</code></td></tr></tbody></table>
 
+### `maven-ear-plugin`
 
+The `maven-ear-plugin` is used to create **EAR (Enterprise Archive) files**, which bundle multiple Java EE components (JARs and WARs).
 
+**Syntax**
 
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-ear-plugin</artifactId>
+    <version>3.2.0</version>
+</plugin>
+
+// Different configuration use case
+
+// Skipping application.xml. This allows EAR packaging without application.xml.
+<configuration>
+    <generateApplicationXml>false</generateApplicationXml>
+</configuration>
+```
+
+**Configuration Options**
+
+<table data-full-width="true"><thead><tr><th width="282.8125">Configuration</th><th>Description</th><th>Default</th></tr></thead><tbody><tr><td><code>defaultJavaBundleDir</code></td><td>Directory for JAR modules</td><td><code>lib/</code></td></tr><tr><td><code>failOnMissingApplicationXml</code></td><td>Fail if <code>application.xml</code> is missing</td><td><code>true</code></td></tr><tr><td><code>generateApplicationXml</code></td><td>Generate <code>application.xml</code> automatically</td><td><code>true</code></td></tr></tbody></table>
+
+### `maven-assembly-plugin`
+
+The `maven-assembly-plugin` allows **custom packaging** formats such as **ZIP, TAR, TAR.GZ**, and self-contained archives.
+
+**Syntax**
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-assembly-plugin</artifactId>
+    <version>3.6.0</version>
+</plugin>
+
+// Packaging JAR with Dependencies. This packages the JAR with all dependencies included.
+<execution>
+    <goals>
+        <goal>single</goal>
+    </goals>
+    <configuration>
+        <descriptorRef>jar-with-dependencies</descriptorRef>
+    </configuration>
+</execution>
+
+// Creating a ZIP Archive. This creates a ZIP archive of the project.
+<execution>
+    <goals>
+        <goal>single</goal>
+    </goals>
+    <configuration>
+        <formats>
+            <format>zip</format>
+        </formats>
+    </configuration>
+</execution>
+```
+
+**Configuration Options**
+
+<table data-full-width="true"><thead><tr><th width="154.15625">Configuration</th><th width="466.33203125">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>descriptorRef</code></td><td>Predefined package types (<code>jar-with-dependencies</code>, etc.)</td><td><code>None</code></td></tr><tr><td><code>finalName</code></td><td>Name of the output archive</td><td><code>project.artifactId-version</code></td></tr><tr><td><code>formats</code></td><td>Output formats (<code>zip</code>, <code>tar.gz</code>, etc.)</td><td><code>zip</code></td></tr></tbody></table>
+
+### `maven-shade-plugin`
+
+The `maven-shade-plugin` is used to create a **fat JAR (Uber JAR)** that includes all dependencies.
+
+**Syntax**
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-shade-plugin</artifactId>
+    <version>3.4.1</version>
+</plugin>
+
+// Creating a Fat JAR. This creates fat-jar.jar with all dependencies included.
+<configuration>
+    <finalName>fat-jar</finalName>
+</configuration>
+```
+
+**Configuration Options**
+
+<table data-full-width="true"><thead><tr><th width="240.171875">Configuration</th><th width="258.60546875">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>finalName</code></td><td>Name of the output JAR</td><td><code>project.artifactId-version.jar</code></td></tr><tr><td><code>shadedArtifactAttached</code></td><td>Attach shaded JAR to build</td><td><code>false</code></td></tr></tbody></table>
 
 ## 4. Deployment & Installation Plugins
+
+### `maven-install-plugin`
+
+The `maven-install-plugin` is used to **install** project artifacts (JAR, WAR, EAR, etc.) into the local repository (`~/.m2/repository`). This allows other projects on the same system to reference them.
+
+**Syntax**
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-install-plugin</artifactId>
+    <version>3.1.1</version>
+</plugin>
+
+// Installing a Custom Artifact. This installs the artifact using a legacy repository layout.
+<execution>
+    <goals>
+        <goal>install</goal>
+    </goals>
+    <configuration>
+        <repositoryLayout>legacy</repositoryLayout>
+    </configuration>
+</execution>
+
+// Skipping Installation in a Profile. To activate this profile, run: mvn clean package -DskipInstall=true
+<profiles>
+    <profile>
+        <id>skip-install</id>
+        <activation>
+            <property>
+                <name>skipInstall</name>
+                <value>true</value>
+            </property>
+        </activation>
+        <properties>
+            <install.skip>true</install.skip>
+        </properties>
+    </profile>
+</profiles>
+```
+
+**Configuration Options**
+
+| Configuration      | Description                 | Default   |
+| ------------------ | --------------------------- | --------- |
+| `skip`             | Skip the installation step  | `false`   |
+| `repositoryLayout` | Define repository structure | `default` |
+
+## `maven-deploy-plugin`
+
+The `maven-deploy-plugin` is used to **deploy** project artifacts to a **remote repository** (e.g., Nexus, Artifactory, or Maven Central) for sharing across teams or organizations.
+
+**Syntax**
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-deploy-plugin</artifactId>
+    <version>3.1.1</version>
+</plugin>
+
+// Deploying to a Remote Repository. This deploys artifacts to https://repo.mycompany.com/releases.
+<distributionManagement>
+    <repository>
+        <id>my-repo</id>
+        <url>https://repo.mycompany.com/releases</url>
+    </repository>
+</distributionManagement>
+
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-deploy-plugin</artifactId>
+    <version>3.1.1</version>
+</plugin>
+```
+
+**Configuration Options**
+
+<table data-full-width="true"><thead><tr><th width="236.95703125">Configuration</th><th>Description</th><th>Default</th></tr></thead><tbody><tr><td><code>url</code></td><td>The repository URL for deployment</td><td><code>None</code> (Must be provided)</td></tr><tr><td><code>repositoryId</code></td><td>The ID of the target repository</td><td><code>None</code></td></tr><tr><td><code>altDeploymentRepository</code></td><td>Alternative repository specification</td><td><code>None</code></td></tr></tbody></table>
+
+### `wagon-maven-plugin`
+
+The `wagon-maven-plugin` provides **FTP, SCP, HTTP, or custom transport** mechanisms for deploying artifacts.
+
+**Syntax**
+
+```xml
+<plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>wagon-maven-plugin</artifactId>
+    <version>2.0.0</version>
+</plugin>
+
+// Deploying to an FTP Server. This uploads my-app.jar to an FTP server.
+<execution>
+    <goals>
+        <goal>upload</goal>
+    </goals>
+    <configuration>
+        <url>ftp://ftp.example.com/deploy/</url>
+        <fromFile>target/my-app.jar</fromFile>
+        <toFile>my-app.jar</toFile>
+    </configuration>
+</execution>
+
+```
+
+**Configuration Options**
+
+| Configuration | Description             | Default  |
+| ------------- | ----------------------- | -------- |
+| `url`         | Remote location URL     | Required |
+| `fromFile`    | Local file to upload    | Required |
+| `toFile`      | Remote destination file | Required |
+
+### `maven-scm-plugin`
+
+The `maven-scm-plugin` provides integration with **Git, SVN, Mercurial, CVS**, and other SCM tools for tagging and releasing.
+
+**Syntax**
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-scm-plugin</artifactId>
+    <version>1.11.2</version>
+</plugin>
+
+// Tagging a Release in Git. This creates a Git tag (v1.0.0) for the current project.
+mvn scm:tag -Dtag=v1.0.0
+```
+
+**Configuration Options**
+
+| Configuration            | Description        | Default  |
+| ------------------------ | ------------------ | -------- |
+| `connectionUrl`          | SCM repository URL | Required |
+| `developerConnectionUrl` | SCM developer URL  | Required |
+| `tagBase`                | Base tag URL       | Optional |
+
+### `maven-release-plugin`
+
+The `maven-release-plugin` automates the **release process**, including versioning, tagging, and deployment.
+
+**Syntax**
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-release-plugin</artifactId>
+    <version>3.0.0-M8</version>
+</plugin>
+```
+
+{% hint style="info" %}
+**Running the Release Process**
+
+```sh
+mvn release:prepare
+mvn release:perform
+```
+
+This process:
+
+1. Updates the version in `pom.xml`
+2. Tags the code in SCM
+3. Deploys the release artifact
+{% endhint %}
+
+**Configuration Options**
+
+<table><thead><tr><th width="184">Configuration</th><th>Description</th><th>Default</th></tr></thead><tbody><tr><td><code>tagNameFormat</code></td><td>Format for tags</td><td><code>project.artifactId-version</code></td></tr><tr><td><code>releaseProfiles</code></td><td>Additional Maven profiles to use</td><td><code>None</code></td></tr></tbody></table>
+
+
 
 
 
 ## 5. Clean & Site Plugins
 
+`maven-clean-plugin`
+
+The `maven-clean-plugin` is responsible for **removing the `target/` directory** created during the build. This ensures that stale or obsolete files don’t affect the next build process.
+
+> Deletes all files generated by the previous build in the `target/` directory.
+
+```bash
+mvn clean
+```
+
+**Syntax**
+
+```xml
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-clean-plugin</artifactId>
+  <version>3.3.1</version>
+</plugin>
+
+// Clean Additional Directory
+<configuration>
+  <filesets>
+    <fileset>
+      <directory>${project.basedir}/logs</directory>
+    </fileset>
+  </filesets>
+</configuration>
+```
+
+Configuration Options
+
+<table><thead><tr><th width="262.35546875">Configuration</th><th width="397.1875">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>filesets</code></td><td>Allows you to specify additional files/folders to delete</td><td>None</td></tr><tr><td><code>excludeDefaultDirectories</code></td><td>If <code>true</code>, does not delete the default <code>target/</code> dir</td><td><code>false</code></td></tr></tbody></table>
+
+### `maven-site-plugin`
+
+The `maven-site-plugin` is used to **generate a complete website** for your project using metadata from the `pom.xml` and additional documentation resources (Markdown, APT, etc.).
+
+> Generates HTML pages for project reports, Javadoc, changelogs, dependency reports, etc.
+
+Use
+
+```bash
+mvn site
+```
+
+This creates the site in `target/site/index.html`.
+
+Syntax
+
+```xml
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-site-plugin</artifactId>
+  <version>4.0.0-M9</version>
+</plugin>
+
+// Customize Site Output Directory
+<configuration>
+  <outputDirectory>${project.build.directory}/custom-site</outputDirectory>
+</configuration>
+```
+
+Configuration Options
+
+<table><thead><tr><th width="187.75">Configuration</th><th width="372.08984375">Description</th><th>Default</th></tr></thead><tbody><tr><td><code>reportPlugins</code></td><td>Specifies which reporting plugins to include</td><td>Default reports</td></tr><tr><td><code>outputDirectory</code></td><td>Directory where site files will be generated</td><td><code>target/site</code></td></tr><tr><td><code>inputEncoding</code></td><td>File encoding</td><td><code>UTF-8</code></td></tr></tbody></table>
