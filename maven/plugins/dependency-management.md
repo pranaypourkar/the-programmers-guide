@@ -6,7 +6,7 @@ This category includes plugins that help manage how dependencies are resolved, d
 
 These tools are especially useful for large or complex projects with many modules or dependencies, where tracking and controlling dependency versions and scopes is critical.
 
-## `maven-dependency-plugin`
+## Maven Dependency Plugin
 
 The **Maven Dependency Plugin** (`maven-dependency-plugin`) is a key tool for analyzing, resolving, and manipulating project dependencies. It offers a rich set of goals to help us understand the dependencies in our project, copy them, unpack them, or list their structure.
 
@@ -43,7 +43,7 @@ mvn dependency:tree
 mvn dependency:analyze
 ```
 
-## `versions-maven-plugin`
+## Versions Maven Plugin
 
 The **Versions Maven Plugin** (`versions-maven-plugin`) helps manage versions of dependencies, plugins, and even the parent POM. It is especially useful for identifying outdated dependencies and suggesting updates.
 
@@ -75,7 +75,7 @@ mvn versions:display-dependency-updates
 mvn versions:use-latest-versions
 ```
 
-## `maven-install-plugin`
+## Maven Install Plugin
 
 The **Maven Install Plugin** (`maven-install-plugin`) is responsible for installing our project's artifacts (e.g., JARs, POMs) into the local Maven repository (`~/.m2/repository`) so they can be reused by other local projects.
 
@@ -108,7 +108,7 @@ This will:
 * Package the artifact (JAR/WAR)
 * Install it to your local repository
 
-## `maven-deploy-plugin`
+## Maven Deploy Plugin
 
 While more common in release workflows, the **Maven Deploy Plugin** (`maven-deploy-plugin`) is closely related to dependency management because it handles publishing artifacts to a remote repository, making them available as dependencies in other projects.
 
