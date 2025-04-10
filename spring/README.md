@@ -1,3 +1,7 @@
+---
+icon: seedling
+---
+
 # Spring
 
 ## **Introduction**

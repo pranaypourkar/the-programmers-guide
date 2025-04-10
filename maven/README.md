@@ -1,3 +1,7 @@
+---
+icon: cube
+---
+
 # Maven
 
 ## About
@@ -112,14 +116,14 @@ While primarily used for Java projects, Maven can also be employed for building 
 ### **POM (Project Object Model)**
 
 The `pom.xml` file is the heart of a Maven project. It contains information about the project and configuration details used by Maven to build the project.\
-We can use different name for POM.xml but we need to use option `-f.` \
-For example,  `mvn -f parent-pom.xml`
+We can use different name for POM.xml but we need to use option `-f.`\
+For example, `mvn -f parent-pom.xml`
 
 {% hint style="info" %}
 When we create a Maven project, our project's `pom.xml` implicitly inherits from the Super POM unless we explicitly specify a different parent.
 {% endhint %}
 
-### **Dependencies**&#x20;
+### **Dependencies**
 
 Libraries or other projects that a project relies on. These are declared in the `pom.xml` file and Maven handles downloading and managing them.
 
@@ -141,7 +145,7 @@ Locations where Maven stores and retrieves project dependencies and plugins. The
 
 * **Local Repository**: Contains all the dependencies that have been downloaded and cached for reuse in future builds.\
   Default location: `${user.home}/.m2/repository`.
-*   **Central Repository**: The default repository provided by Maven. Maven provides most of the generic dependency resources at this remote location.&#x20;
+*   **Central Repository**: The default repository provided by Maven. Maven provides most of the generic dependency resources at this remote location.
 
     Default central repository URL: `https://repo.maven.apache.org/maven2`.
 
@@ -166,7 +170,7 @@ Maven retrieves dependencies in a specific sequence, checking various repositori
 2. **Remote Repositories**
 3. **Central Repository**
 
-#### Sequence of Dependency Retrieval
+**Sequence of Dependency Retrieval**
 
 1. **Local Repository**:
    * Maven first checks the local repository, which is a cache on the developer's machine. The default location is `${user.home}/.m2/repository`.
@@ -181,7 +185,7 @@ Maven retrieves dependencies in a specific sequence, checking various repositori
 
 ### Plugins
 
-Maven uses plugins to extend its functionality. A Maven plugin is a group of goals. However, these goals aren’t necessarily all bound to the same phase. &#x20;
+Maven uses plugins to extend its functionality. A Maven plugin is a group of goals. However, these goals aren’t necessarily all bound to the same phase.
 
 Some of the Maven Plugins are:
 
@@ -236,4 +240,3 @@ Maven projects follow a standard directory layout:
 2. **Modularization**: Break down large projects into smaller, manageable modules.
 3. **Dependency Management**: Use dependency management to centralize version information and reduce redundancy.
 4. **Consistent Builds**: Use a continuous integration (CI) server to automate builds and tests.
-

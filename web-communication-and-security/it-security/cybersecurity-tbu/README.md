@@ -1,2 +1,6 @@
-# Cybersecurity - TBU
+---
+hidden: true
+---
+
+# Cybersecurity
 

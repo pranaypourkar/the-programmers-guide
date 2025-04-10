@@ -1,4 +1,8 @@
-# GIT
+---
+icon: shuffle
+---
+
+# Git
 
 ## Description
 

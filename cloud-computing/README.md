@@ -1,8 +1,12 @@
+---
+icon: cloud
+---
+
 # Cloud Computing
 
 ## About
 
-Cloud computing is the delivery of computing services including servers, storage, databases, networking, security, software, analytics, and intelligence etc. over the Internet, also called as  cloud, to offer faster delivery to market, innovation, flexible resources, and economies of scale.&#x20;
+Cloud computing is the delivery of computing services including servers, storage, databases, networking, security, software, analytics, and intelligence etc. over the Internet, also called as cloud, to offer faster delivery to market, innovation, flexible resources, and economies of scale.
 
 It is a technology that allows users to access and store data, applications, and services over the internet rather than on local hardware. It provides on-demand delivery of IT resources with pay-as-you-go pricing, enabling businesses and individuals to use computing resources flexibly and efficiently.
 
@@ -64,7 +68,7 @@ Cloud consumers are individuals, businesses, or organizations that use cloud com
 6. **Educational Institutions:** Implement cloud solutions for online learning platforms, data storage, and research projects.
 7. **Developers:** Use cloud platforms for application development, testing, and deployment. They benefit from services like containerization (e.g., Kubernetes), serverless computing, and CI/CD pipelines.
 
-### **How Cloud Consumers get Benefited?**&#x20;
+### **How Cloud Consumers get Benefited?**
 
 1. **Cost Savings:** Reduce or eliminate the need for investing in and maintaining physical infrastructure.
 2. **Scalability:** Easily scale resources up or down based on demand.
@@ -105,4 +109,3 @@ Cloud consumers are individuals, businesses, or organizations that use cloud com
    * Google Drive, Dropbox, and OneDrive, which offer cloud-based file storage and sharing.
 4. **Social Media:**
    * Facebook, Instagram, and Twitter, which rely on cloud infrastructure to handle massive amounts of data and user interactions.
-

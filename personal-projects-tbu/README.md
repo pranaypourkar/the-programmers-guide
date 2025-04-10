@@ -1,2 +1,6 @@
-# Personal Projects - TBU
+---
+icon: laptop
+---
+
+# Personal Projects
 

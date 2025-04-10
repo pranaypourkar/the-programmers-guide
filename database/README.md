@@ -1,3 +1,7 @@
+---
+icon: cabinet-filing
+---
+
 # Database
 
 ## About

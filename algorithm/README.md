@@ -1,3 +1,7 @@
+---
+icon: ruler-triangle
+---
+
 # Algorithm
 
 ## About

@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Networking
 
 ## About
@@ -82,4 +86,3 @@ Networking refers to the practice of connecting computers and other devices toge
 2. **Jitter:** The variability in packet delay across a network.
 3. **MTTR (Mean Time to Repair):** The average time required to repair a failed component or device.
 4. **MTBF (Mean Time Between Failures):** The predicted elapsed time between inherent failures of a system during operation.
-
