@@ -40,7 +40,7 @@ The **PMD Plugin** integrates PMD into Maven. It scans Java source code to ident
 
 <table><thead><tr><th width="220.625">Goal</th><th>Description</th></tr></thead><tbody><tr><td><code>pmd:check</code></td><td>Runs analysis and fails the build if violations are found</td></tr><tr><td><code>pmd:pmd</code></td><td>Generates a PMD report (<code>target/site</code>)</td></tr><tr><td><code>pmd:cpd</code></td><td>Detects duplicate code (Copy-Paste Detector)</td></tr></tbody></table>
 
-#### **Configuration**
+**Basic Configuration**
 
 ```xml
 <plugin>
@@ -115,7 +115,7 @@ Generates HTML, XML, and JSON reports under `target/dependency-check-report`.
 
 The **Maven Enforcer Plugin** helps enforce rules on the build environment, dependency versions, or plugin versions to ensure consistency across a development team.
 
-#### **Common Rules:**
+#### **Common Rules**
 
 | Rule                    | Purpose                                       |
 | ----------------------- | --------------------------------------------- |
@@ -127,7 +127,7 @@ The **Maven Enforcer Plugin** helps enforce rules on the build environment, depe
 #### **Basic Configuration:**
 
 ```xml
-xmlCopyEdit<plugin>
+<plugin>
   <groupId>org.apache.maven.plugins</groupId>
   <artifactId>maven-enforcer-plugin</artifactId>
   <version>3.3.0</version>
