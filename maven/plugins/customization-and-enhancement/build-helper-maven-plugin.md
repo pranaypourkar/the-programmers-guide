@@ -1,5 +1,7 @@
 # build-helper-maven-plugin
 
+## About
+
 It is a useful Maven plugin provided by the Mojo project **"org.codehaus.mojo"**. It helps in managing various aspects of the build process. Some of the ways in which it helps is given below.
 
 * Add more source directories to the project
