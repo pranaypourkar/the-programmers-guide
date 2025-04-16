@@ -4,21 +4,21 @@
 
 The **Performance Optimization** category in Maven includes plugins that focus on:
 
-* Reducing **build time**
-* Improving **build efficiency**
-* Minimizing **redundant computation**
-* Managing **resource usage**
-* Leveraging **parallelism** and **incremental builds**
+* Reducing build time
+* Improving build efficiency
+* Minimizing redundant computation
+* Managing resource usage
+* Leveraging parallelism and incremental builds
 
 These plugins are especially useful in large projects, CI/CD pipelines, or multi-module builds where performance bottlenecks can lead to wasted time and compute resources.
 
 #### **Why Optimize Maven Performance?**
 
-* **Faster feedback loops** during development
-* **Reduced CI/CD pipeline durations**
-* **Scalability** with large codebases or teams
-* Avoid **rebuilding unchanged modules**
-* Efficient **use of CPU/memory resources**
+* Faster feedback loops during development
+* Reduced CI/CD pipeline durations
+* Scalability with large codebases or teams
+* Avoid rebuilding unchanged modules
+* Efficient use of CPU/memory resources
 
 ## **build-cache-extension**
 
