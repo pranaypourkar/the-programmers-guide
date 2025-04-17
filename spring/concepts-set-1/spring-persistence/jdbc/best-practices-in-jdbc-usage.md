@@ -153,7 +153,7 @@ This avoids memory overflows during large queries.
 Only fetch needed columns:
 
 ```sql
-SELECT id, name FROM users -- ✅
+SELECT id, name FROM users -- Y
 ```
 
 Avoid:
