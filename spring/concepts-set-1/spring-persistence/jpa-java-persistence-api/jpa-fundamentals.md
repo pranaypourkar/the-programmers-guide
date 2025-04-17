@@ -97,53 +97,53 @@ employee.setFirstName("Johnathan");
 * **Detached:** The entity becomes detached from the persistence context (e.g., after the transaction is committed and the persistence context is closed).
 * **Removed:** The entity is deleted from the database by calling `remove()`.
 
-***
+### 3. Detached State
 
-#### 3. **Detached State**
+An entity becomes **Detached** when it is no longer managed by the persistence context. This typically happens after the transaction ends or the persistence context is closed. The entity can still be used, but JPA no longer tracks it for changes.
 
-* **What is it?**\
-  An entity becomes **Detached** when it is no longer managed by the persistence context. This typically happens after the transaction ends or the persistence context is closed. The entity can still be used, but JPA no longer tracks it for changes.
-* **Key characteristics:**
-  * The entity is no longer associated with the persistence context.
-  * Any changes made to the entity **will not** be automatically saved to the database.
-  * It can still be reattached to a persistence context if needed (e.g., by calling `merge()`).
-*   **Example:**
+**Key characteristics**
 
-    ```java
-    javaCopyEditentityManager.persist(employee);  // Entity is in "Managed" state
-    entityManager.flush();  // Flush changes to the DB and close the transaction
-    // After the transaction is completed, employee is now in "Detached" state
-    ```
-*   **Reattaching Detached Entities:** If you want to reattach a detached entity to the persistence context (so changes can be tracked again), you can use the `merge()` method:
+* The entity is no longer associated with the persistence context.
+* Any changes made to the entity **will not** be automatically saved to the database.
+* It can still be reattached to a persistence context if needed (e.g., by calling `merge()`).
 
-    ```java
-    javaCopyEditEmployee reattachedEmployee = entityManager.merge(employee);  // Now it's reattached
-    ```
-* **Transition to Managed:**\
-  The entity can be reattached to the persistence context using `merge()`, bringing it back to the **Managed** state.
+**Example**
 
-***
+```java
+entityManager.persist(employee);  // Entity is in "Managed" state
+entityManager.flush();  // Flush changes to the DB and close the transaction
+// After the transaction is completed, employee is now in "Detached" state
+```
 
-#### 4. **Removed State**
+**Reattaching Detached Entities:** If you want to reattach a detached entity to the persistence context (so changes can be tracked again), you can use the `merge()` method:
 
-* **What is it?**\
-  An entity is in the **Removed** state when it has been marked for deletion and is scheduled to be deleted from the database. Once an entity is removed, it is no longer part of the persistence context and will be deleted when the transaction is committed.
-* **Key characteristics:**
-  * Once removed, the entity is **not available** for further operations unless it is **reinserted**.
-  * The entity is marked for deletion, and its corresponding database row is deleted when the transaction is committed.
-  * It cannot be updated or persisted again until it is recreated as a new entity.
-*   **Example:**
+```java
+Employee reattachedEmployee = entityManager.merge(employee);  // Now it's reattached
+```
 
-    ```java
-    javaCopyEditentityManager.remove(employee);  // The entity is marked for removal
-    ```
-* **Transition from Removed:**
-  * Once an entity is removed, it cannot transition back to the **Managed** state.
-  * If you want to persist it again, you would need to create a new instance and persist it.
+**Transition to Managed:**\
+The entity can be reattached to the persistence context using `merge()`, bringing it back to the **Managed** state.
 
+### 4. Removed State
 
+An entity is in the **Removed** state when it has been marked for deletion and is scheduled to be deleted from the database. Once an entity is removed, it is no longer part of the persistence context and will be deleted when the transaction is committed.
 
+**Key characteristics**
 
+* Once removed, the entity is **not available** for further operations unless it is **reinserted**.
+* The entity is marked for deletion, and its corresponding database row is deleted when the transaction is committed.
+* It cannot be updated or persisted again until it is recreated as a new entity.
+
+**Example**
+
+```java
+entityManager.remove(employee);  // The entity is marked for removal
+```
+
+**Transition from Removed:**
+
+* Once an entity is removed, it cannot transition back to the **Managed** state.
+* If you want to persist it again, you would need to create a new instance and persist it.
 
 ## Persistence Unit
 
