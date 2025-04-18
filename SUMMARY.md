@@ -626,7 +626,7 @@
       * [JPA (Java Persistence API)](spring/concepts-set-1/spring-persistence/jpa-java-persistence-api/README.md)
         * [JPA Fundamentals](spring/concepts-set-1/spring-persistence/jpa-java-persistence-api/jpa-fundamentals.md)
         * [ORM Mapping Annotations](spring/concepts-set-1/spring-persistence/jpa-java-persistence-api/orm-mapping-annotations.md)
-        * [Querying Data](spring/concepts-set-1/spring-persistence/jpa-java-persistence-api/querying-data/README.md)
+        * [Querying Data](spring/concepts-set-1/spring-persistence/jpa-java-persistence-api/querying-data.md)
           * [JPQL](spring/concepts-set-1/spring-persistence/jpa-java-persistence-api/querying-data/jpql.md)
           * [Criteria API](spring/concepts-set-1/spring-persistence/jpa-java-persistence-api/querying-data/criteria-api.md)
           * [Native SQL Queries](spring/concepts-set-1/spring-persistence/jpa-java-persistence-api/querying-data/native-sql-queries.md)
