@@ -250,3 +250,37 @@ Without a transaction:
 
 * Reads may work
 * Writes will often fail or behave unpredictably
+
+## What is a Dialect in JPA
+
+In JPA (specifically Hibernate or other providers),\
+**a Dialect is a class that tells Hibernate how to generate SQL for a specific database**.
+
+It knows:
+
+* How to write `SELECT`, `INSERT`, `UPDATE`, `DELETE`.
+* What data types the database supports (`VARCHAR`, `TEXT`, `BLOB`, etc.).
+* What special database features exist (like auto-increment, sequences, functions).
+
+Every database (MySQL, Oracle, PostgreSQL, SQL Server) has its **own SQL syntax rules and special features**.\
+The **Dialect** acts like a "**translator**" between Hibernate and your database.
+
+<table><thead><tr><th width="276.0546875">Database</th><th>Corresponding Hibernate Dialect Class</th></tr></thead><tbody><tr><td>MySQL</td><td><code>org.hibernate.dialect.MySQLDialect</code></td></tr><tr><td>PostgreSQL</td><td><code>org.hibernate.dialect.PostgreSQLDialect</code></td></tr><tr><td>Oracle</td><td><code>org.hibernate.dialect.OracleDialect</code></td></tr><tr><td>SQL Server</td><td><code>org.hibernate.dialect.SQLServerDialect</code></td></tr></tbody></table>
+
+**Spring Boot Example in `application.properties`:**
+
+```properties
+spring.jpa.database-platform=org.hibernate.dialect.MySQLDialect
+```
+
+* Tells Hibernate: "Hey, generate SQL that works correctly with MySQL."
+* Example: MySQL uses `LIMIT` keyword for pagination, while Oracle uses `ROWNUM`. The dialect handles these differences automatically.
+
+### How Hibernate uses Dialect internally
+
+* When we create an entity and Hibernate tries to **create or update a table**, it looks at the **Dialect** to know:
+  * How to define columns (`VARCHAR(255)`, `TEXT`, etc.).
+  * How to generate keys (like `AUTO_INCREMENT` for MySQL vs `SEQUENCE` for Oracle).
+  * How to build queries that match your database syntax.
+
+If the wrong dialect is chosen, Hibernate might generate **wrong SQL**, and your app will fail at runtime.
