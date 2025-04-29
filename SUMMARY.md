@@ -650,7 +650,6 @@
           * [Example](spring/concepts-set-1/spring-persistence/jpa-implementation/hibernate/example.md)
       * [Spring Data JPA](spring/concepts-set-1/spring-persistence/spring-data-jpa/README.md)
         * [Repository Abstractions](spring/concepts-set-1/spring-persistence/spring-data-jpa/repository-abstractions.md)
-        * [Projections & DTO Mapping](spring/concepts-set-1/spring-persistence/spring-data-jpa/projections-and-dto-mapping.md)
         * [Entity-to-Table Mapping](spring/concepts-set-1/spring-persistence/spring-data-jpa/entity-to-table-mapping.md)
       * [Transactions & Concurrency](spring/concepts-set-1/spring-persistence/transactions-and-concurrency.md)
       * [Performance & Caching](spring/concepts-set-1/spring-persistence/performance-and-caching/README.md)
