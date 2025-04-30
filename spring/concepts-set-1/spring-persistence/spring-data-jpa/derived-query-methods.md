@@ -1,4 +1,4 @@
-# Derived Query Methods (Spring Data JPA)
+# Derived Query Methods
 
 ## About
 
@@ -9,35 +9,81 @@ This means:
 * **No need to write JPQL or native SQL**
 * **Method name = Query definition**
 
+{% hint style="info" %}
+**JPA** is just a **standard**. It doesn’t provide automatic query derivation. **Spring Data JPA** is a **Spring project** that builds on JPA and **adds powerful abstractions and features**, like method name query derivation.
+{% endhint %}
+
 ## Characteristics
 
 <table data-full-width="true"><thead><tr><th width="266.5703125">Feature</th><th>Description</th></tr></thead><tbody><tr><td><strong>Convention over Configuration</strong></td><td>We follow naming conventions instead of writing queries.</td></tr><tr><td><strong>Auto-generated Queries</strong></td><td>Spring parses method names and creates queries automatically.</td></tr><tr><td><strong>Readable &#x26; Declarative</strong></td><td>Method names are self-explanatory and easy to understand.</td></tr><tr><td><strong>Less Boilerplate Code</strong></td><td>No need for custom query implementations.</td></tr><tr><td><strong>Integration with Entities</strong></td><td>Works seamlessly with JPA entity models.</td></tr><tr><td><strong>Customizable with Keywords</strong></td><td>Support for <code>And</code>, <code>Or</code>, <code>Between</code>, <code>Like</code>, <code>In</code>, <code>OrderBy</code>, etc.</td></tr></tbody></table>
 
-## Syntax Structure
+## **How It Works ?**
 
-Derived query methods follow this structure
+When Spring Data JPA boots up:
+
+* It scans repository interfaces.
+* If a method name **starts with a known keyword** (e.g., `findBy`, `deleteBy`, `countBy`, etc.), it will:
+  1. Parse the rest of the method name.
+  2. Derive a JPQL query based on it.
+  3. Create a dynamic proxy implementation to execute it.
+
+Example:
 
 ```java
-<ReturnType> findBy<PropertyName><Condition>(<ParameterType> param);
+List<Employee> findByDepartment(String department);
 ```
 
-Spring will convert this into a JPA query based on the entity's fields.
+Spring will interpret this as:
 
-### Common Keywords Used
+```sql
+SELECT e FROM Employee e WHERE e.department = :department
+```
 
-| Keyword                   | Meaning            |
-| ------------------------- | ------------------ |
-| `findBy`                  | Select data        |
-| `countBy`                 | Count rows         |
-| `existsBy`                | Check existence    |
-| `deleteBy`                | Delete rows        |
-| `And`, `Or`               | Logical operations |
-| `Between`                 | Range checks       |
-| `LessThan`, `GreaterThan` | Comparison         |
-| `Like`, `NotLike`         | Pattern matching   |
-| `In`, `NotIn`             | Collections        |
-| `OrderBy`                 | Sorting            |
-| `Top`, `First`            | Limit results      |
+{% hint style="success" %}
+**Invalid Method Names or Ambiguities**
+
+* Spring fails with **`IllegalStateException`** if method name is ambiguous or unparseable.
+* We can fix this by:
+  * Using `@Query`
+  * Refactoring the name
+  * Simplifying complex logic into custom methods
+{% endhint %}
+
+## **Supported Query Keywords**
+
+| Prefix     | Purpose                  |
+| ---------- | ------------------------ |
+| `findBy`   | Fetch data               |
+| `readBy`   | Same as `findBy`         |
+| `getBy`    | Same as `findBy`         |
+| `queryBy`  | Same as `findBy`         |
+| `countBy`  | Count records            |
+| `existsBy` | Boolean existence check  |
+| `deleteBy` | Deletes matching records |
+| `removeBy` | Same as `deleteBy`       |
+
+## **Common Keywords After `By`**
+
+| Keyword                   | SQL Equivalent         |
+| ------------------------- | ---------------------- |
+| `And`                     | `AND`                  |
+| `Or`                      | `OR`                   |
+| `Between`                 | `BETWEEN`              |
+| `LessThan`                | `<`                    |
+| `LessThanEqual`           | `<=`                   |
+| `GreaterThan`             | `>`                    |
+| `GreaterThanEqual`        | `>=`                   |
+| `IsNull`                  | `IS NULL`              |
+| `IsNotNull`               | `IS NOT NULL`          |
+| `Like`                    | `LIKE`                 |
+| `NotLike`                 | `NOT LIKE`             |
+| `In`                      | `IN`                   |
+| `NotIn`                   | `NOT IN`               |
+| `StartingWith`            | `LIKE 'abc%'`          |
+| `EndingWith`              | `LIKE '%abc'`          |
+| `Containing` / `Contains` | `LIKE '%abc%'`         |
+| `True/False`              | `= true / false`       |
+| `IgnoreCase`              | case-insensitive match |
 
 ## Examples
 
@@ -146,6 +192,26 @@ Long countByDepartment(String department);
 ```
 
 _Check if a record exists or count employees in a department._
+
+### Null / Not Null Checks
+
+```java
+List<Employee> findByManagerIsNull();
+List<Employee> findByManagerIsNotNull();
+```
+
+### Case-Insensitive Queries
+
+```java
+List<Employee> findByNameIgnoreCase(String name);
+```
+
+### Limiting Results
+
+```java
+List<Employee> findTop3ByOrderBySalaryDesc();
+List<Employee> findFirst5ByDepartment(String dept);
+```
 
 ## Comparison: Derived Query vs JPQL vs Native SQL
 

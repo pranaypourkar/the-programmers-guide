@@ -1,7 +1,3 @@
----
-hidden: true
----
-
 # Spring Persistence
 
 ## About
