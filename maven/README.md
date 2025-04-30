@@ -18,6 +18,37 @@ It provides the developer a complete build lifecycle framework. On executing Mav
 While primarily used for Java projects, Maven can also be employed for building projects in other languages with the help of plugins.
 {% endhint %}
 
+## Can Maven run independently without Java ?
+
+Maven **requires Java** to run. It **cannot run independently** without it.
+
+#### Why?
+
+Maven is a **Java-based build tool**, and it runs on the Java Virtual Machine (JVM). Specifically:
+
+* Maven itself is written in Java.
+* It uses the Java runtime (`java`) to execute its code.
+* Maven plugins (like Surefire, Failsafe, Compiler) rely on Java APIs and tools.
+
+#### What this means:
+
+* We **must have Java installed** (typically JDK) on our system.
+* The `JAVA_HOME` environment variable must be set correctly.
+*   Maven will fail to start without Java, usually with an error like:
+
+    ```
+    Error: JAVA_HOME is not defined correctly.
+    ```
+
+#### To check:
+
+```bash
+java -version
+mvn -version
+```
+
+This ensures both Java and Maven are installed and linked properly.
+
 ## List of various aspect that maven manages
 
 ### 1. **Build Management**

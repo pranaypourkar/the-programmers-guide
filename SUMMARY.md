@@ -498,6 +498,7 @@
   * [Best Practices](java/best-practices/README.md)
     * [Artifact and BOM Versioning](java/best-practices/artifact-and-bom-versioning.md)
 * [Maven](maven/README.md)
+  * [Installation](maven/installation.md)
   * [Build & Lifecycle](maven/build-and-lifecycle.md)
   * [Command-line Options](maven/command-line-options.md)
   * [Dependency Management](maven/dependency-management/README.md)
