@@ -499,7 +499,6 @@
     * [Artifact and BOM Versioning](java/best-practices/artifact-and-bom-versioning.md)
 * [Maven](maven/README.md)
   * [Installation](maven/installation.md)
-  * [Page](maven/page.md)
   * [Local Repository & Configuration](maven/local-repository-and-configuration.md)
   * [Command-line Options](maven/command-line-options.md)
   * [Build & Lifecycle](maven/build-and-lifecycle.md)
