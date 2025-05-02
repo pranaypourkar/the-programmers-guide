@@ -30,7 +30,7 @@ This example is designed to simulate real business requirements and demonstrate 
 
 ## ER Diagram
 
-<figure><img src="../../../../.gitbook/assets/spring-persistence-examples-employee-portal.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/spring-persistence-examples-employee-portal.png" alt=""><figcaption></figcaption></figure>
 
 <details>
 
@@ -122,6 +122,225 @@ Salary ||--o{ PaymentHistory : tracked_by
 
 </details>
 
+## Oracle DDL (Data Definition Language) SQL queries
+
+{% hint style="info" %}
+Oracle will automatically create indexes for **primary keys** and **unique constraints**, so we don’t need to define those manually again.
+{% endhint %}
+
+### `departments` Table
+
+```sql
+-- Department table stores organizational departments
+CREATE TABLE departments (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR2(100) NOT NULL,
+    location VARCHAR2(100)
+);
+
+-- Optional: index for name if used in filters or sorting
+CREATE INDEX idx_departments_name ON departments(name);
+```
+
+{% hint style="info" %}
+Oracle automatically:
+
+* Creates a **sequence** internally (we don't need to define it)
+* Links it to that column
+* Auto-increments the value on each insert
+
+NUMBER -> Defines the column as a number (Oracle's flexible numeric type)
+
+GENERATED ALWAYS AS IDENTITY -> Tells Oracle to **auto-generate** values for this column (identity)
+
+PRIMARY KEY -> Declares this column as the **primary key** of the table
+{% endhint %}
+
+### `addresses` Table
+
+```sql
+-- Address table stores address information for employees
+CREATE TABLE addresses (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    street VARCHAR2(200),
+    city VARCHAR2(100),
+    state VARCHAR2(100),
+    zip VARCHAR2(20),
+    country VARCHAR2(100)
+);
+```
+
+### `employees` Table
+
+```sql
+-- Employee table with FK to department and address
+CREATE TABLE employees (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR2(100) NOT NULL,
+    email VARCHAR2(100) UNIQUE,
+    phone VARCHAR2(20),
+    hire_date DATE,
+    department_id NUMBER NOT NULL,
+    address_id NUMBER,
+
+    CONSTRAINT fk_employee_department FOREIGN KEY (department_id)
+        REFERENCES departments(id),
+
+    CONSTRAINT fk_employee_address FOREIGN KEY (address_id)
+        REFERENCES addresses(id)
+);
+
+-- Index to speed up lookups by department (frequent join)
+CREATE INDEX idx_employees_department_id ON employees(department_id);
+
+-- Index for address-based searches
+CREATE INDEX idx_employees_address_id ON employees(address_id);
+
+-- Index for email lookups (even though it’s unique, good to make it explicit)
+CREATE UNIQUE INDEX idx_employees_email ON employees(email);
+```
+
+### `projects` Table
+
+```sql
+-- Project table stores client project information
+CREATE TABLE projects (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name VARCHAR2(100) NOT NULL,
+    client VARCHAR2(100),
+    budget NUMBER(12,2)
+);
+
+-- Optional: index for project name filtering or sorting
+CREATE INDEX idx_projects_name ON projects(name);
+```
+
+#### `employee_project` Table (Join Table)
+
+```sql
+-- Join table for Many-to-Many relation between Employee and Project
+CREATE TABLE employee_project (
+    employee_id NUMBER NOT NULL,
+    project_id NUMBER NOT NULL,
+
+    CONSTRAINT pk_employee_project PRIMARY KEY (employee_id, project_id),
+
+    CONSTRAINT fk_emp_proj_employee FOREIGN KEY (employee_id)
+        REFERENCES employees(id) ON DELETE CASCADE,
+
+    CONSTRAINT fk_emp_proj_project FOREIGN KEY (project_id)
+        REFERENCES projects(id) ON DELETE CASCADE
+);
+
+-- Indexes to speed up joins from both sides of the many-to-many relation
+CREATE INDEX idx_emp_proj_employee_id ON employee_project(employee_id);
+CREATE INDEX idx_emp_proj_project_id ON employee_project(project_id);
+```
+
+### `salaries` Table
+
+```sql
+-- Salary table tracks monthly salary components per employee
+CREATE TABLE salaries (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    employee_id NUMBER NOT NULL,
+    base_salary NUMBER(12,2),
+    bonus NUMBER(12,2),
+    deductions NUMBER(12,2),
+    month VARCHAR2(15),
+    year NUMBER(4),
+    status VARCHAR2(50),
+
+    CONSTRAINT fk_salary_employee FOREIGN KEY (employee_id)
+        REFERENCES employees(id) ON DELETE CASCADE
+);
+
+-- Employee-based salary lookup
+CREATE INDEX idx_salaries_employee_id ON salaries(employee_id);
+
+-- Querying by salary period
+CREATE INDEX idx_salaries_month_year ON salaries(month, year);
+```
+
+### `payment_history` Table
+
+```sql
+-- Payment history table logs payments made for each salary
+CREATE TABLE payment_history (
+    id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    salary_id NUMBER NOT NULL,
+    payment_date DATE,
+    amount_paid NUMBER(12,2),
+    payment_mode VARCHAR2(50),
+    remarks VARCHAR2(255),
+
+    CONSTRAINT fk_payment_salary FOREIGN KEY (salary_id)
+        REFERENCES salaries(id) ON DELETE CASCADE
+);
+
+-- Index to speed up lookups by salary ID
+CREATE INDEX idx_payment_salary_id ON payment_history(salary_id);
+
+-- Index for payment date filtering
+CREATE INDEX idx_payment_date ON payment_history(payment_date);
+```
+
+## Sample Data Insertion Queries
+
+{% code overflow="wrap" fullWidth="true" %}
+```sql
+// departments
+INSERT INTO departments (id, name, location) VALUES (1, 'Engineering', 'New York');
+INSERT INTO departments (id, name, location) VALUES (2, 'HR', 'San Francisco');
+INSERT INTO departments (id, name, location) VALUES (3, 'Finance', 'Chicago');
+
+// addresses
+INSERT INTO addresses (id, street, city, state, zip, country)
+VALUES (1, '123 Main St', 'New York', 'NY', '10001', 'USA');
+INSERT INTO addresses (id, street, city, state, zip, country)
+VALUES (2, '456 Park Ave', 'San Francisco', 'CA', '94101', 'USA');
+INSERT INTO addresses (id, street, city, state, zip, country)
+VALUES (3, '789 Lakeshore Dr', 'Chicago', 'IL', '60601', 'USA');
+
+// employees
+INSERT INTO employees (id, name, email, phone, hire_date, department_id, address_id)
+VALUES (1, 'Alice Johnson', 'alice@example.com', '1234567890', TO_DATE('2020-01-15', 'YYYY-MM-DD'), 1, 1);
+INSERT INTO employees (id, name, email, phone, hire_date, department_id, address_id)
+VALUES (2, 'Bob Smith', 'bob@example.com', '2345678901', TO_DATE('2021-03-10', 'YYYY-MM-DD'), 2, 2);
+INSERT INTO employees (id, name, email, phone, hire_date, department_id, address_id)
+VALUES (3, 'Carol White', 'carol@example.com', '3456789012', TO_DATE('2019-07-22', 'YYYY-MM-DD'), 3, 3);
+
+// projects
+INSERT INTO projects (id, name, client, budget)
+VALUES (1, 'Portal Revamp', 'TechCorp', 50000);
+INSERT INTO projects (id, name, client, budget)
+VALUES (2, 'HR System Upgrade', 'PeopleSoft', 30000);
+
+// employee_project
+-- Alice is on both projects
+INSERT INTO employee_project (employee_id, project_id) VALUES (1, 1);
+INSERT INTO employee_project (employee_id, project_id) VALUES (1, 2);
+-- Bob is only on project 2
+INSERT INTO employee_project (employee_id, project_id) VALUES (2, 2);
+-- Carol is only on project 1
+INSERT INTO employee_project (employee_id, project_id) VALUES (3, 1);
+
+// salaries
+INSERT INTO salaries (id, employee_id, base_salary, bonus, deductions, month, year, status)
+VALUES (1, 1, 6000, 500, 200, 'JAN', 2024, 'PAID');
+INSERT INTO salaries (id, employee_id, base_salary, bonus, deductions, month, year, status)
+VALUES (2, 1, 6000, 600, 250, 'FEB', 2024, 'PAID');
+INSERT INTO salaries (id, employee_id, base_salary, bonus, deductions, month, year, status)
+VALUES (3, 2, 4000, 200, 150, 'JAN', 2024, 'PENDING');
+
+// payment_history
+INSERT INTO payment_history (id, salary_id, payment_date, amount_paid, payment_mode, remarks)
+VALUES (1, 1, TO_DATE('2024-01-31', 'YYYY-MM-DD'), 6300, 'BANK_TRANSFER', 'Salary for Jan');
+INSERT INTO payment_history (id, salary_id, payment_date, amount_paid, payment_mode, remarks)
+VALUES (2, 2, TO_DATE('2024-02-29', 'YYYY-MM-DD'), 6350, 'BANK_TRANSFER', 'Salary for Feb');
+```
+{% endcode %}
+
 ## Folder Structure
 
 ```apacheconf
@@ -141,7 +360,9 @@ com.company.employeeportal
 │
 ├── mapper                  # MapStruct or manual mappers (Entity <-> DTO)
 │
-├── repository              # Spring Data JPA repositories
+├── repository              # Spring Data JPA repositories specification
+│
+├── specification           # Spring Data JPA specification 
 │
 ├── service
 │   ├── impl                # Implementations of service interfaces
@@ -327,7 +548,7 @@ public class Employee {
 #### Department.java
 
 ```java
-javaCopyEdit@Entity
+@Entity
 @Table(name = "departments")
 @Data
 @NoArgsConstructor
