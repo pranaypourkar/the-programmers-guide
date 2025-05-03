@@ -653,7 +653,7 @@
         * [Repository Abstractions](spring/concepts-set-1/spring-persistence/spring-data-jpa/repository-abstractions.md)
         * [Entity-to-Table Mapping](spring/concepts-set-1/spring-persistence/spring-data-jpa/entity-to-table-mapping.md)
         * [Derived Query Methods](spring/concepts-set-1/spring-persistence/spring-data-jpa/derived-query-methods.md)
-      * [Transactions & Concurrency](spring/concepts-set-1/spring-persistence/transactions-and-concurrency.md)
+      * [Transactions](spring/concepts-set-1/spring-persistence/transactions.md)
       * [Performance & Caching](spring/concepts-set-1/spring-persistence/performance-and-caching/README.md)
         * [Lazy vs Eager Loading](spring/concepts-set-1/spring-persistence/performance-and-caching/lazy-vs-eager-loading.md)
         * [First-Level and Second-Level Cache](spring/concepts-set-1/spring-persistence/performance-and-caching/first-level-and-second-level-cache.md)
