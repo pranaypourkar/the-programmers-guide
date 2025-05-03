@@ -168,57 +168,251 @@ Databases support **different levels of locking**, depending on the granularity 
 
 Some systems even support **column-level locks**, but it's rare.
 
+## Locking Protocols
 
+### About
 
+**Locking protocols** are **rules followed by transactions** to **acquire and release locks** on data items to ensure **consistency** and **isolation**.
 
+They help prevent problems like:
 
-Locking Protocols
+* Dirty reads,
+* Lost updates,
+* Inconsistent data,
+* Deadlocks (in some cases).
 
+> Think of them as traffic rules that all transactions must follow when accessing shared data.
 
+### Why Are Locking Protocols Important?
 
-#### **Deadlock and Its Resolution**
+* Enforce **transaction isolation** (especially SERIALIZABLE level).
+* Prevent **conflicts** in multi-user environments.
+* Ensure **data consistency**.
+* Avoid **anomalies** in concurrent transactions.
 
+{% hint style="info" %}
+- Most modern DBMSs use **strict two-phase locking** or a **hybrid** of these protocols internally.
+- As a developer or DBA, understanding locking protocols helps in:
+  * Optimizing queries and transactions,
+  * Tuning isolation levels,
+  * Avoiding performance issues and deadlocks.
+{% endhint %}
 
+### 1. Two-Phase Locking (2PL)
 
+**Most used protocol** for serializability.
 
+* **Phases:**
+  1. **Growing phase:** Transaction can acquire locks but **not release** them.
+  2. **Shrinking phase:** Transaction can release locks but **not acquire** any new ones.
+* **Variants:**
+  * **Strict 2PL:** Keeps all **exclusive (write) locks until commit**, preventing cascading rollbacks.
+  * **Rigorous 2PL:** Keeps **all locks (read/write)** until commit.
+* **Pros:** Guarantees **serializability** (transactions appear to run in sequence).
+* **Cons:** Can cause **deadlocks**.
 
+### 2. Timestamp Ordering Protocol
 
+**No locks**, but orders operations using **timestamps**.
 
-Unlocking and Release of Locks
+* Each transaction gets a **unique timestamp**.
+* The DBMS allows operations only if they **don’t violate the timestamp order**.
+* Conflicting operations are **aborted** and retried if order is violated.
+* **Pros:** No deadlocks.
+* **Cons:** Higher chances of **transaction restarts**.
 
+### 3. Validation-Based Protocol (Optimistic Concurrency Control)
 
+**Transactions execute without locking**, and only **validate before committing**.
 
+* **Phases:**
+  1. **Read phase** – Read data without locking.
+  2. **Validation phase** – Check if conflict occurred.
+  3. **Write phase** – If valid, commit changes; else rollback.
+* **Pros:** High performance with **low contention**.
+* **Cons:** Wasted work if validation fails.
 
+### 4. Multiple Granularity Locking Protocol
 
-Best Practices
+Manages **locks at different levels** – database, table, page, row.
 
+* Uses **intention locks** like:
+  * **Intention Shared (IS)**,
+  * **Intention Exclusive (IX)**,
+  * To inform what kind of locks are needed at finer levels.
+* **Example:** Locking a row must first get intention locks on page and table.
+* **Pros:** Flexible and supports **hierarchical locking**.
+* **Cons:** Adds complexity.
 
+## Deadlock and Its Resolution
 
+### About
 
+A **deadlock** occurs when **two or more transactions are waiting for each other** to release resources (like locks), and **none of them can proceed**.
 
+> It’s like two people trying to cross a narrow bridge from opposite sides, both refusing to back up.
 
+Imagine two transactions:
 
+* **T1** locks **Row A** and wants **Row B**
+* **T2** locks **Row B** and wants **Row A**
 
+Both are waiting for each other to release the row, and **neither can proceed** = **deadlock**!
 
+### Conditions for Deadlock (All must be true)
 
+1. **Mutual Exclusion** – Only one transaction can use a resource at a time.
+2. **Hold and Wait** – Transactions hold some locks and wait for more.
+3. **No Preemption** – Locks cannot be forcibly taken away.
+4. **Circular Wait** – Transaction A waits for B, B waits for C, and C waits for A.
 
+### Deadlock Detection and Resolution Techniques
 
+#### **1. Deadlock Detection**
 
+* DBMS checks for **circular wait** using a **wait-for graph**.
+* If a cycle is detected, **one transaction is rolled back**.
 
+**Advantage**: High concurrency\
+**Disadvantage**: Needs monitoring overhead
 
+#### **2. Deadlock Prevention**
 
+* The DBMS is designed to **prevent the four conditions** from happening.
 
+Examples:
 
+* **Resource Ordering**: Always acquire locks in a fixed order.
+* **Wait-Die / Wound-Wait** Schemes:
+  * **Wait-Die**: Older transaction waits; younger dies (rolls back).
+  * **Wound-Wait**: Older transaction preempts younger one.
 
+**Advantage**: No deadlocks\
+**Disadvantage**: May cause more rollbacks
 
+#### **3. Deadlock Avoidance**
 
+* DBMS checks **before granting a lock** if it might lead to a deadlock.
 
+Example:
 
+* **Wait-For Graph Prediction**: Simulate if a new lock request causes a cycle.
 
+**Advantage**: No deadlocks, fewer rollbacks\
+**Disadvantage**: Complex, more checks needed
 
+#### **4. Timeout Approach**
 
+* If a transaction waits too long, it is **automatically rolled back**.
 
+**Simple** and low overhead\
+May cause **false positives** (not actual deadlocks)
 
+## Unlocking and Release of Locks
 
+Unlocking is the process of **releasing a previously held lock** on a data item (like a row, table, or page) so that **other transactions can access** that data.
 
+It’s a critical part of maintaining **concurrency control** and ensuring that other transactions are not blocked indefinitely.
 
+### Why Unlocking Is Important
+
+* Prevents **unnecessary blocking** of other transactions.
+* Avoids **deadlocks** by freeing resources on time.
+* Ensures better **resource utilization**.
+* Essential for maintaining **ACID properties**—especially **Isolation** and **Durability**.
+
+### When Are Locks Released?
+
+It depends on the **locking protocol** or **isolation level** used. Common release points:
+
+1. **At the end of a transaction (commit or rollback)**
+   * Used in **strict two-phase locking (Strict 2PL)**.
+   * Ensures data consistency but may reduce concurrency.
+2. **During the transaction (early unlock)**
+   * Used in **basic 2PL** or **non-strict protocols**.
+   * Increases concurrency but can cause cascading rollbacks.
+
+### Types of Unlocking Approaches
+
+#### 1. Automatic Unlocking by DBMS
+
+* Most RDBMS systems **automatically release locks** when:
+  * The transaction **commits** or **rolls back**.
+  * A query finishes execution (in some read locks).
+* This is the **safest and most common** method.
+
+#### 2. Manual Unlocking (Explicit Release)
+
+* Some databases allow **manual control** over lock release.
+* Rare in practice; mostly used in **low-level or custom DBMS implementations**.
+
+### Lock Release Examples
+
+#### Example 1 – Write Lock Released at Commit
+
+```sql
+BEGIN TRANSACTION;
+UPDATE accounts SET balance = balance - 500 WHERE id = 101;
+/* Lock on account 101 is held */
+COMMIT;
+/* Lock is released after commit */
+```
+
+#### Example 2 – Read Lock Released After Query (in some systems)
+
+```sql
+SELECT * FROM customers WHERE id = 201;
+/* Shared lock may be released immediately after the query */
+```
+
+## Best Practices
+
+#### 1. Keep Transactions Short and Focused
+
+* Don’t hold locks longer than necessary.
+* Avoid performing user interactions, I/O, or long computations inside a transaction.
+
+#### 2. Always Close Transactions (Commit or Rollback)
+
+* A transaction that is left open keeps its locks active and may block other operations.
+* Make sure to **explicitly commit or rollback**.
+
+#### 3. Acquire Locks in a Consistent Order
+
+* Always lock resources in the same sequence to avoid circular waits and deadlocks.
+* This is especially important in systems handling multiple resources per transaction.
+
+#### 4. Use the Smallest Lock Scope Possible
+
+* Lock **only what is needed** (e.g., a row instead of a whole table) to maximize concurrency.
+* Avoid table-level locks unless necessary.
+
+#### 5. Choose the Right Isolation Level
+
+* Higher isolation levels (like `SERIALIZABLE`) use more locks and can reduce concurrency.
+* Use lower isolation levels (`READ COMMITTED`, `REPEATABLE READ`) when possible, depending on consistency needs.
+
+#### 6. Avoid Manual Lock Management
+
+* Let the DBMS manage locks unless you have a strong reason to do otherwise.
+* Manual locking is error-prone and harder to maintain.
+
+#### 7. Monitor Lock Usage
+
+* Use database tools to analyze lock waits, timeouts, and deadlocks.
+* Identify queries or transactions that frequently hold locks too long.
+
+#### 8. Handle Deadlocks Gracefully
+
+* Design transactions to handle failures and retries if a deadlock occurs.
+* Most DBMS will abort one of the transactions automatically—your code should be ready to retry.
+
+#### 9. Avoid Lock Escalation
+
+* When too many row-level locks are held, some DBMS escalate to page- or table-level locks.
+* This can reduce concurrency. Use indexing and batching to avoid holding too many locks.
+
+#### 10. Avoid Unnecessary Locks
+
+* For **read-only operations**, use `WITH (NOLOCK)` (SQL Server) or equivalent if dirty reads are acceptable.
+* Be cautious: it may lead to reading uncommitted or inconsistent data.
