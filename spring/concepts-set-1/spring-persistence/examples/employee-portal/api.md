@@ -846,7 +846,211 @@ public class EmployeeProjectServiceImpl implements EmployeeProjectService {
 * `PUT /salaries/{id}` – Update salary
 * `DELETE /salaries/{id}` – Delete salary
 
+### **Controller**
 
+```java
+@RestController
+@RequestMapping("/salaries")
+@RequiredArgsConstructor
+public class SalaryController {
+
+    private final SalaryService salaryService;
+
+    @PostMapping
+    public ResponseEntity<SalaryResponseDTO> addSalary(@RequestBody SalaryRequestDTO salaryRequestDTO) {
+        SalaryResponseDTO responseDTO = salaryService.addSalary(salaryRequestDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
+    }
+
+    @GetMapping("/employee/{empId}")
+    public ResponseEntity<List<SalaryResponseDTO>> getSalariesForEmployee(@PathVariable Long empId) {
+        List<SalaryResponseDTO> response = salaryService.getSalariesByEmployeeId(empId);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<SalaryResponseDTO>> getSalaries(
+            @RequestParam Optional<String> month,
+            @RequestParam Optional<String> status,
+            @RequestParam Optional<Long> employeeId,
+            @RequestParam int page,
+            @RequestParam int size) {
+        Page<SalaryResponseDTO> salaryPage = salaryService.getFilteredSalaries(month, status, employeeId, page, size);
+        return ResponseEntity.ok(salaryPage);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<SalaryResponseDTO> updateSalary(@PathVariable Long id, @RequestBody SalaryRequestDTO salaryRequestDTO) {
+        SalaryResponseDTO responseDTO = salaryService.updateSalary(id, salaryRequestDTO);
+        return ResponseEntity.ok(responseDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteSalary(@PathVariable Long id) {
+        salaryService.deleteSalary(id);
+        return ResponseEntity.noContent().build();
+    }
+}
+```
+
+### **Service Interface**
+
+```java
+public interface SalaryService {
+    SalaryResponseDTO addSalary(SalaryRequestDTO salaryRequestDTO);
+    List<SalaryResponseDTO> getSalariesByEmployeeId(Long employeeId);
+    Page<SalaryResponseDTO> getFilteredSalaries(Optional<String> month, Optional<String> status,
+                                               Optional<Long> employeeId, int page, int size);
+    SalaryResponseDTO updateSalary(Long id, SalaryRequestDTO salaryRequestDTO);
+    void deleteSalary(Long id);
+}
+```
+
+### **Service Implementation**
+
+```java
+@Service
+@RequiredArgsConstructor
+public class SalaryServiceImpl implements SalaryService {
+
+    private final SalaryRepository salaryRepository;
+    private final EmployeeRepository employeeRepository;
+    private final SalaryMapper salaryMapper;
+
+    @Override
+    public SalaryResponseDTO addSalary(SalaryRequestDTO salaryRequestDTO) {
+        Employee employee = employeeRepository.findById(salaryRequestDTO.getEmployeeId())
+                .orElseThrow(() -> new EntityNotFoundException("Employee not found: " + salaryRequestDTO.getEmployeeId()));
+
+        Salary salary = new Salary();
+        salary.setEmployee(employee);
+        salary.setBaseSalary(salaryRequestDTO.getBaseSalary());
+        salary.setBonus(salaryRequestDTO.getBonus());
+        salary.setDeductions(salaryRequestDTO.getDeductions());
+        salary.setMonth(salaryRequestDTO.getMonth());
+        salary.setYear(salaryRequestDTO.getYear());
+        salary.setStatus(salaryRequestDTO.getStatus());
+
+        salary = salaryRepository.save(salary);
+
+        return salaryMapper.toDto(salary);
+    }
+
+    @Override
+    public List<SalaryResponseDTO> getSalariesByEmployeeId(Long employeeId) {
+        List<Salary> salaries = salaryRepository.findByEmployeeId(employeeId);
+        return salaryMapper.toDtoList(salaries);
+    }
+
+    @Override
+    public Page<SalaryResponseDTO> getFilteredSalaries(Optional<String> month, Optional<String> status,
+                                                       Optional<Long> employeeId, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("year").descending().and(Sort.by("month").descending()));
+        Specification<Salary> spec = Specification.where(null);
+
+        if (month.isPresent()) {
+            spec = spec.and(SalarySpecifications.monthEquals(month.get()));
+        }
+        if (status.isPresent()) {
+            spec = spec.and(SalarySpecifications.statusEquals(status.get()));
+        }
+        if (employeeId.isPresent()) {
+            spec = spec.and(SalarySpecifications.employeeIdEquals(employeeId.get()));
+        }
+
+        return salaryRepository.findAll(spec, pageable).map(salaryMapper::toDto);
+    }
+
+    @Override
+    public SalaryResponseDTO updateSalary(Long id, SalaryRequestDTO salaryRequestDTO) {
+        Salary existingSalary = salaryRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Salary record not found: " + id));
+
+        existingSalary.setBaseSalary(salaryRequestDTO.getBaseSalary());
+        existingSalary.setBonus(salaryRequestDTO.getBonus());
+        existingSalary.setDeductions(salaryRequestDTO.getDeductions());
+        existingSalary.setMonth(salaryRequestDTO.getMonth());
+        existingSalary.setYear(salaryRequestDTO.getYear());
+        existingSalary.setStatus(salaryRequestDTO.getStatus());
+
+        salaryRepository.save(existingSalary);
+        return salaryMapper.toDto(existingSalary);
+    }
+
+    @Override
+    public void deleteSalary(Long id) {
+        Salary salary = salaryRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Salary record not found: " + id));
+        salaryRepository.delete(salary);
+    }
+}
+```
+
+### **Repository**
+
+```java
+public interface SalaryRepository extends JpaRepository<Salary, Long>, JpaSpecificationExecutor<Salary> {
+    List<Salary> findByEmployeeId(Long employeeId);
+}
+```
+
+### **MapStruct Mapper Interface**
+
+```java
+@Mapper(componentModel = "spring")
+public interface SalaryMapper {
+    SalaryResponseDTO toDto(Salary salary);
+    List<SalaryResponseDTO> toDtoList(List<Salary> salaries);
+}
+```
+
+### **DTO**
+
+```java
+@Data
+public class SalaryRequestDTO {
+    private Long employeeId;
+    private Double baseSalary;
+    private Double bonus;
+    private Double deductions;
+    private String month;
+    private Integer year;
+    private String status;
+}
+```
+
+```java
+@Data
+public class SalaryResponseDTO {
+    private Long id;
+    private Double baseSalary;
+    private Double bonus;
+    private Double deductions;
+    private String month;
+    private Integer year;
+    private String status;
+    private Long employeeId;
+}
+```
+
+### **Specification for Filtering**
+
+```java
+public class SalarySpecifications {
+
+    public static Specification<Salary> monthEquals(String month) {
+        return (root, query, cb) -> cb.equal(root.get("month"), month);
+    }
+
+    public static Specification<Salary> statusEquals(String status) {
+        return (root, query, cb) -> cb.equal(root.get("status"), status);
+    }
+
+    public static Specification<Salary> employeeIdEquals(Long employeeId) {
+        return (root, query, cb) -> cb.equal(root.get("employee").get("id"), employeeId);
+    }
+}
+```
 
 ## **Payment History APIs**
 
@@ -854,13 +1058,364 @@ public class EmployeeProjectServiceImpl implements EmployeeProjectService {
 * `GET /payments/salary/{salaryId}` – Get all payments for a salary
 * `GET /payments` – Paginated list with filters (date range, payment mode, etc.)
 
+### **Controller**
 
+```java
+@RestController
+@RequestMapping("/payments")
+@RequiredArgsConstructor
+public class PaymentHistoryController {
+
+    private final PaymentHistoryService paymentHistoryService;
+
+    @PostMapping
+    public ResponseEntity<PaymentHistoryResponseDTO> addPayment(@RequestBody PaymentHistoryRequestDTO dto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(paymentHistoryService.addPayment(dto));
+    }
+
+    @GetMapping("/salary/{salaryId}")
+    public ResponseEntity<List<PaymentHistoryResponseDTO>> getPaymentsBySalaryId(@PathVariable Long salaryId) {
+        return ResponseEntity.ok(paymentHistoryService.getPaymentsBySalaryId(salaryId));
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<PaymentHistoryResponseDTO>> getPayments(
+            @RequestParam Optional<@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date> fromDate,
+            @RequestParam Optional<@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date> toDate,
+            @RequestParam Optional<String> paymentMode,
+            @RequestParam int page,
+            @RequestParam int size
+    ) {
+        return ResponseEntity.ok(paymentHistoryService.getPayments(fromDate, toDate, paymentMode, page, size));
+    }
+}
+```
+
+### **Service Interface**
+
+```java
+public interface PaymentHistoryService {
+    PaymentHistoryResponseDTO addPayment(PaymentHistoryRequestDTO dto);
+    List<PaymentHistoryResponseDTO> getPaymentsBySalaryId(Long salaryId);
+    Page<PaymentHistoryResponseDTO> getPayments(Optional<Date> fromDate, Optional<Date> toDate, Optional<String> paymentMode, int page, int size);
+}
+```
+
+### **Service Implementation**
+
+```java
+@Service
+@RequiredArgsConstructor
+public class PaymentHistoryServiceImpl implements PaymentHistoryService {
+
+    private final PaymentHistoryRepository paymentHistoryRepository;
+    private final SalaryRepository salaryRepository;
+    private final PaymentHistoryMapper mapper;
+
+    @Override
+    public PaymentHistoryResponseDTO addPayment(PaymentHistoryRequestDTO dto) {
+        Salary salary = salaryRepository.findById(dto.getSalaryId())
+                .orElseThrow(() -> new EntityNotFoundException("Salary not found with id: " + dto.getSalaryId()));
+
+        PaymentHistory payment = new PaymentHistory();
+        payment.setSalary(salary);
+        payment.setAmountPaid(dto.getAmountPaid());
+        payment.setPaymentDate(dto.getPaymentDate());
+        payment.setPaymentMode(dto.getPaymentMode());
+        payment.setRemarks(dto.getRemarks());
+
+        return mapper.toDto(paymentHistoryRepository.save(payment));
+    }
+
+    @Override
+    public List<PaymentHistoryResponseDTO> getPaymentsBySalaryId(Long salaryId) {
+        return mapper.toDtoList(paymentHistoryRepository.findBySalaryId(salaryId));
+    }
+
+    @Override
+    public Page<PaymentHistoryResponseDTO> getPayments(Optional<Date> fromDate, Optional<Date> toDate,
+                                                       Optional<String> paymentMode, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("paymentDate").descending());
+        Specification<PaymentHistory> spec = Specification.where(null);
+
+        if (fromDate.isPresent()) {
+            spec = spec.and(PaymentHistorySpecifications.paymentDateGte(fromDate.get()));
+        }
+        if (toDate.isPresent()) {
+            spec = spec.and(PaymentHistorySpecifications.paymentDateLte(toDate.get()));
+        }
+        if (paymentMode.isPresent()) {
+            spec = spec.and(PaymentHistorySpecifications.paymentModeEquals(paymentMode.get()));
+        }
+
+        return paymentHistoryRepository.findAll(spec, pageable)
+                .map(mapper::toDto);
+    }
+}
+```
+
+### **Repository**
+
+```java
+public interface PaymentHistoryRepository extends JpaRepository<PaymentHistory, Long>, JpaSpecificationExecutor<PaymentHistory> {
+    List<PaymentHistory> findBySalaryId(Long salaryId);
+}
+```
+
+### **MapStruct Mapper Interface**
+
+```java
+@Mapper(componentModel = "spring")
+public interface PaymentHistoryMapper {
+    PaymentHistoryResponseDTO toDto(PaymentHistory entity);
+    List<PaymentHistoryResponseDTO> toDtoList(List<PaymentHistory> entities);
+}
+```
+
+### DTO
+
+#### **`PaymentHistoryRequestDTO.java`**
+
+```java
+@Data
+public class PaymentHistoryRequestDTO {
+    private Long salaryId;
+    private Date paymentDate;
+    private Double amountPaid;
+    private String paymentMode;
+    private String remarks;
+}
+```
+
+#### **`PaymentHistoryResponseDTO.java`**
+
+```java
+@Data
+public class PaymentHistoryResponseDTO {
+    private Long id;
+    private Long salaryId;
+    private Date paymentDate;
+    private Double amountPaid;
+    private String paymentMode;
+    private String remarks;
+}
+```
+
+### **Specifications**
+
+```java
+public class PaymentHistorySpecifications {
+
+    public static Specification<PaymentHistory> paymentDateGte(Date fromDate) {
+        return (root, query, cb) -> cb.greaterThanOrEqualTo(root.get("paymentDate"), fromDate);
+    }
+
+    public static Specification<PaymentHistory> paymentDateLte(Date toDate) {
+        return (root, query, cb) -> cb.lessThanOrEqualTo(root.get("paymentDate"), toDate);
+    }
+
+    public static Specification<PaymentHistory> paymentModeEquals(String mode) {
+        return (root, query, cb) -> cb.equal(cb.lower(root.get("paymentMode")), mode.toLowerCase());
+    }
+}
+```
 
 ## **Dashboard & Reports**
 
 * `GET /dashboard/summary` – Show employee counts, department-wise summary, salary spend etc.
 * `GET /reports/salary-summary?year=2024` – Salary paid per employee/month
 * `GET /reports/department-overview` – Number of employees, active projects, total salary expense per department
+
+### **1. GET /dashboard/summary**
+
+#### Controller
+
+```java
+@RestController
+@RequestMapping("/dashboard")
+@RequiredArgsConstructor
+public class DashboardController {
+    private final DashboardService dashboardService;
+
+    @GetMapping("/summary")
+    public ResponseEntity<DashboardSummaryDTO> getSummary() {
+        return ResponseEntity.ok(dashboardService.getDashboardSummary());
+    }
+}
+```
+
+#### Service Interface
+
+```java
+public interface DashboardService {
+    DashboardSummaryDTO getDashboardSummary();
+}
+```
+
+#### Service Implementation
+
+```java
+@Service
+@RequiredArgsConstructor
+public class DashboardServiceImpl implements DashboardService {
+
+    private final EmployeeRepository employeeRepository;
+    private final DepartmentRepository departmentRepository;
+    private final SalaryRepository salaryRepository;
+
+    @Override
+    public DashboardSummaryDTO getDashboardSummary() {
+        long totalEmployees = employeeRepository.count();
+        long totalDepartments = departmentRepository.count();
+        double totalSalarySpent = salaryRepository.sumAllSalaries();
+
+        Map<String, Long> departmentWiseCounts = departmentRepository.getDepartmentWiseEmployeeCount();
+
+        return new DashboardSummaryDTO(totalEmployees, totalDepartments, totalSalarySpent, departmentWiseCounts);
+    }
+}
+```
+
+#### DTO
+
+```java
+@Data
+@AllArgsConstructor
+public class DashboardSummaryDTO {
+    private long totalEmployees;
+    private long totalDepartments;
+    private double totalSalarySpent;
+    private Map<String, Long> departmentWiseEmployeeCount;
+}
+```
+
+#### Custom Query in Repository
+
+```java
+public interface DepartmentRepository extends JpaRepository<Department, Long> {
+
+    @Query("SELECT d.name, COUNT(e.id) FROM Employee e JOIN e.department d GROUP BY d.name")
+    Map<String, Long> getDepartmentWiseEmployeeCount();
+}
+```
+
+```java
+public interface SalaryRepository extends JpaRepository<Salary, Long> {
+
+    @Query("SELECT SUM(s.baseSalary + s.bonus - s.deductions) FROM Salary s")
+    Double sumAllSalaries();
+}
+```
+
+### **2. GET /reports/salary-summary?year=2024**
+
+#### Controller
+
+```java
+@RestController
+@RequestMapping("/reports")
+@RequiredArgsConstructor
+public class ReportsController {
+
+    private final ReportService reportService;
+
+    @GetMapping("/salary-summary")
+    public ResponseEntity<List<SalarySummaryDTO>> getSalarySummary(@RequestParam int year) {
+        return ResponseEntity.ok(reportService.getSalarySummary(year));
+    }
+}
+```
+
+#### Service Interface
+
+```java
+public interface ReportService {
+    List<SalarySummaryDTO> getSalarySummary(int year);
+}
+```
+
+#### Service Implementation
+
+```java
+@Service
+@RequiredArgsConstructor
+public class ReportServiceImpl implements ReportService {
+
+    private final SalaryRepository salaryRepository;
+
+    @Override
+    public List<SalarySummaryDTO> getSalarySummary(int year) {
+        return salaryRepository.findSalarySummaryByYear(year);
+    }
+}
+```
+
+#### DTO
+
+```java
+public record SalarySummaryDTO(Long employeeId, String employeeName, String month, Double totalPaid) {}
+```
+
+#### Repository
+
+```java
+public interface SalaryRepository extends JpaRepository<Salary, Long> {
+
+    @Query("SELECT new com.example.dto.SalarySummaryDTO(s.employee.id, s.employee.name, s.month, " +
+           "(s.baseSalary + s.bonus - s.deductions)) " +
+           "FROM Salary s WHERE s.year = :year")
+    List<SalarySummaryDTO> findSalarySummaryByYear(@Param("year") int year);
+}
+```
+
+### **3. GET /reports/department-overview**
+
+#### Controller
+
+```java
+@GetMapping("/department-overview")
+public ResponseEntity<List<DepartmentOverviewDTO>> getDepartmentOverview() {
+    return ResponseEntity.ok(reportService.getDepartmentOverview());
+}
+```
+
+#### Service Interface
+
+```java
+List<DepartmentOverviewDTO> getDepartmentOverview();
+```
+
+#### Service Implementation
+
+```java
+@Override
+public List<DepartmentOverviewDTO> getDepartmentOverview() {
+    return departmentRepository.fetchDepartmentOverview();
+}
+```
+
+#### DTO
+
+```java
+public record DepartmentOverviewDTO(String departmentName, Long employeeCount, Long activeProjectCount, Double totalSalary) {}
+```
+
+#### Repository
+
+```java
+@Query("""
+    SELECT new com.example.dto.DepartmentOverviewDTO(
+        d.name,
+        COUNT(e.id),
+        (SELECT COUNT(DISTINCT ep.project.id) FROM Employee e2 JOIN e2.projects ep WHERE e2.department.id = d.id),
+        (SELECT SUM(s.baseSalary + s.bonus - s.deductions) FROM Salary s WHERE s.employee.department.id = d.id)
+    )
+    FROM Department d
+    LEFT JOIN Employee e ON e.department.id = d.id
+    GROUP BY d.name
+    """)
+List<DepartmentOverviewDTO> fetchDepartmentOverview();
+```
 
 
 
