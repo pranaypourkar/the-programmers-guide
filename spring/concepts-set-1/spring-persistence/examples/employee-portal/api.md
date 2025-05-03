@@ -77,6 +77,52 @@ public class EmployeeController {
 }
 ```
 
+### Service Interface
+
+```java
+public interface EmployeeService {
+    EmployeeResponseDTO createEmployee(EmployeeRequestDTO dto);
+    EmployeeResponseDTO getEmployeeById(Long id);
+    EmployeeResponseDTO updateEmployee(Long id, EmployeeRequestDTO dto);
+    void deleteEmployee(Long id);
+    Page<EmployeeResponseDTO> getEmployees(Optional<String> name, Optional<String> dept, Optional<Double> minSal, Optional<Double> maxSal, int page, int size, String sortBy);
+    List<EmployeeResponseDTO> getByDepartment(Long deptId);
+    List<String> getProjectsForEmployee(Long id);
+    List<String> getSalariesForEmployee(Long id);
+    Page<EmployeeResponseDTO> advancedSearch(Specification<Employee> spec, Pageable pageable);
+}
+```
+
+### Repository
+
+```java
+public interface EmployeeRepository extends JpaRepository<Employee, Long>, JpaSpecificationExecutor<Employee> {
+    List<Employee> findByDepartmentId(Long deptId);
+}
+```
+
+### Specification Class
+
+```java
+public class EmployeeSpecification {
+
+    public static Specification<Employee> getFilter(String name, String department, Double salaryMin, Double salaryMax) {
+        return (root, query, cb) -> {
+            List<Predicate> predicates = new ArrayList<>();
+            if (name != null) predicates.add(cb.like(cb.lower(root.get("name")), "%" + name.toLowerCase() + "%"));
+            if (department != null) predicates.add(cb.equal(root.get("department").get("name"), department));
+            if (salaryMin != null) predicates.add(cb.greaterThanOrEqualTo(root.join("salaries").get("baseSalary"), salaryMin));
+            if (salaryMax != null) predicates.add(cb.lessThanOrEqualTo(root.join("salaries").get("baseSalary"), salaryMax));
+            return cb.and(predicates.toArray(new Predicate[0]));
+        };
+    }
+}
+```
+
+
+
+
+
 
 
 ## **Department APIs**
