@@ -187,7 +187,72 @@ No - If you're already caching at service or controller level
 
 ## 3. Spring Cache Abstraction (Custom Caching)
 
+### About
 
+Spring Cache Abstraction is a **built-in caching mechanism** provided by Spring that allows developers to **declaratively cache** method results using annotations.\
+It abstracts away the actual caching provider (like Ehcache, Caffeine, Redis, etc.) and provides a unified API to **plug in your own logic** or use existing cache providers.
 
+### Key Features
 
+* **Annotation-driven** caching: `@Cacheable`, `@CachePut`, `@CacheEvict`, etc.
+* **Provider-agnostic**: Works with any supported cache backend (Ehcache, Caffeine, Redis, etc.)
+* **Declarative style**: Reduces boilerplate, no need to manage cache manually
+* **Custom logic support**: You can define your own key generators, conditionals, and TTL behavior
 
+### Basic Configuration Example
+
+**Step 1: Enable Caching**
+
+```java
+@Configuration
+@EnableCaching
+public class CacheConfig {
+}
+```
+
+**Step 2: Choose a Cache Provider**
+
+For example, **Caffeine**:
+
+```xml
+<!-- pom.xml -->
+<dependency>
+    <groupId>com.github.ben-manes.caffeine</groupId>
+    <artifactId>caffeine</artifactId>
+</dependency>
+```
+
+```java
+@Bean
+public CacheManager cacheManager() {
+    CaffeineCacheManager cacheManager = new CaffeineCacheManager("employees", "departments");
+    cacheManager.setCaffeine(Caffeine.newBuilder()
+            .expireAfterWrite(10, TimeUnit.MINUTES)
+            .maximumSize(100));
+    return cacheManager;
+}
+```
+
+**Step 3: Use `@Cacheable` on Service Layer**
+
+```java
+@Service
+public class EmployeeService {
+
+    @Cacheable(value = "employees", key = "#id")
+    public Employee getEmployeeById(Long id) {
+        simulateSlowService(); // e.g., DB call
+        return employeeRepository.findById(id).orElseThrow();
+    }
+
+    @CacheEvict(value = "employees", key = "#id")
+    public void deleteEmployee(Long id) {
+        employeeRepository.deleteById(id);
+    }
+
+    @CachePut(value = "employees", key = "#id")
+    public Employee updateEmployee(Long id, Employee updated) {
+        return employeeRepository.save(updated);
+    }
+}
+```

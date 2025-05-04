@@ -1,0 +1,3 @@
+# Caching
+
+JDBC Statement Cache
