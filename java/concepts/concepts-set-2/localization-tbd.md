@@ -1,4 +1,8 @@
-# Localization - TBD
+---
+hidden: true
+---
+
+# Localization
 
 java.util.Locale
 
