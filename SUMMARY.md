@@ -626,7 +626,7 @@
       * [JDBC](spring/concepts-set-1/spring-persistence/jdbc/README.md)
         * [JDBC Components](spring/concepts-set-1/spring-persistence/jdbc/jdbc-components.md)
         * [JDBC Template](spring/concepts-set-1/spring-persistence/jdbc/jdbc-template.md)
-        * [Transaction Management (JDBC level)](spring/concepts-set-1/spring-persistence/jdbc/transaction-management-jdbc-level.md)
+        * [Transaction Management](spring/concepts-set-1/spring-persistence/jdbc/transaction-management.md)
         * [Best Practices in JDBC Usage](spring/concepts-set-1/spring-persistence/jdbc/best-practices-in-jdbc-usage.md)
         * [Datasource](spring/concepts-set-1/spring-persistence/jdbc/datasource/README.md)
           * [Connection Pooling](spring/concepts-set-1/spring-persistence/jdbc/datasource/connection-pooling/README.md)
