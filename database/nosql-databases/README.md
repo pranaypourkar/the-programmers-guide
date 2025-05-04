@@ -2,5 +2,5 @@
 hidden: true
 ---
 
-# REST API
+# NoSQL Databases
 

@@ -1,4 +1,8 @@
-# Internals of Git \[TBD]
+---
+hidden: true
+---
+
+# Internals of Git
 
 ## Description
 

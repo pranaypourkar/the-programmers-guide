@@ -1,2 +1,0 @@
-# NoSQL Databases -TBU
-

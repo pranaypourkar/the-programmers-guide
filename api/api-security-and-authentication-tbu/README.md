@@ -1,2 +1,0 @@
-# API Security & Authentication - TBU
-
