@@ -181,19 +181,19 @@ public class Product {
 
 Handled via `ExecutableValidator`.
 
-### **Message Customization**
+## **Message Customization**
 
-Default messages come from the annotation, or you can externalize them using a `ValidationMessages.properties` file.
+Default messages come from the annotation, or we can externalize them using a `ValidationMessages.properties` file.
 
 ```properties
 my.custom.message=This value is not allowed
 ```
 
-### **Programmatic Constraint Declaration**
+## **Programmatic Constraint Declaration**
 
 While annotations are the most common, the `jakarta.validation` API allows building constraints programmatically via metadata APIs (rarely used in practice).
 
 ### **ConstraintTarget and Payload Use**
 
-* `ConstraintTarget` is used when you want to apply constraint on a return value vs. parameters.
+* `ConstraintTarget` is used when we want to apply constraint on a return value vs. parameters.
 * `Payload` can carry metadata (e.g., error severity or category).
