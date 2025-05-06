@@ -774,6 +774,7 @@
       * [FileCopyUtils](spring/utilities-and-libraries/provide-by-spring-framework/filecopyutils.md)
   * [General Concepts](spring/general-concepts/README.md)
     * [Spring Boot Artifact Packaging](spring/general-concepts/spring-boot-artifact-packaging.md)
+    * [Classpath and Resource Loading](spring/general-concepts/classpath-and-resource-loading.md)
     * [Configuration - Mapping Properties to Java Class](spring/general-concepts/configuration-mapping-properties-to-java-class.md)
   * [Best Practice](spring/best-practice.md)
 * [Software Testing](tests/README.md)
