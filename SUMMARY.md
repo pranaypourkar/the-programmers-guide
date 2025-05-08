@@ -776,6 +776,7 @@
     * [Spring Boot Artifact Packaging](spring/general-concepts/spring-boot-artifact-packaging.md)
     * [Classpath and Resource Loading](spring/general-concepts/classpath-and-resource-loading.md)
     * [Configuration - Mapping Properties to Java Class](spring/general-concepts/configuration-mapping-properties-to-java-class.md)
+    * [Validations in Spring Framework](spring/general-concepts/validations-in-spring-framework.md)
   * [Best Practice](spring/best-practice.md)
 * [Software Testing](tests/README.md)
   * [Software Testing Methodologies](tests/software-testing-methodologies/README.md)
