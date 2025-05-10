@@ -39,15 +39,6 @@ These are placed on class fields or method parameters:
 
 * `Validation.buildDefaultValidatorFactory()` creates a `ValidatorFactory` which provides a `Validator`.
 
-## Features
-
-* Declarative constraints using annotations
-* Pluggable constraint validators
-* Support for nested validation (`@Valid`)
-* Group-based validation (`groups`)
-* Method and constructor parameter validation
-* Custom constraints
-
 ## How Spring Integrates with Jakarta Validation ?
 
 When `jakarta.validation` (or `javax.validation`) API and a provider like **Hibernate Validator** is on the classpath, Spring Boot auto-configures:
@@ -171,11 +162,222 @@ Response:
 }
 ```
 
+### 2. Controller-level Validation on `@RequestParam`, `@PathVariable`
 
+```java
+@GetMapping("/users/{id}")
+public ResponseEntity<?> getUser(@PathVariable @Positive Long id) {
+    ...
+}
+```
 
+#### Internal Workflow:
 
+* Uses **method-level validation**.
+* Triggers via Spring’s `MethodValidationPostProcessor`.
+* Detects `@Validated` on the class or method.
+* Calls `executableValidator.validateParameters(...)`
+* If invalid: throws `ConstraintViolationException`.
 
+**Important**: `@Validated` must be applied at **class level** for method parameter validation:
 
+```java
+@RestController
+@Validated
+public class UserController { ... }
+```
+
+### 3. Nested (Recursive) Validation with `@Valid`
+
+```java
+public class OrderDto {
+    @Valid
+    private AddressDto address;
+
+    @Valid
+    private List<ItemDto> items;
+}
+```
+
+#### Internal Workflow:
+
+* During traversal, Spring checks if a field has `@Valid`.
+* If yes, it descends into that object and applies all constraints.
+* Recursion happens automatically.
+
+```java
+public class ItemDto {
+    @NotNull
+    private String name;
+}
+```
+
+If one `ItemDto` has null `name`, it’s picked up as a nested constraint violation.
+
+### 4. Service-layer (Method-level) Validation using `@Validated`
+
+Service-layer validation using `@Validated` allows us to **validate method parameters or return values** in any Spring-managed bean—especially in the **service layer**, where we might not rely on Spring MVC controller-level validation. It’s part of the **Method Validation** feature provided by **Jakarta Bean Validation** and integrated into Spring via proxies.
+
+When we annotate a class with `@Validated`, Spring uses **AOP (Aspect-Oriented Programming)** to create a proxy that intercepts method calls and performs validation before the actual method runs. Internally, Spring uses the `MethodValidationPostProcessor` bean which wraps beans with a proxy capable of method validation.
+
+#### Execution Flow:
+
+1. Spring boot automatically registers a `MethodValidationPostProcessor`.
+2. We annotate our class with `@Validated`.
+3. Spring creates a **proxy** of the class.
+4. Before executing our method, Spring uses the `ExecutableValidator` to:
+   * Validate **method parameters**
+   * Optionally validate the **return value**
+5. If validation fails, Spring throws a `ConstraintViolationException`.
+
+#### Example
+
+```java
+@Service
+@Validated
+public class UserService {
+
+    public void registerUser(@NotBlank String name, @Min(18) int age) {
+        // Business logic
+    }
+
+    public @NotNull String findUsernameById(@Positive Long id) {
+        return "john_doe";
+    }
+}
+```
+
+#### Calling code:
+
+```java
+userService.registerUser("", 15);
+```
+
+#### Result:
+
+Spring will throw a `ConstraintViolationException` because:
+
+* `name` is blank (`@NotBlank`)
+* `age` is less than 18 (`@Min(18)`)
+
+### 5. Validation Groups Internally
+
+```java
+public class UserDto {
+    @NotNull(groups = Update.class)
+    private Long id;
+
+    @NotBlank(groups = {Create.class, Update.class})
+    private String name;
+}
+```
+
+#### How It Works:
+
+* Spring detects group classes passed in `@Validated(Update.class)`
+*   Passes these group classes to the validator:
+
+    ```java
+    validator.validate(userDto, Update.class)
+    ```
+* Only the constraints in that group are applie
+
+### 6. Manual Validation using Validator
+
+```java
+javaCopyEdit@Autowired
+private Validator validator;
+
+public void checkUser(UserDto user) {
+    Set<ConstraintViolation<UserDto>> violations = validator.validate(user);
+
+    for (ConstraintViolation<UserDto> violation : violations) {
+        System.out.println(violation.getPropertyPath() + ": " + violation.getMessage());
+    }
+}
+```
+
+## When and How Validation is Triggered ?
+
+If I Add Jakarta Validation Annotations to a DTO and Populate It — Will Constraints Be Checked Automatically?
+
+**No**, the constraints **will not be checked automatically** just because we annotated our DTO with validation annotations (like `@NotBlank`, `@Email`, etc.).\
+They are **only enforced when explicitly triggered** — either:
+
+* By Spring (e.g., using `@Valid`, `@Validated`)
+* Or manually by calling `Validator.validate(...)`
+
+### Example
+
+#### 1. **DTO With Constraints**
+
+```java
+public class UserDto {
+    @NotBlank
+    private String name;
+
+    @Email
+    private String email;
+
+    // getters and setters
+}
+```
+
+#### 2. **Populating DTO Manually**
+
+```java
+UserDto user = new UserDto();
+user.setName("");                 // Invalid: @NotBlank violated
+user.setEmail("not-an-email");   // Invalid: @Email violated
+
+System.out.println(user.getName()); // This prints "" without any error
+```
+
+#### What Happens Here?
+
+* **Nothing is validated** at this point.
+* Java doesn't throw errors just because annotations exist — they’re metadata.
+* The validation must be explicitly **triggered**.
+
+{% hint style="success" %}
+if you have a custom class (e.g., an entity or DTO) annotated with Jakarta validation constraints, those constraints do nothing unless validation is explicitly triggered.
+{% endhint %}
+
+### How to Trigger Validation ?
+
+#### Option A: **Manual Trigger**
+
+```java
+Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+Set<ConstraintViolation<UserDto>> violations = validator.validate(user);
+
+for (ConstraintViolation<UserDto> v : violations) {
+    System.out.println(v.getPropertyPath() + ": " + v.getMessage());
+}
+```
+
+This will print:
+
+```
+name: must not be blank
+email: must be a well-formed email address
+```
+
+#### Option B: **Automatically via Spring**
+
+When used in a Spring controller or service, Spring triggers validation for us.
+
+**Controller:**
+
+```java
+@PostMapping("/create")
+public ResponseEntity<?> createUser(@Valid @RequestBody UserDto userDto) {
+    ...
+}
+```
+
+* Spring will call `validator.validate(userDto)`
+* If any violation, it throws `MethodArgumentNotValidException`
 
 ## Validation Groups
 
@@ -245,29 +447,3 @@ public class StrongPasswordValidator implements ConstraintValidator<StrongPasswo
 @StrongPassword
 private String password;
 ```
-
-### 2. Controller-level Validation on `@RequestParam`, `@PathVariable`
-
-```java
-@GetMapping("/users/{id}")
-public ResponseEntity<?> getUser(@PathVariable @Positive Long id) {
-    ...
-}
-```
-
-#### Internal Workflow:
-
-* Uses **method-level validation**.
-* Triggers via Spring’s `MethodValidationPostProcessor`.
-* Detects `@Validated` on the class or method.
-* Calls `executableValidator.validateParameters(...)`
-* If invalid: throws `ConstraintViolationException`.
-
-**Important**: `@Validated` must be applied at **class level** for method parameter validation:
-
-```java
-javaCopyEdit@RestController
-@Validated
-public class UserController { ... }
-```
-
