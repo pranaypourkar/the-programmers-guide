@@ -778,7 +778,7 @@
     * [Configuration - Mapping Properties to Java Class](spring/general-concepts/configuration-mapping-properties-to-java-class.md)
     * [Validations in Spring Framework](spring/general-concepts/validations-in-spring-framework/README.md)
       * [Jakarta Validation](spring/general-concepts/validations-in-spring-framework/jakarta-validation/README.md)
-        * [Page 1](spring/general-concepts/validations-in-spring-framework/jakarta-validation/page-1.md)
+        * [Jakarta Bean Validation Annotations](spring/general-concepts/validations-in-spring-framework/jakarta-validation/jakarta-bean-validation-annotations.md)
   * [Best Practice](spring/best-practice.md)
 * [Software Testing](tests/README.md)
   * [Software Testing Methodologies](tests/software-testing-methodologies/README.md)
