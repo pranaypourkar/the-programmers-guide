@@ -476,7 +476,7 @@ The `maven-install-plugin` is used to **install** project artifacts (JAR, WAR, E
 | `skip`             | Skip the installation step  | `false`   |
 | `repositoryLayout` | Define repository structure | `default` |
 
-## `maven-deploy-plugin`
+### `maven-deploy-plugin`
 
 The `maven-deploy-plugin` is used to **deploy** project artifacts to a **remote repository** (e.g., Nexus, Artifactory, or Maven Central) for sharing across teams or organizations.
 
@@ -510,7 +510,20 @@ The `maven-deploy-plugin` is used to **deploy** project artifacts to a **remote 
 
 ### `wagon-maven-plugin`
 
-The `wagon-maven-plugin` provides **FTP, SCP, HTTP, or custom transport** mechanisms for deploying artifacts.
+The **`wagon-maven-plugin`** is a Maven plugin provided by the [Codehaus Mojo](https://www.mojohaus.org/) project that enables automated file transfers as part of a Maven build lifecycle. It leverages the **Maven Wagon** transport framework to upload or download files using various protocols such as **SCP**, **FTP**, **HTTP**, and more.
+
+This plugin is ideal for:
+
+* Deploying build artifacts to non-Maven servers or directories
+* Automating backup, distribution, or deployment steps
+* Transferring files as part of custom CI/CD pipeline
+
+Features
+
+* Supports standard Maven Wagon protocols (e.g., `scp`, `ftp`, `http`, `file`)
+* Can be bound to any Maven phase (like `deploy` or `install`)
+* Simple integration using server credentials from `settings.xml`
+* Fine-grained control over what files are transferred (via `includes`, `excludes`, `fromDir`, etc.)
 
 **Syntax**
 
@@ -600,10 +613,6 @@ This process:
 **Configuration Options**
 
 <table><thead><tr><th width="184">Configuration</th><th>Description</th><th>Default</th></tr></thead><tbody><tr><td><code>tagNameFormat</code></td><td>Format for tags</td><td><code>project.artifactId-version</code></td></tr><tr><td><code>releaseProfiles</code></td><td>Additional Maven profiles to use</td><td><code>None</code></td></tr></tbody></table>
-
-
-
-
 
 ## 5. Clean & Site Plugins
 

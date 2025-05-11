@@ -58,3 +58,34 @@ public class MyHandler extends BaseHandler {
 
 This approach keeps the abstract class free of Spring dependencies and improves clarity and testability.
 
+## 2. Can controller method add/modify/remove validation annotations that are not present in the original interface ?
+
+Jakarta Bean Validation **strictly enforces constraint compatibility** in overridden methods (like `@Override` on interface implementations):
+
+* The implementing method **must not add or change constraints** on parameters that are not present in the interface method.
+
+For example:
+
+* `SegmentIntegrationApi#getSegments(...)` (the generated OpenAPI interface) defines the method **without** `@Size(max = 32)` on `List<String> state`
+* But our controller method adds it: `List<@Size(max = 32) String> state`
+
+**That's a conflict** — hence the `ConstraintDeclarationException`  will be thrown at runtime.
+
+{% hint style="info" %}
+`ConstraintDeclarationException`  with below message
+
+HV000151: A method overriding another method must not redefine the parameter constraint configuration
+{% endhint %}
+
+### Solutions
+
+#### **Option 1: Add the same constraint to the OpenAPI interface**
+
+If we own or can customize the OpenAPI spec:
+
+* Modify the OpenAPI spec (YAML/JSON) to include the `maxLength: 32` constraint for each `state` element.
+* Then regenerate the interface, which will include the same constraint in the method signature.
+
+#### **Option 2: Do not add constraints in the implementing method**
+
+If we **cannot** change the OpenAPI interface, then remove `@Size(max = 32)` from the controller method. Instead, validate manually in the method body:
