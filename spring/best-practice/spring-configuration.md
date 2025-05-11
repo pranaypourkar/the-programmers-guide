@@ -1,6 +1,6 @@
-# Best Practice
+# Spring Configuration
 
-## Defining properties related to Java version and encoding
+## 1. Defining properties related to Java version and encoding
 
 ### Properties
 
@@ -86,6 +86,4 @@ Mentioning below properties are considered best practices for a Spring project's
 </project>
 
 ```
-
-
 
