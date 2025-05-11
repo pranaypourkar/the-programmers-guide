@@ -1,4 +1,4 @@
-# Page 1
+# JSR
 
 ## About
 
@@ -63,7 +63,7 @@ JSRs can apply to various editions of the Java platform:
 
 Here are some widely adopted and influential JSRs:
 
-**Java SE (Core)**
+### **Java SE (Core)**
 
 * **JSR 269** – _Pluggable Annotation Processing API_\
   Defines how annotation processors are invoked during compilation.
@@ -72,7 +72,7 @@ Here are some widely adopted and influential JSRs:
 * **JSR 335** – _Lambda Expressions for the Java Programming Language_\
   Introduced lambdas and the Stream API in Java 8.
 
-**Java EE (Enterprise)**
+### **Java EE (Enterprise)**
 
 * **JSR 315** – _Java Servlet 3.0 Specification_\
   Modernized Servlets to support asynchronous processing.
@@ -81,36 +81,27 @@ Here are some widely adopted and influential JSRs:
 * **JSR 370** – _JAX-RS 2.1: The Java API for RESTful Web Services_\
   Defined standard APIs for building RESTful services.
 
-**Recent Platform-wide Specifications**
+### **Recent Platform-wide Specifications**
 
 * **JSR 376** – _Java Platform Module System (JPMS)_\
   Introduced modularity to the Java platform in Java 9.
 * **JSR 388** – _Java SE 13 Platform Specification_\
   Updated the Java SE platform with new features and APIs.
 
-***
+## How JSRs Impact Developers and the Industry ?
 
-#### **How JSRs Impact Developers and the Industry**
-
-**Benefits for Developers**
+### Benefits for Developers
 
 * **Reliable APIs**: Developers can depend on consistent, tested APIs.
 * **Ecosystem Compatibility**: Applications and libraries that implement or use JSR-compliant components are likely to be interoperable.
 * **Future-Proofing**: Since JSRs often evolve with backward compatibility, software built on JSRs remains relevant across multiple Java versions.
 
-**Benefits for Vendors**
+### Benefits for Vendors
 
 * **Certification**: Vendors can build tools and environments (e.g., application servers) that are JSR-compliant, giving assurance to clients.
 * **Credibility**: Following a recognized standard ensures higher market trust.
 
-***
+## How JSRs Differ from Other Standards (Like ISO) ?
 
-#### **How JSRs Differ from Other Standards (Like ISO)**
+<table data-full-width="true"><thead><tr><th width="162.30859375">Aspect</th><th>JSR</th><th>ISO</th></tr></thead><tbody><tr><td>Scope</td><td>Java Platform (language, libraries, APIs)</td><td>Broad (global standards across industries)</td></tr><tr><td>Governing Body</td><td>Java Community Process (JCP)</td><td>International Organization for Standardization</td></tr><tr><td>Participation</td><td>Open to Java community (experts, vendors, developers)</td><td>Representatives from national standards bodies</td></tr><tr><td>Focus</td><td>Language-specific innovations and consistency</td><td>Industry-wide best practices and protocols</td></tr><tr><td>Implementation</td><td>Reference Implementation + TCK mandatory</td><td>May or may not require implementation</td></tr></tbody></table>
 
-| Aspect         | JSR                                                   | ISO                                            |
-| -------------- | ----------------------------------------------------- | ---------------------------------------------- |
-| Scope          | Java Platform (language, libraries, APIs)             | Broad (global standards across industries)     |
-| Governing Body | Java Community Process (JCP)                          | International Organization for Standardization |
-| Participation  | Open to Java community (experts, vendors, developers) | Representatives from national standards bodies |
-| Focus          | Language-specific innovations and consistency         | Industry-wide best practices and protocols     |
-| Implementation | Reference Implementation + TCK mandatory              | May or may not require implementation          |
