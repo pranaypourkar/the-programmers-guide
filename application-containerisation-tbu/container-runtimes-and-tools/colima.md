@@ -204,7 +204,11 @@ Profiles let us maintain multiple independent Colima environments with different
 * View status of a specific profile:\
   `colima status --profile dev`
 * Delete a profile:\
-  `colima delete --profile dev`
+  `colima delete --profile dev`&#x20;
+* Test ARM builds on Intel Mac:\
+  `colima start --profile armtest --arch aarch64`
+* Run x86 builds on Apple Silicon\
+  `colima start --profile amdtest --arch x86_64`
 
 ### 7. Configuration Options
 
@@ -241,7 +245,22 @@ Set a custom default runtime:
 
 Add these to our shell config (e.g. \~/.zshrc or \~/.bashrc) for persistence.
 
+### 11. Check context
 
+The command `docker context ls` lists all available Docker contexts on our machine. A Docker context defines the endpoint and environment that the Docker CLI interacts with — e.g. local Docker engine, a remote VM like Colima, or a cloud provider.
+
+Example output:
+
+$ docker context ls
+
+<table data-full-width="true"><thead><tr><th width="135.65625">NAME</th><th width="360.6875">DESCRIPTION</th><th>DOCKER ENDPOINT</th></tr></thead><tbody><tr><td>default</td><td>Current DOCKER_HOST based configuration</td><td>unix:///var/run/docker.sock</td></tr><tr><td>colima</td><td>Colima</td><td>unix:///Users/someuser/.colima/...</td></tr><tr><td>desktop-linux</td><td>Docker Desktop</td><td>unix:///Users/someuser/...</td></tr><tr><td>armtest</td><td>Colima profile 'armtest'</td><td>unix:///Users/someuser/...</td></tr><tr><td>amdtest</td><td>Colima profile 'amdtest'</td><td>unix:///Users/someuser/...</td></tr></tbody></table>
+
+Key Notes:
+
+* The context with a star (\*) is the current one being used by Docker CLI.
+* We can switch contexts with docker context use \<context-name>
+* When using Colima, the context is typically automatically switched to colima or our named profile (e.g., armtest).
+* docker context inspect \<context-name> gives detailed info about a specific context.
 
 ## Colima vs Docker Desktop
 

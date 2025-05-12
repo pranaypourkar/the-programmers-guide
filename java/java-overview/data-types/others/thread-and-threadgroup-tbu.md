@@ -1,2 +1,0 @@
-# Thread and ThreadGroup - TBU
-
