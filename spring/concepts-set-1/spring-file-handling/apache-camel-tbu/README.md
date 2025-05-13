@@ -1,2 +1,6 @@
-# Apache Camel - TBU
+---
+hidden: true
+---
+
+# Apache Camel
 
