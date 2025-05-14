@@ -1,4 +1,8 @@
-# View
+---
+hidden: true
+---
+
+# Views
 
 ## Description
 
@@ -120,4 +124,3 @@ DROP VIEW view_name;
 ```sql
 DROP VIEW high_salary_dept101;
 ```
-
