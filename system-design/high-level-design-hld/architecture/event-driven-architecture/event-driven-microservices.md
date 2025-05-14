@@ -1,2 +1,6 @@
-# Event-Driven Microservices - TBU
+---
+hidden: true
+---
+
+# Event-Driven Microservices
 

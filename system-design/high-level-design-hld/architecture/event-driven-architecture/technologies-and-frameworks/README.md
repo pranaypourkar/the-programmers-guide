@@ -1,2 +1,6 @@
-# Technologies & Frameworks - TBU
+---
+hidden: true
+---
+
+# Technologies & Frameworks
 

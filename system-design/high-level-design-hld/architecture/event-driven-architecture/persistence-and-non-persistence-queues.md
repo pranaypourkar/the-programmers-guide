@@ -1,2 +1,6 @@
-# Persistence & Non-Persistence Queues - TBU
+---
+hidden: true
+---
+
+# Persistence & Non-Persistence Queues
 

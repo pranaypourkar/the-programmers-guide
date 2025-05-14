@@ -1,2 +1,6 @@
-# Handling Failures & Retry Mechanisms - TBU
+---
+hidden: true
+---
+
+# Handling Failures & Retry Mechanisms
 

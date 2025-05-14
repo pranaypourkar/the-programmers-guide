@@ -1,2 +1,6 @@
-# Event Schema Design (Avro, JSON, Protobuf) - TBU
+---
+hidden: true
+---
+
+# Event Schema Design (Avro, JSON, Protobuf)
 
