@@ -1,0 +1,2 @@
+# Handling merge conflicts
+
