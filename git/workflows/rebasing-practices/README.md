@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Rebasing Practices
 
 ## **About**
