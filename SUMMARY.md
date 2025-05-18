@@ -244,7 +244,6 @@
       * [Merge vs Rebase](git/workflows/rebasing-practices/merge-vs-rebase.md)
       * [Rebase develop branch on main branch](git/workflows/rebasing-practices/rebase-develop-branch-on-main-branch.md)
     * [Repository Management](git/workflows/repository-management/README.md)
-      * [Clone existing repo with full history](git/workflows/repository-management/workflows.md)
       * [Mirror a repository](git/workflows/repository-management/mirror-a-repository.md)
       * [Convert a local folder to a Git repo](git/workflows/repository-management/convert-a-local-folder-to-a-git-repo.md)
       * [Push local repo to GitLab](git/workflows/repository-management/push-local-repo-to-gitlab.md)
