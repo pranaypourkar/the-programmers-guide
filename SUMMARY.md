@@ -234,7 +234,7 @@
       * [Handling merge conflicts](git/workflows/conflict-resolution/handling-merge-conflicts.md)
       * [Rebase conflicts](git/workflows/conflict-resolution/rebase-conflicts.md)
       * [Divergent Branches After git pull](git/workflows/conflict-resolution/divergent-branches-after-git-pull.md)
-      * [Force Push: When and Why](git/workflows/conflict-resolution/force-push-when-and-why.md)
+      * [Force Push](git/workflows/conflict-resolution/force-push.md)
     * [Patch & Recovery](git/workflows/patch-and-recovery/README.md)
       * [Cherry-pick strategies](git/workflows/patch-and-recovery/cherry-pick-strategies.md)
       * [Revert vs Reset](git/workflows/patch-and-recovery/revert-vs-reset.md)
