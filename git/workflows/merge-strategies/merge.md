@@ -70,7 +70,7 @@ git merge feature
 #### **When to use ?**
 
 * Feature branch is fully ahead of main with no divergence.
-* You want clean, simple history.
+* We want clean, simple history.
 
 ### **2. No Fast-Forward Merge (`--no-ff`)**
 
@@ -302,8 +302,8 @@ A---B---D---E (main)
 - The **merge commit** (`E` in our example) is a **new commit created on the current branch we are merging into** (here, `main`).
 - Even though we manually resolve conflicts, the merge commit still becomes the **new tip of `main`**.
 - This merge commit has **two parents**:
-  * The tip of your current branch before merge (`D` on `main`)
-  * The tip of the branch you merged in (`C` on `feature`)
+  * The tip of our current branch before merge (`D` on `main`)
+  * The tip of the branch we merged in (`C` on `feature`)
 {% endhint %}
 
 ## **Merge Strategy Options**
@@ -334,3 +334,101 @@ Use `merge` when:
 ## **Merge vs Rebase**
 
 <table data-full-width="true"><thead><tr><th width="168.67578125">Aspect</th><th>Merge</th><th>Rebase</th></tr></thead><tbody><tr><td>History</td><td>Preserved, non-linear</td><td>Linearized, rewritten</td></tr><tr><td>Merge commit</td><td>Yes</td><td>No (unless explicitly created)</td></tr><tr><td>Conflict handling</td><td>All at once</td><td>One commit at a time</td></tr><tr><td>Use case</td><td>Collaborative workflows, history trace</td><td>Clean history, private feature branches</td></tr></tbody></table>
+
+## Practical Use Cases
+
+### 1. **Standard Feature Branch Merge into Main Branch**
+
+**Problem**: We completed a feature in a separate branch (`feature/login`). Now we want to bring that code into the main integration branch (`develop` or `main`), while preserving commit history.
+
+**Why Use Merge**:\
+Merging retains the complete branch history and clearly shows that a feature was developed independently and then integrated.
+
+**Command**:
+
+```bash
+git checkout develop
+git merge feature/login
+```
+
+**Effect**:
+
+* Creates a new merge commit.
+* Keeps all commits from `feature/login`.
+* Shows a clear branch-and-merge structure.
+
+### **2. Bugfix Branch Merged Back Into Production**
+
+**Problem**: We created a hotfix branch (`hotfix/issue-404`) from `main` to quickly fix a production bug. Now the fix is done and tested.
+
+**Why Use Merge**:\
+We want the fix to be merged back while preserving the commit structure and making it traceable.
+
+**Command**:
+
+```bash
+git checkout main
+git merge hotfix/issue-404
+```
+
+**Effect**:
+
+* Keeps the hotfix history visible.
+* Avoids altering existing commits (unlike rebase).
+
+### 3. **Combining Two Active Feature Branches**
+
+**Problem**: Two related features are being developed in separate branches (`feature/auth` and `feature/dashboard`), and now we need to test them together locally before integrating into `main`.
+
+**Why Use Merge**:\
+We want to combine branches without changing their history. Merging is safe and non-destructive.
+
+**Command**:
+
+```bash
+git checkout feature/auth
+git merge feature/dashboard
+```
+
+**Effect**:\
+We can test how both features behave together. If something breaks, history is untouched and reversible.
+
+### 4. **Bringing Develop Changes into Feature Branch**
+
+**Problem**: We are working on a long-lived branch (`feature/analytics`), and the `develop` branch has changed significantly (other features, refactoring, etc.). We need to sync.
+
+**Why Use Merge**:\
+We want to bring changes from `develop` into our branch to test compatibility and resolve conflicts without rewriting our feature’s history.
+
+**Command**:
+
+```bash
+git checkout feature/analytics
+git merge develop
+```
+
+**Effect**:
+
+* Resolves conflicts _now_ instead of during the final merge.
+* Preserves our work’s history.
+* Keeps commits in their original sequence.
+
+### **5. Merging for Collaboration Between Teammates**
+
+**Problem**: Two developers work on the same branch locally and need to sync up regularly without rebasing over each other’s history.
+
+**Why Use Merge**:\
+Merging is safe in shared branches. It doesn’t force history rewrites, which would create confusion or conflicts in shared repos.
+
+**Command**:
+
+```bash
+git pull --no-rebase
+```
+
+(Performs a fetch + merge. Use `--no-rebase` to explicitly avoid rebasing.)
+
+**Effect**:
+
+* Maintains all commit history.
+* Preserves collaborative workflows.
