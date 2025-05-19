@@ -1,7 +1,3 @@
----
-hidden: true
----
-
 # Repository Management
 
 ## **About**
