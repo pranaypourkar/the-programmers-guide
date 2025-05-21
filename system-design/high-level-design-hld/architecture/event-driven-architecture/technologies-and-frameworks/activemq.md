@@ -1,2 +1,0 @@
-# ActiveMQ - TBU
-
