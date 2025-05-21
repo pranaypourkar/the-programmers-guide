@@ -881,7 +881,7 @@
         * [Event Schema Design (Avro, JSON, Protobuf)](system-design/high-level-design-hld/architecture/event-driven-architecture/event-schema-design-avro-json-protobuf.md)
         * [Persistence & Non-Persistence Queues](system-design/high-level-design-hld/architecture/event-driven-architecture/persistence-and-non-persistence-queues.md)
         * [Technologies & Frameworks](system-design/high-level-design-hld/architecture/event-driven-architecture/technologies-and-frameworks/README.md)
-          * [ActiveMQ](system-design/high-level-design-hld/architecture/event-driven-architecture/technologies-and-frameworks/activemq/README.md)
+          * [ActiveMQ](system-design/high-level-design-hld/architecture/event-driven-architecture/technologies-and-frameworks/activemq.md)
             * [Architecture Details](system-design/high-level-design-hld/architecture/event-driven-architecture/technologies-and-frameworks/activemq/architecture-details.md)
             * [Version Overview](system-design/high-level-design-hld/architecture/event-driven-architecture/technologies-and-frameworks/activemq/version-overview.md)
             * [Naming Convention](system-design/high-level-design-hld/architecture/event-driven-architecture/technologies-and-frameworks/activemq/naming-convention.md)

@@ -1,2 +1,6 @@
-# Kafka - TBU
+---
+hidden: true
+---
+
+# Kafka
 
