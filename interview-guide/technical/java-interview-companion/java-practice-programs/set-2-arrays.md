@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Set 2 - Arrays
 
 ## Integer

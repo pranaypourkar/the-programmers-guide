@@ -6,6 +6,17 @@ description: >-
 
 # Behavioural or Introductory Guide
 
+## About
+
+This guide helps you prepare for the crucial but often underestimated non-technical rounds. It covers:
+
+* Self-introduction frameworks that are both memorable and concise.
+* Behavioral questions based on the STAR method (Situation, Task, Action, Result).
+* Tips to convey emotional intelligence, leadership, and decision-making skills.
+* Common pitfalls, such as over-sharing or vagueness, and how to avoid them.
+
+Many interviews are lost not due to a lack of skills but because of poor articulation. This section prepares you to connect your experiences to the role with authenticity and clarity.
+
 ## How to answer commonly asked question i.e. "Tell me about yourself"
 
 ### Points to Cover

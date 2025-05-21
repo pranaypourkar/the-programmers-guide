@@ -2,6 +2,8 @@
 
 ## About
 
+This section explains the stepwise thought process interviewers expect: understanding the problem, clarifying constraints, writing brute force first, then optimizing. Questions help reinforce this structure with examples.
+
 Reference - [https://www.crackingthecodinginterview.com/](https://www.crackingthecodinginterview.com/)
 
 <figure><img src="../../.gitbook/assets/cracking_the_coding_skills_-_v6_page-0001.jpg" alt=""><figcaption></figcaption></figure>

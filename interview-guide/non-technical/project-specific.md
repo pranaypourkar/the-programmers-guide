@@ -6,6 +6,15 @@ description: >-
 
 # Project Specific
 
+## **About**
+
+Your past projects reflect your real-world experience. This guide teaches:
+
+* How to **structure your project explanation**: problem → solution → role → impact.
+* How to **highlight technical depth**, especially when asked about design, tech stack, challenges, or trade-offs.
+* Common questions such as: _“What was the hardest part of this project?”_ or _“How would you scale it?”_
+* How to defend choices (e.g., tech selection, architecture) under critical questioning.
+
 ## **"Tell us about your Current Project"**
 
 ### **Points to Cover**

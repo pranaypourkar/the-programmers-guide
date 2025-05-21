@@ -1,3 +1,10 @@
 # Java Key Concepts
 
-Subpages provides overview of essential Java concepts, covering different topics, useful for the interview.
+## About
+
+Subpages consolidates the questions on foundational and intermediate Java topics such as:
+
+* Object-Oriented Programming principles (Inheritance, Encapsulation, Polymorphism, Abstraction).
+* Core APIs: Collections, Streams, Exceptions, Concurrency utilities.
+* JVM internals, garbage collection, memory management.
+* Java 8+ features: Lambdas, Functional Interfaces, Optionals, and Stream pipelines.

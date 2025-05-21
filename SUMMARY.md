@@ -1020,7 +1020,7 @@
     * [Microservices](interview-guide/technical/microservices.md)
   * [General](interview-guide/general/README.md)
     * [Applicant Tracking System (ATS)](interview-guide/general/applicant-tracking-system-ats.md)
-    * [General Interview Preparation Tips - TBU](interview-guide/general/general-interview-preparation-tips.md)
+    * [General Interview Preparation Tips](interview-guide/general/general-interview-preparation-tips.md)
     * [Flowchart - How to Solve Coding Problem?](interview-guide/general/flowchart-how-to-solve-coding-problem.md)
 * [Personal Projects](personal-projects-tbu/README.md)
   * [Hackathon](personal-projects-tbu/hackathon.md)
