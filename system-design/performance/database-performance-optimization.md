@@ -1,2 +1,6 @@
-# Database Performance Optimization - TBU
+---
+hidden: true
+---
+
+# Database Performance Optimization
 

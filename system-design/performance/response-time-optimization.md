@@ -1,2 +1,6 @@
-# Response Time Optimization - TBU
+---
+hidden: true
+---
+
+# Response Time Optimization
 

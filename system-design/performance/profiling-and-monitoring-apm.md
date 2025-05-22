@@ -1,2 +1,6 @@
-# Profiling & Monitoring (APM) - TBU
+---
+hidden: true
+---
+
+# Profiling & Monitoring (APM)
 

@@ -1,2 +1,6 @@
-# JVM Performance Tuning - TBU
+---
+hidden: true
+---
+
+# JVM Performance Tuning
 

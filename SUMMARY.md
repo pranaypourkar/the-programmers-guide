@@ -911,6 +911,7 @@
     * [Workload Types](system-design/high-level-design-hld/workload-types.md)
     * [Resilience & Failure Handling](system-design/high-level-design-hld/resilience-and-failure-handling.md)
   * [Performance](system-design/performance/README.md)
+    * [Why Is My API Sometimes Slow ?](system-design/performance/why-is-my-api-sometimes-slow.md)
     * [Response Time Optimization](system-design/performance/response-time-optimization.md)
     * [JVM Performance Tuning](system-design/performance/jvm-performance-tuning.md)
     * [Thread & Concurrency Management](system-design/performance/thread-and-concurrency-management.md)
