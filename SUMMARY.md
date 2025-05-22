@@ -885,6 +885,8 @@
             * [Architecture Details](system-design/high-level-design-hld/architecture/event-driven-architecture/technologies-and-frameworks/activemq/architecture-details.md)
             * [Version Overview](system-design/high-level-design-hld/architecture/event-driven-architecture/technologies-and-frameworks/activemq/version-overview.md)
             * [Naming Convention](system-design/high-level-design-hld/architecture/event-driven-architecture/technologies-and-frameworks/activemq/naming-convention.md)
+            * [Message Delivery Guarantee](system-design/high-level-design-hld/architecture/event-driven-architecture/technologies-and-frameworks/activemq/message-delivery-guarantee.md)
+            * [Queues and Topics](system-design/high-level-design-hld/architecture/event-driven-architecture/technologies-and-frameworks/activemq/queues-and-topics.md)
           * [Kafka](system-design/high-level-design-hld/architecture/event-driven-architecture/technologies-and-frameworks/kafka.md)
       * [Microservices Architecture](system-design/high-level-design-hld/architecture/microservices-architecture/README.md)
         * [Twelve-Factor App Principles](system-design/high-level-design-hld/architecture/microservices-architecture/twelve-factor-app-principles.md)
