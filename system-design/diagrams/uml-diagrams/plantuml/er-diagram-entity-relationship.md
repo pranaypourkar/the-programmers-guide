@@ -8,8 +8,8 @@ An ER Diagram represents data models and relationships between entities in a dat
 Refer to the official documentation for more details - [https://plantuml.com/er-diagram](https://plantuml.com/er-diagram)
 {% endhint %}
 
-{% content-ref url="../../../../database/sql/rdbms/entity-relationship-diagram-erd/" %}
-[entity-relationship-diagram-erd](../../../../database/sql/rdbms/entity-relationship-diagram-erd/)
+{% content-ref url="../../../../database/sql-databases/rdbms/entity-relationship-diagram-erd/" %}
+[entity-relationship-diagram-erd](../../../../database/sql-databases/rdbms/entity-relationship-diagram-erd/)
 {% endcontent-ref %}
 
 ### **Key Elements**
