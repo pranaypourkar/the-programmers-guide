@@ -177,7 +177,7 @@
       * [Oracle Specific](database/sql-databases/other-concepts/oracle-specific/README.md)
         * [Data Types](database/sql-databases/other-concepts/oracle-specific/data-types.md)
         * [Character Set](database/sql-databases/vendor-specific-concepts/oracle-specific/character-set.md)
-        * [Rownum vs Rowid](database/sql-databases/other-concepts/oracle-specific/rownum-vs-rowid.md)
+        * [Rownum, Rowid, Urowid](database/sql-databases/vendor-specific-concepts/oracle-specific/rownum-rowid-urowid.md)
         * [Order of Execution of the query](database/sql-databases/other-concepts/oracle-specific/order-of-execution-of-the-query.md)
         * [Keys](database/sql-databases/other-concepts/oracle-specific/keys.md)
         * [Tablespace](database/sql-databases/other-concepts/oracle-specific/tablespace.md)

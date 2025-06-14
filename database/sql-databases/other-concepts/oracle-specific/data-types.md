@@ -1,7 +1,3 @@
----
-hidden: true
----
-
 # Data Types
 
 ## About
@@ -186,6 +182,8 @@ INSERT INTO temperature_data VALUES ('Delhi', 42.57);
 
 ## 3. Date & Time Data Types
 
+### Description
+
 Temporal types store points in time or durations. Oracle aligns partially with SQL standards but also adds its own enhancements for timezone-aware storage and interval management.
 
 * **Oracle’s `DATE` includes time**: Unlike standard SQL, `DATE` in Oracle includes both date and time down to seconds.
@@ -295,3 +293,188 @@ INTERVAL '5 12:30:15.123456' DAY TO SECOND
 -- 5 days, 12 hours, 30 minutes, 15.123456 seconds
 ```
 
+
+
+## 4. Large Object (LOB) Data Types
+
+### Description
+
+Large Object (LOB) data types in Oracle are designed to store **large blocks of unstructured data**, such as:
+
+* Large text (e.g. articles, emails, XML)
+* Binary files (e.g. images, PDFs, videos)
+* External file references (e.g. stored on the OS filesystem)
+
+LOBs are essential for enterprise systems dealing with document management, media storage, or data lakes inside databases.
+
+* Can store data up to **4 GB** and beyond (depending on configuration and database block size).
+* Stored **separately from table rows**, though the row holds a locator to the LOB data.
+* Supports **streaming APIs** for efficient reading/writing.
+* Supports **transactional consistency** (except `BFILE`).
+* Can be **deferred-loaded** (loaded only when accessed), saving memory.
+
+### LOB Types
+
+<table data-full-width="true"><thead><tr><th width="207.4921875">LOB Type</th><th width="256.02734375">Description</th><th>Use Case</th></tr></thead><tbody><tr><td><code>CLOB</code> (Character LOB)</td><td>Stores large <strong>character data</strong> in database character set</td><td>Text documents, HTML, XML</td></tr><tr><td><code>NCLOB</code> (National CLOB)</td><td>Same as CLOB, but uses <strong>national character set (Unicode)</strong></td><td>Multilingual documents</td></tr><tr><td><code>BLOB</code> (Binary LOB)</td><td>Stores large <strong>binary data</strong></td><td>Images, videos, PDFs, encrypted files</td></tr><tr><td><code>BFILE</code></td><td>Stores a <strong>pointer</strong> to a file in the OS file system (read-only)</td><td>External file referencing</td></tr></tbody></table>
+
+### Internal LOB vs External LOB
+
+<table data-header-hidden><thead><tr><th width="138.94921875"></th><th></th><th></th></tr></thead><tbody><tr><td>Feature</td><td>Internal LOB (<code>BLOB</code>, <code>CLOB</code>, <code>NCLOB</code>)</td><td>External LOB (<code>BFILE</code>)</td></tr><tr><td>Stored In</td><td>Database tablespace</td><td>OS file system</td></tr><tr><td>Read/Write</td><td>Fully readable and writable</td><td>Read-only from SQL</td></tr><tr><td>Transactional</td><td>Yes</td><td>No</td></tr><tr><td>Secure</td><td>Protected under Oracle security</td><td>Depends on OS permissions</td></tr><tr><td>Backup</td><td>Included in database backup</td><td>Must back up separately</td></tr></tbody></table>
+
+### Storage Characteristics
+
+Oracle stores LOB data **out-of-line** by default (separate from table row), but:
+
+* If the LOB data is small (less than \~4 KB), it can be stored **in-line** using `ENABLE STORAGE IN ROW`.
+* LOBs can use **basicfiles** (legacy) or **securefiles** (modern, better performance & compression).
+
+### When to Use Which LOB Type?
+
+| Requirement                    | Recommended LOB |
+| ------------------------------ | --------------- |
+| Long text documents            | `CLOB`          |
+| Multilingual/unicode documents | `NCLOB`         |
+| Images, media, encrypted files | `BLOB`          |
+| Link to file outside database  | `BFILE`         |
+
+### SecureFile LOBs vs BasicFile LOBs
+
+Oracle 11g+ introduced **SecureFile LOBs** for better performance and manageability:
+
+| Feature       | BasicFile | SecureFile  |
+| ------------- | --------- | ----------- |
+| Compression   | No        | Yes         |
+| Encryption    | No        | Yes         |
+| Deduplication | No        | Yes         |
+| Space-saving  | Minimal   | Significant |
+| Performance   | Lower     | Higher      |
+
+Enable SecureFiles like this:
+
+```sql
+CREATE TABLE image_store (
+    id NUMBER,
+    img BLOB
+) LOB (img) STORE AS SECUREFILE (COMPRESS HIGH ENCRYPT);
+```
+
+### Example
+
+#### Step 1: Oracle Table Definition
+
+```sql
+CREATE TABLE user_photos (
+    id NUMBER PRIMARY KEY,
+    username VARCHAR2(100),
+    photo BLOB
+);
+```
+
+#### Step 2: JDBC Code – Insert Image into BLOB
+
+```java
+import java.sql.*;
+import java.io.*;
+
+public class ImageUploader {
+    public static void main(String[] args) {
+        String url = "jdbc:oracle:thin:@//localhost:1521/orclpdb";
+        String username = "your_username";
+        String password = "your_password";
+        String imagePath = "/path/to/photo.jpg";
+
+        try (
+            Connection conn = DriverManager.getConnection(url, username, password);
+            PreparedStatement pstmt = conn.prepareStatement(
+                "INSERT INTO user_photos (id, username, photo) VALUES (?, ?, ?)");
+            FileInputStream fis = new FileInputStream(new File(imagePath))
+        ) {
+            pstmt.setInt(1, 101);
+            pstmt.setString(2, "john_doe");
+            pstmt.setBinaryStream(3, fis, fis.available()); // set BLOB as stream
+
+            int rows = pstmt.executeUpdate();
+            System.out.println("Rows inserted: " + rows);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+#### Step 3: Retrieve Image from Oracle and Save as File
+
+```java
+import java.sql.*;
+import java.io.*;
+
+public class ImageDownloader {
+    public static void main(String[] args) {
+        String url = "jdbc:oracle:thin:@//localhost:1521/orclpdb";
+        String username = "your_username";
+        String password = "your_password";
+        String outputFile = "/path/to/output.jpg";
+
+        try (
+            Connection conn = DriverManager.getConnection(url, username, password);
+            PreparedStatement pstmt = conn.prepareStatement(
+                "SELECT photo FROM user_photos WHERE id = ?");
+        ) {
+            pstmt.setInt(1, 101);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                InputStream input = rs.getBinaryStream("photo");
+                OutputStream output = new FileOutputStream(outputFile);
+
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+                while ((bytesRead = input.read(buffer)) != -1) {
+                    output.write(buffer, 0, bytesRead);
+                }
+
+                System.out.println("Image saved to: " + outputFile);
+                output.close();
+                input.close();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+## Best Practices
+
+### 1. Character (Text) Data Types
+
+<table data-full-width="true"><thead><tr><th width="286.2109375">Practice</th><th>Recommendation</th></tr></thead><tbody><tr><td>Use variable-length strings</td><td>Prefer <code>VARCHAR2</code> over <code>CHAR</code> to save space and avoid padding overhead.</td></tr><tr><td>Avoid deprecated types</td><td>Do <strong>not</strong> use <code>VARCHAR</code>; use <code>VARCHAR2</code> instead, as Oracle may redefine <code>VARCHAR</code>.</td></tr><tr><td>Enable character semantics</td><td>Use <code>CHARACTER SET</code> and <code>CHARACTER LENGTH SEMANTICS</code> wisely, especially in multilingual applications.</td></tr><tr><td>Use <code>NCHAR</code>/<code>NVARCHAR2</code> for Unicode</td><td>When storing multilingual data (e.g., Chinese, Arabic), use national character types.</td></tr><tr><td>Set proper length</td><td>Avoid allocating the max (e.g., 4000) unless necessary; oversized columns waste memory and I/O.</td></tr><tr><td>Normalize case if required</td><td>Store and compare text in consistent case (e.g., all UPPER) for indexing and querying.</td></tr></tbody></table>
+
+### 2. Numeric Data Types
+
+<table><thead><tr><th width="270.59375">Practice</th><th>Recommendation</th></tr></thead><tbody><tr><td>Use <code>NUMBER(p,s)</code> for precision</td><td>Always define precision and scale to avoid unexpected rounding or overflow.</td></tr><tr><td>Avoid overly large precision</td><td>Don't default to <code>NUMBER</code> without limits; specify <code>NUMBER(10,2)</code> for currency, for example.</td></tr><tr><td>Choose integer types wisely</td><td>For whole numbers, use <code>NUMBER(p,0)</code> (e.g., <code>NUMBER(5,0)</code> for counters).</td></tr><tr><td>Use <code>BINARY_FLOAT</code>/<code>BINARY_DOUBLE</code> only for scientific computing</td><td>They are faster but less precise—avoid for financial or critical data.</td></tr><tr><td>Avoid <code>FLOAT</code> for exact values</td><td>It's an approximate representation—use only when precision is not critical.</td></tr><tr><td>Use constraints for validation</td><td>Apply <code>CHECK</code> constraints for acceptable numeric ranges when business rules allow.</td></tr></tbody></table>
+
+### 3. Date & Time Data Types
+
+| Practice                                                                    | Recommendation                                                                     |
+| --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Use `TIMESTAMP` instead of `DATE` when fractional seconds matter            | `DATE` only stores up to seconds; `TIMESTAMP` supports micro/nanoseconds.          |
+| Prefer `TIMESTAMP WITH TIME ZONE` for globally relevant data                | It ensures consistent time tracking across regions.                                |
+| Avoid `TIMESTAMP WITH LOCAL TIME ZONE` unless session-based logic is needed | Its behavior depends on user sessions and can lead to confusion.                   |
+| Use `INTERVAL` types for durations, not `DATE` subtraction                  | `INTERVAL` types clearly express intent and avoid conversion issues.               |
+| Normalize time zones in application logic                                   | Ensure consistent time zone use between DB and application layer.                  |
+| Avoid storing as `CHAR` or `VARCHAR2`                                       | Store actual dates/times using native types for indexing, sorting, and formatting. |
+
+### 4. Large Object (LOB) Data Types
+
+| Practice                                      | Recommendation                                                                                    |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Prefer `CLOB`/`BLOB` over `LONG`/`LONG RAW`   | The latter are deprecated and unsupported in many modern features.                                |
+| Use `BLOB` for binary content (images, audio) | Do not store binary files as `RAW` or encode them as base64 in text fields.                       |
+| Use `CLOB` for large text (documents, logs)   | Enables full-text indexing and large-capacity storage.                                            |
+| Consider chunked access for very large LOBs   | Use streaming APIs (`DBMS_LOB`) to read/write in pieces instead of loading full content.          |
+| Use SecureFile LOBs if available              | They provide better performance and features (e.g., compression, deduplication).                  |
+| Avoid unnecessary LOB indexing                | Index only if you need full-text search; LOBs are heavy and slow to scan.                         |
+| Store large static files outside database     | Use `BFILE` for read-only access to large external content when database storage is not required. |
