@@ -2,5 +2,5 @@
 hidden: true
 ---
 
-# SMS Notification
+# Email
 

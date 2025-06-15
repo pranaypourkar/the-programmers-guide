@@ -4,7 +4,7 @@
 
 **Distributed Tracing** is a technique for monitoring and debugging microservices-based architectures by tracking the flow of requests across service boundaries. It helps identify bottlenecks, errors, or performance issues by tracing each request as it propagates through the system.
 
-<div data-full-width="false"><figure><img src="../../../.gitbook/assets/Tracing-Flow.png" alt="" width="563"><figcaption></figcaption></figure></div>
+<div data-full-width="false"><figure><img src="../../.gitbook/assets/Tracing-Flow.png" alt="" width="563"><figcaption></figcaption></figure></div>
 
 ## Flow of a Distributed Tracing in a Springboot Application
 

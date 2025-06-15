@@ -2,5 +2,5 @@
 hidden: true
 ---
 
-# Push Notification
+# Notifications
 

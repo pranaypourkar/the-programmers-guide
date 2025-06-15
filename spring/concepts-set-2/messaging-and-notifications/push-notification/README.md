@@ -2,5 +2,5 @@
 hidden: true
 ---
 
-# Email Notification
+# Push
 
