@@ -31,4 +31,3 @@ HLD is like the blueprint of a building. It provides an overall picture of what 
 * **Technology Stack:** Frontend (React.js), Backend (Spring Boot), Database (MySQL), Hosting (AWS).
 * **Interfaces:** RESTful APIs for communication between frontend and backend, payment gateway API.
 * **Non-Functional Requirements:** High availability, scalability, security (SSL/TLS), performance (low latency).
-

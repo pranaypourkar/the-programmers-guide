@@ -51,4 +51,3 @@ LLD is like the detailed floor plan of the building. It goes into the specifics 
 
 * User table with columns (userId, userName, password).
 * Product table with columns (productId, productName, price).
-
