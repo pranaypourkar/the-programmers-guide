@@ -996,6 +996,7 @@
   * [Observability](system-design/observability/README.md)
     * [Distributed Tracing](spring/concepts-set-2/distributed-tracing.md)
       * [Fundamentals](system-design/observability/distributed-tracing/fundamentals.md)
+      * [Tracing Modes](system-design/observability/distributed-tracing/tracing-modes.md)
       * [Tools](system-design/observability/distributed-tracing/tools/README.md)
         * [Zipkin](system-design/observability/distributed-tracing/tools/zipkin.md)
         * [OpenTelemetry](system-design/observability/distributed-tracing/tools/opentelemetry.md)
