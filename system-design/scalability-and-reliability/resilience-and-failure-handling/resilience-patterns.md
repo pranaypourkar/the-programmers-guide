@@ -1,0 +1,3 @@
+# Resilience Patterns
+
+Bulkheads, Backpressure
