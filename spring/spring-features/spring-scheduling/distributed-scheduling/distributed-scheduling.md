@@ -1,14 +1,10 @@
-# Distributed Scheduling
+# ShedLock
 
-In Spring Boot, if we need to execute tasks at a scheduled time, we can use **@Scheduled** annotation. However, if there are multiple instances of the application and if we want to ensure that a scheduled task runs only once across all instances, in such case we need distributed scheduling.
-
-There are different libraries that support distributed scheduling such as **ShedLock** , **Quartz** , **Akka Scheduler** etc.
-
-### ShedLock
+## About
 
 ShedLock is a library which is used for distributed locking in scheduled tasks. It ensures that scheduled tasks (such as cron jobs) are executed only once in a distributed environment, even if the application is running on multiple nodes. It uses an external storage mechanism (like a database or cache) to keep track of running schedulers and acquired locks. ShedLock supports multiple lock providers like JDBC, Redis, Zookeeper etc.
 
-#### How Shedlock Works
+## How Shedlock Works
 
 * **Lock Provider**: Shedlock relies on a lock provider, which is a bean configured in the Spring Boot application. This bean depends on the type of storage chosen (e.g., database, Redis).
 * **Acquiring the Lock**: When a scheduled task is due for execution, each Spring Boot instance tries to acquire a lock for that task through the lock provider.
@@ -18,9 +14,7 @@ ShedLock is a library which is used for distributed locking in scheduled tasks. 
 
 For more details, visit the site - https://github.com/lukas-krecan/ShedLock
 
-#### Use cases
-
-1. Handling Recurring Jobs with External Dependencies:
+## Use cases - Handling Recurring Jobs with External Dependencies
 
 **Generating and Sending Reports**: If there is a task that involves fetching data from external APIs, generating reports, and sending them via email, scheduler locks ensure only one instance sends those emails, preventing duplicates and potential overload.
 
@@ -67,7 +61,7 @@ With **spring-boot-starter-data-jpa** dependency added and the database configur
 
 Access the **mysql** database instance via mysql workbench and create the table manually which is to be used by the SchedulerLock.
 
-<figure><img src="../../.gitbook/assets/image (251).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (251).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 Note that table structure is created as per documentation given on the site -
@@ -209,6 +203,6 @@ spring:
 
 Run the application and verify the **logs** and **shedlock** table content.
 
-<figure><img src="../../.gitbook/assets/image (253).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (253).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/image (254).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (254).png" alt=""><figcaption></figcaption></figure>

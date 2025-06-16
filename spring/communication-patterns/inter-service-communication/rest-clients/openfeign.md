@@ -296,9 +296,9 @@ Build and run the application
 
 Run the service 1 API from Postman
 
-<figure><img src="../../../.gitbook/assets/image (266).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (266).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (267).png" alt=""><figcaption><p>Service 1 logs</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (267).png" alt=""><figcaption><p>Service 1 logs</p></figcaption></figure>
 
 To Enable Feign logging, add the below bean and update application.yaml property file.
 
@@ -334,4 +334,4 @@ logging:
 
 Hit the API again via Postman and monitor the logs.
 
-<figure><img src="../../../.gitbook/assets/image (173).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (173).png" alt=""><figcaption></figcaption></figure>

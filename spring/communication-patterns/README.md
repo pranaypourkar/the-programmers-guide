@@ -1,6 +1,7 @@
 ---
 description: Information about various concepts.
+hidden: true
 ---
 
-# Concepts: Set 2
+# Communication Patterns
 

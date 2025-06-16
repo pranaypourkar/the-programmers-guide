@@ -267,11 +267,11 @@ Build and run the application
 
 **Execute the service 1 API via Postman**
 
-<figure><img src="../../../.gitbook/assets/image (174).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (174).png" alt=""><figcaption></figcaption></figure>
 
 Monitor the logs (have a look at the threads executing the code)
 
-<figure><img src="../../../.gitbook/assets/image (176).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (176).png" alt=""><figcaption></figcaption></figure>
 
 #### Create an employee, Fetching all employees and handling error based on Http status.
 

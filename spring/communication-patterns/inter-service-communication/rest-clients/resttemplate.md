@@ -164,7 +164,7 @@ Dependencies
 
 Sample Service 2
 
-<figure><img src="../../../.gitbook/assets/image (177).png" alt="" width="313"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (177).png" alt="" width="313"><figcaption></figcaption></figure>
 
 _<mark style="background-color:yellow;">**SampleController.java**</mark>_
 
@@ -198,7 +198,7 @@ Build and run the service 2 application.
 
 Sample Service 1
 
-<figure><img src="../../../.gitbook/assets/image (178).png" alt="" width="313"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (178).png" alt="" width="313"><figcaption></figcaption></figure>
 
 _<mark style="background-color:yellow;">**ResttemplateConfig.java**</mark>_
 
@@ -263,13 +263,13 @@ Build and execute the application
 
 * Call the Service 1 API using Postman
 
-<figure><img src="../../../.gitbook/assets/image (179).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (179).png" alt=""><figcaption></figcaption></figure>
 
 * We can enable basic information logging like request, headers, response code etc by setting logging level below
 
 `logging.level.org.springframework.web.client.RestTemplate=DEBUG`
 
-<figure><img src="../../../.gitbook/assets/image (180).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (180).png" alt=""><figcaption></figcaption></figure>
 
 * We can enable full logging including request, response body, etc Apache HttpClient
 
@@ -317,7 +317,7 @@ Run both the service 1 and service 2 application from above example
 
 Run the service 1 API from Postman and monitor the logs
 
-<figure><img src="../../../.gitbook/assets/image (182).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (182).png" alt=""><figcaption></figcaption></figure>
 
 ```atom
 2024-04-19 15:55:22.074  INFO 21200 --- [nio-8081-exec-5] org.example.api.SampleController         : Calling service 2 API

@@ -342,4 +342,4 @@ public class Application {
 
 <figure><img src="../../../../.gitbook/assets/image (206).png" alt=""><figcaption></figcaption></figure>
 
-[^1]: [https://app.gitbook.com/o/tVyFnk5YBNmGbKUlXJjt/s/Pd6ktrA5pPLsZJktj2fm/\~/changes/30/spring/concepts/spring-aop/before-advice#scenario-1-logging-request-details-using-custom-annotation](../../../../spring/concepts-set-1/spring-aop/before-advice.md#scenario-1-logging-request-details-using-custom-annotation)
+[^1]: [https://app.gitbook.com/o/tVyFnk5YBNmGbKUlXJjt/s/Pd6ktrA5pPLsZJktj2fm/\~/changes/30/spring/concepts/spring-aop/before-advice#scenario-1-logging-request-details-using-custom-annotation](../../../../spring/spring-features/spring-aop/before-advice.md#scenario-1-logging-request-details-using-custom-annotation)

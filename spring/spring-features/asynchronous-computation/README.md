@@ -22,9 +22,9 @@ Asynchronous computation in Spring Boot refers to executing tasks or methods asy
 
 * Spring WebFlux is part of the Spring ecosystem that enables building non-blocking, reactive applications.
 * It uses reactive types like `Mono` and `Flux` to achieve asynchronous processing.
-* Refer to this Page for more details: [reactive-programming](../../concepts-set-1/reactive-programming/ "mention")
+* Refer to this Page for more details: [reactive-programming](../reactive-programming/ "mention")
 
 ### **4. Using Project Reactor (`Mono` and `Flux`) without WebFlux**:
 
 * Even if you are not using WebFlux, you can still leverage Project Reactor’s `Mono` and `Flux` for asynchronous, non-blocking processing in your Spring Boot application.
-* Refer to this Page for more details: [project-reactor](../../concepts-set-1/reactive-programming/project-reactor/ "mention")
+* Refer to this Page for more details: [project-reactor](../reactive-programming/project-reactor/ "mention")
