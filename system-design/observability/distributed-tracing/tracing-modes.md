@@ -6,7 +6,12 @@ In distributed systems, tracing enables developers and operators to understand h
 
 However, distributed systems involve many communication patterns—some synchronous, some asynchronous, some initiated by systems or users. **Each of these patterns requires a different tracing mode.**
 
-
+{% hint style="info" %}
+* Don't assume tracing just works—each mode has its own behavior.
+* Always verify context propagation in real-world deployments.
+* For Spring users, Spring Cloud Sleuth provides basic out-of-the-box support, but advanced scenarios need customization.
+* For long-term reliability, consider OpenTelemetry, which is vendor-neutral and widely adopted.
+{% endhint %}
 
 ## 1. Synchronous Request Tracing (HTTP or gRPC)
 
