@@ -1003,7 +1003,7 @@
         * [Jaeger](system-design/observability/distributed-tracing/tools/jaeger.md)
     * [Metrics](system-design/observability/metrics/README.md)
       * [Micrometer](system-design/observability/metrics/micrometer.md)
-      * [Prometheus](system-design/observability/metrics/prometheus/README.md)
+      * [Prometheus](system-design/observability/metrics/prometheus.md)
         * [PromQL](system-design/observability/metrics/prometheus/promql.md)
       * [Grafana](system-design/observability/metrics/grafana.md)
     * [Logging](system-design/observability/logging.md)
