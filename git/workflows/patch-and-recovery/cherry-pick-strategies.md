@@ -6,6 +6,8 @@
 
 It’s called “cherry-pick” because we are picking only the changes we want — like picking cherries from a tree.
 
+<figure><img src="../../../.gitbook/assets/Screenshot 2025-06-18 at 1.01.17 PM.png" alt=""><figcaption></figcaption></figure>
+
 ## When and Why to Use Cherry-pick ?
 
 Cherry-picking is useful when:

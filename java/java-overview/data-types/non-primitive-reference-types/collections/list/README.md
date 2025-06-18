@@ -171,7 +171,13 @@ public class StackExample {
   * Iterators do not throw `ConcurrentModificationException`.
   * High overhead for write operations but efficient for read-heavy scenarios.
 * **Use Case**: When multiple threads mostly read data and modifications are infrequent.
-* **Class**: `java.util.concurrent.CopyOnWriteArrayList`
+* **Class**: `java.util.concurrent.CopyOnWriteArrayList`&#x20;
+
+{% hint style="warning" %}
+`CopyOnWriteArrayList` is excellent for concurrent reads but is **inefficient for frequent writes** due to its internal array copy behavior.
+
+**Suggestion:** Use `Collections.synchronizedList(new ArrayList<>())` instead, if we are writing more than reading.
+{% endhint %}
 
 ```java
 import java.util.concurrent.CopyOnWriteArrayList;

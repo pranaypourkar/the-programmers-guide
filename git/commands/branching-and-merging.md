@@ -169,6 +169,10 @@ git branch
 
 -- Create and Switch to a New Feature Branch
 git checkout -b new-feature-branch
+git checkout -b release-fix v1.0.0
+
+-- Creates a new branch named new-branch starting from the specified tag.
+git checkout -b new-branch tag-name
 
 -- Work on the Feature and Commit Changes
 echo "New feature" > feature.txt
