@@ -978,6 +978,7 @@
           * [Naming Convention](system-design/architectural-styles/event-driven-architecture/technologies-and-frameworks/activemq/naming-convention.md)
           * [Message Delivery Guarantee](system-design/architectural-styles/event-driven-architecture/technologies-and-frameworks/activemq/message-delivery-guarantee.md)
           * [Queues and Topics](system-design/architectural-styles/event-driven-architecture/technologies-and-frameworks/activemq/queues-and-topics.md)
+          * [Configuration Properties](system-design/architectural-styles/event-driven-architecture/technologies-and-frameworks/activemq/configuration-properties.md)
         * [Kafka](system-design/architectural-styles/event-driven-architecture/technologies-and-frameworks/kafka.md)
     * [Serverless](system-design/architectural-styles/serverless.md)
     * [Hexagonal Architecture](system-design/architectural-styles/hexagonal-architecture.md)
