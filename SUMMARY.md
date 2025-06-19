@@ -210,6 +210,8 @@
       * [Column-Family Stores](database/nosql-databases/types-of-nosql/column-family-stores.md)
       * [Graph Databases](database/nosql-databases/types-of-nosql/graph-databases.md)
   * [SQL vs NoSQL](database/sql-vs-nosql.md)
+  * [Query Concepts & Performance](database/query-concepts-and-performance/README.md)
+    * [count(1) vs count(\*)](database/query-concepts-and-performance/count-1-vs-count.md)
   * [Best Practices](database/best-practices.md)
 * [Git](git/README.md)
   * [Internals of Git](git/internals-of-git-tbd.md)
