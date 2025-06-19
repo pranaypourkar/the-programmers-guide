@@ -212,6 +212,7 @@
   * [SQL vs NoSQL](database/sql-vs-nosql.md)
   * [Query Concepts & Performance](database/query-concepts-and-performance/README.md)
     * [count(1) vs count(\*)](database/query-concepts-and-performance/count-1-vs-count.md)
+    * [Access Multiple Schemas in Single Query](database/query-concepts-and-performance/access-multiple-schemas-in-single-query.md)
   * [Best Practices](database/best-practices.md)
 * [Git](git/README.md)
   * [Internals of Git](git/internals-of-git-tbd.md)
