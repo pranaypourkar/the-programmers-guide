@@ -347,6 +347,23 @@ DROP TABLESPACE ts_2024 INCLUDING CONTENTS AND DATAFILES;
 ```
 {% endhint %}
 
+{% hint style="warning" %}
+Suppose if we drop some partition and we have Indexes then select query might fail as indexes will be in unstable state.
+
+* **Local indexes** are automatically managed.
+*   **Global indexes** may become invalid and need rebuilding:
+
+    ```sql
+    ALTER TABLE sales DROP PARTITION sales_2023 UPDATE GLOBAL INDEXES;
+    ```
+
+    Or rebuild them manually:
+
+    ```sql
+    ALTER INDEX idx_sales REBUILD;
+    ```
+{% endhint %}
+
 ### **Partition Must Exist for the Data**
 
 If the DBA is manually creating new partitions each month, it's important that:
