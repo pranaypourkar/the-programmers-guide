@@ -316,5 +316,301 @@ System.out.println(product.getName());   // Phone
 System.out.println(product.getPrice());  // 0.0
 ```
 
+## **Serialization Inclusion Strategies**
 
+Serialization inclusion strategies determine **what data gets included** in the JSON output. This is important to reduce unnecessary data in API responses, especially when dealing with large objects or REST services.
+
+#### **Options**
+
+<table><thead><tr><th width="271.287353515625">Strategy</th><th>Description</th></tr></thead><tbody><tr><td><code>Include.ALWAYS</code></td><td>Always include the property (default)</td></tr><tr><td><code>Include.NON_NULL</code></td><td>Exclude <code>null</code> values</td></tr><tr><td><code>Include.NON_EMPTY</code></td><td>Exclude empty values (empty string, empty list, etc.)</td></tr><tr><td><code>Include.NON_DEFAULT</code></td><td>Exclude fields with default values</td></tr><tr><td><code>Include.NON_ABSENT</code></td><td>Exclude nulls and Java 8 <code>Optional.empty()</code></td></tr></tbody></table>
+
+#### **Global Configuration**
+
+```java
+objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+```
+
+#### **Field-Level Configuration**
+
+```java
+public class User {
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    private List<String> tags;
+}
+```
+
+#### **Spring Boot Configuration (application.yml)**
+
+```yaml
+spring:
+  jackson:
+    default-property-inclusion: non_null
+```
+
+#### **Use Case Example**
+
+You may not want to return null or empty fields to reduce response payload size:
+
+```json
+{
+  "name": "John",
+  "email": null
+}
+```
+
+With `NON_NULL`, `email` will be excluded.
+
+## **Date and Time Handling**
+
+Working with dates and times in Java can be tricky, especially when serializing and deserializing JSON in REST APIs. Jackson provides powerful capabilities for formatting and parsing date/time types, and Spring Boot makes this integration seamless—but only if you configure it correctly.
+
+#### **Why Special Handling Is Needed**
+
+Java 8 introduced a new Date-Time API under `java.time.*` packages like:
+
+* `LocalDate`
+* `LocalDateTime`
+* `ZonedDateTime`
+* `Instant`
+
+These types are **not supported natively** by Jackson without additional configuration. Jackson treats them differently than older types like `java.util.Date`, and without proper setup, they are either:
+
+* Serialized as **arrays** (e.g. `[2024, 6, 20]`)
+* Serialized as **timestamps**
+* Or cause **deserialization errors**
+
+#### **Solution**
+
+To handle Java 8 time types correctly:
+
+1. **Register `JavaTimeModule`**
+2. **Disable writing as timestamps**
+
+```java
+ObjectMapper mapper = new ObjectMapper();
+mapper.registerModule(new JavaTimeModule());
+mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+```
+
+This enables human-readable ISO-8601 strings like:
+
+```json
+"2024-06-20T15:45:00"
+```
+
+instead of:
+
+```json
+[2024, 6, 20, 15, 45, 0]
+```
+
+#### **Field-Level Formatting**
+
+Use `@JsonFormat` to define a custom date format for individual fields:
+
+```java
+public class Event {
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime dateTime;
+}
+```
+
+This ensures consistent formatting even if the global `ObjectMapper` is shared across the application.
+
+#### **Global Formatting in Spring Boot**
+
+Spring Boot allows configuring date/time formats centrally using `application.yml` or `application.properties`.
+
+**YAML Configuration**
+
+```yaml
+spring:
+  jackson:
+    date-format: yyyy-MM-dd'T'HH:mm:ss
+    time-zone: Asia/Kolkata
+```
+
+**Effect**
+
+This:
+
+* Sets the format for all `java.util.Date` and `Calendar`
+* Does **not** apply to Java 8 `java.time.*` types unless you register `JavaTimeModule`
+
+> To apply it for both, combine Spring config + `JavaTimeModule` registration.
+
+#### **Timezone Handling**
+
+When serializing or deserializing time-zone-aware types like `ZonedDateTime` or `OffsetDateTime`, Jackson can:
+
+* Use default system time zone
+* Apply a specific time zone via config
+* Respect explicit time zone in the string
+
+**Set Global Time Zone**
+
+```java
+mapper.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
+```
+
+Or via Spring config:
+
+```yaml
+spring:
+  jackson:
+    time-zone: Asia/Kolkata
+```
+
+#### **Deserialization Considerations**
+
+When parsing strings, Jackson expects them to match the format defined by:
+
+* `@JsonFormat` (if present)
+* `application.yml` format (if configured)
+* ISO-8601 (default fallback for `JavaTimeModule`)
+
+Mismatched formats will cause `JsonParseException`.
+
+## **Field Naming Strategy**
+
+Field naming strategies control how Java field names are mapped to JSON keys.
+
+#### **Default: camelCase**
+
+```java
+firstName → "firstName"
+```
+
+#### **snake\_case:**
+
+```java
+mapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
+```
+
+```java
+firstName → "first_name"
+```
+
+#### **Spring Boot Configuration**
+
+```yaml
+spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+```
+
+#### **Use Case**
+
+Aligns backend field names with frontend naming conventions, especially in REST APIs.
+
+## **Working with JSON Tree (JsonNode)**
+
+Use `JsonNode` when working with **dynamic, partially known, or schema-less** JSON structures.
+
+#### **Parsing JSON as Tree**
+
+```java
+String json = "{\"name\":\"Alice\", \"age\":30}";
+JsonNode root = objectMapper.readTree(json);
+String name = root.get("name").asText();     // "Alice"
+int age = root.get("age").asInt();           // 30
+```
+
+#### **Modifying Tree**
+
+```java
+((ObjectNode) root).put("name", "Bob");
+```
+
+#### **Traversing Nested Nodes**
+
+```java
+JsonNode address = root.path("address");
+String city = address.path("city").asText();
+```
+
+#### **Creating a Tree Manually**
+
+```java
+ObjectNode node = objectMapper.createObjectNode();
+node.put("username", "john");
+node.put("active", true);
+```
+
+#### **Use Case**
+
+Perfect for generic filters, form submissions, or when schema is not static.
+
+## **Annotations for Fine-Grained Control**
+
+Jackson provides annotations to control serialization/deserialization behavior per class or field.
+
+#### **Common Annotations**
+
+<table><thead><tr><th width="225.60589599609375">Annotation</th><th>Purpose</th></tr></thead><tbody><tr><td><code>@JsonProperty</code></td><td>Rename JSON property</td></tr><tr><td><code>@JsonIgnore</code></td><td>Exclude field</td></tr><tr><td><code>@JsonInclude</code></td><td>Conditional inclusion</td></tr><tr><td><code>@JsonFormat</code></td><td>Format dates</td></tr><tr><td><code>@JsonAlias</code></td><td>Accept multiple names</td></tr><tr><td><code>@JsonCreator</code></td><td>Constructor/factory-based deserialization</td></tr><tr><td><code>@JsonValue</code></td><td>Serialize enum or custom object as a value</td></tr></tbody></table>
+
+#### **Examples**
+
+```java
+public class Product {
+    @JsonProperty("item_name")
+    private String name;
+
+    @JsonIgnore
+    private String internalCode;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate releaseDate;
+
+    @JsonAlias({"cost", "price_value"})
+    private double price;
+}
+```
+
+#### **Use Case**
+
+* Maintain compatibility with legacy JSON.
+* Adjust naming or formatting without changing the class model.
+* Control visibility per API contract.
+
+## **Working with JSON Tree (JsonNode)**
+
+Use `JsonNode` when working with **dynamic, partially known, or schema-less** JSON structures.
+
+#### **Parsing JSON as Tree**
+
+```java
+String json = "{\"name\":\"Alice\", \"age\":30}";
+JsonNode root = objectMapper.readTree(json);
+String name = root.get("name").asText();     // "Alice"
+int age = root.get("age").asInt();           // 30
+```
+
+#### **Modifying Tree**
+
+```java
+((ObjectNode) root).put("name", "Bob");
+```
+
+#### **Traversing Nested Nodes**
+
+```java
+JsonNode address = root.path("address");
+String city = address.path("city").asText();
+```
+
+#### **Creating a Tree Manually**
+
+```java
+ObjectNode node = objectMapper.createObjectNode();
+node.put("username", "john");
+node.put("active", true);
+```
+
+#### **Use Case**
+
+Perfect for generic filters, form submissions, or when schema is not static.
 
