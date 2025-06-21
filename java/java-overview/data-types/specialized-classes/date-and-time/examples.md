@@ -42,3 +42,25 @@ Date utcDate = Date.from(utcZoned.toInstant());
 Notice: **same `LocalDateTime`, different `Instant`** based on the zone.
 {% endhint %}
 
+## ZonedDateTime
+
+### 1. Get current UTC time in yyyy-MM-dd'T'HH:mm:ss.SSSZ format
+
+```java
+ZonedDateTime utcNow = ZonedDateTime.now(ZoneOffset.UTC);
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+String formatted = utcNow.format(formatter);
+System.out.println(formatted);  // Example: 2025-06-21T07:33:46.115+0000
+```
+
+### 2. Convert the current time to **Saudi Arabia time**, which is in the `Asia/Riyadh` time zone, and yyyy-MM-dd'T'HH:mm:ss.SSSZ format
+
+```java
+ZonedDateTime ksaTime = ZonedDateTime.now(ZoneId.of("Asia/Riyadh"));
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+String formatted = ksaTime.format(formatter);
+System.out.println(formatted);  // Example: 2025-06-21T10:33:46.123+0300
+```
+
+
+

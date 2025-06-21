@@ -2,5 +2,5 @@
 hidden: true
 ---
 
-# API Basics
+# Comparison
 
