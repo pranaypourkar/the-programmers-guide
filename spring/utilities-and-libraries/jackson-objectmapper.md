@@ -614,3 +614,195 @@ node.put("active", true);
 
 Perfect for generic filters, form submissions, or when schema is not static.
 
+## **Exception Handling**
+
+Jackson can throw several checked and runtime exceptions during JSON processing. It’s essential to handle these gracefully, especially in REST APIs.
+
+#### **Common Exceptions**
+
+<table><thead><tr><th width="292.55035400390625">Exception</th><th>Cause</th></tr></thead><tbody><tr><td><code>UnrecognizedPropertyException</code></td><td>JSON has fields not found in the POJO</td></tr><tr><td><code>MismatchedInputException</code></td><td>Type mismatch (e.g., expecting object but got array)</td></tr><tr><td><code>JsonMappingException</code></td><td>Problems mapping between JSON and object</td></tr><tr><td><code>JsonParseException</code></td><td>Malformed JSON syntax</td></tr><tr><td><code>JsonProcessingException</code></td><td>Parent class for all exceptions</td></tr></tbody></table>
+
+#### **Spring REST Exception Handler**
+
+```java
+@ControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(JsonProcessingException.class)
+    public ResponseEntity<String> handleJsonException(JsonProcessingException e) {
+        return ResponseEntity.badRequest().body("Invalid JSON: " + e.getOriginalMessage());
+    }
+}
+```
+
+## **Custom Serializers and Deserializers**
+
+In most applications, Jackson’s default serialization and deserialization behavior is sufficient. However, certain situations call for **custom logic**, such as:
+
+* Encrypting/masking sensitive data
+* Transforming legacy formats
+* Applying business rules during serialization or deserialization
+* Interacting with non-standard or inconsistent APIs
+
+Jackson makes this easy with `JsonSerializer<T>` and `JsonDeserializer<T>` interfaces.
+
+### **1. Custom Serializer**
+
+#### **Goal:** Control how a Java object or field is written to JSON.
+
+#### **Steps:**
+
+**a) Create a serializer class:**
+
+```java
+public class MaskingSerializer extends JsonSerializer<String> {
+    @Override
+    public void serialize(String value, JsonGenerator gen, SerializerProvider serializers)
+            throws IOException {
+        gen.writeString("***"); // Replace actual value with ***
+    }
+}
+```
+
+**b) Use it in our model:**
+
+```java
+public class User {
+    private String name;
+
+    @JsonSerialize(using = MaskingSerializer.class)
+    private String ssn; // Sensitive data
+}
+```
+
+**Output:**
+
+```json
+{
+  "name": "John",
+  "ssn": "***"
+}
+```
+
+### **2. Custom Deserializer**
+
+#### **Goal:** Control how JSON is parsed into a Java object or field.
+
+#### **Steps:**
+
+**a) Create a deserializer class:**
+
+```java
+public class UppercaseDeserializer extends JsonDeserializer<String> {
+    @Override
+    public String deserialize(JsonParser p, DeserializationContext ctxt)
+            throws IOException {
+        return p.getText().toUpperCase();
+    }
+}
+```
+
+**b) Use it in our model:**
+
+```java
+public class Product {
+    private String code;
+
+    @JsonDeserialize(using = UppercaseDeserializer.class)
+    private String category;
+}
+```
+
+**Input:**
+
+```json
+{
+  "code": "PRD-101",
+  "category": "electronics"
+}
+```
+
+**Output:**
+
+```java
+product.getCategory(); // "ELECTRONICS"
+```
+
+### **3. Apply to Entire Class**
+
+We can serialize/deserialize an entire class with custom logic if we need control beyond a field level.
+
+#### **Example: Serialize full object to flat string**
+
+```java
+public class Coordinates {
+    public double lat;
+    public double lng;
+}
+```
+
+**Custom Serializer:**
+
+```java
+public class CoordinatesSerializer extends JsonSerializer<Coordinates> {
+    @Override
+    public void serialize(Coordinates value, JsonGenerator gen, SerializerProvider serializers)
+            throws IOException {
+        gen.writeString(value.lat + "," + value.lng);
+    }
+}
+```
+
+**Use:**
+
+```java
+@JsonSerialize(using = CoordinatesSerializer.class)
+public class Coordinates { ... }
+```
+
+**Output:**
+
+```json
+"12.9716,77.5946"
+```
+
+### **4. Global Registration**
+
+Instead of annotating each model field or class, we can register custom (de)serializers globally.
+
+```java
+@Configuration
+public class JacksonConfig {
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper mapper = new ObjectMapper();
+
+        SimpleModule module = new SimpleModule();
+        module.addSerializer(String.class, new MaskingSerializer());
+        module.addDeserializer(String.class, new UppercaseDeserializer());
+
+        mapper.registerModule(module);
+        return mapper;
+    }
+}
+```
+
+> This affects **every** `String` field across the application. Be cautious with global registration.
+
+### **5. Use with Spring Boot's Default ObjectMapper**
+
+If we don’t want to override Spring Boot’s default `ObjectMapper` but want to **add custom behavior**, use a `Jackson2ObjectMapperBuilderCustomizer`:
+
+```java
+@Bean
+public Jackson2ObjectMapperBuilderCustomizer customizer() {
+    return builder -> {
+        SimpleModule module = new SimpleModule();
+        module.addSerializer(String.class, new MaskingSerializer());
+        builder.modules(module);
+    };
+}
+```
+
+This allows customization **without replacing** the default Spring Boot configuration.
