@@ -2,5 +2,5 @@
 hidden: true
 ---
 
-# Examples
+# Test Automation
 
