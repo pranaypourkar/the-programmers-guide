@@ -662,6 +662,8 @@
       * [Scheduling](spring/core-concepts/annotations/scheduling.md)
       * [Testing](spring/core-concepts/annotations/testing.md)
       * [Security](spring/core-concepts/annotations/security.md)
+    * [Spring Configuration](spring/core-concepts/spring-configuration/README.md)
+      * [@Value for Property Injection](spring/core-concepts/spring-configuration/value-for-property-injection.md)
   * [Spring Features](spring/spring-features/README.md)
     * [Auto Configuration](spring/spring-features/auto-configuration/README.md)
       * [Spring Boot 2: spring.factories](spring/spring-features/auto-configuration/spring-boot-2-spring.factories.md)
