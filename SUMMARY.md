@@ -1124,6 +1124,7 @@
       * [Security Logging](system-design/security/logging-and-monitoring/security-logging.md)
       * [Incident Response & Auditing](system-design/security/logging-and-monitoring/incident-response-and-auditing.md)
       * [Intrusion Detection & Anomaly Detection](system-design/security/logging-and-monitoring/intrusion-detection-and-anomaly-detection.md)
+    * [Single Sign-On (SSO)](system-design/security/single-sign-on-sso.md)
     * [Compliance & Regulation](system-design/security/compliance-and-regulation/README.md)
       * [GDPR](system-design/security/compliance-and-regulation/gdpr.md)
       * [PCI DSS](system-design/security/compliance-and-regulation/pci-dss.md)
