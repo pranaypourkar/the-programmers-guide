@@ -1,8 +1,9 @@
 ---
 description: Overview of various utilities provided by Spring Framework.
+hidden: true
 ---
 
-# Provide by Spring framework
+# Utilities by Spring framework
 
 Spring Framework utilities provide a variety of functionalities that can be readily used without need of adding any external libraries. It is included in the core Spring Framework dependency, which is commonly referred to as `spring-core`
 
@@ -14,4 +15,4 @@ Spring Framework utilities provide a variety of functionalities that can be read
 
 Package - `org.springframework.util.*`
 
-<figure><img src="../../../../.gitbook/assets/image (243).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (243).png" alt=""><figcaption></figcaption></figure>
