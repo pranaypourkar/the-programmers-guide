@@ -4,7 +4,7 @@
 
 Dependency Injection is a specific implementation of IoC where the dependencies of an object are "injected" into it by an external entity, typically the Spring container. Instead of an object creating its dependencies directly, it receives them from an external source. This reduces the coupling between classes and makes them easier to test and maintain. This whole process is also called wiring in Spring and by using annotations it can be done automatically by Spring, referred to as auto-wiring of beans in Spring.
 
-<figure><img src="../../../.gitbook/assets/image (304).png" alt="" width="468"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (304).png" alt="" width="468"><figcaption></figcaption></figure>
 
 **Points of Dependency Injection**
 
@@ -247,7 +247,7 @@ public class UserService {
 
 Now, anyone reading this class knows exactly what it depends on, improving code clarity.
 
-## **4. Tighter Coupling**
+### **4. Tighter Coupling**
 
 **How does Field Injection increase coupling?**
 

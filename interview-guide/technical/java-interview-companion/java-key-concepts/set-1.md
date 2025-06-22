@@ -274,3 +274,79 @@ public class Application {
     }
 }
 ```
+
+### Ways to provide default value if a variable is null ?
+
+1\. **Ternary Operator**
+
+#### Syntax:
+
+```java
+value = (original != null) ? original : defaultValue;
+```
+
+#### Example:
+
+```java
+String name = inputName != null ? inputName : "Guest";
+```
+
+2\. **`Objects.requireNonNullElse` (Java 9+)**
+
+#### Syntax:
+
+```java
+T result = Objects.requireNonNullElse(value, defaultValue);
+```
+
+#### Example:
+
+```java
+String result = Objects.requireNonNullElse(input, "default");
+```
+
+* Returns the first argument if it's non-null; otherwise returns the second.
+* Safe and expressive alternative to ternary.
+
+3\. **`Objects.requireNonNullElseGet` (Java 9+)**
+
+#### Syntax:
+
+```java
+T result = Objects.requireNonNullElseGet(value, () -> computeDefault());
+```
+
+* Lazily computes the default value only if needed.
+* Useful when default is expensive to calculate.
+
+4\. **`Optional.ofNullable(...).orElse(...)` (Java 8+)**
+
+#### Syntax:
+
+```java
+T result = Optional.ofNullable(value).orElse(defaultValue);
+```
+
+#### Example:
+
+```java
+String user = Optional.ofNullable(username).orElse("Anonymous");
+```
+
+* Avoids manual null checks.
+* Slightly more verbose but readable.
+* Avoid for primitive types in performance-critical code.
+
+5\. **Manual `if` Condition**
+
+#### Example:
+
+```java
+if (value == null) {
+    value = defaultValue;
+}
+```
+
+* Simple and clear.
+* Preferred in older codebases or when mutation is needed.
+
