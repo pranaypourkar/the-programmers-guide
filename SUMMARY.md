@@ -1124,6 +1124,7 @@
       * [Security Logging](system-design/security/logging-and-monitoring/security-logging.md)
       * [Incident Response & Auditing](system-design/security/logging-and-monitoring/incident-response-and-auditing.md)
       * [Intrusion Detection & Anomaly Detection](system-design/security/logging-and-monitoring/intrusion-detection-and-anomaly-detection.md)
+    * [User Federation](system-design/security/user-federation.md)
     * [Single Sign-On (SSO)](system-design/security/single-sign-on-sso/README.md)
       * [SAML](system-design/security/single-sign-on-sso/saml.md)
       * [OIDC (OpenID Connect)](system-design/security/single-sign-on-sso/oidc-openid-connect.md)
