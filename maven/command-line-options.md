@@ -4,45 +4,178 @@ description: An overview of the options available while executing maven commands
 
 # Command-line Options
 
-## **Different Command line Options**
+## **About**
 
-* \-D: Specifies system properties or project properties.&#x20;
+Maven supports a variety of command-line options that can be used to customize build behavior. These options help in skipping tests, debugging builds, activating profiles, selecting specific modules, and more.
 
-`mvn clean install -DskipTests`
+Below is a categorized reference of commonly used options.
 
-* \-P: Activates one or more Maven profiles during the build process.&#x20;
+## 1. Test Control Options
 
-`mvn clean install -Pproduction`
+These options control the **execution of tests**, including skipping, targeting specific types, and configuration.
 
-* \-X: Enables debug mode, providing detailed debugging output during the build process. It's helpful for diagnosing build issues or understanding the build process.&#x20;
+### Skip Tests Execution
 
-`mvn clean install -X`
+#### `-DskipTests`
 
-* \-e: Enables error output, displaying stack traces for errors that occur during the build process. It's useful for identifying and troubleshooting build failures.&#x20;
+Skips the **execution** of tests, but **still compiles** them.
 
-`mvn clean install -e`
+```bash
+mvn clean install -DskipTests
+```
 
-* \-U: Forces Maven to check for updated dependencies and plugins from remote repositories, even if the local cache is up to date&#x20;
+Use when:
 
-`mvn clean install -U`
+* We want to package or install without running tests.
+* We still want test class compilation (e.g., for tools relying on them).
 
-* \-f: Specifies an alternate location for the POM file. It allows you to execute Maven commands in a directory without a POM or with a non-standard POM filename.&#x20;
+#### `-Dmaven.test.skip=true`
 
-`mvn clean install -f /path/to/alternate/pom.xml`
+Skips **both compilation and execution** of tests.
 
-* \-pl: Specifies a comma-separated list of modules to build. It allows you to selectively build specific modules in a multi-module project.
+```bash
+mvn clean install -Dmaven.test.skip=true
+```
 
-`mvn clean install -pl module1,module2`
+Use when:
+
+* We want a completely test-free build (faster).
+* Tests are irrelevant for a particular environment or deployment.
+
+#### `-DskipITs` or `-DskipFailsafeTests`
+
+Skips only **integration tests** (run using the Failsafe plugin).
+
+```bash
+mvn clean install -DskipFailsafeTests
+```
+
+Use when:
+
+* We want to run only unit tests and exclude long-running integration tests.
 
 
 
-## **Chaining Phases**
+## 2. Profile Settings
+
+### Activate Profiles (`-P`)
+
+Activates one or more Maven **build profiles** defined in `pom.xml` or `settings.xml`.
+
+```bash
+mvn clean install -Pproduction
+```
+
+Use when:
+
+* Switching between environments (dev, staging, prod).
+* Activating custom dependency sets or plugin settings.
+
+## 3. Configuration Activation
+
+### Define System or Project Properties (`-D` )
+
+Passes key-value pairs as **system properties** or project properties.
+
+```bash
+mvn clean install -Denv=staging
+```
+
+Use when:
+
+* Passing environment-specific values.
+* Activating conditional logic inside `pom.xml` or plugins.
+
+## 4. Debugging Build Issue
+
+### Debug Output (`-X` )
+
+Enables **verbose output** for debugging build problems.
+
+```bash
+mvn clean install -X
+```
+
+Use when:
+
+* Builds fail unexpectedly.
+* We want insight into dependency resolution, plugin goals, or internal state.
+
+### Show Full Stack Traces (`-e` )
+
+Displays detailed stack traces for build errors.
+
+```bash
+mvn clean install -e
+```
+
+Use when:
+
+* Understanding failure causes or reporting bugs.
+* Debugging plugin misbehavior.
+
+## 5. Module and Project Selection (Multi-module Projects)
+
+### Build Selected Modules (`-pl` )
+
+Builds only the selected **modules** in a multi-module Maven project.
+
+```bash
+bashCopyEditmvn clean install -pl module-a,module-b
+```
+
+Use when:
+
+* You want to rebuild or test specific modules only.
+* Avoiding full rebuild of all modules.
+
+### **Build required Upstream Modules** Dependencies (`-am` )
+
+Automatically builds any **required upstream modules** of the modules listed in `-pl`.
+
+```bash
+mvn install -pl module-b -am
+```
+
+Use when:
+
+* The selected module depends on others that haven’t been built.
+
+### Prevent building child modules (`-N` or `--non-recursive` )
+
+Prevents Maven from building child modules in a multi-module project.
+
+```bash
+mvn install -N
+```
+
+Use when:
+
+* We only want to build or install the root project.
+* Speeding up builds during early testing.
+
+## 6. Project Structure and Location
+
+### Use Alternate POM File (`-f` )
+
+Specifies an alternate location or name for the `pom.xml`.
+
+```bash
+mvn clean install -f /path/to/alternate/pom.xml
+```
+
+Use when:
+
+* We are in a different directory.
+* We `pom.xml` has a non-standard name.
+
+
+
+## **7. Chaining Phases**
 
 Multiple phases can be chained using spaces in a single command. This executes each phase sequentially.
 
-`mvn clean compile test package verify install`&#x20;
-
-
+`mvn clean compile test package verify install`
 
 {% hint style="info" %}
 In Maven, when resolving dependencies, the order in which repositories are checked depends on the order they are defined in the `pom.xml` file. By default the sequence is:
@@ -51,28 +184,3 @@ In Maven, when resolving dependencies, the order in which repositories are check
 2. **Remote Repositories**: If the dependencies are not found in the local repository, Maven checks any remote repositories configured in the `pom.xml` file. These remote repositories could be the organization's internal repositories or other external repositories besides Maven Central. Maven checks them in the order they are defined in the `pom.xml`.
 3. **Maven Central**: If the dependencies are not found in any of the configured repositories, Maven then checks Maven Central, which is the default central repository for open-source Java libraries.
 {% endhint %}
-
-
-
-## **Skipping phases**
-
-* To skip a specific phase (-Dmaven.\<phase>.skip=true).&#x20;
-
-`mvn clean install -Dmaven.test.skip=true`
-
-* To skip both test and site phases&#x20;
-
-`mvn clean install -DskipTests`
-
-{% hint style="info" %}
-\-DskipTests only skips the test execution, but -Dmaven.test.skip=true will skip the compilation of test classes as well
-{% endhint %}
-
-* To skip only integration tests
-
-`mvn clean install -DskipFailsafeTests`
-
-
-
-
-
