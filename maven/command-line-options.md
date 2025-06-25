@@ -54,7 +54,44 @@ Use when:
 
 * We want to run only unit tests and exclude long-running integration tests.
 
+### Executing a Specific Test Class
 
+We can run a specific test class using the `-Dtest` option.
+
+```bash
+mvn test -Dtest=UserServiceTest
+```
+
+Use when:
+
+* We’re working on a specific class and want fast feedback.
+
+### Executing a Specific Test Method in a Class
+
+To run a **specific test method**, use `ClassName#methodName` format:
+
+```bash
+mvn test -Dtest=UserServiceTest#shouldReturnUserById
+```
+
+Use when:
+
+* Debugging or rerunning a single failing test case.
+* Focusing on targeted behavior during development.
+
+### Executing Multiple Test Classes
+
+We can specify multiple test classes using comma-separated values:
+
+```bash
+mvn test -Dtest=UserServiceTest,OrderServiceTest
+```
+
+Wildcard support is also available:
+
+```bash
+mvn test -Dtest=User*Test
+```
 
 ## 2. Profile Settings
 
