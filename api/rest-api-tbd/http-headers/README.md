@@ -1,6 +1,6 @@
 # HTTP Headers
 
-## Description
+## About
 
 HTTP headers play a vital role in the communication between clients and servers in the context of the Hypertext Transfer Protocol (HTTP). They convey metadata about the request or response, providing essential information for the proper interpretation and handling of messages. Here are some key reasons highlighting the importance of HTTP headers:
 
@@ -13,8 +13,6 @@ HTTP headers play a vital role in the communication between clients and servers 
 7. **Request Tracing and Debugging**: Headers can include metadata for request tracing and debugging purposes, such as correlation IDs or timestamps. These headers help in diagnosing issues, monitoring performance, and tracking requests across distributed systems.
 8. **Interoperability and Standards Compliance**: HTTP headers adhere to standardized formats and conventions, promoting interoperability between diverse systems and ensuring compliance with HTTP specifications. Consistent header usage facilitates integration with various client and server implementations.
 
-
-
 ## Request Headers
 
 1. **Authorization**: Specifies the authentication credentials for accessing protected resources. Commonly used for authentication tokens, such as JWT (JSON Web Tokens) or API keys.
@@ -24,8 +22,6 @@ HTTP headers play a vital role in the communication between clients and servers 
 5. **User-Agent**: Provides information about the client making the request, including details about the client software or browser.
 6. **Accept-Language**: Specifies the preferred language(s) for the response content. It helps in internationalization and localization.
 7. **If-Modified-Since**: Allows conditional requests by specifying a timestamp, and the server responds with the full content only if the resource has been modified since that timestamp.
-
-
 
 ## Response Headers
 
@@ -40,8 +36,6 @@ HTTP headers play a vital role in the communication between clients and servers 
 9. **Set-Cookie**: Specifies a cookie that should be stored by the client and sent back to the server with future requests
 10. **Expires:** Specifies the date and time after which the response is considered stale
 11. **Last-Modified**: Specifies the date and time the resource was last modified.
-
-
 
 ## Custom Headers
 
