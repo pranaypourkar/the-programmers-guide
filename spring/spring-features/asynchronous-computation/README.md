@@ -10,7 +10,7 @@ Asynchronous computation in Spring Boot refers to executing tasks or methods asy
 
 * The `@Async` annotation is the simplest and most commonly used approach in Spring Boot for asynchronous processing.
 * When applied to a method, the method execution is offloaded to a separate thread, freeing the caller to continue with other operations.
-* Refer to this Page for more details: [async-annotation.md](async-annotation.md "mention")
+* Refer to this Page for more details: [async-annotation](async-annotation/ "mention")
 
 ### **2. Using `CompletableFuture` and `Future`**
 
