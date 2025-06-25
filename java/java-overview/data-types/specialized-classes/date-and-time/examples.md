@@ -62,6 +62,33 @@ String formatted = ksaTime.format(formatter);
 System.out.println(formatted);  // Example: 2025-06-21T10:33:46.123+0300
 ```
 
+### 3. Get a datetime in "dd/MM/yyyy HH:mm" with ZoneId ZONEID\_ASIA\_RIYADH = ZoneId.of("Asia/Riyadh")
+
+```java
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class DateTimeFormattingExample {
+    public static final ZoneId ZONEID_ASIA_RIYADH = ZoneId.of("Asia/Riyadh");
+
+    public static void main(String[] args) {
+        // Get the current LocalDateTime
+        LocalDateTime localDateTime = LocalDateTime.now();
+
+        // Convert LocalDateTime to ZonedDateTime with the specified ZoneId
+        ZonedDateTime zonedDateTime = localDateTime.atZone(ZONEID_ASIA_RIYADH);
+
+        // Format ZonedDateTime using a DateTimeFormatter
+        String formattedDateTime = zonedDateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+
+        // Print the formatted datetime
+        System.out.println("Formatted DateTime: " + formattedDateTime);
+    }
+}
+```
+
 ## OffsetDateTime
 
 ### 1. Convert a given String OffsetDateTime to different Timezone
