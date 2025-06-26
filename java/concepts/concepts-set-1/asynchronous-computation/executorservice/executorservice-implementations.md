@@ -1,14 +1,14 @@
 # ExecutorService Implementations
 
-## About&#x20;
+## About
 
 Java's `ExecutorService` provides a framework for managing a pool of threads to execute asynchronous tasks. The framework abstracts the creation, execution, and management of threads, making it easier to work with concurrent tasks. Various implementations of `ExecutorService` cater to different use cases and requirements. Below are some of the `ExecutorService` implementations in Java.
 
-## 1. **ThreadPoolExecutor**
+## **ThreadPoolExecutor**
 
 `ThreadPoolExecutor` is the commonly used and configurable implementation of `ExecutorService`. It allows for fine-grained control over thread management and task handling.
 
-### **Key Characteristics**
+#### **Key Characteristics**
 
 * **Core Pool Size**: The minimum number of threads that are always kept alive, even if they are idle.
 * **Maximum Pool Size**: The maximum number of threads allowed in the pool.
@@ -16,7 +16,7 @@ Java's `ExecutorService` provides a framework for managing a pool of threads to 
 * **Work Queue**: The queue used for holding tasks before they are executed. Can be `ArrayBlockingQueue`, `LinkedBlockingQueue`, `SynchronousQueue`, etc.
 * **Rejected Execution Handler**: Defines the policy for handling tasks that cannot be executed (e.g., due to a full queue or pool shutdown). Options include `AbortPolicy`, `CallerRunsPolicy`, `DiscardPolicy`, and `DiscardOldestPolicy`.
 
-### **Use Cases**
+#### **Use Cases**
 
 1. **Web Server Request Handling**
    * **Scenario**: A web server managing multiple client requests concurrently.
@@ -35,7 +35,7 @@ Java's `ExecutorService` provides a framework for managing a pool of threads to 
    * **Configuration**: Use a scheduled thread pool with periodic task scheduling.
    * **Why**: Automates monitoring and ensures timely alerts
 
-### **Example**
+#### **Example**
 
 ```java
 ExecutorService executor = new ThreadPoolExecutor(
@@ -141,17 +141,15 @@ public class ExecutorConfigurationProperties {
 
 ```
 
-
-
-## 2. **Custom ThreadPoolExecutor**
+## **Custom ThreadPoolExecutor**
 
 For specialized needs, we can extend `ThreadPoolExecutor` and override its methods to provide custom behaviors, such as logging, monitoring, or modifying task handling.
 
-### **Key Characteristics**
+#### **Key Characteristics**
 
 * **Customization**: Full control over the executor's behavior, including thread creation, task execution, and termination policies.
 
-### **Use Cases**
+#### **Use Cases**
 
 1. **Custom Logging and Monitoring**
    * **Scenario**: Tracking task execution times, number of active threads, and queue sizes.
@@ -170,7 +168,7 @@ For specialized needs, we can extend `ThreadPoolExecutor` and override its metho
    * **Customization**: Use a custom priority queue and comparator to manage task ordering.
    * **Why**: Ensures high-priority tasks are executed promptly.
 
-### **Usage Example**
+#### **Usage Example**
 
 ```java
 class CustomThreadPoolExecutor extends ThreadPoolExecutor {
@@ -266,16 +264,16 @@ public class CustomThreadPoolExecutor extends ThreadPoolExecutor {
 }
 ```
 
-## **3. ScheduledThreadPoolExecutor**
+## **ScheduledThreadPoolExecutor**
 
 `ScheduledThreadPoolExecutor` is an implementation of `ExecutorService` that supports scheduling tasks with a delay or periodic execution. It extends `ThreadPoolExecutor`.
 
-### **Key Characteristics**
+#### **Key Characteristics**
 
 * **Delay Scheduling**: Allows scheduling tasks to run after a specified delay.
 * **Periodic Scheduling**: Allows scheduling tasks to run repeatedly with a fixed delay or at a fixed rate.
 
-### Use Cases
+#### Use Cases
 
 1. **Periodic Data Backup**: Regularly backing up data to prevent data loss.
    * **Why**: Can schedule tasks to run at fixed intervals.
@@ -286,7 +284,7 @@ public class CustomThreadPoolExecutor extends ThreadPoolExecutor {
 4. **Refreshing Cache**: Periodically updating cache data from a database or external source.
    * **Why**: Can refresh cache entries at regular intervals
 
-### **Usage Example**
+#### **Usage Example**
 
 ```java
 ScheduledExecutorService scheduledExecutor = Executors.newScheduledThreadPool(5);
@@ -326,16 +324,16 @@ public class ScheduledThreadPoolExample {
 }
 ```
 
-## **4. ForkJoinPool**
+## **ForkJoinPool**
 
 `ForkJoinPool` is designed for work-stealing algorithms and is optimized for tasks that can be broken down into smaller pieces (fork) and then joined after completion.
 
-### **Key Characteristics**
+#### **Key Characteristics**
 
 * **Work-Stealing**: Threads that finish processing their own tasks can "steal" tasks from other threads.
 * **RecursiveTask and RecursiveAction**: Used to define tasks that return results (`RecursiveTask`) or do not return results (`RecursiveAction`).
 
-### Use Cases
+#### Use Cases
 
 1. **Parallel Array Processing**: Performing operations like sorting, searching, or summing elements in large arrays.
    * **Why**: Optimized for tasks that can be recursively divided.
@@ -346,7 +344,7 @@ public class ScheduledThreadPoolExample {
 4. **Data Analysis**: Analyzing large datasets by dividing the data and processing in parallel.
    * **Why**: Efficiently utilizes multiple cores for parallel processing.
 
-### **Usage Example**
+#### **Usage Example**
 
 ```java
 ForkJoinPool forkJoinPool = new ForkJoinPool();
@@ -416,18 +414,16 @@ class SumTask extends RecursiveTask<Long> {
 
 ```
 
-
-
-## **5. SingleThreadExecutor**
+## **SingleThreadExecutor**
 
 `SingleThreadExecutor` ensures that tasks are executed sequentially in a single thread. It is useful for scenarios where thread safety is a concern, and tasks need to be executed in order.
 
-### **Key Characteristics**
+#### **Key Characteristics**
 
 * **Single Thread**: Ensures that only one thread is active at any given time.
 * **Queue**: Uses an unbounded queue to hold tasks.
 
-### Use Cases
+#### Use Cases
 
 1. **Logging**: Ensuring logs are written sequentially to avoid data corruption.
    * **Why**: Guarantees that tasks are executed one at a time in the order they are submitted.
@@ -438,7 +434,7 @@ class SumTask extends RecursiveTask<Long> {
 4. **Transaction Management**: Managing transactions sequentially to avoid conflicts.
    * **Why**: Ensures consistent execution order and data integrity.
 
-### **Usage Example**
+#### **Usage Example**
 
 ```java
 ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
@@ -478,16 +474,16 @@ public class SingleThreadExecutorExample {
 }
 ```
 
-## **6. CachedThreadPool**
+## **CachedThreadPool**
 
 `CachedThreadPool` creates new threads as needed but will reuse previously constructed threads when available. It is suitable for executing many short-lived tasks.
 
-### **Key Characteristics**
+#### **Key Characteristics**
 
 * **Thread Reuse**: Reuses threads that have become idle.
 * **Unbounded Pool**: Creates new threads as needed but terminates idle threads after 60 seconds.
 
-### **Use Cases**
+#### **Use Cases**
 
 1. **Handling Web Requests**: Managing a large number of short-lived HTTP requests.
    * **Why**: Dynamically creates new threads for incoming tasks and reuses idle ones.
@@ -498,7 +494,7 @@ public class SingleThreadExecutorExample {
 4. **Batch Processing**: Processing large numbers of records in parallel.
    * **Why**: Adapts to the number of tasks, making it efficient for varying workloads.
 
-### **Usage Example**
+#### **Usage Example**
 
 ```java
 ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
@@ -538,18 +534,16 @@ public class CachedThreadPoolExample {
 }
 ```
 
-
-
-## **7. Work-Stealing Pool (Java 8+)**
+## **Work-Stealing Pool (Java 8+)**
 
 Introduced in Java 8, `Executors.newWorkStealingPool()` creates a `ForkJoinPool` that uses a work-stealing algorithm. It is designed to optimize CPU usage by allowing idle threads to steal tasks from busy threads. This pool is particularly useful for parallel tasks that are not uniform in size.
 
-### **Key Characteristics**
+#### **Key Characteristics**
 
 * **Work-Stealing**: Similar to `ForkJoinPool`, tasks are distributed among worker threads, and idle threads can steal work from busy threads.
 * **Parallelism Level**: The pool's parallelism level is typically set to the number of available processors.
 
-### **Use Cases**
+#### **Use Cases**
 
 1. **Parallel Stream Processing**: Utilizing parallel streams in Java 8+ for bulk data operations.
    * **Why**: Optimizes thread usage and workload distribution.
@@ -560,7 +554,7 @@ Introduced in Java 8, `Executors.newWorkStealingPool()` creates a `ForkJoinPool`
 4. **Task-Oriented Workloads**: Any scenario where the workload can be divided into independent tasks, such as web crawling, data scraping, or simulations.
    * **Why**: Work-stealing ensures that all available processing power is utilized, even with uneven task distributions.
 
-### **Usage Example**
+#### **Usage Example**
 
 ```java
 ExecutorService workStealingPool = Executors.newWorkStealingPool();
@@ -616,9 +610,83 @@ public class WorkStealingPoolExample {
 }
 ```
 
+## TraceableExecutorService
 
+`TraceableExecutorService` is a special implementation of `ExecutorService` provided by **Spring Cloud Sleuth**, available under:
 
+```java
+org.springframework.cloud.sleuth.instrument.async.TraceableExecutorService
+```
 
+It is used to **propagate tracing information** (like trace ID and span ID) across asynchronous tasks submitted to an `ExecutorService`.
 
+When we use a regular `ExecutorService`, the tracing context (e.g., from Sleuth or Zipkin) is **not automatically passed** to the new thread. This causes loss of trace continuity in distributed tracing tools. `TraceableExecutorService` solves this by wrapping any existing `ExecutorService` and ensuring that the tracing context is maintained across threads.
 
+#### **When to Use**
 
+Use `TraceableExecutorService` when:
+
+* We are using **Spring Cloud Sleuth** for distributed tracing
+* We are submitting tasks to an `ExecutorService` or `ThreadPoolExecutor`
+* We want **trace IDs to be correctly passed to async tasks**
+
+This is especially helpful when using:
+
+* `@Async`
+* Manually created threads
+* Custom `ExecutorService` beans
+
+#### **How It Works**
+
+Internally, `TraceableExecutorService` wraps the task (`Runnable` or `Callable`) and **captures the current tracing context** (using Sleuth’s `CurrentTraceContext`). When the task is executed, it restores that context in the new thread, allowing Sleuth to link it to the original request or trace.
+
+**Usage Example**
+
+If we are defining a custom `ExecutorService` bean, wrap it with a `TraceableExecutorService` like this:
+
+```java
+import org.springframework.cloud.sleuth.Tracer;
+import org.springframework.cloud.sleuth.instrument.async.TraceableExecutorService;
+import org.springframework.cloud.sleuth.CurrentTraceContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+@Configuration
+public class ExecutorConfig {
+
+    @Bean
+    public ExecutorService traceableExecutorService(Tracer tracer, CurrentTraceContext currentTraceContext) {
+        ExecutorService delegate = Executors.newFixedThreadPool(5);
+        return new TraceableExecutorService(tracer, currentTraceContext, delegate);
+    }
+}
+```
+
+```java
+@Bean
+    public Executor executorService(BeanFactory beanFactory, ThreadPoolConfigProperties properties) {
+        BlockingQueue<Runnable> queue;
+        if (Objects.isNull(properties.getQueueCapacity()) || properties.getQueueCapacity() == 0) {
+            queue = new SynchronousQueue<>();
+        } else {
+            queue = new ArrayBlockingQueue<>(properties.getQueueCapacity());
+        }
+
+        var executorService = new ThreadPoolExecutor(
+            properties.getCorePoolSize(), properties.getMaxPoolSize(), properties.getKeepAliveSeconds(),
+            TimeUnit.SECONDS, queue, new ThreadPoolExecutor.AbortPolicy()
+        );
+
+        var traceableExecutor = new TraceableExecutorService(beanFactory, executorService);
+
+        return traceableExecutor;
+    }
+```
+
+In this example:
+
+* `delegate` is our actual executor (`ThreadPoolExecutor`, `ScheduledExecutorService`, etc.)
+* `TraceableExecutorService` ensures the tracing context flows across tasks
