@@ -338,7 +338,7 @@ networks:
 
 Run the docker compose file
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt="" width="395"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt="" width="395"><figcaption></figcaption></figure>
 
 Now, hit the API [http://localhost:8080/call-backend](http://localhost:8080/call-backend) multiple times. We will notice the change of Server Instance value in the API response meaning the response was provided by the respective service instance.
 
