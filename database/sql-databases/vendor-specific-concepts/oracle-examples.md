@@ -31,3 +31,37 @@ SELECT
 FROM your_table;
 ```
 
+## 2. **Search records where `ext_id` has exactly 14 digits**
+
+This ensures the `ext_id` has a **length of 14**:
+
+**If `ext_id` is a `VARCHAR2`:**
+
+```sql
+SELECT *
+FROM pqr
+WHERE LENGTH(ext_id) = 14;
+```
+
+**If `ext_id` is a `NUMBER`:**
+
+```sql
+SELECT *
+FROM pqr
+WHERE LENGTH(TO_CHAR(ext_id)) = 14;
+```
+
+## **3. Ensure `ext_id` contains only digits 0–9**
+
+We can use `REGEXP_LIKE` to verify the content:
+
+**Works for both `VARCHAR2` or `NUMBER` (with conversion):**
+
+```sql
+SELECT *
+FROM pqr
+WHERE REGEXP_LIKE(TO_CHAR(ext_id), '^[0-9]+$');
+```
+
+
+
