@@ -609,6 +609,7 @@
   * [Installation](maven/installation.md)
   * [Local Repository & Configuration](maven/local-repository-and-configuration.md)
   * [Command-line Options](maven/command-line-options.md)
+  * [Artifact Coordinates](maven/artifact-coordinates.md)
   * [Build & Lifecycle](maven/build-and-lifecycle.md)
   * [Dependency Management](maven/dependency-management/README.md)
     * [Dependency](maven/dependency-management/dependency/README.md)
