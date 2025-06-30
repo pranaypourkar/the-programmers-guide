@@ -1,6 +1,0 @@
----
-hidden: true
----
-
-# Artifact Coordinates
-
