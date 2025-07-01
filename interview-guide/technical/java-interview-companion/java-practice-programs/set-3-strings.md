@@ -1,17 +1,17 @@
 # Set 3 - Strings
 
-## &#x20;1. Check whether a string is a Palindrome
+## 1. Check whether a string is a Palindrome
 
 A string is said to be a palindrome if it is the same if we start reading it from left to right or right to left.
 
 {% hint style="info" %}
 Example
 
-**Input:** str = “abccba” \
+**Input:** str = “abccba”\
 **Output:** Yes
 
 **Input:** str = “someString”\
-**Output:** No&#x20;
+**Output:** No
 {% endhint %}
 
 ### Method 1: Using naive method of String reversal
@@ -81,9 +81,7 @@ public static boolean method4(String input) {
 // Space Complexity - O(n), where n is the length of the input string. This is because each recursive call creates a new stack frame that stores the current values of the function parameters and local variables. In the worst case, the function call stack may grow as large as n/2 (when the input string is a palindrome), so the space complexity is O(n)
 ```
 
-
-
-## &#x20;2. Check whether two strings are anagram
+## 2. Check whether two strings are anagram
 
 An anagram of a string is another string that contains the same characters, only the order of characters can be different.
 
@@ -323,3 +321,125 @@ private static String method1(String input) {
 // Space Complexity - O(N)
 ```
 
+
+
+## 5. Find 1st and last digit in a String
+
+**Input :** eightkpfngjsx97twozmbdtxhh\
+**Output:** 9 and 7
+
+{% hint style="info" %}
+The `'\0'` character is the null character in Java and many other programming languages. It is represented by the Unicode value 0. In Java, it is often used as a sentinel value or placeholder for characters.
+
+In the provided code snippets, `'\0'` is used as an initial value for `firstDigit` and `lastDigit` to indicate that they have not been set to any valid digit yet. Later in the code, if a digit is found, the corresponding variable is updated with the actual digit value.
+
+For example, if no digits are found in the input string, `firstDigit` and `lastDigit` will remain `'\0'`, and the program can use that information to print a message indicating that no digits were found.
+{% endhint %}
+
+**Method 1: Traditional Loop**
+
+```java
+public class FirstLastDigitFinder {
+    public static void main(String[] args) {
+        String input = "eightkpfngjsx97twozmbdtxhh";
+        findFirstAndLastDigits(input);
+
+        String input2 = "eightkpfngjsx9twozmbdtxhh";
+        findFirstAndLastDigits(input2);
+    }
+
+    private static void findFirstAndLastDigits(String input) {
+        char firstDigit = '\0';
+        char lastDigit = '\0';
+
+        for (int i = 0; i < input.length(); i++) {
+            char ch = input.charAt(i);
+            if (Character.isDigit(ch)) {
+                if (firstDigit == '\0') {
+                    firstDigit = ch;
+                }
+                lastDigit = ch;
+            }
+        }
+
+        if (firstDigit != '\0' && lastDigit != '\0') {
+            System.out.println("Input: " + input);
+            System.out.println("First Digit: " + firstDigit);
+            System.out.println("Last Digit: " + lastDigit);
+            System.out.println();
+        } else {
+            System.out.println("No digits found in the input: " + input);
+        }
+    }
+}
+```
+
+**Method 2: Using Regular Expressions**
+
+```java
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class FirstLastDigitFinder {
+    public static void main(String[] args) {
+        String input = "eightkpfngjsx97twozmbdtxhh";
+        findFirstAndLastDigits(input);
+
+        String input2 = "eightkpfngjsx9twozmbdtxhh";
+        findFirstAndLastDigits(input2);
+    }
+
+    private static void findFirstAndLastDigits(String input) {
+        Pattern pattern = Pattern.compile("\\d");
+        Matcher matcher = pattern.matcher(input);
+
+        char firstDigit = matcher.find() ? input.charAt(matcher.start()) : '\0';
+        char lastDigit = matcher.find() ? input.charAt(matcher.start()) : '\0';
+
+        while (matcher.find()) {
+            lastDigit = input.charAt(matcher.start());
+        }
+
+        if (firstDigit != '\0' && lastDigit != '\0') {
+            System.out.println("Input: " + input);
+            System.out.println("First Digit: " + firstDigit);
+            System.out.println("Last Digit: " + lastDigit);
+            System.out.println();
+        } else {
+            System.out.println("No digits found in the input: " + input);
+        }
+    }
+}
+```
+
+**Method 3: Using Apache Commons Lang**
+
+```java
+import org.apache.commons.lang3.StringUtils;
+
+public class FirstLastDigitFinder {
+    public static void main(String[] args) {
+        String input = "eightkpfngjsx97twozmbdtxhh";
+        findFirstAndLastDigits(input);
+
+        String input2 = "eightkpfngjsx9twozmbdtxhh";
+        findFirstAndLastDigits(input2);
+    }
+
+    private static void findFirstAndLastDigits(String input) {
+        String digits = StringUtils.getDigits(input);
+
+        if (!digits.isEmpty()) {
+            char firstDigit = digits.charAt(0);
+            char lastDigit = digits.charAt(digits.length() - 1);
+
+            System.out.println("Input: " + input);
+            System.out.println("First Digit: " + firstDigit);
+            System.out.println("Last Digit: " + lastDigit);
+            System.out.println();
+        } else {
+            System.out.println("No digits found in the input: " + input);
+        }
+    }
+}
+```

@@ -905,6 +905,8 @@
     * [Spring Boot Artifact Packaging](spring/general-concepts/spring-boot-artifact-packaging.md)
     * [Classpath and Resource Loading](spring/general-concepts/classpath-and-resource-loading.md)
     * [Configuration - Mapping Properties to Java Class](spring/general-concepts/configuration-mapping-properties-to-java-class.md)
+    * [REGEX](spring/general-concepts/regex/README.md)
+      * [Core Classes](spring/general-concepts/regex/core-classes.md)
     * [Validations in Spring Framework](spring/general-concepts/validations-in-spring-framework/README.md)
       * [Jakarta Validation](spring/general-concepts/validations-in-spring-framework/jakarta-validation/README.md)
         * [Jakarta Bean Validation Annotations](spring/general-concepts/validations-in-spring-framework/jakarta-validation/jakarta-bean-validation-annotations.md)
