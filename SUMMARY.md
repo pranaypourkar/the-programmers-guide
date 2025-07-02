@@ -835,6 +835,7 @@
               * [ISO-8859-1](spring/concepts-set-3/encoding-or-decoding/types/text-encoding/extended-ascii/encoding-and-decoding-in-java/iso-8859-1.md)
               * [Windows-1252](spring/concepts-set-3/encoding-or-decoding/types/text-encoding/extended-ascii/encoding-and-decoding-in-java/windows-1252.md)
               * [IBM Code Pages](spring/concepts-set-3/encoding-or-decoding/types/text-encoding/extended-ascii/encoding-and-decoding-in-java/ibm-code-pages.md)
+              * [Windows-1256](spring/concepts-set-3/encoding-or-decoding/types/text-encoding/extended-ascii/encoding-and-decoding-in-java/windows-1256.md)
           * [ASCII](spring/concepts-set-3/encoding-or-decoding/types/text-encoding/ascii/README.md)
             * [Encoding and Decoding in Java](spring/concepts-set-3/encoding-or-decoding/types/text-encoding/ascii/encoding-and-decoding-in-java.md)
       * [Java Guidelines](spring/concepts-set-3/encoding-or-decoding/java-guidelines/README.md)

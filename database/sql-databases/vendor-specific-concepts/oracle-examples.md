@@ -63,5 +63,18 @@ FROM pqr
 WHERE REGEXP_LIKE(TO_CHAR(ext_id), '^[0-9]+$');
 ```
 
+## 4. Create a table with different column types
+
+#### CLOB
+
+```sql
+CREATE TABLE my_table (
+    id NUMBER,
+    text_data CLOB
+);
+```
+
+
+
 
 
