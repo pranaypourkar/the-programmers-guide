@@ -355,7 +355,7 @@ But `@EnableJpaRepositories` activates Spring Data’s infrastructure, which:
 * Dynamically generates proxy beans
 * Registers them in the application context
 
-## @Import
+## 4. Import
 
 ### About
 
