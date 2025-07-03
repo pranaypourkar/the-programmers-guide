@@ -430,6 +430,34 @@ private String fallback;
 private String safeAccess;
 ```
 
+## Examples
+
+#### **List of Values**
+
+```properties
+my.list.of.strings=string1,string2,string3
+```
+
+```java
+@Component
+public class MyComponent {
+
+    @Value("${my.list.of.strings}")
+    private List<String> myList;
+
+    // ...
+}
+```
+
+```properties
+app.users=alice,bob,charlie
+```
+
+```java
+@Value("#{'${app.users}'.split(',')}")
+private List<String> users;
+```
+
 ## Limitations of `@Value`
 
 While `@Value` is a convenient way to inject values into Spring-managed beans, it comes with several limitations that make it unsuitable for complex or large-scale configuration scenarios. Understanding these limitations is crucial for choosing the right configuration approach in a Spring application.
