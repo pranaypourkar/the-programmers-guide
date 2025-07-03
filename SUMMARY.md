@@ -802,6 +802,7 @@
         * [Employee Portal](spring/spring-features/spring-persistence/examples/employee-portal/README.md)
           * [API](spring/spring-features/spring-persistence/examples/employee-portal/api.md)
     * [Spring Scheduling](spring/spring-features/spring-scheduling/README.md)
+      * [Cron Expression](spring/spring-features/spring-scheduling/cron-expression.md)
       * [Distributed Scheduling](spring/spring-features/spring-scheduling/distributed-scheduling/README.md)
         * [ShedLock](spring/spring-features/spring-scheduling/distributed-scheduling/distributed-scheduling.md)
     * [Spring Batch](spring/spring-features/spring-batch.md)
