@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Locks, Atomic Variables, CountDownLatch, CyclicBarrier - TBU
 
-**Semaphore, threadlocal**&#x20;
+**Semaphore, threadlocal**

@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Inheritance
 
 {% hint style="info" %}
