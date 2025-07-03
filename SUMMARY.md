@@ -197,6 +197,7 @@
     * [Vendor Specific Concepts](database/sql-databases/other-concepts/README.md)
       * [Oracle Specific](database/sql-databases/other-concepts/oracle-specific/README.md)
         * [Data Types](database/sql-databases/vendor-specific-concepts/oracle-specific/data-types/README.md)
+          * [BLOB](database/sql-databases/vendor-specific-concepts/oracle-specific/data-types/blob.md)
           * [Use Case](database/sql-databases/vendor-specific-concepts/oracle-specific/data-types/use-case.md)
         * [Character Set](database/sql-databases/vendor-specific-concepts/oracle-specific/character-set.md)
         * [Rownum, Rowid, Urowid](database/sql-databases/vendor-specific-concepts/oracle-specific/rownum-rowid-urowid.md)
