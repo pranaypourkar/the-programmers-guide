@@ -459,6 +459,7 @@
         * [ResourceBundle](java/java-overview/data-types/others/resourcebundle.md)
     * [Operators](java/java-overview/operators/README.md)
       * [Operator Precedence](java/java-overview/operators/operator-precedence.md)
+      * [Problems](java/java-overview/operators/problems.md)
   * [Java Features by Version](java/java-features-by-version/README.md)
     * [How New Java Features are Released ?](java/java-features-by-version/how-new-java-features-are-released.md)
     * [Java Versions](java/java-features-by-version/java-versions/README.md)
