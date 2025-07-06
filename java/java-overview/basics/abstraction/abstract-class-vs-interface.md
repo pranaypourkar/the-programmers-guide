@@ -1,6 +1,6 @@
 # Abstract Class vs Interface
 
-## **Basic Definition**
+## **Definition**
 
 * **Abstract Class**: A class that cannot be instantiated and may contain a mix of implemented (concrete) and unimplemented (abstract) methods. It’s used when you want to provide a base class with shared functionality that other classes can extend and enhance.
 * **Interface**: A reference type in Java used to define a contract that other classes must follow. An interface primarily contains abstract methods but can also have default and static methods (since Java 8) and private methods (since Java 9).
