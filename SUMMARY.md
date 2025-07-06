@@ -440,6 +440,7 @@
           * [Pre-Defined Enum](java/java-overview/data-types/others/enum/pre-defined-enum.md)
           * [Custom Enum](java/java-overview/data-types/others/enum/custom-enum.md)
           * [EnumSet and EnumMap](java/java-overview/data-types/others/enum/enumset-and-enummap.md)
+          * [Enum Comparison](java/java-overview/data-types/others/enum/enum-comparison.md)
         * [Record](java/java-overview/data-types/others/record.md)
         * [Optional](java/java-overview/data-types/others/optional.md)
         * [System](java/java-overview/data-types/others/system.md)
