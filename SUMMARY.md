@@ -1011,6 +1011,8 @@
       * [Examples](system-design/foundations/design-pattern/examples/README.md)
         * [Data Collector](system-design/foundations/design-pattern/examples/data-collector.md)
         * [Payment Processor](system-design/foundations/design-pattern/examples/payment-processor.md)
+        * [Transaction Dispute](system-design/foundations/design-pattern/examples/transaction-dispute.md)
+        * [Payment Validation](system-design/foundations/design-pattern/examples/payment-validation.md)
       * [Design Enhancements](system-design/foundations/design-pattern/other-concepts/README.md)
         * [Fluent API Design](system-design/foundations/design-pattern/other-concepts/fluent-api-design/README.md)
           * [Examples](system-design/foundations/design-pattern/other-concepts/fluent-api-design/examples.md)
