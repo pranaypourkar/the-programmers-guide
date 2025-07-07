@@ -74,7 +74,24 @@ CREATE TABLE my_table (
 );
 ```
 
+### 5. Get current timestamp
 
+In Oracle, we can get the current timestamp using the `CURRENT_TIMESTAMP` function, which returns the current date and time including fractional seconds.
+
+Here’s a basic example:
+
+```sql
+SELECT CURRENT_TIMESTAMP FROM dual;
+```
+
+If we need a specific format or to use it in a different way, we can use `SYSTIMESTAMP` as well:
+
+```sql
+SELECT SYSTIMESTAMP FROM dual;
+```
+
+* `CURRENT_TIMESTAMP` returns the current timestamp in the session’s timezone.
+* `SYSTIMESTAMP` returns the current timestamp in the database timezone.
 
 
 

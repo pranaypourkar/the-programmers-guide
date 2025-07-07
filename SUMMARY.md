@@ -818,6 +818,8 @@
         * [Integration Testing with TestContainers / H2](spring/spring-features/spring-persistence/testing-persistence/integration-testing-with-testcontainers-h2.md)
       * [Common Issues](spring/spring-features/spring-persistence/common-issues.md)
         * [N+1 Issue](spring/spring-features/spring-persistence/common-issues/n+1-issue.md)
+      * [Liquibase](spring/spring-features/spring-persistence/liquibase/README.md)
+        * [Use Case](spring/spring-features/spring-persistence/liquibase/use-case.md)
       * [Examples](spring/spring-features/spring-persistence/examples/README.md)
         * [Employee Portal](spring/spring-features/spring-persistence/examples/employee-portal/README.md)
           * [API](spring/spring-features/spring-persistence/examples/employee-portal/api.md)
