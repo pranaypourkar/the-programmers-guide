@@ -108,6 +108,7 @@
     * [Postman](api/api-testing-and-tools/postman.md)
     * [Contract Testing](api/api-testing-and-tools/contract-testing.md)
     * [SOAP](api/api-testing-and-tools/soap.md)
+    * [Curl](api/api-testing-and-tools/curl.md)
 * [Application Containerisation](application-containerisation-tbu/README.md)
   * [Containerisation](application-containerisation-tbu/containerisation-tbu.md)
   * [Container Orchestration](application-containerisation-tbu/container-orchestration-tbu/README.md)
