@@ -1226,6 +1226,7 @@
   * [Operational Issues](system-design/operational-issues/README.md)
     * [Common Runtime Errors](system-design/operational-issues/common-runtime-errors/README.md)
       * [OOM: Unable to Create Native Thread](system-design/operational-issues/common-runtime-errors/oom-unable-to-create-native-thread.md)
+      * [OOM: Requested array size exceeds VM limit](system-design/operational-issues/common-runtime-errors/oom-requested-array-size-exceeds-vm-limit.md)
       * [GC Overhead Limit Exceeded](system-design/operational-issues/common-runtime-errors/gc-overhead-limit-exceeded.md)
       * [Too Many Open File](system-design/operational-issues/common-runtime-errors/too-many-open-file.md)
       * [CPU Spikes Due to Busy Loop](system-design/operational-issues/common-runtime-errors/cpu-spikes-due-to-busy-loop.md)
