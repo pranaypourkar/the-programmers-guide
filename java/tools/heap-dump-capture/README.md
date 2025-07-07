@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Heap Dump Capture
 
 ## **jmap**

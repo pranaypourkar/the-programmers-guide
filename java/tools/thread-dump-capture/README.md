@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Thread Dump Capture
 
 List of tools to capture **Thread Dumps** in Java applications are given below.
