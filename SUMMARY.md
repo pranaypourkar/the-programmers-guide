@@ -968,6 +968,7 @@
       * [Dynamic Property Registration](tests/java-test-framework/spring-test/dynamic-property-registration.md)
       * [Mocking in Spring Tests](tests/java-test-framework/spring-test/mocking-in-spring-tests/README.md)
         * [Mocking @Value](tests/java-test-framework/spring-test/mocking-in-spring-tests/mocking-value.md)
+        * [Verifying retries with @Retryable](tests/java-test-framework/spring-test/mocking-in-spring-tests/verifying-retries-with-retryable.md)
     * [JUnit](tests/java-test-framework/junit/README.md)
       * [JUnit 4](tests/java-test-framework/junit/junit-4/README.md)
         * [Examples](tests/java-test-framework/junit/junit-4/examples.md)
