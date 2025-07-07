@@ -187,9 +187,46 @@ public class TimeZoneExample {
 }
 ```
 
+## Comparison
 
+1. In java, I have below samples file with pattern \<string>-DDMMYYYY\_HHmmss.csv
 
+```
+Test1-04082024_153000.csv
+Test1-05082024_153000.csv
+```
 
+Write a code to compare timestamp and select latest file
 
+```java
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
+public class TimestampComparison {
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("ddMMyyyy_HHmmss");
+
+    private boolean isNewer(String newFileName, String oldFileName) {
+        String newTimestamp = extractTimestamp(newFileName);
+        String oldTimestamp = extractTimestamp(oldFileName);
+
+        // Parse the timestamps into LocalDateTime objects
+        LocalDateTime newDateTime = LocalDateTime.parse(newTimestamp, FORMATTER);
+        LocalDateTime oldDateTime = LocalDateTime.parse(oldTimestamp, FORMATTER);
+
+        // Compare LocalDateTime objects
+        return newDateTime.isAfter(oldDateTime);
+    }
+
+    private String extractTimestamp(String fileName) {
+        // Extract the part of the filename containing the date and time
+        return fileName.split("-")[1].replace(".csv", "");
+    }
+
+    public static void main(String[] args) {
+        TimestampComparison comparison = new TimestampComparison();
+        System.out.println(comparison.isNewer("Test1-04082024_153000.csv", "Test1-04082024_163000.csv")); // false
+        System.out.println(comparison.isNewer("Test1-05082024_153000.csv", "Test1-04082024_153000.csv")); // true
+    }
+}
+```
 

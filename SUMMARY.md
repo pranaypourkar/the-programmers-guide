@@ -422,6 +422,7 @@
           * [Examples](java/java-overview/data-types/specialized-classes/bigdecimal/problems.md)
         * [BitSet](java/java-overview/data-types/specialized-classes/bitset.md)
         * [Date and Time](java/java-overview/data-types/specialized-classes/date-and-time/README.md)
+          * [Comparison](java/java-overview/data-types/specialized-classes/date-and-time/comparison.md)
           * [Examples](java/java-overview/data-types/specialized-classes/date-and-time/examples.md)
         * [Optional](java/java-overview/data-types/specialized-classes/optional.md)
         * [Math](java/java-overview/data-types/specialized-classes/math.md)
