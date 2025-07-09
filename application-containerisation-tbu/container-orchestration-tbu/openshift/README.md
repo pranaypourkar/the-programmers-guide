@@ -93,7 +93,7 @@ Image streams and their associated tags provide abstractions for referencing con
 
 Reference: [https://redhat-scholars.github.io/openshift-starter-guides/rhs-openshift-starter-guides/4.7/\_images/common-environment-ocp-architecture.png](https://redhat-scholars.github.io/openshift-starter-guides/rhs-openshift-starter-guides/4.7/_images/common-environment-ocp-architecture.png)
 
-<figure><img src="../../.gitbook/assets/common-environment-ocp-architecture-1.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/common-environment-ocp-architecture-1.png" alt=""><figcaption></figcaption></figure>
 
 ### Infrastructure Layer
 
@@ -139,7 +139,7 @@ This layer provides external access to cluster applications from any device. The
 
 ## Components of OpenShift
 
-<div><figure><img src="../../.gitbook/assets/test1.jpg" alt=""><figcaption></figcaption></figure> <figure><img src="../../.gitbook/assets/test2.jpg" alt=""><figcaption></figcaption></figure></div>
+<div><figure><img src="../../../.gitbook/assets/test1.jpg" alt=""><figcaption></figcaption></figure> <figure><img src="../../../.gitbook/assets/test2.jpg" alt=""><figcaption></figcaption></figure></div>
 
 One of the key components of OpenShift architecture is to manage containerized infrastructure in Kubernetes. Kubernetes is responsible for Deployment and Management of infrastructure. In any Kubernetes cluster, we can have more than one master and multiple nodes, which ensures there is no point of failure in the setup.
 
@@ -161,7 +161,7 @@ There are **three ways** to interact with OpenShift: the command line, the web i
 
 ### Kubernetes Components
 
-<figure><img src="../../.gitbook/assets/image (473).png" alt="" width="308"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (473).png" alt="" width="308"><figcaption></figcaption></figure>
 
 #### Kubernetes Master Machine Components
 
@@ -191,9 +191,9 @@ OpenShift container registry is an inbuilt storage unit of Red Hat, which is use
 
 Developer Sandbox for Red Hat OpenShift is a free Kubernetes cloud environment in a shared, multi-tenant OpenShift cluster that is pre-configured with a set of developer tools. The Developer Sandbox is active for 30 days and renewable once it expires
 
-<figure><img src="../../.gitbook/assets/test3 (2).png" alt="" width="530"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/test3 (2).png" alt="" width="530"><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/test4 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/test4 (1).png" alt=""><figcaption></figcaption></figure>
 
 Sample Console url: [https://console-openshift-console.apps.sandbox-m2.ll9k.p1.openshiftapps.com/project-details/ns/pranaypourkar17-dev](https://console-openshift-console.apps.sandbox-m2.ll9k.p1.openshiftapps.com/project-details/ns/pranaypourkar17-dev)
 
@@ -226,7 +226,7 @@ The workflow to this point might look like:
 
 ### Image Pull Policy
 
-<figure><img src="../../.gitbook/assets/img5 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img5 (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Base image options
 
@@ -244,7 +244,7 @@ If we want our own, private container registry, OpenShift Container Platform its
 
 -> Process of building and pushing an image
 
-<figure><img src="../../.gitbook/assets/img6.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img6.png" alt=""><figcaption></figcaption></figure>
 
 ## Example: Parksmap Architecture
 
@@ -256,11 +256,11 @@ There will be a set of independent backend services deployed that will provide d
 
 Deploy the web component of the ParksMap application which is also called parksmap
 
-<figure><img src="../../.gitbook/assets/img2.png" alt="" width="344"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img2.png" alt="" width="344"><figcaption></figcaption></figure>
 
 1. Click on + and select container images
 
-<figure><img src="../../.gitbook/assets/img3.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img3.png" alt="" width="563"><figcaption></figcaption></figure>
 
 2. Enter the below sample details
 
@@ -270,51 +270,51 @@ The Quay.io registry is owned and managed by Red Hat.
 
 Source code: https://github.com/openshift-roadshow/parksmap-web
 
-<figure><img src="../../.gitbook/assets/img4.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img4.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/img5 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img5 (2).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/img6 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img6 (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/img7.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img7.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/img8.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img8.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/img9.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img9.png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/img10.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img10.png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/img11.png" alt="" width="533"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img11.png" alt="" width="533"><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/img12.png" alt="" width="398"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img12.png" alt="" width="398"><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/img13.png" alt="" width="392"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img13.png" alt="" width="392"><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/img14.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img14.png" alt="" width="563"><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/img15.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img15.png" alt=""><figcaption></figcaption></figure>
 
 ## CLI (Command Line Interface)
 
 ### Copy Login command
 
-<figure><img src="../../.gitbook/assets/img1.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img1.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/img2 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img2 (1).png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/img3 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img3 (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Change project
 
 oc project pranaypourkar17-dev
 
-<figure><img src="../../.gitbook/assets/img4 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img4 (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Get All Pods
 
 oc get pods
 
-<figure><img src="../../.gitbook/assets/img5 (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img5 (3).png" alt=""><figcaption></figcaption></figure>
 
 ### Get specific Pod details
 
@@ -322,9 +322,9 @@ oc get pod \<pod\_name> -o yaml
 
 oc get pod parksmap-56899576dd-w9p8f -o yaml
 
-<figure><img src="../../.gitbook/assets/img6 (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img6 (2).png" alt=""><figcaption></figcaption></figure>
 
-{% file src="../../.gitbook/assets/pod.yaml.txt" %}
+{% file src="../../../.gitbook/assets/pod.yaml.txt" %}
 
 ### Describe a pod
 
@@ -332,13 +332,13 @@ oc describe pod \<pod name>
 
 oc describe pod parksmap-56899576dd-w9p8f
 
-<figure><img src="../../.gitbook/assets/img7 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img7 (1).png" alt=""><figcaption></figcaption></figure>
 
 ### View All the Services
 
 oc get services
 
-<figure><img src="../../.gitbook/assets/img8 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img8 (1).png" alt=""><figcaption></figcaption></figure>
 
 Here, We have a Service named parksmap with an IP/Port combination of 172.30.35.117/8080TCP. IP address may be different, as each Service receives a unique IP address upon creation. Service IPs are fixed and never change for the life of the Service.
 
@@ -348,7 +348,7 @@ oc get service \<service name> -o yaml
 
 oc get service parksmap -o yaml
 
-<figure><img src="../../.gitbook/assets/img9 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img9 (1).png" alt=""><figcaption></figcaption></figure>
 
 ### Describe a service
 
@@ -356,7 +356,7 @@ oc describe service \<service name>
 
 oc describe service parksmap
 
-<figure><img src="../../.gitbook/assets/img10 (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/img10 (1).png" alt=""><figcaption></figcaption></figure>
 
 Note: Only one endpoint is listed. That is because there is only one Pod currently running
 
