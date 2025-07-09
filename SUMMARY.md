@@ -966,7 +966,6 @@
             * [Strategy](tests/testing-fundamentals/software-testing-methodologies/non-functional-testing/performance-testing/load-testing/strategy.md)
             * [Preparation Checklist](tests/testing-fundamentals/software-testing-methodologies/non-functional-testing/performance-testing/load-testing/preparation-checklist.md)
             * [Metrics to Measure](tests/testing-fundamentals/software-testing-methodologies/non-functional-testing/performance-testing/load-testing/metrics-to-measure.md)
-            * [Reports and Analysis](tests/testing-fundamentals/software-testing-methodologies/non-functional-testing/performance-testing/load-testing/reports-and-analysis.md)
           * [Stress Testing](tests/testing-fundamentals/software-testing-methodologies/non-functional-testing/performance-testing/stress-testing.md)
           * [Spike Testing](tests/testing-fundamentals/software-testing-methodologies/non-functional-testing/performance-testing/spike-testing.md)
           * [Soak Testing](tests/testing-fundamentals/software-testing-methodologies/non-functional-testing/performance-testing/soak-testing.md)

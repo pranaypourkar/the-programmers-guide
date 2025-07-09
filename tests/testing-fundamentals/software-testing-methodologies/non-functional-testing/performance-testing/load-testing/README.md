@@ -12,6 +12,8 @@ It focuses on validating:
 * Throughput (requests per second)
 * Error rates or failure under expected load
 
+<figure><img src="../../../../../../.gitbook/assets/load-testing.png" alt="" width="563"><figcaption></figcaption></figure>
+
 ## **Purpose**
 
 The objective of load testing is not to break the system but to verify that it can **handle expected traffic gracefully**.
