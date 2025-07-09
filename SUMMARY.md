@@ -211,6 +211,7 @@
         * [Index](database/sql-databases/other-concepts/oracle-specific/index/README.md)
           * [Index Rebuild](database/sql-databases/other-concepts/oracle-specific/index/index-rebuild.md)
           * [Unusable Index](database/sql-databases/other-concepts/oracle-specific/index/unusable-index.md)
+          * [Index Suggestions by Query](database/sql-databases/vendor-specific-concepts/oracle-specific/index/index-suggestions-by-query.md)
       * [Oracle Examples](database/sql-databases/vendor-specific-concepts/oracle-examples.md)
       * [MYSQL Specific](database/sql-databases/vendor-specific-concepts/mysql-specific/README.md)
         * [Collation](database/sql-databases/vendor-specific-concepts/mysql-specific/collation.md)
