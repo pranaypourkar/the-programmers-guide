@@ -187,3 +187,85 @@ To reduce memory usage in ActiveMQ, we can modify its configuration, including s
        ```
 6. **Monitor ActiveMQ Memory Usage**:
    * Check the ActiveMQ logs and web console to ensure that memory usage is now within the limits we've configured. We can monitor memory usage in the ActiveMQ Web Console at `http://localhost:8161` (default).
+
+## 3 Throttling of Messages
+
+In the context of **Message Queues (MQ)** like ActiveMQ, **throttling** refers to controlling the rate of message production or consumption to ensure system stability, optimal performance, and resource utilization. Throttling is commonly used to avoid overloading the broker, consumers, or producers, and to maintain consistent message flow.
+
+### Throttling in MQ
+
+1. **Producer Throttling:**
+   * Controls the rate at which producers send messages to the broker.
+   * Prevents flooding the broker when:
+     * Producers send messages faster than consumers can process them.
+     * The broker's memory, storage, or thread limits are exceeded.
+   * **Example in ActiveMQ:**
+     * When the broker detects that memory limits are nearing capacity, it can block or slow down producers using **Producer Flow Control**.
+2. **Consumer Throttling:**
+   * Controls the rate at which consumers retrieve messages from the broker.
+   * Prevents overwhelming the consumer application when:
+     * Consumers cannot process messages as fast as they are retrieved.
+     * Downstream systems or databases are slow, creating a bottleneck.
+   * **Implementation:**
+     * Configuring a prefetch limit to control the number of messages delivered to a consumer at one time.
+3. **Broker Throttling:**
+   * Manages message flow at the broker level.
+   * Ensures even distribution of resources across queues/topics and maintains stability under high load.
+   * Techniques include:
+     * Limiting memory/disk usage per destination.
+     * Prioritizing specific queues/topics.
+4. **Network Throttling:**
+   * Limits the rate of message transfer between brokers in a distributed system.
+   * Useful in scenarios involving geographically distributed brokers to prevent bandwidth exhaustion.
+
+### Use Cases of Throttling
+
+1. **Preventing Memory Overload:**
+   * By slowing down producers when the broker memory reaches a certain threshold, throttling prevents OutOfMemoryErrors.
+2. **Smoothing Traffic Spikes:**
+   * Throttling evens out bursts of high message volume, ensuring consistent performance.
+3. **Protecting Slow Consumers:**
+   * If a consumer is slow, throttling prevents message backlogs that can lead to DLQ buildup or broker exhaustion.
+4. **Adapting to System Limits:**
+   * Throttling ensures that message rates align with the capacity of processing systems, databases, or network bandwidth.
+
+### Throttling Configuration in ActiveMQ
+
+**1. Producer Flow Control**
+
+* Automatically throttles producers when the broker or destination memory limit is reached.
+*   Configured in `activemq.xml`:
+
+    ```xml
+    <policyEntry queue=">" producerFlowControl="true" memoryLimit="100mb"/>
+    ```
+* Producers will block until memory is freed.
+
+**2. Prefetch Limit (Consumer Throttling)**
+
+* Controls how many messages are sent to a consumer at a time.
+*   Configured using the `prefetchPolicy`:
+
+    ```java
+    ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
+    connectionFactory.getPrefetchPolicy().setQueuePrefetch(10);
+    ```
+
+**3. Network Throttling**
+
+*   Limit network bandwidth for message replication between brokers:
+
+    ```xml
+    <networkConnector name="bridge" uri="tcp://other-broker:61616" conduitSubscriptions="true">
+        <networkTTL>2</networkTTL>
+        <rateLimit>1000</rateLimit> <!-- Messages/sec -->
+    </networkConnector>
+    ```
+
+### Benefits of Throttling
+
+* Prevents **resource exhaustion** (CPU, memory, disk, bandwidth).
+* Ensures **fair resource allocation** across queues/topics.
+* Helps maintain **system stability** under varying loads.
+* Protects downstream systems from **overloading** due to sudden message bursts.
+
