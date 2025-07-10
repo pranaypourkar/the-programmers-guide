@@ -260,7 +260,10 @@ _<mark style="background-color:yellow;">**application.yaml**</mark>_
 server:
   port: 8081
 
-logging.level.reactor.netty.http.client: DEBUG
+logging:
+  level:
+    org.springframework.web.reactive.function.client: DEBUG
+    reactor.netty.http.client: DEBUG
 ```
 
 Build and run the application
