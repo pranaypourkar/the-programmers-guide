@@ -183,7 +183,7 @@ public class Application {
 
 Execute the main program and verify the logs.
 
-<figure><img src="../../../../.gitbook/assets/image (207).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (207).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 <mark style="background-color:purple;">**Case 2**</mark>: With Class and Field level custom annotation
 
@@ -340,6 +340,6 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../../.gitbook/assets/image (206).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/image (206).png" alt=""><figcaption></figcaption></figure>
 
-[^1]: [https://app.gitbook.com/o/tVyFnk5YBNmGbKUlXJjt/s/Pd6ktrA5pPLsZJktj2fm/\~/changes/30/spring/concepts/spring-aop/before-advice#scenario-1-logging-request-details-using-custom-annotation](../../../../spring/spring-features/spring-aop/before-advice.md#scenario-1-logging-request-details-using-custom-annotation)
+[^1]: [https://app.gitbook.com/o/tVyFnk5YBNmGbKUlXJjt/s/Pd6ktrA5pPLsZJktj2fm/\~/changes/30/spring/concepts/spring-aop/before-advice#scenario-1-logging-request-details-using-custom-annotation](../../../../../spring/spring-features/spring-aop/before-advice.md#scenario-1-logging-request-details-using-custom-annotation)
