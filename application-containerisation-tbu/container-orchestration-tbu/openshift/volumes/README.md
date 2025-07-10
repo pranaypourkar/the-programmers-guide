@@ -375,7 +375,7 @@ spec:
 
 In OpenShift, **Volumes** and **VolumeMounts** are used to provide containers inside a pod with access to **external or persistent storage**. This is necessary because containers are ephemeral — their internal file system is wiped on restart.
 
-#### **1. Volume in Pod**
+### **Volume in Pod**
 
 A **Volume** is defined in the **pod specification** and refers to a **storage source** that can be mounted into one or more containers inside the pod.
 
@@ -396,7 +396,7 @@ spec:
 
 This volume is accessible to all containers in the pod that choose to mount it.
 
-#### **2. VolumeMount in Container**
+### **VolumeMount in Container**
 
 A **VolumeMount** is a declaration **inside a container spec** that tells:
 
@@ -418,7 +418,7 @@ spec:
 
 This mounts the volume named `shared-data` into the `/app/data` directory inside the container.
 
-#### **3. Relationship**
+### **Relationship**
 
 | Element        | Defined At      | Purpose                                              |
 | -------------- | --------------- | ---------------------------------------------------- |
@@ -457,7 +457,7 @@ In this example:
 
 #### **ReadOnly Option**
 
-You can specify the volume mount as **read-only**:
+We can specify the volume mount as **read-only**:
 
 ```yaml
 volumeMounts:
@@ -472,5 +472,3 @@ Multiple containers in the same pod can **mount the same volume**, which enables
 
 * **Data sharing**
 * **Sidecar patterns** (e.g., log shipping container)
-
-##
