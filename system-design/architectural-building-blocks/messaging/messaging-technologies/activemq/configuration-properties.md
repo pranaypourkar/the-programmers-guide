@@ -2,7 +2,7 @@
 
 ## **Connection Properties**
 
-These properties configure how your application connects to the **ActiveMQ broker**, either remote or embedded. Proper configuration ensures reliable communication between your application and the messaging system.
+These properties configure how our application connects to the **ActiveMQ broker**, either remote or embedded. Proper configuration ensures reliable communication between our application and the messaging system.
 
 <table data-full-width="true"><thead><tr><th width="166.43145751953125">Property</th><th width="477.11376953125">Purpose</th><th>Example</th></tr></thead><tbody><tr><td><code>spring.activemq.broker-url</code></td><td>Specifies the <strong>URI of the ActiveMQ broker</strong> that our application should connect to. This can be a simple TCP URI, or a failover URI to enable high availability.</td><td><p><code>spring.activemq.broker-url=tcp://localhost:61616</code><br></p><p><code>spring.activemq.broker-url=failover:(tcp://localhost:61616,tcp://backup:61616)</code></p></td></tr><tr><td><code>spring.activemq.user</code></td><td>The <strong>username</strong> used to authenticate with the broker. Required if the broker has security enabled.</td><td><code>spring.activemq.user=admin</code></td></tr><tr><td><code>spring.activemq.password</code></td><td>The <strong>password</strong> for the above user to authenticate with the broker. Keep this secure and do not hardcode it in source files.</td><td><code>spring.activemq.password=admin123</code></td></tr><tr><td><code>spring.activemq.in-memory</code></td><td>If set to <code>true</code>, Spring Boot will create an <strong>embedded (in-memory) ActiveMQ broker</strong> for local development or testing purposes. Not used in production.</td><td><code>spring.activemq.in-memory=true</code></td></tr></tbody></table>
 
@@ -81,8 +81,8 @@ These properties control the behavior and performance of **JMS message listeners
 Controls **when** and **how** JMS messages are acknowledged:
 
 * `auto` – Container automatically acknowledges after successful receipt. (default)
-* `manual` – You manually acknowledge within the listener using `SessionAwareMessageListener`.
-* `client` – Your code is responsible for calling `Message.acknowledge()`.
+* `manual` – We manually acknowledge within the listener using `SessionAwareMessageListener`.
+* `client` – Our code is responsible for calling `Message.acknowledge()`.
 * `dups-ok` – Permits **lazy acknowledgment** (fewer acks, but duplicates may occur).
 
 > `manual` is used in **error-handling-heavy** apps that need full control over retries and redelivery.
@@ -142,7 +142,7 @@ When `spring.jms.listener.receive-timeout` is **not set**, Spring uses the defau
 
 #### `spring.jms.listener.idle-timeout`
 
-This property controls how long a **consumer thread** can remain **idle (not receiving any messages)** before it is eligible for shutdown. It’s especially useful when your application uses **dynamic scaling of listeners**, i.e., when `max-concurrency` is greater than `concurrency`.
+This property controls how long a **consumer thread** can remain **idle (not receiving any messages)** before it is eligible for shutdown. It’s especially useful when our application uses **dynamic scaling of listeners**, i.e., when `max-concurrency` is greater than `concurrency`.
 
 In a scalable message consumer setup:
 
@@ -175,7 +175,7 @@ By default, **`idle-timeout` is not explicitly set**, and the underlying `Defaul
 
 ### Best Practice
 
-<table data-full-width="true"><thead><tr><th width="352.31597900390625">Property</th><th>Best Practice</th></tr></thead><tbody><tr><td><code>spring.jms.listener.concurrency</code></td><td>Start with a modest value (e.g., 2–5). Avoid setting too high; it can overwhelm the broker.</td></tr><tr><td><code>spring.jms.listener.max-concurrency</code></td><td>Set only if your workload is <strong>bursty</strong>. Max concurrency should be 2–3x the base concurrency.</td></tr><tr><td><code>spring.jms.listener.acknowledge-mode</code></td><td>Use <code>auto</code> for simple use cases. Use <code>manual</code> when you need to retry, log, or inspect failures explicitly.</td></tr><tr><td><code>spring.jms.listener.receive-timeout</code></td><td>Use 500–1000 ms. Don’t set it too high (blocks threads); don’t set too low (causes polling pressure).</td></tr><tr><td><code>spring.jms.listener.idle-timeout</code></td><td>Set to 30s–60s to scale down inactive consumers gracefully. Useful when <code>max-concurrency</code> is used.</td></tr></tbody></table>
+<table data-full-width="true"><thead><tr><th width="352.31597900390625">Property</th><th>Best Practice</th></tr></thead><tbody><tr><td><code>spring.jms.listener.concurrency</code></td><td>Start with a modest value (e.g., 2–5). Avoid setting too high; it can overwhelm the broker.</td></tr><tr><td><code>spring.jms.listener.max-concurrency</code></td><td>Set only if our workload is <strong>bursty</strong>. Max concurrency should be 2–3x the base concurrency.</td></tr><tr><td><code>spring.jms.listener.acknowledge-mode</code></td><td>Use <code>auto</code> for simple use cases. Use <code>manual</code> when we need to retry, log, or inspect failures explicitly.</td></tr><tr><td><code>spring.jms.listener.receive-timeout</code></td><td>Use 500–1000 ms. Don’t set it too high (blocks threads); don’t set too low (causes polling pressure).</td></tr><tr><td><code>spring.jms.listener.idle-timeout</code></td><td>Set to 30s–60s to scale down inactive consumers gracefully. Useful when <code>max-concurrency</code> is used.</td></tr></tbody></table>
 
 #### **Recommended Settings for**  `spring.jms.listener.receive-timeout`
 
@@ -234,7 +234,7 @@ These advanced settings control **core message delivery behaviors** such as pref
 `jms.prefetchPolicy.queuePrefetch`
 
 * Prefetch means the number of messages **fetched in advance** by each consumer from the broker.
-* They are held in memory and processed one by one (or concurrently, depending on your app).
+* They are held in memory and processed one by one (or concurrently, depending on our app).
 * Too high a prefetch value can lead to:
   * **Memory pressure**.
   * **Uneven load balancing** across consumers.
@@ -282,3 +282,54 @@ public ActiveMQConnectionFactory activeMQConnectionFactory() {
 ```
 
 > After 3 failed attempts, message is routed to **ActiveMQ.DLQ** (by default).
+
+## Other Properties
+
+#### **`spring.activemq.pool.max-connections`:**
+
+* This property sets the maximum number of physical connections in the connection pool managed by Spring for ActiveMQ.
+* **How it works:**
+  * ActiveMQ uses a connection pool to manage physical connections to the message broker efficiently.
+  * By setting `spring.activemq.pool.max-connections` to `5`, we are limiting the pool to hold at most 5 connections.
+  * Each connection can be shared by multiple sessions, which helps in reducing the overhead of creating and closing connections.
+* **Impact on our Consumer App:**
+  * **Connection Reuse:**
+    * The application will reuse up to `max-connections` physical connections to the broker.
+    * If our app creates many consumer threads (due to concurrency settings), they will share these pooled connections.
+  * **Performance:**
+    * A higher value reduces connection creation overhead but increases resource usage.
+    * If we set it too low and have many consumers, some consumers may need to wait for a connection, causing delays.
+  * **Scalability:**
+    * If multiple applications are consuming messages from the same broker, the `max-connections` setting must align with broker capacity to avoid connection throttling.
+* **Use case:**
+  * It's useful when multiple threads or components in the application need to interact with ActiveMQ concurrently.
+  * The connection pool improves performance by reusing connections instead of creating a new one for every operation.
+
+#### **`spring.cloud.stream.default.consumer.concurrency`:**
+
+* This property sets the level of concurrency for message consumers when using **Spring Cloud Stream** with ActiveMQ (or any message broker).
+* **How it works:**
+  * When consuming messages from a topic or queue, this property determines the number of concurrent consumers (threads) that will process messages.
+  * If set to `5`, the framework will create 5 consumers to fetch and process messages from the queue simultaneously.
+* **Impact on our Consumer App:**
+  * **Throughput:**
+    * A higher concurrency value increases the number of messages processed simultaneously, enhancing throughput.
+    * However, if not tuned carefully, it may overwhelm our application or broker with excessive load.
+  * **Connection Utilization:**
+    * Each concurrent consumer typically requires a separate session, which in turn requires a connection from the pool.
+    * For example, if `concurrency=5`, our app will create 5 consumers (threads) and may need 5 sessions, drawing from the connection pool.
+  * **Load Distribution:**
+    * If multiple instances of our app are running, each instance will process `concurrency` number of messages in parallel, distributing the load across instances.
+* **Impact on ActiveMQ:**
+  * Each consumer thread will typically require its own session. With `spring.activemq.pool.max-connections` set to `5`, the pool must provide sufficient connections for these threads.
+  * If the connection pool size is smaller than the number of consumers, contention for connections can occur, potentially leading to delays.
+
+## **Tuning Tips**
+
+**Match Connections to Concurrency:**
+
+* Ensure `max-connections >= concurrency` to avoid connection contention.
+
+**Test Under Load:**
+
+* Simulate real-world traffic to find the optimal settings.
