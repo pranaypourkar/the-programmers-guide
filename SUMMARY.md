@@ -250,6 +250,8 @@
   * [Query Concepts & Performance](database/query-concepts-and-performance/README.md)
     * [count(1) vs count(\*)](database/query-concepts-and-performance/count-1-vs-count.md)
     * [Access Multiple Schemas in Single Query](database/query-concepts-and-performance/access-multiple-schemas-in-single-query.md)
+    * [Subquery vs Joins](database/query-concepts-and-performance/subquery-vs-joins.md)
+    * [Single SQL vs PLSQL Query](database/query-concepts-and-performance/single-sql-vs-plsql-query.md)
   * [Best Practices](database/best-practices.md)
 * [Git](git/README.md)
   * [Internals of Git](git/internals-of-git-tbd.md)
