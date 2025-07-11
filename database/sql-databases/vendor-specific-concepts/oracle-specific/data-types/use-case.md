@@ -54,5 +54,113 @@ Oracle Data Type Suggestion
 * `VARCHAR2(16)` is not suitable for storing full UUIDs in any forma
 {% endhint %}
 
+## 2. Tracking Record Creation Timestamps
 
+### 2.1 Using `NUMBER(38,0)`
+
+In our Oracle tables, some columns such as `CREATED_DATE_TIME` store date/time information using the `NUMBER(38,0)` data type. These numeric values represent the **Unix epoch timestamp in seconds** — the number of seconds that have elapsed since `1970-01-01T00:00:00Z` (UTC).
+
+{% hint style="success" %}
+Why `'19700101'`?
+
+*   It's the **epoch** for **Unix time**, meaning:
+
+    > **Unix timestamp `0` = 1970-01-01 00:00:00 UTC**
+* Every Unix timestamp is a **count of seconds** since this date.\
+  For example:
+  * `0` → `1970-01-01 00:00:00`
+  * `1679130362` → `2023-03-18 07:06:02`
+{% endhint %}
+
+#### **What is `NUMBER(38,0)` in Oracle?**
+
+* It is a numeric column that allows up to **38 digits** with **no decimal precision**.
+* Essentially, it behaves like a **very large integer**.
+* It is often used to store:
+  * Timestamps in epoch format (Unix time)
+  * Millisecond timestamps
+  * Unique identifiers
+  * Time-based sortable values
+
+#### **Sample Value: `1679130362`**
+
+To interpret it, let's break it down.
+
+**Interpretation:**
+
+This is likely a **Unix timestamp** in **seconds since epoch** (i.e., since `1970-01-01T00:00:00Z`).
+
+We can verify and convert it:
+
+*   **Online Conversion**:
+
+    ```
+    1679130362 seconds since epoch ≈ 2023-03-18 09:46:02 UTC
+    ```
+*   **In Java**:
+
+    ```java
+    long timestamp = 1679130362L;
+    Instant instant = Instant.ofEpochSecond(timestamp);
+    ZonedDateTime dateTime = instant.atZone(ZoneId.of("UTC"));
+    System.out.println(dateTime);
+    // Output: 2023-03-18T09:46:02Z
+    ```
+
+So, this number represents the creation time as a **UTC timestamp** in **seconds**, not milliseconds.
+
+#### **How Java Stores This Value**
+
+When storing from Java to Oracle:
+
+```java
+long unixSeconds = Instant.now().getEpochSecond(); // Example: 1679130362
+preparedStatement.setLong(1, unixSeconds);
+```
+
+This stores the Unix timestamp as a `NUMBER(38,0)`.
+
+To read from the database:
+
+```java
+long createdDateTime = resultSet.getLong("CREATED_DATE_TIME");
+Instant instant = Instant.ofEpochSecond(createdDateTime);
+ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
+```
+
+If you’re using Spring JPA:
+
+```java
+@Column(name = "CREATED_DATE_TIME")
+private Long createdDateTime;
+
+public LocalDateTime getCreatedDateTimeAsDate() {
+    return Instant.ofEpochSecond(createdDateTime)
+                  .atZone(ZoneId.systemDefault())
+                  .toLocalDateTime();
+}
+```
+
+In **Oracle**, if we have a value like `'1679130362'` (a Unix timestamp in **seconds since 1970-01-01**), we can convert it to a human-readable date using:
+
+```sql
+SELECT
+  TO_DATE('19700101','YYYYMMDD') + NUMTODSINTERVAL(1679130362, 'SECOND') AS readable_date
+FROM dual;
+```
+
+To filter records where the **converted `created_date_time`** is **after 1st December 2024**, we'll need to compare the converted timestamp to a proper Oracle `DATE`.
+
+```sql
+SELECT
+  TO_CHAR(
+    TO_DATE('19700101','YYYYMMDD') + NUMTODSINTERVAL(TO_NUMBER(created_date_time), 'SECOND'),
+    'YYYY-MM-DD HH24:MI:SS'
+  ) AS readable_date,
+  model
+FROM device
+WHERE
+  TO_DATE('19700101','YYYYMMDD') + NUMTODSINTERVAL(TO_NUMBER(created_date_time), 'SECOND') > TO_DATE('2024-12-01', 'YYYY-MM-DD')
+ORDER BY readable_date DESC;
+```
 

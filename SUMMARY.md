@@ -219,6 +219,8 @@
       * [MYSQL Specific](database/sql-databases/vendor-specific-concepts/mysql-specific/README.md)
         * [Collation](database/sql-databases/vendor-specific-concepts/mysql-specific/collation.md)
         * [Character Set](database/sql-databases/vendor-specific-concepts/mysql-specific/character-set.md)
+        * [Data Types](database/sql-databases/vendor-specific-concepts/mysql-specific/data-types/README.md)
+          * [Use Case](database/sql-databases/vendor-specific-concepts/mysql-specific/data-types/use-case.md)
       * [MYSQL Examples](database/sql-databases/vendor-specific-concepts/mysql-examples.md)
     * [Best Practice](database/sql-databases/best-practice.md)
     * [Resources & References](database/sql-databases/resources-and-references/README.md)
