@@ -1,4 +1,9 @@
-# IAM (Identity and Access Management)
+---
+hidden: true
+icon: user-group
+---
+
+# Identity and Access Management (IAM)
 
 ## 1. About
 
