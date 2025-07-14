@@ -293,8 +293,6 @@ userPassword: Keycloak@2024
 
 ```
 
-
-
 ## Start the Containers
 
 ```bash
@@ -347,3 +345,22 @@ Search for user:
 ldapsearch -x -b "dc=example,dc=com" "(uid=john.doe)"
 ```
 
+## Based on local LDAP setup
+
+### Keycloak LDAP Configuration
+
+<table data-header-hidden data-full-width="true"><thead><tr><th width="257.4375"></th><th></th></tr></thead><tbody><tr><td><strong>Field</strong></td><td><strong>Value</strong></td></tr><tr><td><strong>Edit Mode</strong></td><td><code>READ_ONLY</code> or <code>IMPORT</code> <em>(choose based on use case)</em></td></tr><tr><td><strong>Vendor</strong></td><td><code>Other</code></td></tr><tr><td><strong>Connection URL</strong></td><td><code>ldap://localhost:389</code></td></tr><tr><td><strong>Bind DN</strong></td><td><code>cn=admin,dc=corp,dc=abc,dc=com</code></td></tr><tr><td><strong>Bind Credential</strong></td><td><code>StrongAdminPass123</code> <em>(or whatever you used in docker-compose)</em></td></tr><tr><td><strong>Users DN</strong></td><td><code>ou=People,dc=corp,dc=abc,dc=com</code></td></tr><tr><td><strong>Username LDAP attribute</strong></td><td><code>uid</code></td></tr><tr><td><strong>RDN LDAP attribute</strong></td><td><code>uid</code></td></tr><tr><td><strong>UUID LDAP attribute</strong></td><td><code>entryUUID</code></td></tr><tr><td><strong>User Object Classes</strong></td><td><code>inetOrgPerson</code></td></tr><tr><td><strong>Search Scope</strong></td><td><code>One Level</code> or <code>Subtree</code> <em>(Subtree recommended)</em></td></tr><tr><td><strong>Pagination</strong></td><td><code>ON</code></td></tr><tr><td><strong>Sync Registrations</strong></td><td><code>OFF</code> (or <code>ON</code> if you want new Keycloak users written to LDAP)</td></tr><tr><td><strong>Allow Kerberos Authentication</strong></td><td><code>OFF</code> <em>(unless you’re integrating with AD or SASL/Kerberos)</em></td></tr><tr><td><strong>Batch Size For LDAP Queries</strong></td><td><code>1000</code> <em>(default)</em></td></tr></tbody></table>
+
+### Keycloak Group Mapper Configuration
+
+If we're syncing groups from LDAP as well (e.g., `cn=engineering`, `cn=hr-team`):
+
+<table data-header-hidden data-full-width="true"><thead><tr><th width="308.68402099609375"></th><th></th></tr></thead><tbody><tr><td><strong>Field</strong></td><td><strong>Value</strong></td></tr><tr><td><strong>Mapper Type</strong></td><td><code>Group LDAP Mapper</code></td></tr><tr><td><strong>Name</strong></td><td><code>LDAP Groups Mapper</code></td></tr><tr><td><strong>LDAP Groups DN</strong></td><td><code>ou=Groups,dc=corp,dc=abc,dc=com</code></td></tr><tr><td><strong>Group Name LDAP Attribute</strong></td><td><code>cn</code></td></tr><tr><td><strong>Group Object Classes</strong></td><td><code>groupOfNames</code></td></tr><tr><td><strong>Membership LDAP Attribute</strong></td><td><code>member</code></td></tr><tr><td><strong>Membership Attribute Type</strong></td><td><code>DN</code></td></tr><tr><td><strong>User Groups Retrieve Strategy</strong></td><td><code>LOAD_GROUPS_BY_MEMBER_ATTRIBUTE</code></td></tr><tr><td><strong>Mapped Group Attributes</strong></td><td>Leave blank or include additional group info like <code>description</code></td></tr><tr><td><strong>Mode</strong></td><td><code>READ_ONLY</code></td></tr></tbody></table>
+
+### Keycloak Test LDAP Sync
+
+Once configured:
+
+1. Navigate to **User Federation** → `ldap` → **Synchronize all users**
+2. Check the **Users** tab → `alice.jones` and `bob.smith` should appear.
+3. Navigate to **Groups** (if group mapper is configured) → `engineering`, `hr-team` should be available.
