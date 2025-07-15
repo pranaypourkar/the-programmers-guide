@@ -158,7 +158,7 @@ Use when:
 Builds only the selected **modules** in a multi-module Maven project.
 
 ```bash
-bashCopyEditmvn clean install -pl module-a,module-b
+mvn clean install -pl module-a,module-b
 ```
 
 Use when:
@@ -221,3 +221,42 @@ In Maven, when resolving dependencies, the order in which repositories are check
 2. **Remote Repositories**: If the dependencies are not found in the local repository, Maven checks any remote repositories configured in the `pom.xml` file. These remote repositories could be the organization's internal repositories or other external repositories besides Maven Central. Maven checks them in the order they are defined in the `pom.xml`.
 3. **Maven Central**: If the dependencies are not found in any of the configured repositories, Maven then checks Maven Central, which is the default central repository for open-source Java libraries.
 {% endhint %}
+
+## 8. Download Dependency
+
+In Maven, we can **pull (download) a dependency from a repository using the command line** without adding it to a `pom.xml` by using the `dependency:get` goal provided by the `maven-dependency-plugin`.
+
+#### Syntax
+
+{% code overflow="wrap" %}
+```bash
+mvn dependency:get -DgroupId=<group-id> -DartifactId=<artifact-id> -Dversion=<version> [-Dclassifier=<classifier>] [-Dpackaging=<packaging>]
+```
+{% endcode %}
+
+#### Download a standard JAR
+
+{% code overflow="wrap" %}
+```bash
+mvn dependency:get -DgroupId=org.apache.commons -DartifactId=commons-lang3 -Dversion=3.12.0
+```
+{% endcode %}
+
+This will download the `commons-lang3-3.12.0.jar` to your local Maven repository (`~/.m2/repository`).
+
+#### Download a JAR with a specific packaging
+
+```bash
+mvn dependency:get -DgroupId=org.springframework.boot -DartifactId=spring-boot-starter-web -Dversion=2.7.6 -Dpackaging=jar
+```
+
+> Packaging defaults to `jar` if not specified.
+
+#### Download a JAR with a classifier (e.g., `sources`)
+
+```bash
+mvn dependency:get -DgroupId=org.apache.commons -DartifactId=commons-lang3 -Dversion=3.12.0 -Dclassifier=sources
+```
+
+This downloads `commons-lang3-3.12.0-sources.jar`.
+
