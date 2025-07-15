@@ -88,6 +88,10 @@ Sample users available in LDAP (Seeds file)
 
 <figure><img src="../../../.gitbook/assets/keycloak-ldap-provider-user-sync-9.png" alt=""><figcaption></figcaption></figure>
 
+Fetch Token
+
+<figure><img src="../../../.gitbook/assets/keycloak-ldap-provider-user-token.png" alt="" width="563"><figcaption></figcaption></figure>
+
 ## Configure LDAP Mappers
 
 By default, Keycloak adds a few LDAP mappers. We can verify and adjust them
