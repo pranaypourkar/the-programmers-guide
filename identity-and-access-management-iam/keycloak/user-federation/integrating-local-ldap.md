@@ -26,7 +26,7 @@ Refer to the following pages for more details on the setup
 [local-ldap-setup.md](../../ldap/local-ldap-setup.md)
 {% endcontent-ref %}
 
-## Identify & Apply LDAP Details on Keycloak
+## Apply LDAP Configurations
 
 ### Log into Keycloak Admin Console
 
@@ -39,7 +39,30 @@ Refer to the following pages for more details on the setup
 1. Go to **User Federation** (left-hand menu)
 2. Click **Add provider → ldap**
 
-Fill in the required details:
+### Set Configurations
+
+<figure><img src="../../../.gitbook/assets/provider-ldap-config-2 (1).png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/provider-ldap-config-3.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/provider-ldap-config-4.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/provider-ldap-config-5.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/provider-ldap-config-1.png" alt=""><figcaption></figcaption></figure>
+
+### Test the Connection
+
+Use the **"Test connection"** and **"Test authentication"** buttons at the bottom of the provider form:
+
+* **Test connection**: Validates LDAP connectivity
+* **Test authentication**: Confirms bind credentials work
+
+If any test fails, double-check:
+
+* LDAP port (`389` open?)
+* Bind DN/password
+* Network access between Keycloak container and LDAP container
 
 
 
