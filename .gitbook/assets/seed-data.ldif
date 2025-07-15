@@ -1,0 +1,60 @@
+# Organizational Units
+dn: ou=People,dc=corp,dc=abc,dc=com
+objectClass: organizationalUnit
+ou: People
+
+dn: ou=Groups,dc=corp,dc=abc,dc=com
+objectClass: organizationalUnit
+ou: Groups
+
+dn: ou=Departments,dc=corp,dc=abc,dc=com
+objectClass: organizationalUnit
+ou: Departments
+
+dn: ou=ServiceAccounts,dc=corp,dc=abc,dc=com
+objectClass: organizationalUnit
+ou: ServiceAccounts
+
+# Sample user in Engineering
+dn: uid=alice.jones,ou=People,dc=corp,dc=abc,dc=com
+objectClass: inetOrgPerson
+cn: Alice Jones
+sn: Jones
+uid: alice.jones
+mail: alice.jones@corp.abc.com
+userPassword: Password@123
+departmentNumber: ENG
+title: Senior Software Engineer
+
+# Sample user in HR
+dn: uid=bob.smith,ou=People,dc=corp,dc=abc,dc=com
+objectClass: inetOrgPerson
+cn: Bob Smith
+sn: Smith
+uid: bob.smith
+mail: bob.smith@corp.abc.com
+userPassword: Password@123
+departmentNumber: HR
+title: HR Manager
+
+# Sample group for engineers
+dn: cn=engineering,ou=Groups,dc=corp,dc=abc,dc=com
+objectClass: groupOfNames
+cn: engineering
+member: uid=alice.jones,ou=People,dc=corp,dc=abc,dc=com
+
+# Sample group for HR
+dn: cn=hr-team,ou=Groups,dc=corp,dc=abc,dc=com
+objectClass: groupOfNames
+cn: hr-team
+member: uid=bob.smith,ou=People,dc=corp,dc=abc,dc=com
+
+# Service account
+dn: uid=svc.keycloak,ou=ServiceAccounts,dc=corp,dc=abc,dc=com
+objectClass: inetOrgPerson
+cn: Keycloak Service Account
+sn: Service
+uid: svc.keycloak
+mail: svc.keycloak@corp.abc.com
+userPassword: Keycloak@2024
+

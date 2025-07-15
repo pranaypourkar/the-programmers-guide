@@ -32,7 +32,7 @@ Create the following files:
 ```
 .
 ├── docker-compose.yml
-└── seed-data.ldif
+└── ldap-bootstrap/seed-data.ldif
 ```
 
 ### `docker-compose.yml`
@@ -120,10 +120,10 @@ This structure makes it easy to:
 Groups are created using the `groupOfNames` object class, which references user DNs via the `member` attribute.
 
 ```ldif
-dn: cn=engineering,ou=Groups,dc=corp,dc=acme,dc=com
+dn: cn=engineering,ou=Groups,dc=corp,dc=abc,dc=com
 objectClass: groupOfNames
 cn: engineering
-member: uid=alice.jones,ou=People,dc=corp,dc=acme,dc=com
+member: uid=alice.jones,ou=People,dc=corp,dc=abc,dc=com
 ```
 
 * `cn=engineering`: Group name
@@ -141,12 +141,12 @@ You can associate users with multiple groups for layered access.
 Service accounts are special user entries used by applications (e.g., Keycloak) to connect to the LDAP server.
 
 ```ldif
-dn: uid=svc.keycloak,ou=ServiceAccounts,dc=corp,dc=acme,dc=com
+dn: uid=svc.keycloak,ou=ServiceAccounts,dc=corp,dc=abc,dc=com
 objectClass: inetOrgPerson
 cn: Keycloak Service Account
 sn: Service
 uid: svc.keycloak
-mail: svc.keycloak@corp.acme.com
+mail: svc.keycloak@corp.abc.com
 userPassword: Keycloak@2024
 ```
 
@@ -168,6 +168,8 @@ Note: OpenLDAP in this Docker image automatically applies LDIF files found in th
 
 #### docker-compose.yml
 
+{% file src="../../.gitbook/assets/seed-data.ldif" %}
+
 ```yaml
 version: '3.8'
 
@@ -175,6 +177,7 @@ services:
   openldap:
     image: osixia/openldap:1.5.0
     container_name: openldap
+    command: --copy-service
     environment:
       LDAP_ORGANISATION: "Abc Solutions Pvt Ltd"
       LDAP_DOMAIN: "corp.abc.com"
@@ -183,7 +186,7 @@ services:
       - "389:389"
       - "636:636"
     volumes:
-      - ./seed-data.ldif:/container/service/slapd/assets/config/bootstrap/ldif/50-bootstrap.ldif
+      - ./ldap-bootstrap/seed-data.ldif:/container/service/slapd/assets/config/bootstrap/ldif/50-bootstrap.ldif
 
   phpldapadmin:
     image: osixia/phpldapadmin:0.9.0
@@ -227,6 +230,8 @@ If our domain is `corp.abc.com`, our full Distinguished Names (DNs) in the LDAP 
     cn=admins,ou=Groups,dc=corp,dc=abc,dc=com
     ```
 {% endhint %}
+
+<figure><img src="../../.gitbook/assets/local-ldap-config-openldap-1.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Initial Directory Seed (`seed-data.ldif`)
 
