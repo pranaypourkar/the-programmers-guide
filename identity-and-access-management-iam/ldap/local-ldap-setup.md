@@ -364,3 +364,26 @@ Once configured:
 1. Navigate to **User Federation** → `ldap` → **Synchronize all users**
 2. Check the **Users** tab → `alice.jones` and `bob.smith` should appear.
 3. Navigate to **Groups** (if group mapper is configured) → `engineering`, `hr-team` should be available.
+
+### phpLDAPadmin Login Details
+
+<table data-header-hidden><thead><tr><th width="207.69793701171875"></th><th></th></tr></thead><tbody><tr><td><strong>Field</strong></td><td><strong>Value</strong></td></tr><tr><td><strong>Login URL</strong></td><td><code>https://localhost:6443</code></td></tr><tr><td><strong>Login DN (username)</strong></td><td><code>cn=admin,dc=corp,dc=abc,dc=com</code></td></tr><tr><td><strong>Password</strong></td><td><code>StrongAdminPass123</code> <em>(as defined in <code>LDAP_ADMIN_PASSWORD</code>)</em></td></tr></tbody></table>
+
+> We may get a browser warning because the container uses a **self-signed TLS certificate**. We can safely proceed for local use.
+
+{% hint style="info" %}
+* **Bind DN Format**: The full distinguished name (`cn=admin,dc=corp,dc=abc,dc=com`) is required — **not just `admin`**.
+* **Default login user is `cn=admin`**, which has full access to the directory unless restricted via ACL.
+* phpLDAPadmin does **not support plain HTTP**, it runs on `HTTPS` (port `6443`) by default.
+* We can add other admin or read-only users via `seed-data.ldif` or phpLDAPadmin interface later if needed.
+{% endhint %}
+
+<figure><img src="../../.gitbook/assets/local-ldap-config-phpldapadmin-1.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/local-ldap-config-phpldapadmin-2.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/local-ldap-config-phpldapadmin-3.png" alt=""><figcaption></figcaption></figure>
+
+Verify seeded data for `People`, `Groups`, `Departments`, and `ServiceAccounts` &#x20;
+
+<figure><img src="../../.gitbook/assets/local-ldap-config-phpldapadmin-4.png" alt=""><figcaption></figcaption></figure>
