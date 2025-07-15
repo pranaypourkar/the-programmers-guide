@@ -317,7 +317,7 @@
     * [User Federation](identity-and-access-management-iam/keycloak/user-federation/README.md)
       * [Settings](identity-and-access-management-iam/keycloak/user-federation/settings/README.md)
         * [Provider - LDAP](identity-and-access-management-iam/keycloak/user-federation/settings/provider-ldap.md)
-      * [Integrating LDAP](identity-and-access-management-iam/keycloak/user-federation/integrating-ldap.md)
+      * [Integrating Local LDAP](identity-and-access-management-iam/keycloak/user-federation/integrating-local-ldap.md)
       * [Integrating Active Directory](identity-and-access-management-iam/keycloak/user-federation/integrating-active-directory.md)
     * [Local Keycloak Setup](identity-and-access-management-iam/keycloak/local-keycloak-setup.md)
   * [LDAP](identity-and-access-management-iam/ldap/README.md)
