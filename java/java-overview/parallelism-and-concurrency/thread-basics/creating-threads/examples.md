@@ -7,6 +7,29 @@
 **Scenario:** We are asked to create a thread that prints numbers from 1 to 5 with a 1-second pause.
 
 ```java
+package practice;
+
+public class ThreadExamples {
+
+    static class NumberPrinter extends Thread {
+
+        public void run() {
+            for (int i = 1; i <= 5; i++) {
+                System.out.println("Thread: " + i);
+                try {
+                    Thread.sleep(1000); // Sleep for 1 second
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        NumberPrinter t = new NumberPrinter();
+        t.start();
+    }
+}
 ```
 
 ### **Simulate two independent threads performing tasks**
@@ -14,7 +37,35 @@
 **Scenario:** Create two threads representing background tasks that run in parallel.
 
 ```java
-    
+package practice;
+
+public class ThreadExamples {
+
+    static class TaskA extends Thread {
+
+        @Override
+        public void run() {
+            System.out.println("Task A running by " + Thread.currentThread().getName());
+        }
+    }
+
+    static class TaskB extends Thread {
+
+        @Override
+        public void run() {
+            System.out.println("Task B running by " + Thread.currentThread().getName());
+        }
+    }
+
+
+    public static void main(String[] args) {
+        TaskA t1 = new TaskA();
+        TaskB t2 = new TaskB();
+
+        t1.start();
+        t2.start();
+    }
+}
 ```
 
 ### Add 2 numbers in a separate thread
