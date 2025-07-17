@@ -383,6 +383,7 @@
         * [Thread Lifecycle & States](java/java-overview/parallelism-and-concurrency/thread-basics/thread-lifecycle-and-states.md)
         * [Types of Threads](java/java-overview/parallelism-and-concurrency/thread-basics/types-of-threads.md)
         * [Thread Priority](java/java-overview/parallelism-and-concurrency/thread-basics/thread-priority.md)
+        * [Memory Sharing Between Threads](java/java-overview/parallelism-and-concurrency/thread-basics/memory-sharing-between-threads.md)
         * [Thread Completion & JVM Exit](java/java-overview/parallelism-and-concurrency/thread-basics/thread-completion-and-jvm-exit.md)
       * [Thread Management & Synchronisation](java/java-overview/parallelism-and-concurrency/thread-management-and-synchronisation/README.md)
         * [Thread Resource Sharing](java/java-overview/parallelism-and-concurrency/thread-management-and-synchronisation/thread-resource-sharing.md)
