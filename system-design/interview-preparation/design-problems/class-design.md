@@ -1,6 +1,6 @@
 # Class Design
 
-## Design a class which provides a lock only if there are no possible deadlocks.
+## 1. Design a class which provides a lock only if there are no possible deadlocks.
 
 In multithreaded systems, **deadlocks occur** when two or more threads are **waiting on each other** to release locks, and none can proceed.
 
@@ -421,5 +421,105 @@ In traditional lock acquisition (without timeout), this would be a deadlock.
 * System continues to operate
 * One or both threads may retry or log failure
 
+## 2. Design a mechanism to ensure that first is called before second and second is called before third.
 
+```
+public class Foo {
+    public Foo() { ... }
+    public void first() { ... }
+    public void second() { ... }
+    public void third() { ... }
+}
+```
+
+The same instance of Foo will be passed to three different threads. ThreadA will call first,
+
+threads will call second, and threadC will call third.&#x20;
+
+To solve this problem where three threads (`ThreadA`, `ThreadB`, and `ThreadC`) are calling `first()`, `second()`, and `third()` respectively, **we need to enforce ordering**:
+
+* `first()` must run **before** `second()`
+* `second()` must run **before** `third()`
+
+### Approach: Using `CountDownLatch`
+
+We can use two `CountDownLatch` objects to control execution order:
+
+* One latch to wait for `first()` to complete before `second()`
+* Another latch to wait for `second()` to complete before `third()`
+
+_Foo.java_
+
+```java
+package practice.test2;
+
+import java.util.concurrent.CountDownLatch;
+
+public class Foo {
+    private final CountDownLatch secondLatch = new CountDownLatch(1);
+    private final CountDownLatch thirdLatch = new CountDownLatch(1);
+
+    public Foo() {
+        // Constructor logic if needed
+    }
+
+    public void first() {
+        // This will be called by ThreadA
+        System.out.println("first");
+
+        // Signal that 'first()' has completed
+        secondLatch.countDown();
+    }
+
+    public void second() {
+        try {
+            // Wait until 'first()' is done
+            secondLatch.await();
+            System.out.println("second");
+
+            // Signal that 'second()' has completed
+            thirdLatch.countDown();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // Best practice
+        }
+    }
+
+    public void third() {
+        try {
+            // Wait until 'second()' is done
+            thirdLatch.await();
+            System.out.println("third");
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+}
+```
+
+_FooTest.java_
+
+```java
+package practice.test2;
+
+public class FooTest {
+    public static void main(String[] args) {
+        Foo foo = new Foo();
+
+        Thread threadA = new Thread(() -> foo.first());
+        Thread threadB = new Thread(() -> foo.second());
+        Thread threadC = new Thread(() -> foo.third());
+
+        // Start threads in random order to test correctness
+        threadC.start();
+        threadB.start();
+        threadA.start();
+    }
+}
+
+/*
+first
+second
+third
+*/
+```
 
