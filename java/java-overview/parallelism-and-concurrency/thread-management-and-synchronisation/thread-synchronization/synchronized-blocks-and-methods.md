@@ -143,7 +143,7 @@ synchronized(lockObject) {
 }
 ```
 
-### **Example of Synchronized Block**
+### **Example 1**
 
 ```java
 class SharedCounter {
@@ -181,6 +181,59 @@ public class SynchronizedBlockExample {
         System.out.println("Final Count: " + counter.getCount()); // Always 2000
     }
 }
+```
+
+### **Example 2**
+
+**Synchronized block locking entire object** (also called **intrinsic locking on `this`**)
+
+```java
+public class SharedPrinter {
+
+    public void printMessages(String threadName) {
+        synchronized (this) { // Locks the entire object
+            System.out.println(threadName + " started printing...");
+
+            try {
+                Thread.sleep(1000); // Simulate time-consuming task
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println(threadName + " finished printing.");
+        }
+    }
+
+    public static void main(String[] args) {
+        SharedPrinter printer = new SharedPrinter();
+
+        Runnable task1 = () -> printer.printMessages("Thread 1");
+        Runnable task2 = () -> printer.printMessages("Thread 2");
+
+        Thread t1 = new Thread(task1);
+        Thread t2 = new Thread(task2);
+
+        t1.start();
+        t2.start();
+    }
+}
+
+/* Sample Output
+Thread 1 started printing...
+Thread 1 finished printing.
+Thread 2 started printing...
+Thread 2 finished printing.
+ */
+```
+
+* `synchronized (this)` locks the **entire object** (`SharedPrinter` in this case).
+* Only **one thread at a time** can enter the `synchronized` block for that object.
+* If another thread tries to enter the `synchronized` block, it has to **wait** until the lock is released.
+* This ensures thread-safe access to critical sections that depend on the shared object state.
+
+```
+Note: The threads do not run in parallel inside the synchronized (this) block. 
+They are serialized because the entire object is locked.
 ```
 
 ### **How It Works?**
