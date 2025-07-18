@@ -101,3 +101,140 @@ To validate the estimate with real data:
    * **Eclipse MAT** (Memory Analyzer Tool): For analyzing heap dumps.
    * **YourKit** or **JProfiler**: For in-depth memory profiling.
 3. **Compare memory usage before and after population.**
+
+
+
+## **2.** LRU Cache
+
+Design and build a "least recently used" cache, which evicts the least recently used item. The cache should map from keys to values (allowing us to insert and retrieve a value associated with a particular key) and be initialized with a max size. When it is full, it should evict the least recently used item.
+
+We need to **design a cache** that:
+
+1. Stores key-value pairs.
+2. Has a **maximum size** (capacity).
+3. When inserting a new item and the cache is **full**, it must **evict the least recently used (LRU)** item.
+4. Both `get(key)` and `put(key, value)` operations must be done in **O(1)** time.
+
+To support O(1) operations:
+
+* Use a **HashMap** to store key → node mappings.
+* Use a **Doubly Linked List** to track usage order (most recently used at head, least at tail).
+
+Whenever:
+
+* We `get(key)`: Move the node to the front (MRU).
+* We `put(key, value)`:
+  * If key exists: Update and move to front.
+  * If key doesn’t exist and at capacity: Remove tail (LRU), insert new node at head.
+
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class LRUCache {
+    
+    // Doubly linked list node
+    private class Node {
+        int key, value;
+        Node prev, next;
+
+        Node(int key, int value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    private final int capacity;
+    private final Map<Integer, Node> cache; // Maps keys to nodes
+    private final Node head, tail;          // Dummy head and tail for ease of insertion/removal
+
+    public LRUCache(int capacity) {
+        this.capacity = capacity;
+        this.cache = new HashMap<>();
+
+        // Initialize dummy head and tail to avoid null checks
+        head = new Node(0, 0); 
+        tail = new Node(0, 0);
+        head.next = tail;
+        tail.prev = head;
+    }
+
+    // Get the value associated with a key
+    public int get(int key) {
+        if (!cache.containsKey(key)) {
+            return -1; // Not found
+        }
+
+        Node node = cache.get(key);
+
+        // Move the accessed node to the front (most recently used)
+        moveToFront(node);
+        return node.value;
+    }
+
+    // Put a key-value pair into the cache
+    public void put(int key, int value) {
+        if (cache.containsKey(key)) {
+            // Key exists: update value and move to front
+            Node node = cache.get(key);
+            node.value = value;
+            moveToFront(node);
+        } else {
+            // New key
+            if (cache.size() == capacity) {
+                // Remove least recently used (LRU) node from tail
+                Node lru = tail.prev;
+                removeNode(lru);
+                cache.remove(lru.key);
+            }
+
+            Node newNode = new Node(key, value);
+            addToFront(newNode);
+            cache.put(key, newNode);
+        }
+    }
+
+    // Move an existing node to the front (MRU position)
+    private void moveToFront(Node node) {
+        removeNode(node);
+        addToFront(node);
+    }
+
+    // Add a node right after dummy head
+    private void addToFront(Node node) {
+        node.prev = head;
+        node.next = head.next;
+
+        head.next.prev = node;
+        head.next = node;
+    }
+
+    // Remove a node from the list
+    private void removeNode(Node node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+    }
+}
+```
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        LRUCache cache = new LRUCache(2);
+
+        cache.put(1, 10); // cache = {1=10}
+        cache.put(2, 20); // cache = {2=20, 1=10}
+
+        System.out.println(cache.get(1)); // returns 10, cache = {1=10, 2=20}
+
+        cache.put(3, 30); // evicts key 2, cache = {3=30, 1=10}
+        System.out.println(cache.get(2)); // returns -1
+
+        cache.put(4, 40); // evicts key 1, cache = {4=40, 3=30}
+        System.out.println(cache.get(1)); // returns -1
+        System.out.println(cache.get(3)); // returns 30
+        System.out.println(cache.get(4)); // returns 40
+    }
+}
+```
+

@@ -183,3 +183,71 @@ public static int[] maxSubArrayWithIndices(int[] arr) {
 }
 ```
 
+### Pairs of Sum
+
+**Given:**
+
+* An integer array `arr[]`
+* An integer `targetSum`
+
+**Task:**\
+Find all **pairs** `(a, b)` such that `a + b == targetSum`.
+
+#### **Approach 1: Brute Force (O(n²))**
+
+Compare every pair:
+
+```java
+for (int i = 0; i < arr.length; i++) {
+    for (int j = i + 1; j < arr.length; j++) {
+        if (arr[i] + arr[j] == targetSum) {
+            // print pair
+        }
+    }
+}
+```
+
+#### **Approach 2: Using HashSet (Optimal, O(n))**
+
+```java
+Input: arr = [1, 3, 2, 2, 4, 0, 5], targetSum = 4
+
+Output: 
+(1, 3)
+(2, 2)
+(4, 0)
+```
+
+```java
+import java.util.*;
+
+public class PairSum {
+    public static void findPairs(int[] arr, int targetSum) {
+        Set<Integer> seen = new HashSet<>();
+        Set<String> printed = new HashSet<>(); // To avoid printing duplicates
+
+        for (int num : arr) {
+            int complement = targetSum - num;
+            if (seen.contains(complement)) {
+                // Ensure (a, b) and (b, a) are not printed separately
+                int min = Math.min(num, complement);
+                int max = Math.max(num, complement);
+                String pair = min + "," + max;
+
+                if (!printed.contains(pair)) {
+                    System.out.println("(" + min + ", " + max + ")");
+                    printed.add(pair);
+                }
+            }
+            seen.add(num);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 3, 2, 2, 4, 0, 5};
+        int targetSum = 4;
+        findPairs(arr, targetSum);
+    }
+}
+```
+

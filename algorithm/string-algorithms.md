@@ -236,3 +236,105 @@ public class PatternMatcher {
     }
 }
 ```
+
+### Arithmetic Evaluation
+
+Given an arithmetic equation consisting of positive integers, +, -, \* and / and no parentheses.\
+Compute the result.
+
+To evaluate an arithmetic expression like `2*3+5/6*3+15` (with **no parentheses**, only `+`, `-`, `*`, and `/`, and **all positive integers**), we must obey the **order of operations**:
+
+#### Operator Precedence (BODMAS):
+
+1. `*` and `/` (left to right)
+2. `+` and `-` (left to right)
+
+```java
+public class ArithmeticEvaluator {
+
+    public static double evaluate(String expression) {
+        // Store numbers and the last operator
+        double currentNumber = 0;
+        char operation = '+'; // Assume '+' before first number
+        double result = 0;
+        double lastTerm = 0;  // For handling * and / first
+
+        int n = expression.length();
+        for (int i = 0; i < n; i++) {
+            char ch = expression.charAt(i);
+
+            // If digit or decimal, build the number
+            if (Character.isDigit(ch) || ch == '.') {
+                int start = i;
+                while (i < n && (Character.isDigit(expression.charAt(i)) || expression.charAt(i) == '.')) {
+                    i++;
+                }
+                currentNumber = Double.parseDouble(expression.substring(start, i));
+                i--; // adjust i because it will be incremented in the for-loop
+            }
+
+            // If current character is operator or we are at the end of the expression
+            if (!Character.isDigit(ch) && ch != ' ' && ch != '.' || i == n - 1) {
+                switch (operation) {
+                    case '+':
+                        result += lastTerm;
+                        lastTerm = currentNumber;
+                        break;
+                    case '-':
+                        result += lastTerm;
+                        lastTerm = -currentNumber;
+                        break;
+                    case '*':
+                        lastTerm = lastTerm * currentNumber;
+                        break;
+                    case '/':
+                        lastTerm = lastTerm / currentNumber;
+                        break;
+                }
+                operation = ch; // update the current operation
+            }
+        }
+
+        // Add the last processed term
+        result += lastTerm;
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        String expr = "2*3+5/6*3+15";
+        System.out.println("Result: " + evaluate(expr)); // Output: 23.5
+    }
+}
+
+```
+
+1. Initialize:
+   * `result = 0`
+   * `lastTerm = 0`
+   * `operation = '+'`
+2. Read `2`
+   * Operation is `'+'`, so `lastTerm = 2`
+3. `* 3`:
+   * Operation is `*`, so `lastTerm = 2 * 3 = 6`
+4. `+ 5`:
+   * Add `lastTerm (6)` to `result`: `result = 6`
+   * Set `lastTerm = 5`
+5. `/ 6`:
+   * `lastTerm = 5 / 6 ≈ 0.8333`
+6. `* 3`:
+   * `lastTerm = 0.8333 * 3 ≈ 2.5`
+7. `+ 15`:
+   * Add `lastTerm (2.5)` to `result`: `result = 6 + 2.5 = 8.5`
+   * Set `lastTerm = 15`
+8. End of string → Add `lastTerm (15)` to result\
+   → Final: `8.5 + 15 = 23.5`
+
+This matches what BODMAS expects:
+
+```
+2 * 3 = 6
+5 / 6 = 0.8333
+0.8333 * 3 = 2.5
+Final: 6 + 2.5 + 15 = 23.5
+```

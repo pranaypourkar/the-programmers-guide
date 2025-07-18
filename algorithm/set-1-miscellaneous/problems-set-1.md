@@ -61,43 +61,102 @@ List<String> list = IntStream.rangeClosed(1, A)
     .collect(Collectors.toList());
 ```
 
-### Store and calculate mathematical expression
+## Medium
 
-Write a function to add one simple mathematical expressions which are of the form Ax^a + Bx^b + . . . (where the coefficients and exponents can be any positive or negative real number). Store the input values into a proper data structure.
+### Implement a method rand7() given rand5( )
 
-#### Method 1: Bad Implementation
+Given a method that generates a random number between O and 4 (inclusive), write a method that generates a random number between O and 6 (inclusive).
 
-```java
-// Store the expression as a single array of doubles, where the kth element
-// corresponds to the coefficient of the x^k term in the expression.
-// It does not support expressions with negative or non-integer exponents.
-int[] sum(double[] expr1) {
-    ...
-}
+We want to **generate a uniform distribution over 7 numbers (0 to 6)** using a generator that gives us **5 numbers (0 to 4)**.
 
-// Store the expression as a set of two arrays, c oefficients and exponents
-sum(double[] coeffsl, double[] expon1) {
-    ...
-}
+The basic idea is:
+
+1. Combine two calls to `rand5()` to generate a larger range that includes at least 7 values.
+2. Reject values that are outside a clean multiple of 7 to preserve uniformity.
+
+Use **base-5 expansion**:
+
+* `rand5()` gives a **random integer between 0 and 4** (i.e., 5 outcomes).
+* `rand7()` should give a **random integer between 0 and 6** (i.e., 7 outcomes).
+
+But 5 can’t divide 7 evenly — so we need **more randomness** than a single call to `rand5()` can give.
+
+By calling `rand5()` twice, we can generate **more combinations**.
+
+Each `rand5()` has 5 values → so two calls give us:
+
+```
+Total combinations = 5 * 5 = 25
 ```
 
-#### Method 2: Better Implementation
+We want to generate a **uniform integer from 0 to 24**, which gives us **25 possible values**.
+
+Now, how do we combine the two `rand5()` calls to get those values?
+
+#### Let’s take this:
 
 ```java
-// Design data structure for the expression
-class ExprTerm {
-    double coefficient;
-    double exponent;
-}
-
-ExprTerm[] sum(ExprTerm[] exprl) {
-    ...    
-}
+int num = 5 * rand5() + rand5();
 ```
 
+Assume:
 
+* First call to `rand5()` → returns `a` (0 to 4)
+* Second call to `rand5()` → returns `b` (0 to 4)
 
+Then:
 
+```java
+num = 5 * a + b
+```
+
+| a   | b   | 5 \* a + b |
+| --- | --- | ---------- |
+| 0   | 0   | 0          |
+| 0   | 1   | 1          |
+| 0   | 2   | 2          |
+| 0   | 3   | 3          |
+| 0   | 4   | 4          |
+| 1   | 0   | 5          |
+| 1   | 1   | 6          |
+| ... | ... | ...        |
+| 4   | 4   | 24         |
+
+So this gives us all numbers **from 0 to 24**, equally likely.
+
+```java
+import java.util.Random;
+
+public class Rand7FromRand5 {
+
+    static Random random = new Random();
+
+    // Provided rand5() function (returns 0–4)
+    public static int rand5() {
+        return random.nextInt(5);
+    }
+
+    public static int rand7() {
+        while (true) {
+            int num = 5 * rand5() + rand5(); // Generates number in range 0 to 24
+            if (num < 21) {
+                return num % 7; // Maps to 0 to 6 uniformly
+            }
+            // else, reject and retry
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] count = new int[7];
+        for (int i = 0; i < 70000; i++) {
+            count[rand7()]++;
+        }
+        for (int i = 0; i < 7; i++) {
+            System.out.println(i + " → " + count[i]);
+        }
+    }
+}
+```
 
 
 
