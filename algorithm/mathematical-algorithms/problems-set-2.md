@@ -81,7 +81,363 @@ public static int isDivisibleBy60(int[] A) {
     }
 ```
 
+### Line Segment Intersection
 
+Given two straight line segments (represented as a start point and an end point), compute the point of intersection, if any.
+
+#### Basics
+
+Each segment can be seen as part of an infinite line in 2D space.
+
+We can represent each line in the **general form**:
+
+Ax+By=C
+
+For a line from (x<sub>1</sub>,y<sub>1</sub>) to (x<sub>2</sub>,y<sub>2</sub>), the general form is:
+
+* A=y<sub>2</sub>−y<sub>1</sub>
+* B=x<sub>1</sub>−x<sub>2</sub>
+* C=A⋅x<sub>1</sub>+B⋅y<sub>1</sub>,
+
+#### For the two lines:
+
+**Line 1** (through P1,P2​):
+
+A<sub>1</sub>=y<sub>2</sub>−y<sub>1</sub>, B<sub>1</sub>=x<sub>1</sub>−x<sub>2</sub>, C<sub>1</sub>=A<sub>1</sub>x<sub>1</sub>+B<sub>1</sub>y<sub>1</sub>&#x20;
+
+**Line 2** (through P3,P4​):
+
+A<sub>2</sub>=y<sub>4</sub>−y,,B<sub>2</sub>=x<sub>3</sub>−x<sub>4</sub>,C<sub>2</sub>=A<sub>2</sub>x<sub>3</sub>+B<sub>2</sub>y<sub>3</sub>
+
+#### Solve the Linear System
+
+Now solve:
+
+A<sub>1</sub>x+B<sub>1</sub>y=C<sub>1</sub>        A<sub>2</sub>x+B<sub>2</sub>y=C<sub>2</sub>​
+
+Use **Cramer's Rule** or matrix inversion. The determinant is:
+
+det=A<sub>1</sub>B<sub>2</sub>−A<sub>2</sub>B<sub>1</sub>
+
+If `det = 0`, the lines are **parallel** or **coincident** (no unique intersection).
+
+Otherwise, the intersection point (x,y) is:
+
+x=B<sub>2</sub>C<sub>1</sub>−B<sub>1</sub>C<sub>2</sub>/det &#x20;
+
+y=A<sub>1</sub>C<sub>2</sub>−A<sub>2</sub>C<sub>1</sub>/det
+
+#### Check if the Point Lies on Both Segments
+
+The above point lies on the **infinite lines**. You must ensure it lies **within the bounds of both segments**.
+
+For a point r=(x,y) to lie on segment P=(x<sub>1</sub>,y<sub>1</sub>) to Q=(x<sub>2</sub>,y<sub>2</sub>), it must satisfy:
+
+min⁡(x<sub>1</sub>,x<sub>2</sub>) ≤ x ≤ max⁡(x<sub>1</sub>,x<sub>2</sub>)
+
+min⁡(y<sub>1</sub>,y<sub>2</sub>) ≤ y ≤ max⁡(y<sub>1</sub>,y<sub>2</sub>)
+
+Repeat for both segments.
+
+#### Solution
+
+```java
+public class LineIntersection {
+
+    static class Point {
+        double x, y;
+        Point(double x, double y) { this.x = x; this.y = y; }
+
+        @Override
+        public String toString() {
+            return "(" + x + ", " + y + ")";
+        }
+    }
+
+    // Function to compute the intersection of two segments
+    public static Point getIntersection(Point p1, Point p2, Point p3, Point p4) {
+        double A1 = p2.y - p1.y;
+        double B1 = p1.x - p2.x;
+        double C1 = A1 * p1.x + B1 * p1.y;
+
+        double A2 = p4.y - p3.y;
+        double B2 = p3.x - p4.x;
+        double C2 = A2 * p3.x + B2 * p3.y;
+
+        double determinant = A1 * B2 - A2 * B1;
+
+        if (determinant == 0) {
+            // Lines are parallel or coincident
+            return null;
+        } else {
+            double x = (B2 * C1 - B1 * C2) / determinant;
+            double y = (A1 * C2 - A2 * C1) / determinant;
+
+            Point intersection = new Point(x, y);
+
+            if (isOnSegment(p1, p2, intersection) && isOnSegment(p3, p4, intersection)) {
+                return intersection;
+            } else {
+                return null; // Intersection point is outside the segments
+            }
+        }
+    }
+
+    private static boolean isOnSegment(Point p, Point q, Point r) {
+        return r.x >= Math.min(p.x, q.x) && r.x <= Math.max(p.x, q.x) &&
+               r.y >= Math.min(p.y, q.y) && r.y <= Math.max(p.y, q.y);
+    }
+
+    public static void main(String[] args) {
+        Point p1 = new Point(1, 1);
+        Point p2 = new Point(4, 4);
+
+        Point p3 = new Point(1, 4);
+        Point p4 = new Point(4, 1);
+
+        Point intersection = getIntersection(p1, p2, p3, p4);
+        System.out.println(intersection != null ? "Intersection at: " + intersection : "No intersection");
+    }
+}
+```
+
+### Tic Tac Toe
+
+Design an algorithm to figure out if someone has won a game of tic-tac-toe.
+
+* Board is a **3x3 grid**.
+* Each cell is either: `'X'`, `'O'`, or `null` / `''` (empty).
+* Determine if `'X'` or `'O'` has won.
+* A win occurs when a player has **3 of their marks** in:
+  * A row
+  * A column
+  * A diagonal
+
+```java
+public class TicTacToeWinner {
+
+    public static Character checkWinner(char[][] board) {
+        // Check rows
+        for (int i = 0; i < 3; i++) {
+            if (board[i][0] != '\0' &&
+                board[i][0] == board[i][1] &&
+                board[i][1] == board[i][2]) {
+                return board[i][0];
+            }
+        }
+
+        // Check columns
+        for (int j = 0; j < 3; j++) {
+            if (board[0][j] != '\0' &&
+                board[0][j] == board[1][j] &&
+                board[1][j] == board[2][j]) {
+                return board[0][j];
+            }
+        }
+
+        // Check diagonals
+        if (board[0][0] != '\0' &&
+            board[0][0] == board[1][1] &&
+            board[1][1] == board[2][2]) {
+            return board[0][0];
+        }
+
+        if (board[0][2] != '\0' &&
+            board[0][2] == board[1][1] &&
+            board[1][1] == board[2][0]) {
+            return board[0][2];
+        }
+
+        // No winner
+        return null;
+    }
+
+    public static void main(String[] args) {
+        char[][] board = {
+            {'X', 'O', 'X'},
+            {'O', 'X', 'O'},
+            {'O', 'X', 'X'}
+        };
+
+        Character winner = checkWinner(board);
+        System.out.println(winner != null ? "Winner: " + winner : "No winner");
+    }
+}
+```
+
+### Trailing zeros in n factorial
+
+Write an algorithm which computes the number of trailing zeros in n factorial.
+
+Trailing zeros are the zeros at the end of a number.
+
+Example:\
+`120` has **1** trailing zero\
+`1000` has **3** trailing zeros
+
+Trailing zeros are formed when the number is divisible by powers of 10.
+
+#### What causes a 10 in factorial?
+
+Every time we multiply numbers, a 10 is produced when we multiply `2 × 5`.
+
+In a factorial like `n! = 1 × 2 × 3 × ... × n`, there are many 2s and many 5s.
+
+But **5s are less frequent** than 2s, so:
+
+* The number of 10s = the number of times 5 appears in the prime factors of `n!`.
+
+So the number of trailing zeros is equal to the number of times `5` appears as a factor in `n!`.
+
+#### How do we count how many 5s are there?
+
+We look for:
+
+* Numbers divisible by 5: these give **one 5**
+* Numbers divisible by 25: these give **two 5s**
+* Numbers divisible by 125: these give **three 5s**, and so on.
+
+So we add:
+
+```
+n / 5  +  n / 25  +  n / 125  + ...
+```
+
+We stop when the division result becomes zero.
+
+#### Example: n = 100
+
+```
+100 / 5   = 20   → 20 numbers give at least one 5
+100 / 25  = 4    → 4 of them give an extra 5
+100 / 125 = 0    → done
+```
+
+So, total number of trailing zeros = 20 + 4 = 24
+
+<figure><img src="../../.gitbook/assets/algorithm-problem-set-2-1.png" alt="" width="563"><figcaption></figcaption></figure>
+
+```java
+public class FactorialTrailingZeros {
+
+    public static int countTrailingZeros(int n) {
+        int count = 0;
+        for (int i = 5; n / i >= 1; i *= 5) {
+            count += n / i;
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        int n = 20;
+        int zeros = countTrailingZeros(n);
+        System.out.println("Trailing zeros in " + n + "! = " + zeros);
+    }
+}
+```
+
+### Smallest Difference
+
+Given two arrays of integers, compute the pair of values (one value in each array) with the smallest (non-negative) difference. Return the difference.
+
+Example
+
+Input: a = {1, 3, 15, 11, 2}, b = {23, 127,235, 19, 8}
+
+Output: 3. That is, the pair (11, 8).
+
+#### Solution 1: Brute-force approach
+
+```java
+package algo;
+
+public class Problem1 {
+    public static void main(String[] args) {
+        int[] a = {1, 3, 15, 11, 2};
+        int[] b = {23, 127,235, 19, 8};
+        int a1 = 0, b1 = 0;
+        int diff = Integer.MAX_VALUE;
+
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < b.length; j++) {
+                if (Math.abs(a[i] - b[j]) < diff) {
+                    diff = Math.abs(a[i] - b[j]);
+                    a1 = a[i];
+                    b1 = b[j];
+                }
+            }
+        }
+        System.out.println("a = " + a1 + " b = " + b1 + " diff = " + diff);
+    }
+}
+```
+
+Time Complexity: **O(n × m)**
+
+This works by comparing every pair from array `a` and `b` using two nested loops.
+
+#### Solution 2: Optimized Approach (Using Sorting + Two Pointers)
+
+*   Sort both arrays:
+
+    ```
+    a = [1, 2, 3, 11, 15]
+    b = [8, 19, 23, 127, 235]
+    ```
+* Use two pointers `i` and `j` to walk through `a` and `b`:
+  * If `a[i] < b[j]`, try next value in `a` (increase `i`)
+  * If `a[i] > b[j]`, try next value in `b` (increase `j`)
+  * Always track the current absolute difference
+* Stop when we reach the end of either array.
+
+```java
+import java.util.Arrays;
+
+public class SmallestDifference {
+
+    public static int findSmallestDifference(int[] a, int[] b) {
+        Arrays.sort(a);
+        Arrays.sort(b);
+
+        int i = 0, j = 0;
+        int minDiff = Integer.MAX_VALUE;
+        int a1 = 0, b1 = 0;
+
+        while (i < a.length && j < b.length) {
+            int diff = Math.abs(a[i] - b[j]);
+
+            if (diff < minDiff) {
+                minDiff = diff;
+                a1 = a[i];
+                b1 = b[j];
+            }
+
+            // Move the pointer with the smaller value
+            if (a[i] < b[j]) {
+                i++;
+            } else {
+                j++;
+            }
+        }
+
+        System.out.println("a = " + a1 + ", b = " + b1 + ", diff = " + minDiff);
+        return minDiff;
+    }
+
+    public static void main(String[] args) {
+        int[] a = {1, 3, 15, 11, 2};
+        int[] b = {23, 127, 235, 19, 8};
+
+        findSmallestDifference(a, b);
+    }
+}
+```
+
+#### Time Complexity
+
+* Sorting: O(n log n + m log m)
+* Linear scan: O(n + m)
+* **Total: O(n log n + m log m)**
 
 
 

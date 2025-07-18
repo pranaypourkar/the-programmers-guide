@@ -191,7 +191,45 @@ public class SingleNumber {
 }
 ```
 
+### 7. Max Number among 2 Numbers
 
+To find the **maximum of two numbers** **without using `if-else`, comparison operators (`>`, `<`, `==`, etc.), ternary (`? :`), or `Math.max()`**, we can use a combination of **arithmetic** and **bit manipulation**.
+
+We use the idea of sign bit from subtraction:
+
+* diff=a−b
+* If a≥b, the sign of `diff` is **0**
+* If a\<b, the sign of `diff` is **1**
+
+To extract the **sign**, shift the result of `diff` by 31 bits (for 32-bit signed integers):
+
+```java
+int sign = (diff >> 31) & 1;
+```
+
+* `sign = 0` → a is max
+* `sign = 1` → b is max
+
+```java
+public class MaxWithoutComparison {
+
+    public static int getMax(int a, int b) {
+        int diff = a - b;
+
+        // Get sign of diff: 0 if a >= b, 1 if a < b
+        int sign = (diff >> 31) & 1;
+
+        // If sign == 0 → return a, else return b
+        return a - sign * diff;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getMax(10, 20)); // 20
+        System.out.println(getMax(100, 50)); // 100
+        System.out.println(getMax(-5, -10)); // -5
+    }
+}
+```
 
 ## Medium
 

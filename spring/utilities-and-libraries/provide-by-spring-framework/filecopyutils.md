@@ -14,11 +14,8 @@ Create 2 sample files (for e.g. _**SampleXmlResponse.xml**_ and _**SampleJsonRes
 
 <figure><img src="../../../.gitbook/assets/image (203).png" alt="" width="260"><figcaption><p>Folder Structure</p></figcaption></figure>
 
-| SampleJsonResponse.json                                            | SampleXmlResponse.xml |
-| ------------------------------------------------------------------ | --------------------- |
-| <pre class="language-json"><code class="lang-json">{
-</code></pre> |                       |
-| "getWeatherResponse": {                                            |                       |
+<table><thead><tr><th>SampleJsonResponse.json</th><th>SampleXmlResponse.xml</th></tr></thead><tbody><tr><td><pre class="language-json"><code class="lang-json">{
+</code></pre></td><td></td></tr><tr><td>"getWeatherResponse": {</td><td></td></tr></tbody></table>
 
 ```
 "location": "New York",
