@@ -443,6 +443,232 @@ public class SmallestDifference {
 
 ## Medium
 
+### Operations
+
+Write methods to implement the multiply, subtract, and divide operations for integers.\
+The results of all of these are integers. Use only the add operator
+
+```java
+public static void main(String[] args) {
+    System.out.println("Subtract: " + subtract(10, 4)); // 6
+    System.out.println("Multiply: " + multiply(-3, 5)); // -15
+    System.out.println("Divide: " + divide(20, -4));    // -5
+}
+```
+
+#### Subtract using only `+`
+
+To subtract `b` from `a`, add the **negative of b** to a.
+
+```java
+public static int negate(int x) {
+    int neg = 0;
+    int delta = x > 0 ? -1 : 1;
+    while (x != 0) {
+        x += delta;
+        neg += delta;
+    }
+    return neg;
+}
+
+public static int subtract(int a, int b) {
+    return a + negate(b);
+}
+```
+
+#### Multiply using only `+`
+
+Multiply `a` and `b` by adding `a` repeatedly `|b|` times.
+
+```java
+public static int multiply(int a, int b) {
+    if (a == 0 || b == 0) return 0;
+
+    boolean negative = false;
+    if (b < 0) {
+        b = negate(b);
+        negative = !negative;
+    }
+    if (a < 0) {
+        a = negate(a);
+        negative = !negative;
+    }
+
+    int result = 0;
+    for (int i = 0; i < b; i++) {
+        result += a;
+    }
+
+    return negative ? negate(result) : result;
+}
+```
+
+#### Divide using only `+`
+
+Use repeated subtraction to see how many times `b` fits into `a`.
+
+```java
+public static int divide(int a, int b) {
+    if (b == 0) throw new ArithmeticException("Division by zero");
+
+    boolean negative = false;
+    if (a < 0) {
+        a = negate(a);
+        negative = !negative;
+    }
+    if (b < 0) {
+        b = negate(b);
+        negative = !negative;
+    }
+
+    int quotient = 0;
+    int sum = 0;
+    while (sum + b <= a) {
+        sum += b;
+        quotient++;
+    }
+
+    return negative ? negate(quotient) : quotient;
+}
+```
+
+### Board Lengths
+
+There are two types of planks, one of length shorter and one of length longer. We must use exactly **K** planks of wood. Write a method to generate all possible lengths for the board.
+
+#### Solution 1:  **Brute Force (Two nested loops)**
+
+Loop through all combinations of shorter and longer planks that add up to `k`.
+
+```java
+public static Set<Integer> boardBruteForce(int shorter, int longer, int k) {
+    Set<Integer> result = new HashSet<>();
+    for (int i = 0; i <= k; i++) {
+        int numShorter = i;
+        int numLonger = k - i;
+        int totalLength = numShorter * shorter + numLonger * longer;
+        result.add(totalLength);
+    }
+    return result;
+}
+```
+
+#### Time Complexity
+
+* O(k) because we loop from `0` to `k` and compute a single value each time.
+
+#### **Solution 2: Optimized Approach (No Set, No Duplicates)**
+
+We avoid using a `Set` and simply **generate values in a loop** if `shorter != longer`.
+
+```java
+public static List<Integer> boardOptimized(int shorter, int longer, int k) {
+    List<Integer> result = new ArrayList<>();
+    if (k == 0) return result;
+
+    if (shorter == longer) {
+        result.add(shorter * k);  // Only one possible length
+        return result;
+    }
+
+    for (int i = 0; i <= k; i++) {
+        int totalLength = i * shorter + (k - i) * longer;
+        result.add(totalLength);
+    }
+
+    return result;
+}
+```
+
+#### Time Complexity
+
+* O(k)
+* No duplicate check needed as each value is guaranteed unique if `shorter != longer`.
+
+### Sub Sort
+
+Given an array, find the smallest subarray (from index m to n) such that if this part is sorted, the entire array becomes sorted. We aim to **minimize** `n - m`.
+
+1. Find where the array stops being sorted from **left to right**.
+2. Find where the array stops being sorted from **right to left**.
+3. Then:
+   * Find **min** and **max** in the unsorted region.
+   * Expand the left (`m`) to include any number greater than `min`.
+   * Expand the right (`n`) to include any number less than `max`.
+
+#### Explanation
+
+Given:\
+`[1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19]`
+
+1. Find the **first dip** from the left where array is no longer sorted:\
+   Index `5` → `11 > 7`
+2. Find the **first rise** from the right where array is no longer sorted:\
+   Index `8` → `6 < 7`
+
+So the unsorted window is initially from `6` to `8`: `[7, 12, 6]`\
+→ But we now find the **min = 6**, **max = 12**
+
+3.  Expand `m` to include any number greater than `min (6)`\
+    → Expand left: 4th index is `10` > 6\
+    → 3rd index is `7` > 6\
+    → 2nd index is `4` < 6 → stop
+
+    So `m = 3`
+4.  Expand `n` to include any number less than `max (12)`\
+    → 9th is 7 < 12\
+    → 10th is 16 > 12 → stop
+
+    So `n = 9`&#x20;
+
+```java
+public static int[] findUnsortedSubarray(int[] arr) {
+    int n = arr.length;
+
+    // Step 1: find the initial left boundary
+    int left = 0;
+    while (left < n - 1 && arr[left] <= arr[left + 1]) {
+        left++;
+    }
+    if (left == n - 1) return new int[]{-1, -1}; // already sorted
+
+    // Step 2: find the initial right boundary
+    int right = n - 1;
+    while (right > 0 && arr[right] >= arr[right - 1]) {
+        right--;
+    }
+
+    // Step 3: find min and max in subarray [left, right]
+    int min = Integer.MAX_VALUE;
+    int max = Integer.MIN_VALUE;
+    for (int i = left; i <= right; i++) {
+        min = Math.min(min, arr[i]);
+        max = Math.max(max, arr[i]);
+    }
+
+    // Step 4: expand left
+    while (left > 0 && arr[left - 1] > min) {
+        left--;
+    }
+
+    // Step 5: expand right
+    while (right < n - 1 && arr[right + 1] < max) {
+        right++;
+    }
+
+    return new int[]{left, right};
+}
+
+public static void main(String[] args) {
+    int[] arr = {1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19};
+    int[] result = findUnsortedSubarray(arr);
+    System.out.println("(" + result[0] + ", " + result[1] + ")");
+    // Output: (3, 9)
+}
+```
+
+
+
 
 
 ## Difficult
