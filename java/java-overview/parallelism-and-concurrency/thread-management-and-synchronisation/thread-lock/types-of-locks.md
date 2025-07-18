@@ -6,9 +6,78 @@ Locks in Java help **synchronize access** to shared resources in multithreaded e
 
 ## **1. Object-Level Lock**
 
-An **object-level lock** is associated with a specific instance of a class. It ensures that only **one thread** can execute a synchronized method/block **on a given object** at a time.
+An **object-level lock or Instance-Level Lock** is associated with a specific instance of a class. It ensures that only **one thread** can execute a synchronized method/block **on a given object** at a time.
 
-#### **Example**
+* `synchronized` on an **instance method** means: lock on `this` (the current object).
+* It helps ensure thread-safe access to shared data inside the object.
+* It does **not** lock the entire class — just the instance.
+
+{% hint style="success" %}
+Instance vs Class
+
+* `public synchronized void method() {}` → Locks **instance-level monitor (`this`)**.
+* `public static synchronized void method() {}` → Locks **class-level monitor (`ClassName.class`)**.
+{% endhint %}
+
+#### **Example 1**
+
+```java
+public class MyObject {
+    public synchronized void methodA() {
+        System.out.println(Thread.currentThread().getName() + " entered methodA");
+        try { 
+            Thread.sleep(1000); 
+        } catch (InterruptedException e) {}
+        System.out.println(Thread.currentThread().getName() + " exiting methodA");
+    }
+
+    public synchronized void methodB() {
+        System.out.println(Thread.currentThread().getName() + " entered methodB");
+        try { 
+            Thread.sleep(1000); 
+        } catch (InterruptedException e) {}
+        System.out.println(Thread.currentThread().getName() + " exiting methodB");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        MyObject obj = new MyObject();
+
+        Thread t1 = new Thread(() -> obj.methodA(), "T1");
+        Thread t2 = new Thread(() -> obj.methodB(), "T2");
+
+        t1.start();
+        t2.start();
+    }
+}
+
+/*
+T1 entered methodA
+T1 exiting methodA
+T2 entered methodB
+T2 exiting methodB
+*/
+```
+
+* Even though `methodA()` and `methodB()` are **different methods**, they both use `synchronized`.
+* Since they are synchronized **on the same object** (`obj`), **T2 has to wait** for T1 to finish.
+
+{% hint style="info" %}
+#### What if each thread uses a different object?
+
+```java
+MyObject obj1 = new MyObject();
+MyObject obj2 = new MyObject();
+
+Thread t1 = new Thread(() -> obj1.methodA(), "T1");
+Thread t2 = new Thread(() -> obj2.methodB(), "T2");
+```
+
+Now, both threads can **run concurrently**, because each one locks on a different object.
+{% endhint %}
+
+#### **Example 2**
 
 ```java
 class SharedResource {

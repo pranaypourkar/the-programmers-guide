@@ -1,6 +1,8 @@
 # Class Design
 
-## 1. Design a class which provides a lock only if there are no possible deadlocks.
+## Multithread
+
+### 1. Design a class which provides a lock only if there are no possible deadlocks.
 
 In multithreaded systems, **deadlocks occur** when two or more threads are **waiting on each other** to release locks, and none can proceed.
 
@@ -12,7 +14,7 @@ Example:
 
 Task is to design a class that **only allows a thread to acquire a lock if it won't create a deadlock**.
 
-### Approach 1: **Lock Ordering**
+#### Approach 1: **Lock Ordering**
 
 * Assign a **unique global order (ID)** to each lock.
 * Threads must **acquire locks in a specific order** (e.g., increasing ID).
@@ -21,8 +23,6 @@ Task is to design a class that **only allows a thread to acquire a lock if it wo
 {% hint style="success" %}
 If all threads follow the **same lock acquisition order**, they will never form a circular wait.
 {% endhint %}
-
-
 
 Two bank accounts, A and B.
 
@@ -230,7 +230,7 @@ If threads acquired locks in **random order** (based on from/to):
 * **Deadlock happens: each thread waits forever!**
 {% endhint %}
 
-### Approach 2: **Try-Lock with Timeout & Rollback**
+#### Approach 2: **Try-Lock with Timeout & Rollback**
 
 When multiple threads need to acquire multiple locks, and acquiring them in different orders, there's a risk of deadlock.\
 This approach tries to acquire each lock **with a timeout**, and **backs off** (releases all acquired locks) if it can't acquire all necessary locks within the timeout window.
@@ -421,7 +421,7 @@ In traditional lock acquisition (without timeout), this would be a deadlock.
 * System continues to operate
 * One or both threads may retry or log failure
 
-## 2. Design a mechanism to ensure that first is called before second and second is called before third.
+### 2. Design a mechanism to ensure that first is called before second and second is called before third.
 
 ```
 public class Foo {
@@ -441,7 +441,7 @@ To solve this problem where three threads (`ThreadA`, `ThreadB`, and `ThreadC`) 
 * `first()` must run **before** `second()`
 * `second()` must run **before** `third()`
 
-### Approach: Using `CountDownLatch`
+#### Approach: Using `CountDownLatch`
 
 We can use two `CountDownLatch` objects to control execution order:
 
@@ -520,6 +520,148 @@ public class FooTest {
 first
 second
 third
+*/
+```
+
+### 3. Implement **multithreaded FizzBuzz** with **four threads**, each thread is responsible for one task:
+
+* Thread A: prints `"Fizz"` for numbers divisible by 3 but not 5
+* Thread B: prints `"Buzz"` for numbers divisible by 5 but not 3
+* Thread C: prints `"FizzBuzz"` for numbers divisible by both 3 and 5
+* Thread D: prints the number if it's not divisible by 3 or 5
+
+_FizzBuzz.java_
+
+```java
+package practice;
+
+public class FizzBuzz {
+    private int n;
+    private int current = 1;
+
+    public FizzBuzz(int n) {
+        this.n = n;
+    }
+
+    public synchronized void fizz() throws InterruptedException {
+        while (current <= n) {
+            if (current % 3 == 0 && current % 5 != 0) {
+                System.out.println("Thread " + Thread.currentThread().getName() + ": " + "Fizz");
+                current++;
+                notifyAll();
+            } else {
+                waitForTurn();
+            }
+        }
+    }
+
+    public synchronized void buzz() throws InterruptedException {
+        while (current <= n) {
+            if (current % 5 == 0 && current % 3 != 0) {
+                System.out.println("Thread " + Thread.currentThread().getName() + ": " + "Buzz");
+                current++;
+                notifyAll();
+            } else {
+                waitForTurn();
+            }
+        }
+    }
+
+    public synchronized void fizzbuzz() throws InterruptedException {
+        while (current <= n) {
+            if (current % 3 == 0 && current % 5 == 0) {
+                System.out.println("Thread " + Thread.currentThread().getName() + ": " + "FizzBuzz");
+                current++;
+                notifyAll();
+            } else {
+                waitForTurn();
+            }
+        }
+    }
+
+    public synchronized void number() throws InterruptedException {
+        while (current <= n) {
+            if (current % 3 != 0 && current % 5 != 0) {
+                System.out.println("Thread " + Thread.currentThread().getName() + ": " + current);
+                current++;
+                notifyAll();
+            } else {
+                waitForTurn();
+            }
+        }
+    }
+
+    private void waitForTurn() throws InterruptedException {
+        // Check if we're not done yet
+        if (current <= n) {
+            wait();
+        }
+    }
+}
+```
+
+_FizzBuzzTest.java_
+
+```java
+package practice;
+
+public class FizzBuzzTest {
+
+    public static void main(String[] args) {
+        FizzBuzz fb = new FizzBuzz(15);
+
+        Thread t1 = new Thread(() -> {
+            try {
+                fb.fizz();
+            } catch (InterruptedException e) {
+            }
+        });
+
+        Thread t2 = new Thread(() -> {
+            try {
+                fb.buzz();
+            } catch (InterruptedException e) {
+            }
+        });
+
+        Thread t3 = new Thread(() -> {
+            try {
+                fb.fizzbuzz();
+            } catch (InterruptedException e) {
+            }
+        });
+
+        Thread t4 = new Thread(() -> {
+            try {
+                fb.number();
+            } catch (InterruptedException e) {
+            }
+        });
+
+        // Start all threads
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+    }
+}
+
+/*
+Thread Thread-3: 1
+Thread Thread-3: 2
+Thread Thread-0: Fizz
+Thread Thread-3: 4
+Thread Thread-1: Buzz
+Thread Thread-0: Fizz
+Thread Thread-3: 7
+Thread Thread-3: 8
+Thread Thread-0: Fizz
+Thread Thread-1: Buzz
+Thread Thread-3: 11
+Thread Thread-0: Fizz
+Thread Thread-3: 13
+Thread Thread-3: 14
+Thread Thread-2: FizzBuzz
 */
 ```
 
