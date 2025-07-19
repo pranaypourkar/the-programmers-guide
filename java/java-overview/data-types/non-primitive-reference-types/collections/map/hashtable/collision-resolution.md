@@ -53,7 +53,7 @@ This is a common situation in hash tables, especially when:
 Collisions can lead to:
 
 1. **Slower Lookups**\
-   You must now **search through a list or probe** for the correct key, increasing time complexity from O(1) to O(n) in the worst case.
+   We must now **search through a list or probe** for the correct key, increasing time complexity from O(1) to O(n) in the worst case.
 2. **Increased Memory Usage**\
    Chaining uses extra memory to store lists or trees at each bucket.
 3. **Difficult Deletions**\
@@ -72,6 +72,23 @@ A good hash table implementation ensures that:
 * Lookup, insert, and delete operations remain **close to O(1)** on average.
 
 ## Collision Resolution Techniques
+
+{% hint style="success" %}
+Should We Learn Collision Resolution Techniques?
+
+In **90% of business applications**, we should just use:
+
+```java
+Map<Key, Value> map = new HashMap<>();
+```
+
+Because:
+
+* Java’s `HashMap` already handles collisions using **separate chaining** and later **balanced trees** (since Java 8, when bucket size exceeds threshold).
+* It’s well-tested, fast, and handles resizing, load factor, etc., automatically.
+
+However, we should be aware of the techniques.
+{% endhint %}
 
 ### 1. **Separate Chaining (Open Hashing)**
 
@@ -102,7 +119,7 @@ Map<Integer, List<String>> hashTable = new HashMap<>();
 **Use When:**
 
 * Keys may have poor distribution.
-* You prefer simplicity and flexibility over space.
+* We prefer simplicity and flexibility over space.
 
 ### 2. **Open Addressing (Closed Hashing)**
 
@@ -134,7 +151,7 @@ index = (hash + i) % tableSize
 
 **Use When:**
 
-* You need cache efficiency and can keep the load factor low (< 0.7).
+* We need cache efficiency and can keep the load factor low (< 0.7).
 
 #### **2.2 Quadratic Probing**
 
@@ -160,7 +177,7 @@ Usually: `c1 = 0, c2 = 1` gives `(hash + i^2) % size`.
 
 **Use When:**
 
-* You want to avoid primary clustering and can handle mathematical probing.
+* We want to avoid primary clustering and can handle mathematical probing.
 
 #### **2.3 Double Hashing**
 
@@ -196,7 +213,7 @@ hash2 = prime - (key % prime)
 
 **Use When:**
 
-* You want highest performance and good distribution.
+* We want highest performance and good distribution.
 
 ### 3. **Rehashing (Resizing Hash Table)**
 
@@ -217,4 +234,6 @@ hash2 = prime - (key % prime)
 
 * Rehashing is expensive and time-consuming.
 * Temporary performance hit during resizing.
+
+
 
