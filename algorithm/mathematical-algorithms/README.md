@@ -129,7 +129,7 @@ Various algorithms to solve the Fibonacci series:
 
 #### Sum of Powers of 2
 
-
+<figure><img src="../../.gitbook/assets/mathematical-algorithms-2025-07-19.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Prime Number
 

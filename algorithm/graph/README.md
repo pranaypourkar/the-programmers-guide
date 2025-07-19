@@ -220,44 +220,94 @@ Subgraph:
 
 ### Bipartite Graph
 
-A graph **G(V, E)** is **bipartite** if its **vertex set V can be divided into two subsets, U and V**, such that:
+A **Bipartite Graph** is a special type of graph where:
 
-* **Every edge in E** connects a vertex in **U** to a vertex in **V**.
-* **No edge exists within U or within V** (i.e., no two vertices in the same subset are connected)
+* The set of **vertices can be divided into two disjoint sets** such that
+* **Every edge connects a vertex from one set to the other**
+* No edge connects two vertices in the same set
 
-#### **Example of a Bipartite Graph**
+A graph **G = (V, E)** is **bipartite** if the vertex set **V** can be partitioned into two sets **U** and **V**, such that:
+
+* U∪V=V and U∩V=∅
+* Every edge e∈E connects a vertex from **U** to a vertex from **V** (not within the same set)
+
+#### Characteristics
+
+* **No odd-length cycles**: A graph is bipartite **if and only if** it does **not** contain a cycle of **odd length**
+* Can be **colored using 2 colors** such that no two adjacent vertices have the same color (2-colorable)
+* Can represent relationships like:
+  * People and hobbies
+  * Jobs and applicants
+  * Users and roles
+
+#### How to Check if a Graph is Bipartite
+
+We can use either **Breadth-First Search (BFS)** or **Depth-First Search (DFS)** to check if a graph is bipartite.
+
+**Using BFS (Coloring Method):**
+
+1. Assign one color (say 0) to the starting vertex
+2. Traverse all adjacent vertices:
+   * Assign them the opposite color (1)
+   * If a neighbor has the same color as the current vertex → Not bipartite
+3. Continue the process for all vertices
+4. If no conflicts found, the graph is bipartite
+
+**Using DFS (Same logic, recursive coloring)**
+
+#### Example 1&#x20;
+
+Graph:
 
 ```
-   A      B
-   |      |
-   C ---- D
+A -- B
+|    |
+C -- D
 ```
 
-* **Two disjoint sets:** `{A, B}` and `{C, D}`
-* **Edges only exist between these sets** (`A-C`, `B-D`, and `C-D`)
-* **No edges within {A, B} or {C, D}**
+Set U = {A, D}, Set V = {B, C}\
+All edges go between the sets → Bipartite
 
-This is a bipartite graph because we can color it using two colors:
-
-* **A and B → Red**
-* **C and D → Blue**
-
-**How to Check if a Graph is Bipartite?**
-
-A graph is bipartite if it can be colored using two colors without adjacent nodes having the same color.
-
-* Acyclic graphs (like trees) are always bipartite.
-* Odd-length cycles (like triangles) are not bipartite.
-
-Example (Not Bipartite)
+Graph with a triangle (3-cycle):
 
 ```
-   A
-  / \
- B---C
+A -- B
+ \  /
+  C
 ```
 
-* **Triangle (A-B-C-A) has an odd cycle (3 edges) → Not bipartite.**
+This has an odd-length cycle (3 nodes) → Not bipartite
+
+#### **Example 2**
+
+Let’s define the sets as follows:
+
+* **Set U (Left side)**: {1, 2, 3}
+* **Set V (Right side)**: {A, B}
+
+Edges:
+
+* (1, A)
+* (2, A)
+* (2, B)
+* (3, B)
+
+Graph:
+
+```
+Set U       Set V
+  1   ---->   A
+  2   ---->   A
+  2   ---->   B
+  3   ---->   B
+```
+
+Explanation:
+
+* The graph can be split into two sets (U and V)
+* All edges connect a node from Set U to Set V
+* No edge exists between nodes **within the same set**
+* Therefore, this graph is **bipartite**
 
 ### **Complete Graph (Kn)**
 
@@ -367,19 +417,7 @@ A **non-planar graph** is a graph that **cannot be drawn on a plane without edge
 * K₃,₃ consists of two sets of 3 vertices each, with every vertex in one set connected to all vertices in the other set.
 * Example: (A, B, C) connected to (X, Y, Z)
 
-```
-  A ---- X
-  | \   / |
-  |  \ /  |
-  |  / \  |
-  | /   \ |
-  B ---- Y
-  | \   / |
-  |  \ /  |
-  |  / \  |
-  | /   \ |
-  C ---- Z
-```
+<figure><img src="../../.gitbook/assets/graph-19072025-1.png" alt="" width="266"><figcaption></figcaption></figure>
 
 * It is impossible to draw without edge crossings, making it non-planar.
 
