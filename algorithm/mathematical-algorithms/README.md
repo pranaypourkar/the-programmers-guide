@@ -125,6 +125,10 @@ Various algorithms to solve the Fibonacci series:
    * Compute `dp[i] = dp[i - 1] + dp[i - 2]`.
 4. Return `dp[n]`.
 
+### 5. Other Series
+
+#### Sum of Powers of 2
+
 
 
 ## Prime Number
