@@ -1,0 +1,2 @@
+# Hybrid or Adaptive Patterns
+
