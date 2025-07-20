@@ -68,6 +68,7 @@
     * [Problems - Set 1](algorithm/set-1-miscellaneous/problems-set-1.md)
 * [API](api/README.md)
   * [API Basics](api/api-basics/README.md)
+    * [Terminology](api/api-basics/terminology.md)
     * [What is an API?](api/api-basics/what-is-an-api.md)
     * [Why Use APIs?](api/api-basics/why-use-apis.md)
     * [API Consumers vs Providers](api/api-basics/api-consumers-vs-providers.md)

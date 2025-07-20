@@ -75,7 +75,78 @@ A parallel-safe program should produce the **same result** regardless of the ord
 
 Parallel programs are harder to debug. If race conditions or deadlocks occur, they may not show up every time. If you can’t consistently reproduce issues, that’s a sign of unsafe parallel behavior.
 
+## Use Case: Sum of Squares of a Large List of Integers
 
+We are given a **large list of integers** (say, 100 million integers), and we want to compute the **sum of their squares**:
 
+```
+sum = x₁² + x₂² + x₃² + ... + xₙ²
+```
 
+This is a **CPU-bound**, **repetitive**, and **independent** operation — each square can be computed without needing the others.
 
+### Single-threaded (Sequential) Approach
+
+```java
+public class SumOfSquaresSequential {
+    public static long sumSquares(int[] nums) {
+        long sum = 0;
+        for (int num : nums) {
+            sum += (long) num * num;
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        int[] data = new int[100_000_000];
+        Arrays.fill(data, 2); // Simple data for demo
+
+        long start = System.currentTimeMillis();
+        long result = sumSquares(data);
+        long end = System.currentTimeMillis();
+
+        System.out.println("Sum: " + result);
+        System.out.println("Time taken (Sequential): " + (end - start) + " ms");
+    }
+}
+```
+
+* Uses just **one thread**.
+* Goes through the list one element at a time.
+* Takes time **proportional to the size** of the list (`O(n)`).
+
+### Parallel Approach (Using Java `ForkJoinPool` / `parallelStream`)
+
+We can use Java 8’s **parallel streams**, which internally splits the task across available CPU cores.
+
+```java
+public class SumOfSquaresParallel {
+    public static void main(String[] args) {
+        int[] data = new int[100_000_000];
+        Arrays.fill(data, 2); // All elements = 2
+
+        long start = System.currentTimeMillis();
+        long result = Arrays.stream(data)
+                            .parallel()
+                            .mapToLong(x -> (long) x * x)
+                            .sum();
+        long end = System.currentTimeMillis();
+
+        System.out.println("Sum: " + result);
+        System.out.println("Time taken (Parallel): " + (end - start) + " ms");
+    }
+}
+```
+
+* `.parallel()` splits work **across multiple threads/cores**.
+* Each thread processes a chunk of the array **independently**.
+* Final result is merged using **thread-safe reduction** (`sum()`).
+
+#### Sample Performance (On 8-core CPU):
+
+| Version    | Time (Approx.) |
+| ---------- | -------------- |
+| Sequential | 2500 ms        |
+| Parallel   | 400–700 ms     |
+
+\~**4x–6x improvement** depending on system load and CPU

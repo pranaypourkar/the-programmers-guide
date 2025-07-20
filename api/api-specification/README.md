@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # API Specification
 
 ## API-first approach
@@ -22,7 +26,7 @@ API specifications act as a contract between API and its consumers. It promotes 
 
 ## API Specification Formats
 
-1. **OpenAPI (OAS, formerly Swagger)**: Industry-standard API specification format for RESTful APIs. Supports JSON and YAML formats and provides extensive tooling and ecosystem support. It is  most widely used and comprehensive API specification language.&#x20;
+1. **OpenAPI (OAS, formerly Swagger)**: Industry-standard API specification format for RESTful APIs. Supports JSON and YAML formats and provides extensive tooling and ecosystem support. It is most widely used and comprehensive API specification language.
 2. **RAML (RESTful API Modeling Language)**: YAML-based language for describing RESTful APIs. Focuses on simplicity, readability, and reusability.
 3. **API Blueprint**: Markdown-based language for describing APIs. Designed for simplicity and ease of use, suitable for rapid prototyping and documentation.
 4. **GraphQL SDL (Schema Definition Language)**: Language for defining GraphQL schemas. Specifies types, queries, mutations, etc., in a concise and human-readable format.
@@ -36,6 +40,3 @@ API specifications act as a contract between API and its consumers. It promotes 
 5. **Security**: Specify security requirements, such as HTTPS, OAuth, API keys, etc.
 6. **Versioning**: Define versioning strategy and URL structure for versioning.
 7. **Documentation**: Include descriptive documentation, examples, and usage guidelines for each API endpoint.
-
-
-
