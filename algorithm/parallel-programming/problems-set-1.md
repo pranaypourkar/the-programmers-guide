@@ -1,4 +1,4 @@
-# Parallel Programming
+# Problems - Set 1
 
 ## Factorial of a number
 
