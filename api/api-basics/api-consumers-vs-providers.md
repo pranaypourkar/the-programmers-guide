@@ -1,2 +1,0 @@
-# API Consumers vs Providers
-
