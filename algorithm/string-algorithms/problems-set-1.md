@@ -1,4 +1,4 @@
-# String Algorithms
+# Problems - Set 1
 
 ## Easy
 
