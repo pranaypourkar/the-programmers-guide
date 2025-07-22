@@ -52,6 +52,7 @@
     * [Tree Traversal Techniques](algorithm/tree/tree-traversal-techniques.md)
     * [Tree Implementation](algorithm/tree/tree-implementation.md)
     * [AVL Tree](algorithm/tree/avl-tree.md)
+    * [Red-Black Trees](algorithm/tree/red-black-trees.md)
     * [Applications of Trees](algorithm/tree/applications-of-trees.md)
     * [Problems - Set 1](algorithm/tree/problems-set-1.md)
   * [Graph](algorithm/graph/README.md)
