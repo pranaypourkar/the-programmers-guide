@@ -1265,7 +1265,7 @@
     * [Logging](system-design/observability/logging.md)
     * [Dashboards & Alerts](system-design/observability/dashboards-and-alerts.md)
   * [Data Processing](system-design/data-processing/README.md)
-    * [MapReduce](system-design/data-processing/mapreduce/README.md)
+    * [MapReduce](system-design/data-processing/mapreduce.md)
       * [Example](system-design/data-processing/mapreduce/example.md)
     * [Batch Processing](system-design/data-processing/batch-processing.md)
     * [Stream Processing](system-design/data-processing/stream-processing.md)
