@@ -1,4 +1,4 @@
-# Java Installation
+# Installation
 
 ## **Step-by-Step Java Installation**
 
@@ -98,7 +98,7 @@ public static void main(String[] args) {
     }
 ```
 
-<figure><img src="../.gitbook/assets/image (464).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (464).png" alt=""><figcaption></figcaption></figure>
 
 ## **Java Installation Best Practices**
 

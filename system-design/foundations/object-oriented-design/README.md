@@ -223,8 +223,8 @@ If we need to **change** the `Payment` processing method, we just modify **one c
 * Inheritance
 * Polymorphism
 
-{% content-ref url="../../../java/java-overview/basics/" %}
-[basics](../../../java/java-overview/basics/)
+{% content-ref url="../../../java/java-basics/basics/" %}
+[basics](../../../java/java-basics/basics/)
 {% endcontent-ref %}
 
 ### **Use Design Patterns**
