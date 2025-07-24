@@ -1,6 +1,10 @@
-# Thread Pool
+---
+hidden: true
+---
 
-## About&#x20;
+# Thread Pooling
+
+## About
 
 A thread pool in Java is a collection of pre-instantiated reusable threads that can be used to execute multiple tasks. Thread pools are used to manage a pool of worker threads, making it easier to handle a large number of concurrent tasks without the overhead of creating and destroying threads frequently.
 

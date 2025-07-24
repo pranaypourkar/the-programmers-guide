@@ -368,7 +368,7 @@ public class Main {
 
 ## Additional Info
 
-{% content-ref url="../../../../concepts/set-4/comparison-and-ordering/object-equality-check.md" %}
-[object-equality-check.md](../../../../concepts/set-4/comparison-and-ordering/object-equality-check.md)
+{% content-ref url="../../../../java-concepts/utilities/comparing-and-ordering/object-equality-check.md" %}
+[object-equality-check.md](../../../../java-concepts/utilities/comparing-and-ordering/object-equality-check.md)
 {% endcontent-ref %}
 

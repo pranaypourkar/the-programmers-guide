@@ -16,7 +16,7 @@ Asynchronous computation in Spring Boot refers to executing tasks or methods asy
 
 * Asynchronous processing can be achieved using `CompletableFuture` or `Future`.
 * This allows the caller to retrieve the result of the computation later or handle exceptions.
-* Refer to this Page for more details: [executorservice](../../../java/concepts/concepts-set-1/asynchronous-computation/executorservice/ "mention")
+* Refer to this Page for more details: [executorservice](../../../java/java-concepts/concurrency-and-multithreading/executor-framework/executorservice/ "mention")
 
 ### **3. Using `WebFlux` for Reactive Programming**
 

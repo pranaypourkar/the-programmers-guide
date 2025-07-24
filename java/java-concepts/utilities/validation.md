@@ -7,7 +7,7 @@ Jakarta Validation (formerly Bean Validation) is a Java specification that allow
 Originally part of the `javax.validation` package, it was renamed as part of the Jakarta EE transition. Jakarta Validation can be used in any Java SE application.
 
 {% hint style="info" %}
-Refer to the following pages fro more details - [javax.validation.md](../../packages/jakarta-packages/javax.validation.md "mention") & [jakarta.validation.md](../../packages/jakarta-packages/jakarta.validation.md "mention")
+Refer to the following pages fro more details - [javax.validation.md](../../java-packages/jakarta-packages/javax.validation.md "mention") & [jakarta.validation.md](../../java-packages/jakarta-packages/jakarta.validation.md "mention")
 {% endhint %}
 
 ## **Primary Use Cases**

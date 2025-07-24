@@ -34,7 +34,7 @@ interface Greeting {
 
 For more details, refer to the below page -
 
-{% content-ref url="../../../../concepts/concepts-set-1/functional-interfaces/" %}
-[functional-interfaces](../../../../concepts/concepts-set-1/functional-interfaces/)
+{% content-ref url="../../../../java-concepts/functional-programming/functional-interfaces/" %}
+[functional-interfaces](../../../../java-concepts/functional-programming/functional-interfaces/)
 {% endcontent-ref %}
 
