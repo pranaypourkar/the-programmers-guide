@@ -108,6 +108,7 @@
     * [CORS](api/api-security/cors.md)
     * [Input Validation](api/api-security/input-validation.md)
   * [REST API](api/rest-api-tbd/README.md)
+    * [Rest Principles](api/rest-api-tbd/rest-principles.md)
     * [HTTP Status Code](api/rest-api-tbd/http-status-code.md)
     * [HTTP Verbs or Methods](api/rest-api-tbd/http-verbs-or-methods.md)
     * [HTTP Headers](api/rest-api-tbd/http-headers/README.md)
