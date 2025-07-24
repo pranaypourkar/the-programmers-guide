@@ -36,7 +36,7 @@ The goal is to help learners, professionals, and interview candidates understand
 
 ### ⚖️ License
 
-This project is licensed under [**CC BY-NC 4.0**](https://creativecommons.org/licenses/by-nc/4.0/) \
+This project is licensed under [**CC BY-NC 4.0**](https://creativecommons.org/licenses/by-nc/4.0/) .\
 You may copy and redistribute the material in any medium or format for non-commercial use, with attribution.
 
 ### 🚫 Note on Contributions
