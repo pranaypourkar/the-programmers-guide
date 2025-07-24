@@ -33,9 +33,12 @@ The goal is to help learners, professionals, and interview candidates understand
 * No paywalls or commercial content is present.
 * Content is written by a single maintainer (Pranay Pourkar) and intended to support the open developer community.
 * The GitHub repository is **public** for transparency and version tracking.
-* Any support (e.g., GitHub Sponsors, BuyMeACoffee) is optional and non-intrusive.
 
 ### ⚖️ License
 
 This project is licensed under [**CC BY-NC 4.0**](https://creativecommons.org/licenses/by-nc/4.0/) \
 You may copy and redistribute the material in any medium or format for non-commercial use, with attribution.
+
+### 🚫 Note on Contributions
+
+While this is an open-source repo under a permissive license (CC BY-NC 4.0), it’s not currently accepting pull requests. You can suggest edits or ideas via [issues](https://github.com/pranaypourkar/the-programmers-guide/issues).
