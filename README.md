@@ -19,3 +19,23 @@ As I continue this journey, I’ll be writing about various coding and technolog
 
 
 
+### 📚 About This Project
+
+**The Programmer’s Guide** is an open-access educational resource maintained by [Pranay Pourkar](https://www.pranaypourkar.co.in/).\
+It aims to document foundational and advanced programming concepts, system design, backend engineering patterns, testing strategies, and development tools - all in one unified reference.
+
+This guide is created and maintained in a personal capacity alongside my full-time job.\
+The goal is to help learners, professionals, and interview candidates understand core software engineering topics in depth.
+
+### 🌱 Community Plan Compliance
+
+* This documentation is **free**, **public**, and **educational** in nature.
+* No paywalls or commercial content is present.
+* Content is written by a single maintainer (Pranay Pourkar) and intended to support the open developer community.
+* The GitHub repository is **public** for transparency and version tracking.
+* Any support (e.g., GitHub Sponsors, BuyMeACoffee) is optional and non-intrusive.
+
+### ⚖️ License
+
+This project is licensed under [**CC BY-NC 4.0**](https://creativecommons.org/licenses/by-nc/4.0/) \
+You may copy and redistribute the material in any medium or format for non-commercial use, with attribution.
