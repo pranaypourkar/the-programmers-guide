@@ -11,6 +11,6 @@ However, you’re welcome to:
 - 🐛 Report any bugs or issues via GitHub Issues
 - 💬 Share feedback, corrections, or topic suggestions
 
-If you find the guide helpful, consider sharing it with others or reaching out on [LinkedIn](https://www.linkedin.com/in/pranaypourkar/) or [Email](mailto:pranaypourkar@gmail.com).
+If you find the guide helpful, consider sharing it with others or reaching out on [LinkedIn](https://www.linkedin.com/in/pranay-pourkar/) or [Email](mailto:pranay.pourkar@gmail.com).
 
 Thank you for understanding!
