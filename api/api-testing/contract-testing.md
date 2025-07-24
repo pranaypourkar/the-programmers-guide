@@ -2,5 +2,5 @@
 hidden: true
 ---
 
-# API Testing & Tools
+# Contract Testing
 
