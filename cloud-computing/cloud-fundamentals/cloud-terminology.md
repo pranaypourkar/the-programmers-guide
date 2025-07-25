@@ -1,8 +1,12 @@
+---
+hidden: true
+---
+
 # Cloud Terminology
 
 ## **Resilience and Performance**
 
-### 1. High Availability&#x20;
+### 1. High Availability
 
 The ability to keep services up and running for long periods of time, while experiencing little to no downtime.
 
@@ -38,7 +42,7 @@ Adding more servers to a system to handle increased load, distributing the workl
 
 ## Costing
 
-### 1. Predictive Cost&#x20;
+### 1. Predictive Cost
 
 The ability to predict what costs will be incurred for a particular cloud service or offering.
 

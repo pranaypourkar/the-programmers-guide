@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Benefits, Challenges and Risk of Cloud Computing
 
 ## Benefits of Cloud Computing

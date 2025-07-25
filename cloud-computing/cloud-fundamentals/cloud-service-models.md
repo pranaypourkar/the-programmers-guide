@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Cloud Service Models
 
 ## About
@@ -79,13 +83,6 @@ Software as a Service (SaaS) delivers software applications over the internet on
 * **Salesforce:** Provides CRM solutions accessible via the cloud.
 * **Google Workspace (formerly G Suite):** Offers productivity and collaboration tools.
 
-## Comparison among different Cloud Service Model&#x20;
+## Comparison among different Cloud Service Model
 
 <table data-header-hidden data-full-width="true"><thead><tr><th width="158"></th><th></th><th></th><th></th></tr></thead><tbody><tr><td><strong>Aspect</strong></td><td><strong>IaaS</strong></td><td><strong>PaaS</strong></td><td><strong>SaaS</strong></td></tr><tr><td><strong>Control</strong></td><td>Low (over infrastructure)</td><td>Medium (over applications)</td><td>Low (over configuration)</td></tr><tr><td><strong>Responsibility</strong></td><td>User manages OS, applications, data</td><td>User manages applications, data</td><td>Provider manages everything except configuration</td></tr><tr><td><strong>Scalability</strong></td><td>High</td><td>High</td><td>High</td></tr><tr><td><strong>Flexibility</strong></td><td>High</td><td>Medium</td><td>Low</td></tr><tr><td><strong>Examples</strong></td><td>AWS EC2, Google Compute Engine</td><td>Heroku, Azure App Service</td><td>Salesforce, Google Workspace</td></tr></tbody></table>
-
-
-
-
-
-
-

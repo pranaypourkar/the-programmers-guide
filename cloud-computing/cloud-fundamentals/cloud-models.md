@@ -1,10 +1,14 @@
+---
+hidden: true
+---
+
 # Cloud Models
 
 ## About
 
 Cloud computing models define how cloud services are deployed and made available to users. These models determine the type of access, management, and responsibility shared between the cloud provider and the customer.
 
-## What are  main Cloud Models ?
+## What are main Cloud Models ?
 
 ### **Public Cloud:**
 
@@ -53,6 +57,3 @@ Cloud computing models define how cloud services are deployed and made available
 * **Performance and Scalability:** Assess the scalability and performance requirements of applications and workloads.
 * **Control and Customization:** Determine the level of control and customization needed over infrastructure and resources.
 * **Integration and Interoperability:** Consider how well the cloud model integrates with existing IT infrastructure and applications.
-
-
-

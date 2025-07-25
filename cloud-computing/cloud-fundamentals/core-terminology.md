@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Core Terminology
 
 ## Geography
@@ -26,7 +30,7 @@ Availability sets are logical groupings of VMs within a data center that are iso
 
 ## Fault Domain
 
-&#x20;A fault domain is a logical group of hardware within an availability set. VMs within the same fault domain share a common power source and network switch. Azure automatically distributes VMs across fault domains to minimize the impact of hardware failures or maintenance updates.
+A fault domain is a logical group of hardware within an availability set. VMs within the same fault domain share a common power source and network switch. Azure automatically distributes VMs across fault domains to minimize the impact of hardware failures or maintenance updates.
 
 ## Update Domain
 

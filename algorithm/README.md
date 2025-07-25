@@ -1,6 +1,5 @@
 ---
 icon: ruler-triangle
-coverY: 0
 ---
 
 # Algorithm
