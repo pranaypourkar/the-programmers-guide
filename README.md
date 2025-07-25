@@ -42,3 +42,7 @@ You may copy and redistribute the material in any medium or format for non-comme
 ### 🚫 Note on Contributions
 
 While this is an open-source repo under a permissive license (CC BY-NC 4.0), it’s not currently accepting pull requests. You can suggest edits or ideas via [issues](https://github.com/pranaypourkar/the-programmers-guide/issues).
+
+### 🤝 Supported by GitBook
+
+This project is proudly supported by [GitBook](https://www.gitbook.com/) through their [Community Plan](https://gitbook.com/docs/account-management/plans/community), which empowers open-source projects with professional documentation tools.
