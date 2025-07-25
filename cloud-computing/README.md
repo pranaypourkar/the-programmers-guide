@@ -10,7 +10,7 @@ Cloud computing is the delivery of computing services including servers, storage
 
 It is a technology that allows users to access and store data, applications, and services over the internet rather than on local hardware. It provides on-demand delivery of IT resources with pay-as-you-go pricing, enabling businesses and individuals to use computing resources flexibly and efficiently.
 
-## Why is it Called Cloud Computing?
+## Why is it Called Cloud Computing ?
 
 The term "cloud" in cloud computing is metaphorical. It originates from the cloud symbol used in diagrams and flowcharts to represent the internet or an abstract network. The idea is that the details of the network infrastructure are hidden, and users can access resources and services from this "cloud" without needing to know or manage the underlying complexities.
 
@@ -27,7 +27,7 @@ The term "cloud" in cloud computing is metaphorical. It originates from the clou
    * Rapid growth in cloud adoption across various industries.
    * Introduction of advanced services like AI/ML, big data processing, IoT integration.
 
-## Why it is Important to Know About Cloud Services?
+## Why it is Important to Know About Cloud Services ?
 
 1. **Industry Standard:** Cloud computing has become the standard for modern IT infrastructure and development. Understanding it is crucial for staying relevant in the tech industry.
 2. **Cost Efficiency:** Knowledge of cloud services helps organizations optimize costs by leveraging pay-as-you-go models and eliminating the need for maintaining physical hardware.
@@ -35,7 +35,7 @@ The term "cloud" in cloud computing is metaphorical. It originates from the clou
 4. **Innovation:** Cloud platforms offer advanced tools and services that enable rapid innovation, such as AI/ML capabilities, IoT integration, and big data analytics.
 5. **Career Advancement:** Proficiency in cloud technologies is highly sought after in the job market, opening up numerous career opportunities.
 
-## Who are Cloud Providers and Consumers?
+## Who are Cloud Providers and Consumers ?
 
 ### Cloud Providers
 
@@ -68,7 +68,7 @@ Cloud consumers are individuals, businesses, or organizations that use cloud com
 6. **Educational Institutions:** Implement cloud solutions for online learning platforms, data storage, and research projects.
 7. **Developers:** Use cloud platforms for application development, testing, and deployment. They benefit from services like containerization (e.g., Kubernetes), serverless computing, and CI/CD pipelines.
 
-### **How Cloud Consumers get Benefited?**
+### **How Cloud Consumers get Benefited ?**
 
 1. **Cost Savings:** Reduce or eliminate the need for investing in and maintaining physical infrastructure.
 2. **Scalability:** Easily scale resources up or down based on demand.
@@ -90,7 +90,7 @@ Cloud consumers are individuals, businesses, or organizations that use cloud com
 4. **APIs and Management Interfaces:**
    * Cloud providers offer APIs and management interfaces for users to interact with the services, automate tasks, and manage resources.
 
-## What Cloud Computing Services Are Available to Use?
+## What Cloud Computing Services Are Available to Use ?
 
 1. **Compute Services:** Virtual machines, containers, and serverless computing (e.g., AWS EC2, Google Compute Engine, Azure Functions).
 2. **Storage Services:** Object storage, block storage, and file storage (e.g., AWS S3, Google Cloud Storage, Azure Blob Storage).

@@ -4,7 +4,7 @@
 
 Compliance and regulation in security refer to the **laws, policies, standards, and guidelines** that organizations must follow to **protect data, ensure security, and maintain trust** with customers and stakeholders. These regulations **define security controls** that organizations must implement to **safeguard sensitive information** from cyber threats, breaches, and misuse.
 
-## Why is Compliance Important?
+## Why is Compliance Important ?
 
 * **Legal Obligations** – Many industries are legally required to adhere to security regulations.
 * **Data Protection** – Prevents **data breaches, identity theft, and financial fraud**.

@@ -69,7 +69,7 @@ Zero Trust is based on the principle of **“Never Trust, Always Verify.”** Th
 
 A fully implemented **Zero Trust model** consists of various security technologies and processes.
 
-<figure><img src="../../.gitbook/assets/s-Zero_Trust_Architecture_Components (1).png" alt="" width="438"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/s-Zero_Trust_Architecture_Components (1).png" alt="" width="438"><figcaption></figcaption></figure>
 
 ### **1. Identity & Access Management (IAM)**
 

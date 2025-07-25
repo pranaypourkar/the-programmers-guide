@@ -44,10 +44,10 @@ docker pull gvenzl/oracle-xe:18.4.0-slim
 
 | Feature                     | Full Image      | Slim Variant |
 | --------------------------- | --------------- | ------------ |
-| Includes SQL\*Plus, APEX    | ✅               | ❌ (removed)  |
+| Includes SQL\*Plus, APEX    | Yes             | (removed)    |
 | File size                   | \~5 GB          | \~2.5 GB     |
-| JDBC Connectivity           | ✅               | ✅            |
-| Suitable for Testcontainers | ✅               | ✅            |
+| JDBC Connectivity           | Yes             | Yes          |
+| Suitable for Testcontainers | Yes             | Yes          |
 | Startup time                | Slightly slower | Faster       |
 
 **Basic Usage:**
