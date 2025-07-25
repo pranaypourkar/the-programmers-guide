@@ -148,7 +148,6 @@
     * [Running JVM in Kubernetes/OpenShift Pods](application-containerisation/best-practices/running-jvm-in-kubernetes-openshift-pods.md)
 * [Cloud Computing](cloud-computing/README.md)
   * [Cloud Fundamentals](cloud-computing/cloud-fundamentals/README.md)
-    * [Cloud Terminology](cloud-computing/cloud-fundamentals/cloud-terminology.md)
     * [Core Terminology](cloud-computing/cloud-fundamentals/core-terminology.md)
     * [Cloud Characteristics](cloud-computing/cloud-fundamentals/cloud-characteristics.md)
     * [Infrastructure Concepts](cloud-computing/cloud-fundamentals/infrastructure-concepts.md)
