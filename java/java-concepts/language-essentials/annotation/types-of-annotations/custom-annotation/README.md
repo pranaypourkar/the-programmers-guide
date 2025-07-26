@@ -4,9 +4,11 @@ description: Overview about custom annotation.
 
 # Custom Annotation
 
+## About
+
 Custom annotations allows us to add metadata to the code. This metadata can then be used by Spring Boot or other frameworks at different stages (compile time, runtime, or both) to enhance functionality and improve code clarity.
 
-**How to create and use custom annotations?**
+## **How to create and use custom annotations ?**
 
 * **Declaration**: Custom annotations are defined like any other Java interface, with the `@interface` keyword. Annotations can include elements that act as parameters.
 * **Annotation Methods**: Custom annotation methods, which is optional, cannot have parameters and cannot throw exceptions. They can only have return types like primitives, String, Class, enums, annotations, or arrays of these types.
@@ -74,7 +76,7 @@ RetentionPolicy.RUNTIME - Refers to the runtime, available to java compiler and 
 * **Use the Annotation**: Once defined, custom annotation can be used throughout the Spring Boot application.
 * **Processing Custom Annotations:** Reflection or Spring AOP (Aspect-Oriented Programming) can be used to process custom annotations at runtime. Reflection allows to access the annotation information using libraries like `java.lang.reflect`. Spring AOP enables to create aspects that intercept method calls based on the presence of annotations like `@LogExecutionTime`, `@SMSNotification`.
 
-**Use case**
+## **Examples**
 
 Custom annotations are commonly used in Spring Boot for various purposes like request mapping, security, transaction management, logging, notification and more. They help in making the code more expressive, readable, and maintainable by providing metadata that can be leveraged by frameworks and developers.
 
@@ -183,7 +185,7 @@ public class Application {
 
 Execute the main program and verify the logs.
 
-<figure><img src="../../../../../.gitbook/assets/image (207).png" alt=""><figcaption><p>Output</p></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (207).png" alt=""><figcaption><p>Output</p></figcaption></figure>
 
 <mark style="background-color:purple;">**Case 2**</mark>: With Class and Field level custom annotation
 
@@ -340,6 +342,6 @@ public class Application {
 }
 ```
 
-<figure><img src="../../../../../.gitbook/assets/image (206).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/image (206).png" alt=""><figcaption></figcaption></figure>
 
-[^1]: [https://app.gitbook.com/o/tVyFnk5YBNmGbKUlXJjt/s/Pd6ktrA5pPLsZJktj2fm/\~/changes/30/spring/concepts/spring-aop/before-advice#scenario-1-logging-request-details-using-custom-annotation](../../../../../spring/spring-features/spring-aop/before-advice.md#scenario-1-logging-request-details-using-custom-annotation)
+[^1]: [https://app.gitbook.com/o/tVyFnk5YBNmGbKUlXJjt/s/Pd6ktrA5pPLsZJktj2fm/\~/changes/30/spring/concepts/spring-aop/before-advice#scenario-1-logging-request-details-using-custom-annotation](../../../../../../spring/spring-features/spring-aop/before-advice.md#scenario-1-logging-request-details-using-custom-annotation)

@@ -1,2 +1,6 @@
-# Threading and Synchronization - TBU
+---
+hidden: true
+---
+
+# JVM Runtime Internals
 

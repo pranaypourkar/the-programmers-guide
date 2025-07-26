@@ -1,2 +1,6 @@
-# Java Security - TBU
+---
+hidden: true
+---
+
+# Java Security
 
