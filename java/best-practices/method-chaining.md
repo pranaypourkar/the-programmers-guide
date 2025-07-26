@@ -49,7 +49,7 @@ private boolean isRequestNotValidated(PaymentValidationRequest paymentValidation
 * JVM performs **common subexpression elimination** and **method inlining** during Just-In-Time (JIT) compilation.
 * Repeated chains may result in slightly more bytecode but won’t affect runtime efficiency significantly — **if the getter methods are cheap** (simple field accesses).
 
-**But** if:
+But if:
 
 * The getters are doing more than returning a value (e.g., performing logic or expensive computation),
 * Or they involve **reflection**, **network calls**, or **dynamic proxies** (common in some frameworks),
