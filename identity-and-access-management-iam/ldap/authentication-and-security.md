@@ -1,2 +1,6 @@
-# LDAP Authentication and Security
+---
+hidden: true
+---
+
+# Authentication and Security
 

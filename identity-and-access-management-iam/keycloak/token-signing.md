@@ -1,4 +1,8 @@
-# Token signing - TBU
+---
+hidden: true
+---
+
+# Token Signing
 
 Symmetric Algorithms:
 
