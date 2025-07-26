@@ -169,6 +169,3 @@ public class ThreadLocalExample {
 
 **Concurrency Issues**: If the `finally` block is omitted or if multiple tasks accidentally share the same ThreadLocal variable, it can lead to unexpected behavior and data corruption.
 {% endhint %}
-
-
-

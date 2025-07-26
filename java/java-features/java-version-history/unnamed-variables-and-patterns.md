@@ -24,8 +24,6 @@ if (object instanceof Path(Position(int x1, int y1), Position pos)) {
 }
 ```
 
-
-
 ## Unnamed Variables
 
 Unnamed variables, sometimes referred to as "var placeholders" or "underscore variables," are used to ignore certain values in destructuring patterns or lambda expressions where the values are not needed. This feature is inspired by similar capabilities in other languages like Python and Scala.
@@ -89,4 +87,3 @@ In this example, the `instanceof` check not only checks if `obj` is an instance 
 1. **Conciseness**: Reduces boilerplate code by eliminating the need for explicit casting.
 2. **Readability**: Improves readability by clearly indicating the type check and variable binding in a single line.
 3. **Safety**: Reduces the risk of `ClassCastException` by combining type checking and casting.
-
