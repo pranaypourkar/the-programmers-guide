@@ -1118,6 +1118,8 @@
     * [Utilities by Spring framework](spring/utilities-and-libraries/provide-by-spring-framework/README.md)
       * [FileCopyUtils](spring/utilities-and-libraries/provide-by-spring-framework/filecopyutils.md)
   * [Deployment & Packaging](spring/deployment-and-packaging/README.md)
+    * [Packaging Options](spring/deployment-and-packaging/packaging-options.md)
+    * [Deployment Targets](spring/deployment-and-packaging/deployment-targets.md)
     * [Embedded Servers](spring/deployment-and-packaging/embedded-servers.md)
     * [Dockerizing Spring Apps](spring/deployment-and-packaging/dockerizing-spring-apps.md)
     * [Inspecting Docker Images](spring/deployment-and-packaging/inspecting-docker-images.md)
