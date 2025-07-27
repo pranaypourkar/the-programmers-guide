@@ -1,6 +1,2 @@
----
-hidden: true
----
-
-# Deployment & Embedded Servers
+# Deployment & Packaging
 
