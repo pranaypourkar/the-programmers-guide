@@ -41,3 +41,9 @@ Refer to the Page for more details - [use-case.md](../../application-containeris
 <figure><img src="../../.gitbook/assets/inspecting-docker-images-1.png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/inspecting-docker-images-2.png" alt=""><figcaption></figcaption></figure>
+
+{% hint style="info" %}
+After inspecting the image, proper classpath updates can be done to locate the appropriate configuration files
+
+\['-cp','/app/WEB-INF/classes:/app/WEB-INF/lib/_:/app/classes:/app/libs/_:/app/resources/','-Dlogging.level.liquibase=DEBUG']
+{% endhint %}
