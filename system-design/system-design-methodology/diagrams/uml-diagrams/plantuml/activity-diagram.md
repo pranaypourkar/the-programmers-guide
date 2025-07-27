@@ -58,7 +58,7 @@ stop
 @enduml
 ```
 
-<figure><img src="../../../../.gitbook/assets/plantuml-activity-diagram-1.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/plantuml-activity-diagram-1.png" alt=""><figcaption></figcaption></figure>
 
 
 

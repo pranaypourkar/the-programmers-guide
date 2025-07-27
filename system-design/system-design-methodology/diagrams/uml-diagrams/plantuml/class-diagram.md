@@ -105,7 +105,7 @@ Bank "1" o-- "*" Account : manages
 
 ```
 
-<figure><img src="../../../../.gitbook/assets/plantuml-class-diagram-1.png" alt="" width="507"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/plantuml-class-diagram-1.png" alt="" width="507"><figcaption></figcaption></figure>
 
 ## 2. Hospital Management System
 
@@ -136,5 +136,5 @@ Patient "1" -- "0..*" Appointment : books
 @enduml
 ```
 
-<figure><img src="../../../../.gitbook/assets/plantuml-class-diagram-2.png" alt="" width="389"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/plantuml-class-diagram-2.png" alt="" width="389"><figcaption></figcaption></figure>
 

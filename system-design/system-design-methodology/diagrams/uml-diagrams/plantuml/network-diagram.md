@@ -52,5 +52,5 @@ nwdiag {
 @enduml
 ```
 
-<figure><img src="../../../../.gitbook/assets/plantuml-network-diagram-1.png" alt="" width="283"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/plantuml-network-diagram-1.png" alt="" width="283"><figcaption></figcaption></figure>
 

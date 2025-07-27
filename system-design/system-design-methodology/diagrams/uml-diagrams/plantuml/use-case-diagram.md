@@ -58,7 +58,7 @@ rectangle "Online Shopping System" {
 @enduml
 ```
 
-<figure><img src="../../../../.gitbook/assets/plantuml-use-case-diagram-1.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/plantuml-use-case-diagram-1.png" alt=""><figcaption></figcaption></figure>
 
 
 

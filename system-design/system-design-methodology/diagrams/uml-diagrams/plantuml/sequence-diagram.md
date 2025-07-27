@@ -71,7 +71,7 @@ end
 @enduml
 ```
 
-<figure><img src="../../../../.gitbook/assets/plantuml-sequence-diagram-1.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/plantuml-sequence-diagram-1.png" alt=""><figcaption></figcaption></figure>
 
 
 

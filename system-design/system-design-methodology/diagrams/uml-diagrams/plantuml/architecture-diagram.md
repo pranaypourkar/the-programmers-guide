@@ -60,7 +60,7 @@ PostgreSQL --> "Spring Boot App" : Return Data
 @enduml
 ```
 
-<figure><img src="../../../../.gitbook/assets/plantuml-deployment-diagram-1.png" alt="" width="209"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/plantuml-deployment-diagram-1.png" alt="" width="209"><figcaption></figcaption></figure>
 
 ## **2. Message Queue System**
 
@@ -95,7 +95,7 @@ node "Consumer Services" {
 @enduml
 ```
 
-<figure><img src="../../../../.gitbook/assets/plantuml-architecture-diagram-1.png" alt="" width="236"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/plantuml-architecture-diagram-1.png" alt="" width="236"><figcaption></figcaption></figure>
 
 ## **3. CI/CD Pipeline Diagram**
 
@@ -130,7 +130,7 @@ node "Cloud Deployment" {
 @enduml
 ```
 
-<figure><img src="../../../../.gitbook/assets/plantuml-architecture-diagram-2.png" alt="" width="181"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/plantuml-architecture-diagram-2.png" alt="" width="181"><figcaption></figcaption></figure>
 
 ## **4. Distributed System**
 
@@ -210,7 +210,7 @@ Nginx --> "Payment Service" : Handle Payment
 @enduml
 ```
 
-<figure><img src="../../../../.gitbook/assets/plantuml-architecture-diagram-3.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/plantuml-architecture-diagram-3.png" alt=""><figcaption></figcaption></figure>
 
 
 

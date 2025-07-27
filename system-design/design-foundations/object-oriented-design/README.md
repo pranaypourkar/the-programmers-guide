@@ -229,8 +229,8 @@ If we need to **change** the `Payment` processing method, we just modify **one c
 
 ### **Use Design Patterns**
 
-{% content-ref url="../design-pattern/" %}
-[design-pattern](../design-pattern/)
+{% content-ref url="../../design-principles-and-patterns/design-pattern/" %}
+[design-pattern](../../design-principles-and-patterns/design-pattern/)
 {% endcontent-ref %}
 
 ### **UML Diagrams for OOD**
@@ -244,8 +244,8 @@ UML (Unified Modeling Language) diagrams help visualize OOD.
 * **Use Case Diagram** → Defines user interactions.
 * **Component Diagram** → Illustrates system components.
 
-{% content-ref url="../../diagrams.md" %}
-[diagrams.md](../../diagrams.md)
+{% content-ref url="../../system-design-methodology/diagrams/" %}
+[diagrams](../../system-design-methodology/diagrams/)
 {% endcontent-ref %}
 
 

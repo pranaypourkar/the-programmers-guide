@@ -49,5 +49,5 @@ SessionExpired --> LoggedOut
 @enduml
 ```
 
-<figure><img src="../../../../.gitbook/assets/plantuml-state-diagram-1.png" alt="" width="516"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/plantuml-state-diagram-1.png" alt="" width="516"><figcaption></figcaption></figure>
 

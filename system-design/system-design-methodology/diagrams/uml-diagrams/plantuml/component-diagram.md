@@ -41,7 +41,7 @@ package "Banking System" {
 @enduml
 ```
 
-<figure><img src="../../../../.gitbook/assets/plantuml-component-diagram-1.png" alt="" width="343"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/plantuml-component-diagram-1.png" alt="" width="343"><figcaption></figcaption></figure>
 
 
 

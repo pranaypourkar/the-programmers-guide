@@ -58,11 +58,11 @@ PlantUML requires Java (JDK 8 or higher) to run. It can be used in different way
 
 
 
-<figure><img src="../../../../.gitbook/assets/intellij-plantuml.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/intellij-plantuml.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/intellij-plantuml-2.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/intellij-plantuml-2.png" alt="" width="375"><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/intellij-plantuml-3.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/intellij-plantuml-3.png" alt="" width="563"><figcaption></figcaption></figure>
 
 
 

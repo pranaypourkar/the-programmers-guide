@@ -8,8 +8,8 @@ An ER Diagram represents data models and relationships between entities in a dat
 Refer to the official documentation for more details - [https://plantuml.com/er-diagram](https://plantuml.com/er-diagram)
 {% endhint %}
 
-{% content-ref url="../../../../database/sql-databases/rdbms/entity-relationship-diagram-erd/" %}
-[entity-relationship-diagram-erd](../../../../database/sql-databases/rdbms/entity-relationship-diagram-erd/)
+{% content-ref url="../../../../../database/sql-databases/rdbms/entity-relationship-diagram-erd/" %}
+[entity-relationship-diagram-erd](../../../../../database/sql-databases/rdbms/entity-relationship-diagram-erd/)
 {% endcontent-ref %}
 
 ### **Key Elements**
@@ -59,7 +59,7 @@ Employee }|..|| Department : belongs_to
 @enduml
 ```
 
-<figure><img src="../../../../.gitbook/assets/plantuml-er-diagram-1.png" alt="" width="245"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/plantuml-er-diagram-1.png" alt="" width="245"><figcaption></figcaption></figure>
 
 ## 2. Order System
 
@@ -97,7 +97,7 @@ Orders ||--|{ Order_Items : contains
 @enduml
 ```
 
-<figure><img src="../../../../.gitbook/assets/plantuml-er-diagram-2.png" alt="" width="227"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/plantuml-er-diagram-2.png" alt="" width="227"><figcaption></figcaption></figure>
 
 
 

@@ -43,5 +43,5 @@ WB is Waiting
 @enduml
 ```
 
-<figure><img src="../../../../.gitbook/assets/plantuml-timing-diagram-1.png" alt="" width="265"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/plantuml-timing-diagram-1.png" alt="" width="265"><figcaption></figcaption></figure>
 

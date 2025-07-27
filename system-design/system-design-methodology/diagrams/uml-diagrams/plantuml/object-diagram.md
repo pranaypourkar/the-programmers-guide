@@ -59,7 +59,7 @@ Order -- Product : contains
 @enduml
 ```
 
-<figure><img src="../../../../.gitbook/assets/plantuml-object-diagram-1.png" alt="" width="246"><figcaption></figcaption></figure>
+<figure><img src="../../../../../.gitbook/assets/plantuml-object-diagram-1.png" alt="" width="246"><figcaption></figcaption></figure>
 
 
 
