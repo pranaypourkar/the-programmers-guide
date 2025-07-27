@@ -1,6 +1,6 @@
 # Software Testing Methodologies
 
-## Description
+## About
 
 Software Testing Methodologies refer to the structured approaches and practices used to validate that software applications meet specified requirements and are free from defects. These methodologies encompass a range of techniques, strategies, and procedures designed to ensure the quality, performance, and reliability of software products. They guide the testing process from planning and design to execution and reporting.
 

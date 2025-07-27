@@ -1,13 +1,13 @@
 # Software Testing Life Cycle (STLC)
 
-## Description
+## About
 
 The Software Testing Life Cycle (STLC) is a structured process for ensuring the quality of software applications. It's a series of well-defined phases that testers follow to identify and eliminate defects before the software is released to users. Each phase plays a crucial role in identifying and resolving defects before the software is released.
 
 ## Different Phases
 
 1. **Test Planning**:
-   * **Definition**: This initial phase involves defining the scope and strategy for testing. Testers here collaborate with developers, business analysts, and other stakeholders to understand the application's requirements and functionalities. They then create a testing plan outlining the scope, objectives, testing approach, resources required, timelines, and risk mitigation strategies.&#x20;
+   * **Definition**: This initial phase involves defining the scope and strategy for testing. Testers here collaborate with developers, business analysts, and other stakeholders to understand the application's requirements and functionalities. They then create a testing plan outlining the scope, objectives, testing approach, resources required, timelines, and risk mitigation strategies.
    * **Purpose**: To ensure a clear and structured approach to testing.
 2. **Test Design**:
    * **Definition**: Based on the test plan, testers design specific test cases, scripts, and scenario to evaluate different functionalities, user scenarios, and potential error conditions. These test cases detail the inputs, expected outputs, and steps to be followed during testing.
@@ -21,4 +21,3 @@ The Software Testing Life Cycle (STLC) is a structured process for ensuring the 
 5. **Test Closure**:
    * **Definition**: The final phase involves evaluating the overall testing process and its effectiveness. Testers analyze the test results, ensure all critical defects are fixed, and assess if the software meets the predetermined quality criteria. Based on this evaluation, a decision is made to either proceed with release or conduct further testing if necessary.
    * **Purpose**: To formally conclude the testing phase and move towards deployment or further development.
-
