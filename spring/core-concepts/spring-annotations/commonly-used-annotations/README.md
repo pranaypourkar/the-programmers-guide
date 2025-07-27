@@ -1,6 +1,6 @@
 # Commonly Used Annotations
 
-#### About
+## About
 
 Spring Framework provides a rich set of annotations that reduce boilerplate code and make configuration, dependency injection, request mapping, and many other aspects of application development more declarative and expressive.
 
