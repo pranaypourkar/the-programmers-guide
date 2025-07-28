@@ -79,7 +79,7 @@ The entire pipeline leverages Spring’s dependency injection, HTTP conversion l
 
 REST is not always the right choice. There are several scenarios where REST creates bottlenecks, complexity, or inefficiency.
 
-**Avoid REST When:**
+**Avoid REST When**
 
 * **High Throughput, Event-Driven Requirements Exist**\
   If the system needs to publish, consume, or react to events in real time (e.g., financial transactions, audit logs), asynchronous messaging (like Kafka or RabbitMQ) is better suited.
