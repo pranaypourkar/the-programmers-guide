@@ -2,5 +2,5 @@
 hidden: true
 ---
 
-# Configuration Tips
+# Handling Responses
 

@@ -1,6 +1,6 @@
-# Example
+# Use Case
 
-## 1. Service 1 calling Service 2 GET API
+## 1. Service-1 calling Service-2 GET API
 
 Dependencies
 
