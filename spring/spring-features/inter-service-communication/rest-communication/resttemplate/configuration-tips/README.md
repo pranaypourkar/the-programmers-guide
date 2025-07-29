@@ -4,107 +4,279 @@ hidden: true
 
 # Configuration
 
-To use Apache HttpComponents, add below dependency and configure RestTemplate with -
+## About
 
-<pre class="language-java"><code class="lang-java"><strong>RestTemplate restTemplate = new RestTemplate();
-</strong>restTemplate.setRequestFactory(new HttpComponentsAsyncClientHttpRequestFactory());
-</code></pre>
+`RestTemplate` is a central class in Spring that allows applications to make HTTP calls to external services in a simple and declarative way. However, just using `new RestTemplate()` is rarely enough. In real-world applications, `RestTemplate` needs proper configuration to handle timeouts, error handling, authentication, message conversion, and performance tuning.
 
-```markup
-<dependency>
-    <groupId>org.apache.httpcomponents</groupId>
-    <artifactId>httpasyncclient</artifactId>
-</dependency>
-```
+## **Creating and Registering a RestTemplate Bean**
 
-
-
-1. **Setting Timeout**: We can configure connection and read timeouts to prevent application from hanging indefinitely if a remote server is slow to respond.
+The best practice is to **create a single `RestTemplate` bean** and inject it wherever needed.
 
 ```java
-RestTemplate restTemplate = new RestTemplateBuilder()
-    .setConnectTimeout(Duration.ofSeconds(10))
-    .setReadTimeout(Duration.ofSeconds(10))
-    .build();
+@Configuration
+public class RestTemplateConfig {
+
+    @Bean
+    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+        return builder.build();
+    }
+}
 ```
 
-2. **Customizing Message Converters**: We might need to customize the message converters used by `RestTemplate` to handle specific data formats or serialization/deserialization requirements.
+Using `RestTemplateBuilder` allows you to apply global settings such as timeouts, interceptors, and message converters.
+
+## Setting Timeouts
+
+Timeouts are a **critical part of robust system design**. They help prevent your application from hanging indefinitely when a remote service is **slow, overloaded, or unresponsive**.
+
+In enterprise applications, you should never rely on the default timeout settings, as they are often unbounded or too generous.
+
+#### **Types of Timeouts You Should Configure**
+
+In the context of `RestTemplate`, you typically configure two timeouts
+
+<table data-full-width="true"><thead><tr><th width="181.48699951171875">Timeout Type</th><th>Description</th></tr></thead><tbody><tr><td>Connection Timeout</td><td>Time allowed to establish the <strong>TCP connection</strong> to the target server.</td></tr><tr><td>Read Timeout</td><td>Time to wait for the <strong>response</strong> after sending the request. If the server is slow to respond or never responds, this will kick in.</td></tr></tbody></table>
+
+Optional (depending on request factory)
+
+<table data-full-width="true"><thead><tr><th width="184.00433349609375">Timeout Type</th><th>Description</th></tr></thead><tbody><tr><td>Connection Request Timeout</td><td>Time to wait for a connection from the connection pool (for pooled HTTP clients). Useful when you're reusing HTTP connections.</td></tr></tbody></table>
+
+### **1. Using SimpleClientHttpRequestFactory**
+
+This is the **default and simplest HTTP request factory** provided by Spring. It directly uses the `java.net.HttpURLConnection` under the hood.
+
+**Characteristics**
+
+* Lightweight and easy to set up.
+* Good for **basic use cases** with low concurrency.
+* No support for **connection pooling**.
+* Limited to **blocking** I/O operations.
+* Best suited for **small applications, internal tooling, or test utilities**.
 
 ```java
-RestTemplate restTemplate = new RestTemplate();
-restTemplate.setMessageConverters(Arrays.asList(new MappingJackson2HttpMessageConverter()));
+SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
+factory.setConnectTimeout(3000);  // milliseconds
+factory.setReadTimeout(8000);
+
+RestTemplate restTemplate = new RestTemplate(factory);
 ```
 
-3. **Error Handling**: We can configure error handling to handle different types of errors gracefully, such as by defining custom error handlers.
+**When to Use**
+
+* When building **non-critical** or **internal apps** with low request volume.
+* In situations where you **don't require** advanced HTTP features like pooling, connection reuse, or retry strategies.
+* For rapid prototyping and quick integrations.
+
+**Limitations**
+
+* **No connection reuse**: a new connection is created for each request.
+* Cannot tune many HTTP-layer concerns (e.g., keep-alive, socket buffering, etc.).
+* Not suitable for production-level **microservices or distributed systems**.
+
+### **2. Using HttpComponentsClientHttpRequestFactory**
+
+Backed by **Apache HttpClient**, this factory allows advanced HTTP capabilities including:
+
+* **Connection pooling**
+* **Retry policies**
+* **Custom headers, interceptors**
+* SSL configuration
+* Request-level tuning
+
+**Characteristics**
+
+* Supports **fine-grained timeout control**: connection timeout, read timeout, and connection request timeout.
+* Integrates well with enterprise-grade HTTP configurations.
+* Suitable for **high-performance** and **scalable** applications.
+* Supports **connection reuse**, improving performance.
 
 ```java
-RestTemplate restTemplate = new RestTemplate();
-restTemplate.setErrorHandler(new MyResponseErrorHandler());
+HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+factory.setConnectTimeout(3000);
+factory.setReadTimeout(10000);
+factory.setConnectionRequestTimeout(2000);
+
+RestTemplate restTemplate = new RestTemplate(factory);
 ```
 
-4. **Interceptors**: Interceptors allows to intercept and modify outgoing requests or incoming responses. They can be used for logging, adding headers, or other pre/post-processing tasks.
+**When to Use**
+
+* For **enterprise-scale applications** or **microservices** communicating over HTTP.
+* When you need connection pooling for **performance optimization**.
+* If you're interacting with external APIs or services with potential for high latency.
+
+**Additional Benefits**
+
+* Can plug in a **custom HttpClient** with additional configurations (e.g., proxy, TLS versions, keep-alive).
+* Better control for **timeouts per route** or host.
+
+### **3. Using RestTemplateBuilder**
+
+A **Spring Boot convenience builder** for creating `RestTemplate` instances in a more declarative and chainable manner.
+
+**Characteristics**
+
+* Encourages **cleaner, more readable code**.
+* Automatically injects common configurations (e.g., message converters, interceptors).
+* Easily integrates with **application properties**, profiles, and dependency injection.
+* Under the hood, it can use any `ClientHttpRequestFactory`, most commonly the Apache one in Spring Boot setups.
 
 ```java
-RestTemplate restTemplate = new RestTemplate();
-restTemplate.setInterceptors(Collections.singletonList(new MyClientHttpRequestInterceptor()));
+@Bean
+public RestTemplate restTemplate(RestTemplateBuilder builder) {
+    return builder
+        .setConnectTimeout(Duration.ofSeconds(3))
+        .setReadTimeout(Duration.ofSeconds(10))
+        .build();
+}
 ```
 
-5. **HTTP Basic Authentication**: If we need to authenticate with a server using HTTP Basic authentication, we can configure it with `RestTemplate`.
+**When to Use**
+
+* In **Spring Boot applications**, where idiomatic configuration and centralization are preferred.
+* When you want to keep timeout and other settings **externalized** via config files (YAML/properties).
+* If you want to create **preconfigured RestTemplate beans** shared across services with minimal boilerplate.
+
+We can combine it with `.requestFactory(...)` to fully customize the underlying factory (e.g., inject Apache HttpClient).
+
+**Advantages**
+
+* Aligns well with **Spring Boot auto-configuration**.
+* Works seamlessly with `@ConfigurationProperties` for dynamic timeout settings.
+* Useful for **unit testing**, as the builder can be mocked or overridden easily.
+
+## Adding Interceptors
+
+Interceptors in `RestTemplate` allow you to **intercept HTTP requests and responses** before they are sent and after they are received. This provides a powerful mechanism to:
+
+* Enrich or modify the request (e.g., add headers)
+* Log outgoing and incoming traffic
+* Propagate context (like trace IDs, auth tokens)
+* Handle cross-cutting concerns like metrics, retries, or API versioning
+
+They are analogous to servlet filters but applied to outbound HTTP calls.
+
+### **Interface: `ClientHttpRequestInterceptor`**
+
+Each interceptor implements the following interface:
 
 ```java
-RestTemplate restTemplate = new RestTemplate();
-restTemplate.getInterceptors().add(new BasicAuthenticationInterceptor("username", "password"));
+public interface ClientHttpRequestInterceptor {
+    ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution)
+        throws IOException;
+}
 ```
 
-6. **Connection Pooling**: To improve performance and efficiency, we can configure connection pooling.
+* `request`: Contains metadata like headers and URL.
+* `body`: Raw request body in bytes.
+* `execution`: Used to proceed with the actual call.
+
+### **How to Register Interceptors**
+
+You can add interceptors to a `RestTemplate` either programmatically or through `RestTemplateBuilder`.
+
+#### **Registering Manually**
 
 ```java
-RestTemplate restTemplate = new RestTemplate();
-HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
-requestFactory.setHttpClient(HttpClients.createDefault());
-restTemplate.setRequestFactory(requestFactory);
+@Bean
+public RestTemplate restTemplate() {
+    RestTemplate restTemplate = new RestTemplate();
+    List<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
+    interceptors.add(new HeaderAddingInterceptor());
+    interceptors.add(new LoggingInterceptor());
+    restTemplate.setInterceptors(interceptors);
+    return restTemplate;
+}
 ```
 
-### **RestTemplate methods**
+### Example
 
-Some of the RestTemplate methods are given below. For more details visit [https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html)
+#### 1. **Add Standard Headers (e.g., Authentication, Correlation IDs)**
 
-* `restTemplate.getForEntity(...)`:
+```java
+public class HeaderAddingInterceptor implements ClientHttpRequestInterceptor {
+    @Override
+    public ClientHttpResponse intercept(HttpRequest request, byte[] body,
+                                        ClientHttpRequestExecution execution) throws IOException {
+        request.getHeaders().add("X-Correlation-ID", MDC.get("correlationId"));
+        request.getHeaders().add("Authorization", "Bearer " + getJwtToken());
+        return execution.execute(request, body);
+    }
 
-Sends an HTTP GET request to the specified URL. Retrieves the entire HTTP response, including headers and body, and returns it encapsulated in a `ResponseEntity` object. It allows to access response headers, status code, and body separately.
+    private String getJwtToken() {
+        // Retrieve from thread-local storage or context
+        return SecurityContextHolder.getContext().getAuthentication().getCredentials().toString();
+    }
+}
+```
 
-* `restTemplate.exchange(...)`:
+This is useful when every service call needs security and traceability.
 
-Provides more flexibility than `getForEntity()` by allowing to specify the HTTP method (GET, POST, PUT, DELETE, etc.), headers, request entity, and response type. Returns a `ResponseEntity` like `getForEntity()`, but with the ability to specify additional request parameters.
+#### 2. **Centralized Logging of Requests/Responses**
 
-* `restTemplate.delete(...)`:
+```java
+public class LoggingInterceptor implements ClientHttpRequestInterceptor {
 
-Sends an HTTP DELETE request to the specified URL. It's a convenience method specifically for DELETE requests, equivalent to `exchange(url, HttpMethod.DELETE, ...)`. Does not expect a response body.
+    @Override
+    public ClientHttpResponse intercept(HttpRequest request, byte[] body,
+                                        ClientHttpRequestExecution execution) throws IOException {
 
-* `restTemplate.execute(...)`:
+        logRequest(request, body);
 
-This method provides the lowest-level access to HTTP requests. It takes an instance of `RequestCallback` and `ResponseExtractor` as parameters . This allows for full control over the request and response handling.
+        ClientHttpResponse response = execution.execute(request, body);
 
-* `restTemplate.getForObject(...)`:
+        logResponse(response);
 
-Similar to `getForEntity()`, but it directly returns the response body instead of encapsulating the entire response in a `ResponseEntity` object. Useful when you're only interested in the response body and don't need access to headers or status code separately.
+        return response;
+    }
 
-* `postForObject(...)`:
+    private void logRequest(HttpRequest request, byte[] body) {
+        System.out.println("Sending Request to URI: " + request.getURI());
+        System.out.println("Headers: " + request.getHeaders());
+        System.out.println("Body: " + new String(body, StandardCharsets.UTF_8));
+    }
 
-Sends an HTTP POST request to the specified URL. Accepts a URL, request entity (typically an object representing the request body), and a response type. Returns the response body as an object of the specified type. Convenient when you expect a response body and want it directly mapped to a Java object.
+    private void logResponse(ClientHttpResponse response) throws IOException {
+        System.out.println("Response Status: " + response.getStatusCode());
+        // Avoid reading body here if the stream will be consumed downstream
+    }
+}
+```
 
-* `postForEntity(...)`:
+This is critical in environments where auditing, debugging, or API telemetry is required.
 
-Similar to `postForObject()` but returns the entire HTTP response encapsulated in a `ResponseEntity` object. This allows you to access the response headers, status code, and body separately.
+#### 3. **Dynamic API Key Injection Based on Service**
 
-* `postForLocation(...)`:
+```java
+public class ApiKeyRoutingInterceptor implements ClientHttpRequestInterceptor {
 
-Used when we expect the server to respond with a '201 Created' status and a 'Location' header indicating the URL of the newly created resource. Sends an HTTP POST request and returns the URL of the newly created resource.
+    @Override
+    public ClientHttpResponse intercept(HttpRequest request, byte[] body,
+                                        ClientHttpRequestExecution execution) throws IOException {
 
-* `patchForObject(...)`:
+        URI uri = request.getURI();
+        if (uri.getHost().contains("payment-service")) {
+            request.getHeaders().add("x-api-key", "payment-service-key");
+        } else if (uri.getHost().contains("inventory-service")) {
+            request.getHeaders().add("x-api-key", "inventory-service-key");
+        }
 
-Sends an HTTP PATCH request to the specified URL. Similar to `postForObject()` but specifically designed for HTTP PATCH requests. Accepts a URL, request entity (typically an object representing the request body), and a response type.
+        return execution.execute(request, body);
+    }
+}
+```
 
-* `put(...)`:
+Used in multi-tenant or multi-provider integrations.
 
-Sends an HTTP PUT request to the specified URL. Typically used to update an existing resource with the provided request entity. Unlike `postForObject()` and `postForEntity()`, there isn't a `putForObject()` or `putForEntity()` method because `RestTemplate`'s `exchange()` method can be used for PUT requests, providing more flexibility.
+## Custom Message Converters
+
+
+
+## Connection Pooling
+
+
+
+## Injecting Properties
+
+
+
