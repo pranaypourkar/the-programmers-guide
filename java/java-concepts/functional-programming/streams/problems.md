@@ -72,8 +72,16 @@ boolean isAllPositive = intList.stream().noneMatch(n -> n < 0);
 Join all strings in a `List<String>` using a comma.
 
 ```java
+// Using Collectors utility
 List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
 String concatenated = names.stream().collect(Collectors.joining(", "));
+
+// Using Reduce
+List<String> words = List.of("Java", "is", "powerful");
+String sentence = words.stream()
+                .reduce((a, b) -> a + ", " + b)
+                .orElse("");
+System.out.println(sentence); // Java is powerful
 ```
 
 ### **Sort a List**

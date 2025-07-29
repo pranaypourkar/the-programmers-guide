@@ -50,6 +50,7 @@ String s = String.format("%s\n%s\n%s\n%s\n%s\n%s"
 ## 5. Using String.join()
 
 ```java
+// Joining multiple strings
 String s = String.join("\n"
          , "Some text 1,"
          , "Some text 2,"
@@ -58,6 +59,16 @@ String s = String.join("\n"
          , "Some text 5,"
          , "Some text 6"
 );
+
+// Joining a list of strings with a comma
+List<String> names = List.of("Alice", "Bob", "Charlie");
+String result = String.join(", ", names);
+System.out.println(result); // Alice, Bob, Charlie
+
+// Joining array elements with a pipe (|)
+String[] tokens = {"token1", "token2", "token3"};
+String result = String.join(" | ", tokens);
+System.out.println(result); // token1 | token2 | token3
 ```
 
 ## 6. Using String.concat()
@@ -67,8 +78,6 @@ String s= "This is a\n"
            .concat("multiline string\n")
            .concat("using String.concat().");
 ```
-
-
 
 ## Comparison
 
