@@ -1135,6 +1135,7 @@
       * [Client-Side Load Balancing Example](spring/microservices/load-balancing/client-side-load-balancing-example.md)
       * [Server-Side Load Balancing Example](spring/microservices/load-balancing/page.md)
   * [Practical Guidelines](spring/best-practice/README.md)
+    * [Anti Patterns](spring/best-practice/anti-patterns.md)
     * [Spring Configuration](spring/best-practice/spring-configuration.md)
     * [Spring Code Design](spring/best-practice/spring-code-design.md)
     * [Asynchronous Processing](spring/best-practice/asynchronous-processing.md)
