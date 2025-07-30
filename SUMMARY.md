@@ -903,6 +903,7 @@
             * [Configuring Request Factories](spring/spring-features/inter-service-communication/rest-communication/resttemplate/configuration-tips/configuring-request-factories.md)
             * [Types of Timeouts](spring/spring-features/inter-service-communication/rest-communication/resttemplate/configuration-tips/types-of-timeouts.md)
           * [HTTP Clients with SSL](spring/spring-features/inter-service-communication/rest-communication/resttemplate/http-clients-with-ssl.md)
+          * [OpenAPI-Generated Clients](spring/spring-features/inter-service-communication/rest-communication/resttemplate/openapi-generated-clients.md)
           * [Transition to WebClient](spring/spring-features/inter-service-communication/rest-communication/resttemplate/transition-to-webclient.md)
           * [Use Case](spring/spring-features/inter-service-communication/rest-communication/resttemplate/use-case.md)
         * [2. WebClient](spring/spring-features/inter-service-communication/rest-communication/webclient.md)
