@@ -562,7 +562,7 @@ public class SecurityConfig {
 **Controller with Method-Level Security**
 
 ```java
-javaCopyEdit@RestController
+@RestController
 @RequestMapping("/api")
 public class UserController {
 

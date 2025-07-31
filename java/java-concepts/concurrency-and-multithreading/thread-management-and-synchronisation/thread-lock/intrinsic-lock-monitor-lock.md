@@ -216,7 +216,7 @@ class SharedResource {
 ### **1.2. Equivalent Explicit Lock – Using `ReentrantLock`**
 
 ```java
-javaCopyEditimport java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantLock;
 
 class SharedResource {
     private final ReentrantLock lock = new ReentrantLock(); // Explicit lock

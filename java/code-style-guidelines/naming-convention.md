@@ -240,7 +240,7 @@ Adopting a **suffix-based naming strategy** for layered components enhances clar
 *   Avoid **overly descriptive names** that break readability:
 
     ```java
-    javaCopyEdit// Too verbose and hard to read:
+    // Too verbose and hard to read:
     int numberOfTimesUserHasAttemptedLoginFailureAndWasBlocked;
 
     // Better:

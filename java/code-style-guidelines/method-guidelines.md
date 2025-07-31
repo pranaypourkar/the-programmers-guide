@@ -73,7 +73,7 @@ public void createUser(UserDto userDto) { ... }
 * Be explicit in return types. Avoid returning raw `Map`, `List`, or `Object`.
 
 ```java
-javaCopyEdit// Prefer
+// Prefer
 public Optional<User> findUserById(String id);
 
 // Avoid

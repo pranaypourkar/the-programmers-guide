@@ -586,7 +586,7 @@
       * [Thread Management & Synchronisation](java/java-concepts/concurrency-and-multithreading/thread-management-and-synchronisation/README.md)
         * [Thread Resource Sharing](java/java-concepts/concurrency-and-multithreading/thread-management-and-synchronisation/thread-resource-sharing.md)
         * [Thread Synchronization](java/java-concepts/concurrency-and-multithreading/thread-management-and-synchronisation/thread-synchronization/README.md)
-          * [Why is Synchronization Needed?](java/java-concepts/concurrency-and-multithreading/thread-management-and-synchronisation/thread-synchronization/why-is-synchronization-needed.md)
+          * [Why is Synchronization Needed ?](java/java-concepts/concurrency-and-multithreading/thread-management-and-synchronisation/thread-synchronization/why-is-synchronization-needed.md)
           * [Synchronized Blocks & Methods](java/java-concepts/concurrency-and-multithreading/thread-management-and-synchronisation/thread-synchronization/synchronized-blocks-and-methods.md)
         * [Thread Lock](java/java-concepts/concurrency-and-multithreading/thread-management-and-synchronisation/thread-lock/README.md)
           * [Types of Locks](java/java-concepts/concurrency-and-multithreading/thread-management-and-synchronisation/thread-lock/types-of-locks.md)

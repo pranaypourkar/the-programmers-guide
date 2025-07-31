@@ -71,7 +71,7 @@ Where:
 **Step 1: Enable Remember-Me in Spring Security**
 
 ```java
-javaCopyEdit@Configuration
+@Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
@@ -99,7 +99,7 @@ public class SecurityConfig {
 **Step 1: Create Database Table to Store Tokens**
 
 ```sql
-sqlCopyEditCREATE TABLE persistent_logins (
+CREATE TABLE persistent_logins (
     username VARCHAR(64) NOT NULL,
     series VARCHAR(64) PRIMARY KEY,
     token VARCHAR(64) NOT NULL,

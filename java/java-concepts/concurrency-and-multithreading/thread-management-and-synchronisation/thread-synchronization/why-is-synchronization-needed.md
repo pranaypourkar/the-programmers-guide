@@ -1,4 +1,4 @@
-# Why is Synchronization Needed?
+# Why is Synchronization Needed ?
 
 ## About
 
@@ -148,7 +148,7 @@ In a multithreaded environment, operations may execute out of order, leading to 
 ### **Example Without Synchronization (Out-of-Order Execution)**
 
 ```java
-javaCopyEditclass SharedObject {
+class SharedObject {
     boolean flag = false;
 
     void setFlag() {

@@ -285,7 +285,7 @@ public class UserDto {
 ### 6. Manual Validation using Validator
 
 ```java
-javaCopyEdit@Autowired
+@Autowired
 private Validator validator;
 
 public void checkUser(UserDto user) {

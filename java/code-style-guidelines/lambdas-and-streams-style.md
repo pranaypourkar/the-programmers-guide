@@ -124,7 +124,7 @@ Avoid compacting everything into a single unreadable line.
 Avoid excessive `ifPresent` or `orElse` chains. Instead, write Optional code that is declarative and readable.
 
 ```java
-javaCopyEdit// Good
+// Good
 userRepository.findById(id)
     .map(User::getEmail)
     .ifPresent(this::sendNotification);
