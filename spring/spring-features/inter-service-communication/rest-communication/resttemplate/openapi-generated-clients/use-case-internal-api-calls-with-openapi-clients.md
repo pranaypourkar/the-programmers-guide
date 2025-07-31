@@ -878,3 +878,10 @@ mvn clean install
 ## Reference
 
 {% file src="../../../../../../.gitbook/assets/resttemplate-usecase-internal-api-calls-with-openapi-clients.zip" %}
+
+{% embed url="https://openapi-generator.tech/docs/generators/spring/#config-options" %}
+
+{% embed url="https://openapi-generator.tech/docs/generators/java/#config-options" %}
+
+{% embed url="https://github.com/Backbase/backbase-openapi-tools" %}
+
