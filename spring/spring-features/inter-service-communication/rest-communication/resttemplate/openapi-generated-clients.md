@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # OpenAPI-Generated Clients
 
 ## About
@@ -31,5 +35,50 @@ Teams can:
 
 ## Example
 
+### **Project Structure**
 
+**Specs**
 
+* `account-api-spec` – Contains `account.yaml`, bundled as a ZIP with classifier `api`.
+* `payment-api-spec` – Contains `payment.yaml`, bundled similarly.
+
+**Service**
+
+* `payment-service` – Spring Boot service that includes both specs as dependencies, uses generated clients, and calls `account-api` internally.
+
+### **1. account-api-spec**
+
+**Structure**
+
+```
+account-api-spec/
+├── assembly/api.xml
+├── pom.xml
+└── src/main/resources/openapi/account.yaml
+```
+
+**api.xml**
+
+```
+```
+
+**account.yaml** (simple GET)
+
+```yaml
+```
+
+**pom.xml**
+
+```xml
+```
+
+**Build the package**
+
+```
+mvn clean install
+```
+
+### **2. payment-api-spec**
+
+```yaml
+```
