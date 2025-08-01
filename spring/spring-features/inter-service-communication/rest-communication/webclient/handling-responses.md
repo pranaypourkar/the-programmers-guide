@@ -1,12 +1,8 @@
----
-hidden: true
----
-
 # Handling Responses
 
 ## About
 
-When using **WebClient**, handling responses is about more than just reading JSON into a Java object. It is a **crucial part of resilient and reliable communication** between distributed services. In production-grade systems, network calls can fail, data might be malformed, and downstream services can return unexpected status codes. Proper response handling ensures your application reacts **predictably and gracefully** in such scenarios.
+When using **WebClient**, handling responses is about more than just reading JSON into a Java object. It is a **crucial part of resilient and reliable communication** between distributed services. In production-grade systems, network calls can fail, data might be malformed, and downstream services can return unexpected status codes. Proper response handling ensures our application reacts **predictably and gracefully** in such scenarios.
 
 ## Goals of Response Handling
 
@@ -18,7 +14,7 @@ We need to differentiate between successful and unsuccessful responses:
 * `4xx`: client-side issue (e.g., not found, bad request)
 * `5xx`: server-side issue (e.g., timeout, internal error)
 
-Response handling enables you to **intelligently branch logic** depending on status, instead of blindly assuming all requests succeed.
+Response handling enables us to **intelligently branch logic** depending on status, instead of blindly assuming all requests succeed.
 
 **2. Transforming the Response Body**
 
@@ -28,7 +24,7 @@ Once the response is successful, we often want to
 * Handle cases like empty responses
 * Deal with large payloads or streaming data
 
-Without proper transformation, data remains unusable in your application logic.
+Without proper transformation, data remains unusable in our application logic.
 
 **3. Accessing Metadata**
 
@@ -66,11 +62,11 @@ All these require controlled and centralized response processing.
 
 **6. Non-blocking Behavior**
 
-In reactive programming, you often handle responses asynchronously using `Mono` or `Flux`. This makes response handling a **declarative operation** rather than a sequential one. You describe _what to do when the response arrives_, instead of blocking the thread and waiting.
+In reactive programming, we often handle responses asynchronously using `Mono` or `Flux`. This makes response handling a **declarative operation** rather than a sequential one. We describe _what to do when the response arrives_, instead of blocking the thread and waiting.
 
 ## **Available Handling Methods**
 
-<table data-header-hidden data-full-width="true"><thead><tr><th width="214.046875"></th><th width="261.93316650390625"></th><th width="147.776123046875"></th><th></th></tr></thead><tbody><tr><td><strong>Method / Pattern</strong></td><td><strong>Purpose</strong></td><td><strong>Return Type</strong></td><td><strong>When to Use</strong></td></tr><tr><td><code>.retrieve()</code></td><td>Triggers the HTTP request and expects a 2xx status</td><td><code>ResponseSpec</code></td><td>When you're confident in getting a successful response and want to map body</td></tr><tr><td><code>.exchangeToMono(response -> …)</code></td><td>Full control over status, headers, and body; allows conditional handling</td><td><code>Mono&#x3C;T></code></td><td>When you need to react differently based on status or access full response</td></tr><tr><td><code>.exchange()</code> <strong>(Deprecated)</strong></td><td>Older method for getting full <code>ClientResponse</code></td><td><code>Mono&#x3C;ClientResponse></code></td><td>For legacy or transitional code</td></tr><tr><td><code>.bodyToMono(Class&#x3C;T>)</code></td><td>Deserializes a single-object response body into a POJO</td><td><code>Mono&#x3C;T></code></td><td>For standard JSON or XML single object responses</td></tr><tr><td><code>.bodyToFlux(Class&#x3C;T>)</code></td><td>Deserializes an array/stream response into a reactive list</td><td><code>Flux&#x3C;T></code></td><td>For streaming or multiple-item JSON arrays</td></tr><tr><td><code>.onStatus(predicate, handler)</code></td><td>Custom handling for specific status codes</td><td>—</td><td>To throw custom exceptions or transform error responses</td></tr><tr><td><code>.toEntity(Class&#x3C;T>)</code></td><td>Converts response to <code>ResponseEntity</code> with body, headers, status</td><td><code>Mono&#x3C;ResponseEntity&#x3C;T>></code></td><td>When you need access to full HTTP metadata along with body</td></tr><tr><td><code>.toEntityList(Class&#x3C;T>)</code></td><td>Converts list response to <code>ResponseEntity&#x3C;List&#x3C;T>></code></td><td><code>Mono&#x3C;ResponseEntity&#x3C;List&#x3C;T>>></code></td><td>For full access with multiple-item responses</td></tr><tr><td><code>.toBodilessEntity()</code></td><td>For responses without body (e.g., 204 No Content)</td><td><code>Mono&#x3C;ResponseEntity&#x3C;Void>></code></td><td>When only status and headers matter (e.g., DELETE ops)</td></tr><tr><td><code>.body((clientResponse, context) -> …)</code></td><td>Manual extraction and transformation of body</td><td><code>Mono&#x3C;T></code> or <code>Flux&#x3C;T></code></td><td>Advanced control over deserialization, custom codecs, etc.</td></tr><tr><td><code>.flatMap(...) / .map(...)</code></td><td>Transform or post-process the result in reactive style</td><td><code>Mono&#x3C;T></code> or <code>Flux&#x3C;T></code></td><td>To chain business logic or conversions after response</td></tr></tbody></table>
+<table data-header-hidden data-full-width="true"><thead><tr><th width="214.046875"></th><th width="261.93316650390625"></th><th width="147.776123046875"></th><th></th></tr></thead><tbody><tr><td><strong>Method / Pattern</strong></td><td><strong>Purpose</strong></td><td><strong>Return Type</strong></td><td><strong>When to Use</strong></td></tr><tr><td><code>.retrieve()</code></td><td>Triggers the HTTP request and expects a 2xx status</td><td><code>ResponseSpec</code></td><td>When we are confident in getting a successful response and want to map body</td></tr><tr><td><code>.exchangeToMono(response -> …)</code></td><td>Full control over status, headers, and body; allows conditional handling</td><td><code>Mono&#x3C;T></code></td><td>When we need to react differently based on status or access full response</td></tr><tr><td><code>.exchange()</code> <strong>(Deprecated)</strong></td><td>Older method for getting full <code>ClientResponse</code></td><td><code>Mono&#x3C;ClientResponse></code></td><td>For legacy or transitional code</td></tr><tr><td><code>.bodyToMono(Class&#x3C;T>)</code></td><td>Deserializes a single-object response body into a POJO</td><td><code>Mono&#x3C;T></code></td><td>For standard JSON or XML single object responses</td></tr><tr><td><code>.bodyToFlux(Class&#x3C;T>)</code></td><td>Deserializes an array/stream response into a reactive list</td><td><code>Flux&#x3C;T></code></td><td>For streaming or multiple-item JSON arrays</td></tr><tr><td><code>.onStatus(predicate, handler)</code></td><td>Custom handling for specific status codes</td><td>—</td><td>To throw custom exceptions or transform error responses</td></tr><tr><td><code>.toEntity(Class&#x3C;T>)</code></td><td>Converts response to <code>ResponseEntity</code> with body, headers, status</td><td><code>Mono&#x3C;ResponseEntity&#x3C;T>></code></td><td>When we need access to full HTTP metadata along with body</td></tr><tr><td><code>.toEntityList(Class&#x3C;T>)</code></td><td>Converts list response to <code>ResponseEntity&#x3C;List&#x3C;T>></code></td><td><code>Mono&#x3C;ResponseEntity&#x3C;List&#x3C;T>>></code></td><td>For full access with multiple-item responses</td></tr><tr><td><code>.toBodilessEntity()</code></td><td>For responses without body (e.g., 204 No Content)</td><td><code>Mono&#x3C;ResponseEntity&#x3C;Void>></code></td><td>When only status and headers matter (e.g., DELETE ops)</td></tr><tr><td><code>.body((clientResponse, context) -> …)</code></td><td>Manual extraction and transformation of body</td><td><code>Mono&#x3C;T></code> or <code>Flux&#x3C;T></code></td><td>Advanced control over deserialization, custom codecs, etc.</td></tr><tr><td><code>.flatMap(...) / .map(...)</code></td><td>Transform or post-process the result in reactive style</td><td><code>Mono&#x3C;T></code> or <code>Flux&#x3C;T></code></td><td>To chain business logic or conversions after response</td></tr></tbody></table>
 
 ## Response Body Handling
 
@@ -105,7 +101,7 @@ public class SingleObjectExample {
 
 #### **2. `.bodyToFlux(Class<T>)` – For List/Streaming Responses**
 
-Use `bodyToFlux` when you expect multiple objects (a JSON array) or a stream of data (e.g., multiple orders, notifications, etc.).
+Use `bodyToFlux` when we expect multiple objects (a JSON array) or a stream of data (e.g., multiple orders, notifications, etc.).
 
 ```java
 import org.springframework.web.reactive.function.client.WebClient;
@@ -264,7 +260,7 @@ public class ExchangeExample {
 #### 7. **`.bodyToMono(new ParameterizedTypeReference<T>())`**
 
 This is used to deserialize **generic types** such as `List<User>`, `Map<String, Object>`, or custom wrapper types.\
-Java’s type erasure makes it impossible to detect the actual generic type at runtime, so this is necessary when you're dealing with collections or nested generics.
+Java’s type erasure makes it impossible to detect the actual generic type at runtime, so this is necessary when we are dealing with collections or nested generics.
 
 Use this when we expect a generic or parameterized response (e.g., list of users) and want the response body only (no headers or status).
 
@@ -277,10 +273,10 @@ Mono<List<User>> users = webClient.get()
 
 #### 8. **`.exchangeToFlux(...)`**
 
-This gives you full access to the **raw ClientResponse**, and lets you return a **Flux** stream instead of a Mono.\
-Useful when you're working with **event streams**, **large datasets**, or need **manual branching** for different status codes with a stream.
+This gives we full access to the **raw ClientResponse**, and lets we return a **Flux** stream instead of a Mono.\
+Useful when we are working with **event streams**, **large datasets**, or need **manual branching** for different status codes with a stream.
 
-Use this when you need to stream data with **fine-grained control** (e.g., server-sent events or streaming JSON arrays), and also want to inspect response status or headers.
+Use this when we need to stream data with **fine-grained control** (e.g., server-sent events or streaming JSON arrays), and also want to inspect response status or headers.
 
 ```java
 Flux<User> userFlux = webClient.get()
@@ -311,14 +307,14 @@ Mono<ClientResponse> response = webClient.get()
 
 ## Converting Response to ResponseEntity
 
-In certain scenarios, especially in enterprise applications, it's not enough to just get the **body** of the response. You might also need to access the:
+In certain scenarios, especially in enterprise applications, it's not enough to just get the **body** of the response. We might also need to access the:
 
 * **HTTP Status Code**
 * **Headers**
 * **Raw Metadata**
 
 The `ResponseEntity<T>` class is designed to hold all of this information together.\
-Spring’s WebClient supports converting the response into a `ResponseEntity<T>` so that you can capture both the **body** and the **HTTP metadata** in one object.
+Spring’s WebClient supports converting the response into a `ResponseEntity<T>` so that we can capture both the **body** and the **HTTP metadata** in one object.
 
 #### **Syntax**
 
@@ -375,13 +371,13 @@ Mono<ResponseEntity<Product>> productResponse = webClient.get()
 
 ## Extracting Headers from Response
 
-In many enterprise scenarios, it's not just the body of the response that matters. You might also need to:
+In many enterprise scenarios, it's not just the body of the response that matters. We might also need to:
 
 * Read a custom header (e.g., `X-Correlation-ID`, `X-RateLimit-Remaining`)
 * Extract authentication or pagination metadata
 * Trace requests with diagnostic headers
 
-Spring’s WebClient allows you to extract headers easily when working with the **entire `ClientResponse`** or **`ResponseEntity`**.
+Spring’s WebClient allows us to extract headers easily when working with the **entire `ClientResponse`** or **`ResponseEntity`**.
 
 #### **Approach 1: Extract Headers via `toEntity(...)`**
 
@@ -403,7 +399,7 @@ userResponse.subscribe(response -> {
 
 #### **Approach 2: Using `exchangeToMono(...)` for More Control**
 
-When we need **fine-grained control**, use `.exchangeToMono(...)` to get the raw `ClientResponse`, from which you can extract headers before converting the body.
+When we need **fine-grained control**, use `.exchangeToMono(...)` to get the raw `ClientResponse`, from which we can extract headers before converting the body.
 
 ```java
 Mono<String> correlationId = webClient.get()
@@ -435,7 +431,7 @@ Mono<String> result = webClient.get()
 
 #### **Approach 3: Inside a `doOnNext()` for Post-processing**
 
-Sometimes you already have the `ResponseEntity`, and just want to log headers or take action based on them.
+Sometimes we already have the `ResponseEntity`, and just want to log headers or take action based on them.
 
 ```java
 webClient.get()
@@ -459,11 +455,176 @@ List<String> cookies = response.getHeaders().get("Set-Cookie");
 
 ## Mapping Error Responses (Graceful Fallback)
 
+In production-grade applications, external APIs might fail due to
+
+* 5xx server errors
+* 4xx client-side errors (e.g., not found, validation issues)
+* Timeouts, malformed responses, or network exceptions
+
+Instead of letting such failures propagate and crash our application, a **graceful fallback** lets us:
+
+* Return a default value
+* Log the error but continue execution
+* Retry with an alternative endpoint
+* Notify downstream systems of degraded state
+
+Spring WebClient supports graceful handling through operators like:
+
+* `.onStatus(...)`
+* `.onErrorResume(...)`
+* `.defaultIfEmpty(...)`
+* `.switchIfEmpty(...)`
+
+#### **Approach 1: Use `.onStatus(...)` for HTTP Status Handling**
+
+#### **Example: Return Default Response for 404**
+
+```java
+Mono<User> userMono = webClient.get()
+    .uri("/api/users/{id}", 99)
+    .retrieve()
+    .onStatus(HttpStatus::is4xxClientError, response -> {
+        if (response.statusCode().equals(HttpStatus.NOT_FOUND)) {
+            return Mono.error(new RuntimeException("User not found"));
+        }
+        return response.createException();
+    })
+    .bodyToMono(User.class)
+    .onErrorResume(ex -> {
+        System.out.println("Fallback due to error: " + ex.getMessage());
+        return Mono.just(new User("default", "user"));
+    });
+```
+
+#### **Approach 2: Handle Exceptions Like Timeout, IO, etc.**
+
+#### **Example: Gracefully Handle Any Runtime Exception**
+
+```java
+Mono<Order> orderMono = webClient.get()
+    .uri("/api/orders/42")
+    .retrieve()
+    .bodyToMono(Order.class)
+    .timeout(Duration.ofSeconds(3))
+    .onErrorResume(throwable -> {
+        System.out.println("External call failed: " + throwable.getMessage());
+        return Mono.just(new Order("fallback-id", "UNKNOWN"));
+    });
+```
+
+> Use this pattern to prevent entire service failure due to a single failing dependency.
+
+#### **Approach 3: Using `exchangeToMono` for Custom Fallback Based on Status + Body**
+
+```java
+Mono<String> result = webClient.get()
+    .uri("/api/info")
+    .exchangeToMono(response -> {
+        if (response.statusCode().is2xxSuccessful()) {
+            return response.bodyToMono(String.class);
+        } else {
+            return response.bodyToMono(String.class)
+                .defaultIfEmpty("No error message provided")
+                .flatMap(errorBody -> {
+                    System.out.println("Failed: " + response.statusCode() + " " + errorBody);
+                    return Mono.just("fallback-info");
+                });
+        }
+    });
+```
+
+#### **Approach 4: Use Case in Fallback-Aware Services (e.g., Circuit Breaker)**
+
+If we are using **Resilience4j**, `onErrorResume` becomes the fallback hook:
+
+```java
+Mono<Inventory> inventoryMono = inventoryClient.getInventory("sku-123")
+    .onErrorResume(ex -> {
+        log.warn("Inventory service down, returning fallback");
+        return Mono.just(new Inventory("sku-123", 0)); // default inventory
+    });
+```
+
+This is especially useful in **service orchestration** or **API gateways**.
+
 
 
 ## Deserialize into Custom Error Object
 
+When an external API returns an error response, it may contain a structured body like:
 
+```json
+jsonCopyEdit{
+  "errorCode": "USER_NOT_FOUND",
+  "message": "No user exists with ID 42",
+  "timestamp": "2025-07-29T12:34:56Z"
+}
+```
 
+Instead of treating it as a generic error string, we can deserialize this into a **custom error class**, and take decisions based on its content.
 
+This is useful for:
+
+* Logging structured errors
+* Mapping upstream failures to our internal error model
+* Displaying better messages to consumers
+
+#### **1. Define Custom Error Class**
+
+```java
+public class ApiError {
+    private String errorCode;
+    private String message;
+    private String timestamp;
+
+    // Getters and Setters
+}
+```
+
+#### **2. Use `onStatus` with `.bodyToMono(ApiError.class)`**
+
+```java
+Mono<User> userMono = webClient.get()
+    .uri("/api/users/{id}", 42)
+    .retrieve()
+    .onStatus(
+        HttpStatus::is4xxClientError,
+        clientResponse -> clientResponse.bodyToMono(ApiError.class)
+            .flatMap(apiError -> {
+                System.out.println("Received structured error: " + apiError.getMessage());
+                return Mono.error(new CustomClientException(apiError.getErrorCode(), apiError.getMessage()));
+            })
+    )
+    .bodyToMono(User.class);
+```
+
+```java
+public class CustomClientException extends RuntimeException {
+    private final String errorCode;
+
+    public CustomClientException(String errorCode, String message) {
+        super(message);
+        this.errorCode = errorCode;
+    }
+
+    public String getErrorCode() {
+        return errorCode;
+    }
+}
+```
+
+```java
+Mono<User> userMono = webClient.get()
+    .uri("/api/users/{id}", 42)
+    .retrieve()
+    .onStatus(HttpStatus::is4xxClientError, response ->
+        response.bodyToMono(ApiError.class)
+            .flatMap(error -> Mono.error(new CustomClientException(error.getErrorCode(), error.getMessage())))
+    )
+    .onErrorResume(CustomClientException.class, ex -> {
+        System.out.println("Handled custom client error: " + ex.getErrorCode());
+        return Mono.just(new User("default", "user"));
+    })
+    .bodyToMono(User.class);
+```
 
