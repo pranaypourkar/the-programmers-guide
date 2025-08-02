@@ -40,5 +40,219 @@ The **key store** is like your own government-issued ID: you use it to prove who
 * If your WebClient needs to talk to a **self-signed internal service**, configure a **trust store** with the server cert.
 * If your WebClient participates in **mutual TLS**, you also need a **key store** to provide your client certificate.
 
+## **How It Works Under the Hood ?**
+
+When we configure WebClient with custom SSL, here's what happens during the request:
+
+1. WebClient (via Netty) initiates an HTTPS connection.
+2. SSL handshake begins:
+   * The server sends its certificate.
+   * The client verifies it using the **TrustManager**.
+   * If mutual TLS is enabled, the client sends its own cert from the **KeyManager**.
+3. The secure connection is established or rejected.
+4. HTTP request is sent securely.
+
+## **Typical Approaches to Custom SSL Setup**
+
+### 1. Trusting Self-Signed Certificates (Custom Trust Store)
+
+In production, services typically use certificates issued by trusted Certificate Authorities (CAs) like DigiCert or Let's Encrypt. But in many real-world enterprise scenarios—especially in internal or non-production environments—you may:
+
+* Use **self-signed certificates**
+* Use an **internal certificate authority (CA)**
+* Need to test secure HTTPS endpoints without buying certificates from a public CA
+
+By default, the Java Virtual Machine (JVM) uses a **default trust store** (`cacerts`) that doesn't trust self-signed or internal CA certificates unless explicitly added.
+
+This leads to common errors like:
+
+* `javax.net.ssl.SSLHandshakeException: PKIX path building failed`
+* `unable to find valid certification path to requested target`
+
+To resolve this, we configure your application to **load a custom trust store** (e.g., a `.jks` or `.p12` file) that contains the required self-signed certificate or the root/intermediate certificate of your internal CA.
+
+#### **Steps to Create a Trust Store**
+
+1. Export the certificate from the remote server (using browser or `openssl`).
+2. Import it into a `.jks` trust store using `keytool`:
+
+```bash
+keytool -import -alias my-service-cert \
+        -file my-service.crt \
+        -keystore truststore.jks \
+        -storepass changeit
+```
+
+**Code: WebClient with Custom Trust Store (Reactor Netty)**
+
+```java
+@Configuration
+public class SecureWebClientConfig {
+
+    @Bean
+    public WebClient webClientWithCustomTrustStore() throws Exception {
+        // Load truststore
+        KeyStore trustStore = KeyStore.getInstance("JKS");
+        try (FileInputStream trustStoreFile = new FileInputStream("truststore.jks")) {
+            trustStore.load(trustStoreFile, "changeit".toCharArray()); // password for the .jks
+        }
+
+        // Initialize TrustManager with custom truststore
+        TrustManagerFactory trustManagerFactory =
+                TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+        trustManagerFactory.init(trustStore);
+
+        // Create SSL context
+        SslContext sslContext = SslContextBuilder.forClient()
+                .trustManager(trustManagerFactory)
+                .build();
+
+        // Configure Netty client with custom SSL
+        HttpClient httpClient = HttpClient.create()
+                .secure(sslSpec -> sslSpec.sslContext(sslContext));
+
+        // Create and return WebClient
+        return WebClient.builder()
+                .clientConnector(new ReactorClientHttpConnector(httpClient))
+                .build();
+    }
+}
+```
+
+#### **Structure of the Trust Store**
+
+* Format: Typically `.jks`, but `.p12` is also supported (PKCS12).
+* Contains: Certificates of the services you call.
+* Secured with a password (e.g., `"changeit"`).
+
+You can place the file in `src/main/resources` and load it with classpath if preferred:
+
+```java
+try (InputStream trustStream = getClass().getResourceAsStream("/truststore.jks")) {
+    ...
+}
+```
+
+#### **Using This WebClient**
+
+```java
+@Autowired
+private WebClient webClientWithCustomTrustStore;
+
+public Mono<String> callSecureService() {
+    return webClientWithCustomTrustStore
+        .get()
+        .uri("https://internal-secure-service/api/secure-data")
+        .retrieve()
+        .bodyToMono(String.class);
+}
+```
+
+### 2. Mutual TLS (Using Key Store and Trust Store)
+
+Mutual TLS (mTLS) is a two-way SSL authentication mechanism where **both client and server authenticate each other** using certificates.
+
+* The **server** presents its certificate to the client.
+* The **client** presents its certificate to the server.
+
+This is commonly used in **enterprise systems** or **zero-trust architectures**, particularly for **internal service-to-service communication** where strong authentication and encryption are required.
+
+#### **When Do We Need It ?**
+
+* Secure communication between microservices inside private networks
+* API Gateways or BFFs validating backend services
+* Ensuring only trusted applications talk to each other
+* Regulatory compliance (e.g., PCI-DSS, HIPAA)
+
+#### **Prerequisites**
+
+We need:
+
+* A **trust store**: Contains certificates of the services you're talking to.
+* A **key store**: Contains your own certificate + private key to present to the server.
+
+Use `keytool` or `openssl` to:
+
+* Generate keys and certificates
+* Sign and import them into `.jks` or `.p12` files
+
+#### Code
+
+#### `MutualTLSWebClientConfig.java`
+
+```java
+package com.example.config;
+
+import io.netty.handler.ssl.SslContext;
+import io.netty.handler.ssl.SslContextBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.netty.http.client.HttpClient;
+import org.springframework.http.client.reactive.ReactorClientHttpConnector;
+
+import javax.net.ssl.KeyManagerFactory;
+import javax.net.ssl.TrustManagerFactory;
+import java.io.FileInputStream;
+import java.security.KeyStore;
+
+@Configuration
+public class MutualTLSWebClientConfig {
+
+    @Bean
+    public WebClient mutualTlsWebClient() throws Exception {
+        // Load TrustStore
+        KeyStore trustStore = KeyStore.getInstance("JKS");
+        try (FileInputStream trustStoreFile = new FileInputStream("truststore.jks")) {
+            trustStore.load(trustStoreFile, "trustpass".toCharArray());
+        }
+        TrustManagerFactory trustManagerFactory =
+                TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+        trustManagerFactory.init(trustStore);
+
+        // Load KeyStore (client certificate + private key)
+        KeyStore keyStore = KeyStore.getInstance("PKCS12");
+        try (FileInputStream keyStoreFile = new FileInputStream("keystore.p12")) {
+            keyStore.load(keyStoreFile, "keypass".toCharArray());
+        }
+        KeyManagerFactory keyManagerFactory =
+                KeyManagerFactory.getInstance(KeyManagerFactory.getDefaultAlgorithm());
+        keyManagerFactory.init(keyStore, "keypass".toCharArray());
+
+        // Create SSL Context with both KeyManager and TrustManager
+        SslContext sslContext = SslContextBuilder.forClient()
+                .keyManager(keyManagerFactory)
+                .trustManager(trustManagerFactory)
+                .build();
+
+        // Configure WebClient with custom SSL
+        HttpClient httpClient = HttpClient.create()
+                .secure(sslSpec -> sslSpec.sslContext(sslContext));
+
+        return WebClient.builder()
+                .clientConnector(new ReactorClientHttpConnector(httpClient))
+                .build();
+    }
+}
+```
+
+
+
+### 3. Disabling SSL Validation (For CI or Local Mocks ONLY)
+
+
+
+### 4. Certificate Pinning
+
+
+
+### 5. Multiple WebClients With Different SSL Contexts
+
+
+
+## **Testing Custom SSL Setup**
+
+
+
 
 
