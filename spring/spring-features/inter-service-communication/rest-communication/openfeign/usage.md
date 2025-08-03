@@ -10,7 +10,7 @@ This is especially useful in microservices where services frequently communicate
 
 To use Feign in a Spring Boot application, add the following dependency:
 
-**If we’re using Spring Cloud OpenFeign:**
+If we’re using Spring Cloud OpenFeign:
 
 ```xml
 <dependency>
