@@ -157,7 +157,7 @@ components:
 mvn clean install
 ```
 
-<figure><img src="../../../../../../.gitbook/assets/resttemplate-usecase-internal-api-calls-with-openapi-clients-1.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/resttemplate-usecase-internal-api-calls-with-openapi-clients-1.png" alt="" width="375"><figcaption></figcaption></figure>
 
 ## **2. payment-api-spec**
 
@@ -292,7 +292,7 @@ components:
 mvn clean install
 ```
 
-<figure><img src="../../../../../../.gitbook/assets/resttemplate-usecase-internal-api-calls-with-openapi-clients-2.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/resttemplate-usecase-internal-api-calls-with-openapi-clients-2.png" alt="" width="375"><figcaption></figcaption></figure>
 
 ## **3. account-service**
 
@@ -522,7 +522,7 @@ server:
 mvn clean install
 ```
 
-<figure><img src="../../../../../../.gitbook/assets/resttemplate-usecase-internal-api-calls-with-openapi-clients-3.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/resttemplate-usecase-internal-api-calls-with-openapi-clients-3.png" alt="" width="375"><figcaption></figcaption></figure>
 
 ## **4. payment-service**
 
@@ -859,11 +859,11 @@ services:
 mvn clean install
 ```
 
-<figure><img src="../../../../../../.gitbook/assets/resttemplate-usecase-internal-api-calls-with-openapi-clients-4.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/resttemplate-usecase-internal-api-calls-with-openapi-clients-4.png" alt="" width="375"><figcaption></figcaption></figure>
 
-<figure><img src="../../../../../../.gitbook/assets/resttemplate-usecase-internal-api-calls-with-openapi-clients-5.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/resttemplate-usecase-internal-api-calls-with-openapi-clients-5.png" alt="" width="375"><figcaption></figcaption></figure>
 
-<figure><img src="../../../../../../.gitbook/assets/resttemplate-usecase-internal-api-calls-with-openapi-clients-6.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../../../../../.gitbook/assets/resttemplate-usecase-internal-api-calls-with-openapi-clients-6.png" alt="" width="375"><figcaption></figcaption></figure>
 
 ## Verification
 
