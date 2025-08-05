@@ -2,7 +2,7 @@
 
 ## About
 
-Load testing is not just about sending traffic — it’s about **measuring the right system behaviors under stress**. The success of a load test depends heavily on the metrics you capture, how you interpret them, and whether they align with your performance goals.
+Load testing is not just about sending traffic it’s about **measuring the right system behaviors under stress**. The success of a load test depends heavily on the metrics you capture, how you interpret them, and whether they align with your performance goals.
 
 This section outlines the most important categories of metrics to track during load testing, across system layers and target types.
 
