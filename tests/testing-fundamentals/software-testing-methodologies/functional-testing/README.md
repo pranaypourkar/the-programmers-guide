@@ -1,14 +1,14 @@
 # Functional Testing
 
-## Description
+## About
 
-Functional testing involves testing the application against the business requirements. It focuses on verifying that the software functions as intended according to the requirements. This type of testing checks the actions and operations of the software to ensure that each feature works correctly.&#x20;
+Functional testing involves testing the application against the business requirements. It focuses on verifying that the software functions as intended according to the requirements. This type of testing checks the actions and operations of the software to ensure that each feature works correctly.
 
 ## Types of Functional Testing:
 
-### **1. Unit Testing**:
+### **1. Unit Testing**
 
-**Description**: Tests individual components or pieces of code (usually functions or methods) in isolation. Developers in a test-driven environment will typically write and run the tests prior to the software or feature being passed over to the test team. Unit testing can be conducted manually, but automating the process will speed up delivery cycles and expand test coverage.
+Tests individual components or pieces of code (usually functions or methods) in isolation. Developers in a test-driven environment will typically write and run the tests prior to the software or feature being passed over to the test team. Unit testing can be conducted manually, but automating the process will speed up delivery cycles and expand test coverage.
 
 For example, there is a simple calculator application. The developer can write the unit test to check if the user can enter two numbers and get the correct sum for addition functionality.
 
@@ -20,9 +20,9 @@ For example, there is a simple calculator application. The developer can write t
 White Box Testing, also known as Clear Box or Glass Box Testing, is a method where the tester has complete knowledge of the internal structure, code, and implementation of the software. The focus is on testing internal operations such as code paths, branches, loops, and statements.
 {% endhint %}
 
-### **2. Integration Testing**:
+### **2. Integration Testing**
 
-**Description**: It tests the interaction between integrated units/modules to ensure they work together as expected. After each unit is thoroughly tested, it is integrated with other units to create modules or components that are designed to perform specific tasks or activities. These are then tested as group through integration testing to ensure whole segments of an application behave as expected (i.e, the interactions between units are seamless). These tests are often framed by user scenarios, such as logging into an application or opening files.
+It tests the interaction between integrated units/modules to ensure they work together as expected. After each unit is thoroughly tested, it is integrated with other units to create modules or components that are designed to perform specific tasks or activities. These are then tested as group through integration testing to ensure whole segments of an application behave as expected (i.e, the interactions between units are seamless). These tests are often framed by user scenarios, such as logging into an application or opening files.
 
 For example, a user is buying a flight ticket from any airline website. Users can see flight details and payment information while buying a ticket, but flight details and payment processing are two different systems. Integration testing should be done while integrating of airline website and payment processing system.
 
@@ -34,9 +34,9 @@ For example, a user is buying a flight ticket from any airline website. Users ca
 Gray Box Testing is a method where the tester has partial knowledge of the internal workings of the software. This approach combines elements of both Black Box and White Box testing. The tester might have access to some architectural documents, database diagrams, or code.
 {% endhint %}
 
-### **3. System Testing**:
+### **3. System Testing**
 
-**Description**: Tests the complete and fully integrated software product to evaluate the system's compliance with its requirements. The functionality of the software is tested from end-to-end and is typically conducted by a separate testing team than the development team before the product is pushed into production.
+Tests the complete and fully integrated software product to evaluate the system's compliance with its requirements. The functionality of the software is tested from end-to-end and is typically conducted by a separate testing team than the development team before the product is pushed into production.
 
 For example, a tester is testing a health insurance website. End to End testing involves testing of buying an insurance policy, adding another beneficiary, updating credit card information on users’ accounts, updating user address information, receiving order confirmation emails and policy documents.
 
@@ -76,9 +76,9 @@ Monkey Testing is carried out by a tester, assuming that if the monkey uses the 
 The objective of Monkey Testing is to check if an application or system gets crashed by providing random input values/data. Monkey Testing is performed randomly, no test cases are scripted, and it is not necessary to be aware of the full functionality of the system.
 {% endhint %}
 
-### **4. Acceptance Testing**:
+### **4. Acceptance Testing**
 
-**Description**: Acceptance testing is the last phase of functional testing and is used to assess whether or not the final piece of software is ready for delivery. It involves ensuring that the product is in compliance with all of the original business criteria and that it meets the end user’s needs. This requires the product be tested both internally and externally, meaning we’ll need to get it into the hands of the end users for beta testing along with those of the QA team. Beta testing is key to getting real feedback from potential customers and can address any final usability concerns.
+Acceptance testing is the last phase of functional testing and is used to assess whether or not the final piece of software is ready for delivery. It involves ensuring that the product is in compliance with all of the original business criteria and that it meets the end user’s needs. This requires the product be tested both internally and externally, meaning we’ll need to get it into the hands of the end users for beta testing along with those of the QA team. Beta testing is key to getting real feedback from potential customers and can address any final usability concerns.
 
 The client accepts the software only when all the features and functionalities work as expected. This is the last phase of testing, after which the software goes into production.
 
@@ -104,4 +104,3 @@ Beta Testing is carried out to ensure that there are no major failures in the so
 
 Usually, this testing is typically done by the end-users. This is the final testing done before releasing the application for commercial purposes. Usually, the Beta version of the software or product released is limited to a certain number of users in a specific area.
 {% endhint %}
-
