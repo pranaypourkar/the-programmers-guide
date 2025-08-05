@@ -18,25 +18,14 @@ It tests the interaction between integrated units/modules to ensure they work to
 
 For example, a user is buying a flight ticket from any airline website. Users can see flight details and payment information while buying a ticket, but flight details and payment processing are two different systems. Integration testing should be done while integrating of airline website and payment processing system.
 
-**Tools**: JUnit, NUnit, TestNG, Selenium, TestContainers
-
 ### **3. System Testing**
 
 Tests the complete and fully integrated software product to evaluate the system's compliance with its requirements. The functionality of the software is tested from end-to-end and is typically conducted by a separate testing team than the development team before the product is pushed into production.
 
 For example, a tester is testing a health insurance website. End to End testing involves testing of buying an insurance policy, adding another beneficiary, updating credit card information on users’ accounts, updating user address information, receiving order confirmation emails and policy documents.
 
-**Tools**: Selenium, LoadRunner, Manual Testing.
-
 ### **4. Acceptance Testing**
 
 Acceptance testing is the last phase of functional testing and is used to assess whether or not the final piece of software is ready for delivery. It involves ensuring that the product is in compliance with all of the original business criteria and that it meets the end user’s needs. This requires the product be tested both internally and externally, meaning we’ll need to get it into the hands of the end users for beta testing along with those of the QA team. Beta testing is key to getting real feedback from potential customers and can address any final usability concerns.
 
 The client accepts the software only when all the features and functionalities work as expected. This is the last phase of testing, after which the software goes into production.
-
-**Types**:
-
-* **User Acceptance Testing (UAT)**: Conducted by end-users to ensure the software meets their needs.
-* **Operational Acceptance Testing (OAT)**: Ensures system's operational readiness (such as maintenance, backup, and disaster recovery).
-
-**Tools**: Cucumber, Manual Testing
