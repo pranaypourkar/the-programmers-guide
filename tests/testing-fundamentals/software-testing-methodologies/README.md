@@ -4,11 +4,11 @@
 
 Software Testing Methodologies refer to the structured approaches and practices used to validate that software applications meet specified requirements and are free from defects. These methodologies encompass a range of techniques, strategies, and procedures designed to ensure the quality, performance, and reliability of software products. They guide the testing process from planning and design to execution and reporting.
 
-### Types of Software Testing Methodologies
+## Types of Software Testing Methodologies
 
 Software Testing Methodologies can be broadly categorized into two main types:
 
-**1. Functional Testing Methodologies**
+### **1. Functional Testing Methodologies**
 
 Functional testing focuses on verifying that the software operates according to its specifications and correctly performs its intended functions.
 
@@ -16,7 +16,7 @@ Functional testing focuses on verifying that the software operates according to 
 * **White Box Testing**: Testing with knowledge of the internal logic of the application. It involves testing internal structures or workings.
 * **Gray Box Testing**: Combines both black-box and white-box testing techniques. Testers have partial knowledge of the internal workings.
 
-**2. Non-Functional Testing Methodologies**
+### **2. Non-Functional Testing Methodologies**
 
 Non-functional testing focuses on evaluating the performance, usability, reliability, and other non-functional aspects of the software.
 
