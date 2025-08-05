@@ -16,7 +16,7 @@ This setup uses two services:
 
 Both services are aligned on their contracts using shared OpenAPI specifications and generate client code during build time using the **OpenAPI Generator** with the `spring-webclient` library.
 
-### **Project Structure** <a href="#project-structure" id="project-structure"></a>
+## **Project Structure** <a href="#project-structure" id="project-structure"></a>
 
 #### **Specs** <a href="#specs" id="specs"></a>
 
@@ -28,7 +28,7 @@ Both services are aligned on their contracts using shared OpenAPI specifications
 * **account-service** Implements the account API (as per spec) using Spring Boot.
 * **payment-service** Depends on both API specs and uses OpenAPI-generated clients to call `account-service`.
 
-### **1. account-api-spec** <a href="#id-1.-account-api-spec" id="id-1.-account-api-spec"></a>
+## **1. account-api-spec** <a href="#id-1.-account-api-spec" id="id-1.-account-api-spec"></a>
 
 **Structure**
 
@@ -165,7 +165,7 @@ mvn clean install
 
 <figure><img src="../../../../../../.gitbook/assets/webclient-openapi-1 (1).png" alt=""><figcaption></figcaption></figure>
 
-### **2. payment-api-spec** <a href="#id-2.-payment-api-spec" id="id-2.-payment-api-spec"></a>
+## **2. payment-api-spec** <a href="#id-2.-payment-api-spec" id="id-2.-payment-api-spec"></a>
 
 **Structure**
 
@@ -300,7 +300,7 @@ mvn clean install
 
 <figure><img src="../../../../../../.gitbook/assets/webclient-openapi-2 (1).png" alt=""><figcaption></figcaption></figure>
 
-### **3. account-service** <a href="#id-3.-account-service" id="id-3.-account-service"></a>
+## **3. account-service** <a href="#id-3.-account-service" id="id-3.-account-service"></a>
 
 **Structure**
 
@@ -532,7 +532,7 @@ mvn clean install
 
 <figure><img src="../../../../../../.gitbook/assets/webclient-openapi-7.png" alt="" width="375"><figcaption></figcaption></figure>
 
-### **4. payment-service** <a href="#id-4.-payment-service" id="id-4.-payment-service"></a>
+## **4. payment-service** <a href="#id-4.-payment-service" id="id-4.-payment-service"></a>
 
 **Structure**
 
@@ -879,9 +879,9 @@ mvn clean install
 
 <figure><img src="../../../../../../.gitbook/assets/webclient-openapi-9.png" alt="" width="375"><figcaption></figcaption></figure>
 
-### Verification <a href="#verification" id="verification"></a>
+## Verification <a href="#verification" id="verification"></a>
 
-**Start both the services using `mvn spring-boot:run`**
+Start both the services using `mvn spring-boot:run`
 
 **Test the API with Postman**
 
@@ -889,6 +889,6 @@ mvn clean install
 
 <figure><img src="../../../../../../.gitbook/assets/webclient-openapi-6.png" alt="" width="563"><figcaption></figcaption></figure>
 
-### Reference <a href="#reference" id="reference"></a>
+## Reference <a href="#reference" id="reference"></a>
 
 {% file src="../../../../../../.gitbook/assets/webclient-usecase-internal-api-calls-with-openapi-clients.zip" %}
