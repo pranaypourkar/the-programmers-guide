@@ -1,5 +1,7 @@
 ---
 icon: ruler-triangle
+cover: ../.gitbook/assets/algorithm.png
+coverY: 0
 ---
 
 # Algorithm

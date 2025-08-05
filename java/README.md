@@ -1,5 +1,7 @@
 ---
 icon: mug-hot
+cover: ../.gitbook/assets/java.png
+coverY: 0
 ---
 
 # Java

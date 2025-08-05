@@ -1,5 +1,7 @@
 ---
 icon: cabinet-filing
+cover: ../.gitbook/assets/database.png
+coverY: -14.059171597633139
 ---
 
 # Database

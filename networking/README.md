@@ -1,7 +1,9 @@
 ---
 hidden: true
 icon: globe
+cover: broken-reference
+coverY: 0
 ---
 
-# Web Communication and Security
+# Networking
 

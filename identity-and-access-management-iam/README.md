@@ -1,5 +1,7 @@
 ---
 icon: user-group
+cover: ../.gitbook/assets/identity-and-access-management.png
+coverY: 71.64412510566356
 ---
 
 # Identity and Access Management (IAM)

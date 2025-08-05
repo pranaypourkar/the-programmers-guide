@@ -1,5 +1,7 @@
 ---
 icon: shuffle
+cover: ../.gitbook/assets/git.png
+coverY: 96.67540152155536
 ---
 
 # Git
