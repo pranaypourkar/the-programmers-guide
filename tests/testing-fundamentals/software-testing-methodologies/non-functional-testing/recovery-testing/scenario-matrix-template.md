@@ -1,0 +1,19 @@
+# Scenario Matrix Template
+
+## About
+
+A **Scenario Matrix Template** for **Recovery Testing** is used to plan and track test cases that evaluate how well a system can **recover from failures, crashes, or unexpected interruptions** and return to normal operations.\
+The focus is on verifying **resilience, data integrity, and restoration speed** after different types of failures, including hardware faults, software errors, network outages, or environmental disasters.
+
+This matrix ensures:
+
+* The system can **restart and recover** within acceptable downtime limits
+* **Data loss is minimal** and within defined Recovery Point Objective (RPO)
+* Recovery procedures are **documented, tested, and repeatable**
+* Failover mechanisms and redundancy work as designed
+
+Recovery testing scenarios often simulate **server crashes, database failures, network disruptions, power outages, and disaster recovery drills**.
+
+## Template
+
+<table data-header-hidden data-full-width="true"><thead><tr><th></th><th></th><th width="133.3203125"></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td><strong>Scenario ID</strong></td><td><strong>Scenario Description</strong></td><td><strong>Preconditions</strong></td><td><strong>Test Data / Inputs</strong></td><td><strong>Steps to Execute</strong></td><td><strong>Expected Result</strong></td><td><strong>Priority</strong></td><td><strong>Remarks</strong></td></tr><tr><td>RCV-01</td><td>Server crash recovery test</td><td>System running under normal load</td><td>Normal workloads</td><td>Force server shutdown</td><td>System restarts and restores state</td><td>High</td><td>Baseline recovery scenario</td></tr><tr><td>RCV-02</td><td>Database failure and recovery</td><td>Database replication enabled</td><td>Sample dataset</td><td>Stop DB service unexpectedly</td><td>DB restored without corruption</td><td>High</td><td>Validates RPO compliance</td></tr><tr><td>RCV-03</td><td>Network outage recovery</td><td>Redundant network paths configured</td><td>Normal traffic</td><td>Disconnect network temporarily</td><td>Service resumes when network restored</td><td>Medium</td><td>Checks failover connectivity</td></tr><tr><td>RCV-04</td><td>Application crash recovery</td><td>Application with persistence enabled</td><td>Active user session</td><td>Kill application process</td><td>App restarts, resumes session or prompts login</td><td>High</td><td>User continuity check</td></tr><tr><td>RCV-05</td><td>Failover recovery in cluster</td><td>Clustered environment</td><td>Active cluster nodes</td><td>Stop one node</td><td>Other nodes handle requests seamlessly</td><td>High</td><td>High availability test</td></tr><tr><td>RCV-06</td><td>Power outage simulation</td><td>UPS/failover power configured</td><td>Running workload</td><td>Simulate power loss</td><td>System recovers when power restored</td><td>Medium</td><td>Hardware recovery test</td></tr><tr><td>RCV-07</td><td>Cloud zone failover</td><td>Multi-zone deployment</td><td>Cloud failover setup</td><td>Shut down primary zone</td><td>Workload shifts to secondary zone</td><td>High</td><td>Cloud resilience validation</td></tr><tr><td>RCV-08</td><td>File corruption recovery</td><td>Backup configured</td><td>Corrupt critical files</td><td>Attempt recovery from backup</td><td>Files restored successfully</td><td>Medium</td><td>Data integrity check</td></tr><tr><td>RCV-09</td><td>Disaster recovery site activation</td><td>DR site prepared</td><td>Full system image</td><td>Simulate primary site failure</td><td>DR site activated within RTO</td><td>High</td><td>Business continuity validation</td></tr><tr><td>RCV-10</td><td>Partial component recovery</td><td>Microservices deployed</td><td>Fault injection tool</td><td>Disable single service</td><td>Service recovers without full restart</td><td>Medium</td><td>Component-level resilience</td></tr></tbody></table>

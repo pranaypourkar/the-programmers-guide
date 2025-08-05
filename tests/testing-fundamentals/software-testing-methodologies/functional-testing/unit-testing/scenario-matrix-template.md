@@ -1,0 +1,20 @@
+# Scenario Matrix Template
+
+## About
+
+A **Scenario Matrix Template** for **Unit Testing** is a structured way to list, organize, and track test scenarios at the smallest functional level of the software the **unit**.\
+A _unit_ is typically the smallest testable part of an application, such as a **method, function, or class**.
+
+This matrix helps QA engineers and developers ensure that **every code path, edge case, and dependency interaction** is tested thoroughly in isolation.\
+It enables:
+
+* Clear mapping of scenarios to specific unit behaviors
+* Easy tracking of coverage for normal, boundary, and error conditions
+* Consistency in test design across team members
+* Reduced defects in higher testing levels by catching them early
+
+For effective unit testing, scenarios often include **valid inputs, invalid inputs, boundary conditions, exception handling, dependency mocking, and performance checks** — all while ensuring tests run fast and remain independent from external systems.
+
+## Template
+
+<table data-header-hidden data-full-width="true"><thead><tr><th></th><th></th><th width="135.02734375"></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td><strong>Scenario ID</strong></td><td><strong>Scenario Description</strong></td><td><strong>Preconditions</strong></td><td><strong>Test Data / Inputs</strong></td><td><strong>Steps to Execute</strong></td><td><strong>Expected Result</strong></td><td><strong>Priority</strong></td><td><strong>Remarks</strong></td></tr><tr><td>UT-01</td><td>Validate correct output for valid inputs</td><td>Unit/module available</td><td>Valid input parameters</td><td>Call the method with valid inputs</td><td>Method returns expected output</td><td>High</td><td>Basic functional verification</td></tr><tr><td>UT-02</td><td>Handle invalid or null inputs</td><td>Unit/module available</td><td>Invalid or null input values</td><td>Call the method with invalid inputs</td><td>Method throws expected exception or handles gracefully</td><td>High</td><td>Ensures robustness</td></tr><tr><td>UT-03</td><td>Boundary value testing</td><td>Unit/module available</td><td>Boundary values (min, max)</td><td>Pass boundary values to method</td><td>Output matches expected boundary behavior</td><td>High</td><td>Prevents off-by-one errors</td></tr><tr><td>UT-04</td><td>Test exception handling</td><td>Unit/module available</td><td>Input causing an error</td><td>Call method and trigger exception scenario</td><td>Exception is handled as per design</td><td>Medium</td><td>Validates error handling</td></tr><tr><td>UT-05</td><td>Dependency mocking</td><td>Unit with dependencies available</td><td>Mocked dependency behavior</td><td>Inject mocks and call method</td><td>Method behaves correctly with mocked dependencies</td><td>High</td><td>Isolates unit behavior</td></tr><tr><td>UT-06</td><td>Performance check for method</td><td>Unit/module available</td><td>Test data for performance</td><td>Measure execution time</td><td>Method executes within acceptable time</td><td>Medium</td><td>Ensures efficiency</td></tr><tr><td>UT-07</td><td>Verify data persistence logic</td><td>Unit/module with DB call available</td><td>Mock DB or in-memory DB</td><td>Call method to persist data</td><td>Data is persisted as expected</td><td>Medium</td><td>Avoids integration-level dependency in unit tests</td></tr><tr><td>UT-08</td><td>Parameterized test coverage</td><td>Unit/module available</td><td>Multiple input sets</td><td>Run parameterized tests</td><td>All variations return correct results</td><td>Medium</td><td>Improves coverage without redundancy</td></tr><tr><td>UT-09</td><td>Thread-safety verification</td><td>Unit/module with concurrent access</td><td>Multiple threads calling method</td><td>Simulate concurrent execution</td><td>No race conditions or inconsistent state</td><td>Low</td><td>Applies to concurrent units</td></tr><tr><td>UT-10</td><td>Code path coverage check</td><td>Unit/module available</td><td>Inputs covering different paths</td><td>Execute tests covering all branches</td><td>All branches executed and validated</td><td>High</td><td>Ensures full logical coverage</td></tr></tbody></table>
