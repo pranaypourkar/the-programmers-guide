@@ -1,7 +1,7 @@
 ---
 hidden: true
 icon: globe
-cover: broken-reference
+cover: ../.gitbook/assets/networking.png
 coverY: 0
 ---
 

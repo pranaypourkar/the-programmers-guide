@@ -1,5 +1,7 @@
 ---
 icon: seedling
+cover: ../.gitbook/assets/spring.png
+coverY: 0
 ---
 
 # Spring

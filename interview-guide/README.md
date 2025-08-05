@@ -1,5 +1,7 @@
 ---
 icon: user-plus
+cover: ../.gitbook/assets/interview-guide.png
+coverY: 0
 ---
 
 # Interview Guide

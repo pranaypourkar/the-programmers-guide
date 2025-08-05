@@ -1,5 +1,7 @@
 ---
 icon: table-cells
+cover: ../.gitbook/assets/miscellaneous.png
+coverY: -340.16314454775994
 ---
 
 # Miscellaneous
@@ -12,4 +14,4 @@ Whether we are trying to recall a system shortcut, understand screen resolution 
 
 
 
-<figure><img src="../.gitbook/assets/miscellaneous.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/miscellaneous (1).png" alt=""><figcaption></figcaption></figure>

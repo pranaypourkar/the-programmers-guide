@@ -1,7 +1,7 @@
 ---
 icon: cloud
 cover: ../.gitbook/assets/cloud-computing.png
-coverY: 75.02874049027898
+coverY: 0
 ---
 
 # Cloud Computing

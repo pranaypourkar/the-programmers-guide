@@ -1,5 +1,7 @@
 ---
 icon: cube
+cover: ../.gitbook/assets/maven.png
+coverY: 74.12679628064244
 ---
 
 # Maven

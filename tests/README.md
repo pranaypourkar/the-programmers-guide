@@ -1,5 +1,7 @@
 ---
 icon: vial
+cover: ../.gitbook/assets/software-testing.png
+coverY: 0
 ---
 
 # Software Testing
@@ -10,7 +12,7 @@ Software Testing is a crucial phase in the software development lifecycle that e
 
 Whether you're a developer, tester, or architect, understanding software testing is essential for delivering robust and maintainable software.
 
-<figure><img src="../.gitbook/assets/software-testing.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/software-testing (1).png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## **Why Testing Matters**
 

@@ -1,6 +1,8 @@
 ---
 hidden: true
 icon: laptop
+cover: ../.gitbook/assets/personal-projects.png
+coverY: 76.6094674556213
 ---
 
 # Personal Projects
