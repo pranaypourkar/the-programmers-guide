@@ -173,7 +173,7 @@ While the **DRY** principle is powerful, applying it blindly can harm code clari
 This phenomenon is sometimes called **“Over-DRYing”** or **“Premature Abstraction.”**
 
 {% hint style="success" %}
-Rule of Thumb
+**Rule of Thumb**
 
 **“Three strikes and we refactor.”**\
 If we see something duplicated once, it might be coincidence. Twice—consider refactoring. Thrice—almost certainly time to extract it.\
