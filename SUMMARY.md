@@ -1300,6 +1300,8 @@
       * [Coupling](system-design/design-principles-and-patterns/design-metrics/coupling.md)
       * [Cohesion](system-design/design-principles-and-patterns/design-metrics/cohesion.md)
       * [Cyclomatic Complexity](system-design/design-principles-and-patterns/design-metrics/cyclomatic-complexity.md)
+      * [Lines of Code (LOC)](system-design/design-principles-and-patterns/design-metrics/lines-of-code-loc.md)
+      * [Halstead Metrics](system-design/design-principles-and-patterns/design-metrics/halstead-metrics.md)
       * [Maintainability Index](system-design/design-principles-and-patterns/design-metrics/maintainability-index.md)
   * [System Design Methodology](system-design/system-design-methodology/README.md)
     * [Design Layers](system-design/system-design-methodology/design-layers/README.md)
