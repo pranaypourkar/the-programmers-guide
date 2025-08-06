@@ -14,6 +14,12 @@ Common examples of SoC in practice include:
 * **Layered architecture** separating presentation, application, domain, and infrastructure logic.
 * **Microservices** separating business capabilities into independent services.
 
+{% hint style="success" %}
+**Rule of Thumb**
+
+Apply Separation of Concerns **until the point** where it still improves clarity and maintainability. If splitting concerns introduces more complexity than it removes, reconsider.
+{% endhint %}
+
 ## Why It Matters ?
 
 Applying Separation of Concerns leads to **cleaner, more modular systems** with clear boundaries between different parts of the application.
