@@ -18,7 +18,7 @@ It’s more than just drawing boxes and arrows. It’s about making **architectu
 * **Maintainability** – Can it be updated without excessive cost or risk?
 * **Security** – Can it safeguard data and withstand threats?
 
-A good system design anticipates **future change**—it balances what is needed today with what will be needed tomorrow.
+A good system design anticipates **future change -** it balances what is needed today with what will be needed tomorrow.
 
 ## System Design as a City <a href="#java-as-a-shipping-port-and-shipping-containers" id="java-as-a-shipping-port-and-shipping-containers"></a>
 
@@ -30,11 +30,11 @@ When city planners begin, they’re not just thinking about the buildings, they�
 
 **1. Zoning and Layout**\
 In a city, there are residential, commercial, and industrial zones. Each has a clear purpose and boundaries.\
-In a system, we do the same—breaking it into services, modules, and databases with well-defined responsibilities. Clear zoning prevents congestion, confusion, and conflicts.
+In a system, we do the same - breaking it into services, modules, and databases with well-defined responsibilities. Clear zoning prevents congestion, confusion, and conflicts.
 
 **2. Infrastructure and Utilities**\
 A city depends on roads, bridges, power lines, and water pipes to connect and support everything.\
-In system design, these are your networks, APIs, message queues, and data pipelines—they keep information moving between components.
+In system design, these are our networks, APIs, message queues, and data pipelines - they keep information moving between components.
 
 **3. Traffic Flow and Management**\
 Cities use traffic lights, highways, and bypass roads to keep vehicles flowing smoothly.\
@@ -58,7 +58,7 @@ Systems aim for performance, maintainability, and cost-effectiveness over the lo
 
 ## Why Learn System Design ?
 
-System Design is not just for senior architects, it’s a skill that impacts **every stage of your engineering career**. Whether you’re building a small feature or architecting a global platform, design decisions shape **performance, scalability, reliability, and cost**.
+System Design is not just for senior architects, it’s a skill that impacts **every stage of our engineering career**. Whether we are building a small feature or architecting a global platform, design decisions shape **performance, scalability, reliability, and cost**.
 
 {% hint style="success" %}
 Learning System Design is like learning how to build the foundation of a skyscraper it’s invisible to most, but everything else depends on it.
@@ -72,14 +72,14 @@ Small applications can get away with quick fixes. But when systems grow - more u
 * Frequent downtime
 * Costly rework to handle growth
 
-Learning System Design equips you to anticipate these challenges early so your solutions can scale naturally.
+Learning System Design equips us to anticipate these challenges early so our solutions can scale naturally.
 
 #### **2. It’s Core to Technical Interviews**
 
 In mid-to-senior developer interviews, system design questions often carry as much weight as coding problems.
 
 * FAANG and top tech companies use system design rounds to evaluate problem-solving, trade-off analysis, and architectural thinking.
-* Being able to design a scalable URL shortener, chat system, or recommendation engine shows employers you can handle complex, real-world problems.
+* Being able to design a scalable URL shortener, chat system, or recommendation engine shows employers we can handle complex, real-world problems.
 
 #### **3. It Improves Cross-Team Communication**
 
@@ -100,21 +100,21 @@ Good design:
 #### **5. It Builds Future-Proof Systems**
 
 Tech stacks change. Traffic patterns evolve. Business needs shift.\
-Learning System Design teaches you to:
+Learning System Design teaches us to:
 
 * Build modular systems that adapt easily
 * Use standard patterns for flexibility
 * Plan for both current and future requirements
 
-#### **6. It Makes You a Better Problem-Solver**
+#### **6. It Makes Us a Better Problem-Solver**
 
 System Design is about trade-offs, balancing speed vs. cost, consistency vs. availability, simplicity vs. flexibility.\
-These are the same decisions you’ll make in every real-world project.
+These are the same decisions we will make in every real-world project.
 
 ## For Whom Is This Guide?
 
 {% hint style="success" %}
-If you work with software systems—whether you build them, operate them, or plan them—this guide will help you **think like a system architect**.
+If we work with software systems - whether we build them, operate them, or plan them - this guide will help us **think like a system architect**.
 {% endhint %}
 
 This guide is designed for **anyone who wants to understand how modern software systems are planned, built, and scaled,** from the first design sketch to a production-ready, high-traffic application.
