@@ -1,7 +1,3 @@
----
-hidden: true
----
-
 # Software Design Principles
 
 ## About
