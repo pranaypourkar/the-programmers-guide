@@ -2,13 +2,13 @@
 
 ## About
 
-**Use Case Analysis** is the process of **identifying, describing, and understanding how users or other systems interact with your system** to achieve specific goals.\
+**Use Case Analysis** is the process of **identifying, describing, and understanding how users or other systems interact with our system** to achieve specific goals.\
 In **System Design**, it helps bridge the gap between **business needs** and **technical implementation** by turning high-level requirements into **practical interaction scenarios**.
 
-Think of it as a **storyboard for your system**—showing who uses it, what they do, and how the system responds.
+Think of it as a **storyboard for our system**—showing who uses it, what they do, and how the system responds.
 
 {% hint style="success" %}
-In System Design, use case analysis ensures that your architecture isn’t just technically sound—it’s aligned with **how people and systems will actually use it**.
+In System Design, use case analysis ensures that our architecture isn’t just technically sound—it’s aligned with **how people and systems will actually use it**.
 {% endhint %}
 
 ## Why It Matters in System Design ?
@@ -16,13 +16,13 @@ In System Design, use case analysis ensures that your architecture isn’t just 
 1. **Clarifies Functional Requirements**
    * Helps ensure that all necessary features and interactions are captured before designing the architecture.
 2. **Identifies Edge Cases Early**
-   * Forces you to think about alternative flows, error scenarios, and unusual usage patterns.
+   * Forces us to think about alternative flows, error scenarios, and unusual usage patterns.
 3. **Aligns Business & Technical Teams**
    * Product managers, designers, and engineers can all refer to the same use case document.
 4. **Supports Test Planning**
    * Test cases can be derived directly from use cases, ensuring coverage for critical flows.
 5. **Informs Design Decisions**
-   * Understanding how a system will be used helps you choose the right architecture, scaling strategy, and data model.
+   * Understanding how a system will be used helps us choose the right architecture, scaling strategy, and data model.
 
 ## The Use Case Analysis Process
 
@@ -96,7 +96,7 @@ Review use cases with:
 
 ## Best Practices
 
-* Use **clear, simple language**—avoid overly technical terms in the main scenario.
+* Use **clear, simple language -** avoid overly technical terms in the main scenario.
 * Keep use cases **solution-agnostic**; focus on _what_ the system does, not _how_ it’s implemented.
 * Number the steps for easy reference.
-* Don’t skip **failure scenarios**—they often have huge design implications.
+* Don’t skip **failure scenarios -** they often have huge design implications.

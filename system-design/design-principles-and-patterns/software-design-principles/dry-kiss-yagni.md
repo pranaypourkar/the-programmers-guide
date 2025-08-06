@@ -1,2 +1,0 @@
-# DRY, KISS, YAGNI
-
