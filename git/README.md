@@ -6,7 +6,7 @@ coverY: 0
 
 # Git
 
-## Description
+## About
 
 Git is a distributed version control system designed to handle all from small to very large projects with speed and efficiency. Created by Linus Torvalds in 2005, it is used to track changes in source code during software development. It helps increase collaboration in software development, helping teams manage changes and maintain a comprehensive history of the projects.
 
