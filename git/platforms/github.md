@@ -1,12 +1,10 @@
----
-hidden: true
----
-
 # GitHub
 
 ## About
 
 GitHub is a cloud-based platform for hosting and managing Git repositories, enabling individuals and teams to collaborate on code from anywhere. Built on top of the Git version control system, it adds powerful features like pull requests, issue tracking, continuous integration, and code security. GitHub has become the industry standard for both open-source and private software development, offering an ecosystem that combines version control, collaboration, automation, and documentation in one place.
+
+<figure><img src="../../.gitbook/assets/github.png" alt="" width="140"><figcaption></figcaption></figure>
 
 ## Importance of GitHub
 
@@ -36,7 +34,14 @@ Integrations and extensions turn GitHub from a code hosting service into a **com
 
 ## Pricing Model & Plans
 
-<table data-full-width="true"><thead><tr><th width="140.6171875" valign="top">Plan</th><th width="133.59375" valign="top">Cost (USD/user/month)</th><th width="347.48046875" valign="top">Included Features &#x26; Limits</th><th valign="top">Ideal For</th></tr></thead><tbody><tr><td valign="top"><strong>GitHub Free (Individuals &#x26; Organizations)</strong></td><td valign="top"><strong>$0</strong></td><td valign="top">Unlimited public/private repos, unlimited collaborators, 2,000 Actions min / mo (private), 500 MB Packages, community support <a href="https://azure-finops-essentials.mindbyte.nl/p/github-costs-pricing-optimization?utm_source=chatgpt.com">Azure FinOps Essentials+2getmonetizely.com+2</a><a href="https://www.g2.com/products/github/pricing?utm_source=chatgpt.com">Reddit+9G2+9Reddit+9</a></td><td valign="top">Individual devs, open-source projects, small teams</td></tr><tr><td valign="top"><strong>GitHub Pro (Personal)</strong></td><td valign="top">~$4 (monthly), ~$48 annually</td><td valign="top">All Free features, advanced repository tools (protected branches, code owners, Pages), expanded package/data limits <a href="https://www.livemint.com/technology/tech-news/github-makes-private-repositories-free-team-plans-slashed-11586957225114.html?utm_source=chatgpt.com">mint</a><a href="https://docs.github.com/en/get-started/learning-about-github/faq-about-changes-to-githubs-plans?utm_source=chatgpt.com">GitHub Docs</a></td><td valign="top">Developers needing enhanced tools and control</td></tr><tr><td valign="top"><strong>GitHub Team (Organization)</strong></td><td valign="top"><strong>$4/user/month</strong> (no min.)</td><td valign="top">Free plan plus required reviewers, multiple reviewers, draft PRs, protected branches, 3,000 Actions min / mo private, 2 GB Packages storage, Codespaces access, web-based support <a href="https://www.g2.com/products/github/pricing?utm_source=chatgpt.com">G2</a><a href="https://docs.github.com/en/get-started/learning-about-github/faq-about-changes-to-githubs-plans?utm_source=chatgpt.com">GitHub Docs</a></td><td valign="top">Growing teams needing collaboration and review controls</td></tr><tr><td valign="top"><strong>GitHub Enterprise Cloud</strong></td><td valign="top"><strong>$21/user/month</strong> (annually)</td><td valign="top">Includes Team features plus SAML SSO, SCIM provisioning, enterprise account management, 50,000 Actions min / mo, 50 GB Packages, audit logs, compliance certifications, and optional data residency <a href="https://github.com/pricing?utm_source=chatgpt.com">github.com</a><a href="https://www.fusionsol.com/blog/github-enterprise-pricing-features-and-costs-explained-guide/?utm_source=chatgpt.com">fusionsol.com</a></td><td valign="top">Large orgs requiring advanced security, compliance, and scale</td></tr><tr><td valign="top"><strong>GitHub Enterprise Server</strong></td><td valign="top">Custom pricing (on‑prem/self‑hosted)</td><td valign="top">Everything in Enterprise Cloud, but hosted on your infrastructure for full control, customization, and compliance <a href="https://www.fusionsol.com/blog/github-enterprise-pricing-features-and-costs-explained-guide/?utm_source=chatgpt.com">fusionsol.com</a><a href="https://github.com/pricing?utm_source=chatgpt.com">github.com</a></td><td valign="top">Organizations needing full self-managed deployments</td></tr></tbody></table>
+GitHub offers flexible pricing tiers tailored to individual developers, teams, and enterprises. Each plan scales in features and support, making it easy to start small and grow as our needs evolve.
+
+<table><thead><tr><th width="126.72265625">Plan</th><th>Description</th></tr></thead><tbody><tr><td><strong>Free</strong></td><td>Ideal for individuals and hobby projects. Includes unlimited public and private repositories, collaboration tools, and access to GitHub Actions with basic usage limits.</td></tr><tr><td><strong>Pro</strong></td><td>Geared toward individual developers who need advanced features like protected branches, Pages, and insights.</td></tr><tr><td><strong>Team</strong></td><td>Designed for teams that need collaboration tools such as required reviews, code owners, and team management features.</td></tr><tr><td><strong>Enterprise</strong></td><td>Suited for large organizations with advanced requirements. Includes enterprise authentication (SSO), audit logs, compliance features, security enhancements, and centralized management.</td></tr></tbody></table>
+
+{% hint style="danger" %}
+GitHub’s pricing, limits, and available features may change over time.\
+Always check the official GitHub pricing page for the most up-to-date information.
+{% endhint %}
 
 ## Git vs GitHub
 
