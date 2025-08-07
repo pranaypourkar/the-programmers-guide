@@ -1,23 +1,22 @@
 # GitLab
 
-About
+## About
 
 
 
-Importance of GitHub
+## Importance of GitHub
 
 
 
-Features
+## Features
 
 
 
-Integrations & Extensions
+## Integrations & Extensions
 
 
 
-Pricing Model & Plans
+## Pricing Model & Plans
 
 
 
-Git vs GitHub
