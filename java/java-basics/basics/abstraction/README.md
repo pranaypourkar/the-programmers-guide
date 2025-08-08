@@ -1,6 +1,6 @@
 # Abstraction
 
-## Description
+## About
 
 Abstraction is one of the key concepts in object-oriented programming (OOP) that allows to represent complex real-world entities in a simplified manner. It involves hiding the complex implementation details of a system or object and exposing only the essential features or functionalities to the outside world. Abstraction focuses on what an object does rather than how it accomplishes its tasks.
 

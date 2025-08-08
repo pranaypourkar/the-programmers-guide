@@ -1,6 +1,6 @@
 # Encapsulation
 
-## Description
+## About
 
 Encapsulation is one of the four fundamental principles of object-oriented programming (OOP), along with inheritance, polymorphism, and abstraction. It refers to the bundling of data (variables) and methods (functions) that operate on the data into a single unit, known as a class. Encapsulation allows you to hide the internal state of an object and restrict access to its data, while exposing a controlled interface for interacting with the object.
 
@@ -116,6 +116,3 @@ public class Application {
     }
 }
 ```
-
-
-

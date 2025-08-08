@@ -1,0 +1,2 @@
+# Why no multiple inheritence ?
+
