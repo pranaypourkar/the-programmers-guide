@@ -2,5 +2,5 @@
 hidden: true
 ---
 
-# NoSQL Data Models
+# Document Stores
 
