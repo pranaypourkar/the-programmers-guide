@@ -1,14 +1,10 @@
----
-hidden: true
----
-
 # BASE Properties
 
 ## About
 
 BASE (Basically Available, Soft state, Eventually consistent) is an alternative model to ACID used in distributed NoSQL databases. Unlike ACID, which prioritizes strong consistency, BASE focuses on availability, performance, and scalability by allowing temporary inconsistencies.
 
-## Why BASE?
+## Why BASE ?
 
 * In large-scale distributed systems (e.g., Amazon DynamoDB, Apache Cassandra, MongoDB), achieving **strong ACID consistency is costly** and impacts availability.
 * **The CAP Theorem states** that a distributed database **cannot guarantee Consistency, Availability, and Partition Tolerance at the same time**.
