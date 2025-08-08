@@ -2,5 +2,5 @@
 hidden: true
 ---
 
-# Column-Family Stores
+# Schema Flexibility
 

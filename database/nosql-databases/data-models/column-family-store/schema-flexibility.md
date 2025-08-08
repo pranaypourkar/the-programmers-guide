@@ -2,5 +2,5 @@
 hidden: true
 ---
 
-# Document Stores
+# Schema Flexibility
 

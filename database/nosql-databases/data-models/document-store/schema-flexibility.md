@@ -2,5 +2,5 @@
 hidden: true
 ---
 
-# Key-Value Stores
+# Schema Flexibility
 

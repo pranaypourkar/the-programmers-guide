@@ -2,5 +2,5 @@
 hidden: true
 ---
 
-# Graph Databases
+# Schema Flexibility
 
