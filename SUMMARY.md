@@ -438,7 +438,7 @@
         * [Constructor Chaining](java/java-basics/basics/inheritance/constructor-chaining.md)
         * [Dynamic Method Dispatch](java/java-basics/basics/inheritance/dynamic-method-dispatch.md)
         * [Inheritance vs. Composition](java/java-basics/basics/inheritance/inheritance-vs.-composition.md)
-        * [Why no multiple inheritence ?](java/java-basics/basics/inheritance/why-no-multiple-inheritence.md)
+        * [Diamond Problem](java/java-basics/basics/inheritance/diamond-problem.md)
       * [Polymorphism](java/java-basics/basics/polymorphism.md)
       * [Abstraction](java/java-basics/basics/abstraction/README.md)
         * [Abstract Class & Method](java/java-basics/basics/abstraction/abstract-class-and-method.md)
