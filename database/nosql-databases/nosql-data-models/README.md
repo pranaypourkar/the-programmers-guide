@@ -1,2 +1,6 @@
-# Types of NoSQL
+---
+hidden: true
+---
+
+# NoSQL Data Models
 

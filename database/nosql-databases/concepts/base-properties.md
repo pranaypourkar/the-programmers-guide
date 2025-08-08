@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # BASE Properties
 
 ## About

@@ -1,7 +1,3 @@
----
-hidden: true
----
-
 # NoSQL Databases
 
 ## About
