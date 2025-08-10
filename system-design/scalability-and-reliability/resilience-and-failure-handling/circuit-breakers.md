@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Circuit Breakers
 
 Resilience4j Circuit Breaker
