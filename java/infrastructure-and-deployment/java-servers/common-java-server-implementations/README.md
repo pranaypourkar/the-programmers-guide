@@ -1,2 +1,6 @@
-# Common Java Servers
+---
+hidden: true
+---
+
+# Common Java Server Implementations
 
