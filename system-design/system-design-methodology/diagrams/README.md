@@ -1,10 +1,10 @@
-# Diagrams
+# Design Diagrams
 
 ## About
 
 Solution architects and software developers often use various types of diagrams to design systems effectively. Diagrams play a vital role in the system design process by facilitating communication, visualization, analysis, documentation, risk management, iteration, and compliance.
 
-## Why diagrams are important for effective system design?
+## Why diagrams are important for effective system design ?
 
 1. **Communication**: Diagrams serve as a common language between different stakeholders involved in the project, including developers, architects, project managers, and clients. They facilitate clear communication of complex ideas and concepts, ensuring everyone is on the same page regarding the system's design and functionality.
 2. **Visualization**: Visual representations often make it easier to understand abstract concepts and relationships within the system. By providing a visual layout of components, interactions, and processes, diagrams help stakeholders grasp the system's architecture and behavior more intuitively than textual descriptions alone.
