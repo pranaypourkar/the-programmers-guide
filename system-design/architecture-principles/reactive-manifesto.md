@@ -77,3 +77,35 @@ Message-driven architectures decouple components, making it easier to scale part
 By isolating failures and handling them gracefully through asynchronous messaging and fallback mechanisms, reactive systems prevent cascading failures, which can take down entire applications.
 
 In summary, embracing the Reactive Manifesto helps organizations build systems that are robust, scalable, and maintain a superior user experience in unpredictable and demanding environments.
+
+## Example: Reactive Data Stream with Project Reactor
+
+```java
+import reactor.core.publisher.Flux;
+
+public class ReactiveExample {
+    public static void main(String[] args) {
+        // Create a reactive stream emitting integers from 1 to 5
+        Flux<Integer> numberStream = Flux.range(1, 5)
+            .map(i -> {
+                System.out.println("Processing number: " + i);
+                return i * 2;
+            })
+            .filter(i -> i % 3 != 0);
+
+        // Subscribe to the stream asynchronously
+        numberStream.subscribe(
+            data -> System.out.println("Received: " + data),
+            error -> System.err.println("Error: " + error),
+            () -> System.out.println("Stream completed")
+        );
+    }
+}
+```
+
+#### How This Demonstrates Reactive Principles ?
+
+* **Responsive:** The system processes and delivers data promptly to subscribers, supporting timely responses.
+* **Resilient:** Errors are handled gracefully via the error callback without crashing the entire stream.
+* **Elastic:** The Flux can handle varying data rates and backpressure (though this simple example omits explicit backpressure handling).
+* **Message-Driven:** The asynchronous event-driven model uses non-blocking signals between publishers and subscribers.
