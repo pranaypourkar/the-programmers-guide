@@ -1,7 +1,3 @@
----
-hidden: true
----
-
 # Infrastructure & Deployment
 
 ## About

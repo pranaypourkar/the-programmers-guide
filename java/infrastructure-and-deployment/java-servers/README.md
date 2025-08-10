@@ -1,2 +1,6 @@
-# Java Servers & Containers
+---
+hidden: true
+---
+
+# Java Servers
 
