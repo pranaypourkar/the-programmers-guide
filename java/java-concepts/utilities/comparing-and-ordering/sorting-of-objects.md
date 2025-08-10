@@ -1,5 +1,11 @@
 # Sorting of Objects
 
+## About
+
+Sorting of objects in Java is the process of arranging object instances in a specific order typically ascending or descending based on one or more properties of the object. Unlike primitive types, sorting objects requires defining how they should be compared, as Java does not inherently know which fields or attributes determine their order.
+
+Sorting is not limited to alphabetical or numerical order it can involve multi-level criteria, domain-specific rules, or even complex comparisons like date/time, version numbers, or locale-aware strings.
+
 ## Arrays
 
 ### Ascending Order

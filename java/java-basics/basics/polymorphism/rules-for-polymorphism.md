@@ -6,7 +6,34 @@ Polymorphism in Java is governed by a set of rules that vary depending on whethe
 
 ## **Rules for Compile-Time Polymorphism (Method Overloading)**
 
-<table data-header-hidden data-full-width="true"><thead><tr><th></th><th width="263.703125"></th><th width="84.51171875"></th><th></th></tr></thead><tbody><tr><td><strong>Rule</strong></td><td><strong>Example</strong></td><td><strong>Valid / Invalid</strong></td><td><strong>Reason</strong></td></tr><tr><td><strong>Same method name</strong></td><td><code>void print() {}</code><br><code>void print(String msg) {}</code></td><td>Valid</td><td>Overloaded methods must share the same name.</td></tr><tr><td><strong>Different parameter list</strong></td><td><code>void sum(int a, int b) {}</code><br><code>void sum(double a, double b) {}</code></td><td>Valid</td><td>Changing type/number/order of parameters allows overloading.</td></tr><tr><td><strong>Return type alone not enough</strong></td><td><code>int getData() {}</code><br><code>String getData() {}</code></td><td>Invalid</td><td>Compiler cannot differentiate only by return type.</td></tr><tr><td><strong>Different access modifiers allowed</strong></td><td><code>public void show(int x) {}</code><br><code>private void show(String y) {}</code></td><td>Valid</td><td>Access modifiers do not affect method signature.</td></tr><tr><td><strong>Different exceptions allowed</strong></td><td><code>void read() throws IOException {}</code><br><code>void read(String s) throws SQLException {}</code></td><td>Valid</td><td>Exception type does not affect overloading.</td></tr><tr><td><strong>Inheritance overloading</strong></td><td><code>class Parent { void show(int x) {} }</code><br><code>class Child extends Parent { void show(double x) {} }</code></td><td>Valid</td><td>Overloading works across parent-child classes if parameters differ.</td></tr><tr><td><strong>Varargs overloading</strong></td><td><code>void display(String... items) {}</code><br><code>void display(String item) {}</code></td><td>Valid</td><td>Varargs can overload fixed parameters, but must be last.</td></tr><tr><td><strong>Static / final methods can be overloaded</strong></td><td><code>static void log(int x) {}</code><br><code>static void log(String y) {}</code></td><td>Valid</td><td>Static/final methods are still matched at compile time.</td></tr><tr><td><strong>Compile-time resolution</strong></td><td><code>void test(int x) {}</code><br><code>void test(long x) {}</code> → call <code>test(5)</code></td><td>Valid</td><td>Compiler picks best match based on argument type.</td></tr><tr><td><strong>Ambiguity causes compile error</strong></td><td><code>void doSomething(int x, long y) {}</code><br><code>void doSomething(long x, int y) {}</code> → call <code>doSomething(1, 1)</code></td><td>Invalid</td><td>Compiler cannot decide; both match equally well.</td></tr></tbody></table>
+<table data-header-hidden data-full-width="true"><thead><tr><th></th><th width="263.703125"></th><th width="84.51171875"></th><th></th></tr></thead><tbody><tr><td><strong>Rule</strong></td><td><strong>Example</strong></td><td><strong>Valid / Invalid</strong></td><td><strong>Reason</strong></td></tr><tr><td><strong>Same method name</strong></td><td><code>void print() {}</code><br><code>void print(String msg) {}</code></td><td>Valid</td><td>Overloaded methods must share the same name.</td></tr><tr><td><strong>Different parameter list</strong></td><td><code>void sum(int a, int b) {}</code><br><code>void sum(double a, double b) {}</code></td><td>Valid</td><td>Changing type/number/order of parameters allows overloading.</td></tr><tr><td><strong>Return type alone not enough</strong></td><td><code>int getData() {}</code><br><code>String getData() {}</code></td><td>Invalid</td><td>Compiler cannot differentiate only by return type.</td></tr><tr><td><strong>Different access modifiers allowed</strong></td><td><code>public void show(int x) {}</code><br><code>private void show(String y) {}</code></td><td>Valid</td><td>Access modifiers do not affect method signature.</td></tr><tr><td><strong>Different exceptions allowed</strong></td><td><code>void read() throws IOException {}</code><br><code>void read(String s) throws SQLException {}</code></td><td>Valid</td><td>Exception type does not affect overloading.</td></tr><tr><td><strong>Inheritance overloading</strong></td><td><code>class Parent { void show(int x) {} }</code><br><code>class Child extends Parent { void show(double x) {} }</code></td><td>Valid</td><td>Overloading works across parent-child classes if parameters differ.</td></tr><tr><td><strong>Varargs overloading</strong></td><td><code>void display(String... items) {}</code><br><code>void display(String item) {}</code></td><td>Valid</td><td>Varargs can overload fixed parameters, but must be last.</td></tr><tr><td><strong>Static / final methods can be overloaded</strong></td><td><code>static void log(int x) {}</code><br><code>static void log(String y) {}</code></td><td>Valid</td><td>Static/final methods are still matched at compile time.</td></tr><tr><td><strong>Compile-time resolution</strong></td><td><p></p><pre><code>public class Problem1 {
+
+    static void test(int x) {
+        System.out.println("x");
+    }
+
+    static void test(long y) {
+        System.out.println("y");
+    }
+
+    public static void main(String[] args) {
+        test(5); //x
+        test(5L); //y
+    }
+
+}
+</code></pre></td><td>Valid</td><td>Compiler picks best match based on argument type.</td></tr><tr><td><strong>Ambiguity causes compile error</strong></td><td><p></p><pre><code>public static void main(String[] args) {
+    doSomething(5, 5); // Ambiguous method call. Both error
+}
+
+static void doSomething(int x, long y) {
+    System.out.println("x");
+}
+
+static void doSomething(long x, int y) {
+    System.out.println("y");
+}
+</code></pre></td><td>Invalid</td><td>Compiler cannot decide; both match equally well.</td></tr></tbody></table>
 
 ## **Rules for Runtime Polymorphism (Method Overriding)**
 
