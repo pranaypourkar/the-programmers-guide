@@ -1,2 +1,6 @@
-# Thread Dump Analyzers - TBU
+---
+hidden: true
+---
+
+# Thread Dump Analyzers
 

@@ -1,2 +1,6 @@
-# jhat (Java Heap Analysis Tool) - TBU
+---
+hidden: true
+---
+
+# jhat (Java Heap Analysis Tool)
 

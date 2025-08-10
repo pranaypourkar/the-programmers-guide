@@ -1,0 +1,2 @@
+# Standalone JAR Deployment
+

@@ -1,2 +1,6 @@
-# JConsole - TBU
+---
+hidden: true
+---
+
+# JConsole
 

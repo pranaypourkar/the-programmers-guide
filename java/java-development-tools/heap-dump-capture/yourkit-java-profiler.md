@@ -1,2 +1,6 @@
-# YourKit Java Profiler - TBU
+---
+hidden: true
+---
+
+# YourKit Java Profiler
 

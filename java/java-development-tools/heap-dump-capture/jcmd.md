@@ -1,2 +1,6 @@
-# jcmd - TBU
+---
+hidden: true
+---
+
+# jcmd
 

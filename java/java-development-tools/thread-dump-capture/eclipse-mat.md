@@ -1,2 +1,6 @@
-# Eclipse MAT - TBU
+---
+hidden: true
+---
+
+# Eclipse MAT
 

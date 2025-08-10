@@ -1,2 +1,6 @@
-# AppDynamics - TBU
+---
+hidden: true
+---
+
+# AppDynamics
 

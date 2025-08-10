@@ -1,2 +1,6 @@
-# Eclipse MAT (Memory Analyzer Tool) - TBU
+---
+hidden: true
+---
+
+# Eclipse MAT (Memory Analyzer Tool)
 

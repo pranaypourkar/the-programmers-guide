@@ -1,2 +1,6 @@
-# Dynatrace - TBU
+---
+hidden: true
+---
+
+# Dynatrace
 

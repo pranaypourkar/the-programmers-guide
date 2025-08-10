@@ -1,55 +1,61 @@
----
-hidden: true
----
-
 # Thread Dump Capture
 
-List of tools to capture **Thread Dumps** in Java applications are given below.
+## About
 
-## **jstack**
+A **thread dump** is a snapshot of all the threads that are currently running in a Java Virtual Machine (JVM), along with their stack traces and states. It provides detailed information about what each thread is doing at the moment of capture whether it’s running, waiting, blocked, or sleeping.
 
-jstack is a command-line utility provided with the JDK. It can be used to capture thread dumps of a running Java process. It's a lightweight tool commonly used in production or development environments for quick analysis.
+Capturing a thread dump is one of the most effective ways to diagnose **performance bottlenecks, deadlocks, high CPU usage, and unexpected application hangs** in Java applications.
 
-## **VisualVM**
+A thread dump is **read-only diagnostic data**, meaning it does not affect the running state of the application it simply reveals what’s happening internally at a given moment.
 
-It is a GUI-based monitoring and troubleshooting tool included with the JDK. Useful for capturing thread dumps and monitoring JVM performance metrics.
+## Importance of Thread Dump Capture
 
-## **jcmd**
+* **Deadlock Detection**
+  * Helps identify situations where threads are stuck waiting for each other, preventing further progress.
+* **Performance Troubleshooting**
+  * Pinpoints slow methods, blocking operations, and excessive synchronization.
+* **High CPU Usage Investigation**
+  * Shows which threads are consuming CPU cycles and what code they are executing.
+* **Application Hang Analysis**
+  * Identifies threads stuck in I/O operations, long waits, or infinite loops.
+* **Baseline and Benchmarking**
+  * Used to compare application behavior under different load conditions.
 
-A versatile command-line tool included in the JDK. It can perform a variety of JVM diagnostics, including thread dumps.
+## When to Capture a Thread Dump ?
 
-## **JConsole**
+* The application becomes unresponsive.
+* High CPU or memory usage is observed.
+* Deadlocks or thread contention is suspected.
+* During load testing to monitor concurrency issues.
+* As part of routine diagnostics for production incidents.
 
-A GUI-based monitoring tool included with the JDK. Primarily used to monitor Java applications through JMX (Java Management Extensions).
+## List of tools to help Capture Thread Dump
 
-## **YourKit Java Profiler**
+#### **1. JDK Command-Line Utilities**
 
-A commercial Java profiler with advanced features for performance and troubleshooting. Provides detailed insights into thread activity and application performance.
+* **jstack** – Captures a thread dump for a given JVM process ID.
+* **jcmd** – More versatile; can capture thread dumps, heap info, GC data, etc.
+* **jmap** – Primarily for heap dumps, but can sometimes provide thread-related info.
+* **kill -3** _(Unix/Linux)_ – Sends `SIGQUIT` to the JVM to trigger a thread dump to stdout.
+* **Ctrl + Break** _(Windows console)_ – Prints thread dump to console for console-launched apps.
 
-## **Eclipse MAT (Memory Analyzer Tool)**
+#### **2. JDK GUI Tools**
 
-A GUI tool primarily used for analyzing heap dumps, but it also allows thread dump analysis. Suitable for applications where memory and threading issues are interrelated.
+* **JConsole** – Can connect to a JVM and generate thread dumps from the _Threads_ tab.
+* **VisualVM** – Allows capturing and analyzing thread dumps interactively.
 
-## **IntelliJ IDEA Profiler**
+#### **3. Third-Party Profilers / Monitoring Tools**
 
-A built-in profiler in IntelliJ IDEA (Ultimate Edition) for Java applications. Supports capturing thread dumps and analyzing thread performance.
+* **YourKit Java Profiler** – Advanced dump capture and analysis features.
+* **JProfiler** – Integrates with JVM to capture thread dumps on-demand.
+* **Eclipse MAT (Memory Analyzer Tool)** – Primarily for heap dumps but can integrate with thread analysis.
 
-## **AppDynamics**
+#### **4. Cloud & Application Monitoring Platforms**
 
-A commercial application performance management (APM) tool for monitoring distributed systems. Captures thread dumps as part of its diagnostics.
+* **New Relic**, **AppDynamics**, **Dynatrace** – Offer remote JVM thread dump capture for monitored applications.
+* **Spring Boot Actuator** (with `/threaddump` endpoint) – Exposes thread dump over HTTP for Spring Boot apps.
 
-## **Dynatrace**
+#### **5. Analysis-Focused Tools** _(for post-capture reading)_
 
-Another APM tool for enterprise environments. Provides deep insights into thread activity and application performance.
-
-## **Kill -3 Command**
-
-A simple and lightweight method to trigger a thread dump in Unix-based systems.
-
-## **Thread Dump Analyzers**
-
-Tools specifically designed to parse and analyze thread dumps for insights. Examples include:
-
-* [fastThread.io](https://fastthread.io/)
-* Samurai (GUI-based thread dump analyzer)
-
+* **TDA (Thread Dump Analyzer)** – Free tool for parsing and grouping threads by state.
+* **fastThread.io** – Online tool for thread dump analysis with deadlock detection.

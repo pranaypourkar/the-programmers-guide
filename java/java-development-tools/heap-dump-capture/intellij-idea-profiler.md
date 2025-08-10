@@ -1,2 +1,6 @@
-# IntelliJ IDEA Profiler - TBU
+---
+hidden: true
+---
+
+# IntelliJ IDEA Profiler
 

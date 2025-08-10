@@ -1,2 +1,6 @@
-# Kill -3 Command - TBU
+---
+hidden: true
+---
+
+# Kill -3 Command
 

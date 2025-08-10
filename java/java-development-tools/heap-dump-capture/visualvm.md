@@ -1,2 +1,6 @@
-# VisualVM - TBU
+---
+hidden: true
+---
+
+# VisualVM
 

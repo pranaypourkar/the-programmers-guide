@@ -1,2 +1,6 @@
-# JVM Options - TBU
+---
+hidden: true
+---
+
+# JVM Options
 
