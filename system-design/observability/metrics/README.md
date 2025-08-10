@@ -1,2 +1,6 @@
-# Metrics & Monitoring
+---
+hidden: true
+---
+
+# Metrics
 
