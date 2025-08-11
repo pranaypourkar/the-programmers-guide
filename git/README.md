@@ -29,8 +29,6 @@ That magical notebook is **Git**.
 
 With Git, our project isn’t just a snapshot of code; it’s a living, evolving timeline that documents the **entire journey** of our software. It protects us from accidental loss, helps coordinate teams, and enables safe experimentation - all while giving us a complete **versioned history** of our project.
 
-
-
 ## Why Learn Git ?
 
 Git is an essential skill for anyone involved in software development, whether we are a beginner writing our first script or a seasoned engineer managing large-scale systems. Here's why:
@@ -77,7 +75,7 @@ Git is not tied to any one IDE, language, or platform. Once we learn Git, we can
 * VSCode, IntelliJ, or even the terminal
 * Linux, Mac, or Windows
 
-## For Whom Is This Guide?
+## For Whom Is This Guide ?
 
 This guide is designed for **anyone who writes or works with code** - regardless of experience level. Whether we are just starting our journey or looking to sharpen our collaboration skills, Git is a tool we will rely on every day.
 
