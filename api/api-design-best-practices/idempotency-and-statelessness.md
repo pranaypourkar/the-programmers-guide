@@ -1,2 +1,0 @@
-# Idempotency & Statelessness - TBU
-
