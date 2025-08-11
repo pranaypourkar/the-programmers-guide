@@ -1,23 +1,21 @@
-# Libraries
+# java.nio.charset
 
-## java.nio.charset
-
-### About
+## About
 
 The `java.nio.charset` package provides classes and interfaces for character encoding and decoding. It is part of the Java NIO (New I/O) package introduced in Java 1.4 to provide non-blocking I/O operations, among other features. Understanding character sets is crucial for applications dealing with text processing, file I/O, network communication, and internationalization.
 
-### **Charset** (java.nio.charset.Charset):
+## **Charset** (java.nio.charset.Charset)
 
 Represents a named mapping between sequences of sixteen-bit Unicode characters and sequences of bytes. It defines methods for encoding, decoding, and working with character sets.
 
-**Static Methods:**
+**Static Methods**
 
 * `static Charset forName(String charsetName)`: Returns a charset object for the given charset name.
 * `static Charset defaultCharset()`: Returns the default charset of this Java virtual machine.
 * `static SortedMap<String, Charset> availableCharsets()`: Returns a map of available charsets.
 * `static boolean isSupported(String charsetName)`: Tells whether the named charset is supported.
 
-**Methods:**
+**Methods**
 
 * `boolean contains(Charset cs)`: Tells whether or not this charset contains the given charset.
 * `boolean canEncode()`: Tells whether or not this charset supports encoding.
@@ -33,11 +31,11 @@ Represents a named mapping between sequences of sixteen-bit Unicode characters a
 * `CharBuffer decode(ByteBuffer bb)`: Convenience method that decodes bytes into Unicode characters.
 * `int compareTo(Charset that)`: Compares this charset to another.
 
-### **CharsetDecoder** (java.nio.charset.CharsetDecoder):
+## **CharsetDecoder** (java.nio.charset.CharsetDecoder)
 
 Converts a byte sequence into a sequence of sixteen-bit Unicode characters.
 
-**Methods:**
+**Methods**
 
 * `Charset charset()`: Returns the charset that created this decoder.
 * `CharsetDecoder onMalformedInput(CodingErrorAction newAction)`: Changes the action for malformed-input errors.
@@ -53,11 +51,11 @@ Converts a byte sequence into a sequence of sixteen-bit Unicode characters.
 * `CoderResult flush(CharBuffer out)`: Flushes this decoder.
 * `CharsetDecoder reset()`: Resets this decoder, clearing any internal state.
 
-### **CharsetEncoder** (java.nio.charset.CharsetEncoder):
+## **CharsetEncoder** (java.nio.charset.CharsetEncoder)
 
 Converts a sequence of sixteen-bit Unicode characters into a byte sequence.
 
-**Methods:**
+**Methods**
 
 * `Charset charset()`: Returns the charset that created this encoder.
 * `CharsetEncoder onMalformedInput(CodingErrorAction newAction)`: Changes the action for malformed-input errors.
@@ -74,21 +72,21 @@ Converts a sequence of sixteen-bit Unicode characters into a byte sequence.
 * `boolean canEncode(char c)`: Tells whether or not this encoder can encode the given character.
 * `boolean canEncode(CharSequence cs)`: Tells whether or not this encoder can encode the given character sequence.
 
-### **CodingErrorAction** (java.nio.charset.CodingErrorAction):
+## **CodingErrorAction** (java.nio.charset.CodingErrorAction)
 
 Describes actions to be taken when encoding/decoding errors occur. Actions include `IGNORE`, `REPLACE`, and `REPORT`.
 
-**Static Variables:**
+**Static Variables**
 
 * `static CodingErrorAction IGNORE`: Action indicating that a coding error is to be ignored.
 * `static CodingErrorAction REPLACE`: Action indicating that a coding error is to be handled by dropping the erroneous input and replacing it with the current replacement byte or character sequence.
 * `static CodingErrorAction REPORT`: Action indicating that a coding error is to be reported, either by returning a `CoderResult` object or by throwing a `CharacterCodingException`, depending upon the method implementing the coding process.
 
-### **StandardCharsets** (java.nio.charset.StandardCharsets):
+### **StandardCharsets** (java.nio.charset.StandardCharsets)
 
 Defines constants for standard character sets such as UTF-8, UTF-16, ISO-8859-1, etc.
 
-**Static Variables:**
+**Static Variables**
 
 * `static Charset US_ASCII`: Seven-bit ASCII, a.k.a. ISO646-US, a.k.a. the Basic Latin block of the Unicode character set.
 * `static Charset ISO_8859_1`: ISO Latin Alphabet No. 1, a.k.a. ISO-LATIN-1.
@@ -97,19 +95,19 @@ Defines constants for standard character sets such as UTF-8, UTF-16, ISO-8859-1,
 * `static Charset UTF_16LE`: Sixteen-bit UCS Transformation Format, little-endian byte order.
 * `static Charset UTF_16`: Sixteen-bit UCS Transformation Format, byte order identified by an optional byte-order mark.
 
-### UnsupportedCharsetException (java.nio.charset.UnsupportedCharsetException)
+## UnsupportedCharsetException (java.nio.charset.UnsupportedCharsetException)
 
-**Constructor:**
+**Constructor**
 
 * `UnsupportedCharsetException(String charsetName)`: Constructs an instance of this class.
 
-**Methods:**
+**Methods**
 
 * `String getCharsetName()`: Retrieves the name of the unsupported charset.
 
-### Examples
+## Examples
 
-#### Encoding and Decoding Strings
+### Encoding and Decoding Strings
 
 ```java
 import java.nio.charset.Charset;
@@ -136,7 +134,7 @@ public class CharsetExample {
 
 <figure><img src="../../../../.gitbook/assets/image (425).png" alt="" width="563"><figcaption></figcaption></figure>
 
-#### Handling Encoding or Decoding Errors
+### Handling Encoding or Decoding Errors
 
 ```java
 import java.nio.charset.Charset;
@@ -170,7 +168,7 @@ public class ErrorHandlingExample {
 
 <figure><img src="../../../../.gitbook/assets/image (426).png" alt="" width="563"><figcaption></figcaption></figure>
 
-#### Listing Available Charsets
+### Listing Available Charsets
 
 ```java
 import java.nio.charset.Charset;
