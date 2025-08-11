@@ -4,7 +4,7 @@
 
 **Spring Beans** are the central components of a Spring application. In the Spring Framework, a _bean_ is simply an object that is managed by the Spring _Inversion of Control (IoC)_ container. When you use Spring, instead of manually instantiating objects with `new`, Spring creates and manages those objects for you. These objects are called **beans**.
 
-Think of a Spring bean as a **building block** of your application: it could be a service, a data access object, a utility class, or even a controller—anything that Spring manages and wires into other parts of your code.
+Think of a Spring bean as a **building block** of your application: it could be a service, a data access object, a utility class, or even a controller - anything that Spring manages and wires into other parts of your code.
 
 ## Why Spring Beans Matter ?
 
