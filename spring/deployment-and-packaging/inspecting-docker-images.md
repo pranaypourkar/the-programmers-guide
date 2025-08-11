@@ -36,7 +36,7 @@ This is especially useful when we want to:
 * Confirm that unwanted artifacts (e.g., `.git`, `.class` files, temp logs) are excluded
 * Debug runtime issues caused by misconfigured or missing files
 
-Refer to the Page for more details - [use-case.md](../../containers-and-orchestration/container-runtimes-and-tools/docker/tools-and-utilities/dive/use-case.md "mention")
+Refer to the Page for more details - [use-case.md](../../containers-and-orchestration/containerisation-tbu/container-tools-and-utilities/image-analysis-and-debugging-tools/dive/use-case.md "mention")
 
 <figure><img src="../../.gitbook/assets/inspecting-docker-images-1.png" alt=""><figcaption></figcaption></figure>
 
