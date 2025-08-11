@@ -14,7 +14,7 @@ Before diving into CORS, it's essential to understand the Same-Origin Policy.
   * `https://api.example.com:443` (Origin C)
 * **Same-Origin Policy (SOP)**: By default, web browsers only allow scripts on a web page to access data from the same origin. This means that a web page loaded from `https://example.com` cannot make requests to `https://api.example.com` unless certain conditions are met, primarily through CORS.
 
-## What is CORS?
+## What is CORS ?
 
 CORS is a mechanism that allows restricted resources (like fonts, images, or APIs) on a web page to be requested from another domain outside the domain from which the first resource was served. It works by using HTTP headers to inform the browser that the resource can be shared with other origins.
 
@@ -50,7 +50,7 @@ By default, CORS requests do not include credentials like cookies or HTTP authen
    * The server responds with appropriate CORS headers (`Access-Control-Allow-Methods`, `Access-Control-Allow-Origin`, etc.).
    * If allowed, the browser sends the actual `PUT` request.
 
-## Does it involve both i.e. client side as well as server side?
+## Does it involve both i.e. client side as well as server side ?
 
 Yes, CORS (Cross-Origin Resource Sharing) is a mechanism that involves both the **browser** (client side) and the **backend API** (server side). Here’s how it works at both ends.
 
@@ -85,26 +85,24 @@ CORS requires coordination between the client (browser) and the server (backend 
 * The backend API checks if the request is allowed (based on its CORS configuration) and responds with the appropriate headers.
 * The browser receives the response, checks the CORS headers, and either allows or blocks the request based on the policy.
 
-## How CORS Security Protects the System?
-
-### About
+## How CORS Security Protects the System ?
 
 CORS (Cross-Origin Resource Sharing) is a security feature implemented by web browsers to prevent malicious websites from making unauthorized requests to different origins (i.e., domains, protocols, or ports) than the one from which the browser loaded the initial web page. By enforcing the Same-Origin Policy (SOP), browsers restrict how web pages loaded from one origin can interact with resources from another origin. CORS allows servers to explicitly grant permission to certain origins to access their resources, thereby protecting sensitive data and preventing certain types of attacks, such as Cross-Site Request Forgery (CSRF).
 
-### **Scenario:**
+### **Scenario**
 
 Let's break down how CORS works and how it can protect the system using an example.
 
 * **Website A**: A web application hosted at `https://www.website-a.com`.
 * **Website B**: Another web application or API hosted at `https://api.website-b.com` (say implemented using a Java backend).
 
-**Objective:**
+**Objective**
 
 * Website A wants to make an AJAX call to Website B's API to retrieve some data.
 
-**Steps Involved:**
+**Steps Involved**
 
-1. **Browser Sends Preflight Request (for Non-Simple Requests)**:
+1. **Browser Sends Preflight Request (for Non-Simple Requests)**
    * If Website A attempts to send a non-simple HTTP request (e.g., a request with custom headers, methods other than GET or POST, or content types other than `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain`), the browser first sends a **preflight request** to Website B.
    * The preflight request is an `OPTIONS` request that asks Website B if it allows cross-origin requests from `https://www.website-a.com`.
    *   Example of a preflight request:
@@ -116,7 +114,7 @@ Let's break down how CORS works and how it can protect the system using an examp
        Access-Control-Request-Method: POST
        Access-Control-Request-Headers: X-Custom-Header
        ```
-2. **Server Response to Preflight Request**:
+2. **Server Response to Preflight Request**
    * Website B's server checks its CORS policy to determine whether to allow the request from Website A.
    * If allowed, the server responds with headers indicating that cross-origin requests from `https://www.website-a.com` are permitted.
    *   Example of a response:
@@ -128,7 +126,7 @@ Let's break down how CORS works and how it can protect the system using an examp
        Access-Control-Allow-Headers: X-Custom-Header
        ```
    * If Website B's server does not allow requests from Website A, it will respond with a 403 Forbidden status or not include the CORS headers, and the browser will block the actual request.
-3. **Browser Sends Actual Request (if Preflight is Successful)**:
+3. **Browser Sends Actual Request (if Preflight is Successful)**
    * If the preflight request is successful and Website B grants permission, the browser sends the actual HTTP request to Website B's API.
    * The browser includes the `Origin` header in this request to inform the server about the request's origin.
    *   Example of an actual request:
@@ -140,7 +138,7 @@ Let's break down how CORS works and how it can protect the system using an examp
        Content-Type: application/json
        X-Custom-Header: Value
        ```
-4. **Server Response to Actual Request**:
+4. **Server Response to Actual Request**
    * Website B's server processes the request and responds with the requested data.
    * The server again includes CORS headers to indicate that the response can be accessed by the origin (`https://www.website-a.com`).
    *   Example of a response:
@@ -153,7 +151,7 @@ Let's break down how CORS works and how it can protect the system using an examp
          "data": "Some data"
        }
        ```
-5. **Browser Enforces CORS**:
+5. **Browser Enforces CORS**
    * The browser checks the response headers to ensure that the `Access-Control-Allow-Origin` header matches the origin of the requesting site.
    * If the headers are valid, the browser allows the JavaScript on Website A to access the response.
    * If not, the browser blocks the response, and the JavaScript on Website A is unable to access the data.
@@ -184,7 +182,7 @@ While CORS is a powerful tool, incorrect configuration can lead to security vuln
 * **Credentials in Cross-Origin Requests (`Access-Control-Allow-Credentials: true`)**: If CORS allows credentials (cookies, HTTP authentication), ensure that the `Access-Control-Allow-Origin` is not set to `*`. Always specify the trusted origin explicitly to avoid exposure.
 * **Preflight Caching**: Preflight requests can be cached by the browser using the `Access-Control-Max-Age` header. Ensure that this value is appropriate for security needs.
 
-## How CORS logic can be handled on Server Side?
+## How CORS logic can be handled on Server Side ?
 
 CORS logic can be handled either in the Java backend code or by an API gateway, depending on the architecture of the application. Here's a breakdown of both approaches:
 
@@ -313,7 +311,7 @@ Testing CORS can be done using tools like Postman, cURL, or by creating test scr
 curl -H "Origin: http://example.com" --verbose http://api.yourservice.com/resource
 ```
 
-This command checks whether the server correctly responds with the `Access-Control-Allow-Origin` header.&#x20;
+This command checks whether the server correctly responds with the `Access-Control-Allow-Origin` header.
 
 ### 2. **CORS Handled by API Gateway**
 
@@ -355,8 +353,7 @@ In AWS API Gateway, we can enable CORS for an API by configuring the API Gateway
 * **Less Granular Control**: We might lose some flexibility in applying specific CORS policies to individual services or endpoints.
 * **Gateway Dependency**: If the gateway goes down, CORS handling is also affected.
 
-### **When to Choose Which Approach?**
+### **When to Choose Which Approach ?**
 
 * **Simple Applications**: For smaller applications with limited services or when an API gateway is not in use, handling CORS directly in the backend code is often simpler and sufficient.
 * **Microservices or Distributed Systems**: In complex architectures with multiple services, handling CORS at the API gateway is usually preferred for centralized management, consistency, and scalability.
-
