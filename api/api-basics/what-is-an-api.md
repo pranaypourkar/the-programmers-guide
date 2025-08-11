@@ -1,4 +1,4 @@
-# What is an API?
+# What is an API ?
 
 ## About
 

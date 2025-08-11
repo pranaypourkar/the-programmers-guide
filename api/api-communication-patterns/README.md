@@ -2,7 +2,7 @@
 hidden: true
 ---
 
-# API Communication Models
+# API Communication Patterns
 
 ## About
 
@@ -20,7 +20,7 @@ Key aspects that determine the communication model include:
 
 Some systems prioritize **immediacy**, like online banking or e-commerce APIs, while others focus on **throughput and decoupling**, like analytics pipelines or messaging systems. As applications become more distributed and event-driven, a strong grasp of API communication models becomes a necessary skill for backend, integration, and full-stack developers.
 
-<figure><img src="../../../.gitbook/assets/api-communication-models.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/api-communication-models.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ## Importance of Learning
 
