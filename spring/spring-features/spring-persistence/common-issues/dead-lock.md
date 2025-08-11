@@ -1,10 +1,10 @@
 # Dead Lock
 
-## Problem 1:
+## Problem 1
 
 I have a spring boot service (Say Service A) connected to a Oracle database. There is a table with id as unique. And their is an API with accepts bulk id and update/insert those records. My another service (Say Service B) is callig that API parallely in multiple threads. I am seeing some deadlock issues.
 
-### **Why Deadlocks might occur**
+### **Why Deadlocks might occur ?**
 
 1. **Concurrent Updates/Inserts**:
    * If multiple threads try to insert/update the **same set of IDs**, they may lock rows in different order and wait on each other → deadlock.
@@ -17,7 +17,7 @@ I have a spring boot service (Say Service A) connected to a Oracle database. The
 
 If unqiue batch of ids are sent then -
 
-### **Why we may still get Deadlocks in Oracle**
+### **Why we may still get Deadlocks in Oracle ?**
 
 Even with unique ID batches, Oracle can deadlock due to:
 
@@ -97,7 +97,7 @@ SELECT * FROM v$locked_object;
 SELECT * FROM dba_blockers;
 ```
 
-### Can DBA help to check the deadlocks?
+### Can DBA help to check the deadlocks ?
 
 **Yes**, **DBA (Database Administrator)** is the best person to help **analyze and resolve deadlocks** in Oracle. In fact, DBAs have access to powerful tools and logs that can precisely identify:
 
@@ -166,7 +166,7 @@ This helps detect:
 * Hot blocks/indexes
 * Expensive SQL statements
 
-### Will the system become normal after a deadlock?
+### Will the system become normal after a deadlock ?
 
 **Yes — eventually, but with consequences:**
 
@@ -176,4 +176,3 @@ This helps detect:
 * Other transaction(s) involved may proceed.
 
 > So the system does **recover**, but **one or more of our threads will fail** their database operation, and **we must handle that failure gracefully** in our code.
-

@@ -1,5 +1,6 @@
 ---
 description: WIP
+hidden: true
 ---
 
 # N+1 Issue

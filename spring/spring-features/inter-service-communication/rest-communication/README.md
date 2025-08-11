@@ -6,7 +6,7 @@
 
 In the Spring ecosystem, REST is a foundational style of service interaction. Whether we are building microservices, exposing APIs to external consumers, or orchestrating between internal modules, RESTful communication offers simplicity, scalability, and wide adoption.
 
-## Why it Matters
+## Why it Matters ?
 
 REST communication is central to how modern distributed systems, APIs, and microservices talk to each other. Its importance stems from both **technical simplicity** and **architectural flexibility**.
 
@@ -54,7 +54,7 @@ The typical flow of REST communication in a Spring Boot application (both client
 
 The entire pipeline leverages Spring’s dependency injection, HTTP conversion layers, validation mechanisms, and interceptor support to ensure clean, testable, and reusable code.
 
-## When to Use REST Communication
+## When to Use REST Communication ?
 
 **REST communication** is best suited for scenarios where a client needs a timely and predictable response from a service. It's useful when interaction needs to happen in a well-defined, synchronous manner.
 
@@ -75,7 +75,7 @@ The entire pipeline leverages Spring’s dependency injection, HTTP conversion l
 * **Situations Needing Simplicity and Speed of Development**\
   REST is relatively simple to implement and understand. It is a good fit when we need fast prototyping or have small teams.
 
-## When NOT to Use REST Communication
+## When NOT to Use REST Communication ?
 
 REST is not always the right choice. There are several scenarios where REST creates bottlenecks, complexity, or inefficiency.
 

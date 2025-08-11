@@ -1,6 +1,6 @@
 # Best Practices and Concepts
 
-## How Java `String` and `char` works internally
+## How Java `String` and `char` works internally ?
 
 In Java, `String` and `char` types are designed to work with Unicode characters, and they handle text internally using the UTF-16 encoding.
 
@@ -32,7 +32,7 @@ public class EncodingDecodingFiles {
 ```
 
 \
-![](<../../../../.gitbook/assets/image (40).png>)
+![](<../../../.gitbook/assets/image (40).png>)
 {% endhint %}
 
 ### How They Work Together
@@ -99,7 +99,7 @@ Here is a step-by-step diagram:
    * The console receives the byte `0x41`.
    * It decodes the byte using UTF-8 and displays the character 'A'.
 
-## How Text Editors Handle Encoding
+## How Text Editors Handle Encoding ?
 
 1. **Internal Representation**:
    * Text editors internally represent the text as a sequence of characters, often using an internal encoding like UTF-16 (as in Java's `String` class) or UTF-32 (common in some programming languages).

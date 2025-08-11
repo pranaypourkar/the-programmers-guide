@@ -2,5 +2,5 @@
 hidden: true
 ---
 
-# Java Guidelines
+# Base64
 

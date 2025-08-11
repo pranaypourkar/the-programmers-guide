@@ -1,7 +1,3 @@
----
-description: Information about various concepts.
----
-
 # Security & Data Protection
 
 ## About
@@ -10,11 +6,11 @@ This section focuses on the foundational principles and tools used to protect da
 
 In a Spring-based ecosystem, security and data protection aren't just about authentication and authorization. They also involve low-level concerns like how data is encoded, decoded, or encrypted, and how secure practices are integrated into the application lifecycle.
 
-These concepts are not just theoretical—they're practical and necessary for building real-world, secure applications.
+These concepts are not just theoretical - they're practical and necessary for building real-world, secure applications.
 
 ## Why It Matters ?
 
-In today’s connected world, **data is the new currency**—and with that comes responsibility. Security breaches, data leaks, and man-in-the-middle attacks are no longer rare occurrences. Even a small gap in how we handle or transmit data can have serious legal, financial, and reputational consequences.
+In today’s connected world, **data is the new currency** and with that comes responsibility. Security breaches, data leaks, and man-in-the-middle attacks are no longer rare occurrences. Even a small gap in how we handle or transmit data can have serious legal, financial, and reputational consequences.
 
 Understanding and applying data protection principles:
 
