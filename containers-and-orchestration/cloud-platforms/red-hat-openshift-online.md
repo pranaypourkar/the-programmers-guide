@@ -1,2 +1,0 @@
-# Red Hat OpenShift Online
-
