@@ -841,6 +841,7 @@
   * [Command-line Options](maven/command-line-options.md)
   * [Artifact Coordinates](maven/artifact-coordinates/README.md)
     * [Classifier](maven/artifact-coordinates/classifier.md)
+  * [POM File](maven/pom-file.md)
   * [Build & Lifecycle](maven/build-and-lifecycle.md)
   * [Dependency Management](maven/dependency-management/README.md)
     * [Dependency](maven/dependency-management/dependency/README.md)
