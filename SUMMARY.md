@@ -1162,6 +1162,7 @@
       * [Distributed Scheduling](spring/spring-features/spring-scheduling/distributed-scheduling/README.md)
         * [ShedLock](spring/spring-features/spring-scheduling/distributed-scheduling/distributed-scheduling.md)
     * [Spring Batch](spring/spring-features/spring-batch.md)
+    * [Thymeleaf Integration](spring/spring-features/thymeleaf-integration.md)
     * [Spring Cloud](spring/spring-features/spring-cloud/README.md)
       * [Spring Cloud vs Standalone Solution](spring/spring-features/spring-cloud/spring-cloud-vs-standalone-solution.md)
       * [Sleuth](spring/spring-features/spring-cloud/sleuth.md)
