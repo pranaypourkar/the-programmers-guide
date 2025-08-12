@@ -112,6 +112,8 @@
     * [Pagination](api/api-design-best-practices/pagination.md)
     * [Filtering](api/data-handling/filtering.md)
     * [Sorting](api/data-handling/sorting.md)
+    * [Field Selection or Projection](api/data-handling/field-selection-or-projection.md)
+    * [Aggregation](api/data-handling/aggregation.md)
   * [Performance & Scalability](api/api-design-best-practices/README.md)
     * [Rate Limiting](api/api-design-best-practices/rate-limiting.md)
     * [Rate Throttling](api/performance-and-scalability/rate-throttling.md)
