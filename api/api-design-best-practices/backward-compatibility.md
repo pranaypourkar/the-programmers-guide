@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Backward Compatibility
 
 I have 3 Spring boot services and they have their respective openapi specification repo
