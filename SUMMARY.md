@@ -1259,6 +1259,7 @@
       * [Apache HttpComponents](spring/utilities-and-libraries/apache-libraries/apache-httpcomponents.md)
       * [Apache POI](spring/utilities-and-libraries/apache-libraries/apache-poi.md)
     * [MapStruct Mapper](spring/utilities-and-libraries/mapstruct-mapper.md)
+    * [Lombok](spring/utilities-and-libraries/lombok.md)
     * [Utilities by Spring framework](spring/utilities-and-libraries/provide-by-spring-framework/README.md)
       * [FileCopyUtils](spring/utilities-and-libraries/provide-by-spring-framework/filecopyutils.md)
   * [Deployment & Packaging](spring/deployment-and-packaging/README.md)

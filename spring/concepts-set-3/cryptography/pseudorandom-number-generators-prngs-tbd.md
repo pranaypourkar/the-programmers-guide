@@ -39,7 +39,7 @@ A seed is an initial value used to initialize a pseudorandom number generator. T
 
 When a PRNG is initialized with a seed, it sets its internal state to a specific value determined by the seed. From this initial state, the PRNG algorithm generates subsequent numbers in the sequence. The sequence of numbers produced by the PRNG is deterministic, meaning that given the same seed, the PRNG will always produce the same sequence of numbers.
 
-Seeds are an important part of PRNG because they allow for reproducibility. By using the same seed, you can generate the same sequence of random numbers. This property is useful in scenarios such as testing, debugging, or situations where you need to ensure consistent behavior across multiple runs of a program.
+Seeds are an important part of PRNG because they allow for reproducibility. By using the same seed, we  can generate the same sequence of random numbers. This property is useful in scenarios such as testing, debugging, or situations where we need to ensure consistent behavior across multiple runs of a program.
 
 It is important to note that using the same seed also means that the generated sequence is predictable. If an attacker or an unintended party discovers or guesses the seed, they can reproduce the same sequence of random numbers and potentially put the security or integrity of the system at risk.
 
