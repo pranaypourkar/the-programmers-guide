@@ -2,7 +2,7 @@
 
 ## About
 
-Liquibase automatically tracks which changes have been applied to a database and prevents conflicting or concurrent changes through its **tracking tables**. This system ensures that migrations are **safe, repeatable, and idempotent** meaning you can run the same changelog multiple times without accidentally reapplying the same changes.
+Liquibase automatically tracks which changes have been applied to a database and prevents conflicting or concurrent changes through its **tracking tables**. This system ensures that migrations are **safe, repeatable, and idempotent** meaning we can run the same changelog multiple times without accidentally reapplying the same changes.
 
 ## **`DATABASECHANGELOG` Table (Tracking Applied Changes)**
 
@@ -15,8 +15,8 @@ When Liquibase runs for the first time on a database, it creates a special table
 
 **Key columns in `DATABASECHANGELOG`**
 
-* **`ID`** – Changeset ID (from the `id` attribute in your changelog).
-* **`AUTHOR`** – Name from the `author` attribute in your changelog.
+* **`ID`** – Changeset ID (from the `id` attribute in our changelog).
+* **`AUTHOR`** – Name from the `author` attribute in our changelog.
 * **`FILENAME`** – Path to the changelog file containing the changeset.
 * **`DATEEXECUTED`** – When the changeset was applied.
 * **`ORDEREXECUTED`** – The sequence number in which it was applied.
@@ -27,7 +27,7 @@ When Liquibase runs for the first time on a database, it creates a special table
 
 **Why this matters ?**
 
-* If you run `liquibase update` again, Liquibase compares your changelogs with the `DATABASECHANGELOG` table and **skips** any changesets already recorded there.
+* If we run `liquibase update` again, Liquibase compares our changelogs with the `DATABASECHANGELOG` table and **skips** any changesets already recorded there.
 * This prevents duplicate changes from being applied accidentally.
 
 ## **`DATABASECHANGELOGLOCK` Table (Preventing Concurrent Execution)**
@@ -138,4 +138,3 @@ public class MD5Generator {
 ```
 
 Insert the calculated MD5 hash into our SQL insert statement.
-
