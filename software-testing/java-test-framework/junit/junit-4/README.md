@@ -7,8 +7,8 @@ JUnit 4, released in 2006, is a popular and widely used version of the JUnit tes
 ### **Core Concepts**
 
 * **Annotations:** JUnit 4 relies heavily on annotations to define test methods (@Test), set up/tear down logic (@Before, @After), and manage test execution lifecycle (@BeforeClass, @AfterClass).
-* **Test Runners**: JUnit integrates with test runners like the built-in JUnit Runner or Maven Surefire plugin to execute and report test results.&#x20;
-* **Assertions**: It provides assertions (like assertEquals, assertTrue) to verify expected outcomes within test methods.&#x20;
+* **Test Runners**: JUnit integrates with test runners like the built-in JUnit Runner or Maven Surefire plugin to execute and report test results.
+* **Assertions**: It provides assertions (like assertEquals, assertTrue) to verify expected outcomes within test methods.
 * **Test Suites**: JUnit allows grouping related tests into suites for better organization and execution control.
 
 ## Integration with Maven
@@ -45,7 +45,7 @@ However, if we want more advanced functionalities like custom test listeners or 
 
 ## Package `org.junit` Details
 
-<figure><img src="../../../../.gitbook/assets/image (185).png" alt="" width="290"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (407).png" alt="" width="290"><figcaption></figcaption></figure>
 
 ## Annotations in `org.junit`
 
@@ -114,7 +114,7 @@ The `Assume` class in JUnit 4 provides a way to state assumptions about the cond
 
 `ComparisonFailure` is a subclass of `AssertionError` that is thrown when an assertion comparing two strings fails. This exception provides a more informative error message by highlighting the differences between the expected and actual strings, making it easier to understand why the test failed. When using assertion methods like `assertEquals(String expected, String actual)`, `ComparisonFailure` is automatically used to provide detailed failure messages
 
-### Assert&#x20;
+### Assert
 
 The `Assert` class in JUnit 4 provides a collection of static methods to perform various assertions in tests. These assertions are used to verify that certain conditions are met in the test code. If an assertion fails, the test fails, and a corresponding failure message is reported.
 
@@ -181,7 +181,7 @@ The `Assert` class in JUnit 4 provides a collection of static methods to perform
 
 This package contains built-in runners that JUnit uses to execute tests.
 
-<figure><img src="../../../../.gitbook/assets/image (186).png" alt="" width="224"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (408).png" alt="" width="224"><figcaption></figcaption></figure>
 
 * **Classes**:
   * `BlockJUnit4ClassRunner`: The default JUnit 4 test runner.
@@ -189,20 +189,20 @@ This package contains built-in runners that JUnit uses to execute tests.
   * `JUnit4`: A simple runner for running tests in a JUnit 4 environment.
   * `Suite`: A runner for aggregating multiple test classes into a suite.
 
-### org.junit.matchers&#x20;
+### org.junit.matchers
 
 This package provides additional matchers for use in assertions.
 
-<figure><img src="../../../../.gitbook/assets/image (187).png" alt="" width="209"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (409).png" alt="" width="209"><figcaption></figcaption></figure>
 
 * **Classes**:
   * `JUnitMatchers`: Contains additional matchers (generic) that can be used with `assertThat` to create more readable and flexible assertions.
 
-### org.junit.runner&#x20;
+### org.junit.runner
 
 This package contains classes related to running tests and getting results.
 
-<figure><img src="../../../../.gitbook/assets/image (188).png" alt="" width="227"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (410).png" alt="" width="227"><figcaption></figcaption></figure>
 
 * **Classes**:
   * `JUnitCore`: A facade for running tests.
@@ -216,7 +216,7 @@ This package contains classes related to running tests and getting results.
 
 This package contains classes for validating test classes.
 
-<figure><img src="../../../../.gitbook/assets/image (189).png" alt="" width="231"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (411).png" alt="" width="231"><figcaption></figcaption></figure>
 
 * **Classes**:
   * `AnnotationValidator`: An interface for validating custom annotations.
@@ -228,19 +228,10 @@ This package contains classes for validating test classes.
 
 This package contains classes for creating and using rules, which can modify the behavior of tests.
 
-<figure><img src="../../../../.gitbook/assets/image (190).png" alt="" width="287"><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/image (412).png" alt="" width="287"><figcaption></figcaption></figure>
 
 * **Classes**:
   * `ExternalResource`: A base class for rules that set up and tear down external resources.
   * `TemporaryFolder`: A rule that creates and deletes a temporary folder for use in tests.
   * `TestName`: A rule that makes the name of the currently running test method available.
   * `Timeout`: A rule that applies a timeout to all test methods in a class.
-
-
-
-
-
-
-
-
-
