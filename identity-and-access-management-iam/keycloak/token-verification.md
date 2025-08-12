@@ -96,7 +96,7 @@ networks:
 
 Realm settings attached below for the reference.
 
-{% file src="../../../../.gitbook/assets/realm-export.json" %}
+{% file src="../../.gitbook/assets/realm-export.json" %}
 
 pom.xml (nimbus-jose-jwt dependency)
 
@@ -202,6 +202,4 @@ Postman Response of [http://localhost:1010/realms/employee/protocol/openid-conne
 
 <figure><img src="https://static.wixstatic.com/media/5fb94b_338ca7174e1f4f66988a8ac8dd339054~mv2.png/v1/fill/w_1480,h_514,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/5fb94b_338ca7174e1f4f66988a8ac8dd339054~mv2.png" alt=""><figcaption></figcaption></figure>
 
-\
-\
-\
+{% file src="../../.gitbook/assets/sample-token-service.zip" %}

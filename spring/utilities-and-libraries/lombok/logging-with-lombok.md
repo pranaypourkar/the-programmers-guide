@@ -43,7 +43,7 @@ public class Application {
 
 ## Wrapper classes of the Java primitive data types
 
-It includes eight wrapper classes Byte, Short, Integer, Long, Float, Double, Boolean, Character. Wrapper classes allow you to perform various operations on primitive values, such as converting them to strings, parsing strings to obtain primitive values, and providing utility methods for arithmetic operations and comparisons.
+It includes eight wrapper classes Byte, Short, Integer, Long, Float, Double, Boolean, Character. Wrapper classes allow us to perform various operations on primitive values, such as converting them to strings, parsing strings to obtain primitive values, and providing utility methods for arithmetic operations and comparisons.
 
 **Application.java**
 
@@ -220,7 +220,7 @@ log.info("Short[]: {}", Arrays.toString(names));
 
 #### **Array of Classes**
 
-We can create an array of objects where each object is an instance of a class. This allows you to store multiple instances of the same class in an array.
+We can create an array of objects where each object is an instance of a class. This allows us to store multiple instances of the same class in an array.
 
 **Person.java**
 
@@ -303,7 +303,7 @@ public class Application {
 
 #### <mark style="color:blue;">**Category: Based on Dimensions**</mark>
 
-In Java, we can create multi-dimensional arrays, which are arrays with more than one dimension. This allows to create arrays of arrays, forming a matrix-like structure. The Arrays.toString() method in Java is primarily designed to work with one-dimensional arrays. When you pass a multi-dimensional array (such as a two-dimensional array) to Arrays.toString(), it will not provide the desired output because it does not support nested arrays. The deepToString() method handles nested arrays and provides a string representation of the entire multi-dimensional array.
+In Java, we can create multi-dimensional arrays, which are arrays with more than one dimension. This allows to create arrays of arrays, forming a matrix-like structure. The Arrays.toString() method in Java is primarily designed to work with one-dimensional arrays. When we pass a multi-dimensional array (such as a two-dimensional array) to Arrays.toString(), it will not provide the desired output because it does not support nested arrays. The deepToString() method handles nested arrays and provides a string representation of the entire multi-dimensional array.
 
 ```java
 @Slf4j
@@ -337,10 +337,7 @@ An ordered collection that allows duplicate elements.
 
 ArrayList is a class in Java that provides a resizable array implementation of the List interface. It belongs to the java.util package and is commonly used to store and manipulate collections of objects.
 
-\
-
-
-**Some commonly used types that can be used as the "type" parameter in ArrayList\<type>:**
+Some commonly used types that can be used as the "type" parameter in ArrayList\<type>:
 
 {% hint style="info" %}
 ArrayList\<Integer>: Used to store integer values.
