@@ -1,7 +1,3 @@
----
-hidden: true
----
-
 # KDF
 
 ## About
@@ -143,8 +139,168 @@ KDF and Hash functions are both cryptographic algorithms, but they serve differe
 * **Deriving Initialization Vectors (IVs)** -> KDFs can derive initialization vectors used in symmetric encryption algorithms. IVs are crucial for ensuring the uniqueness and randomness of ciphertexts, contributing to the security of encrypted data.
 * **Key Agreement** -> In some cases, KDFs are used in key agreement protocols to derive a shared secret between two or more parties. This shared secret can be used as a symmetric encryption key or as input to other cryptographic algorithms.
 
-\
+## Example
 
+### Using Spring Crypto spring-security-crypto
 
+```xml
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-crypto</artifactId>
+    <version>5.7.5</version>
+</dependency>
+```
 
+```java
+package com.company.project;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
+import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
+
+@Slf4j
+@SpringBootApplication
+public class Application {
+
+    public static void main(final String[] args) {
+        SpringApplication.run(Application.class, args);
+
+        // Password to be encoded 
+        String password = "Password123";
+
+        // Using BCrypt Algorithm
+        BCryptPasswordEncoder bcryptEncoder = new BCryptPasswordEncoder();
+        String bcryptEncodePassword = bcryptEncoder.encode(password);
+        log.info("bcrypt Encoded Password: {}", bcryptEncodePassword);
+
+        // Using SCrypt Algorithm
+        SCryptPasswordEncoder scryptEncoder = new SCryptPasswordEncoder();
+        String scryptEncodePassword = scryptEncoder.encode(password);
+        log.info("scrypt Encoded Password: {}", scryptEncodePassword);
+
+        // Using Pbkdf2 Algorithm
+        Pbkdf2PasswordEncoder pbkdf2Encoder = new Pbkdf2PasswordEncoder();
+        String pbkdf2EncodePassword = pbkdf2Encoder.encode(password);
+        log.info("pbkdf2 Encoded Password: {}", pbkdf2EncodePassword);
+
+        // Using Argon2 Algorithm
+        Argon2PasswordEncoder argon2Encoder = new Argon2PasswordEncoder();
+        String argon2EncodePassword = argon2Encoder.encode(password);
+        log.info("argon2 Encoded Password: {}", argon2EncodePassword);
+    }
+}
+```
+
+<figure><img src="https://static.wixstatic.com/media/5fb94b_5adf65f0e2cd4b8eaca8ed53095e37fb~mv2.png/v1/fill/w_1480,h_162,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5fb94b_5adf65f0e2cd4b8eaca8ed53095e37fb~mv2.png" alt="Result of sample KDF code using spring-security-crypto"><figcaption></figcaption></figure>
+
+### Using Bouncycastle org.bouncycastle
+
+```xml
+<dependency>
+    <groupId>org.bouncycastle</groupId>
+    <artifactId>bcpkix-jdk15on</artifactId>
+    <version>1.67</version>
+</dependency>
+```
+
+```java
+package com.company.project;
+
+import java.security.SecureRandom;
+import java.util.Base64;
+import lombok.extern.slf4j.Slf4j;
+import org.bouncycastle.crypto.generators.BCrypt;
+import org.bouncycastle.crypto.generators.SCrypt;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@Slf4j
+@SpringBootApplication
+public class Application {
+
+    public static void main(final String[] args) {
+        SpringApplication.run(Application.class, args);
+
+        // Password to be encoded 
+        String password = "Password123";
+
+        // Using BCrypt Algorithm
+        byte[] bcryptSalt = new byte[16];
+        new SecureRandom().nextBytes(bcryptSalt);
+        byte[] bcryptEncodedPasswordBytes = BCrypt.generate(password.getBytes(), bcryptSalt, 8);
+        log.info("bcrypt Encoded Password: {}", Base64.getUrlEncoder().encodeToString(bcryptEncodedPasswordBytes));
+
+        // Using SCrypt Algorithm
+        byte[] scryptSalt = new byte[32];
+        new SecureRandom().nextBytes(scryptSalt);
+        byte[] scryptEncodePasswordBytes = SCrypt.generate(password.getBytes(), scryptSalt, 8, 8, 1, 10);
+        log.info("scrypt Encoded Password: {}", Base64.getUrlEncoder().encodeToString(scryptEncodePasswordBytes));
+    }
+}
+```
+
+<figure><img src="https://static.wixstatic.com/media/5fb94b_aca76eeb7b8241cea2dda56b7ad3cf56~mv2.png/v1/fill/w_1480,h_96,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5fb94b_aca76eeb7b8241cea2dda56b7ad3cf56~mv2.png" alt="Result of sample KDF code using Bouncycastle"><figcaption></figcaption></figure>
+
+### Use case of user password storing.
+
+It is considered a bad practice to store plain passwords in any system or database. Storing passwords in plain text leaves them vulnerable to unauthorized access in case of a security breach or database compromise.
+
+Instead of storing passwords as plain text, it should always be securely hashed or processed using a Key Derivation Function (KDF) before being stored.
+
+Using a KDF to hash passwords is a common and recommended practice. KDFs, like PBKDF2, bcrypt, and Argon2, are specifically designed for password hashing and key derivation.
+
+* When a user creates or updates their password, the password is passed through the KDF, which applies a one-way cryptographic process to generate a secure hash. This hashed version of the password is then stored in the database, not the actual plain password.
+* When a user attempts to log in, the provided password is hashed using the same KDF and compared against the stored hashed password. If the hashes match, the password is correct, and the user is granted access. Importantly, since KDFs are one-way functions, the original password cannot be easily derived from the stored hash, providing an extra layer of security.
+
+Sample code to compare user input password with their stored Hash value.
+
+```java
+package com.company.project;
+
+import java.security.SecureRandom;
+import java.util.Base64;
+import lombok.extern.slf4j.Slf4j;
+import org.bouncycastle.crypto.generators.BCrypt;
+import org.bouncycastle.crypto.generators.SCrypt;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+@Slf4j
+@SpringBootApplication
+public class Application {
+
+    public static void main(final String[] args) {
+        SpringApplication.run(Application.class, args);
+
+        // Sample passwords to hash and verify
+        String password1 = "Password123";
+        String password2 = "Password123";
+        
+        // Create an instance of Argon2PasswordEncoder
+        PasswordEncoder passwordEncoder = new Argon2PasswordEncoder();
+        
+        // Hashing passwords
+        String hashedPassword1 = passwordEncoder.encode(password1);
+        String hashedPassword2 = passwordEncoder.encode(password2);
+        
+        // Print the hashed passwords
+        log.info("Hashed Password 1: " + hashedPassword1);
+        log.info("Hashed Password 2: " + hashedPassword2);
+        
+        // Verify passwords
+        boolean password1Matches = passwordEncoder.matches(password1, hashedPassword1);
+        boolean password2Matches = passwordEncoder.matches(password2, hashedPassword2);
+        
+        log.info("Password 1 Matches: " + password1Matches);
+        log.info("Password 2 Matches: " + password2Matches);
+    }
+}
+```
+
+<figure><img src="https://static.wixstatic.com/media/5fb94b_c3a6396482b24c3bb8c6bd7946adb009~mv2.png/v1/fill/w_1480,h_166,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5fb94b_c3a6396482b24c3bb8c6bd7946adb009~mv2.png" alt="Result of sample KDF code for user password matching using spring-security-crypto"><figcaption></figcaption></figure>
