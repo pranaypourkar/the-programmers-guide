@@ -7,7 +7,7 @@ select * from emp;
 ```
 
 {% hint style="info" %}
-Above query is same to this one in terms of performance but while writing program, it is good to write columns so that we will always know what columns we are returning from the query.&#x20;
+Above query is same to this one in terms of performance but while writing program, it is good to write columns so that we will always know what columns we are returning from the query.
 
 **select empno,ename,job,sal,mgr,hiredate,comm,deptno from emp;**
 {% endhint %}
@@ -84,7 +84,7 @@ select * from emp where rownum <= 5;
 ```
 
 {% hint style="info" %}
-Oracle ROWNUM explanation -&#x20;
+Oracle ROWNUM explanation -
 
 Here is what happens when we use ROWNUM <= 5 to return the first five rows:
 
@@ -93,8 +93,6 @@ Here is what happens when we use ROWNUM <= 5 to return the first five rows:
 3. Have we gotten past row number five yet? If no, then Oracle returns the row, because it meets the criteria of being numbered less than or equal to five. If yes, then Oracle does not return the row.
 4. Oracle fetches the next row and advances the row number (to two, then to three, then to four, and so forth).
 5. Go to step 3.
-
-
 
 Here is what happens when we use ROWNUM = 5
 
@@ -152,8 +150,3 @@ We want to return rows that match a particular substring or pattern.
 select ename, job from emp where deptno in (10,20);
 select ename, job from emp where deptno in (10,20) and (ename like '%I%' or job like '%ER');
 ```
-
-
-
-
-

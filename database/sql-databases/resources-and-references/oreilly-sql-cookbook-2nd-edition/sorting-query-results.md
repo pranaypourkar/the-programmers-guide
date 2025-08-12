@@ -37,8 +37,6 @@ Replaces all occurrences of a specific substring within a string with another su
 
 `REPLACE(string_expression, old_substring, new_substring)`
 
-
-
 TRANSLATE
 
 Translates characters within a string based on a translation table defined by another string.
@@ -91,10 +89,3 @@ We want to sort based on some conditional logic. For example, if JOB is SALESMAN
 select ename,sal,job,comm from emp order by 
 case when job = 'SALESMAN' then comm else sal end;
 ```
-
-
-
-
-
-
-
