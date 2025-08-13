@@ -2,7 +2,7 @@
 
 ## About
 
-The **Request–Response Pattern (Non-blocking)** is a communication style where a client sends a request and expects a **single corresponding response**, but the underlying processing uses **asynchronous I/O** or **reactive programming**techniques to avoid blocking threads while waiting for that response.
+The **Request–Response Pattern (Non-blocking)** is a communication style where a client sends a request and expects a **single corresponding response**, but the underlying processing uses **asynchronous I/O** or **reactive programming** techniques to avoid blocking threads while waiting for that response.
 
 It is often confused with _true asynchronous communication_, but the distinction lies in the **interaction contract**:
 
