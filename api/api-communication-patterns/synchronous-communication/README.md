@@ -12,13 +12,13 @@ This pattern is deeply rooted in traditional networking and programming models a
 * **Latency sensitivity** → End-to-end performance is directly impacted by the slowest operation in the chain.
 {% endhint %}
 
-### **Why It Matters in System Design ?**
+## **Why It Matters in System Design ?**
 
 Synchronous communication is **not just a default** - it’s an intentional choice that has implications for **performance, scalability, and fault tolerance**. While it offers simplicity and immediate feedback, it also creates **temporal coupling**, meaning failures or delays in the callee can ripple up and stall the caller.
 
 In distributed systems, over-reliance on synchronous calls can cause cascading failures, so architects often weigh it against asynchronous patterns when designing for **resilience and scale**.
 
-## Characteristics of Synchronous Communication
+## Characteristics
 
 Synchronous communication exhibits several defining traits that distinguish it from asynchronous or hybrid approaches. These characteristics influence **system behavior, performance, fault tolerance, and user experience**.
 
@@ -62,7 +62,7 @@ Synchronous communication exhibits several defining traits that distinguish it f
 * **Why**: The straightforward model makes it ideal for small systems but potentially problematic in large, high-traffic distributed architectures.
 * **Example**: Monolithic applications thrive on sync calls, but microservices often limit their use to critical, low-latency interactions.
 
-## **When to Use Synchronous Communication ?**
+## **When to Use ?**
 
 Choosing synchronous communication should be a deliberate decision based on **latency requirements, business rules, operational constraints, and system design goals**.\
 While synchronous calls can introduce coupling and scaling challenges, they are still the best fit in certain scenarios.
@@ -115,7 +115,7 @@ While synchronous calls can introduce coupling and scaling challenges, they are 
   * Electronic health record (EHR) updates.
   * Securities trading execution.
 
-## **Advantages of Synchronous Communication**
+## **Advantages**
 
 Synchronous communication remains a widely used interaction model because it provides **predictable, immediate, and straightforward** request-response exchanges. While modern systems increasingly lean toward asynchronous methods, synchronous patterns still shine in many contexts.
 
@@ -171,7 +171,7 @@ Synchronous communication remains a widely used interaction model because it pro
 * **Example**:
   * Tools like Spring Sleuth or Zipkin can directly trace request paths without special handling.
 
-## **Limitations of Synchronous Communication**
+## **Limitations**
 
 While synchronous communication offers simplicity and predictability, it comes with **trade-offs** that can significantly impact scalability, fault tolerance, and performance in distributed systems. Understanding these limitations is essential to avoid architectural pitfalls.
 
