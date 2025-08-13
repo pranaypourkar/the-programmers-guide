@@ -1,7 +1,3 @@
----
-hidden: true
----
-
 # API Communication Patterns
 
 ## About
