@@ -41,14 +41,14 @@ To keep APIs backward compatible while evolving, consider these proven strategie
    By making new fields optional rather than required, existing clients that don’t recognize these fields will continue to operate correctly. This technique helps introduce new information gradually, allowing clients to opt-in by updating their code over time. Optional fields also ensure backward compatibility by not forcing clients to provide new data they may not understand.
 3. **Avoid Changing Existing Contracts**\
    Changing parameter names, response field names, or data types directly breaks existing clients relying on the old format. Even seemingly minor changes like renaming a field or altering the data format can cause failures. Maintaining stable API contracts ensures clients continue to function without modification. If changes are necessary, they should be introduced in new versions.
-4. **Version Your API**\
-   When backward-incompatible changes are unavoidable, versioning the API allows you to support multiple versions simultaneously. Clients can continue using older versions while new consumers adopt the updated API. Semantic versioning or URI-based versioning (e.g., `/v1/` vs `/v2/`) helps communicate changes clearly and enables gradual migration.
+4. **Version our API**\
+   When backward-incompatible changes are unavoidable, versioning the API allows us to support multiple versions simultaneously. Clients can continue using older versions while new consumers adopt the updated API. Semantic versioning or URI-based versioning (e.g., `/v1/` vs `/v2/`) helps communicate changes clearly and enables gradual migration.
 5. **Deprecate Gradually**\
    Instead of immediately removing outdated fields or endpoints, mark them as deprecated to warn clients of their upcoming removal. This practice provides clients time to adjust without sudden disruptions. Deprecation periods vary but typically include clear timelines and documentation about alternatives or migration paths.
 6. **Implement Feature Toggles**\
-   Feature toggles (flags) allow enabling or disabling new features dynamically without deploying different API versions. This enables controlled rollouts, A/B testing, or selective exposure to clients. Feature toggles help manage backward compatibility by letting you switch features off for clients that cannot support them yet.
+   Feature toggles (flags) allow enabling or disabling new features dynamically without deploying different API versions. This enables controlled rollouts, A/B testing, or selective exposure to clients. Feature toggles help manage backward compatibility by letting us switch features off for clients that cannot support them yet.
 7. **Design for Extensibility**\
-   Designing APIs with extensibility in mind—such as allowing extra fields in JSON objects, supporting unknown properties, or using flexible schemas—enables new features or data without breaking existing clients. Extensible design anticipates change and embraces evolution, reducing the risk of compatibility issues.
+   Designing APIs with extensibility in mind such as allowing extra fields in JSON objects, supporting unknown properties, or using flexible schemas enables new features or data without breaking existing clients. Extensible design anticipates change and embraces evolution, reducing the risk of compatibility issues.
 8. **Document Changes Clearly**\
    Thorough documentation of changes, including changelogs, migration guides, and deprecation notices, is essential. Clear communication empowers clients to understand what has changed, why, and how to adapt. Documentation minimizes confusion and support requests, improving developer experience.
 9. **Test Against Existing Clients**\
@@ -92,7 +92,7 @@ To ensure backward compatibility and smooth API evolution, keep these best pract
 4. **Communicate Clearly and Early**\
    Inform clients proactively about upcoming changes, deprecated features, and timelines to prepare them for migration.
 5. **Automate Compatibility Testing**\
-   Integrate regression, contract, and consumer-driven testing into your CI/CD pipeline to catch breaking changes early.
+   Integrate regression, contract, and consumer-driven testing into our CI/CD pipeline to catch breaking changes early.
 6. **Use Feature Flags for New Capabilities**\
    Gradually roll out features with feature toggles to avoid immediate impact on existing clients.
 7. **Provide Detailed Documentation**\
