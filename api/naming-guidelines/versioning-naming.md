@@ -1,2 +1,7 @@
+---
+hidden: true
+---
+
 # Versioning Naming
 
+##
