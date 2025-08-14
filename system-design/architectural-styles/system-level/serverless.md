@@ -105,7 +105,7 @@ Serverless is not just about “running functions in the cloud.” It’s built 
 
 A **serverless architecture** diagram typically contains three main layers:
 
-<figure><img src="../../.gitbook/assets/serverless-1.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/serverless-1.png" alt="" width="375"><figcaption></figcaption></figure>
 
 #### **1) Event Sources Layer**
 

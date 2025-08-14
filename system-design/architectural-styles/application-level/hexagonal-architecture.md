@@ -97,7 +97,7 @@ The **Hexagonal Architecture** is best understood as **three conceptual zones**:
 
 Each has **specific components** with a clear purpose.
 
-<figure><img src="../../.gitbook/assets/hexagonal-architecture-1.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/hexagonal-architecture-1.png" alt="" width="375"><figcaption></figcaption></figure>
 
 #### **1) Application Core (Business Logic Zone)**
 

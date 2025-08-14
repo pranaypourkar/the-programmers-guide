@@ -109,7 +109,7 @@ Microservices are more than “breaking an app into smaller pieces.” They are 
 
 A microservices architecture can be visualized as a **collection of independently deployable services** communicating over lightweight protocols, typically coordinated through an **API Gateway** and supported by infrastructure services such as service discovery, configuration management, and monitoring.
 
-<figure><img src="../../.gitbook/assets/microservice-1.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/microservice-1.png" alt="" width="375"><figcaption></figcaption></figure>
 
 #### **Some of the Key Components in the Diagram**
 

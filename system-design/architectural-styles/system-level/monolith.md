@@ -169,7 +169,7 @@ Historically, monolithic architectures were the **default approach** because ear
 
 ## Architecture Diagram
 
-<figure><img src="../../.gitbook/assets/monolithic-1.png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/monolithic-1.png" alt="" width="375"><figcaption></figcaption></figure>
 
 #### **Layers in a Monolith Architecture**
 

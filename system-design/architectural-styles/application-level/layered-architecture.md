@@ -116,7 +116,7 @@ While it can be implemented in **monoliths, modular monoliths, or even microserv
 
 ## Architecture Diagram
 
-<figure><img src="../../.gitbook/assets/layered-architecture-1 (1).png" alt="" width="375"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/layered-architecture-1 (1).png" alt="" width="375"><figcaption></figcaption></figure>
 
 #### **1. Presentation Layer (UI Layer)**
 
