@@ -1,7 +1,3 @@
----
-hidden: true
----
-
 # Architectural Styles
 
 ## About
