@@ -1523,7 +1523,7 @@
       * [Failover Strategies](system-design/scalability-and-reliability/resilience-and-failure-handling/failover-strategies.md)
   * [Delivery & Deployment Strategy](system-design/delivery-and-deployment-strategy/README.md)
     * [Feature Flags](system-design/delivery-and-deployment-strategy/feature-flags.md)
-    * [Progressive Delivery](system-design/delivery-and-deployment-strategy/progressive-delivery.md)
+    * [Delivery & Deployment Strategy](system-design/delivery-and-deployment-strategy/progressive-delivery.md)
     * [Traffic Shifting](system-design/delivery-and-deployment-strategy/traffic-shifting.md)
     * [Deployment Patterns](system-design/delivery-and-deployment-strategy/deployment-patterns.md)
   * [Observability](system-design/observability/README.md)

@@ -1,4 +1,5 @@
 ---
+hidden: true
 icon: cloud
 cover: ../.gitbook/assets/cloud-computing.png
 coverY: 0
