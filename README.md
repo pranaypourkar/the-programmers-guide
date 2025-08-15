@@ -12,13 +12,13 @@ coverY: 0
 ### 📚 About This Project
 
 **The Programmer’s Guide** is an open-access educational resource maintained by [Pranay Pourkar](https://www.linkedin.com/in/pranay-pourkar/).\
-It brings together foundational and advanced programming concepts, system design patterns, backend engineering principles, testing strategies, and developer tools — all in one unified reference.
+It brings together foundational and advanced programming concepts, system design patterns, backend engineering principles, testing strategies, and developer tools — **all in one unified reference**.
 
-The content is continuously updated with new topics, examples, and explanations so that it stays relevant for evolving technologies and industry practices. Whether you are a beginner exploring the basics or a principal-level engineer refreshing advanced concepts, you’ll find resources tailored to your needs here.
+The content is **continuously updated** with new topics, examples, and explanations so that it stays relevant for evolving technologies and industry practices. Whether you are a **beginner exploring the basics or a principal-level engineer** refreshing advanced concepts, you’ll find resources tailored to your needs here.
 
 ### 💡 Why This Exists
 
-Many developers struggle to find a single, structured, and reliable place for both learning and quick reference of Backend Engineering concepts.\
+Many developers struggle to find **a single, structured, and reliable place** for both learning and quick reference of Backend Engineering concepts.\
 The Programmer’s Guide solves this by:
 
 * Offering clear, in-depth explanations instead of scattered notes.
@@ -35,7 +35,7 @@ The Programmer’s Guide solves this by:
 
 ### 🛠 Maintenance & Scope
 
-This guide is maintained in a personal capacity alongside my full-time job.\
+This guide is maintained in a **personal capacity alongside my full-time job**.\
 New sections, topics, and improvements are regularly added based on:
 
 * My own learning journey.
@@ -47,9 +47,9 @@ New sections, topics, and improvements are regularly added based on:
 I’m passionate about experimenting with new technologies, learning fresh concepts, and constantly challenging myself to grow.\
 This guide is my way of documenting and sharing what I learn through self-study and hands-on experience.
 
-As I continue this journey, I’ll be writing about coding, architecture, and technology concepts that intrigue me. Through these posts, I aim not only to solidify my own understanding but also to help others learn faster and better.
+As I continue this journey, I’ll be writing about **coding, architecture, and technology concepts** that intrigue me. Through these posts, I aim not only to **solidify my own understanding** but also to **help others learn faster and better**.
 
-Let’s learn, share, and grow together.
+**Let’s learn, share, and grow together.**
 
 <div data-full-width="false"><figure><img src=".gitbook/assets/about.png" alt=""><figcaption></figcaption></figure></div>
 
