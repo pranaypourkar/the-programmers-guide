@@ -9,23 +9,49 @@ coverY: 0
 
 ## Hello & Welcome! Dive into Tech with Me
 
-### Here's who I am & what I do
-
-I am passionate about experimenting with new technologies, learning fresh concepts, and constantly challenging myself to grow. This blog is my space to document and share the knowledge I gain through self-learning and hands-on experience.
-
-As I continue this journey, I’ll be writing about various coding and technology concepts that intrigue me. Through these posts, I aim to not only solidify my own understanding but also provide valuable insights for others who are on a similar path of exploration and growth. Let's learn, share, and grow together!
-
-<div data-full-width="false"><figure><img src=".gitbook/assets/about.png" alt=""><figcaption></figcaption></figure></div>
-
-
-
 ### 📚 About This Project
 
 **The Programmer’s Guide** is an open-access educational resource maintained by [Pranay Pourkar](https://www.pranaypourkar.co.in/).\
-It aims to document foundational and advanced programming concepts, system design, backend engineering patterns, testing strategies, and development tools - all in one unified reference.
+It brings together foundational and advanced programming concepts, system design patterns, backend engineering principles, testing strategies, and developer tools — all in one unified reference.
 
-This guide is created and maintained in a personal capacity alongside my full-time job.\
-The goal is to help learners, professionals, and interview candidates understand core software engineering topics in depth.
+The content is continuously updated with new topics, examples, and explanations so that it stays relevant for evolving technologies and industry practices. Whether you are a beginner exploring the basics or a principal-level engineer refreshing advanced concepts, you’ll find resources tailored to your needs here.
+
+### 💡 Why This Exists
+
+Many developers struggle to find a single, structured, and reliable place for both learning and quick reference of Backend Engineering concepts.\
+The Programmer’s Guide solves this by:
+
+* Offering clear, in-depth explanations instead of scattered notes.
+* Covering multiple skill levels, from beginner-friendly introductions to advanced engineering practices.
+* Acting as a one-stop hub for coding theory, architecture, and practical tools.
+* Supporting interview preparation and real-world project problem-solving.
+
+### 👥 Who This Helps
+
+* **Students & Learners** – grasp programming concepts in a structured way.
+* **Working Professionals** – quickly revisit important design patterns, tools, and strategies.
+* **Interview Candidates** – prepare for technical rounds with detailed topic coverage.
+* **Tech Enthusiasts** – explore new concepts and modern development techniques.
+
+### 🛠 Maintenance & Scope
+
+This guide is maintained in a personal capacity alongside my full-time job.\
+New sections, topics, and improvements are regularly added based on:
+
+* My own learning journey.
+* Feedback from the developer community.
+* Industry trends and best practices.
+
+### 🙋‍♂️ Here’s Who I Am & What I Do
+
+I’m passionate about experimenting with new technologies, learning fresh concepts, and constantly challenging myself to grow.\
+This guide is my way of documenting and sharing what I learn through self-study and hands-on experience.
+
+As I continue this journey, I’ll be writing about coding, architecture, and technology concepts that intrigue me. Through these posts, I aim not only to solidify my own understanding but also to help others learn faster and better.
+
+Let’s learn, share, and grow together.
+
+<div data-full-width="false"><figure><img src=".gitbook/assets/about.png" alt=""><figcaption></figcaption></figure></div>
 
 ### 🌱 Community Plan Compliance
 
