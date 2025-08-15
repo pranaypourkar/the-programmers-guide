@@ -133,7 +133,7 @@ Use frameworks like Spring to inject dependencies dynamically, avoiding explicit
 
 Especially the **Dependency Inversion Principle** (DIP) and **Single Responsibility Principle** (SRP). Ensure higher-level modules don’t depend on lower-level ones.
 
-### **4. Restructure Your Code**:
+### **4. Restructure our Code**:
 
 * Extract shared functionality into utility classes or services.
 * Use a mediator pattern or event-driven design to decouple classes.
@@ -186,7 +186,7 @@ public class B {
 
 ### **1. Static Analysis Tools**:
 
-Use tools like SonarQube, IntelliJ IDEA inspections, or Eclipse to identify cyclic dependencies in your codebase.
+Use tools like SonarQube, IntelliJ IDEA inspections, or Eclipse to identify cyclic dependencies in our codebase.
 
 ### **2. Dependency Graphs**:
 

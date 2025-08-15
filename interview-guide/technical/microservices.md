@@ -2,7 +2,7 @@
 
 ## About
 
-Includes frequently asked microservice architecture questions—service decomposition, communication patterns, circuit breakers, and distributed tracing. Useful for mid-to-senior-level backend interviews.
+Includes frequently asked microservice architecture questions - service decomposition, communication patterns, circuit breakers, and distributed tracing. Useful for mid-to-senior-level backend interviews.
 
 ## 1. "Have You Worked with Microservices? If So, Can You Explain the Architecture?"
 

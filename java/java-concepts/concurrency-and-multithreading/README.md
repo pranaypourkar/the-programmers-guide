@@ -28,6 +28,6 @@ Concurrency helps structure applications around **independent tasks**. A web ser
 
 Most scalable backend systems - like web applications, real-time data processors, and messaging platforms - depend on effective concurrency. Understanding thread pools, task queues, and synchronization is essential for writing **scalable Java code**.
 
-### 5. **Prepares You for Real-World Challenges**
+### 5. **Prepares our for Real-World Challenges**
 
 Concurrency introduces real-world programming challenges like **race conditions**, **deadlocks**, and **data visibility problems**. Learning concurrency is not just about performance - it’s about writing **correct**, **safe**, and **robust** code in environments where multiple threads interact.
