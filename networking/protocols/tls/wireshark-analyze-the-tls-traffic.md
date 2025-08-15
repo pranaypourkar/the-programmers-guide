@@ -2,8 +2,6 @@
 
 Can I test client hello and server hello?
 
-**ChatGPT said:**
-
 Yes, you can test the ClientHello and ServerHello messages exchanged during the TLS handshake using Wireshark. These messages provide important information about the TLS connection and the cryptographic parameters negotiated between the client and the server.
 
 To test the ClientHello and ServerHello messages in Wireshark, you can follow these steps:
