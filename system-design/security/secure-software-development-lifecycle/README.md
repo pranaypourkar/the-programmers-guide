@@ -1,7 +1,3 @@
----
-hidden: true
----
-
 # Secure Software Development Lifecycle
 
 ## About
@@ -89,10 +85,3 @@ Security **travels with** the project from inception to retirement, rather than 
 * **Patch Management**: Apply security updates promptly for OS, dependencies, and frameworks.
 * **Security Logging & Monitoring**: Enable audit logs, anomaly detection, and SIEM integration.
 * **Incident Response Preparedness**: Maintain a response plan and practice through tabletop exercises.
-
-
-
-
-
-
-
