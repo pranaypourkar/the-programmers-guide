@@ -16,7 +16,7 @@ It brings together foundational and advanced programming concepts, system design
 
 The content is **continuously updated** with new topics, examples, and explanations so that it stays relevant for evolving technologies and industry practices. Whether you are a **beginner exploring the basics or a principal-level engineer** refreshing advanced concepts, you’ll find resources tailored to your needs here.
 
-### 💡 Why This Exists
+### 💡 Why This Exists ?
 
 Many developers struggle to find **a single, structured, and reliable place** for both learning and quick reference of Backend Engineering concepts.\
 The Programmer’s Guide solves this by:
@@ -25,6 +25,17 @@ The Programmer’s Guide solves this by:
 * Covering multiple skill levels, from beginner-friendly introductions to advanced engineering practices.
 * Acting as a one-stop hub for coding theory, architecture, and practical tools.
 * Supporting interview preparation and real-world project problem-solving.
+
+### 🙋‍♂️ Here’s Who I Am & What I Do
+
+I’m passionate about experimenting with new technologies, learning fresh concepts, and constantly challenging myself to grow.\
+This guide is my way of documenting and sharing what I learn through self-study and hands-on experience.
+
+As I continue this journey, I’ll be writing about **coding, architecture, and technology concepts** that intrigue me. Through these posts, I aim not only to **solidify my own understanding** but also to **help others learn faster and better**.
+
+**Let’s learn, share, and grow together.**
+
+<div data-full-width="false"><figure><img src=".gitbook/assets/about.png" alt=""><figcaption></figcaption></figure></div>
 
 ### 👥 Who This Helps
 
@@ -41,17 +52,6 @@ New sections, topics, and improvements are regularly added based on:
 * My own learning journey.
 * Feedback from the developer community.
 * Industry trends and best practices.
-
-### 🙋‍♂️ Here’s Who I Am & What I Do
-
-I’m passionate about experimenting with new technologies, learning fresh concepts, and constantly challenging myself to grow.\
-This guide is my way of documenting and sharing what I learn through self-study and hands-on experience.
-
-As I continue this journey, I’ll be writing about **coding, architecture, and technology concepts** that intrigue me. Through these posts, I aim not only to **solidify my own understanding** but also to **help others learn faster and better**.
-
-**Let’s learn, share, and grow together.**
-
-<div data-full-width="false"><figure><img src=".gitbook/assets/about.png" alt=""><figcaption></figcaption></figure></div>
 
 ### 🌱 Community Plan Compliance
 
