@@ -12,6 +12,7 @@
     * [Deployment and Integration](ai/ai-in-java/deployment-and-integration.md)
     * [Performance & Optimization](ai/ai-in-java/performance-and-optimization.md)
     * [Testing AI](ai/ai-in-java/testing-ai.md)
+  * [Generative AI](ai/generative-ai.md)
 * [Algorithm](algorithm/README.md)
   * [Big O Notation](algorithm/big-o-notation/README.md)
     * [Tree](algorithm/big-o-notation/tree.md)
