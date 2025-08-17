@@ -268,3 +268,17 @@ Spring supports clean test-driven development with:
 * Annotations like `@SpringBootTest`, `@WebMvcTest`, etc.
 
 **Example**: Unit and integration tests for user registration and login workflows.
+
+## **For Whom Is This Guide ?**
+
+This guide is for anyone who wants to understand and work with the Spring framework in Java. We don’t need to be a framework expert - just an interest in building modern, scalable, and maintainable applications.
+
+It is suitable for:
+
+* **Beginners** who are new to Spring and want a clear introduction to its core concepts.
+* **Students** learning enterprise Java development as part of their coursework.
+* **Developers** looking to simplify application development with Spring’s features like dependency injection, data access, and web frameworks.
+* **Professionals** working on enterprise systems who need reliable, production-ready tools.
+* **Enthusiasts** who want to experiment with Spring to build projects, APIs, or microservices.
+
+In short, this guide is for anyone who wants to learn how Spring makes Java development faster, cleaner, and more productive.

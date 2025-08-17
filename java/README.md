@@ -121,6 +121,6 @@ Due to its object-oriented nature, Java is often the **first language taught** i
 
 Java is not just about writing code—it’s about **maintaining, debugging, and scaling** it over years. Java’s emphasis on structure, strong typing, modularization, and tooling makes it a natural fit for **team collaboration and long-term maintainability**.
 
-## For Whom Is This Guide?
+## For Whom Is This Guide ?
 
 This Java guide is designed to help **a wide range of learners and professionals**, whether you're just starting out or already writing production-level code. We believe Java is for everyone but the way we approach it depends on our goals.
