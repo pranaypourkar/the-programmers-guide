@@ -34,7 +34,7 @@ encoder, decoder, transformer
 
 Common LLM&#x20;
 
-<figure><img src="../.gitbook/assets/image (542).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (542).png" alt=""><figcaption></figcaption></figure>
 
 Dolly -> Databricks (march 27, 2024)
 
