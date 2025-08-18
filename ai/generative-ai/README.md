@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Generative AI
 
 AI -> ML -> DL(deep) -> Generative AI (subsets)
