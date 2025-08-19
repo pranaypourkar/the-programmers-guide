@@ -4,7 +4,7 @@
 
 It is possible to map the data given in the spring application yaml/json/properties file with the java class directly. This process, known as mapping, allows to directly link the data in the configuration files to corresponding fields in Java classes. With this. it is easy the update the data directly in the properties file without need to build the application again.
 
-## <mark style="background-color:purple;">**Example 1**</mark>**: Mapping payment purposes which are available in different languages.**
+## **Mapping payment purposes which are available in different languages.**
 
 Define the properties in **application.yaml** file.
 
@@ -43,7 +43,7 @@ public class PaymentPurposes {
 }
 ```
 
-## <mark style="background-color:purple;">**Example 2**</mark>**: Map the parent-child hierarchy property of transaction category.**
+## **Map the parent-child hierarchy property of transaction category.**
 
 Define the properties in **application.yaml** file.
 
@@ -99,7 +99,7 @@ public class TransactionCategories {
 }
 ```
 
-## <mark style="background-color:purple;">**Example 3**</mark>**: Map the key value pairs of message templates**
+## **Map the key value pairs of message templates**
 
 Define the properties in **application.yaml** file.
 
@@ -214,7 +214,7 @@ Make sure to include below dependencies and failsafe plugin to test
 ```
 {% endhint %}
 
-## <mark style="background-color:purple;">**Example 4**</mark>**: Mapping card types and fees in a Map.**
+## **Mapping card types and fees in a Map.**
 
 Define the properties in **application.yaml** file.
 
@@ -252,3 +252,158 @@ public class CardProperties {
 
 }
 ```
+
+## Mapping Error Codes and Description
+
+Define the properties in **application.yaml** file.
+
+```yaml
+myapp:
+  faults:
+    - action: "RETRY"
+      errorCode: "PAYMENT_TIMEOUT"
+      type: "TRANSIENT"
+      system: "PaymentGateway"
+      nativeError: "PG-504"
+      englishDescription: "Payment gateway timeout. Please try again."
+      hindiDescription: "भुगतान गेटवे टाइमआउट। कृपया पुनः प्रयास करें।"
+
+    - action: "ESCALATE"
+      errorCode: "ACCOUNT_LOCKED"
+      type: "PERMANENT"
+      system: "AccountService"
+      nativeError: "AS-401"
+      englishDescription: "Your account has been locked."
+      hindiDescription: "आपका खाता लॉक कर दिया गया है।"
+```
+
+Create **ErrorConfig.java** class
+
+```java
+package com.company.project.config;
+
+import java.util.ArrayList;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
+@Setter
+@Getter
+@Configuration
+@ConfigurationProperties(prefix = "myapp")
+public class ErrorConfig {
+
+    private List<ErrorOverride> faults = new ArrayList<>();
+
+    public record ErrorOverride(
+        String action,
+        String errorCode,
+        String type,
+        String system,
+        String nativeError,
+        String englishDescription,
+        String hindiDescription
+    ) {}
+}
+
+
+```
+
+## Mapping Audit Categories
+
+Define the properties in **application.yaml** file.
+
+```yaml
+audit:
+  config:
+      event-categories:
+        - event-category: "User Control"
+          severity: "HIGH"
+          enabled: true
+          object-types:
+            - object-type: "User Group"
+              retention-days: 365
+              notifiable: true
+              event-actions:
+                - name: "Create"
+                  log-level: "INFO"
+                - name: "Update"
+                  log-level: "WARN"
+            - object-type: "Work Group"
+              retention-days: 180
+              notifiable: false
+              event-actions:
+                - name: "Create"
+                  log-level: "INFO"
+                - name: "Update"
+                  log-level: "INFO"
+            - object-type: "Legal Entity"
+              retention-days: 730
+              notifiable: true
+              event-actions:
+                - name: "Create"
+                  log-level: "AUDIT"
+                - name: "Update"
+                  log-level: "AUDIT"
+            - object-type: "User Permissions"
+              retention-days: 90
+              notifiable: true
+              event-actions:
+                - name: "Update Permissions"
+                  log-level: "CRITICAL"
+
+        - event-category: "Account Statements"
+          severity: "MEDIUM"
+          enabled: true
+          object-types:
+            - object-type: "Account Statements"
+              retention-days: 180
+              notifiable: false
+              event-actions:
+                - name: "Read"
+                  log-level: "INFO"
+```
+
+Create **AuditConfig.java** class
+
+```java
+package com.company.project.config;
+
+import java.util.ArrayList;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
+@Setter
+@Getter
+@Configuration
+@ConfigurationProperties(prefix = "audit.config")
+public class AuditConfig {
+
+    private List<EventCategory> eventCategories = new ArrayList<>();
+
+    public record EventCategory(
+        String eventCategory,
+        String severity,
+        boolean enabled,
+        List<ObjectType> objectTypes
+    ) {}
+
+    public record ObjectType(
+        String objectType,
+        int retentionDays,
+        boolean notifiable,
+        List<EventAction> eventActions
+    ) {}
+
+    public record EventAction(
+        String name,
+        String logLevel
+    ) {}
+}
+```
+
