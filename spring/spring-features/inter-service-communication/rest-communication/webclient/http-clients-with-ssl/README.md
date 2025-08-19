@@ -586,6 +586,89 @@ public class PaymentService {
 }
 ```
 
+## SSL Certificates Format
+
+When configuring `WebClient` to make HTTPS calls, we often need to provide SSL certificates to establish trust with remote servers. The certificate format and how we load it into `WebClient` can differ based on whether we are using **PEM/CRT** files or **Java Keystore formats (JKS/PKCS12)**.
+
+### **1. Using PEM/CRT Certificates**
+
+PEM (`.pem`) or CRT (`.crt`) files are plain text files containing Base64-encoded X.509 certificates (optionally with private keys). These are the standard certificate formats used in Linux and OpenSSL-based environments.
+
+*   **How it works with `WebClient` ?**\
+    We pass the certificate file directly to Netty’s `SslContextBuilder`:
+
+    ```java
+    SslContext sslContext = SslContextBuilder.forClient()
+        .trustManager(new File("server-cert.pem"))
+        .build();
+
+    HttpClient httpClient = HttpClient.create()
+        .secure(sslSpec -> sslSpec.sslContext(sslContext));
+
+    WebClient webClient = WebClient.builder()
+        .clientConnector(new ReactorClientHttpConnector(httpClient))
+        .build();
+    ```
+* **When to use ?**
+  * We have a single server certificate or CA certificate to trust.
+  * Our certs are generated/distributed in PEM format (common in Docker/K8s, Let’s Encrypt, etc.).
+  * We want a lightweight setup without dealing with Java keystores.
+
+### **2. Using JKS (Java KeyStore)**
+
+`.jks` is a Java-specific binary keystore format that can store multiple certificates and private keys. It is the _traditional_ way Java applications handle SSL material.
+
+*   **How it works with `WebClient` ?**\
+    Load the JKS file into a `KeyStore`, initialize a `TrustManagerFactory`, and pass it to Netty:
+
+    ```java
+    KeyStore trustStore = KeyStore.getInstance("JKS");
+    trustStore.load(new FileInputStream("truststore.jks"), "changeit".toCharArray());
+
+    TrustManagerFactory tmf =
+        TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+    tmf.init(trustStore);
+
+    SslContext sslContext = SslContextBuilder.forClient()
+        .trustManager(tmf)
+        .build();
+
+    HttpClient httpClient = HttpClient.create()
+        .secure(sslSpec -> sslSpec.sslContext(sslContext));
+    ```
+* **When to use ?**
+  * We are in a Java ecosystem where truststores/keystores are already managed as `.jks`.
+  * We need to trust multiple CA certificates.
+  * We want password-protected certificate storage.
+
+### **3. Using PKCS12 (.p12 / .pfx)**
+
+PKCS12 (`.p12`, `.pfx`) is a binary, cross-platform keystore format that can store certificates and private keys together. It is more modern than JKS and is supported by both Java and OpenSSL.
+
+*   **How it works with `WebClient` ?**\
+    Very similar to JKS, except we load `PKCS12` instead:
+
+    ```java
+    KeyStore trustStore = KeyStore.getInstance("PKCS12");
+    trustStore.load(new FileInputStream("truststore.p12"), "changeit".toCharArray());
+
+    TrustManagerFactory tmf = 
+        TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+    tmf.init(trustStore);
+
+    SslContext sslContext = SslContextBuilder.forClient()
+        .trustManager(tmf)
+        .build();
+    ```
+* **When to use ?**
+  * We need compatibility between Java and OpenSSL-based systems.
+  * We want a single file that can store both cert + key (useful for mutual TLS).
+  * Recommended for new projects (JKS is Java-only, PKCS12 is universal).
+
+#### **Comparison Table**
+
+<table data-full-width="true"><thead><tr><th>Feature</th><th>PEM/CRT</th><th width="177.4765625">JKS</th><th>PKCS12</th></tr></thead><tbody><tr><td><strong>Format</strong></td><td>Text (Base64 X.509)</td><td>Java-specific binary</td><td>Cross-platform binary</td></tr><tr><td><strong>Stores multiple certs</strong></td><td>Possible (in bundle)</td><td>Yes</td><td>Yes</td></tr><tr><td><strong>Stores private key</strong></td><td>Only if combined with PEM key</td><td>Yes (keystore, not truststore)</td><td>Yes</td></tr><tr><td><strong>Password protection</strong></td><td>No</td><td>Yes</td><td>Yes</td></tr><tr><td><strong>Java default support</strong></td><td>No (Netty/OpenSSL handles it)</td><td>Yes</td><td>Yes</td></tr><tr><td><strong>Cross-platform</strong></td><td>Yes</td><td>No</td><td>Yes</td></tr><tr><td><strong>Best for</strong></td><td>Simple trust of 1 cert, OpenSSL/K8s</td><td>Legacy Java apps</td><td>Modern, cross-system setups</td></tr></tbody></table>
+
 ## **Testing Custom SSL Setup**
 
 Custom SSL configurations (like self-signed certs, mutual TLS, certificate pinning) are **notoriously error-prone**. If misconfigured, they don’t fail gracefully the client simply fails to connect, often with obscure error messages. That’s why robust testing is essential.
