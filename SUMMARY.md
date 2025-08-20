@@ -975,6 +975,7 @@
         * [Envoy](networking/protocols/proxy/tools/envoy.md)
     * [HTTP](networking/protocols/http/README.md)
       * [HTTP/2](networking/protocols/http/http-2.md)
+      * [HTTP/1.1](networking/protocols/http/http-1.1.md)
     * [HTTPS](networking/protocols/https/README.md)
       * [Page 1](networking/protocols/https/page-1.md)
     * [TLS](networking/protocols/tls/README.md)
