@@ -31,7 +31,26 @@ Key objectives include:
 
 #### Rules
 
-## **1. Controller Layer (`controller`)**
+Consider the following packaging structure
+
+```
+com.company.employeeportal
+├── config                  # Spring and application configuration (DataSource, Swagger, CORS, etc.)
+├── client                  # External API calls logic
+├── constants               # Application-wide constants and enums
+├── api                     # REST controllers for handling HTTP requests
+├── dto                     # Data Transfer Objects for request/response bodies
+├── entity                  # JPA entity classes (Employee, Department, Salary, etc.)
+├── exception               # Custom exceptions and global exception handling
+├── mapper                  # MapStruct or manual mappers (Entity <-> DTO)
+├── repository              # Spring Data JPA repositories specification
+├── specification           # Spring Data JPA specification 
+├── service                 # Service classes for handling business logic
+├── util                    # Utility/helper classes (DateUtils, PaginationUtils, etc.)
+├── validation              # Custom validators and annotation-based rules
+```
+
+## **1. Controller Layer (`api`)**
 
 * Classes annotated with `@RestController` or containing `Controller` in their name must reside in the `controller` package.
 * Controllers **must not** be placed in `service`, `repository`, or `entity` packages.

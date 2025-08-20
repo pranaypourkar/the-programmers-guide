@@ -1334,6 +1334,7 @@
         * [RandomStringUtils](spring/utilities-and-libraries/apache-libraries/apache-commons-lang/randomstringutils.md)
         * [DateUtils](spring/utilities-and-libraries/apache-libraries/apache-commons-lang/dateutils.md)
         * [EqualsBuilder & HashCodeBuilder](spring/utilities-and-libraries/apache-libraries/apache-commons-lang/equalsbuilder-and-hashcodebuilder.md)
+        * [StopWatch](spring/utilities-and-libraries/apache-libraries/apache-commons-lang/stopwatch.md)
       * [Apache Commons IO](spring/utilities-and-libraries/apache-libraries/apache-commons-io/README.md)
         * [FileUtils](spring/utilities-and-libraries/apache-libraries/apache-commons-io/fileutils.md)
       * [Apache Commons Validator](spring/utilities-and-libraries/apache-libraries/apache-commons-validator.md)

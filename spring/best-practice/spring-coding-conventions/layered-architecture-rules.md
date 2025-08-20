@@ -35,7 +35,7 @@ com.company.employeeportal
 ├── config                  # Spring and application configuration (DataSource, Swagger, CORS, etc.)
 ├── client                  # External API calls logic
 ├── constants               # Application-wide constants and enums
-├── controller              # REST controllers for handling HTTP requests
+├── api                     # REST controllers for handling HTTP requests
 ├── dto                     # Data Transfer Objects for request/response bodies
 ├── entity                  # JPA entity classes (Employee, Department, Salary, etc.)
 ├── exception               # Custom exceptions and global exception handling
@@ -47,7 +47,7 @@ com.company.employeeportal
 ├── validation              # Custom validators and annotation-based rules
 ```
 
-## **1. Controller Layer Rules (`controller`)**
+## **1. Controller Layer Rules (`api`)**
 
 * Controllers must **only handle HTTP requests** and delegate business logic to the **service layer**.
 * Controllers **must not**:
