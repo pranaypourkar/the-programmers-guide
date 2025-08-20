@@ -8,7 +8,7 @@ Timeouts are a critical part of designing resilient, responsive HTTP clients. Wi
 
 Connection timeout defines how long the client will wait to establish a TCP socket connection to the target server.
 
-**Why It Matters**
+**Why It Matters ?**
 
 This phase occurs before any HTTP request is actually sent. If the remote server is unavailable, misconfigured, or experiencing heavy load, connection establishment may hang. This timeout ensures the application doesn't waste time waiting for a connection that might never succeed.
 
@@ -24,7 +24,7 @@ Set the connection timeout to a low value (e.g., 1–3 seconds) in production sy
 
 Read timeout defines the maximum time the client will wait **after sending the request** for the server to return data (including headers and body).
 
-**Why It Matters**
+**Why It Matters ?**
 
 Once a connection is made and the request is sent, the server might be slow in processing the request or in generating a response due to internal load, large payloads, or slowness in backend systems.
 
@@ -40,7 +40,7 @@ Set this timeout depending on the expected response size and server latency. Typ
 
 This timeout applies only when using a **connection pool** (e.g., Apache HttpClient). It defines how long to wait when trying to borrow a connection from the pool if all are currently in use.
 
-**Why It Matters**
+**Why It Matters ?**
 
 In high-throughput systems, connections to external services are reused and managed through a pool to optimize resource usage. But if too many threads request connections simultaneously, the pool may be exhausted. This timeout controls how long threads wait before giving up.
 

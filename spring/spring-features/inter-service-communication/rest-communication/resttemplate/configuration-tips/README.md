@@ -428,3 +428,90 @@ public RestTemplate okHttpRestTemplate(OkHttpClient okHttpClient) {
 ```
 
 `OkHttpClient` supports connection pooling and HTTP/2 by default.
+
+## Logging
+
+### 1. **Enable Basic RestTemplate Logging**
+
+```yaml
+logging:
+  level:
+    org.springframework.web.client.RestTemplate: DEBUG
+```
+
+* Logs high-level info: HTTP method, URL, status, etc
+*   Example log:
+
+    ```
+    DEBUG org.springframework.web.client.RestTemplate - POST request for "http://api.example.com/users"
+    DEBUG org.springframework.web.client.RestTemplate - Response 200 OK
+    ```
+
+### 2. **Enable Underlying HTTP Client Logging**
+
+#### a) **Default (SimpleClientHttpRequestFactory → java.net.HttpURLConnection)**
+
+Enable JDK HTTP wire logging:
+
+```yaml
+logging:
+  level:
+    sun.net.www.protocol.http.HttpURLConnection: DEBUG
+    sun.net.www.protocol.http: DEBUG
+```
+
+* Prints headers and some payload info.
+* Useful if we are not overriding the HTTP client.
+
+#### b) **Apache HttpClient (HttpComponentsClientHttpRequestFactory)**
+
+If we use Apache HttpClient under RestTemplate, enable:
+
+```yaml
+logging:
+  level:
+    org.apache.http: DEBUG
+    org.apache.http.wire: DEBUG
+    org.apache.http.headers: DEBUG
+```
+
+* `org.apache.http` → general client internals.
+* `org.apache.http.headers` → logs request & response headers.
+* `org.apache.http.wire` → logs raw request & response bodies (wire format).
+
+#### c) **OkHttp (OkHttp3ClientHttpRequestFactory)**
+
+If we use OkHttp:
+
+```yaml
+logging:
+  level:
+    okhttp3: DEBUG
+    okhttp3.OkHttpClient: DEBUG
+```
+
+* Use `HttpLoggingInterceptor` for detailed body logging (more flexible than logger-only).
+
+### 3. **Enable Message Converter Logging**
+
+Spring uses **HttpMessageConverters** to serialize/deserialize request/response bodies.\
+Enable logging for Jackson (JSON):
+
+```yaml
+logging:
+  level:
+    org.springframework.http.converter.json: DEBUG
+    com.fasterxml.jackson.databind: DEBUG
+```
+
+* Prints details when converting JSON request/response.
+
+### 4. **Enable Client Factory Logging**
+
+```yaml
+logging:
+  level:
+    org.springframework.http.client: DEBUG
+```
+
+* Shows which HTTP client factory (`SimpleClientHttpRequestFactory`, `HttpComponentsClientHttpRequestFactory`, etc.) RestTemplate is using.

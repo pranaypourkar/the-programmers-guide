@@ -149,3 +149,63 @@ public interface AccountClient {
 
 <table><thead><tr><th width="236.41796875">Setting</th><th>Where to Use</th></tr></thead><tbody><tr><td><code>connect-timeout</code></td><td><code>application.yml/properties</code></td></tr><tr><td><code>read-timeout</code></td><td>Same as above</td></tr><tr><td><code>loggerLevel</code></td><td><code>application.yml</code> or Java config class</td></tr><tr><td><code>retryer</code></td><td>Java config class or YAML block</td></tr><tr><td><code>errorDecoder</code></td><td>Java class implementing <code>ErrorDecoder</code></td></tr><tr><td><code>requestInterceptors</code></td><td>One or more <code>RequestInterceptor</code> beans</td></tr><tr><td><code>encoder</code> / <code>decoder</code></td><td>Custom classes to override default behavior</td></tr></tbody></table>
 
+## Logging
+
+### 1. **Enable Feign Logging in `application.yml`**
+
+```yaml
+logging:
+  level:
+    feign: DEBUG
+    feign.Logger: DEBUG
+    feign.Request: DEBUG
+    feign.Response: DEBUG
+    feign.codec: DEBUG
+    feign.auth: DEBUG
+    org.springframework.cloud.openfeign: DEBUG
+```
+
+This ensures all Feign internals (request, response, codec, auth) are visible.
+
+### 2. **Configuring Feign Logger in Spring Boot**
+
+Feign has four logging levels we can set per client:
+
+* `NONE` – No logging (default).
+* `BASIC` – Logs request method, URL, response status.
+* `HEADERS` – Logs BASIC + request/response headers.
+* `FULL` – Logs everything: headers, body, metadata.
+
+#### a) Global Config
+
+```java
+@Configuration
+public class FeignConfig {
+    @Bean
+    feign.Logger.Level feignLoggerLevel() {
+        return feign.Logger.Level.FULL; // FULL for request/response body logging
+    }
+}
+```
+
+#### b) Per-Client Config
+
+```java
+@FeignClient(
+    name = "accountClient",
+    url = "${service.account.url}",
+    configuration = AccountFeignConfig.class
+)
+public interface AccountClient {
+    @GetMapping("/accounts/{id}")
+    AccountResponse getAccount(@PathVariable String id);
+}
+
+@Configuration
+class AccountFeignConfig {
+    @Bean
+    feign.Logger.Level feignLoggerLevel() {
+        return feign.Logger.Level.FULL;
+    }
+}
+```

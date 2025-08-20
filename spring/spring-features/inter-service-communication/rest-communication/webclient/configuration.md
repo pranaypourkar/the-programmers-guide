@@ -521,3 +521,73 @@ This gives us complete control over:
 * Logging
 * Media type resolution
 * Reactive flow customization
+
+## Logging
+
+### **1. Enable Basic WebClient Logging**
+
+```yaml
+logging:
+  level:
+    org.springframework.web.reactive.function.client.WebClient: DEBUG
+```
+
+* Logs request method, URI, status code, and error signals.
+*   Example:
+
+    ```
+    DEBUG WebClient: [5f20f] HTTP POST http://api.example.com/users
+    DEBUG WebClient: [5f20f] Response 200 OK
+    ```
+
+### 2. **Enable Reactor Netty HTTP Logging**
+
+#### a) Request & Response details
+
+```yaml
+logging:
+  level:
+    reactor.netty.http.client: DEBUG
+```
+
+* Logs connection events, request sent, response received.
+*   Example:
+
+    ```
+    DEBUG reactor.netty.http.client.HttpClient - [id: 0x12345] REGISTERED
+    DEBUG reactor.netty.http.client.HttpClient - [id: 0x12345] WRITE: POST /users
+    DEBUG reactor.netty.http.client.HttpClient - [id: 0x12345] READ: 200 OK
+    ```
+
+#### b) Full wire-level logging (headers + body)
+
+```yaml
+logging:
+  level:
+    reactor.netty.channel: DEBUG
+    reactor.netty.transport: DEBUG
+```
+
+* Shows raw bytes over TCP (like `org.apache.http.wire` in HttpClient).
+*   Example:
+
+    ```
+    DEBUG reactor.netty.channel - [id:0x12345] OUTBOUND: {"name":"Alice"}
+    DEBUG reactor.netty.channel - [id:0x12345] INBOUND: {"id":1,"name":"Alice"}
+    ```
+
+### 3. **Enable Codec & JSON Logging**
+
+To see what’s happening inside message encoders/decoders:
+
+```yaml
+logging:
+  level:
+    org.springframework.http.codec: DEBUG
+    org.springframework.core.codec: DEBUG
+    org.springframework.web.reactive.function.BodyExtractors: TRACE
+    com.fasterxml.jackson.databind: DEBUG
+```
+
+* Logs when Spring encodes request/response bodies.
+* Shows serialization details if using Jackson.
