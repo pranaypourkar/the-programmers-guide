@@ -1,2 +1,0 @@
-# Layered Dependency & Access Rules
-
