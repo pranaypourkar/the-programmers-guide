@@ -1,6 +1,6 @@
 # Method Overriding & Overloading
 
-## **What is meant by Method Overriding?**
+## **Method Overriding**
 
 Method overriding happens if the sub-class method satisfies the below conditions with the Super-class method:
 
@@ -122,7 +122,7 @@ class Child extends Parent {
 }
 ```
 
-## **What is meant by Method Overloading?**
+## **Method Overloading**
 
 Method overloading happens for different classes or within the same class.
 
@@ -271,3 +271,55 @@ class MixedExceptionOverloading {
 }
 ```
 
+### Overloading by **Only Return Type ?**
+
+In Java, **method overloading** means having multiple methods in the same class with the same name but different **parameter lists** (number or type of arguments).
+
+But if two methods have the same name **and the same parameter list**, but only differ in **return type**, the compiler **cannot distinguish** between them at the point of calling.
+
+#### Example Case
+
+```java
+class Test {
+    int getValue() {
+        return 10;
+    }
+
+    double getValue() {   // Compile-time error
+        return 20.5;
+    }
+}
+```
+
+**Why This Fails ?**
+
+When we call:
+
+```java
+Test t = new Test();
+t.getValue();
+```
+
+* The compiler sees the method call `getValue()` with **no arguments**.
+* Both methods `int getValue()` and `double getValue()` look identical in terms of **method signature** (method name + parameter list).
+* Java does not consider **return type** as part of the signature.
+* So, the compiler cannot figure out which version we want to call.
+
+This would cause **ambiguity**.
+
+#### What If Return Type Was Considered?
+
+If Java allowed overloading based only on return type, then a call like this:
+
+```java
+t.getValue();
+```
+
+would leave the compiler confused. Should it return an `int` or a `double`? Unless we explicitly assign it:
+
+```java
+int a = t.getValue();
+double b = t.getValue();
+```
+
+the compiler has no way to know which method we meant. This would make method resolution complicated and ambiguous.
