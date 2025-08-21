@@ -261,7 +261,7 @@ public class LoggingExample {
 }
 ```
 
-## Best Practices & Pitfalls
+## Best Practices
 
 #### 1. Always Stop Before Reuse
 

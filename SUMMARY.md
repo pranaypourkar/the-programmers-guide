@@ -1348,6 +1348,7 @@
       * [Logging with Lombok](spring/utilities-and-libraries/lombok/logging-with-lombok.md)
     * [Utilities by Spring framework](spring/utilities-and-libraries/provide-by-spring-framework/README.md)
       * [FileCopyUtils](spring/utilities-and-libraries/provide-by-spring-framework/filecopyutils.md)
+      * [StopWatch](spring/utilities-and-libraries/provide-by-spring-framework/stopwatch.md)
     * [ArchUnit](java/code-quality-and-analysis/archunit.md)
       * [Integration with JUnit](spring/utilities-and-libraries/archunit/integration-with-junit.md)
       * [Common Rules Implementation](spring/utilities-and-libraries/archunit/common-rules-implementation.md)
