@@ -1,4 +1,4 @@
-# Oracle Examples
+# Use Case & Examples
 
 ## 1. Timestamp to readable format
 
@@ -74,7 +74,7 @@ CREATE TABLE my_table (
 );
 ```
 
-### 5. Get current timestamp
+## 5. Get current timestamp
 
 In Oracle, we can get the current timestamp using the `CURRENT_TIMESTAMP` function, which returns the current date and time including fractional seconds.
 
