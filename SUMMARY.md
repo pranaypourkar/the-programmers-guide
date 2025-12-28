@@ -861,6 +861,8 @@
       * [Cyclic dependencies](java/code-quality-and-analysis/anti-patterns/cyclic-dependencies.md)
     * [Bug Patterns](java/code-quality-and-analysis/bug-patterns/README.md)
       * [Classification of Bug Patterns](java/code-quality-and-analysis/bug-patterns/classification-of-bug-patterns.md)
+      * [Common Myths About Bugs](java/code-quality-and-analysis/bug-patterns/common-myths-about-bugs.md)
+      * [Bug Pattern Examples](java/code-quality-and-analysis/bug-patterns/bug-pattern-examples.md)
     * [Security Concepts](java/code-quality-and-analysis/security-concepts/README.md)
       * [Vulnerabilities](java/code-quality-and-analysis/security-concepts/vulnerabilities.md)
       * [Security Hotspots](java/code-quality-and-analysis/security-concepts/security-hotspots.md)
