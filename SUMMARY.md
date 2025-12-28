@@ -874,7 +874,6 @@
       * [Error Handling & Information Exposure](java/code-quality-and-analysis/security-concepts/error-handling-and-information-exposure.md)
       * [Cryptography Misuse](java/code-quality-and-analysis/security-concepts/cryptography-misuse.md)
       * [Dependency & Third-Party Risks](java/code-quality-and-analysis/security-concepts/dependency-and-third-party-risks.md)
-      * [Security vs Reliability Overlap](java/code-quality-and-analysis/security-concepts/security-vs-reliability-overlap.md)
     * [Quality Metrics](java/code-quality-and-analysis/quality-metrics/README.md)
       * [Reliability](java/code-quality-and-analysis/quality-metrics/reliability.md)
       * [Maintainability](java/code-quality-and-analysis/quality-metrics/maintainability.md)

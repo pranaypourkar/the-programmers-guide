@@ -1,7 +1,3 @@
----
-hidden: true
----
-
 # Security Concepts
 
 ## About
