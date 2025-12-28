@@ -1,2 +1,0 @@
-# Severity Levels & Prioritization
-
