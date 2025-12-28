@@ -502,8 +502,7 @@ log.info("PriorityQueue: {}", priorityQueue);
 
 ### **Deque**
 
-A double-ended queue that supports adding and removing elements from both ends.\
-
+A double-ended queue that supports adding and removing elements from both ends.<br>
 
 **ArrayDeque**
 

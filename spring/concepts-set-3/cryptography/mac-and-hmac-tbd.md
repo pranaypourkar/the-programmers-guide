@@ -53,9 +53,8 @@ Ciphers are algorithms used to encrypt and decrypt data, transforming it from it
   * OMAC1 using AES
   * OMAC2 using AES
 
-Best practices for Key Management\
-
-
+Best practices for Key Management<br>
+-------------------------------------
 
 * **Use Strong Secret Keys** -> Use a long and randomly generated secret key for the MAC computation. The strength of the key greatly impacts the security of the MAC.
 * **Protect the Secret Key** -> Ensure that the secret key is properly protected and kept confidential. Avoid hardcoding or transmitting the key insecurely. We should not store the keys in plain text files or on unencrypted disks. It should be stored in secure location, such as a password manager.

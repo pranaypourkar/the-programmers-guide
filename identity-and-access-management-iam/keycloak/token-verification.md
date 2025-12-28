@@ -30,8 +30,7 @@ We will be using Java JWT Library - Nimbus-JOSE-JWT [Bitbucket](https://bitbucke
 
 sample Spring Boot project to verify ID Token Signature of a Valid and Forged Token.&#x20;
 
-> Fetch the certificate details using Certs endpoint ([/realms/employee/protocol/openid-connect/certs](http://localhost:1010/realms/employee/protocol/openid-connect/certs)) and use it to verify the signature of the JWT Tokens\
->
+> Fetch the certificate details using Certs endpoint ([/realms/employee/protocol/openid-connect/certs](http://localhost:1010/realms/employee/protocol/openid-connect/certs)) and use it to verify the signature of the JWT Tokens<br>
 
 Let's start the keycloak and mysql service using docker-compose.
 

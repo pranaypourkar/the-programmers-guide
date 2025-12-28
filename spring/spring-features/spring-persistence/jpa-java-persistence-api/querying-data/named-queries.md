@@ -67,8 +67,7 @@ List<Employee> findByDepartment(@Param("dept") String department);
 
 {% hint style="info" %}
 `@Query("SELECT e FROM Employee e WHERE e.department = :dept")`\
-`List findByDepartment(@Param("dept") String department);`\
-
+`List findByDepartment(@Param("dept") String department);`<br>
 
 This is not a named query — it’s an inline JPQL query, and it's often preferred for simplicity when the query is short or used in only one place.
 {% endhint %}

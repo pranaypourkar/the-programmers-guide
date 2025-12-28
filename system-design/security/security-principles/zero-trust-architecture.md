@@ -51,8 +51,7 @@ Zero Trust is based on the principle of **“Never Trust, Always Verify.”** Th
 
 **Example:**
 
-* Finance and HR networks are separate, so HR employees can’t access finance systems directly.\
-
+* Finance and HR networks are separate, so HR employees can’t access finance systems directly.<br>
 
 **Micro-Segmentation (Fine-Grained Security Control):**
 

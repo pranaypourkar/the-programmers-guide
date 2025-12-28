@@ -266,8 +266,7 @@ It is responsible for **detecting our repository interfaces**, generating proxy 
 * It **does not scan or register JPA entity classes** (`@Entity` annotated classes).
 * If our entities are outside the default scan path, we **must** use `@EntityScan` explicitly.
 
-\
-
+<br>
 
 **Does `@EntityScan` include `@EnableJpaRepositories`?**
 
@@ -277,8 +276,7 @@ It is responsible for **detecting our repository interfaces**, generating proxy 
 * It **does not scan or register repository interfaces**.
 * We still need `@EnableJpaRepositories` if the repository interfaces are outside the main package.
 
-\
-
+<br>
 
 **Does `@ComponentScan` include `@EnableJpaRepositories`?**
 

@@ -1,4 +1,4 @@
-# Thread Basics
+# Thread Fundamentals
 
 A **thread** is the smallest unit of execution in a program. In Java, every program runs on at least one thread, known as the **main thread**.
 
@@ -63,4 +63,4 @@ Each thread in Java has a priority (range **1 to 10**). Default priority is `5 (
 * **User Threads** → Standard application threads.
 * **Daemon Threads** → Background threads that terminate when no user thread is running.
 
-\
+<br>

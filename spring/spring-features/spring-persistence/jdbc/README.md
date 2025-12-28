@@ -20,8 +20,7 @@ JDBC is primarily designed for relational (SQL) databases, not for NoSQL databas
 JDBC is for **SQL-based relational databases** such as: MySQL, PostgreSQL, Oracle DB, Microsoft SQL Server, SQLite, DB2, H2, etc.
 
 JDBC is Not Meant for **NoSQL databases**, such as: MongoDB, Cassandra, Redis, Neo4j, Couchbase, DynamoDB\
-\
-
+<br>
 
 **Can We Use JDBC with NoSQL?**
 

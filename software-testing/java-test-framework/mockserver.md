@@ -36,8 +36,7 @@ networks:
 
 Create a folder with name **stubs, in which we will store sample json files for initialisation.**
 
-![](https://static.wixstatic.com/media/5fb94b_617a514b92e241078cf77c5474bc5c10~mv2.png/v1/fill/w_290,h_288,fp_0.50_0.50,q_90/5fb94b_617a514b92e241078cf77c5474bc5c10~mv2.webp)<img src="https://static.wixstatic.com/media/5fb94b_312670708c3144c2a4ea7063e9e6c799~mv2.jpg/v1/fill/w_288,h_288,fp_0.50_0.50,q_90/5fb94b_312670708c3144c2a4ea7063e9e6c799~mv2.webp" alt="" data-size="original">\
-
+![](https://static.wixstatic.com/media/5fb94b_617a514b92e241078cf77c5474bc5c10~mv2.png/v1/fill/w_290,h_288,fp_0.50_0.50,q_90/5fb94b_617a514b92e241078cf77c5474bc5c10~mv2.webp)<img src="https://static.wixstatic.com/media/5fb94b_312670708c3144c2a4ea7063e9e6c799~mv2.jpg/v1/fill/w_288,h_288,fp_0.50_0.50,q_90/5fb94b_312670708c3144c2a4ea7063e9e6c799~mv2.webp" alt="" data-size="original"><br>
 
 _**Let's create mock request/response file (REST-books-list.json) for sample REST API inside the stubs folder.**_
 
@@ -123,8 +122,7 @@ http://localhost:1090/mockserver/dashboard
 
 <figure><img src="https://static.wixstatic.com/media/5fb94b_1d402241a3a247ea882dbfa08e5fa584~mv2.png/v1/fill/w_1222,h_1298,al_c,q_90,enc_avif,quality_auto/5fb94b_1d402241a3a247ea882dbfa08e5fa584~mv2.png" alt="ree" width="375"><figcaption></figcaption></figure>
 
-\
-
+<br>
 
 ### _Curl_
 

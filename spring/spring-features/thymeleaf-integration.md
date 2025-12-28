@@ -276,8 +276,7 @@ Navigate to this url - [http://localhost:4141/page/login](http://localhost:4141/
 
 <figure><img src="https://static.wixstatic.com/media/5fb94b_5a3b47dc01334e71835744400e7b9053~mv2.png/v1/fill/w_1480,h_778,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/5fb94b_5a3b47dc01334e71835744400e7b9053~mv2.png" alt="ree"><figcaption></figcaption></figure>
 
-\
-
+<br>
 
 Case 1: Enter incorrect credential
 

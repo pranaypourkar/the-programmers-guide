@@ -390,8 +390,7 @@ public class SecurityConfig {
   * This means **all other endpoints require authentication** (but no specific role/authority is needed).
   * The user just needs to **log in** to access these routes.
 
-\
-
+<br>
 
 If we changed it to
 

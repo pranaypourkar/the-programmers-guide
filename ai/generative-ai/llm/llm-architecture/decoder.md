@@ -11,6 +11,5 @@ Nucleus sampling
 Bean search
 
 \
-\
-
+<br>
 
