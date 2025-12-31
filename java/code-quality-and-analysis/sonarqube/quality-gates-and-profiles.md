@@ -1,2 +1,0 @@
-# Quality Gates & Profiles
-
