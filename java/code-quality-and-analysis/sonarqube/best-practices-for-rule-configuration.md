@@ -1,2 +1,6 @@
-# Best Practices for Setting Rules
+---
+hidden: true
+---
+
+# Best Practices for Rule Configuration
 
