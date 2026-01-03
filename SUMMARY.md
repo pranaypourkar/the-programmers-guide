@@ -884,6 +884,7 @@
       * [Quality Gates & Profiles](java/code-quality-and-analysis/sonarqube/quality-gates-and-profiles/README.md)
         * [Custom Quality Gate](java/code-quality-and-analysis/sonarqube/quality-gates-and-profiles/custom-quality-gate.md)
       * [Best Practices for Rule Configuration](java/code-quality-and-analysis/sonarqube/best-practices-for-rule-configuration.md)
+      * [Industry-Standard Quality Gate Conditions](java/code-quality-and-analysis/sonarqube/industry-standard-quality-gate-conditions.md)
   * [Code Style Guidelines](java/code-style-guidelines/README.md)
     * [Naming Convention](java/code-style-guidelines/naming-convention.md)
     * [Package Structure](java/code-style-guidelines/package-structure.md)
