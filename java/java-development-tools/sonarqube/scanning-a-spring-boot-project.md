@@ -149,5 +149,23 @@ After completion:
 
 ### Script
 
+{% file src="../../../.gitbook/assets/script-to-run-local-sonar-analysis.sh" %}
+
+### Example
+
+Use the sample java project having required plugins
+
+{% file src="../../../.gitbook/assets/springboot-sonar-demo.zip" %}
+
+Execute the Script using the below command as well provide the path of the springboot project
+
+{% code overflow="wrap" %}
+```
+./script-to-run-local-sonar-analysis.sh /Users/pranayp/Documents/Project/codebase/sonar/springboot-sonar-demo
+```
+{% endcode %}
+
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
 
 

@@ -98,7 +98,7 @@ server:
 
 Build the project to generate jar file (to be used later in docker compose file)
 
-<figure><img src="../../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="info" %}
 We will use the generated jar file directly in docker-compose instead of creating docker image for above service
@@ -222,11 +222,11 @@ networks:
 
 Run the docker-compose file
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1).png" alt="" width="371"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt="" width="371"><figcaption></figcaption></figure>
 
 Call the API [http://localhost:90/api/hello-world](http://localhost:90/api/hello-world) multiple time to see load balancing effect
 
-<figure><img src="../../../../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt="" width="553"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt="" width="553"><figcaption></figcaption></figure>
 
-<figure><img src="../../../../.gitbook/assets/image (2) (1).png" alt="" width="455"><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt="" width="455"><figcaption></figcaption></figure>
 
