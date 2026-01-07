@@ -177,6 +177,12 @@ Open the Sonarqube console at [http://localhost:9000](http://localhost:9000) wit
 
 <figure><img src="../../../.gitbook/assets/sonarqube-example-3.png" alt=""><figcaption></figcaption></figure>
 
+Once done we can use below command to stop the containers
+
+```
+./script-to-run-local-sonar-analysis.sh --clean
+```
+
 ## Option 2: Local SonarQube Using Docker + Maven Sonar Plugin
 
 This option lets developers get **real-time analysis** inside IntelliJ using the **same rules as the SonarQube server**, ensuring consistency and preventing CI failures before they happen. This is the most common developer workflow in real teams.
