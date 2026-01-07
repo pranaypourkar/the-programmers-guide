@@ -151,6 +151,10 @@ After completion:
 
 {% file src="../../../.gitbook/assets/script-to-run-local-sonar-analysis.sh" %}
 
+{% hint style="info" %}
+Script will pull the required docker images and run the Sonar Server. Ensure Docker is already setup.
+{% endhint %}
+
 ### Example
 
 Use the sample java project having required plugins
@@ -165,7 +169,61 @@ Execute the Script using the below command as well provide the path of the sprin
 ```
 {% endcode %}
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/sonarqube-example-1.png" alt=""><figcaption></figcaption></figure>
+
+Open the Sonarqube console at [http://localhost:9000](http://localhost:9000) with credential as admin/admin
+
+<figure><img src="../../../.gitbook/assets/sonarqube-example-2.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/sonarqube-example-3.png" alt=""><figcaption></figcaption></figure>
+
+## Option 2: Local SonarQube Using Docker + Maven Sonar Plugin
+
+This option lets developers get **real-time analysis** inside IntelliJ using the **same rules as the SonarQube server**, ensuring consistency and preventing CI failures before they happen. This is the most common developer workflow in real teams.
+
+#### Install SonarQube for IDE in IntelliJ
+
+Path:
+
+**IntelliJ → Settings → Plugins → Marketplace → “SonarQube”**
+
+Install:
+
+* “**SonarQube for IDE**”\
+  (formerly called **SonarLint**)
+
+Restart IntelliJ afterwards.
+
+#### Connect IntelliJ to the SonarQube Server
+
+_(Most important step — enables rule sync)_
+
+#### Steps:
+
+1. IntelliJ Sidebar → **SonarQube** Tool Window
+2. Click **“Bind Project to SonarQube”**
+3. Add server connection
+   * Name: Internal SonarQube
+   * URL: `http://localhost:9000` (or company server)
+   * Token: Personal access token from SonarQube
+4. Select your project key
+5. Connection established
+
+<figure><img src="../../../.gitbook/assets/sonarqube-example-4.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/sonarqube-example-10.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/sonarqube-example-9.png" alt=""><figcaption></figcaption></figure>
 
 
+
+<figure><img src="../../../.gitbook/assets/sonarqube-example-8.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/sonarqube-example-7.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/sonarqube-example-5.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/sonarqube-example-6.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../../../.gitbook/assets/sonarqube-example-11.png" alt=""><figcaption></figcaption></figure>
 

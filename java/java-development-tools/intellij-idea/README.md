@@ -4,7 +4,7 @@
 
 IntelliJ IDEA is one of the most popular and powerful Integrated Development Environments (IDEs) for Java development. It is developed by **JetBrains** and is renowned for its developer-friendly features, advanced code assistance, and seamless integration with modern development workflows.
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Key Features
 
