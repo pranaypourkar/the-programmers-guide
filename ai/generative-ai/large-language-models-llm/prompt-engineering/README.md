@@ -2,7 +2,7 @@
 
 ## About
 
-<figure><img src="../../../.gitbook/assets/prompt-engineering-1.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/prompt-engineering-1.png" alt=""><figcaption></figcaption></figure>
 
 ### What is Prompt Engineering?
 
